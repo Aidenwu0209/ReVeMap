@@ -1,0 +1,48 @@
+{
+  "source_commit": "18ddeca303bf9937e855d3ac3113a90dd852a462",
+  "scope": "One-time structural equality of transplanted algorithm functions; only relocated local import removed.",
+  "functions": [
+    {
+      "function": "compatible",
+      "source": "src/pose_pipeline/sam3_sga.py",
+      "destination": "src/pose_pipeline/instance_association.py",
+      "algorithm_ast_unchanged": true
+    },
+    {
+      "function": "select_tracks",
+      "source": "src/pose_pipeline/sam3_sga.py",
+      "destination": "src/pose_pipeline/instance_association.py",
+      "algorithm_ast_unchanged": true
+    },
+    {
+      "function": "measure_candidates",
+      "source": "src/pose_pipeline/sam3_sga.py",
+      "destination": "src/pose_pipeline/instance_association.py",
+      "algorithm_ast_unchanged": true
+    },
+    {
+      "function": "greedy_pairs",
+      "source": "src/pose_pipeline/sam3_sga.py",
+      "destination": "src/pose_pipeline/instance_association.py",
+      "algorithm_ast_unchanged": true
+    },
+    {
+      "function": "object_consensus",
+      "source": "src/pose_pipeline/sam3_sga.py",
+      "destination": "src/pose_pipeline/instance_association.py",
+      "algorithm_ast_unchanged": true
+    },
+    {
+      "function": "measured_association",
+      "source": "src/pose_pipeline/semantic_mapping.py",
+      "destination": "src/pose_pipeline/instance_association.py",
+      "algorithm_ast_unchanged": true
+    },
+    {
+      "function": "write_json",
+      "source": "src/pose_pipeline/semantic_mapping.py",
+      "destination": "scripts/evaluate_semantic_map.py",
+      "algorithm_ast_unchanged": true
+    }
+  ]
+}

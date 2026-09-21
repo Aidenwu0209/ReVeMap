@@ -1,0 +1,41 @@
+{
+  "image_sha256": "8f2f930e9b78e55fce679da04b7a7a4e9551b8ef908ac8708082c1e2221374fe",
+  "legacy_tensor_shapes": {
+    "input_ids": [
+      1,
+      92
+    ],
+    "attention_mask": [
+      1,
+      92
+    ]
+  },
+  "corrected_tensor_shapes": {
+    "pixel_values": [
+      528,
+      768
+    ],
+    "image_grid_thw": [
+      1,
+      3
+    ],
+    "patch_positions": [
+      528,
+      3
+    ],
+    "input_ids": [
+      1,
+      223
+    ],
+    "attention_mask": [
+      1,
+      223
+    ]
+  },
+  "image_tokens": 132,
+  "expected_image_tokens": 132,
+  "legacy_did_not_encode_image": true,
+  "corrected_image_inputs_verified": true,
+  "GPU_model_loaded": false,
+  "scope": "processor CPU inspection; no inference or accuracy claim"
+}

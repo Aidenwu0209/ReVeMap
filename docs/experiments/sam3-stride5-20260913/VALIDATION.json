@@ -1,0 +1,30 @@
+{
+  "validation_date": "2026-09-13",
+  "algorithm_source": "ee16f96515ebd1fb328c3082bd44699833692bd5",
+  "sam3_tests": {
+    "passed": 90,
+    "seconds": 2.32,
+    "command": "PYTHONPATH=src <analysis_env>/bin/python -m pytest -q tests/test_sam3_fusion.py tests/test_sam3_guided.py tests/test_sam3_loss_unknown.py tests/test_sam3_multiview.py tests/test_sam3_object_naming.py tests/test_sam3_refine.py tests/test_sam3_sga.py tests/test_sam3_tracking_probe.py"
+  },
+  "existing_semantic_contract_tests": {
+    "passed": 23,
+    "seconds": 0.6,
+    "files": [
+      "tests/test_semantic_mapping.py",
+      "tests/test_semantic_fusion.py",
+      "tests/test_pose_pipeline_contracts.py"
+    ]
+  },
+  "archived_blas_implementation_multiview_tests": {
+    "passed": 45,
+    "seconds": 1.38,
+    "method": "Loaded evidence/sam3_multiview_blas.py as pose_pipeline.sam3_multiview via importlib and ran tests/test_sam3_multiview.py; same 45 fixtures as source implementation, not 45 additional unique fixtures."
+  },
+  "analysis_env": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/sgf_sga_restore_20260910_v1/analysis_env",
+  "sealed_local_files_hash_verified": 362,
+  "packaged_copies_hash_verified": 56,
+  "archived_entrypoints_syntax_valid": true,
+  "readme_relative_links_valid": true,
+  "fresh_gpu_inference_this_promotion": false,
+  "interpretation": "Code regression and archive integrity checks; dataset evidence reused without changing algorithms, thresholds, predictions or historical acceptance flags."
+}

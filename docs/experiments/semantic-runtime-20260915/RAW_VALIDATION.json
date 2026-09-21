@@ -1,0 +1,669 @@
+{
+  "scope": "new integrated implementation: four fresh 120-frame runs; each scene/schedule once; pipeline and paired-output verification, not GT accuracy or full-scene benchmark",
+  "runs": [
+    {
+      "run": "scannet0030_serial",
+      "source": "remote_raw/scannet0030_serial",
+      "seconds": 111.8511783349968,
+      "raw_fps": 1.0728541423193352,
+      "raw_frame_count": 120,
+      "final_pose_count": 120,
+      "integrated_frame_count": 120,
+      "selected_frames": 25,
+      "map_points": 40669,
+      "instance_count": 6,
+      "semantic_coverage": 0.5710246133418574,
+      "VLM_starts_after_SAM3_process_exit": true,
+      "VLM_model": "Qwen/Qwen3-VL-2B-Instruct",
+      "VLM_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+      "raw_inputs_checked_before_and_after": true,
+      "GT_used": false,
+      "identity_fallback": false,
+      "events": [
+        {
+          "event": "run_start",
+          "monotonic": 90065.624178173,
+          "pid": 1188188,
+          "schedule": "serial"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90065.624260361,
+          "pid": 1188188,
+          "stage": "mapping"
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90091.803176013,
+          "pid": 1188188,
+          "stage": "mapping"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90091.803797446,
+          "pid": 1188188,
+          "stage": "sam3"
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90091.804349599,
+          "pid": 1188188,
+          "stage": "mapping"
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90161.170990645,
+          "pid": 1188188,
+          "stage": "sam3"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90161.171553335,
+          "pid": 1188188,
+          "stage": "vlm"
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90174.914874788,
+          "pid": 1188188,
+          "stage": "vlm"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90174.91508462,
+          "pid": 1188188,
+          "stage": "fusion"
+        },
+        {
+          "event": "projection_fusion_start",
+          "monotonic": 90175.004236394,
+          "pid": 1191157
+        },
+        {
+          "event": "projection_fusion_complete",
+          "monotonic": 90177.116621328,
+          "pid": 1191157,
+          "points": 40669
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90177.274021241,
+          "pid": 1188188,
+          "stage": "fusion"
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90177.27415638,
+          "pid": 1188188,
+          "stage": "vlm"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90177.274214158,
+          "pid": 1188188,
+          "stage": "backfill"
+        },
+        {
+          "event": "name_backfill_start",
+          "monotonic": 90177.320592209,
+          "pid": 1191261
+        },
+        {
+          "event": "name_backfill_complete",
+          "monotonic": 90177.453656419,
+          "pid": 1191261,
+          "named": 3
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90177.475268161,
+          "pid": 1188188,
+          "stage": "backfill"
+        }
+      ]
+    },
+    {
+      "run": "scannet0030_parallel",
+      "source": "remote_raw/scannet0030_parallel",
+      "seconds": 102.28119577300095,
+      "raw_fps": 1.1732361857239477,
+      "raw_frame_count": 120,
+      "final_pose_count": 120,
+      "integrated_frame_count": 120,
+      "selected_frames": 25,
+      "map_points": 40665,
+      "instance_count": 6,
+      "semantic_coverage": 0.5708594614533382,
+      "VLM_starts_after_SAM3_process_exit": true,
+      "VLM_model": "Qwen/Qwen3-VL-2B-Instruct",
+      "VLM_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+      "raw_inputs_checked_before_and_after": true,
+      "GT_used": false,
+      "identity_fallback": false,
+      "events": [
+        {
+          "event": "run_start",
+          "monotonic": 90177.625261891,
+          "pid": 1191274,
+          "schedule": "parallel"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90177.625351893,
+          "pid": 1191274,
+          "stage": "mapping"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90197.648660888,
+          "pid": 1191274,
+          "stage": "sam3"
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90201.312753816,
+          "pid": 1191274,
+          "stage": "mapping"
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90266.266330009,
+          "pid": 1191274,
+          "stage": "sam3"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90266.266505222,
+          "pid": 1191274,
+          "stage": "vlm"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90266.267036133,
+          "pid": 1191274,
+          "stage": "fusion"
+        },
+        {
+          "event": "projection_fusion_start",
+          "monotonic": 90266.346776749,
+          "pid": 1193641
+        },
+        {
+          "event": "projection_fusion_complete",
+          "monotonic": 90268.543547423,
+          "pid": 1193641,
+          "points": 40665
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90268.723826781,
+          "pid": 1191274,
+          "stage": "fusion"
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90279.70473392,
+          "pid": 1191274,
+          "stage": "vlm"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90279.704942786,
+          "pid": 1191274,
+          "stage": "backfill"
+        },
+        {
+          "event": "name_backfill_start",
+          "monotonic": 90279.758231575,
+          "pid": 1194060
+        },
+        {
+          "event": "name_backfill_complete",
+          "monotonic": 90279.896680906,
+          "pid": 1194060,
+          "named": 3
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90279.906322628,
+          "pid": 1191274,
+          "stage": "backfill"
+        }
+      ]
+    },
+    {
+      "run": "orbbec_serial",
+      "source": "remote_raw/orbbec_serial",
+      "seconds": 102.54756475400063,
+      "raw_fps": 1.1701886854930752,
+      "raw_frame_count": 120,
+      "final_pose_count": 120,
+      "integrated_frame_count": 120,
+      "selected_frames": 25,
+      "map_points": 7487,
+      "instance_count": 3,
+      "semantic_coverage": 0.8152798183518098,
+      "VLM_starts_after_SAM3_process_exit": true,
+      "VLM_model": "Qwen/Qwen3-VL-2B-Instruct",
+      "VLM_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+      "raw_inputs_checked_before_and_after": true,
+      "GT_used": false,
+      "identity_fallback": false,
+      "events": [
+        {
+          "event": "run_start",
+          "monotonic": 90280.053987589,
+          "pid": 1194068,
+          "schedule": "serial"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90280.054087971,
+          "pid": 1194068,
+          "stage": "mapping"
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90304.06933801,
+          "pid": 1194068,
+          "stage": "mapping"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90304.069850381,
+          "pid": 1194068,
+          "stage": "sam3"
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90304.07049676,
+          "pid": 1194068,
+          "stage": "mapping"
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90368.156281266,
+          "pid": 1194068,
+          "stage": "sam3"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90368.156484581,
+          "pid": 1194068,
+          "stage": "vlm"
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90380.845214073,
+          "pid": 1194068,
+          "stage": "vlm"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90380.845365091,
+          "pid": 1194068,
+          "stage": "fusion"
+        },
+        {
+          "event": "projection_fusion_start",
+          "monotonic": 90380.926499052,
+          "pid": 1196801
+        },
+        {
+          "event": "projection_fusion_complete",
+          "monotonic": 90382.283352129,
+          "pid": 1196801,
+          "points": 7487
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90382.450259822,
+          "pid": 1194068,
+          "stage": "fusion"
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90382.450373304,
+          "pid": 1194068,
+          "stage": "vlm"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90382.450430621,
+          "pid": 1194068,
+          "stage": "backfill"
+        },
+        {
+          "event": "name_backfill_start",
+          "monotonic": 90382.499155702,
+          "pid": 1196880
+        },
+        {
+          "event": "name_backfill_complete",
+          "monotonic": 90382.560239264,
+          "pid": 1196880,
+          "named": 1
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90382.601420894,
+          "pid": 1194068,
+          "stage": "backfill"
+        }
+      ]
+    },
+    {
+      "run": "orbbec_parallel",
+      "source": "remote_raw/orbbec_parallel",
+      "seconds": 98.43408323900076,
+      "raw_fps": 1.2190899336019272,
+      "raw_frame_count": 120,
+      "final_pose_count": 120,
+      "integrated_frame_count": 120,
+      "selected_frames": 25,
+      "map_points": 7487,
+      "instance_count": 3,
+      "semantic_coverage": 0.8152798183518098,
+      "VLM_starts_after_SAM3_process_exit": true,
+      "VLM_model": "Qwen/Qwen3-VL-2B-Instruct",
+      "VLM_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+      "raw_inputs_checked_before_and_after": true,
+      "GT_used": false,
+      "identity_fallback": false,
+      "events": [
+        {
+          "event": "run_start",
+          "monotonic": 90382.754328482,
+          "pid": 1196882,
+          "schedule": "parallel"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90382.754413721,
+          "pid": 1196882,
+          "stage": "mapping"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90404.283717055,
+          "pid": 1196882,
+          "stage": "sam3"
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90406.843414578,
+          "pid": 1196882,
+          "stage": "mapping"
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90468.293314194,
+          "pid": 1196882,
+          "stage": "sam3"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90468.293748573,
+          "pid": 1196882,
+          "stage": "vlm"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90468.294376236,
+          "pid": 1196882,
+          "stage": "fusion"
+        },
+        {
+          "event": "projection_fusion_start",
+          "monotonic": 90468.382941498,
+          "pid": 1199302
+        },
+        {
+          "event": "projection_fusion_complete",
+          "monotonic": 90469.771873826,
+          "pid": 1199302,
+          "points": 7487
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90469.949347956,
+          "pid": 1196882,
+          "stage": "fusion"
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90481.037163713,
+          "pid": 1196882,
+          "stage": "vlm"
+        },
+        {
+          "event": "process_start",
+          "monotonic": 90481.037330138,
+          "pid": 1196882,
+          "stage": "backfill"
+        },
+        {
+          "event": "name_backfill_start",
+          "monotonic": 90481.085954397,
+          "pid": 1199834
+        },
+        {
+          "event": "name_backfill_complete",
+          "monotonic": 90481.146989736,
+          "pid": 1199834,
+          "named": 1
+        },
+        {
+          "event": "process_complete",
+          "monotonic": 90481.188305827,
+          "pid": 1196882,
+          "stage": "backfill"
+        }
+      ]
+    }
+  ],
+  "pairs": [
+    {
+      "scene": "scannet0030",
+      "same_selected_RGBD_inputs": true,
+      "SAM3_frames": 25,
+      "all_SAM3_arrays_equal": true,
+      "poses": 120,
+      "max_pose_abs_difference": 3.6835670471191406e-05,
+      "XYZ_exact": false,
+      "label_arrays_exact": {
+        "semantic": false,
+        "instance": false,
+        "confidence": false
+      },
+      "points_serial": 40669,
+      "points_parallel": 40665,
+      "serial_to_parallel_m": {
+        "mean": 3.981593281187882e-05,
+        "p95": 0.00012093824205008362,
+        "max": 0.011072776904325081,
+        "within_5mm": 0.9997541124689567
+      },
+      "parallel_to_serial_m": {
+        "mean": 3.9815661862065836e-05,
+        "p95": 0.00012052859694120503,
+        "max": 0.019205833297502268,
+        "within_5mm": 0.9998032706258453
+      },
+      "nearest_semantic_agreement": 0.9997541124689567,
+      "nearest_integer_instance_agreement": 0.999778701222061,
+      "same_name_metadata": true
+    },
+    {
+      "scene": "orbbec",
+      "same_selected_RGBD_inputs": true,
+      "SAM3_frames": 25,
+      "all_SAM3_arrays_equal": true,
+      "poses": 120,
+      "max_pose_abs_difference": 8.672475814819336e-06,
+      "XYZ_exact": false,
+      "label_arrays_exact": {
+        "semantic": true,
+        "instance": true,
+        "confidence": false
+      },
+      "points_serial": 7487,
+      "points_parallel": 7487,
+      "serial_to_parallel_m": {
+        "mean": 9.498317430516615e-06,
+        "p95": 3.430827359285348e-05,
+        "max": 0.005760351356089349,
+        "within_5mm": 0.9998664351542674
+      },
+      "parallel_to_serial_m": {
+        "mean": 8.8057645724193e-06,
+        "p95": 3.430827359285348e-05,
+        "max": 0.001482295827625102,
+        "within_5mm": 1.0
+      },
+      "nearest_semantic_agreement": 1.0,
+      "nearest_integer_instance_agreement": 1.0,
+      "same_name_metadata": true
+    }
+  ],
+  "source_hashes": {
+    "build_semantic_bundle.py": "92e3914174d7a7984a34e1afa1b1add3c761ab86fe6427a46c0911f2cf96f472",
+    "src/matching/sgpgm_enhancements.py": "c5635bef8097afac8c28f3604309af00620f4687b7f8762d75ed5176b5de99cf",
+    "src/matching/__init__.py": "da5c88e9f0b846cffaee859fc93d0512de1c174ad795ad2e1f1cffbfb9d063da",
+    "src/reconstruction/rgbd_refusion.py": "2218ed2ea6df075daa56a188a41a24540bc68cb0b7aa5115ca0c8fa73ed7a5a2",
+    "src/reconstruction/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/trainers/trainval_sgaligner.py": "331ee75abcb62370071458935f524e67d96ac35fca70cae36dbfcdecbc08c7f1",
+    "src/trainers/trainval_eva.py": "e7598fa4d00b0b3cddcfe70196e0a5b64b1412f4ef85dc597b6e07a4301d19fc",
+    "src/safety/v16_b716_fixed4_active_production_wrapper.py": "150dd6bf71f0f9bcfed02da89432f4e987e204af25fd8962001a1c6660ae7186",
+    "src/safety/v13_dual_solver_runtime.py": "658d9fcbfaf9331c9bbded3a9d0458d46b461c6bdf83dd59b63b24df88e0447d",
+    "src/safety/v16_b716_fixed4_production_manifest_builder.py": "cc4e6e385b0596d4c0c025e47d25e574ab1cad2fd35006be1826da71b8468253",
+    "src/safety/decision_features.py": "3795af00ba7c494f10bc949e35c104a2f67e37876e309fa923945ad248a393eb",
+    "src/safety/matched_region_hypotheses.py": "8401ff0bcb49d05451dfdbeb6528c985d1c10607792655fec1feefaebf86b547",
+    "src/safety/v13_colorpcr_pointdsc_shadow.py": "dd932083d892b4d0767987e92f04b2d94f2dec64bd3d9f49d5ea42a88bf3cd79",
+    "src/safety/v16_b716_fixed4_assets_builder.py": "d27cfe1f71b1c3c6ba4c19af0c427b7f5d5e59f64ac34a9fb5c6d87004fb83c6",
+    "src/safety/v16_b716_prepared_builder.py": "43e8305996bb70343ea33fcf968bc0bc21c7e2f66ab09c7b645375b619ab19d0",
+    "src/safety/v16_b716_exact72_lineage_seal.py": "d8ac7fc50720d9cef12e7da85b5e51519975171cb3216dc817a6e821e63e4cd0",
+    "src/safety/v16_b716_geot_backfill.py": "b8bfcc5aeed6a4169a1310ac463044316f02fca2e1e5dd15a6698a8ad4da45e1",
+    "src/safety/v16_b716_exact191_merger.py": "7560343ec2601ed784b6e41e835bdc1770362fcbf6a2b02a2a326e5f1f8fb5fc",
+    "src/safety/cross_graph_loss.py": "620676d3fbee02e24bb666fcd9e5957db009b02f2411d15c8afc34607c997b71",
+    "src/safety/v15_safe_pose_cluster.py": "0e0d325770c01fafb04c3230a1a70299e5df28cd186a11a797398576ff97558e",
+    "src/safety/v16_b716_candidate_plan.py": "4dee241bca64de06fc10d2837ec86863294673eb4b8f5efedac515a6a1240947",
+    "src/safety/v13_strict_pair_gate.py": "06817f17bdbac1948209a766f2d9292562836d0a7c2b9d9dc75621d05ba67747",
+    "src/safety/v16_b716_scannet15_identity.py": "20724e0579312431f810d55531110bf0eac1d280b889b0e334271852f9bd89ef",
+    "src/safety/v81_gtfree_stability.py": "dcf219f8423cf5ee431c78bcc970c7364c7aa790e51a00fb641b82cc593b0def",
+    "src/safety/v8_stage_order_consensus.py": "38617c61b0ce2faebceb31673b01db0158a28251f034f91b570d9d9909784d1c",
+    "src/safety/v16_b716_fixed4_execution_pilot.py": "3d6b40e6bc4ef194b2981ce11877fdf8c317067a01105372b44be766bb9efb81",
+    "src/safety/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/safety/v16_b716_fixed4_production_adapters.py": "8043956de39e127e2bbd6fe97b518e4f61ae7e9f205bfcab5618c5a0daedd659",
+    "src/safety/v16_safe_hypothesis_cluster.py": "ff78d32876ed44a75de0c06c25774a532b80badd165b2a30fe635021ff2edd2b",
+    "src/safety/registration_decision.py": "5e216209c5a61bd40665de1f4ccde43ca44c43da8d86d7505e46f1a26d1ce43b",
+    "src/safety/v16_b716_scannet15_v13_gate_bridge.py": "5ab1ae02a72a876a768c1def43ba2666cfb9ef44cd8db8cbc16083da35b8dd2d",
+    "src/safety/registration_consensus.py": "ab9cb8ce385e9c08400d460dbaee1abe6d33b6c23af1f5739bda40a767e96e7e",
+    "src/safety/v13_fixed4_aggregate.py": "dbe11b9ecc9106b54785ebb4bfede904bc14c2cf0ff88949243ccfc52703d913",
+    "src/safety/v16_matched_region_colorpcr.py": "c2eb6c03ddadabb393cb4f082ead59f3b01a2b33d5fc5bda945009b0a70bc0bb",
+    "src/safety/v14_rigid_multihypothesis.py": "ce64e9610ae98bd032065cd7cdeb5ddcd202f0eb14902c52c9dd0735012a59e0",
+    "src/safety/v16_b716_fixed4_orchestrator_contract.py": "af828b095f30f49a6dcdc15b755299b508d4c833702260716d4cd4fc48fb6e07",
+    "src/safety/v16_b716_fixed4_stage_runners.py": "e49ee01b02319e0a6dbda488e5dc6e028273d609d1e82594ec7a34c265f91f09",
+    "src/safety/cross_graph_candidates.py": "85048b47d65661cbdccfcf882f1890239a9348f8e4ed4abb9a117341c71f56c3",
+    "src/safety/node_pair_rigid_hypotheses.py": "2b9c6b697cc6ab8994902257b496ccba8cb924037b8986493026a2f1cd12566f",
+    "src/safety/v16_b716_fixed4_subprocess_contract.py": "1c6bb539b0f7be5ca48228148761acbb5450fc9fc566b1cd8d8eceb052dda788",
+    "src/pose_pipeline/sam3_fusion.py": "4055764e03a5c33d7f218ad23d46e0931c16083c7ca02c770a03e3b1e6b4003b",
+    "src/pose_pipeline/replay.py": "af090556847a6b460dc323344cfeaf8ad782b78de95754972cbe4c7d85b22f2f",
+    "src/pose_pipeline/semantic_continuous.py": "9d0cd71148c7347f372fce1fc737547324a5802afc6606875786705cd608b6d6",
+    "src/pose_pipeline/sam3_object_naming.py": "b27027ab1953b355907c5ba865daa9cc7692721c1c8a5546d56d78292b1bce8a",
+    "src/pose_pipeline/contracts.py": "03f1d4d8d261a2b1782576fc706d97848de6012d38b705ee33c3ecc1d79735af",
+    "src/pose_pipeline/adapters.py": "4128792218f96f7d98f8fd252b5c3d61dfda11c42cf8ed65f4951d34c4a45467",
+    "src/pose_pipeline/rgbd_empty_anchor.py": "2603200897dfff8c786e3c79bc8ed1930835d7f4c42441f823835a5707c59c73",
+    "src/pose_pipeline/robust_backend.py": "d2781db541a64df7dbecb7d40de228c2836e4e2753bb81fdcee7b1f76d6e0dce",
+    "src/pose_pipeline/appearance.py": "c7cd90b14e406a1d6a703405ed7af5241d9442f9c9f4057148056688e350d88f",
+    "src/pose_pipeline/lightweight_rgbd.py": "10ca36ad9f41a177032bab7d90fde4b8421c10c6e5c17bc2555bf052184b745b",
+    "src/pose_pipeline/semantic_sga_worker.py": "76ec0adae1657d2e04b9a4b92ad2e561fa6094a95ac49ca4db22e490a654d8ac",
+    "src/pose_pipeline/geometry_backend.py": "2dfdd595d967c46bc61c5ea41e0ac70a3ef7f2a0b413e9d2db9c46f25fa67d9f",
+    "src/pose_pipeline/semantic_instances.py": "5dc2a07b4df4ea924981586ef28126485fa0483d6a139bac31a1b907c6411bde",
+    "src/pose_pipeline/depth_loop_witness.py": "4fddb5126360f0bc1de34d5132abb2020be521ec898b8d42b0ea27eef2b5dc04",
+    "src/pose_pipeline/sam3_refine.py": "8501523487ae79931353bfdc6e229378a0d39727bb4e8a81c2c68cd57fc23788",
+    "src/pose_pipeline/runner.py": "f3f6627b005d97da2a8df1294b67eccd7bfbcddd7757790a55f15b7a253f6723",
+    "src/pose_pipeline/semantic_reconcile.py": "f284a6b545de0687915874c272db99436407980887fc497eab1bba502900c2ca",
+    "src/pose_pipeline/sam3_unknown.py": "7ded56ee04552612f360dc5b02c208b520688211a6674d87881c10e2d53c3d6e",
+    "src/pose_pipeline/geometry_metrics_v3.py": "975bd0159d06fcae62a52bcdb00d5ecd1110a736b8ed54309cb2eaa7b3724d10",
+    "src/pose_pipeline/semantic_mapping.py": "0d3e1ba1fa024de2ba87fdd4d624dbe29a02ca78a3d396035ebcb3854ce4e12f",
+    "src/pose_pipeline/rgbd_refill.py": "6ef35a29334515fd0864a4837e8fcdcd6e9776c6fbcaec1246ca97d01c65cbac",
+    "src/pose_pipeline/sam3_mapping.py": "caa1eba66ead1ddb280745d47557ecf275df662f7184ce8f615e7e0b320ed719",
+    "src/pose_pipeline/rgbd_mapping.py": "52444aedbd2bb995cab9d27892daaaa63a0d4bca307fbcaccc8058fb7deeed4a",
+    "src/pose_pipeline/pose_graph.py": "94454e22fbe3699f9c6241d55c13df08defff850322bd17b8cde20c0a688551a",
+    "src/pose_pipeline/depth_first_loops.py": "e0ee985ed2b1fec6f49681b448a6d2a7c88b6de191b7c6690a660f0324cc4bee",
+    "src/pose_pipeline/sam3_sga.py": "0cca74b1a658edb8aec55566f4fc5669ecac6843e4c5e2b684c2b5efb2f7036b",
+    "src/pose_pipeline/submaps.py": "5775d73f982e18631d4f12147af7d029f6ccc56c3d1231ac1c26cc3264339f0a",
+    "src/pose_pipeline/sam3_loss_audit.py": "2ed68aa6ed85b0ccb5d987036f632766b9921014716c15cd8ff5fbf0b291bdcd",
+    "src/pose_pipeline/__init__.py": "0fe898e1f758ca71a3a7f6b4f7387677fa88132fc106e263686329436056fab1",
+    "src/pose_pipeline/unified.py": "ec3a08a532c7ea2679378e7676445a134a7b26a9ca847cb548eb60a37e3f7689",
+    "src/pose_pipeline/telemetry.py": "d4cdad3aaaa95ab42436554089cf5af5934a9def5a654525b597f790c805692e",
+    "src/pose_pipeline/semantic_fusion.py": "8974217fcf7fc210c53b4ecbc18beb3df1ea178ff3464eb1577a740450b871ec",
+    "src/pose_pipeline/geometry_metrics.py": "d9b27efa24d745db41e4b3f79df9a127f081eab304e00e020330679146c21cf2",
+    "src/pose_pipeline/visual_verification.py": "6884bb40acba1ae6b55a7fd1d8c33ea7c43c2e491cc25355edcbca96a1907fc7",
+    "src/pose_pipeline/sam3_multiview.py": "1dc5d52825fea2413b0f2c7fb8b8ad84fabfe5a6049f853964ae5b1f6f149870",
+    "src/pose_pipeline/sam3_tracking_probe.py": "c142906453dd89785e823b27bf8885610b992b22ba08a33979cc6cece1c0ca68",
+    "src/pose_pipeline/postfit_depth.py": "3d09cfbff1c7aba1b220d8c515392a955730fb0872d2c659bea2e6ab9fec931d",
+    "src/pose_pipeline/__main__.py": "c2ee4ddb093c9af060cafaf68219907f8a6b7b301ed3f8bea75db7555adec987",
+    "src/pose_pipeline/evaluation.py": "db44f73f2ff071f1c63ab2d542c9a6906bad6a7caa77d94707710789dab2baae",
+    "src/pose_pipeline/sam3_export.py": "ea495249073b02d7812d17718ed4a436537f22984c61cb42499dddb68bf072b3",
+    "src/pose_pipeline/rgbd_measured.py": "58199abb29f52388423a3cdbf35e9b4336346ca9137232c9b10a4d558dea1d94",
+    "src/pose_pipeline/bounded_backend.py": "b4edacdb66becfde7a02489a9152336ddea20ad88b5a96ca9ea3e9f0d80df20f",
+    "src/pose_pipeline/rgbd_droid.py": "31519cae1a7a42b5f82f11a0ca56d6e9d33fd8165505c5ff764d1d9bc2b0fe44",
+    "src/pose_pipeline/cli.py": "9bc99e1f136ce94150368c2fa0632786545e9a5f52ddce1be196879b93e5e27f",
+    "src/pose_pipeline/sam3_guided.py": "eabb4051929d0a8be68fd89e709fcdcdc3b4ee12fad722b64c41ff48af177763",
+    "src/pose_pipeline/semantic_runtime/fusion.py": "d876659081748df7a9244c8e050f1434d17bda280c50fd6838940cc2c3f11abf",
+    "src/pose_pipeline/semantic_runtime/worker.py": "c83e3c649475ec3ec89a40c974d88888bc44a3a933727e5d495aedaf7332b6f1",
+    "src/pose_pipeline/semantic_runtime/vlm.py": "66e7117d98a15fe1e4ad714bab2bdbdf20e4ea35c5cbe8d1da15bc0a86446fc4",
+    "src/pose_pipeline/semantic_runtime/pipeline.py": "ec404a6c98eee8eb9d039560a96870f0aff8682b3caef1f30d8add45d5468523",
+    "src/pose_pipeline/semantic_runtime/multiview.py": "ec9277463c3aa0c5da3726e37d56f3677c983b9833525c371d496f73078ebc76",
+    "src/pose_pipeline/semantic_runtime/__init__.py": "9fc19a425b71a1aed9fe7e747f18cbb95344522de99ce41801bb7b7033c80ab6",
+    "src/pose_pipeline/semantic_runtime/common.py": "885177701c91cb8536784eff1c359c797bb38ca8f36914a26f216aaa441367d8",
+    "src/pose_pipeline/semantic_runtime/enhance.py": "1f8db24a89855aa9f43432ebe927cb7d7d0e1bc2a7cb42af48c2c4d9c26abcca",
+    "src/pose_pipeline/semantic_runtime/identity.py": "46ed21c471c674024e21636bdc89e976328909b36db9bb9e49fc9c6d0cd9b7b1",
+    "src/pose_pipeline/semantic_runtime/backfill.py": "ba7876562884ab9f25ae314a0716b38b32147a01d0606b5a4ac24219cbe92b20",
+    "src/pose_pipeline/semantic_runtime/__main__.py": "5f9a9cc7984ec30c4ae57e2adb3e7f4bfef701467713fae537ed7b35a9894fb0",
+    "src/inference/sgf_official/inference.py": "74a9f1ca73a6d37b127e5588a04f800063a30b2a9959cd30c5f551bedba66ce7",
+    "src/inference/sgf_official/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/inference/sgaligner/inference_find_overlapper.py": "7ce87edf03b194c38d37c8aaaeef7099d7e261996eb2b6e690d4b869eb05db48",
+    "src/inference/sgaligner/inference_mosaicking.py": "949c21dd34ae4cde439577a561d90327ddab0c3937f1ce399a9988c11c672d4f",
+    "src/inference/sgaligner/inference_align_reg.py": "2066d4ae39bb48d611b3e7ebf3449201ee5bdfea118b39670be56d19e4b69c49",
+    "src/adapters/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/adapters/sgf/relation_mapper.py": "f00ae4156c81ef934eb4e1b5640234f6573d6027e82f537426066c0611a5b6ee",
+    "src/adapters/sgf/provenance.py": "95dbe8241fd73a8015751b90495fc37950a238bac257ee6609e0c34df0b487b6",
+    "src/adapters/sgf/object_adapter.py": "54b00a35dc5f68153ce264d9780bf383d624b2ec2c65004d876ef770afa3ebf2",
+    "src/adapters/sgf/data_sources.py": "5291eb611034d18bf5bba04491c337ec20124a53cafeb431598ad09f1096c609",
+    "src/adapters/sgf/__init__.py": "8651da65c3c0aab381b4f143d4e55d64531c052c553a20dcec228cfae8fcd937",
+    "src/adapters/sgf/graph_adapter.py": "a666f333fa52f1c284333e7d44a52b0bd47cf9ea4cea6d8bd8a9e52228229670",
+    "src/adapters/sgf/tensor_contract.py": "82a1cac0fb1d60e97751cee79aef419efba6769502ea3e06df7adb35df868a10",
+    "src/engine/epoch_based_trainer.py": "66acb9def851985957f1f93fe9d3bd56b247f6b7496fd25420b2b621032a49c7",
+    "src/engine/single_tester.py": "305f7c1a9f52f3cd10f61a2620702483579717ee019cd29599c70f5d89519245",
+    "src/engine/base_tester.py": "552323c8d5fdb59540ebb55202b869d63fcbbfb75ad3a10b6c531111857fc4a4",
+    "src/engine/registration_evaluator.py": "6cdbae3f75139a9195297890f3a277edc4cabb24d429d3be16fe268eef22f4d0",
+    "src/engine/__init__.py": "113b90143e0c90f2939b7dbfaf71a441c89e39d4ecf39f4f2813cb433aeca43c",
+    "src/engine/base_trainer.py": "093b919fd0acbb2ddfe5674dc57f8ed04311db7048c88594c67b7c26d5fb79cd",
+    "src/aligner/sg_aligner.py": "62cfaa9133e91b9dba72ed788b00644ca6fc6792dba6924cd2fd09babfb7c82b",
+    "src/aligner/losses.py": "9e81260859f54c1938c5a9953e6c6f586621e0e1f46a7ae34e6d1fcf5bfd3f27",
+    "src/aligner/networks/base.py": "a98c5b736b73ea608c941df656da8c08c403a8e779a537f53474f69c9df13478",
+    "src/aligner/networks/gat.py": "8d861ef3f1d07bb608e9b149cdd9a6bcfbc9c6491e8f9c00b6ee269486561df8",
+    "src/aligner/networks/pointnet.py": "88c86b66f0f97c1fd5e320440e54e786d0e6d61e01f3149d197270730f612db1",
+    "src/aligner/networks/pct.py": "0b37d27ecd8a47f68155e4fcb29a96b8d46b3ad9c1bb5545a0859fae98e0b536",
+    "configs/vlm_models.json": "a0490d5185acd8b2028d1b6570acdf9c06af75a670c2b59386a78df95fc1d188",
+    "configs/default.py": "9cd43e31ccab96d970fc5ff0db7d90b382fc30a52ec31eff59fe12d5e6f490d8",
+    "configs/sam3_indoor_v1.json": "66f843be39ba7d4d42d9bf48275f107745d971677583aab104078f4d16f8dd26",
+    "configs/__init__.py": "070097bda3b15912844cbb6968fb6be8395af67c9e86d256c8066495936aacfd",
+    "configs/semantic_runtime.example.json": "d93ce3bbf2e708955f2871f65a40151d87b4dd0e37cd0aa97293592bd27a07d1"
+  },
+  "timing_excludes": "pre/post input hashing, downloads/installations, final audit; includes process/model startup and export",
+  "peak_VRAM_measured": false,
+  "raw_run_tag": "20260915_115720_1188186",
+  "source_matches_repository_at_execution_time": true,
+  "final_source_change": {
+    "file": "src/pose_pipeline/semantic_runtime/vlm.py",
+    "before_sha256": "66e7117d98a15fe1e4ad714bab2bdbdf20e4ea35c5cbe8d1da15bc0a86446fc4",
+    "after_sha256": "ece93feb35846d0ac367e509f6576c5b9858631542e1803e74fe940e6658e7f3",
+    "scope": "Only Mage processor receives its already-loaded config, plus explanatory comments; Qwen/default raw execution path unchanged",
+    "before_source_reconstructed_and_hash_verified": true,
+    "remaining_src_and_configs_hashes_match": true
+  }
+}

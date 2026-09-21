@@ -1,0 +1,39 @@
+{
+  "baseline_commit": "08f8754d16e6d9e1097b6f7fda3735a6f752cc72",
+  "method": "sparse-mask global view consensus, inspired by MaskClustering; not full official reproduction",
+  "stage": "consensus_instances",
+  "hypothesis": "Repeated separated views and undersegmentation filtering reduce instance mixing compared to frozen objects_geometry C.",
+  "changed": "instance fusion only",
+  "fixed": [
+    "C semantic and confidence arrays",
+    "original geometry RGB normals and point order",
+    "family_v3 selected RGB-D/pose/depth projection/mask caches",
+    "taxonomy and SGF subtype anchors"
+  ],
+  "scenes": [
+    "scannet/scene0030_00",
+    "orbbec/scan_20260909_142829_5ef1fa",
+    "scannet/scene0050_00",
+    "scannet/scene0011_00",
+    "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660"
+  ],
+  "new_inference": false,
+  "gt_used_for_fusion": false,
+  "threshold_selection": "Frozen before new real results; shared defaults for all scenes; no GT optimization",
+  "validation": [
+    "synthetic merge, separation, unknown, bridge, chain, point conflict and input tests",
+    "same fixed ScanNet0030 semantic and 27-object instance evaluation",
+    "scene-level coverage and class/instance inventory on all five",
+    "same-camera Orbbec and matched-view point cloud visualization",
+    "input and output hash invariance"
+  ],
+  "acceptance": "Require reduced mixing or improved instance recall without gains explained only by deleting hard points. No automatic developnew promotion; if quality tradeoff or regression retain C default.",
+  "limits": [
+    "0030 already used for diagnosis, not heldout",
+    "Orbbec has no GT: visual evidence only",
+    "3RScan only 6 archived frames, not full scene",
+    "No new custom-label recognition; semantics unchanged",
+    "No SGA or CLIP inference this arm"
+  ],
+  "source_url": "https://arxiv.org/html/2401.07745v2"
+}

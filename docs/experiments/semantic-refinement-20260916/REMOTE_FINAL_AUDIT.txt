@@ -1,0 +1,3 @@
+{"root": "/home/aidenwu/Documents/SGF-SGA-experiments/semantic_pipeline_round2_20260915_v1", "frozen_input_or_code_drift": [], "lock_files": 189}
+{"root": "/home/aidenwu/Documents/SGF-SGA-experiments/semantic_pipeline_round2_20260915_v1/supplement_3rscan_v1", "frozen_input_or_code_drift": [], "lock_files": 138}
+11986, /usr/libexec/gnome-remote-desktop-daemon, 96 MiB

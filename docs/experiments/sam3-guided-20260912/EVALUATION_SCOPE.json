@@ -1,0 +1,19 @@
+{
+  "gt_available": [
+    "scannet/scene0030_00"
+  ],
+  "gt_not_found_on_local_and_ssh44": [
+    "scannet/scene0050_00",
+    "scannet/scene0011_00"
+  ],
+  "searched_remote_roots": [
+    "/home/aidenwu/Documents",
+    "/mnt/d/SGF-SGA-experiments"
+  ],
+  "known_old_gt_path_missing": "/home/aidenwu/Documents/Scannet/Original_files_from_scannet_dataset",
+  "orbbec": "no reference semantic/instance annotations available; visual and measured-support checks only",
+  "3rscan": "six archived frames; no full-scene input or evaluation claim",
+  "primary_evaluator": "byte-identical previous fixed0030 evaluator",
+  "secondary_evaluator": "classagnostic recall with recognized-wall/floor mass in unions, same27GTobjects; new protocol applied to all baselines and candidates; not directly interchangeable with publishedlegacy numbers",
+  "blind_holdout": false
+}

@@ -1,0 +1,25 @@
+{
+  "scope": "depth-consistent surface visibility and model claim support, not GT accuracy",
+  "map_points": 348841,
+  "selected_frames": 234,
+  "depth_tolerance_m": 0.05,
+  "visible_map_points": 273103,
+  "visible_map_fraction": 0.7828867592972156,
+  "unobserved_map_points": 75738,
+  "seen_exactly_once_points": 45170,
+  "seen_at_least_twice_points": 227933,
+  "ever_claimed_by_2d_points": 221552,
+  "ever_claimed_by_2d_fraction": 0.6351088318173609,
+  "seen_but_no_2d_class_claim": 51551,
+  "claimed_but_unknown_final": 25226,
+  "final_known_points": 196326,
+  "final_known_among_visible_fraction": 0.7188716345115213,
+  "final_known_without_visible_support": 0,
+  "final_instance_without_visible_support": 0,
+  "view_count_quantiles_on_visible": {
+    "min": 1.0,
+    "median": 6.0,
+    "p90": 17.0,
+    "max": 41.0
+  }
+}

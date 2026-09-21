@@ -1,0 +1,521 @@
+{
+  "scope": "22 actual local model configurations, one real crop each; compatibility only, not a new accuracy ranking",
+  "models": [
+    {
+      "model": "qwen35_08b_bf16",
+      "source": "remote_models/qwen35_08b_bf16",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "board"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "Qwen/Qwen3.5-0.8B",
+      "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "model_class": "Qwen3_5ForConditionalGeneration",
+      "weight_receipt_sha256": "3aece719203bf5fe9141326afea36497aa3bf18b1bf049cdbbc333a9b307aeea",
+      "MODEL_json_sha256": "35b7dc097a7c22dcda785edb0a24f44b3b787871f8372968b4cc8bc723438bf1",
+      "RECORDS_json_sha256": "056d4dd46e93bb3e459f746e740421e5b147e7d09d6deb564f39cc1faee213d9",
+      "initial_failure": null
+    },
+    {
+      "model": "qwen35_2b_bf16",
+      "source": "remote_models/qwen35_2b_bf16",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "chalkboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "Qwen/Qwen3.5-2B",
+      "revision": "15852e8c16360a2fea060d615a32b45270f8a8fc",
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "model_class": "Qwen3_5ForConditionalGeneration",
+      "weight_receipt_sha256": "fba6b5db406726fa9eb622882ac5b9b74251b9921d7b9d39b8d30310b2ead94d",
+      "MODEL_json_sha256": "d94e85bdf472800ba5a32600b352ac6968bca71634034df6ac2a7c80a6cb24b0",
+      "RECORDS_json_sha256": "5ead52878a4a046020d7a7bc229525e323b2a523e5984cfb793a35c2eac103dc",
+      "initial_failure": null
+    },
+    {
+      "model": "qwen35_4b_nf4",
+      "source": "remote_models/qwen35_4b_nf4",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "blackboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "Qwen/Qwen3.5-4B",
+      "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "model_class": "Qwen3_5ForConditionalGeneration",
+      "weight_receipt_sha256": "7187c3b13d77e3d6ed0a4b39168dbd1d4cc49e12bd5d038200710e829bf6da3e",
+      "MODEL_json_sha256": "f423b461c7840c830719a31a42025a94e90dedbc73cd942d009db0f5f93f16ea",
+      "RECORDS_json_sha256": "91c7e289e1819906a87a1b4c40bc8ca911d0b128a6dff80a770d439453aee1f4",
+      "initial_failure": null
+    },
+    {
+      "model": "qwen3vl_2b_bf16",
+      "source": "remote_models/qwen3vl_2b_bf16",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "blackboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "Qwen/Qwen3-VL-2B-Instruct",
+      "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "model_class": "Qwen3VLForConditionalGeneration",
+      "weight_receipt_sha256": "f8e0825bd79e6e154cfe43f1bd61adfe077cdce197bacff79019a9c5814b6041",
+      "MODEL_json_sha256": "a2bcbbb00ce3657daab1781ae9794ea52141b574d01b4f992a2115504ffec8ff",
+      "RECORDS_json_sha256": "f2b93290c37162533c81a84ee5526176786263f604d226e3154595f1a4e1dada",
+      "initial_failure": null
+    },
+    {
+      "model": "qwen25_3b_awq",
+      "source": "remote_models/qwen25_3b_awq",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "blackboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "Qwen/Qwen2.5-VL-3B-Instruct-AWQ",
+      "revision": "e7b623934290c5a4da0ee3c6e1e57bfb6b5abbf2",
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "model_class": "Qwen2_5_VLForConditionalGeneration",
+      "weight_receipt_sha256": "6352b42c1d8a2c39c66788e5a54b7c5db0a2327bcfe816b6b221781ebb80b73f",
+      "MODEL_json_sha256": "73823f1a2393fb676e2660a5ea1527d4bc37049a559274779adb8c42a5013f77",
+      "RECORDS_json_sha256": "8ac20e6bc3b650cb26b97374d1cbb635dbfd869397fa8ff3239304af9d17fac0",
+      "initial_failure": null
+    },
+    {
+      "model": "gemma4_e2b_qat_q4",
+      "source": "remote_models/gemma4_e2b_qat_q4",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "chalkboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "google/gemma-4-E2B-it-qat-q4_0-gguf",
+      "revision": "675cff42a74c774d6cb76f76d8eacb49b48c9b93",
+      "parameter_devices": null,
+      "model_class": null,
+      "weight_receipt_sha256": "5a5da07b4255aaef1a3a9aad1a1baeab48bb12e30d1d466da31054011a40716f",
+      "MODEL_json_sha256": "cbb756ffcad94ddf75595a63b012bb51ee87fe73e53517d82d4c797f6d5952d4",
+      "RECORDS_json_sha256": "250707130bf8326332f25abebc6e48500ae2936166a39d5c836452d5fd677d8d",
+      "initial_failure": null
+    },
+    {
+      "model": "minicpmv46_bf16_16x",
+      "source": "remote_models/minicpmv46_bf16_16x",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "black chalkboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "openbmb/MiniCPM-V-4.6",
+      "revision": "36f34a661a4bd35d0dc2294cb044d2584646c7d3",
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "model_class": "MiniCPMV4_6ForConditionalGeneration",
+      "weight_receipt_sha256": "bad13b47a97f8b44f3d28cc835d6b86d58f30ae72b896156d4457ae02700993e",
+      "MODEL_json_sha256": "7d39441f1c17fd71307cbbb6f0bb28bbef6a141ce1babdf76e0438c7ab440177",
+      "RECORDS_json_sha256": "6c0d15bd93355e558fea5b98c4645b9fb74e19982c27e9d6c19937ff6823aa80",
+      "initial_failure": null
+    },
+    {
+      "model": "minicpmv46_bf16_4x",
+      "source": "remote_models/minicpmv46_bf16_4x",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "green chalkboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "openbmb/MiniCPM-V-4.6",
+      "revision": "36f34a661a4bd35d0dc2294cb044d2584646c7d3",
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "model_class": "MiniCPMV4_6ForConditionalGeneration",
+      "weight_receipt_sha256": "bad13b47a97f8b44f3d28cc835d6b86d58f30ae72b896156d4457ae02700993e",
+      "MODEL_json_sha256": "d85cde00b7972c8933b04590bdef6181032d31e2453e82bd95cd7b21a501d0bc",
+      "RECORDS_json_sha256": "e3d1852c71cb399d583272103e5a1f1ecd4c0c6b3f5c1c1a07506b4dceb7ad54",
+      "initial_failure": null
+    },
+    {
+      "model": "minicpmv4_nf4",
+      "source": "remote_models/minicpmv4_nf4",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "blackboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "openbmb/MiniCPM-V-4",
+      "revision": "6f69a8235885be89608f3a71ffd40695b379e1e7",
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "model_class": "MiniCPMV",
+      "weight_receipt_sha256": "e5e551a92d552991fffc2ddd12974cf7ac2c0491435338e5e8dd155bda488fb8",
+      "MODEL_json_sha256": "9d7661c0035fe7b16db34f56983693eee7974bf833f430eb72e5fb0cbc49eadc",
+      "RECORDS_json_sha256": "16545494108e941e8fbd9576c219d58f3716e3cad154b01d2ea2895b5b081f4f",
+      "initial_failure": null
+    },
+    {
+      "model": "internvl35_1b_bf16",
+      "source": "remote_models/internvl35_1b_bf16",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "blackboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "OpenGVLab/InternVL3_5-1B-HF",
+      "revision": "9191dbccf312b537016f041b25d61c72e7c5c9f3",
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "model_class": "InternVLForConditionalGeneration",
+      "weight_receipt_sha256": "d2240bc091cb50ca130688d30ca2d4a0d68ed67b699c0de75b5f76fff952eeba",
+      "MODEL_json_sha256": "a18e96aaf88f5ea7a8e036d42e599ca8c20325e7caf63d873e23b3eddff7b427",
+      "RECORDS_json_sha256": "d78ecf71519c6161ed627a50d0aaca965711130239cc5b740b747a1089a36b89",
+      "initial_failure": null
+    },
+    {
+      "model": "internvl35_2b_bf16",
+      "source": "remote_models/internvl35_2b_bf16",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "blackboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "OpenGVLab/InternVL3_5-2B-HF",
+      "revision": "3f301ffcf3dcbb47893afae6650ea3e78d96fb6d",
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "model_class": "InternVLForConditionalGeneration",
+      "weight_receipt_sha256": "1b737ca49566420793265327ac1f2fa6f2d02494c07eaab67dc786202b72c227",
+      "MODEL_json_sha256": "58d870348ac4b838e2c5476ba23541f48bdf4c15f7cac2a8e180a9527d17de69",
+      "RECORDS_json_sha256": "48474bcf014a57aa30feae98345ac0d64d66fbc2946141cc667d176731fede52",
+      "initial_failure": null
+    },
+    {
+      "model": "smolvlm2_500m_bf16",
+      "source": "remote_additional/smolvlm2_500m_bf16",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "chalkboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+      "revision": "7b375e1b73b11138ff12fe22c8f2822d8fe03467",
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "model_class": "SmolVLMForConditionalGeneration",
+      "weight_receipt_sha256": "a60ef7d0f29a796e2bc388fc4bcce5ecd9ae4a6cfdc482d37f3f884b76a66482",
+      "MODEL_json_sha256": "998067b03f481be70e1b04bccfafa4870359ddb41d630a0e8e0ce0096617c920",
+      "RECORDS_json_sha256": "d3dd46f9dc3e02b49420a497895f7e3a72066c015d9e455662ba471f1b7bd255",
+      "initial_failure": {
+        "reason": "num2words missing from base environment",
+        "retained_source": "remote_models/smolvlm2_500m_bf16",
+        "resolution": "reuse verified pydeps-smol overlay; no installation"
+      }
+    },
+    {
+      "model": "smolvlm2_22b_bf16",
+      "source": "remote_additional/smolvlm2_22b_bf16",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "chalkboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "HuggingFaceTB/SmolVLM2-2.2B-Instruct",
+      "revision": "482adb537c021c86670beed01cd58990d01e72e4",
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "model_class": "SmolVLMForConditionalGeneration",
+      "weight_receipt_sha256": "075ab188d6a668df9bb084d3a667b1193a95f376db806c6a971ecdb47682608e",
+      "MODEL_json_sha256": "628151b2277613cb5d183a4e3659e6419d751f48fb19f68b4aefe43c70bc7cd8",
+      "RECORDS_json_sha256": "8d9ac329dcb703ff98b6dbf136742d77a94e2e1834072eb11306f144013531ff",
+      "initial_failure": {
+        "reason": "num2words missing from base environment",
+        "retained_source": "remote_models/smolvlm2_22b_bf16",
+        "resolution": "reuse verified pydeps-smol overlay; no installation"
+      }
+    },
+    {
+      "model": "qwen35_08b_nf4",
+      "source": "remote_models/qwen35_08b_nf4",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "board"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "Qwen/Qwen3.5-0.8B",
+      "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "model_class": "Qwen3_5ForConditionalGeneration",
+      "weight_receipt_sha256": "3aece719203bf5fe9141326afea36497aa3bf18b1bf049cdbbc333a9b307aeea",
+      "MODEL_json_sha256": "bd2d43dedf0c225c54da91a19b6da83f868660ed7375f6f8e3e33bf0e5938ae0",
+      "RECORDS_json_sha256": "7b02a012cdaa40c3034e3d8bf003fec6ee6facbcf4753e0d3dd8b09422a9541d",
+      "initial_failure": null
+    },
+    {
+      "model": "qwen3vl_2b_nf4",
+      "source": "remote_models/qwen3vl_2b_nf4",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "blackboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "Qwen/Qwen3-VL-2B-Instruct",
+      "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "model_class": "Qwen3VLForConditionalGeneration",
+      "weight_receipt_sha256": "f8e0825bd79e6e154cfe43f1bd61adfe077cdce197bacff79019a9c5814b6041",
+      "MODEL_json_sha256": "bf09b8ee204f0bbc215503a134eecf5f9c2c21d36adb11aa91f9fd14f9f84dee",
+      "RECORDS_json_sha256": "36f1c8074a2a95f0f9ea692eb733ca81a62aa5a5547fc8973e59ce5133dc8085",
+      "initial_failure": null
+    },
+    {
+      "model": "qwen35_4b_nf4_detail",
+      "source": "remote_models/qwen35_4b_nf4_detail",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "blackboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "Qwen/Qwen3.5-4B",
+      "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "model_class": "Qwen3_5ForConditionalGeneration",
+      "weight_receipt_sha256": "7187c3b13d77e3d6ed0a4b39168dbd1d4cc49e12bd5d038200710e829bf6da3e",
+      "MODEL_json_sha256": "bb4bc1596ef0f79c5d222d12e6c404e1c3ed716ad5b46261fa11653c91a23850",
+      "RECORDS_json_sha256": "1fdad93202c922d96e5f1b2c3d10b014499cf4d6135b8459f4b154ff3d60e43d",
+      "initial_failure": null
+    },
+    {
+      "model": "gemma4_e2b_qat_q4_560",
+      "source": "remote_models/gemma4_e2b_qat_q4_560",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "chalkboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "google/gemma-4-E2B-it-qat-q4_0-gguf",
+      "revision": "675cff42a74c774d6cb76f76d8eacb49b48c9b93",
+      "parameter_devices": null,
+      "model_class": null,
+      "weight_receipt_sha256": "5a5da07b4255aaef1a3a9aad1a1baeab48bb12e30d1d466da31054011a40716f",
+      "MODEL_json_sha256": "a22f0b1e87008effcc75349d01b44171d6525cad73125b31db7f2762dcddd507",
+      "RECORDS_json_sha256": "03ccb077957759c5dd7fd60b41c69a11216cc5261097f5cb037dcf1982b65b6d",
+      "initial_failure": null
+    },
+    {
+      "model": "gemma4_e2b_qat_q4_1120",
+      "source": "remote_models/gemma4_e2b_qat_q4_1120",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "chalkboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "google/gemma-4-E2B-it-qat-q4_0-gguf",
+      "revision": "675cff42a74c774d6cb76f76d8eacb49b48c9b93",
+      "parameter_devices": null,
+      "model_class": null,
+      "weight_receipt_sha256": "5a5da07b4255aaef1a3a9aad1a1baeab48bb12e30d1d466da31054011a40716f",
+      "MODEL_json_sha256": "fd3839d85b0e6720af051aad338669c3ee800380b9e11cd334d6002ab421e399",
+      "RECORDS_json_sha256": "521b18183a3764478104d72b4f4651dd614f1415c85cac41b795ecb27a8f5329",
+      "initial_failure": null
+    },
+    {
+      "model": "gemma4_e2b_qat_q4_fixed560",
+      "source": "remote_models/gemma4_e2b_qat_q4_fixed560",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "chalkboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "google/gemma-4-E2B-it-qat-q4_0-gguf",
+      "revision": "675cff42a74c774d6cb76f76d8eacb49b48c9b93",
+      "parameter_devices": null,
+      "model_class": null,
+      "weight_receipt_sha256": "5a5da07b4255aaef1a3a9aad1a1baeab48bb12e30d1d466da31054011a40716f",
+      "MODEL_json_sha256": "2e9983781122c0c4cdd6b564427901f15e05cf063c92caa7c108fe23601bd5f9",
+      "RECORDS_json_sha256": "ce732f1eef022673e606980be6f88f77d625c6a8bae4096104d90d815992a4d9",
+      "initial_failure": null
+    },
+    {
+      "model": "gemma4_e2b_qat_q4_fixed1120",
+      "source": "remote_models/gemma4_e2b_qat_q4_fixed1120",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "chalkboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "google/gemma-4-E2B-it-qat-q4_0-gguf",
+      "revision": "675cff42a74c774d6cb76f76d8eacb49b48c9b93",
+      "parameter_devices": null,
+      "model_class": null,
+      "weight_receipt_sha256": "5a5da07b4255aaef1a3a9aad1a1baeab48bb12e30d1d466da31054011a40716f",
+      "MODEL_json_sha256": "6d558dc5eef9b5d3fc907f7d15713156992c3a2973e8496f90fba2672e43935f",
+      "RECORDS_json_sha256": "3f613285c5ea642578add152bde1e15c7354358d0845e4fcc8f4f4ae81f877c9",
+      "initial_failure": null
+    },
+    {
+      "model": "mage_nf4",
+      "source": "remote_models/mage_nf4",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "unknown"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "microsoft/Mage-VL",
+      "revision": "d88b153285f1633a61b2f693c59c8576693af185",
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "model_class": "MageVLForConditionalGeneration",
+      "weight_receipt_sha256": "af26252865538c964a82c745692fef799cbef9a960d82311cfdbeb6f869cd820",
+      "MODEL_json_sha256": "5f266d699e19acfa1dc181bb904a6df8213f706b96d1f7e5c02d7e47e1c98f2e",
+      "RECORDS_json_sha256": "96f805d341d949059926a2b947492866c0cfb925373ffe9a7f560f0596b7e45a",
+      "initial_failure": null
+    },
+    {
+      "model": "joy_nf4",
+      "source": "remote_models/joy_nf4",
+      "returncode": 0,
+      "records": 1,
+      "executed": true,
+      "answers": [
+        "chalkboard"
+      ],
+      "input_sha256": [
+        "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231"
+      ],
+      "repo": "jdopensource/JoyAI-VL-Interaction",
+      "revision": "86124c620faddd7be7b7f2722f29cd5192f21c38",
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "model_class": "Qwen3VLForConditionalGeneration",
+      "weight_receipt_sha256": "c319c159d7e3ca12903e654df2d9684a5360df1bc76e27384b02a2ca02cadd3a",
+      "MODEL_json_sha256": "76bb14e6e50da531d609f59932d25a7016e744c6e30170f49359a584b0d3c75e",
+      "RECORDS_json_sha256": "ffb76e47e8d1030a86b1731c3e5980e9bed03184da1e5d36aeb0a00ef9929a8d",
+      "initial_failure": null
+    }
+  ],
+  "all_22_passed": true,
+  "all_model_families_represented": true,
+  "fresh_checks_not_run": [
+    "qwen3vl_2b_nf4_44 and qwen35_4b_nf4_44: separate-host aliases",
+    "qwen3vl_8b_nf4_44",
+    "qwen35_9b_nf4_44",
+    "qwen25_3b_bf16_control",
+    "GLM/Paddle real API requests"
+  ],
+  "API_tests": "mocked GLM image request and Paddle OCR jobs/results; historical real results preserved",
+  "Smol_overlay_spec_sha256": "e3aeb4f01fdaac0ca2a2fb45f5e3d3f049c457db67127774a8288042f8a4e242",
+  "final_Mage_adapter_check": "MAGE_NONINTERACTIVE_CHECK.json"
+}

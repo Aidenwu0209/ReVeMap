@@ -1,0 +1,17 @@
+{
+  "configs/semantic_runtime.example.json": "d93ce3bbf2e708955f2871f65a40151d87b4dd0e37cd0aa97293592bd27a07d1",
+  "configs/vlm_models.json": "a0490d5185acd8b2028d1b6570acdf9c06af75a670c2b59386a78df95fc1d188",
+  "scripts/build_semantic_bundle.py": "92e3914174d7a7984a34e1afa1b1add3c761ab86fe6427a46c0911f2cf96f472",
+  "src/pose_pipeline/cli.py": "9bc99e1f136ce94150368c2fa0632786545e9a5f52ddce1be196879b93e5e27f",
+  "src/pose_pipeline/semantic_runtime/__init__.py": "9fc19a425b71a1aed9fe7e747f18cbb95344522de99ce41801bb7b7033c80ab6",
+  "src/pose_pipeline/semantic_runtime/__main__.py": "5f9a9cc7984ec30c4ae57e2adb3e7f4bfef701467713fae537ed7b35a9894fb0",
+  "src/pose_pipeline/semantic_runtime/backfill.py": "ba7876562884ab9f25ae314a0716b38b32147a01d0606b5a4ac24219cbe92b20",
+  "src/pose_pipeline/semantic_runtime/common.py": "885177701c91cb8536784eff1c359c797bb38ca8f36914a26f216aaa441367d8",
+  "src/pose_pipeline/semantic_runtime/enhance.py": "1f8db24a89855aa9f43432ebe927cb7d7d0e1bc2a7cb42af48c2c4d9c26abcca",
+  "src/pose_pipeline/semantic_runtime/fusion.py": "d876659081748df7a9244c8e050f1434d17bda280c50fd6838940cc2c3f11abf",
+  "src/pose_pipeline/semantic_runtime/identity.py": "46ed21c471c674024e21636bdc89e976328909b36db9bb9e49fc9c6d0cd9b7b1",
+  "src/pose_pipeline/semantic_runtime/multiview.py": "ec9277463c3aa0c5da3726e37d56f3677c983b9833525c371d496f73078ebc76",
+  "src/pose_pipeline/semantic_runtime/pipeline.py": "ec404a6c98eee8eb9d039560a96870f0aff8682b3caef1f30d8add45d5468523",
+  "src/pose_pipeline/semantic_runtime/vlm.py": "ece93feb35846d0ac367e509f6576c5b9858631542e1803e74fe940e6658e7f3",
+  "src/pose_pipeline/semantic_runtime/worker.py": "c83e3c649475ec3ec89a40c974d88888bc44a3a933727e5d495aedaf7332b6f1"
+}

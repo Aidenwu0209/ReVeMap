@@ -1,0 +1,51 @@
+{
+  "scene": "scannet/scene0011_00",
+  "stage": "evaluation only, after candidate inference and fusion; no feedback into selection or mapping",
+  "planned_before_scene0011_candidate_results": true,
+  "frame_ids": [
+    0,
+    100,
+    200,
+    300,
+    400,
+    500,
+    600,
+    700,
+    800,
+    900,
+    1000,
+    1100,
+    1200,
+    1300,
+    1400,
+    1500,
+    1600,
+    1700,
+    1800,
+    1900,
+    2000,
+    2100,
+    2200,
+    2300
+  ],
+  "reference": "legacy JoJo *_sem_gt_filtered.npy with matching *_filtered.ply camera points",
+  "limitations": [
+    "Reference labels were copied from ScanNet mesh by nearest neighbor in legacy preprocessing; original mesh and transfer distances unavailable here.",
+    "Point subset was filtered by the previous OneFormer instance-size rule; it is not a full-scene GT surface or unbiased point sample.",
+    "Repeated observations are counted; camera-to-map matching uses the same frozen estimated pose for every arm, not a global GT trajectory alignment.",
+    "Do not call these results official ScanNet accuracy, mIoU, AP or full-scene instance recall."
+  ],
+  "correspondence": "camera points transformed by unchanged estimated T_world_camera, nearest frozen map point within 0.05m; no alignment fitting or ICP",
+  "taxonomy": "fixed common ScanNet20 mapping from NYU40 IDs; extended model classes count as incorrect on eligible common20 reference labels",
+  "metrics": [
+    "reference-label correct coverage including unmatched points in fixed denominator",
+    "conditional agreement among labeled matched points",
+    "unknown and wrong coverage",
+    "geometry match coverage",
+    "cached-reference foreground instance coverage",
+    "point-observation weighted instance purity against copied reference IDs"
+  ],
+  "gt_used_in_inference": false,
+  "result_use": "secondary diagnostic only; does not remove need for original GT",
+  "instance_definition": "Reference common20 classes excluding wall/floor, reference instance ID >0; sum over the same 24 camera observations; purity is sum of dominant reference count per predicted ID divided by assigned reference observations, not official 3D instance quality."
+}

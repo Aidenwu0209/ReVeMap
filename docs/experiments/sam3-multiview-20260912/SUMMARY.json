@@ -1,0 +1,192 @@
+{
+  "decision": "Keep C objects_geometry as current general baseline; matched is an opt-in research candidate, not promoted.",
+  "production_default_changed": false,
+  "rows": [
+    {
+      "scene": "scannet/scene0030_00",
+      "selected_frames": 126,
+      "semantic_coverage": 0.5944327379215699,
+      "baseline_instance_coverage": 0.4564787499594774,
+      "consensus_instances": 0.4129672253379583,
+      "consensus_matched": 0.5314379572297684
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "selected_frames": 242,
+      "semantic_coverage": 0.35752746002683705,
+      "baseline_instance_coverage": 0.21332227245361163,
+      "consensus_instances": 0.07002558344334885,
+      "consensus_matched": 0.13869847907744834
+    },
+    {
+      "scene": "scannet/scene0050_00",
+      "selected_frames": 234,
+      "semantic_coverage": 0.5627950842934173,
+      "baseline_instance_coverage": 0.3760911131432372,
+      "consensus_instances": 0.3615142715449159,
+      "consensus_matched": 0.47071301825186834
+    },
+    {
+      "scene": "scannet/scene0011_00",
+      "selected_frames": 120,
+      "semantic_coverage": 0.5019111928492943,
+      "baseline_instance_coverage": 0.30909696624923044,
+      "consensus_instances": 0.3009554016037655,
+      "consensus_matched": 0.387855255877746
+    },
+    {
+      "scene": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+      "selected_frames": 6,
+      "semantic_coverage": 0.015110660343005735,
+      "baseline_instance_coverage": 0.011156510608067806,
+      "consensus_instances": 0.0037832500430041707,
+      "consensus_matched": 0.007969733999655967
+    }
+  ],
+  "scannet0030_instance_diagnostic": {
+    "baseline": {
+      "instance_known_coverage": 0.5373902937522542,
+      "weighted_instance_purity": 0.932119020097692,
+      "mixed_instances_secondary_GT_fraction_ge10pct": 22,
+      "mean_fragments_per_GT_object": 1.3703703703703705,
+      "mean_largest_fragment_recall": 0.45063657315668276,
+      "one_to_one_same_class_recall_IoU25": 0.6296296296296297,
+      "one_to_one_same_class_recall_IoU50": 0.4074074074074074
+    },
+    "consensus_instances": {
+      "instance_known_coverage": 0.45031659519897405,
+      "weighted_instance_purity": 0.9577279907446549,
+      "mixed_instances_secondary_GT_fraction_ge10pct": 5,
+      "mean_fragments_per_GT_object": 1.2592592592592593,
+      "mean_largest_fragment_recall": 0.41455970178299023,
+      "one_to_one_same_class_recall_IoU25": 0.7407407407407407,
+      "one_to_one_same_class_recall_IoU50": 0.2962962962962963
+    },
+    "consensus_matched": {
+      "instance_known_coverage": 0.561335310383521,
+      "weighted_instance_purity": 0.9427072178196616,
+      "mixed_instances_secondary_GT_fraction_ge10pct": 11,
+      "mean_fragments_per_GT_object": 1.2592592592592593,
+      "mean_largest_fragment_recall": 0.4975223659239819,
+      "one_to_one_same_class_recall_IoU25": 0.8148148148148148,
+      "one_to_one_same_class_recall_IoU50": 0.4074074074074074
+    }
+  },
+  "acceptance": {
+    "technical": true,
+    "overall_quality": false,
+    "reason": "0030 improves, but Orbbec loses instance support; 3RScan remains six-frame evidence."
+  },
+  "checks": [
+    {
+      "stage": "consensus_instances",
+      "scene": "scannet/scene0030_00",
+      "semantic_confidence_unchanged": true,
+      "original_vertex_fields_preserved": true,
+      "input_hashes_verified": true,
+      "selected_frames_complete": true,
+      "new_model_inference": false,
+      "instance_objects": 71,
+      "fusion_wall_seconds": 1.4995325760100968
+    },
+    {
+      "stage": "consensus_matched",
+      "scene": "scannet/scene0030_00",
+      "semantic_confidence_unchanged": true,
+      "original_vertex_fields_preserved": true,
+      "input_hashes_verified": true,
+      "selected_frames_complete": true,
+      "new_model_inference": false,
+      "instance_objects": 82,
+      "fusion_wall_seconds": 2.037114330974873
+    },
+    {
+      "stage": "consensus_instances",
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "semantic_confidence_unchanged": true,
+      "original_vertex_fields_preserved": true,
+      "input_hashes_verified": true,
+      "selected_frames_complete": true,
+      "new_model_inference": false,
+      "instance_objects": 40,
+      "fusion_wall_seconds": 0.4531615389860235
+    },
+    {
+      "stage": "consensus_matched",
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "semantic_confidence_unchanged": true,
+      "original_vertex_fields_preserved": true,
+      "input_hashes_verified": true,
+      "selected_frames_complete": true,
+      "new_model_inference": false,
+      "instance_objects": 56,
+      "fusion_wall_seconds": 0.8288137279741932
+    },
+    {
+      "stage": "consensus_instances",
+      "scene": "scannet/scene0050_00",
+      "semantic_confidence_unchanged": true,
+      "original_vertex_fields_preserved": true,
+      "input_hashes_verified": true,
+      "selected_frames_complete": true,
+      "new_model_inference": false,
+      "instance_objects": 29,
+      "fusion_wall_seconds": 1.036927517998265
+    },
+    {
+      "stage": "consensus_matched",
+      "scene": "scannet/scene0050_00",
+      "semantic_confidence_unchanged": true,
+      "original_vertex_fields_preserved": true,
+      "input_hashes_verified": true,
+      "selected_frames_complete": true,
+      "new_model_inference": false,
+      "instance_objects": 34,
+      "fusion_wall_seconds": 1.3955801230040379
+    },
+    {
+      "stage": "consensus_instances",
+      "scene": "scannet/scene0011_00",
+      "semantic_confidence_unchanged": true,
+      "original_vertex_fields_preserved": true,
+      "input_hashes_verified": true,
+      "selected_frames_complete": true,
+      "new_model_inference": false,
+      "instance_objects": 48,
+      "fusion_wall_seconds": 1.092217917990638
+    },
+    {
+      "stage": "consensus_matched",
+      "scene": "scannet/scene0011_00",
+      "semantic_confidence_unchanged": true,
+      "original_vertex_fields_preserved": true,
+      "input_hashes_verified": true,
+      "selected_frames_complete": true,
+      "new_model_inference": false,
+      "instance_objects": 57,
+      "fusion_wall_seconds": 1.5284122939920053
+    },
+    {
+      "stage": "consensus_instances",
+      "scene": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+      "semantic_confidence_unchanged": true,
+      "original_vertex_fields_preserved": true,
+      "input_hashes_verified": true,
+      "selected_frames_complete": true,
+      "new_model_inference": false,
+      "instance_objects": 1,
+      "fusion_wall_seconds": 0.03403120202710852
+    },
+    {
+      "stage": "consensus_matched",
+      "scene": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+      "semantic_confidence_unchanged": true,
+      "original_vertex_fields_preserved": true,
+      "input_hashes_verified": true,
+      "selected_frames_complete": true,
+      "new_model_inference": false,
+      "instance_objects": 1,
+      "fusion_wall_seconds": 0.0508158520096913
+    }
+  ]
+}

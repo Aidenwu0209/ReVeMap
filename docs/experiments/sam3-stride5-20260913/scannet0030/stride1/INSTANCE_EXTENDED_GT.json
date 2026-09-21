@@ -1,0 +1,239 @@
+{
+  "protocol": "secondary_classagnostic_recognized_domain_v1",
+  "object_metadata": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/scannet0030_frame_ablation_20260912_v1/stride1/objects.json",
+  "scope": "same 27 eligible GT things and 5cm frozen alignment; predicted unions include other recognized objects and wall/floor; not official AP",
+  "eligible_gt_points": 99812,
+  "eligible_gt_objects": 27,
+  "recognized_gt_domain_points": 185436,
+  "gt_instance_coverage": 0.7268164148599366,
+  "unknown_semantic_assigned_gt_points": 0,
+  "background_points_in_instances_touching_eligible_things": 75964,
+  "background_contamination_fraction": 0.511511086870156,
+  "all_touching_metric_caveat": "Includes structural instances with even tiny overlap on a thing due to geometry mismatch; do not interpret alone as physical object merging rate.",
+  "background_in_classagnostically_matched_instances": {
+    "0.25": {
+      "matched_instances": 23,
+      "recognized_gt_support": 55942,
+      "background_points": 1557,
+      "background_fraction": 0.027832397840620644
+    },
+    "0.5": {
+      "matched_instances": 16,
+      "recognized_gt_support": 43611,
+      "background_points": 1220,
+      "background_fraction": 0.02797459356584348
+    }
+  },
+  "eligible_thing_purity_with_recognized_background_penalty": 0.45067975678241723,
+  "classagnostic_recall_iou25": 0.8518518518518519,
+  "classagnostic_recall_iou50": 0.5925925925925926,
+  "posthoc_majority_semantic_recall_iou25": 0.8148148148148148,
+  "posthoc_majority_semantic_recall_iou50": 0.5925925925925926,
+  "majority_semantic_caveat": "This diagnostic assigns a label after inference and is not an executed object-naming stage.",
+  "exported_object_semantic_recall_iou25": 0.8148148148148148,
+  "exported_object_semantic_recall_iou50": 0.5925925925925926,
+  "exported_unnamed_instances_touching_things": 0,
+  "per_object": [
+    {
+      "gt_object_id": 3,
+      "class": "chair",
+      "gt_points": 3692,
+      "largest_fragment_recall": 0.8293607800650055,
+      "best_classagnostic_iou": 0.7381870781099324
+    },
+    {
+      "gt_object_id": 4,
+      "class": "chair",
+      "gt_points": 3988,
+      "largest_fragment_recall": 0.7497492477432297,
+      "best_classagnostic_iou": 0.7065217391304348
+    },
+    {
+      "gt_object_id": 5,
+      "class": "chair",
+      "gt_points": 2656,
+      "largest_fragment_recall": 0.6287650602409639,
+      "best_classagnostic_iou": 0.6024531024531025
+    },
+    {
+      "gt_object_id": 6,
+      "class": "chair",
+      "gt_points": 2034,
+      "largest_fragment_recall": 0.7409046214355949,
+      "best_classagnostic_iou": 0.6916016521340064
+    },
+    {
+      "gt_object_id": 7,
+      "class": "chair",
+      "gt_points": 2062,
+      "largest_fragment_recall": 0.7696411251212415,
+      "best_classagnostic_iou": 0.5572331460674157
+    },
+    {
+      "gt_object_id": 8,
+      "class": "chair",
+      "gt_points": 1571,
+      "largest_fragment_recall": 0.5136855506047103,
+      "best_classagnostic_iou": 0.4993811881188119
+    },
+    {
+      "gt_object_id": 9,
+      "class": "chair",
+      "gt_points": 2544,
+      "largest_fragment_recall": 0.467374213836478,
+      "best_classagnostic_iou": 0.46517996870109546
+    },
+    {
+      "gt_object_id": 10,
+      "class": "chair",
+      "gt_points": 1454,
+      "largest_fragment_recall": 0.8191196698762035,
+      "best_classagnostic_iou": 0.6948658109684948
+    },
+    {
+      "gt_object_id": 11,
+      "class": "chair",
+      "gt_points": 1472,
+      "largest_fragment_recall": 0.84375,
+      "best_classagnostic_iou": 0.7614960147148988
+    },
+    {
+      "gt_object_id": 12,
+      "class": "chair",
+      "gt_points": 1292,
+      "largest_fragment_recall": 0.7840557275541795,
+      "best_classagnostic_iou": 0.6233846153846154
+    },
+    {
+      "gt_object_id": 13,
+      "class": "chair",
+      "gt_points": 1614,
+      "largest_fragment_recall": 0.8686493184634448,
+      "best_classagnostic_iou": 0.8165404775771695
+    },
+    {
+      "gt_object_id": 14,
+      "class": "chair",
+      "gt_points": 603,
+      "largest_fragment_recall": 0.1824212271973466,
+      "best_classagnostic_iou": 0.15759312320916904
+    },
+    {
+      "gt_object_id": 15,
+      "class": "chair",
+      "gt_points": 1866,
+      "largest_fragment_recall": 0.20632368703108253,
+      "best_classagnostic_iou": 0.1942297784647089
+    },
+    {
+      "gt_object_id": 17,
+      "class": "bookshelf",
+      "gt_points": 7331,
+      "largest_fragment_recall": 0.4006274723775747,
+      "best_classagnostic_iou": 0.3948111305282968
+    },
+    {
+      "gt_object_id": 18,
+      "class": "bookshelf",
+      "gt_points": 14016,
+      "largest_fragment_recall": 0.2533533105022831,
+      "best_classagnostic_iou": 0.2453873263768917
+    },
+    {
+      "gt_object_id": 19,
+      "class": "bookshelf",
+      "gt_points": 5002,
+      "largest_fragment_recall": 0.632546981207517,
+      "best_classagnostic_iou": 0.6252964426877471
+    },
+    {
+      "gt_object_id": 20,
+      "class": "bookshelf",
+      "gt_points": 2522,
+      "largest_fragment_recall": 0.6681205392545598,
+      "best_classagnostic_iou": 0.6641702798581001
+    },
+    {
+      "gt_object_id": 26,
+      "class": "window",
+      "gt_points": 6162,
+      "largest_fragment_recall": 0.6419993508601104,
+      "best_classagnostic_iou": 0.5743321718931476
+    },
+    {
+      "gt_object_id": 27,
+      "class": "window",
+      "gt_points": 5420,
+      "largest_fragment_recall": 0.7939114391143911,
+      "best_classagnostic_iou": 0.7670231729055258
+    },
+    {
+      "gt_object_id": 47,
+      "class": "table",
+      "gt_points": 7420,
+      "largest_fragment_recall": 0.40970350404312667,
+      "best_classagnostic_iou": 0.40447046301224054
+    },
+    {
+      "gt_object_id": 48,
+      "class": "table",
+      "gt_points": 3211,
+      "largest_fragment_recall": 0.6331360946745562,
+      "best_classagnostic_iou": 0.5769012485811578
+    },
+    {
+      "gt_object_id": 49,
+      "class": "table",
+      "gt_points": 3789,
+      "largest_fragment_recall": 0.289522301398786,
+      "best_classagnostic_iou": 0.28906455862977604
+    },
+    {
+      "gt_object_id": 50,
+      "class": "table",
+      "gt_points": 2952,
+      "largest_fragment_recall": 0.5118563685636857,
+      "best_classagnostic_iou": 0.47530670022019506
+    },
+    {
+      "gt_object_id": 51,
+      "class": "table",
+      "gt_points": 4752,
+      "largest_fragment_recall": 0.7144360269360269,
+      "best_classagnostic_iou": 0.6486434849063814
+    },
+    {
+      "gt_object_id": 53,
+      "class": "door",
+      "gt_points": 6390,
+      "largest_fragment_recall": 0.7841940532081377,
+      "best_classagnostic_iou": 0.7824797001873829
+    },
+    {
+      "gt_object_id": 58,
+      "class": "window",
+      "gt_points": 768,
+      "largest_fragment_recall": 0.9127604166666666,
+      "best_classagnostic_iou": 0.1476100231627711
+    },
+    {
+      "gt_object_id": 68,
+      "class": "bookshelf",
+      "gt_points": 3229,
+      "largest_fragment_recall": 0.3669866831836482,
+      "best_classagnostic_iou": 0.35909090909090907
+    }
+  ],
+  "input_sha256": {
+    "/Users/wu/Desktop/wu/SGF-SGA/comparisons/sgf_sga_all_scannet_orbbec_20260910_v1/scenes/scannet/scene0030_00/map/classes.json": "acca2f539177aa8f6ec64847cf03d1b4a21f19e9159a3edc55a6cb52fe821249",
+    "/Users/wu/Desktop/wu/SGF-SGA/comparisons/scannet0030_semantic_comparison_20260909_v1/developnew_full/evaluation/diagnostic.json": "63ec66a69bb7d51dac0f8b80fa5069b512505010a29896c07a1f52cb33efbd8a",
+    "/Users/wu/Desktop/wu/SGF-SGA/comparisons/sam3_semantics_20260911_v1/inputs/scene0030_00_target.npz": "c84449c67294d6cb4ee6b8ac8857bc23ea070aac01a6defb072d9d3214c38423",
+    "/Users/wu/Desktop/wu/Xia/jojo_updated_scene0030_run_20260902/source/Jojo_current_panoptic_scene_graph_aligment_on_full_scene0030_00/full_scene0030_00_dataset/gt_scannet_data_scene0030_00/scene0030_00_vh_clean_2.ply": "1541b52e8037f212d1c060b8e89f0cc5ed31b5a1a7be48fb5f446d9ab14b5f69",
+    "/Users/wu/Desktop/wu/Xia/jojo_updated_scene0030_run_20260902/source/Jojo_current_panoptic_scene_graph_aligment_on_full_scene0030_00/full_scene0030_00_dataset/gt_scannet_data_scene0030_00/scene0030_00_vh_clean_2.0.010000.segs.json": "80e3189c1a3440d43df56a775fa9dc54dc91c7c595e1eb0db545b69660f27242",
+    "/Users/wu/Desktop/wu/Xia/jojo_updated_scene0030_run_20260902/source/Jojo_current_panoptic_scene_graph_aligment_on_full_scene0030_00/full_scene0030_00_dataset/gt_scannet_data_scene0030_00/scene0030_00.aggregation.json": "b2ce5891041bdf645955a92e7a3bb5efe55c07a1ba56d6d035c492982066c87e",
+    "/Users/wu/Desktop/wu/SGF-SGA/comparisons/scannet0030_frame_ablation_20260912_v1/stride1/map_labels.npz": "ffffca24884fab57b039699866d58fcf9a8c7f1303dfde99045ea7cfc137dc9c",
+    "/Users/wu/Desktop/wu/SGF-SGA/comparisons/scannet0030_frame_ablation_20260912_v1/stride1/objects.json": "a92eb157fe951b060eebdc0cbb2c19b89062d2dd6473f646a9da6c498623a8b5"
+  },
+  "gt_used_only_after_inference": true,
+  "blind_holdout": false
+}

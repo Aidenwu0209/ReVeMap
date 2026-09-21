@@ -1,0 +1,27 @@
+{
+  "scope": "Read-only code snapshots explaining legacy cached-label conventions; these scripts were NOT executed in this experiment. Exact historical producer version for the scene0011 archive is unavailable.",
+  "observations": [
+    "NYU40 semantics are derived from annotated mesh labels; instance IDs are objectId+1.",
+    "Labels are transferred to camera point clouds after applying dataset poses by unrestricted nearest neighbor.",
+    "Filtering uses the old predicted instance size >=1000 points and applies the same point mask to geometry and GT arrays.",
+    "Current candidate inference never reads this reference-label cache.",
+    "24 predeclared reference camera clouds pass >80% measured depth consistency within5cm; this confirms correspondence/units, not label correctness."
+  ],
+  "files": [
+    {
+      "source": "/Users/wu/Desktop/wu/Xia/jojo_updated_scene0030_run_20260902/source/Jojo_current_panoptic_scene_graph_aligment_on_full_scene0030_00/scannet_pre_processing/sia_generate_gt_ins_sem_label.py",
+      "snapshot": "reference_provenance/sia_generate_gt_ins_sem_label.py",
+      "sha256": "df9990ef6432bd167a2d28718c1e1c9331793570a0480ee5308efbbda9b577a8"
+    },
+    {
+      "source": "/Users/wu/Desktop/wu/Xia/jojo_updated_scene0030_run_20260902/source/Jojo_current_panoptic_scene_graph_aligment_on_full_scene0030_00/scannet_pre_processing/sia_copy_gt_labels.py",
+      "snapshot": "reference_provenance/sia_copy_gt_labels.py",
+      "sha256": "9ba7ee13e83293793add476c3a1acf3e4e3210446da6f16eae8494162c3df75b"
+    },
+    {
+      "source": "/Users/wu/Desktop/wu/Xia/jojo_updated_scene0030_run_20260902/source/Jojo_current_panoptic_scene_graph_aligment_on_full_scene0030_00/Oneformer_code/filter_small_obj_ins.py",
+      "snapshot": "reference_provenance/filter_small_obj_ins.py",
+      "sha256": "5c4f3e1264ae6452dcca23b65cdafd6c7dd2c68ccb75bb6e2063e498494b31be"
+    }
+  ]
+}

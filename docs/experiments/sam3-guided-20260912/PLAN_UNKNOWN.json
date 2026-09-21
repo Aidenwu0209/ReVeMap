@@ -1,0 +1,31 @@
+{
+  "created_utc": "2026-09-12T07:19:05.984490+00:00",
+  "thresholds_frozen_before_new_output_or_GT": true,
+  "arms": {
+    "unknown_contract": "Same post-family cached projected masks and consensus_matched graph; neutral foreground sentinel for instance fusion; no semantic split or semantic-zero rejection in output. Frozen actual semantic labels never overwritten.",
+    "raw_unknown": "Original text-prompt conditioned SAM3 packed masks; class-independent IoU 0.8 NMS, confidence >=0.5, pixel ownership margin 0.1, one-pixel instance interior. Reuse depth gate 0.05m and assert exact same visible IDs as cache; same consensus_matched graph without semantic gate or split."
+  },
+  "unknown_contract_opt_in": true,
+  "new_model_inference": false,
+  "raw_depth_reprocessed": true,
+  "semantic_naming_executed": false,
+  "config": {
+    "mask_score": 0.5,
+    "duplicate_iou": 0.8,
+    "ownership_margin": 0.1,
+    "min_mask_points": 30,
+    "min_output_points": 50
+  },
+  "matching": "min_group_frames2,min_point_views1,object_score_mode max_point; all other ConsensusConfig defaults retained",
+  "point_loss_policy": "Mutually exclusive reason is deepest stage reached by any observation; overlap of rejected alternative group memberships separately reported, not counterfactual causation.",
+  "same_five_scene_keys": [
+    "scannet/scene0030_00",
+    "orbbec/scan_20260909_142829_5ef1fa",
+    "scannet/scene0050_00",
+    "scannet/scene0011_00",
+    "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660"
+  ],
+  "three_rscan_limit": "six cached frames only",
+  "no_gt_consumed": true,
+  "no_sweep": true
+}

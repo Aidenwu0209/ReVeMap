@@ -1,0 +1,54 @@
+[
+  {
+    "key": "scannet/scene0011_00",
+    "stride": 20,
+    "frames": 120,
+    "semantic_coverage": 0.5019111928492943,
+    "instance_coverage": 0.3907444495530809,
+    "objects": 61,
+    "objects_under_200_map_points": 11,
+    "frame_seconds": 217.7348841688363,
+    "inference_seconds": 197.67354493690073,
+    "backend_seconds": 11.19781286700163,
+    "peak_rss_kib": 792036,
+    "geometry_xyz_sha256": "8c492ba45126e5ed1b856121920318549a26da7230b049ba4e9535676b2c07a8",
+    "baseline_reproduced": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    },
+    "gt_available": false
+  },
+  {
+    "key": "scannet/scene0011_00",
+    "stride": 10,
+    "frames": 239,
+    "semantic_coverage": 0.5993800799544898,
+    "instance_coverage": 0.45759333868441354,
+    "objects": 59,
+    "objects_under_200_map_points": 11,
+    "frame_seconds": 425.9791270099813,
+    "inference_seconds": 387.9393036236288,
+    "backend_seconds": 14.35443573599332,
+    "peak_rss_kib": 993644,
+    "geometry_xyz_sha256": "8c492ba45126e5ed1b856121920318549a26da7230b049ba4e9535676b2c07a8",
+    "baseline_reproduced": null,
+    "gt_available": false
+  },
+  {
+    "key": "scannet/scene0011_00",
+    "stride": 5,
+    "frames": 476,
+    "semantic_coverage": 0.6909887549387094,
+    "instance_coverage": 0.5293302837371321,
+    "objects": 82,
+    "objects_under_200_map_points": 22,
+    "frame_seconds": 842.3810600441939,
+    "inference_seconds": 768.9340854866314,
+    "backend_seconds": 23.029116186022293,
+    "peak_rss_kib": 1711656,
+    "geometry_xyz_sha256": "8c492ba45126e5ed1b856121920318549a26da7230b049ba4e9535676b2c07a8",
+    "baseline_reproduced": null,
+    "gt_available": false
+  }
+]

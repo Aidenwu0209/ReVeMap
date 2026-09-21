@@ -1,0 +1,25 @@
+{
+  "base_commit": "4f0f790e90deb899e1b3e656ddd19aef5e599fd5",
+  "checks": {
+    "historical_sources_byte_identical": 10,
+    "all_17_tested_registry_profiles_equal": true,
+    "all_previous_registry_entries_unchanged": true,
+    "TransformersNamer_AST_matches_GPU_tested_Mage_repair": true,
+    "geometry_SAM3_fusion_scheduler_unchanged": true,
+    "markdown_local_file_links_valid": 72,
+    "credential_pattern_scan_passed": true
+  },
+  "tests": {
+    "command": "PYTHONPATH=src analysis_env/bin/python -m pytest -q tests/test_semantic_runtime.py tests/test_sam3_fusion.py tests/test_sam3_guided.py tests/test_sam3_multiview.py tests/test_semantic_fusion.py",
+    "passed": 89,
+    "failed": 0,
+    "seconds": 1.52,
+    "api_requests_mocked": true,
+    "Mage_tensor_contract_mocked": true,
+    "new_GPU_runs": 0,
+    "new_paid_API_calls": 0
+  },
+  "source_reference": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/mage_image_input_repair_20260915_v1/code/src/pose_pipeline/semantic_runtime/vlm.py",
+  "source_reference_sha256": "36fb192ae1ac61c269e33b90d6c3f93f7fc4ca301d255acb9e5054c0eb7fc82b",
+  "scope": "integration regression and prior evidence transfer, not a new performance/accuracy experiment"
+}

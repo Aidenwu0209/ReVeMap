@@ -1,0 +1,279 @@
+{
+  "reviewed_utc": "2026-09-12T07:47:21.571918+00:00",
+  "reviewer": "independent_validation_review subagent",
+  "status": "addendum_review_complete_no_open_actionable_findings",
+  "open_actionable_findings": [],
+  "scope": "Bounded read-only code/receipt review of explicit cached naming and tracking report consistency. Only this new addendum artifact was written; no GPU, map mutation or threshold experiments.",
+  "naming": {
+    "tests": "8 tests passed in tests/test_sam3_object_naming.py.",
+    "algorithm_checked": "Duplicate original frame IDs and per-frame duplicate point IDs fail. Qualifying points need known semantic, confidence >=0.8 and interior. A frame needs >=30 qualifying points and confidence-weighted dominant fraction >=0.8, then contributes one unweighted class vote. Naming requires >=3 eligible distinct frames and >=0.8 vote fraction.",
+    "recorded_evidence_recomputed": "For all objects in all 10 runs, independently recomputed eligible frame vote counts and final labels from recorded per-frame class weights; checked frame IDs unique, dictionary names exact and instance ID sets preserved.",
+    "classes": "Class IDs are dictionary lookup only; 33/34 remain separate coarse classes. Each Orbbec named arm retains one coarse class-33 object. No fine-class remapping or business-specific invented name was found.",
+    "integrity": "For all 10 runs verified hashes of original result.json, objects.json, map_labels.npz and classes.json against naming input receipts, verified objects_named.json output SHA and actual naming runner/module SHA. Family-v3 cache hashes agree with sealed base-arm receipts (8/244/122/128/236 shared entries for 3RScan/Orbbec/0011/0030/0050). Remote cache bytes were not rehashed by this review.",
+    "evaluator": "Named evaluations explicitly select and hash objects_named.json and use its exact per-instance semantic IDs. Posthoc majority metrics remain separately labeled; actual named-object scores now measure a stage executed before evaluation.",
+    "runs": [
+      {
+        "arm": "unknown_contract",
+        "key": "scannet/scene0030_00",
+        "objects": 68,
+        "named_objects": 66,
+        "unknown_objects": 2,
+        "naming_receipt_sha256": "b546597690b22e5020bcdb378c51be82ac1ba4600e09825688deefee5752d1f5",
+        "named_objects_sha256": "741133882057aeb13cc3744a7bb210f5cfc628a20986de4f970a5347e8914c92"
+      },
+      {
+        "arm": "raw_unknown",
+        "key": "scannet/scene0030_00",
+        "objects": 67,
+        "named_objects": 64,
+        "unknown_objects": 3,
+        "naming_receipt_sha256": "aad6e45e751aeef73a9e044f929818c117ee015a93d7209c903d89fdd668b4ed",
+        "named_objects_sha256": "833af3b9ffb297be641bd624d0995661312df7b587ee8b88adbaae410351ffe9"
+      },
+      {
+        "arm": "unknown_contract",
+        "key": "orbbec/scan_20260909_142829_5ef1fa",
+        "objects": 53,
+        "named_objects": 38,
+        "unknown_objects": 15,
+        "naming_receipt_sha256": "4085437846374b4c0acb381190353694158134c59f7b1e163171491293dced89",
+        "named_objects_sha256": "43d7b6147a2b7913856530d53e335d5d9b9479db9712c18c0a012291a72d8aa3"
+      },
+      {
+        "arm": "raw_unknown",
+        "key": "orbbec/scan_20260909_142829_5ef1fa",
+        "objects": 53,
+        "named_objects": 40,
+        "unknown_objects": 13,
+        "naming_receipt_sha256": "24a1f4af3960c4c16e66aba4437c62c75c75d8e1b468c15514e0b0a2d6ca79fd",
+        "named_objects_sha256": "6a684f4726836ccaf69f2f7472c1e7df636d0796c391a36b56f36dee64eb68d0"
+      },
+      {
+        "arm": "unknown_contract",
+        "key": "scannet/scene0050_00",
+        "objects": 29,
+        "named_objects": 25,
+        "unknown_objects": 4,
+        "naming_receipt_sha256": "304592ac74c26af1519d7b2eba17a7e4176e5e261c8eb255a183c2700e501db2",
+        "named_objects_sha256": "9e2e0830575c6bce08d9def780f517cb05e2c403daf5464d86dcf8efccb92c9d"
+      },
+      {
+        "arm": "raw_unknown",
+        "key": "scannet/scene0050_00",
+        "objects": 29,
+        "named_objects": 25,
+        "unknown_objects": 4,
+        "naming_receipt_sha256": "088e66997f3bfd9657d83dc9f2dcf0c24a005db51ede6a0c4c8d1486525b6cb5",
+        "named_objects_sha256": "06ff26fc7aa2664ea6bee24a3a6b596e363ace5c96dfaaa7123bf9c73fd84747"
+      },
+      {
+        "arm": "unknown_contract",
+        "key": "scannet/scene0011_00",
+        "objects": 46,
+        "named_objects": 38,
+        "unknown_objects": 8,
+        "naming_receipt_sha256": "03d432848ec6323b359805a0d5acf5d69373a654b50e43b137f17eba17c2b33e",
+        "named_objects_sha256": "d4924542a4ea0194f4f2ec25576825c4db28bec9c288ccd9f5c76298322174db"
+      },
+      {
+        "arm": "raw_unknown",
+        "key": "scannet/scene0011_00",
+        "objects": 48,
+        "named_objects": 41,
+        "unknown_objects": 7,
+        "naming_receipt_sha256": "58229231c2ed4f59644be43bd45bddc6900d443fc93ab67a07ea0df5003d3d37",
+        "named_objects_sha256": "e35e6aaca6a26c3d6935cec3fb33941432002dcd126221921d8c0e70ad44e0b1"
+      },
+      {
+        "arm": "unknown_contract",
+        "key": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+        "objects": 1,
+        "named_objects": 1,
+        "unknown_objects": 0,
+        "naming_receipt_sha256": "3f219f762b0a87ec93c7c7e9c86a823f3092fcfe1c85fc2c052d06e9b295a471",
+        "named_objects_sha256": "6f6bd3889a956786ed813a58025dc5ec9150ee5aec6fac4ba3611a53a9754d84"
+      },
+      {
+        "arm": "raw_unknown",
+        "key": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+        "objects": 1,
+        "named_objects": 1,
+        "unknown_objects": 0,
+        "naming_receipt_sha256": "89f0ae7352509ec9cb2e9896281932f9bb0b8a463014e8600036846e63ba47d3",
+        "named_objects_sha256": "7764e8403cab65caa49a9a082be030d9bac5249886cb7418165efb2157b0fae0"
+      }
+    ],
+    "evaluations": [
+      {
+        "arm": "unknown_contract",
+        "receipt_sha256": "c8a72f6a97f3c14a12eca28157662a830a15e2945f2c1ce58e2480372a59ea75",
+        "actual_inference_metadata": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/sam3_guided_20260912_v1/unknown_contract/scannet/scene0030_00/objects_named.json",
+        "actual_metadata_hash_verified": true,
+        "classagnostic_recall_iou25": 0.8518518518518519,
+        "classagnostic_recall_iou50": 0.4444444444444444,
+        "named_object_semantic_recall_iou25": 0.8148148148148148,
+        "named_object_semantic_recall_iou50": 0.4074074074074074
+      },
+      {
+        "arm": "raw_unknown",
+        "receipt_sha256": "89da01270db031fff567e9a90975a227643f85cead3a4cc398ee7a2bbefffb8b",
+        "actual_inference_metadata": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/sam3_guided_20260912_v1/raw_unknown/scannet/scene0030_00/objects_named.json",
+        "actual_metadata_hash_verified": true,
+        "classagnostic_recall_iou25": 0.8518518518518519,
+        "classagnostic_recall_iou50": 0.48148148148148145,
+        "named_object_semantic_recall_iou25": 0.8148148148148148,
+        "named_object_semantic_recall_iou50": 0.4444444444444444
+      }
+    ],
+    "limits": [
+      "This is an explicit cached semantic-voting ablation, not ConceptGraphs CLIP/LLM reproduction or new SAM3 inference.",
+      "Plan correctly marks protocol extension and not blind confirmatory. Named-object fraction is not semantic accuracy. Naming does not repair object ownership or physical object purity.",
+      "Original point semantics, instances and geometry remain frozen; original objects.json is preserved beside objects_named.json."
+    ]
+  },
+  "tracking": {
+    "report": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/sam3_guided_20260912_v1/tracking/REPORT_zh.md",
+    "numeric_tables_consistent_with_receipts": true,
+    "metrics": [
+      {
+        "receipt": "tracking/full/3rscan_bed/IMAGE_RESULT.json",
+        "frames": 6,
+        "nonempty_frames": 3,
+        "foreground_temporal_mean_iou": 0.3194530764449969,
+        "segmented_map_points_union": 5257,
+        "unmatched_mask_observations": 1,
+        "merge_like_targets": 0,
+        "split_like_sources": 0,
+        "seconds": 1.2571169820148498
+      },
+      {
+        "receipt": "tracking/full/3rscan_bed/VIDEO_RESULT.json",
+        "frames": 6,
+        "nonempty_frames": 2,
+        "foreground_temporal_mean_iou": 0.4903726708074534,
+        "segmented_map_points_union": 2428,
+        "unmatched_mask_observations": 0,
+        "merge_like_targets": 0,
+        "split_like_sources": 0,
+        "seconds": 1.3076082469779067
+      },
+      {
+        "receipt": "tracking/full/orbbec_curtain/IMAGE_RESULT.json",
+        "frames": 48,
+        "nonempty_frames": 14,
+        "foreground_temporal_mean_iou": 0.8822201593098508,
+        "segmented_map_points_union": 6094,
+        "unmatched_mask_observations": 1,
+        "merge_like_targets": 0,
+        "split_like_sources": 0,
+        "seconds": 9.20511022800929
+      },
+      {
+        "receipt": "tracking/full/orbbec_curtain/VIDEO_RESULT.json",
+        "frames": 48,
+        "nonempty_frames": 15,
+        "foreground_temporal_mean_iou": 0.9568118041043309,
+        "segmented_map_points_union": 6206,
+        "unmatched_mask_observations": 0,
+        "merge_like_targets": 0,
+        "split_like_sources": 0,
+        "seconds": 12.567312639992451
+      },
+      {
+        "receipt": "tracking/full/orbbec_reel/IMAGE_RESULT.json",
+        "frames": 16,
+        "nonempty_frames": 1,
+        "foreground_temporal_mean_iou": 0.0,
+        "segmented_map_points_union": 243,
+        "unmatched_mask_observations": 2,
+        "merge_like_targets": 0,
+        "split_like_sources": 0,
+        "seconds": 2.7547405100194737
+      },
+      {
+        "receipt": "tracking/full/orbbec_reel/VIDEO_RESULT.json",
+        "frames": 16,
+        "nonempty_frames": 4,
+        "foreground_temporal_mean_iou": 0.5978861427655271,
+        "segmented_map_points_union": 378,
+        "unmatched_mask_observations": 1,
+        "merge_like_targets": 0,
+        "split_like_sources": 0,
+        "seconds": 3.037300244992366
+      },
+      {
+        "receipt": "tracking/full/orbbec_reel/VIDEO_VISUAL_RESULT.json",
+        "frames": 16,
+        "nonempty_frames": 7,
+        "foreground_temporal_mean_iou": 0.904129023323948,
+        "segmented_map_points_union": 425,
+        "unmatched_mask_observations": 0,
+        "merge_like_targets": 0,
+        "split_like_sources": 0,
+        "seconds": 9.11817037902074
+      },
+      {
+        "receipt": "tracking/full/scannet_chair/IMAGE_RESULT.json",
+        "frames": 32,
+        "nonempty_frames": 32,
+        "foreground_temporal_mean_iou": 0.9832423481858188,
+        "segmented_map_points_union": 8469,
+        "unmatched_mask_observations": 4,
+        "merge_like_targets": 8,
+        "split_like_sources": 8,
+        "seconds": 5.40506760700373
+      },
+      {
+        "receipt": "tracking/full/scannet_chair/VIDEO_RESULT.json",
+        "frames": 32,
+        "nonempty_frames": 32,
+        "foreground_temporal_mean_iou": 0.9847585996130012,
+        "segmented_map_points_union": 8472,
+        "unmatched_mask_observations": 0,
+        "merge_like_targets": 0,
+        "split_like_sources": 0,
+        "seconds": 8.329522568994435
+      }
+    ],
+    "main_status": {
+      "status": "completed",
+      "seconds": 197.00890090799658,
+      "runner_sha256": "f0d41186577cc329add3e2e6abc610cec62941e20c005b4ecf9281a1b691c624",
+      "module_sha256": "c142906453dd89785e823b27bf8885610b992b22ba08a33979cc6cece1c0ca68",
+      "env_spec_file_sha256": "bf541ae39b5f33d05f5ec938944551a96bf0a6dc76c56846c0de8677c1930f96",
+      "input_verification": {
+        "verified_files": 213,
+        "all_hashes_unchanged": true
+      },
+      "provenance_unchanged": true,
+      "gt_consumed": false,
+      "quality_accepted": false
+    },
+    "blue_competition": {
+      "path": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/sam3_guided_20260912_v1/tracking/blue_equipment/BLUE_COMPETITION.json",
+      "sha256": "195449c6429ddd49fcda0b0b04a866e421218ea1d71db670dde9c3ef535d62e3",
+      "old_active_prompts": 31,
+      "blue_mask_pixels": 38561,
+      "old_raw_candidate_overlap_in_new_blue_mask": 0,
+      "retained_after_same_competition_rules": 38561,
+      "changes_outside_blue_mask": 0,
+      "new_model_calls_in_replay": 0,
+      "production_taxonomy_changed": false
+    },
+    "limits": [
+      "Report correctly describes 102 paired selected RGB-D observations across single-concept probes, with only six cached 3RScan frames, not full-map/full-taxonomy or full Any3DIS reconstruction.",
+      "Higher temporal IoU can result from missing masks; report preserves the 3RScan union regression 5257 to 2428 and does not claim tracking accuracy from model IDs.",
+      "Generic machine yielding several equipment candidates is not itself a false-positive result. Report uses candidate wording and does not label those outputs erroneous merely for being multiple.",
+      "Blue-machine replay identifies absent >=0.5 cached candidates within that particular new mask; it does not establish exhaustive low-logit absence, 3D fusion accuracy, or the equipment business name.",
+      "This addendum cross-checked metrics and report boundaries; it did not independently re-annotate RGB images or supply pixel GT."
+    ]
+  },
+  "reviewed_source_sha256": {
+    "/Users/wu/Desktop/wu/SGF-SGA/worktrees/sam3-guided-20260912/src/pose_pipeline/sam3_object_naming.py": "b27027ab1953b355907c5ba865daa9cc7692721c1c8a5546d56d78292b1bce8a",
+    "/Users/wu/Desktop/wu/SGF-SGA/worktrees/sam3-guided-20260912/docs/experiments/sam3-guided-20260912/run_object_naming.py": "dd1c58a77b8edd098b84c6cc4d091e2dffcbb121ba78d462b1fd7f331236f55e",
+    "/Users/wu/Desktop/wu/SGF-SGA/comparisons/sam3_guided_20260912_v1/PLAN_NAMING.json": "fab0a59b25de83ebc2ecb8cf57788dd102c5e022e925419dad9019e3ffdf1998",
+    "/Users/wu/Desktop/wu/SGF-SGA/comparisons/sam3_guided_20260912_v1/NAMING_SUMMARY.json": "70fcf372886ac1d8539323d7eda58e59f9a504fa43242002646e94d9f0337309",
+    "/Users/wu/Desktop/wu/SGF-SGA/comparisons/sam3_guided_20260912_v1/evaluate_classagnostic_0030.py": "d9f020d39b73e73c1861809ea3e46036beeee7b25acf2aae8cbb38b5c9505b65",
+    "/Users/wu/Desktop/wu/SGF-SGA/comparisons/sam3_guided_20260912_v1/tracking/REPORT_zh.md": "7e94cd7f1e72dcd03e1a4ef17429e79fd986100c84a5b5ebb20f49d13288134d"
+  }
+}

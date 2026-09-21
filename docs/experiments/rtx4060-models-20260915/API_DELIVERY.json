@@ -1,0 +1,23 @@
+{
+  "utc": "2026-09-15T07:22:03.190611+00:00",
+  "status": "completed",
+  "model": "deepseek-flash",
+  "source_release": "DeepSeek V4.1 Flash official API, 2026-09-15 run",
+  "primary_crop_samples": 425,
+  "repeat_samples": 19,
+  "successful_responses": 444,
+  "format_valid_responses": 443,
+  "benchmark_attempts": 449,
+  "transport_failures_preserved": 5,
+  "probe_attempts": 2,
+  "GT_objects_in_headline": 18,
+  "N2_correct": 9,
+  "production_changed": false,
+  "raw_full_pipeline_API_run": false,
+  "scope": "matched crop naming and metadata replay on byte-identical frozen maps",
+  "manifest": "RESULT_MANIFEST_20260915T072203Z.json",
+  "manifest_sha256": "04b3c36813de795230baca6635e7aae5c2fdfb7976695a1d312885dfbbfb0bc8",
+  "snapshot_files": 1059,
+  "independent_witness": "DOC_RESULTS_WITNESS.json",
+  "secrets_in_deliverables": false
+}

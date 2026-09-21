@@ -1,0 +1,14 @@
+[
+  {
+    "source": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/mage_joy_vl_20260915_v1/visuals/scannet_scene0030_00_object101_models.png",
+    "file": "assets/scannet0030-models.png",
+    "sha256": "e338468007dfd7d529a77ff22ad2d04e23abd24d3bf1d7e7326b0ccbe740b4c3",
+    "scope": "sealed frozen-map projection on held-out visualization frame; real experiment image; unmodified copy"
+  },
+  {
+    "source": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/mage_joy_vl_20260915_v1/visuals/orbbec_scan_20260909_142829_5ef1fa_object123_models.png",
+    "file": "assets/orbbec-models.png",
+    "sha256": "978fefce08493d7d2a3bdc0fc98cbc052f88dcd9f89d60bc58379607ad790d75",
+    "scope": "sealed frozen-map projection on held-out visualization frame; real experiment image; unmodified copy"
+  }
+]

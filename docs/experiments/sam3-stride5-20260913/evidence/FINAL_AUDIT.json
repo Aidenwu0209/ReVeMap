@@ -1,0 +1,60 @@
+{
+  "completed_arms": 9,
+  "three_stride20_baselines_exact": true,
+  "all_original_vertex_fields_preserved": true,
+  "all_inputs_unchanged_after_inference": true,
+  "source_commit": "ee16f96515ebd1fb328c3082bd44699833692bd5",
+  "developnew": "0c9444928a987d0d90201972e703c6a690f8653d",
+  "worktree_status": "",
+  "new_sga_neural_inference": false,
+  "new_evol_inference_in_this_sampling_experiment": false,
+  "gt_accuracy_evaluation": false,
+  "secondary_cached_reference_evaluation": true,
+  "remote_source_matches_sealed_archive": true,
+  "3rscan_complete_raw_unavailable": true,
+  "default_promoted": false,
+  "visual_review": {
+    "scope": "Sampled final figure layout and qualitative comparison, not semantic/instance correctness acceptance",
+    "checked": [
+      "orbbec/scan_20260909_142829_5ef1fa/camera_001200.png",
+      "orbbec/scan_20260909_142829_5ef1fa/camera_003600.png",
+      "orbbec/scan_20260909_142829_5ef1fa/map_semantic.png"
+    ],
+    "notes": [
+      "Camera projections are sparse measured map point centres; they are not dense SAM masks.",
+      "RGB cloth and box context preserved; missing points remain visible in baseline and cannot be treated as errors without GT.",
+      "Semantic color legend added to report.",
+      "No claim of instance correctness or object recall from these images.",
+      "Across scene0011 panels, greater coverage does not establish every chair/table is a distinct correct instance.",
+      "Sparse RGB overlays show only actual depth-consistent point centres and must not be read as dense SAM output."
+    ],
+    "final_review_completed": true,
+    "orbbec_checked_frames": [
+      0,
+      1200,
+      2400,
+      3600,
+      4811
+    ],
+    "orbbec_qualitative_findings": [
+      "Dense sampling increases map labels but does not complete special equipment and cable-reel labels.",
+      "Frame4811 projector is recognized in 2D, maps to51 depth-consistent map points; stride5 retains50 projector labels but no positive instance IDs on these51 points.",
+      "Camera overlays use measured point centres, not dense masks; blank overlay areas are not proof of no object."
+    ],
+    "figure_layout_fix": "Verified explicit header and row gaps prevent camera title overlap.",
+    "all_figures_quality_acceptance": false,
+    "reviewed_final_map_instance_scenes": [
+      "orbbec/scan_20260909_142829_5ef1fa",
+      "scannet/scene0050_00",
+      "scannet/scene0011_00"
+    ],
+    "reviewed_fixed_header_camera_panels": [
+      "scannet/scene0011_00/camera_001180.png",
+      "scannet/scene0050_00/camera_002320.png"
+    ],
+    "quality_accepted": false,
+    "local_report_links_checked": 48,
+    "missing_local_links": [],
+    "cost_plot_annotation_offsets": "Dataset-specific offsets separate nearby stride labels."
+  }
+}

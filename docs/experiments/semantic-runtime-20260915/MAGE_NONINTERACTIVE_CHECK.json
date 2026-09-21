@@ -1,0 +1,53 @@
+{
+  "returncode": 0,
+  "command": [
+    "/home/aidenwu/Documents/SGF-SGA-experiments/small_vlm_benchmark_20260914_v1/env-fast/bin/python",
+    "-m",
+    "pose_pipeline.semantic_runtime",
+    "test-vlm",
+    "--model",
+    "mage_nf4",
+    "--runtime",
+    "/home/aidenwu/Documents/SGF-SGA-experiments/developnew_integration_20260915_v1/runtime.json",
+    "--index",
+    "/home/aidenwu/Documents/SGF-SGA-experiments/developnew_integration_20260915_v1/SMOKE_CROPS.json",
+    "--limit",
+    "2",
+    "--output",
+    "/home/aidenwu/Documents/SGF-SGA-experiments/developnew_integration_20260915_v1/tests/mage_loaded_config_20260915_121718/result"
+  ],
+  "stdin_closed": true,
+  "interactive_prompt_present": false,
+  "source_sha256": "ece93feb35846d0ac367e509f6576c5b9858631542e1803e74fe940e6658e7f3",
+  "run_tag": "mage_loaded_config_20260915_121718",
+  "records": [
+    {
+      "sha256": "d06a68628c4d04c284aac6ddda964605581add0cd47bc89b8d7b0266a1e6b231",
+      "label": "unknown",
+      "raw_response": "Unknown.",
+      "valid": true,
+      "executed": true
+    },
+    {
+      "sha256": "39e4be0d7ff9ba0a4cffd871a63d468a38d6488d4131446c1c457bdace960ca5",
+      "label": "unknown",
+      "raw_response": "Unknown.",
+      "valid": true,
+      "executed": true
+    }
+  ],
+  "repo": "microsoft/Mage-VL",
+  "revision": "d88b153285f1633a61b2f693c59c8576693af185",
+  "loading_info": {
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "mismatched_keys": [],
+    "error_msgs": []
+  },
+  "parameter_devices": [
+    "cuda:0"
+  ],
+  "matches_previous_two_crop_answers": true,
+  "initial_explicit_trust_attempt_did_not_remove_prompt": true,
+  "resolution": "pass already reviewed loaded Mage config to processor; official builder discards trust_remote_code before tokenizer"
+}

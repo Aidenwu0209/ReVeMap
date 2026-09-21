@@ -1,0 +1,52 @@
+{
+  "base_commit": "741c9656b92953103c4ecdaa2739536dc97c1f42",
+  "status": "development integration; no held-out generalization claim",
+  "promoted": [
+    {
+      "component": "T1 anchored co-visible identity",
+      "scope": "frozen-map replay",
+      "source": "semantic_identity_20260914_v1"
+    },
+    {
+      "component": "P2 verified dual-prompt surface fill",
+      "scope": "frozen-map replay; unknown/unowned points only",
+      "source": "semantic_surface_support_20260914_v1",
+      "scannet0030_added_points": 6103,
+      "other_three_scenes_added_points": 0
+    },
+    {
+      "component": "Qwen3-VL-2B BF16 naming",
+      "scope": "default optional namer; frozen-map semantic assignment requires SAM3 text confirmation",
+      "source": "mage_joy_vl_20260915_v1"
+    },
+    {
+      "component": "serial/parallel/none switches",
+      "scope": "raw RGB-D deployment; parallel only overlaps GPU and CPU stages",
+      "source": "model_scale_deployment_20260915_v1"
+    }
+  ],
+  "not_promoted": [
+    "116-arm parameter sweep: no qualifying default",
+    "global SGF-style fusion replacement: inconsistent cross-scene gains",
+    "extra C2 completion: no additional IoU50 object success",
+    "co-resident local GPU models: OOM/slowdown",
+    "larger VLM default: no stable quality advantage"
+  ],
+  "invariants": [
+    "fixed-map XYZ and order",
+    "original positive semantics",
+    "original positive instance ownership",
+    "no GT in assignment"
+  ],
+  "limitations": [
+    "development scenes reused",
+    "Orbbec lacks complete GT",
+    "3RScan full enhancement not tested",
+    "raw command does not generate T1/P2 evidence automatically",
+    "VLM naming metadata in raw path does not update semantic_id"
+  ],
+  "additional_surface_source_sha256": {
+    "SUMMARY.json": "e54a7afa3802780913ab54767f0f9d9e3bb15695c3ede2778f9809dbf6589d49",
+    "RESULTS.md": "ef117cf7a9fd1683d05b74eaa39fbce722865c8da6b385bf01d67992b3cad226"
+  }
+}

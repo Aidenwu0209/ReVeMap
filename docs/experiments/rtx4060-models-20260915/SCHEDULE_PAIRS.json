@@ -1,0 +1,425 @@
+[
+  {
+    "scene": "scannet0030",
+    "model": "qwen3vl_2b_bf16_min65536",
+    "same_raw_RGBD": true,
+    "same_crop_bytes": true,
+    "SAM3_equal_all_arrays_frames": 25,
+    "SAM3_frames": 25,
+    "same_crop_raw_responses": 67,
+    "same_crop_labels": 67,
+    "crop_count": 67,
+    "max_pose_abs_difference": 0.0,
+    "points_a": 40669,
+    "points_b": 40669,
+    "a_to_b": {
+      "mean_m": 0.0,
+      "p95_m": 0.0,
+      "max_m": 0.0,
+      "within_2cm": 1.0,
+      "within_5mm": 1.0
+    },
+    "b_to_a": {
+      "mean_m": 0.0,
+      "p95_m": 0.0,
+      "max_m": 0.0,
+      "within_2cm": 1.0,
+      "within_5mm": 1.0
+    },
+    "matched_semantic_agreement_a_to_b": 1.0,
+    "matched_semantic_agreement_b_to_a": 1.0,
+    "matched_instance_pairs_IoU50": [
+      {
+        "a": 1,
+        "b": 1,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "chair",
+        "name_b": "chair"
+      },
+      {
+        "a": 2,
+        "b": 2,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "recliner",
+        "name_b": "recliner"
+      },
+      {
+        "a": 3,
+        "b": 3,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "unknown",
+        "name_b": "unknown"
+      },
+      {
+        "a": 4,
+        "b": 4,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "unknown",
+        "name_b": "unknown"
+      },
+      {
+        "a": 5,
+        "b": 5,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "unknown",
+        "name_b": "unknown"
+      },
+      {
+        "a": 6,
+        "b": 6,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "chair",
+        "name_b": "chair"
+      }
+    ],
+    "matched_instance_names_equal": 6,
+    "regression_gate_pass": true,
+    "GT_accuracy": false,
+    "serial_seconds": 111.94047882599989,
+    "parallel_seconds": 105.81020168399846,
+    "time_reduction_percent": 5.476372091931392,
+    "repeats_per_arm": 1
+  },
+  {
+    "scene": "scannet0030",
+    "model": "qwen3vl_2b_bf16",
+    "same_raw_RGBD": true,
+    "same_crop_bytes": true,
+    "SAM3_equal_all_arrays_frames": 25,
+    "SAM3_frames": 25,
+    "same_crop_raw_responses": 67,
+    "same_crop_labels": 67,
+    "crop_count": 67,
+    "max_pose_abs_difference": 2.3692846298217773e-05,
+    "points_a": 40669,
+    "points_b": 40667,
+    "a_to_b": {
+      "mean_m": 1.2233062402810376e-05,
+      "p95_m": 3.351914857505631e-05,
+      "max_m": 0.005378390490704144,
+      "within_2cm": 1.0,
+      "within_5mm": 0.9999754112468957
+    },
+    "b_to_a": {
+      "mean_m": 1.2097908788100759e-05,
+      "p95_m": 3.349104188934967e-05,
+      "max_m": 0.003330659939258185,
+      "within_2cm": 1.0,
+      "within_5mm": 1.0
+    },
+    "matched_semantic_agreement_a_to_b": 0.9999754112468957,
+    "matched_semantic_agreement_b_to_a": 0.9999754100376227,
+    "matched_instance_pairs_IoU50": [
+      {
+        "a": 1,
+        "b": 1,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "chair",
+        "name_b": "chair"
+      },
+      {
+        "a": 2,
+        "b": 2,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "recliner",
+        "name_b": "recliner"
+      },
+      {
+        "a": 3,
+        "b": 3,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "unknown",
+        "name_b": "unknown"
+      },
+      {
+        "a": 4,
+        "b": 4,
+        "iou_in_a_point_domain": 0.9998236953455572,
+        "name_a": "unknown",
+        "name_b": "unknown"
+      },
+      {
+        "a": 5,
+        "b": 5,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "unknown",
+        "name_b": "unknown"
+      },
+      {
+        "a": 6,
+        "b": 6,
+        "iou_in_a_point_domain": 0.9961832061068703,
+        "name_a": "chair",
+        "name_b": "chair"
+      }
+    ],
+    "matched_instance_names_equal": 6,
+    "regression_gate_pass": true,
+    "GT_accuracy": false,
+    "serial_seconds": 107.84761120298936,
+    "parallel_seconds": 101.6677293870016,
+    "time_reduction_percent": 5.730198144450382,
+    "repeats_per_arm": 1
+  },
+  {
+    "scene": "scannet0030",
+    "model": "gemma4_e2b_qat_q4",
+    "same_raw_RGBD": true,
+    "same_crop_bytes": true,
+    "SAM3_equal_all_arrays_frames": 25,
+    "SAM3_frames": 25,
+    "same_crop_raw_responses": 67,
+    "same_crop_labels": 67,
+    "crop_count": 67,
+    "max_pose_abs_difference": 0.0,
+    "points_a": 40669,
+    "points_b": 40669,
+    "a_to_b": {
+      "mean_m": 0.0,
+      "p95_m": 0.0,
+      "max_m": 0.0,
+      "within_2cm": 1.0,
+      "within_5mm": 1.0
+    },
+    "b_to_a": {
+      "mean_m": 0.0,
+      "p95_m": 0.0,
+      "max_m": 0.0,
+      "within_2cm": 1.0,
+      "within_5mm": 1.0
+    },
+    "matched_semantic_agreement_a_to_b": 1.0,
+    "matched_semantic_agreement_b_to_a": 1.0,
+    "matched_instance_pairs_IoU50": [
+      {
+        "a": 1,
+        "b": 1,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "electronic device",
+        "name_b": "electronic device"
+      },
+      {
+        "a": 2,
+        "b": 2,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "armchair",
+        "name_b": "armchair"
+      },
+      {
+        "a": 3,
+        "b": 3,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "unknown",
+        "name_b": "unknown"
+      },
+      {
+        "a": 4,
+        "b": 4,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "unknown",
+        "name_b": "unknown"
+      },
+      {
+        "a": 5,
+        "b": 5,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "unknown",
+        "name_b": "unknown"
+      },
+      {
+        "a": 6,
+        "b": 6,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "chair",
+        "name_b": "chair"
+      }
+    ],
+    "matched_instance_names_equal": 6,
+    "regression_gate_pass": true,
+    "GT_accuracy": false,
+    "serial_seconds": 108.88593354499608,
+    "parallel_seconds": 104.0206283209991,
+    "time_reduction_percent": 4.468258723232088,
+    "repeats_per_arm": 1
+  },
+  {
+    "scene": "orbbec",
+    "model": "qwen3vl_2b_bf16",
+    "same_raw_RGBD": true,
+    "same_crop_bytes": true,
+    "SAM3_equal_all_arrays_frames": 25,
+    "SAM3_frames": 25,
+    "same_crop_raw_responses": 70,
+    "same_crop_labels": 70,
+    "crop_count": 70,
+    "max_pose_abs_difference": 0.0,
+    "points_a": 7487,
+    "points_b": 7487,
+    "a_to_b": {
+      "mean_m": 0.0,
+      "p95_m": 0.0,
+      "max_m": 0.0,
+      "within_2cm": 1.0,
+      "within_5mm": 1.0
+    },
+    "b_to_a": {
+      "mean_m": 0.0,
+      "p95_m": 0.0,
+      "max_m": 0.0,
+      "within_2cm": 1.0,
+      "within_5mm": 1.0
+    },
+    "matched_semantic_agreement_a_to_b": 1.0,
+    "matched_semantic_agreement_b_to_a": 1.0,
+    "matched_instance_pairs_IoU50": [
+      {
+        "a": 1,
+        "b": 1,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "container",
+        "name_b": "container"
+      },
+      {
+        "a": 2,
+        "b": 2,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "unknown",
+        "name_b": "unknown"
+      },
+      {
+        "a": 3,
+        "b": 3,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "unknown",
+        "name_b": "unknown"
+      }
+    ],
+    "matched_instance_names_equal": 3,
+    "regression_gate_pass": true,
+    "GT_accuracy": false,
+    "serial_seconds": 102.19763666199287,
+    "parallel_seconds": 99.76050800899975,
+    "time_reduction_percent": 2.3847211467850737,
+    "repeats_per_arm": 1
+  },
+  {
+    "scene": "orbbec",
+    "model": "qwen3vl_2b_bf16_min65536",
+    "same_raw_RGBD": true,
+    "same_crop_bytes": true,
+    "SAM3_equal_all_arrays_frames": 25,
+    "SAM3_frames": 25,
+    "same_crop_raw_responses": 70,
+    "same_crop_labels": 70,
+    "crop_count": 70,
+    "max_pose_abs_difference": 0.0,
+    "points_a": 7487,
+    "points_b": 7487,
+    "a_to_b": {
+      "mean_m": 0.0,
+      "p95_m": 0.0,
+      "max_m": 0.0,
+      "within_2cm": 1.0,
+      "within_5mm": 1.0
+    },
+    "b_to_a": {
+      "mean_m": 0.0,
+      "p95_m": 0.0,
+      "max_m": 0.0,
+      "within_2cm": 1.0,
+      "within_5mm": 1.0
+    },
+    "matched_semantic_agreement_a_to_b": 1.0,
+    "matched_semantic_agreement_b_to_a": 1.0,
+    "matched_instance_pairs_IoU50": [
+      {
+        "a": 1,
+        "b": 1,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "container",
+        "name_b": "container"
+      },
+      {
+        "a": 2,
+        "b": 2,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "unknown",
+        "name_b": "unknown"
+      },
+      {
+        "a": 3,
+        "b": 3,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "unknown",
+        "name_b": "unknown"
+      }
+    ],
+    "matched_instance_names_equal": 3,
+    "regression_gate_pass": true,
+    "GT_accuracy": false,
+    "serial_seconds": 102.5123231690086,
+    "parallel_seconds": 99.1173354019993,
+    "time_reduction_percent": 3.311785024530267,
+    "repeats_per_arm": 1
+  },
+  {
+    "scene": "orbbec",
+    "model": "gemma4_e2b_qat_q4",
+    "same_raw_RGBD": true,
+    "same_crop_bytes": true,
+    "SAM3_equal_all_arrays_frames": 25,
+    "SAM3_frames": 25,
+    "same_crop_raw_responses": 70,
+    "same_crop_labels": 70,
+    "crop_count": 70,
+    "max_pose_abs_difference": 0.0,
+    "points_a": 7487,
+    "points_b": 7487,
+    "a_to_b": {
+      "mean_m": 0.0,
+      "p95_m": 0.0,
+      "max_m": 0.0,
+      "within_2cm": 1.0,
+      "within_5mm": 1.0
+    },
+    "b_to_a": {
+      "mean_m": 0.0,
+      "p95_m": 0.0,
+      "max_m": 0.0,
+      "within_2cm": 1.0,
+      "within_5mm": 1.0
+    },
+    "matched_semantic_agreement_a_to_b": 1.0,
+    "matched_semantic_agreement_b_to_a": 1.0,
+    "matched_instance_pairs_IoU50": [
+      {
+        "a": 1,
+        "b": 1,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "cabinet",
+        "name_b": "cabinet"
+      },
+      {
+        "a": 2,
+        "b": 2,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "unknown",
+        "name_b": "unknown"
+      },
+      {
+        "a": 3,
+        "b": 3,
+        "iou_in_a_point_domain": 1.0,
+        "name_a": "unknown",
+        "name_b": "unknown"
+      }
+    ],
+    "matched_instance_names_equal": 3,
+    "regression_gate_pass": true,
+    "GT_accuracy": false,
+    "serial_seconds": 101.6081270440045,
+    "parallel_seconds": 98.31752893399971,
+    "time_reduction_percent": 3.2385186163107815,
+    "repeats_per_arm": 1
+  }
+]

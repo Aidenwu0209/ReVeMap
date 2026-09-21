@@ -1,0 +1,54 @@
+{
+  "source_root": "comparisons/",
+  "files": [
+    {
+      "experiment": "small_vlm_benchmark_20260914_v1",
+      "file": "MODEL_COMPARISON.json",
+      "sha256": "933d2c92f4c562460ad0e624faac42c2ca45a4ea377015bc6c0c6f7d866f142c",
+      "matches_original_delivery_seal": true
+    },
+    {
+      "experiment": "model_scale_deployment_20260915_v1",
+      "file": "MODEL_COMPARISON.json",
+      "sha256": "66bb0f1be48b2f06e4e62bcb4d977675506fbd9864cdc1cddf12b7238671d895",
+      "matches_original_delivery_seal": true
+    },
+    {
+      "experiment": "model_scale_deployment_20260915_v1",
+      "file": "large44/MODEL_COMPARISON.json",
+      "sha256": "da42071d0f30174daed66b611d85123902318bea19bb9282d46ccfb00a0452b7",
+      "matches_original_delivery_seal": true
+    },
+    {
+      "experiment": "mage_joy_vl_20260915_v1",
+      "file": "MODEL_COMPARISON.json",
+      "sha256": "0319f50aa227ec6fef31341498a19eac3391a03fae15a126f0be00411abd2973",
+      "matches_original_delivery_seal": true
+    },
+    {
+      "experiment": "model_scale_deployment_20260915_v1",
+      "file": "pipeline/DEPLOYMENT_ANALYSIS.json",
+      "sha256": "5ad8befd3ffbd788592bd8ec13a64d0604708cf2b0e075969769788106e64a89",
+      "matches_original_delivery_seal": true
+    },
+    {
+      "experiment": "model_scale_deployment_20260915_v1",
+      "file": "PADDLE_COMPARISON.json",
+      "sha256": "a7a6130a38870ce3c48bd29690f2a14df9f8f68d9f3980e596a83bd56002d0ce",
+      "matches_original_delivery_seal": true
+    },
+    {
+      "experiment": "mage_joy_vl_20260915_v1",
+      "file": "MAP_GT_RESULTS.json",
+      "sha256": "9dc8edc0a1f6c8ba6ff6d37a1083fe191c96f0cbac6f3a3f6c79f6dbcd472c4e",
+      "matches_original_delivery_seal": true
+    },
+    {
+      "experiment": "no_vlm_ablation_20260915_v1",
+      "file": "RAW_ABLATION_RESULTS.json",
+      "sha256": "01b5effc32bc44a387bf809d2f145aa6c88efe0533003518aabec605f5bac944",
+      "matches_original_delivery_seal": true
+    }
+  ],
+  "policy": "immutable source measurements; this packaging is not new preregistration"
+}

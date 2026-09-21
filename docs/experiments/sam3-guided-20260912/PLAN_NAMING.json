@@ -1,0 +1,41 @@
+{
+  "created_utc": "2026-09-12T07:33:51.981335+00:00",
+  "protocol_extension": true,
+  "reason": "Original decoupling arms intentionally kept mixed object names unknown; add explicit inference-stage multiview naming instead of evaluator-derived names.",
+  "blind_confirmatory_experiment": false,
+  "no_gt_read_by_implementing_agent": true,
+  "configuration_frozen_before_running_this_stage": true,
+  "base_arms": [
+    "unknown_contract",
+    "raw_unknown"
+  ],
+  "keys": [
+    "scannet/scene0030_00",
+    "orbbec/scan_20260909_142829_5ef1fa",
+    "scannet/scene0050_00",
+    "scannet/scene0011_00",
+    "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660"
+  ],
+  "inputs": "Read sealed family_v3 depth-checked projected masks plus frozen experimental instance arrays; no GT, RGB model, CLIP, SAM, SGA or LLM calls.",
+  "config": {
+    "min_point_confidence": 0.8,
+    "min_frame_points": 30,
+    "min_frame_class_fraction": 0.8,
+    "min_eligible_frames": 3,
+    "min_frame_vote_fraction": 0.8
+  },
+  "rules": [
+    "Each original map point contributes once per distinct original frame.",
+    "Frame observation is eligible only if it has interior=true, nonzero projected semantic and finite confidence>=0.8.",
+    "For an object, require>=30 qualifying points in a frame and sum(confidence for dominant class)/sum(confidence for all qualifying classes)>=0.8. Otherwise frame abstains.",
+    "Each eligible frame casts exactly one unweighted vote for its dominant class.",
+    "Require>=3 eligible distinct frames and winner votes/all eligible votes>=0.8; otherwise semantic_id=0.",
+    "IDs33/34 remain coarse and cannot be remapped to a fine class.",
+    "Name is dictionary lookup for accepted class only; no invented business-specific names.",
+    "Report visibility, point support and class vote counts; naming confidence fraction is a heuristic, not a calibrated probability."
+  ],
+  "output": "Per base-arm scene add objects_named.json and naming_result.json; do not overwrite objects.json, map_labels.npz, result.json or point/map files.",
+  "no_threshold_sweep": true,
+  "full_3rscan_claim": false,
+  "three_rscan_scope": "six cached frames only"
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "file": "PARALLEL_RUNS.json",
+    "source": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1/RUN_COMPARISON.json",
+    "sha256": "61fb60140d8e1b0464f665430bec96ae5ed365b674b43c1ecb3583642dbf684e",
+    "bytes": 173098,
+    "scope": "sealed prior experiment; copied byte-for-byte, not rerun for this commit"
+  },
+  {
+    "file": "SCHEDULE_PAIRS.json",
+    "source": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1/SCHEDULE_COMPARISON.json",
+    "sha256": "5a09fa3858234d68e7257c8963c283c8a3491ed69bc8a61ec0b1870a7bde7f96",
+    "bytes": 10198,
+    "scope": "sealed prior experiment; copied byte-for-byte, not rerun for this commit"
+  },
+  {
+    "file": "TESTED_MODEL_CONFIGS.json",
+    "source": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1/SELECTED_MODEL_CONFIGS.json",
+    "sha256": "3c0c45a859bfde13b1aeaebaa169173c16d2356e06e86cfc1edf1eecfd31e326",
+    "bytes": 5848,
+    "scope": "sealed prior experiment; copied byte-for-byte, not rerun for this commit"
+  },
+  {
+    "file": "PARALLEL_DELIVERY.json",
+    "source": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1/FINAL_DELIVERY.json",
+    "sha256": "b03116f50f62916c6f39cf49e76daa4341703e7d36e655f4a8c8f85d558d11d3",
+    "bytes": 1228,
+    "scope": "sealed prior experiment; copied byte-for-byte, not rerun for this commit"
+  },
+  {
+    "file": "NAMING_COMPARISON.json",
+    "source": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/deepseek_v41_flash_20260915_v1/COMPARISON.json",
+    "sha256": "a479e120cb79fab1ca1ef44f27b7130636f37280ba358d60eab65493949cf1be",
+    "bytes": 284117,
+    "scope": "sealed prior experiment; copied byte-for-byte, not rerun for this commit"
+  },
+  {
+    "file": "API_DELIVERY.json",
+    "source": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/deepseek_v41_flash_20260915_v1/FINAL_DELIVERY.json",
+    "sha256": "055cc423f201ce6af35e413fdbed699a04ce74fba92d157053d8df1f553c3c8e",
+    "bytes": 845,
+    "scope": "sealed prior experiment; copied byte-for-byte, not rerun for this commit"
+  },
+  {
+    "file": "API_RESULTS_QA.json",
+    "source": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/deepseek_v41_flash_20260915_v1/RESULTS_QA.json",
+    "sha256": "1abb5c0568f9706df5c726dc275796cc5b72f448fc8ab3890df161481eb6f1f6",
+    "bytes": 945,
+    "scope": "sealed prior experiment; copied byte-for-byte, not rerun for this commit"
+  },
+  {
+    "file": "PARAMETER_RUNS.json",
+    "source": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_parameter_ablation_20260915_v1/RUN_COMPARISON.json",
+    "sha256": "513896fcac198492d6eec1e7d6430067430267265074573bff2e9e136b555e30",
+    "bytes": 46147,
+    "scope": "sealed prior experiment; copied byte-for-byte, not rerun for this commit"
+  },
+  {
+    "file": "MAGE_INPUT_PROBE.json",
+    "source": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/mage_image_input_repair_20260915_v1/INPUT_PROBE.json",
+    "sha256": "114d0772a27187f577279711597f6c1c008281db68e9797fd19420bd3e105f23",
+    "bytes": 730,
+    "scope": "sealed prior experiment; copied byte-for-byte, not rerun for this commit"
+  },
+  {
+    "file": "PARAMETER_ARMS.json",
+    "source": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_parameter_ablation_20260915_v1/ARMS.json",
+    "sha256": "5a5aa18b6a7f6e3cd8baed8072c667980c9d491081da2f287ffce31796ac64d2",
+    "bytes": 2739,
+    "scope": "sealed prior experiment; copied byte-for-byte, not rerun for this commit"
+  }
+]

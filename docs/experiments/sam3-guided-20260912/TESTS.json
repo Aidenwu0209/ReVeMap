@@ -1,0 +1,14 @@
+{
+  "base_and_changed_modules": {
+    "command": "PYTHONPATH=src analysis_env/bin/python -m pytest -q tests/test_sam3_guided.py tests/test_sam3_loss_unknown.py tests/test_sam3_tracking_probe.py tests/test_sam3_multiview.py tests/test_sam3_fusion.py tests/test_sam3_refine.py tests/test_sam3_sga.py",
+    "passed": 82,
+    "seconds": 3.74
+  },
+  "interpretation": "contract and mechanism tests, not dataset quality acceptance",
+  "object_naming": {
+    "passed": 8,
+    "seconds": 0.55,
+    "command": "PYTHONPATH=src analysis_env/bin/python -m pytest -q tests/test_sam3_object_naming.py"
+  },
+  "total_passed": 90
+}

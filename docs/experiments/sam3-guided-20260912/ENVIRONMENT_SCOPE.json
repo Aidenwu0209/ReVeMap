@@ -1,0 +1,21 @@
+{
+  "host": "ssh44 / 100.64.57.44 / WSL",
+  "gpu": "NVIDIA RTX 5070 Ti 16GB",
+  "environment_installed_or_modified": false,
+  "root_ENV_REUSE_json": "unchanged CPU cache-fusion warm-reuse receipt copied from R3; its no-model-inference flags apply to CPU arms only",
+  "actual_new_sam3_inference": [
+    "tracking/full",
+    "tracking/blue_equipment"
+  ],
+  "gpu_evidence": [
+    "tracking/full/KERNEL_WITNESS.json",
+    "tracking/full/IMAGE_MODEL.json",
+    "tracking/full/VIDEO_MODEL.json",
+    "tracking/full/PROVENANCE_BEFORE.json",
+    "tracking/full/PROVENANCE_AFTER.json",
+    "tracking/blue_equipment/PROVENANCE_BEFORE.json",
+    "tracking/blue_equipment/PROVENANCE_AFTER.json"
+  ],
+  "sga_model_run_this_round": false,
+  "llm_model_run_this_round": false
+}

@@ -1,0 +1,17 @@
+{
+  "unchanged_spec": "/mnt/d/SGF-SGA-experiments/sam3_semantics_20260911_v1/env-spec.json",
+  "sha256": "bf541ae39b5f33d05f5ec938944551a96bf0a6dc76c56846c0de8677c1930f96",
+  "validated_receipt": {
+    "ready": true,
+    "scope": "image model inference on real Orbbec RGB; not full scene accuracy",
+    "spec_hash": "d0719190",
+    "author_witness": "witness_author/WITNESS.json",
+    "fresh_agent_witness": "witness_fresh_agent/WITNESS.json",
+    "missing_image_weight_keys": [],
+    "independent_exit_code": 0,
+    "fresh_agent_doc_execution_divergence": false,
+    "doc_status_wording_issue": "stale pending text was reported; command and expected outputs matched",
+    "production_environments_changed": false
+  },
+  "environment_modified": false
+}

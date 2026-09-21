@@ -1,0 +1,798 @@
+{
+  "scope": "Eight fresh120-frame runs; unchanged crop preparation; Qwen names only metadata, semantic_id not rewritten. Not full-scene/latest-pipeline FPS.",
+  "trials": [
+    {
+      "status": "completed",
+      "scene": "scannet0030",
+      "schedule": "async_stage",
+      "tag": "r1",
+      "vlm_enabled": true,
+      "namer_executed": true,
+      "raw_frames": 120,
+      "start": 81243.941508782,
+      "end": 81343.247755584,
+      "total_seconds": 99.30624680200708,
+      "total_raw_fps": 1.208383197073708,
+      "mapping_seconds": 22.716603674998623,
+      "mapping_raw_fps": 5.282479798336635,
+      "post_geometry_tail_seconds": 76.58964312700846,
+      "semantic_model_wall_seconds": 78.73213383299299,
+      "selected_frames": 25,
+      "generated_crops": 67,
+      "qwen_crops": 67,
+      "qwen_requests": 25,
+      "named_instances": 3,
+      "semantic_coverage": 0.5710246133418574,
+      "instance_coverage": 0.5659593302023654,
+      "peak_device_used_mib": 6279.0,
+      "peak_host_rss_gib": 7.300315856933594,
+      "cold_model_loads_included": true,
+      "new_raw_trajectory": true,
+      "new_sam3_predictions": true,
+      "new_qwen_predictions": true,
+      "GT_used": false,
+      "protocol_lock_sha256": "f07fc97e9c8727c131a0b0aa6aa581b19b470536af1ecd81a3ce7ee0842eba3e",
+      "input_hashes_verified_before_and_after": true,
+      "namer_arm": "qwen3vl_2b_bf16",
+      "scope": "120-frame raw RGB-D integration prototype, not entire scene or full latest frozen-map research variant; GPU geometry stages complete before GPU semantics",
+      "output_map": "/home/aidenwu/Documents/SGF-SGA-experiments/no_vlm_ablation_20260915_v1/pipeline/runs/scannet0030/qwen3vl_2b_bf16_vlm_on_async_stage_r1/fused/export/map_labeled.ply",
+      "path": "pipeline/runs/scannet0030/qwen3vl_2b_bf16_vlm_on_async_stage_r1",
+      "map_points": 40669,
+      "instance_count": 6,
+      "all120_poses_and_integrated_frames": true,
+      "all25_inputs_and_masks_hash_verified": true,
+      "VLM_execution_verified": true,
+      "sampled_qwen_worker_process_rows": 42,
+      "names": [
+        {
+          "instance_id": 1,
+          "base_semantic_id": 5,
+          "vlm_name": "chair",
+          "point_count": 251
+        },
+        {
+          "instance_id": 2,
+          "base_semantic_id": 5,
+          "vlm_name": "recliner",
+          "point_count": 7188
+        },
+        {
+          "instance_id": 6,
+          "base_semantic_id": 5,
+          "vlm_name": "chair",
+          "point_count": 262
+        }
+      ]
+    },
+    {
+      "status": "completed",
+      "scene": "scannet0030",
+      "schedule": "async_stage",
+      "tag": "r1",
+      "vlm_enabled": false,
+      "namer_executed": false,
+      "raw_frames": 120,
+      "start": 81343.351538481,
+      "end": 81432.648970064,
+      "total_seconds": 89.29743158299243,
+      "total_raw_fps": 1.3438236450112544,
+      "mapping_seconds": 22.813541875002556,
+      "mapping_raw_fps": 5.2600337403762545,
+      "post_geometry_tail_seconds": 66.48388970798987,
+      "semantic_model_wall_seconds": 66.92413796600886,
+      "selected_frames": 25,
+      "generated_crops": 67,
+      "qwen_crops": 0,
+      "qwen_requests": 0,
+      "named_instances": 0,
+      "semantic_coverage": 0.5710246133418574,
+      "instance_coverage": 0.5659593302023654,
+      "peak_device_used_mib": 6281.0,
+      "peak_host_rss_gib": 7.30010986328125,
+      "cold_model_loads_included": true,
+      "new_raw_trajectory": true,
+      "new_sam3_predictions": true,
+      "new_qwen_predictions": false,
+      "GT_used": false,
+      "protocol_lock_sha256": "f07fc97e9c8727c131a0b0aa6aa581b19b470536af1ecd81a3ce7ee0842eba3e",
+      "input_hashes_verified_before_and_after": true,
+      "namer_arm": "qwen3vl_2b_bf16",
+      "scope": "120-frame raw RGB-D integration prototype, not entire scene or full latest frozen-map research variant; GPU geometry stages complete before GPU semantics",
+      "output_map": "/home/aidenwu/Documents/SGF-SGA-experiments/no_vlm_ablation_20260915_v1/pipeline/runs/scannet0030/qwen3vl_2b_bf16_vlm_off_async_stage_r1/fused/export/map_labeled.ply",
+      "path": "pipeline/runs/scannet0030/qwen3vl_2b_bf16_vlm_off_async_stage_r1",
+      "map_points": 40669,
+      "instance_count": 6,
+      "all120_poses_and_integrated_frames": true,
+      "all25_inputs_and_masks_hash_verified": true,
+      "VLM_execution_verified": true,
+      "sampled_qwen_worker_process_rows": 0,
+      "names": []
+    },
+    {
+      "status": "completed",
+      "scene": "orbbec",
+      "schedule": "async_stage",
+      "tag": "r1",
+      "vlm_enabled": false,
+      "namer_executed": false,
+      "raw_frames": 120,
+      "start": 81432.755708681,
+      "end": 81518.752925357,
+      "total_seconds": 85.99721667599806,
+      "total_raw_fps": 1.3953939980651975,
+      "mapping_seconds": 23.774741738001467,
+      "mapping_raw_fps": 5.04737344036812,
+      "post_geometry_tail_seconds": 62.222474937996594,
+      "semantic_model_wall_seconds": 62.48497354400752,
+      "selected_frames": 25,
+      "generated_crops": 70,
+      "qwen_crops": 0,
+      "qwen_requests": 0,
+      "named_instances": 0,
+      "semantic_coverage": 0.8152798183518098,
+      "instance_coverage": 0.49138506745024707,
+      "peak_device_used_mib": 6265.0,
+      "peak_host_rss_gib": 7.300254821777344,
+      "cold_model_loads_included": true,
+      "new_raw_trajectory": true,
+      "new_sam3_predictions": true,
+      "new_qwen_predictions": false,
+      "GT_used": false,
+      "protocol_lock_sha256": "f07fc97e9c8727c131a0b0aa6aa581b19b470536af1ecd81a3ce7ee0842eba3e",
+      "input_hashes_verified_before_and_after": true,
+      "namer_arm": "qwen3vl_2b_bf16",
+      "scope": "120-frame raw RGB-D integration prototype, not entire scene or full latest frozen-map research variant; GPU geometry stages complete before GPU semantics",
+      "output_map": "/home/aidenwu/Documents/SGF-SGA-experiments/no_vlm_ablation_20260915_v1/pipeline/runs/orbbec/qwen3vl_2b_bf16_vlm_off_async_stage_r1/fused/export/map_labeled.ply",
+      "path": "pipeline/runs/orbbec/qwen3vl_2b_bf16_vlm_off_async_stage_r1",
+      "map_points": 7487,
+      "instance_count": 3,
+      "all120_poses_and_integrated_frames": true,
+      "all25_inputs_and_masks_hash_verified": true,
+      "VLM_execution_verified": true,
+      "sampled_qwen_worker_process_rows": 0,
+      "names": []
+    },
+    {
+      "status": "completed",
+      "scene": "orbbec",
+      "schedule": "async_stage",
+      "tag": "r1",
+      "vlm_enabled": true,
+      "namer_executed": true,
+      "raw_frames": 120,
+      "start": 81518.855944793,
+      "end": 81615.056928132,
+      "total_seconds": 96.20098333900387,
+      "total_raw_fps": 1.2473884968216018,
+      "mapping_seconds": 23.607155642996076,
+      "mapping_raw_fps": 5.0832045086127255,
+      "post_geometry_tail_seconds": 72.59382769600779,
+      "semantic_model_wall_seconds": 73.79259443999035,
+      "selected_frames": 25,
+      "generated_crops": 70,
+      "qwen_crops": 70,
+      "qwen_requests": 25,
+      "named_instances": 1,
+      "semantic_coverage": 0.8152798183518098,
+      "instance_coverage": 0.49138506745024707,
+      "peak_device_used_mib": 6265.0,
+      "peak_host_rss_gib": 7.29998779296875,
+      "cold_model_loads_included": true,
+      "new_raw_trajectory": true,
+      "new_sam3_predictions": true,
+      "new_qwen_predictions": true,
+      "GT_used": false,
+      "protocol_lock_sha256": "f07fc97e9c8727c131a0b0aa6aa581b19b470536af1ecd81a3ce7ee0842eba3e",
+      "input_hashes_verified_before_and_after": true,
+      "namer_arm": "qwen3vl_2b_bf16",
+      "scope": "120-frame raw RGB-D integration prototype, not entire scene or full latest frozen-map research variant; GPU geometry stages complete before GPU semantics",
+      "output_map": "/home/aidenwu/Documents/SGF-SGA-experiments/no_vlm_ablation_20260915_v1/pipeline/runs/orbbec/qwen3vl_2b_bf16_vlm_on_async_stage_r1/fused/export/map_labeled.ply",
+      "path": "pipeline/runs/orbbec/qwen3vl_2b_bf16_vlm_on_async_stage_r1",
+      "map_points": 7487,
+      "instance_count": 3,
+      "all120_poses_and_integrated_frames": true,
+      "all25_inputs_and_masks_hash_verified": true,
+      "VLM_execution_verified": true,
+      "sampled_qwen_worker_process_rows": 40,
+      "names": [
+        {
+          "instance_id": 1,
+          "base_semantic_id": 9,
+          "vlm_name": "container",
+          "point_count": 1331
+        }
+      ]
+    },
+    {
+      "status": "completed",
+      "scene": "scannet0030",
+      "schedule": "async_stage",
+      "tag": "r2",
+      "vlm_enabled": false,
+      "namer_executed": false,
+      "raw_frames": 120,
+      "start": 81615.158944702,
+      "end": 81704.75333357,
+      "total_seconds": 89.5943888680049,
+      "total_raw_fps": 1.3393695912898098,
+      "mapping_seconds": 23.11775576999935,
+      "mapping_raw_fps": 5.190815284748697,
+      "post_geometry_tail_seconds": 66.47663309800555,
+      "semantic_model_wall_seconds": 66.96951929399802,
+      "selected_frames": 25,
+      "generated_crops": 67,
+      "qwen_crops": 0,
+      "qwen_requests": 0,
+      "named_instances": 0,
+      "semantic_coverage": 0.5710246133418574,
+      "instance_coverage": 0.5659593302023654,
+      "peak_device_used_mib": 6281.0,
+      "peak_host_rss_gib": 7.3002166748046875,
+      "cold_model_loads_included": true,
+      "new_raw_trajectory": true,
+      "new_sam3_predictions": true,
+      "new_qwen_predictions": false,
+      "GT_used": false,
+      "protocol_lock_sha256": "f07fc97e9c8727c131a0b0aa6aa581b19b470536af1ecd81a3ce7ee0842eba3e",
+      "input_hashes_verified_before_and_after": true,
+      "namer_arm": "qwen3vl_2b_bf16",
+      "scope": "120-frame raw RGB-D integration prototype, not entire scene or full latest frozen-map research variant; GPU geometry stages complete before GPU semantics",
+      "output_map": "/home/aidenwu/Documents/SGF-SGA-experiments/no_vlm_ablation_20260915_v1/pipeline/runs/scannet0030/qwen3vl_2b_bf16_vlm_off_async_stage_r2/fused/export/map_labeled.ply",
+      "path": "pipeline/runs/scannet0030/qwen3vl_2b_bf16_vlm_off_async_stage_r2",
+      "map_points": 40669,
+      "instance_count": 6,
+      "all120_poses_and_integrated_frames": true,
+      "all25_inputs_and_masks_hash_verified": true,
+      "VLM_execution_verified": true,
+      "sampled_qwen_worker_process_rows": 0,
+      "names": []
+    },
+    {
+      "status": "completed",
+      "scene": "scannet0030",
+      "schedule": "async_stage",
+      "tag": "r2",
+      "vlm_enabled": true,
+      "namer_executed": true,
+      "raw_frames": 120,
+      "start": 81704.87883419,
+      "end": 81804.421643079,
+      "total_seconds": 99.54280888898938,
+      "total_raw_fps": 1.2055114913808045,
+      "mapping_seconds": 23.316732491992298,
+      "mapping_raw_fps": 5.146518708880492,
+      "post_geometry_tail_seconds": 76.22607639699709,
+      "semantic_model_wall_seconds": 78.54985599000065,
+      "selected_frames": 25,
+      "generated_crops": 67,
+      "qwen_crops": 67,
+      "qwen_requests": 25,
+      "named_instances": 3,
+      "semantic_coverage": 0.5707998328047011,
+      "instance_coverage": 0.5657102112070025,
+      "peak_device_used_mib": 6281.0,
+      "peak_host_rss_gib": 7.296504974365234,
+      "cold_model_loads_included": true,
+      "new_raw_trajectory": true,
+      "new_sam3_predictions": true,
+      "new_qwen_predictions": true,
+      "GT_used": false,
+      "protocol_lock_sha256": "f07fc97e9c8727c131a0b0aa6aa581b19b470536af1ecd81a3ce7ee0842eba3e",
+      "input_hashes_verified_before_and_after": true,
+      "namer_arm": "qwen3vl_2b_bf16",
+      "scope": "120-frame raw RGB-D integration prototype, not entire scene or full latest frozen-map research variant; GPU geometry stages complete before GPU semantics",
+      "output_map": "/home/aidenwu/Documents/SGF-SGA-experiments/no_vlm_ablation_20260915_v1/pipeline/runs/scannet0030/qwen3vl_2b_bf16_vlm_on_async_stage_r2/fused/export/map_labeled.ply",
+      "path": "pipeline/runs/scannet0030/qwen3vl_2b_bf16_vlm_on_async_stage_r2",
+      "map_points": 40671,
+      "instance_count": 6,
+      "all120_poses_and_integrated_frames": true,
+      "all25_inputs_and_masks_hash_verified": true,
+      "VLM_execution_verified": true,
+      "sampled_qwen_worker_process_rows": 41,
+      "names": [
+        {
+          "instance_id": 1,
+          "base_semantic_id": 5,
+          "vlm_name": "chair",
+          "point_count": 251
+        },
+        {
+          "instance_id": 2,
+          "base_semantic_id": 5,
+          "vlm_name": "recliner",
+          "point_count": 7187
+        },
+        {
+          "instance_id": 6,
+          "base_semantic_id": 5,
+          "vlm_name": "chair",
+          "point_count": 263
+        }
+      ]
+    },
+    {
+      "status": "completed",
+      "scene": "orbbec",
+      "schedule": "async_stage",
+      "tag": "r2",
+      "vlm_enabled": true,
+      "namer_executed": true,
+      "raw_frames": 120,
+      "start": 81804.530942907,
+      "end": 81900.283007544,
+      "total_seconds": 95.75206463699578,
+      "total_raw_fps": 1.2532366842942781,
+      "mapping_seconds": 23.614989734996925,
+      "mapping_raw_fps": 5.081518194444205,
+      "post_geometry_tail_seconds": 72.13707490199886,
+      "semantic_model_wall_seconds": 73.43043688600301,
+      "selected_frames": 25,
+      "generated_crops": 70,
+      "qwen_crops": 70,
+      "qwen_requests": 25,
+      "named_instances": 1,
+      "semantic_coverage": 0.8152798183518098,
+      "instance_coverage": 0.49138506745024707,
+      "peak_device_used_mib": 6265.0,
+      "peak_host_rss_gib": 7.300388336181641,
+      "cold_model_loads_included": true,
+      "new_raw_trajectory": true,
+      "new_sam3_predictions": true,
+      "new_qwen_predictions": true,
+      "GT_used": false,
+      "protocol_lock_sha256": "f07fc97e9c8727c131a0b0aa6aa581b19b470536af1ecd81a3ce7ee0842eba3e",
+      "input_hashes_verified_before_and_after": true,
+      "namer_arm": "qwen3vl_2b_bf16",
+      "scope": "120-frame raw RGB-D integration prototype, not entire scene or full latest frozen-map research variant; GPU geometry stages complete before GPU semantics",
+      "output_map": "/home/aidenwu/Documents/SGF-SGA-experiments/no_vlm_ablation_20260915_v1/pipeline/runs/orbbec/qwen3vl_2b_bf16_vlm_on_async_stage_r2/fused/export/map_labeled.ply",
+      "path": "pipeline/runs/orbbec/qwen3vl_2b_bf16_vlm_on_async_stage_r2",
+      "map_points": 7487,
+      "instance_count": 3,
+      "all120_poses_and_integrated_frames": true,
+      "all25_inputs_and_masks_hash_verified": true,
+      "VLM_execution_verified": true,
+      "sampled_qwen_worker_process_rows": 38,
+      "names": [
+        {
+          "instance_id": 1,
+          "base_semantic_id": 9,
+          "vlm_name": "container",
+          "point_count": 1331
+        }
+      ]
+    },
+    {
+      "status": "completed",
+      "scene": "orbbec",
+      "schedule": "async_stage",
+      "tag": "r2",
+      "vlm_enabled": false,
+      "namer_executed": false,
+      "raw_frames": 120,
+      "start": 81900.38814537,
+      "end": 81986.423386799,
+      "total_seconds": 86.0352414289955,
+      "total_raw_fps": 1.3947772797154927,
+      "mapping_seconds": 23.747485391999362,
+      "mapping_raw_fps": 5.053166599290911,
+      "post_geometry_tail_seconds": 62.28775603699614,
+      "semantic_model_wall_seconds": 62.58138921299542,
+      "selected_frames": 25,
+      "generated_crops": 70,
+      "qwen_crops": 0,
+      "qwen_requests": 0,
+      "named_instances": 0,
+      "semantic_coverage": 0.8152798183518098,
+      "instance_coverage": 0.49138506745024707,
+      "peak_device_used_mib": 6263.0,
+      "peak_host_rss_gib": 7.2523345947265625,
+      "cold_model_loads_included": true,
+      "new_raw_trajectory": true,
+      "new_sam3_predictions": true,
+      "new_qwen_predictions": false,
+      "GT_used": false,
+      "protocol_lock_sha256": "f07fc97e9c8727c131a0b0aa6aa581b19b470536af1ecd81a3ce7ee0842eba3e",
+      "input_hashes_verified_before_and_after": true,
+      "namer_arm": "qwen3vl_2b_bf16",
+      "scope": "120-frame raw RGB-D integration prototype, not entire scene or full latest frozen-map research variant; GPU geometry stages complete before GPU semantics",
+      "output_map": "/home/aidenwu/Documents/SGF-SGA-experiments/no_vlm_ablation_20260915_v1/pipeline/runs/orbbec/qwen3vl_2b_bf16_vlm_off_async_stage_r2/fused/export/map_labeled.ply",
+      "path": "pipeline/runs/orbbec/qwen3vl_2b_bf16_vlm_off_async_stage_r2",
+      "map_points": 7487,
+      "instance_count": 3,
+      "all120_poses_and_integrated_frames": true,
+      "all25_inputs_and_masks_hash_verified": true,
+      "VLM_execution_verified": true,
+      "sampled_qwen_worker_process_rows": 0,
+      "names": []
+    }
+  ],
+  "paired_checks": [
+    {
+      "scene": "scannet0030",
+      "tag": "r1",
+      "on": "pipeline/runs/scannet0030/qwen3vl_2b_bf16_vlm_on_async_stage_r1",
+      "off": "pipeline/runs/scannet0030/qwen3vl_2b_bf16_vlm_off_async_stage_r1",
+      "same_selected_input_bytes": true,
+      "same_crop_bytes": true,
+      "all25_SAM3_arrays_equal": true,
+      "max_pose_matrix_difference": 0.0,
+      "map_comparison": {
+        "reference_points": 40669,
+        "candidate_points": 40669,
+        "XYZ_exact": true,
+        "labels_exact": true,
+        "on_to_off_distances_m": {
+          "n": 40669,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "off_to_on_distances_m": {
+          "n": 40669,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "on_within5mm": 1.0,
+        "off_within5mm": 1.0,
+        "nearest_semantic_agreement_all_on_points": 1.0,
+        "nearest_instance_integer_agreement_all_on_points": 1.0,
+        "one_to_one_instance_agreement_within5mm": 1.0,
+        "one_to_one_instance_pairs": [
+          [
+            1,
+            1,
+            251
+          ],
+          [
+            2,
+            2,
+            7188
+          ],
+          [
+            3,
+            3,
+            4534
+          ],
+          [
+            4,
+            4,
+            5672
+          ],
+          [
+            5,
+            5,
+            5110
+          ],
+          [
+            6,
+            6,
+            262
+          ]
+        ],
+        "meets_predeclared_geometry_semantic_tolerance": true,
+        "scope": "Paired output consistency only; not GT class/instance accuracy."
+      },
+      "seconds_off_minus_on": -10.00881521901465,
+      "time_saved_fraction": 0.10078736777727426
+    },
+    {
+      "scene": "scannet0030",
+      "tag": "r2",
+      "on": "pipeline/runs/scannet0030/qwen3vl_2b_bf16_vlm_on_async_stage_r2",
+      "off": "pipeline/runs/scannet0030/qwen3vl_2b_bf16_vlm_off_async_stage_r2",
+      "same_selected_input_bytes": true,
+      "same_crop_bytes": true,
+      "all25_SAM3_arrays_equal": true,
+      "max_pose_matrix_difference": 7.68899917602539e-05,
+      "map_comparison": {
+        "reference_points": 40671,
+        "candidate_points": 40669,
+        "XYZ_exact": false,
+        "labels_exact": false,
+        "on_to_off_distances_m": {
+          "n": 40671,
+          "mean": 9.384273205971574e-05,
+          "p50": 3.985517751470269e-05,
+          "p95": 0.00029166971052418944,
+          "min": 1.7990934297884564e-09,
+          "max": 0.029639970746135717
+        },
+        "off_to_on_distances_m": {
+          "n": 40669,
+          "mean": 9.279774053819064e-05,
+          "p50": 3.985377406445778e-05,
+          "p95": 0.0002926296730038444,
+          "min": 1.7990934297884564e-09,
+          "max": 0.02020341411991317
+        },
+        "on_within5mm": 0.9994590740330949,
+        "off_within5mm": 0.9995574024441221,
+        "nearest_semantic_agreement_all_on_points": 0.9997541245604976,
+        "nearest_instance_integer_agreement_all_on_points": 0.9997541245604976,
+        "one_to_one_instance_agreement_within5mm": 0.9997785923392949,
+        "one_to_one_instance_pairs": [
+          [
+            1,
+            1,
+            251
+          ],
+          [
+            2,
+            2,
+            7186
+          ],
+          [
+            3,
+            3,
+            4529
+          ],
+          [
+            4,
+            4,
+            5672
+          ],
+          [
+            5,
+            5,
+            5101
+          ],
+          [
+            6,
+            6,
+            262
+          ]
+        ],
+        "meets_predeclared_geometry_semantic_tolerance": true,
+        "scope": "Paired output consistency only; not GT class/instance accuracy."
+      },
+      "seconds_off_minus_on": -9.948420020984486,
+      "time_saved_fraction": 0.0999411221364972
+    },
+    {
+      "scene": "orbbec",
+      "tag": "r1",
+      "on": "pipeline/runs/orbbec/qwen3vl_2b_bf16_vlm_on_async_stage_r1",
+      "off": "pipeline/runs/orbbec/qwen3vl_2b_bf16_vlm_off_async_stage_r1",
+      "same_selected_input_bytes": true,
+      "same_crop_bytes": true,
+      "all25_SAM3_arrays_equal": true,
+      "max_pose_matrix_difference": 0.0,
+      "map_comparison": {
+        "reference_points": 7487,
+        "candidate_points": 7487,
+        "XYZ_exact": true,
+        "labels_exact": true,
+        "on_to_off_distances_m": {
+          "n": 7487,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "off_to_on_distances_m": {
+          "n": 7487,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "on_within5mm": 1.0,
+        "off_within5mm": 1.0,
+        "nearest_semantic_agreement_all_on_points": 1.0,
+        "nearest_instance_integer_agreement_all_on_points": 1.0,
+        "one_to_one_instance_agreement_within5mm": 1.0,
+        "one_to_one_instance_pairs": [
+          [
+            1,
+            1,
+            1331
+          ],
+          [
+            2,
+            2,
+            1808
+          ],
+          [
+            3,
+            3,
+            540
+          ]
+        ],
+        "meets_predeclared_geometry_semantic_tolerance": true,
+        "scope": "Paired output consistency only; not GT class/instance accuracy."
+      },
+      "seconds_off_minus_on": -10.203766663005808,
+      "time_saved_fraction": 0.10606717633070994
+    },
+    {
+      "scene": "orbbec",
+      "tag": "r2",
+      "on": "pipeline/runs/orbbec/qwen3vl_2b_bf16_vlm_on_async_stage_r2",
+      "off": "pipeline/runs/orbbec/qwen3vl_2b_bf16_vlm_off_async_stage_r2",
+      "same_selected_input_bytes": true,
+      "same_crop_bytes": true,
+      "all25_SAM3_arrays_equal": true,
+      "max_pose_matrix_difference": 0.0,
+      "map_comparison": {
+        "reference_points": 7487,
+        "candidate_points": 7487,
+        "XYZ_exact": true,
+        "labels_exact": true,
+        "on_to_off_distances_m": {
+          "n": 7487,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "off_to_on_distances_m": {
+          "n": 7487,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "on_within5mm": 1.0,
+        "off_within5mm": 1.0,
+        "nearest_semantic_agreement_all_on_points": 1.0,
+        "nearest_instance_integer_agreement_all_on_points": 1.0,
+        "one_to_one_instance_agreement_within5mm": 1.0,
+        "one_to_one_instance_pairs": [
+          [
+            1,
+            1,
+            1331
+          ],
+          [
+            2,
+            2,
+            1808
+          ],
+          [
+            3,
+            3,
+            540
+          ]
+        ],
+        "meets_predeclared_geometry_semantic_tolerance": true,
+        "scope": "Paired output consistency only; not GT class/instance accuracy."
+      },
+      "seconds_off_minus_on": -9.716823208000278,
+      "time_saved_fraction": 0.10147899415889972
+    }
+  ],
+  "aggregates": [
+    {
+      "scene": "scannet0030",
+      "on": {
+        "repeats": 2,
+        "seconds": {
+          "n": 2,
+          "mean": 99.42452784549823,
+          "p50": 99.42452784549823,
+          "p95": 99.53098078464026,
+          "min": 99.30624680200708,
+          "max": 99.54280888898938
+        },
+        "pooled_raw_FPS": 1.2069456360554736,
+        "whole_GPU_peak_MiB": 6281.0,
+        "sum_process_RSS_peak_GiB": 7.300315856933594,
+        "vlm_named_instances": [
+          3,
+          3
+        ],
+        "semantic_coverage": [
+          0.5710246133418574,
+          0.5707998328047011
+        ],
+        "instance_coverage": [
+          0.5659593302023654,
+          0.5657102112070025
+        ]
+      },
+      "off": {
+        "repeats": 2,
+        "seconds": {
+          "n": 2,
+          "mean": 89.44591022549866,
+          "p50": 89.44591022549866,
+          "p95": 89.57954100375427,
+          "min": 89.29743158299243,
+          "max": 89.5943888680049
+        },
+        "pooled_raw_FPS": 1.341592921324995,
+        "whole_GPU_peak_MiB": 6281.0,
+        "sum_process_RSS_peak_GiB": 7.3002166748046875,
+        "vlm_named_instances": [
+          0,
+          0
+        ],
+        "semantic_coverage": [
+          0.5710246133418574,
+          0.5710246133418574
+        ],
+        "instance_coverage": [
+          0.5659593302023654,
+          0.5659593302023654
+        ]
+      },
+      "delta_seconds_off_minus_on": -9.978617619999568,
+      "time_saved_percent": 10.036374158603945,
+      "throughput_increase_percent": 11.156035636333561,
+      "GPU_peak_delta_MiB": 0.0
+    },
+    {
+      "scene": "orbbec",
+      "on": {
+        "repeats": 2,
+        "seconds": {
+          "n": 2,
+          "mean": 95.97652398799983,
+          "p50": 95.97652398799983,
+          "p95": 96.17853740390346,
+          "min": 95.75206463699578,
+          "max": 96.20098333900387
+        },
+        "pooled_raw_FPS": 1.2503057520087295,
+        "whole_GPU_peak_MiB": 6265.0,
+        "sum_process_RSS_peak_GiB": 7.300388336181641,
+        "vlm_named_instances": [
+          1,
+          1
+        ],
+        "semantic_coverage": [
+          0.8152798183518098,
+          0.8152798183518098
+        ],
+        "instance_coverage": [
+          0.49138506745024707,
+          0.49138506745024707
+        ]
+      },
+      "off": {
+        "repeats": 2,
+        "seconds": {
+          "n": 2,
+          "mean": 86.01622905249678,
+          "p50": 86.01622905249678,
+          "p95": 86.03334019134563,
+          "min": 85.99721667599806,
+          "max": 86.0352414289955
+        },
+        "pooled_raw_FPS": 1.395085570732966,
+        "whole_GPU_peak_MiB": 6265.0,
+        "sum_process_RSS_peak_GiB": 7.300254821777344,
+        "vlm_named_instances": [
+          0,
+          0
+        ],
+        "semantic_coverage": [
+          0.8152798183518098,
+          0.8152798183518098
+        ],
+        "instance_coverage": [
+          0.49138506745024707,
+          0.49138506745024707
+        ]
+      },
+      "delta_seconds_off_minus_on": -9.960294935503043,
+      "time_saved_percent": 10.377845041302391,
+      "throughput_increase_percent": 11.579553120637453,
+      "GPU_peak_delta_MiB": 0.0
+    }
+  ],
+  "all25_SAM3_arrays_equal_in_all_pairs": true,
+  "all_geometry_semantic_tolerances_met": true,
+  "RAM_scope": "Sum of process RSS, shared pages can be double-counted",
+  "GPU_scope": "Whole-device sampled peak includes desktop activity",
+  "GT_accuracy_not_measured_in_raw_windows": true
+}

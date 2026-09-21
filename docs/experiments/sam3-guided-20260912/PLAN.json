@@ -1,0 +1,24 @@
+{
+  "created_utc": "2026-09-12T07:11:22.773659+00:00",
+  "baseline_code": "f99f359d15cbafffa705154d1387f86d23409798",
+  "reference": "R2 objects_geometry at 08f8754 and R3 consensus_matched at f99f359",
+  "scope": "controlled diagnostic and mechanism validation; not complete paper reproductions",
+  "geometry_and_semantics": "preserve geometry, RGB, original point order and baseline semantic/confidence arrays for CPU arms",
+  "arms": {
+    "loss_audit": "exact point-level accounting with byte-identical R3 replay",
+    "guided_recovery": "3D guides from old C objects; only measured masks can recover R3-unassigned ownership; unchanged known labels",
+    "unknown_objects": "deduplicated raw masks before category competition; unknown semantic object allowed explicitly; preserve all baseline semantic values",
+    "tracking_probe": "finite short clip image-vs-video SAM3 comparisons with identical selected RGB-D and prompt; assisted visual prompt separately labeled"
+  },
+  "dataset_keys": [
+    "scannet/scene0030_00",
+    "orbbec/scan_20260909_142829_5ef1fa",
+    "scannet/scene0050_00",
+    "scannet/scene0011_00",
+    "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660"
+  ],
+  "three_rscan_limit": "six archived input frames currently available, do not claim whole-scene validation; raw expansion conditional on available data on ssh44",
+  "evaluation": "frozen0030 diagnostic; seek0050/0011 GT read-only independently; no GT in inference; preserve denominators; coverage is not accuracy; record lost+recovered point masks, purity, fragmentation, recognition and elapsed times",
+  "stop_rule": "one shared frozen config per arm, no scene-specific threshold sweep; report failures as failures; leave developnew unchanged unless broad evidence supports promotion",
+  "write_scope": "new experiment worktree and new result root only; preserve sealed R2 and R3"
+}

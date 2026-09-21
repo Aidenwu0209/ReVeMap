@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/home/aidenwu/Documents/candidate-v2-runtime-20260904/bin/python",
+    "-m",
+    "pose_pipeline.semantic_runtime",
+    "refine-semantic",
+    "--workspace",
+    "/home/aidenwu/Documents/SGF-SGA-experiments/semantic_refinement_integration_20260916_v1/fresh_0050",
+    "--stage",
+    "all",
+    "--fragments"
+  ],
+  "returncode": 0,
+  "seconds": 144.23361914399993,
+  "scope": "fresh object-view extraction, Qwen NF4, SAM3, measured label assignment on frozen 0050 geometry; no fresh SLAM"
+}

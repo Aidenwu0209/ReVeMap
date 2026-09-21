@@ -1,0 +1,17 @@
+{
+  "stage": "consensus_matched",
+  "reason": "Strict arm changed point support and confidence gates compared to C; Orbbec coverage dropped before GT evaluation. Isolate these selection changes.",
+  "graph_threshold_changes": false,
+  "config": {
+    "min_mask_points": 30,
+    "min_output_points": 50,
+    "min_point_views": 1,
+    "min_group_frames": 2,
+    "object_score_mode": "max_point"
+  },
+  "score_definition": "mean across unique component points of the maximum observed confidence for that point, not the stricter mean of all observations",
+  "difference_remaining_from_C": "C high score is across all original tracks, matched score is only inside global component; topology and ownership voting remain changed",
+  "gt_seen_when_decided": false,
+  "scenes": "same five; no per-scene thresholds",
+  "stop": "Evaluate strict and matched once; no threshold search; retain C if tradeoff not accepted."
+}

@@ -1,0 +1,253 @@
+{
+  "selection": "18 selected views, six object groups, OCR-role pilot; not unbiased accuracy benchmark",
+  "completed": 18,
+  "nonempty_OCR": 5,
+  "ocr_seconds_mean": 107.64772041638692,
+  "ocr_seconds_median": 85.01545917987823,
+  "ocr_seconds_min": 3.050903558731079,
+  "ocr_seconds_max": 313.2514183521271,
+  "paired_nonempty_views": 5,
+  "paired_unchanged_views": 3,
+  "empty_evidence_rerun": false,
+  "rows": [
+    {
+      "scene": "scannet/scene0030_00",
+      "instance_id": 101,
+      "frame_id": 165,
+      "file": "inputs/scannet/scene0030_00/crops/object_101_000165_context.png",
+      "ocr_chars": 9,
+      "direct_label": "blackboard",
+      "assisted_label": "blackboard",
+      "ocr_seconds": 14.788622617721558,
+      "same": true
+    },
+    {
+      "scene": "scannet/scene0030_00",
+      "instance_id": 101,
+      "frame_id": 145,
+      "file": "inputs/scannet/scene0030_00/crops/object_101_000145_context.png",
+      "ocr_chars": 8177,
+      "direct_label": "chalkboard",
+      "assisted_label": "blackboard",
+      "ocr_seconds": 36.483741998672485,
+      "same": false
+    },
+    {
+      "scene": "scannet/scene0030_00",
+      "instance_id": 101,
+      "frame_id": 1655,
+      "file": "inputs/scannet/scene0030_00/crops/object_101_001655_context.png",
+      "ocr_chars": 79,
+      "direct_label": "blackboard",
+      "assisted_label": "blackboard",
+      "ocr_seconds": 71.14878010749817,
+      "same": true
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "instance_id": 114,
+      "frame_id": 600,
+      "file": "inputs/orbbec/scan_20260909_142829_5ef1fa/crops/object_114_000600_context.png",
+      "ocr_chars": 2,
+      "direct_label": "plastic storage container",
+      "assisted_label": "storage box",
+      "ocr_seconds": 64.7483823299408,
+      "same": false
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "instance_id": 114,
+      "frame_id": 840,
+      "file": "inputs/orbbec/scan_20260909_142829_5ef1fa/crops/object_114_000840_context.png",
+      "ocr_chars": 0,
+      "direct_label": "storage container",
+      "assisted_label": null,
+      "ocr_seconds": 275.39356565475464,
+      "same": null
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "instance_id": 114,
+      "frame_id": 625,
+      "file": "inputs/orbbec/scan_20260909_142829_5ef1fa/crops/object_114_000625_context.png",
+      "ocr_chars": 0,
+      "direct_label": "plastic container",
+      "assisted_label": null,
+      "ocr_seconds": 256.6967375278473,
+      "same": null
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "instance_id": 115,
+      "frame_id": 2295,
+      "file": "inputs/orbbec/scan_20260909_142829_5ef1fa/crops/object_115_002295_context.png",
+      "ocr_chars": 0,
+      "direct_label": "plastic bag",
+      "assisted_label": null,
+      "ocr_seconds": 313.2514183521271,
+      "same": null
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "instance_id": 115,
+      "frame_id": 2320,
+      "file": "inputs/orbbec/scan_20260909_142829_5ef1fa/crops/object_115_002320_context.png",
+      "ocr_chars": 0,
+      "direct_label": "plastic bag",
+      "assisted_label": null,
+      "ocr_seconds": 7.391599655151367,
+      "same": null
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "instance_id": 115,
+      "frame_id": 2195,
+      "file": "inputs/orbbec/scan_20260909_142829_5ef1fa/crops/object_115_002195_context.png",
+      "ocr_chars": 0,
+      "direct_label": "pillow",
+      "assisted_label": null,
+      "ocr_seconds": 6.150286674499512,
+      "same": null
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "instance_id": 123,
+      "frame_id": 4535,
+      "file": "inputs/orbbec/scan_20260909_142829_5ef1fa/crops/object_123_004535_context.png",
+      "ocr_chars": 1,
+      "direct_label": "graphics card",
+      "assisted_label": "graphics card",
+      "ocr_seconds": 132.14377999305725,
+      "same": true
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "instance_id": 123,
+      "frame_id": 4080,
+      "file": "inputs/orbbec/scan_20260909_142829_5ef1fa/crops/object_123_004080_context.png",
+      "ocr_chars": 0,
+      "direct_label": "graphics card",
+      "assisted_label": null,
+      "ocr_seconds": 129.49676823616028,
+      "same": null
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "instance_id": 123,
+      "frame_id": 4685,
+      "file": "inputs/orbbec/scan_20260909_142829_5ef1fa/crops/object_123_004685_context.png",
+      "ocr_chars": 0,
+      "direct_label": "graphics card",
+      "assisted_label": null,
+      "ocr_seconds": 115.81402587890625,
+      "same": null
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "instance_id": 124,
+      "frame_id": 2330,
+      "file": "inputs/orbbec/scan_20260909_142829_5ef1fa/crops/object_124_002330_context.png",
+      "ocr_chars": 0,
+      "direct_label": "extension cord reel",
+      "assisted_label": null,
+      "ocr_seconds": 98.8821382522583,
+      "same": null
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "instance_id": 124,
+      "frame_id": 2155,
+      "file": "inputs/orbbec/scan_20260909_142829_5ef1fa/crops/object_124_002155_context.png",
+      "ocr_chars": 0,
+      "direct_label": "extension cord",
+      "assisted_label": null,
+      "ocr_seconds": 65.83294010162354,
+      "same": null
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "instance_id": 124,
+      "frame_id": 2175,
+      "file": "inputs/orbbec/scan_20260909_142829_5ef1fa/crops/object_124_002175_context.png",
+      "ocr_chars": 0,
+      "direct_label": "cable spool",
+      "assisted_label": null,
+      "ocr_seconds": 63.96673655509949,
+      "same": null
+    },
+    {
+      "scene": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+      "instance_id": 6,
+      "frame_id": 0,
+      "file": "expanded_inputs/3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660/object_6_000000_context.png",
+      "ocr_chars": 0,
+      "direct_label": "door",
+      "assisted_label": null,
+      "ocr_seconds": 131.66917657852173,
+      "same": null
+    },
+    {
+      "scene": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+      "instance_id": 6,
+      "frame_id": 1,
+      "file": "expanded_inputs/3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660/object_6_000001_context.png",
+      "ocr_chars": 0,
+      "direct_label": "window",
+      "assisted_label": null,
+      "ocr_seconds": 150.7493634223938,
+      "same": null
+    },
+    {
+      "scene": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+      "instance_id": 6,
+      "frame_id": 6,
+      "file": "expanded_inputs/3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660/object_6_000006_context.png",
+      "ocr_chars": 0,
+      "direct_label": "curtain",
+      "assisted_label": null,
+      "ocr_seconds": 3.050903558731079,
+      "same": null
+    }
+  ],
+  "warning": "OCR text is untrusted noisy evidence; one blackboard result repetitively hallucinated formula sequences. No claim OCR text is correct.",
+  "object_level": [
+    {
+      "scene": "scannet/scene0030_00",
+      "instance_id": 101,
+      "direct_N2": "blackboard",
+      "assisted_N2": "blackboard"
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "instance_id": 114,
+      "direct_N2": "unknown",
+      "assisted_N2": "unknown"
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "instance_id": 115,
+      "direct_N2": "plastic bag",
+      "assisted_N2": "plastic bag"
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "instance_id": 123,
+      "direct_N2": "graphics card",
+      "assisted_N2": "graphics card"
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "instance_id": 124,
+      "direct_N2": "unknown",
+      "assisted_N2": "unknown"
+    },
+    {
+      "scene": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+      "instance_id": 6,
+      "direct_N2": "unknown",
+      "assisted_N2": "unknown"
+    }
+  ],
+  "object_N2_unchanged": true,
+  "new_grounding_requests_needed": 0
+}

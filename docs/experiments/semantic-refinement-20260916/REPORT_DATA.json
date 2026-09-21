@@ -1,0 +1,210 @@
+{
+  "baseline_commit": "2aeacf710c5b9ebf144d0751db9c49a531468570",
+  "production_modified": false,
+  "candidate": "quality views + strict measured unknown fill; optional three-view fragmented-anchor fill",
+  "gt_rows": [
+    [
+      "ScanNet0030",
+      "59.41%",
+      "59.41%",
+      "+0.000 pp",
+      "20 → 20 / 82"
+    ],
+    [
+      "ScanNet0050",
+      "33.20%",
+      "33.40%",
+      "+0.196 pp",
+      "2 → 2 / 29"
+    ],
+    [
+      "ScanNet0011",
+      "40.70%",
+      "41.26%",
+      "+0.559 pp",
+      "5 → 5 / 27"
+    ],
+    [
+      "3RScan 00d42bed（已知几何失败）",
+      "0.02%",
+      "0.02%",
+      "+0.000 pp",
+      "0 → 0 / 30"
+    ]
+  ],
+  "view_rows": [
+    [
+      "ScanNet0030",
+      82,
+      64,
+      69
+    ],
+    [
+      "ScanNet0050",
+      40,
+      18,
+      30
+    ],
+    [
+      "ScanNet0011",
+      68,
+      30,
+      36
+    ],
+    [
+      "Orbbec 142829",
+      110,
+      46,
+      59
+    ],
+    [
+      "3RScan 00d42bed（已知几何失败）",
+      5,
+      0,
+      0
+    ]
+  ],
+  "adaptive": [
+    {
+      "scene": "scannet/scene0030_00",
+      "frames": 120,
+      "budget": 25,
+      "domain": 36013,
+      "stride5_correct": 0.5440535362230305,
+      "motion_correct": 0.5496070863299364,
+      "stride5_precision": 0.8588147628649075,
+      "motion_precision": 0.8549153420870768
+    },
+    {
+      "scene": "scannet/scene0050_00",
+      "frames": 120,
+      "budget": 25,
+      "domain": 6003,
+      "stride5_correct": 0.1562552057304681,
+      "motion_correct": 0.13576545060802933,
+      "stride5_precision": 0.22657004830917873,
+      "motion_precision": 0.20329259166874533
+    },
+    {
+      "scene": "scannet/scene0011_00",
+      "frames": 120,
+      "budget": 25,
+      "domain": 25955,
+      "stride5_correct": 0.533269119630129,
+      "motion_correct": 0.532922365632826,
+      "stride5_precision": 0.867937543111557,
+      "motion_precision": 0.8693903205531113
+    },
+    {
+      "scene": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+      "frames": 120,
+      "budget": 25,
+      "domain": 315,
+      "stride5_correct": 0.0,
+      "motion_correct": 0.0,
+      "stride5_precision": 0.0,
+      "motion_precision": 0.0
+    },
+    {
+      "scene": "3rscan/09582214-e2c2-2de1-956a-64d8da4ba7cc",
+      "frames": 187,
+      "budget": 39,
+      "domain": 5949,
+      "stride5_correct": 0.18910741301059,
+      "motion_correct": 0.20389981509497396,
+      "stride5_precision": 0.5555555555555556,
+      "motion_precision": 0.49979398434281
+    }
+  ],
+  "stages": [
+    {
+      "name": "adaptive_fuse",
+      "stage": "adaptive_fuse",
+      "returncode": 0,
+      "seconds_including_load": 22.78349566500401,
+      "total_gpu_peak_MiB": 872
+    },
+    {
+      "name": "adaptive_infer",
+      "stage": "adaptive_infer",
+      "returncode": 0,
+      "seconds_including_load": 467.785147328992,
+      "total_gpu_peak_MiB": 6351
+    },
+    {
+      "name": "apply",
+      "stage": "apply",
+      "returncode": 0,
+      "seconds_including_load": 15.039116097002989,
+      "total_gpu_peak_MiB": 870
+    },
+    {
+      "name": "decide",
+      "stage": "decide",
+      "returncode": 0,
+      "seconds_including_load": 0.1463209990033647,
+      "total_gpu_peak_MiB": 854
+    },
+    {
+      "name": "ground",
+      "stage": "ground",
+      "returncode": 0,
+      "seconds_including_load": 141.8923136349913,
+      "total_gpu_peak_MiB": 6335
+    },
+    {
+      "name": "name",
+      "stage": "name",
+      "returncode": 0,
+      "seconds_including_load": 146.220018573993,
+      "total_gpu_peak_MiB": 2591
+    },
+    {
+      "name": "补充3R / adaptive_fuse",
+      "stage": "adaptive_fuse",
+      "returncode": 0,
+      "seconds_including_load": 2.8163162900018506,
+      "total_gpu_peak_MiB": 872
+    },
+    {
+      "name": "补充3R / adaptive_infer",
+      "stage": "adaptive_infer",
+      "returncode": 0,
+      "seconds_including_load": 143.56298129400238,
+      "total_gpu_peak_MiB": 6337
+    }
+  ],
+  "maps": [
+    {
+      "scene": "scannet/scene0030_00",
+      "title": "ScanNet0030",
+      "changed_points": 0
+    },
+    {
+      "scene": "scannet/scene0050_00",
+      "title": "ScanNet0050",
+      "changed_points": 293
+    },
+    {
+      "scene": "scannet/scene0011_00",
+      "title": "ScanNet0011",
+      "changed_points": 1313
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "title": "Orbbec 142829",
+      "changed_points": 244
+    },
+    {
+      "scene": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+      "title": "3RScan 00d42bed（已知几何失败）",
+      "changed_points": 0
+    }
+  ],
+  "new_GT_correct": 1497,
+  "new_GT_wrong": 17,
+  "previous_GT_correct_lost": 0,
+  "total_actual_naming_requests": 1491,
+  "actual_grounding_queries": 587,
+  "scope": "frozen geometry semantic experiments with actual RGB-D SAM3/Qwen; not fresh end-to-end SLAM or online FPS"
+}

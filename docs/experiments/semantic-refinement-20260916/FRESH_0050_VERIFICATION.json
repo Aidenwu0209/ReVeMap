@@ -1,0 +1,12 @@
+{
+  "arrays_equal": {
+    "semantic": true,
+    "instance": true,
+    "confidence": true
+  },
+  "classes_equal": true,
+  "expected_archive": "semantic_pipeline_round2_20260915_v1/unknown_fragment_v1/scannet/scene0050_00",
+  "new_naming_requests": 238,
+  "GT_used": false,
+  "fresh_SLAM": false
+}

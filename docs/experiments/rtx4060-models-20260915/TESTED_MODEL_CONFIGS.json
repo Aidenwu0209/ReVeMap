@@ -1,0 +1,192 @@
+{
+  "qwen3vl_2b_bf16": {
+    "model": "qwen3vl_2b",
+    "kind": "native",
+    "quant": "bf16",
+    "repo": "Qwen/Qwen3-VL-2B-Instruct",
+    "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "role": "object_naming",
+    "max_new_tokens": 24,
+    "min_pixels": 3136,
+    "max_pixels": 150528
+  },
+  "qwen3vl_2b_bf16_min65536": {
+    "model": "qwen3vl_2b",
+    "kind": "native",
+    "quant": "bf16",
+    "repo": "Qwen/Qwen3-VL-2B-Instruct",
+    "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "role": "object_naming",
+    "max_new_tokens": 24,
+    "min_pixels": 65536,
+    "max_pixels": 602112
+  },
+  "gemma4_e2b_qat_q4": {
+    "model": "gemma4_e2b_qat",
+    "kind": "llama",
+    "quant": "official_qat_q4_0",
+    "repo": "google/gemma-4-E2B-it-qat-q4_0-gguf",
+    "revision": "675cff42a74c774d6cb76f76d8eacb49b48c9b93",
+    "role": "object_naming",
+    "max_new_tokens": 24,
+    "image_tokens": 280,
+    "gguf": "gemma-4-E2B_q4_0-it.gguf",
+    "mmproj": "gemma-4-E2B-it-mmproj.gguf"
+  },
+  "qwen35_08b_bf16": {
+    "model": "qwen35_08b",
+    "kind": "native",
+    "quant": "bf16",
+    "repo": "Qwen/Qwen3.5-0.8B",
+    "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "role": "object_naming",
+    "max_new_tokens": 24,
+    "min_pixels": 3136,
+    "max_pixels": 150528
+  },
+  "qwen35_08b_nf4": {
+    "model": "qwen35_08b",
+    "kind": "native",
+    "quant": "nf4",
+    "repo": "Qwen/Qwen3.5-0.8B",
+    "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "role": "object_naming",
+    "max_new_tokens": 24,
+    "min_pixels": 3136,
+    "max_pixels": 150528
+  },
+  "qwen3vl_2b_nf4": {
+    "model": "qwen3vl_2b",
+    "kind": "native",
+    "quant": "nf4",
+    "repo": "Qwen/Qwen3-VL-2B-Instruct",
+    "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "role": "object_naming",
+    "max_new_tokens": 24,
+    "min_pixels": 3136,
+    "max_pixels": 150528
+  },
+  "qwen35_2b_bf16": {
+    "model": "qwen35_2b",
+    "kind": "native",
+    "quant": "bf16",
+    "repo": "Qwen/Qwen3.5-2B",
+    "revision": "15852e8c16360a2fea060d615a32b45270f8a8fc",
+    "role": "object_naming",
+    "max_new_tokens": 24,
+    "min_pixels": 3136,
+    "max_pixels": 150528
+  },
+  "qwen35_4b_nf4": {
+    "model": "qwen35_4b",
+    "kind": "native",
+    "quant": "nf4",
+    "repo": "Qwen/Qwen3.5-4B",
+    "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "role": "object_naming",
+    "max_new_tokens": 24,
+    "min_pixels": 3136,
+    "max_pixels": 150528
+  },
+  "qwen25_3b_awq": {
+    "model": "qwen25_3b_awq",
+    "kind": "native",
+    "quant": "awq",
+    "repo": "Qwen/Qwen2.5-VL-3B-Instruct-AWQ",
+    "revision": "e7b623934290c5a4da0ee3c6e1e57bfb6b5abbf2",
+    "role": "object_naming",
+    "max_new_tokens": 24,
+    "min_pixels": 3136,
+    "max_pixels": 150528,
+    "min_side": 28,
+    "preserve_tied_head": true,
+    "runtime_note": "legacy Transformers 4.51 AWQ environment"
+  },
+  "minicpmv46_bf16_16x": {
+    "model": "minicpmv46",
+    "kind": "native",
+    "quant": "bf16",
+    "downsample_mode": "16x",
+    "repo": "openbmb/MiniCPM-V-4.6",
+    "revision": "36f34a661a4bd35d0dc2294cb044d2584646c7d3",
+    "role": "object_naming",
+    "max_new_tokens": 24
+  },
+  "minicpmv4_nf4": {
+    "model": "minicpmv4",
+    "kind": "minicpm_custom",
+    "quant": "nf4",
+    "repo": "openbmb/MiniCPM-V-4",
+    "revision": "6f69a8235885be89608f3a71ffd40695b379e1e7",
+    "role": "object_naming",
+    "max_new_tokens": 24
+  },
+  "internvl35_1b_bf16": {
+    "model": "internvl35_1b",
+    "kind": "native",
+    "quant": "bf16",
+    "repo": "OpenGVLab/InternVL3_5-1B-HF",
+    "revision": "9191dbccf312b537016f041b25d61c72e7c5c9f3",
+    "role": "object_naming",
+    "max_new_tokens": 24
+  },
+  "internvl35_2b_bf16": {
+    "model": "internvl35_2b",
+    "kind": "native",
+    "quant": "bf16",
+    "repo": "OpenGVLab/InternVL3_5-2B-HF",
+    "revision": "3f301ffcf3dcbb47893afae6650ea3e78d96fb6d",
+    "role": "object_naming",
+    "max_new_tokens": 24
+  },
+  "smolvlm2_500m_bf16": {
+    "model": "smolvlm2_500m",
+    "kind": "native",
+    "quant": "bf16",
+    "repo": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+    "revision": "7b375e1b73b11138ff12fe22c8f2822d8fe03467",
+    "role": "object_naming",
+    "max_new_tokens": 24,
+    "runtime_note": "dedicated compatibility environment"
+  },
+  "smolvlm2_22b_bf16": {
+    "model": "smolvlm2_22b",
+    "kind": "native",
+    "quant": "bf16",
+    "repo": "HuggingFaceTB/SmolVLM2-2.2B-Instruct",
+    "revision": "482adb537c021c86670beed01cd58990d01e72e4",
+    "role": "object_naming",
+    "max_new_tokens": 24,
+    "runtime_note": "dedicated compatibility environment"
+  },
+  "mage_nf4": {
+    "model": "mage",
+    "kind": "mage_custom",
+    "quant": "nf4",
+    "repo": "microsoft/Mage-VL",
+    "revision": "d88b153285f1633a61b2f693c59c8576693af185",
+    "role": "object_naming",
+    "max_new_tokens": 24,
+    "min_pixels": 3136,
+    "max_pixels": 150528,
+    "reviewed_code_sha256": {
+      "configuration_mage_vl.py": "7e3da0c90726ef33da4f0362b3c71dc28650003f1cc11e061d3e99404a8bfed8",
+      "modeling_mage_vl.py": "3fe8bb1e40fa38db4ae08da097ee1238aa4258c4d454e66fe93a44d08ab641ec",
+      "processing_mage_vl.py": "c755ac93a161377cbe15f4d6dc30fae6460ef90e6d156d1bff7df82f3dd828cf",
+      "video_processing_mage_vl.py": "67f28ea772c260b131983e8a90ad15948134a1baa769bfe6adbf0dd383541acb",
+      "codec_video_processing_mage_vl.py": "f3bff7fe00f84a91d542e08561d5d819dd6a4b4192cf075858eb8c495f9e0b02",
+      "streammind_gate.py": "5d9a9d7525aeecc0360ffd43f891ce9d2220297df5092a293a98e2fd31e9d99d"
+    }
+  },
+  "joy_nf4": {
+    "model": "joy",
+    "kind": "native",
+    "quant": "nf4",
+    "repo": "jdopensource/JoyAI-VL-Interaction",
+    "revision": "86124c620faddd7be7b7f2722f29cd5192f21c38",
+    "role": "object_naming",
+    "max_new_tokens": 24,
+    "min_pixels": 3136,
+    "max_pixels": 150528
+  }
+}

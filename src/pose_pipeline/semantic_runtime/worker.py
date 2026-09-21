@@ -1,0 +1,149 @@
+"""Isolated SAM3/VLM workers used by both the pipeline and standalone tests."""
+from __future__ import annotations
+
+import argparse
+import os
+from pathlib import Path
+import sys
+import time
+
+from .common import CONFIG_ROOT, PROMPT, event, read, selected_frames, sha, write
+
+
+def name_tasks(tasks, model_id, config, output):
+    from .vlm import create_namer
+    output = Path(output)
+    output.mkdir(parents=True, exist_ok=False)
+    model_config = {**config.get("models", {}).get(model_id, {}), "log_dir": str(output)}
+    model = None
+    start = time.monotonic()
+    try:
+        for task in tasks:
+            for crop in task["crops"]:
+                if sha(crop["file"]) != crop["sha256"]:
+                    raise ValueError("crop changed before inference")
+        write(output / "INPUTS.json", {"model": model_id, "tasks": tasks,
+                                      "prompt": PROMPT, "GT_in_requests": False})
+        model = create_namer(model_id, model_config)
+        write(output / "MODEL.json", model.audit)
+        records = []
+        for task in tasks:
+            tick = time.monotonic()
+            crops = [{**crop, **model.infer(crop["file"])} for crop in task["crops"]]
+            result = {"task_id": task["task_id"], "started_at": tick,
+                      "completed_at": time.monotonic(), "crops": crops}
+            write(output / f'response_{task["task_id"]:06}.json', result)
+            records.extend(crops)
+        write(output / "RECORDS.json", records)
+        write(output / "COMPLETE.json", {
+            "status": "completed", "model": model_id, "requests": len(tasks),
+            "crops": len(records), "crops_executed": sum(bool(x.get("executed")) for x in records),
+            "seconds_including_load": time.monotonic() - start,
+            "mean_request_seconds": sum(x["request_seconds"] for x in records) / max(1, len(records)),
+            "timing_scope": "crop naming only, not raw RGB-D pipeline FPS"})
+    except BaseException as error:
+        # An exception from a provider may contain a URL: persist only its type.
+        write(output / "FAILURE.json", {"error_type": type(error).__name__, "model": model_id})
+        raise
+    finally:
+        if model is not None:
+            model.close()
+
+
+def infer_sam3(args, config):
+    import numpy as np
+    import torch
+    from ..contracts import load_manifest
+    from ..sam3_mapping import load_model, read_frame, save_overlay
+    from ..sam3_refine import infer_claims
+    sys.path.insert(0, config["sam3_source"])
+    output = args.output
+    output.mkdir(parents=True, exist_ok=False)
+    (output / "frames").mkdir()
+    (output / "crops").mkdir()
+    manifest = load_manifest(args.manifest)
+    frames = selected_frames(manifest.frames, args.stride)
+    taxonomy = read(CONFIG_ROOT / "sam3_indoor_v1.json")["classes"]
+    processor, audit = load_model(Path(config["sam3_checkpoint"]), config["sam3_sha256"])
+    write(output / "MODEL.json", audit)
+    tasks, records = [], []
+    started = time.monotonic()
+    for ordinal, frame in enumerate(frames):
+        event(output, "frame_start", frame_id=frame.frame_id)
+        tick = time.monotonic()
+        image, depth, _ = read_frame(frame)
+        claims, packed = infer_claims(processor, image, depth.shape, taxonomy)
+        semantic, instance, confidence = claims.finalize()
+        path = output / "frames" / f"{frame.frame_id:06}.npz"
+        np.savez_compressed(path, semantic=semantic, local_instance=instance, confidence=confidence,
+                            raw_masks_packed=packed, depth_shape=depth.shape)
+        candidates = []
+        for row in claims.records:
+            if row["class_id"] in (10, 19):
+                continue
+            yy, xx = np.nonzero(instance == row["mask_id"])
+            if len(xx) < 300:
+                continue
+            bbox = (int(xx.min()), int(yy.min()), int(xx.max() + 1), int(yy.max() + 1))
+            if bbox[2] - bbox[0] >= 10 and bbox[3] - bbox[1] >= 10:
+                candidates.append((len(xx), row, bbox))
+        candidates.sort(key=lambda x: (-x[0], x[1]["mask_id"]))
+        crops = []
+        for area, row, bbox in candidates[:8]:
+            x0, y0, x1, y1 = bbox
+            dx, dy = max(2, round((x1-x0)*.15)), max(2, round((y1-y0)*.15))
+            height, width = depth.shape
+            box = (max(0, round((x0-dx)*image.width/width)), max(0, round((y0-dy)*image.height/height)),
+                   min(image.width, round((x1+dx)*image.width/width)), min(image.height, round((y1+dy)*image.height/height)))
+            crop = output / "crops" / f'{frame.frame_id:06}_{row["mask_id"]:04}.png'
+            image.crop(box).save(crop)
+            crops.append({"frame_id": frame.frame_id, "mask_id": row["mask_id"], "sam_class_id": row["class_id"],
+                          "file": str(crop), "sha256": sha(crop), "bbox_rgb": box, "mask_pixels": area})
+        tasks.append({"task_id": ordinal, "frame_id": frame.frame_id, "crops": crops})
+        records.append({"frame_id": frame.frame_id, "mask_sha256": sha(path),
+                        "color_sha256": sha(frame.color_path), "depth_sha256": sha(frame.depth_path),
+                        "seconds": time.monotonic() - tick, "crops": len(crops)})
+        write(output / "FRAMES.json", records)
+        if ordinal in (0, len(frames)-1):
+            image.save(output / "frames" / f'{frame.frame_id:06}_rgb.jpg')
+            save_overlay(image, semantic, taxonomy, output / "frames" / f'{frame.frame_id:06}_overlay.png')
+        torch.cuda.empty_cache()
+        event(output, "frame_complete", frame_id=frame.frame_id)
+    write(output / "CROP_TASKS.json", tasks)
+    write(output / "COMPLETE.json", {"status": "completed", "selected_frames": len(frames),
+          "raw_frames": len(manifest.frames), "stride": args.stride,
+          "seconds_after_load": time.monotonic()-started, "GT_used": False})
+    # The process exits before a local VLM is loaded, releasing ALL SAM3 CUDA state.
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("stage", choices=("sam3", "naming", "mapping", "fusion", "backfill"))
+    parser.add_argument("--runtime", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--manifest", type=Path)
+    parser.add_argument("--tasks", type=Path)
+    parser.add_argument("--model", default="qwen3vl_2b_bf16")
+    parser.add_argument("--stride", type=int, default=5)
+    args = parser.parse_args()
+    config = read(args.runtime)
+    if args.stage == "sam3":
+        infer_sam3(args, config)
+    elif args.stage == "naming":
+        name_tasks(read(args.tasks), args.model, config, args.output)
+    elif args.stage == "mapping":
+        from ..rgbd_mapping import run_rgbd_mapping
+        run_rgbd_mapping(manifest_path=args.manifest, output_dir=args.output,
+            provider_root=Path(config["provider_root"]), gpu_python=Path(config["gpu_python"]),
+            cpu_python=Path(config["cpu_python"]), threads=config.get("threads", 2),
+            stage_timeout_s=config.get("stage_timeout", 7200))
+    elif args.stage == "fusion":
+        from .fusion import main as fuse
+        fuse(argparse.Namespace(arm_root=args.output))
+    else:
+        from .backfill import main as backfill
+        backfill(argparse.Namespace(arm_root=args.output))
+
+
+if __name__ == "__main__":
+    main()

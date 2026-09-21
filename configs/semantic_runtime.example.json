@@ -1,0 +1,52 @@
+{
+  "cpu_python": "/absolute/path/to/cpu-env/bin/python",
+  "gpu_python": "/absolute/path/to/droid-env/bin/python",
+  "provider_root": "/absolute/path/to/DROID-W",
+  "sam3_python": "/absolute/path/to/sam3-env/bin/python",
+  "sam3_source": "/absolute/path/to/sam3-official-source",
+  "sam3_checkpoint": "/absolute/path/to/sam3.pt",
+  "sam3_sha256": "9999e2341ceef5e136daa386eecb55cb414446a00ac2b55eb2dfd2f7c3cf8c9e",
+  "vlm_python": "/absolute/path/to/vlm-env/bin/python",
+  "threads": 2,
+  "stage_timeout": 7200,
+  "models": {
+    "qwen3vl_2b_bf16": {
+      "weights": "/absolute/path/to/Qwen3-VL-2B-Instruct",
+      "threads": 4
+    },
+    "qwen3vl_2b_nf4": {
+      "weights": "/absolute/path/to/Qwen3-VL-2B-Instruct",
+      "threads": 4
+    },
+    "qwen35_4b_nf4": {
+      "weights": "/absolute/path/to/Qwen3.5-4B"
+    },
+    "mage_nf4": {
+      "weights": "/absolute/path/to/Mage-VL"
+    },
+    "joy_nf4": {
+      "weights": "/absolute/path/to/JoyAI-VL-Interaction"
+    },
+    "gemma4_e2b_qat_q4": {
+      "weights": "/absolute/path/to/gemma-4-E2B-it-qat-q4_0-gguf",
+      "llama_server": "/absolute/path/to/llama.cpp/build/bin/llama-server"
+    },
+    "qwen25_3b_awq": {
+      "weights": "/absolute/path/to/Qwen2.5-VL-3B-Instruct-AWQ",
+      "python": "/absolute/path/to/legacy-awq-env/bin/python"
+    },
+    "glm53flash_api": {
+      "token_env": "GLM_API_KEY"
+    },
+    "paddleocr_vl16_api": {
+      "token_env": "PADDLEOCR_API_KEY"
+    },
+    "qwen3vl_2b_bf16_min65536": {
+      "weights": "/absolute/path/to/Qwen3-VL-2B-Instruct",
+      "threads": 4
+    },
+    "deepseek_v41_flash_api": {
+      "token_env": "DEEPSEEK_API_KEY"
+    }
+  }
+}

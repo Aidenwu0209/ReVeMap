@@ -1,0 +1,118 @@
+{
+  "reviewed_utc": "2026-09-12T07:31:17.675050+00:00",
+  "reviewer": "independent_validation_review subagent",
+  "scope": "Read-only review of guided recovery, unknown mask fusion, loss attribution, secondary evaluator and receipts. Only this review artifact was written.",
+  "status": "review_complete_findings_resolved",
+  "open_actionable_findings": [],
+  "resolved_findings": [
+    {
+      "priority": "P2",
+      "file": "evaluate_classagnostic_0030.py",
+      "original_lines": "97-102",
+      "problem": "Per-point majority semantic diagnostic was labeled class-aware recall even when inference exported mixed objects as semantic_id 0.",
+      "verified_fix": "Lines 104-112 use exact exported objects.json instance IDs and semantic IDs; lines 146-151 separately report explicitly posthoc majority-semantic metrics and exported object-semantic recall. Input hashes include objects.json. Five prior receipts preserved and five new receipts checked."
+    },
+    {
+      "priority": "P3",
+      "file": "/Users/wu/Desktop/wu/SGF-SGA/worktrees/sam3-guided-20260912/docs/experiments/sam3-guided-20260912/GUIDED_BACKEND.md",
+      "original_lines": "12-14",
+      "problem": "Documentation implied one ambiguous shared mask vetoed the entire guide, while code excluded only that frame from positive support.",
+      "verified_fix": "Documentation now explicitly says other unambiguous frames may support the guide. No algorithm change needed."
+    }
+  ],
+  "verification": {
+    "targeted_tests": "17 passed: tests/test_sam3_guided.py and tests/test_sam3_loss_unknown.py, before documentation/evaluator-only clarification; tests not rerun for clarification.",
+    "guided_cli_help_verified": "--key KEY and --stage guided_recovery_maskveto",
+    "all_three_arms_have_five_completed_scene_receipts": true,
+    "guided_actual_arrays_all_five_scenes": {
+      "all_C_noninstance_fields_equal": true,
+      "all_existing_R3_nonzero_owners_preserved": true,
+      "provenance_point_ids_unique": true,
+      "minimum_distinct_frame_support": 2
+    },
+    "frame_safety": "Both guided and multiview reject duplicate frame IDs and duplicate point IDs in one frame; each projected point has one local mask per frame.",
+    "source_receipts_match": "Frozen guided runner/module copies and unknown runner/modules matched inspected source SHA-256 receipts.",
+    "loss_audit": "Captures actual backend locals and verifies byte-identical expected R3 output; exclusive deepest-stage attribution is explicitly not counterfactual causation.",
+    "secondary_receipt_checks": [
+      {
+        "arm": "C",
+        "receipt_sha256": "680b31a79f1373459560b4d8a1bab883ae1b380e1f341cd7fab8ba8626871bda",
+        "preserved_previous_receipt_sha256": "4a3d74653cdc416b808e3f834fdf1d1db1e2d4bdcdca8cdb8c24e24bdaa5fe23",
+        "naming_independent_metrics_unchanged": true,
+        "renamed_posthoc_metrics_equal_previous": true,
+        "object_inventory_sha256_verified": true,
+        "classagnostic_recall_iou25": 0.6666666666666666,
+        "classagnostic_recall_iou50": 0.4444444444444444,
+        "exported_object_semantic_recall_iou25": 0.6296296296296297,
+        "exported_object_semantic_recall_iou50": 0.4074074074074074,
+        "exported_unnamed_instances_touching_things": 0
+      },
+      {
+        "arm": "R3",
+        "receipt_sha256": "8b822a1c02ae4932468577cacee06c1c6d3ccb034f4b4d99f759b0c5a6619b0a",
+        "preserved_previous_receipt_sha256": "d519dce191675ecc5aa0ee85333537a91e78b437fd6e8b97f95669f9fb11df6b",
+        "naming_independent_metrics_unchanged": true,
+        "renamed_posthoc_metrics_equal_previous": true,
+        "object_inventory_sha256_verified": true,
+        "classagnostic_recall_iou25": 0.8518518518518519,
+        "classagnostic_recall_iou50": 0.4444444444444444,
+        "exported_object_semantic_recall_iou25": 0.8148148148148148,
+        "exported_object_semantic_recall_iou50": 0.4074074074074074,
+        "exported_unnamed_instances_touching_things": 0
+      },
+      {
+        "arm": "guided_recovery_maskveto",
+        "receipt_sha256": "685b0cced3bfcf1f7a2cdb35a140e4b166b258bf894c58a6af1842a25443343b",
+        "preserved_previous_receipt_sha256": "cdef62cdb228d3aa1aa45e50a59c013042b9445e5493775fb6cc5c8b37825763",
+        "naming_independent_metrics_unchanged": true,
+        "renamed_posthoc_metrics_equal_previous": true,
+        "object_inventory_sha256_verified": true,
+        "classagnostic_recall_iou25": 0.8518518518518519,
+        "classagnostic_recall_iou50": 0.4444444444444444,
+        "exported_object_semantic_recall_iou25": 0.8148148148148148,
+        "exported_object_semantic_recall_iou50": 0.4074074074074074,
+        "exported_unnamed_instances_touching_things": 0
+      },
+      {
+        "arm": "unknown_contract",
+        "receipt_sha256": "7fab8794fc44a7d091e90348aefdfeadaed783e616fdcc2ffa0ba13bed982fb5",
+        "preserved_previous_receipt_sha256": "fcbe05c4eb5213d40d8f54f217dd9737332c2188f96c228f90bc37005cb8dc35",
+        "naming_independent_metrics_unchanged": true,
+        "renamed_posthoc_metrics_equal_previous": true,
+        "object_inventory_sha256_verified": true,
+        "classagnostic_recall_iou25": 0.8518518518518519,
+        "classagnostic_recall_iou50": 0.4444444444444444,
+        "exported_object_semantic_recall_iou25": 0.07407407407407407,
+        "exported_object_semantic_recall_iou50": 0.07407407407407407,
+        "exported_unnamed_instances_touching_things": 44
+      },
+      {
+        "arm": "raw_unknown",
+        "receipt_sha256": "683e60eff4bbb25f3db17257e7d73fe93afa29ec59e5329ccfb56903c7abdd8d",
+        "preserved_previous_receipt_sha256": "609750ca52c8b0b93b9040fa7b7cbcec54206343096f5815ee8f196216e01773",
+        "naming_independent_metrics_unchanged": true,
+        "renamed_posthoc_metrics_equal_previous": true,
+        "object_inventory_sha256_verified": true,
+        "classagnostic_recall_iou25": 0.8518518518518519,
+        "classagnostic_recall_iou50": 0.48148148148148145,
+        "exported_object_semantic_recall_iou25": 0.07407407407407407,
+        "exported_object_semantic_recall_iou50": 0.07407407407407407,
+        "exported_unnamed_instances_touching_things": 44
+      }
+    ]
+  },
+  "interpretation_limits": [
+    "No guarantee of physical object purity or absence of pre-existing physical merges. Guided preserves R3 numeric owners; multiple C guides may expand one R3 anchor (0030: 39 recovered guides into 34 destinations; 0011: 18 into 15; 0050: 14 into 13).",
+    "Guided 0030 versus R3 class-agnostic recall is unchanged at IoU 0.25 and 0.5; eligible-GT coverage increases about 0.199 percentage points.",
+    "Unknown-object arms preserve the pointwise semantic map and explicitly leave mixed objects unnamed. Their actual exported object-semantic recall is 2/27 at both thresholds on 0030; later naming is a separate unexecuted stage.",
+    "The secondary evaluator is a fixed-alignment, recognized-GT-domain diagnostic, not official ScanNet AP or a blind holdout.",
+    "Three-RScan evidence is six cached frames, not full-scene validation; CPU arms reuse cached inference and do not constitute new SAM3/SGA inference or full raw RGB-D tracking."
+  ],
+  "reviewed_file_sha256": {
+    "/Users/wu/Desktop/wu/SGF-SGA/worktrees/sam3-guided-20260912/docs/experiments/sam3-guided-20260912/GUIDED_BACKEND.md": "aa9a037eb3c40699dbbdc6711ebcbc9b8fe9b5820a4a3147796a49db201df5b3",
+    "/Users/wu/Desktop/wu/SGF-SGA/comparisons/sam3_guided_20260912_v1/evaluate_classagnostic_0030.py": "1cdb141d502043f8677bf926373c24a8206ca1a146197ba2eca814907e92e5c3",
+    "/Users/wu/Desktop/wu/SGF-SGA/worktrees/sam3-guided-20260912/src/pose_pipeline/sam3_guided.py": "eabb4051929d0a8be68fd89e709fcdcdc3b4ee12fad722b64c41ff48af177763",
+    "/Users/wu/Desktop/wu/SGF-SGA/worktrees/sam3-guided-20260912/src/pose_pipeline/sam3_unknown.py": "7ded56ee04552612f360dc5b02c208b520688211a6674d87881c10e2d53c3d6e",
+    "/Users/wu/Desktop/wu/SGF-SGA/worktrees/sam3-guided-20260912/src/pose_pipeline/sam3_loss_audit.py": "2ed68aa6ed85b0ccb5d987036f632766b9921014716c15cd8ff5fbf0b291bdcd"
+  }
+}

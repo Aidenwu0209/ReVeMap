@@ -1,0 +1,29 @@
+{
+  "method": "Conservative 3D-guide recovery layered on R3 matched",
+  "config": {
+    "min_mask_points": 30,
+    "min_visible_fraction": 0.3,
+    "containment_fraction": 0.8,
+    "mask_guide_purity": 0.8,
+    "split_piece_fraction": 0.2,
+    "min_split_frames": 2,
+    "min_support_frames": 2,
+    "min_point_views": 2,
+    "min_point_confidence": 0.8,
+    "min_output_points": 50,
+    "anchor_min_fraction": 0.2,
+    "anchor_dominance": 0.8
+  },
+  "design_frozen_before_new_gt": true,
+  "global_config_all_scenes": true,
+  "threshold_sweep": false,
+  "semantics": "Frozen C labels and confidence, no category updates",
+  "current_owners": "All R3 matched nonzero owners immutable",
+  "recovery_scope": "Only C-owned/R3-unassigned points with direct interior mask support in two distinct cached frames",
+  "guide_caution": "C objects are tentative guides, not correctness evidence; observed repeated splits or multiple consensus anchors veto recovery",
+  "unknown_abstention": "No non-guide/unobserved point fill. Unknown outside-guide mass is not assigned.",
+  "paper_scope": "MV3DIS-inspired common 3D guides, not full paper mask selection, superpoints, or continuous depth weighting",
+  "input_jobs_sha256": "c97fefcce7f7d461a1ccb53e680b03661c9359b7ce8cf3fb7560c1b567f6691f",
+  "source_sha256": "c8855ff6e4e563208a84c7444a4e6d848d78b1a39d63890f9d590935e8104cf6",
+  "runner_sha256": "0949d7e2269023432f69db296719479db2737286a2c4b62fc8c67e611e3a4bff"
+}

@@ -1,0 +1,43 @@
+{
+  "strides": [
+    20,
+    10,
+    5
+  ],
+  "source_commit": "ee16f96515ebd1fb328c3082bd44699833692bd5",
+  "checkpoint_sha256": "9999e2341ceef5e136daa386eecb55cb414446a00ac2b55eb2dfd2f7c3cf8c9e",
+  "frozen": "RGB-D, poses, map xyz, SAM3 weights, taxonomy, SGF priors and every fusion threshold",
+  "inference": "fresh once per unique selected frame, shared nested cache, no tracking",
+  "evaluation": "no GT available for these scenes: coverage and stability diagnostics plus same-view visual inspection; not accuracy or object recall",
+  "scope": "whole sequence sampled at 20/10/5; not all-frame or stride2 validation",
+  "ground_truth_consumed": false,
+  "adopted": false,
+  "3rscan": "blocked: only six archived frames, complete sequence absent",
+  "jobs": [
+    {
+      "key": "orbbec/scan_20260909_142829_5ef1fa",
+      "manifest": "/home/aidenwu/Documents/sgf_scan_4812_ssh44_20260909/manifest_ssh44.json",
+      "trajectory": "/home/aidenwu/Documents/sgf_scan_4812_ssh44_20260909/mapping/refill/trajectory.json",
+      "target": "/mnt/d/SGF-SGA-experiments/sam3_semantics_20260911_v1/inputs/orbbec_target.npz"
+    },
+    {
+      "key": "scannet/scene0050_00",
+      "manifest": "/home/aidenwu/Documents/sgf_sga_all_scannet_orbbec_20260910_v1/inputs/scannet/scene0050_00/raw_manifest.json",
+      "trajectory": "/home/aidenwu/Documents/sgf_sga_all_scannet_orbbec_20260910_v1/metadata/scannet/scene0050_00/trajectory.json",
+      "target": "/mnt/d/SGF-SGA-experiments/sam3_semantics_20260911_v1/inputs/scene0050_00_target.npz"
+    },
+    {
+      "key": "scannet/scene0011_00",
+      "manifest": "/home/aidenwu/Documents/sgf_sga_all_scannet_orbbec_20260910_v1/inputs/scannet/scene0011_00/raw_manifest.json",
+      "trajectory": "/home/aidenwu/Documents/sgf_sga_all_scannet_orbbec_20260910_v1/metadata/scannet/scene0011_00/trajectory.json",
+      "target": "/mnt/d/SGF-SGA-experiments/sam3_semantics_20260911_v1/inputs/scene0011_00_target.npz"
+    }
+  ],
+  "job": {
+    "key": "scannet/scene0050_00",
+    "manifest": "/home/aidenwu/Documents/sgf_sga_all_scannet_orbbec_20260910_v1/inputs/scannet/scene0050_00/raw_manifest.json",
+    "trajectory": "/home/aidenwu/Documents/sgf_sga_all_scannet_orbbec_20260910_v1/metadata/scannet/scene0050_00/trajectory.json",
+    "target": "/mnt/d/SGF-SGA-experiments/sam3_semantics_20260911_v1/inputs/scene0050_00_target.npz"
+  },
+  "total_frames": 4652
+}

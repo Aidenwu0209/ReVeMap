@@ -1,0 +1,54 @@
+[
+  {
+    "key": "orbbec/scan_20260909_142829_5ef1fa",
+    "stride": 20,
+    "frames": 242,
+    "semantic_coverage": 0.35752746002683705,
+    "instance_coverage": 0.16892501559305456,
+    "objects": 67,
+    "objects_under_200_map_points": 22,
+    "frame_seconds": 414.9177944448311,
+    "inference_seconds": 381.36016365198884,
+    "backend_seconds": 9.526106085977517,
+    "peak_rss_kib": 779096,
+    "geometry_xyz_sha256": "2cdadcb09b3a2fa0c32581f2e23717060a0e8b933c438e4e7c9e9b3e3a0c1c24",
+    "baseline_reproduced": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    },
+    "gt_available": false
+  },
+  {
+    "key": "orbbec/scan_20260909_142829_5ef1fa",
+    "stride": 10,
+    "frames": 483,
+    "semantic_coverage": 0.46497018360338077,
+    "instance_coverage": 0.34267265728865026,
+    "objects": 104,
+    "objects_under_200_map_points": 43,
+    "frame_seconds": 828.5638801770692,
+    "inference_seconds": 764.6132302941696,
+    "backend_seconds": 14.105948404001538,
+    "peak_rss_kib": 931884,
+    "geometry_xyz_sha256": "2cdadcb09b3a2fa0c32581f2e23717060a0e8b933c438e4e7c9e9b3e3a0c1c24",
+    "baseline_reproduced": null,
+    "gt_available": false
+  },
+  {
+    "key": "orbbec/scan_20260909_142829_5ef1fa",
+    "stride": 5,
+    "frames": 964,
+    "semantic_coverage": 0.5432651159767288,
+    "instance_coverage": 0.46562331204217167,
+    "objects": 113,
+    "objects_under_200_map_points": 47,
+    "frame_seconds": 1650.9946456837642,
+    "inference_seconds": 1525.6567071261816,
+    "backend_seconds": 18.455036319006467,
+    "peak_rss_kib": 1238512,
+    "geometry_xyz_sha256": "2cdadcb09b3a2fa0c32581f2e23717060a0e8b933c438e4e7c9e9b3e3a0c1c24",
+    "baseline_reproduced": null,
+    "gt_available": false
+  }
+]

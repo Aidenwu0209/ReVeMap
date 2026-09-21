@@ -1,0 +1,11 @@
+{
+  "src/pose_pipeline/semantic_runtime/refinement/registered_input.py": "af9debc982a149dce102c603bdb3ecbda3d8f2d7f92267de4f3888cd706bf44c",
+  "src/pose_pipeline/semantic_runtime/refinement/observations.py": "163e174ad5a211c78416dd7336848dce64b88af762efb15ffc512571f1a866bc",
+  "src/pose_pipeline/semantic_runtime/refinement/__init__.py": "6cc476aa98e73c8b04fb11af097041103210e67de54860cd73daa269c619a8d6",
+  "src/pose_pipeline/semantic_runtime/refinement/assignment.py": "0f7c9e3c92945ec9805e4eff0a9bfb8e909dac62c2a4dfcee2571354129f847e",
+  "src/pose_pipeline/semantic_runtime/refinement/grounding.py": "836ad247cad2f92e4a74af244cd6b14d3233ee4e0154f4bb827988420c6f225f",
+  "src/pose_pipeline/semantic_runtime/refinement/normalization.py": "02628d0987b60a4c67fefd3fe0e4d72225daf84d8e15ccdabe7bad2839285f95",
+  "src/pose_pipeline/semantic_runtime/refinement/__main__.py": "742510108381797f0042acbdafc279d2d60c3d3ef4266fb6a7160e0a7a34d38a",
+  "src/pose_pipeline/semantic_runtime/__main__.py": "10d1a7fb270370ae9ac66e88f0ccad9a25253c300b4bb62aa431b09a20d96352",
+  "tests/test_semantic_refinement.py": "dca58e8d3d511e7a109609b4789c3e71b0a57bf376dab6d218bbc85a0d6b784b"
+}

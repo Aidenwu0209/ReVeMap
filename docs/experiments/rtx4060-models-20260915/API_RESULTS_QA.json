@@ -1,0 +1,31 @@
+{
+  "utc": "2026-09-15T07:20:07.770843+00:00",
+  "status": "passed",
+  "successful_answers": 444,
+  "primary_samples": 425,
+  "repeat_samples": 19,
+  "benchmark_attempts": 449,
+  "transport_failures_preserved": 5,
+  "first_successes_retained": true,
+  "all_image_hashes_verified": true,
+  "all_prompt_hashes_verified": true,
+  "same_request_bodies_on_retries": true,
+  "baseline_scores_reproduced": [
+    11,
+    14,
+    7,
+    10,
+    6
+  ],
+  "DeepSeek_N2": 9,
+  "headline_GT_denominator": 18,
+  "maps_byte_identical": true,
+  "static_html_local_links_checked": 47,
+  "browser_rendered": false,
+  "residual_prior_transport_error_fields_in_combined_metadata": [
+    "scannet0030_0047"
+  ],
+  "residual_error_note": "A prior error may remain as metadata in the last merged row; current status, HTTP 200, successful response and attempt provenance are verified independently.",
+  "network_calls_in_this_audit": 0,
+  "credentials_loaded": false
+}

@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "candidate_map_checks": [
+    {
+      "scene": "scannet/scene0030_00",
+      "points": 462705,
+      "changed_semantic_points": 0,
+      "xyz_equal": true,
+      "instance_equal": true,
+      "confidence_equal": true,
+      "known_semantic_equal": true,
+      "export_readback_equal": true
+    },
+    {
+      "scene": "scannet/scene0050_00",
+      "points": 348841,
+      "changed_semantic_points": 293,
+      "xyz_equal": true,
+      "instance_equal": true,
+      "confidence_equal": true,
+      "known_semantic_equal": true,
+      "export_readback_equal": true
+    },
+    {
+      "scene": "scannet/scene0011_00",
+      "points": 513292,
+      "changed_semantic_points": 1313,
+      "xyz_equal": true,
+      "instance_equal": true,
+      "confidence_equal": true,
+      "known_semantic_equal": true,
+      "export_readback_equal": true
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "points": 646121,
+      "changed_semantic_points": 244,
+      "xyz_equal": true,
+      "instance_equal": true,
+      "confidence_equal": true,
+      "known_semantic_equal": true,
+      "export_readback_equal": true
+    },
+    {
+      "scene": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+      "points": 895262,
+      "changed_semantic_points": 0,
+      "xyz_equal": true,
+      "instance_equal": true,
+      "confidence_equal": true,
+      "known_semantic_equal": true,
+      "export_readback_equal": true
+    }
+  ],
+  "local_report_links_checked": 11,
+  "missing_links": [],
+  "javascript_syntax": "passed",
+  "browser_rendered": false,
+  "visual_figures_inspected": true,
+  "python_contract_tests_passed": 12,
+  "equality_budget_checks_passed": true,
+  "all_recorded_stages_exit_zero": true
+}

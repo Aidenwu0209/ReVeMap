@@ -1,0 +1,26 @@
+{
+  "scope": "one additional full raw Orbbec120 run to verify VLM-off branch; not repeated performance ablation",
+  "run_tag": "additional_20260915_121113",
+  "raw_frames": 120,
+  "integrated_frames": 120,
+  "SAM3_frames": 25,
+  "seconds": 91.56593969499227,
+  "raw_fps": 1.310530972539812,
+  "VLM_worker_started": false,
+  "VLM_output_directory_created": false,
+  "all_names_unknown": true,
+  "selected_RGBD_identical": true,
+  "all_SAM3_arrays_equal": true,
+  "XYZ_exact": false,
+  "points_with_VLM": 7487,
+  "points_without_VLM": 7487,
+  "label_arrays_exact": {
+    "semantic": false,
+    "instance": true,
+    "confidence": false
+  },
+  "on_to_off_within5mm": 1.0,
+  "off_to_on_within5mm": 1.0,
+  "nearest_semantic_agreement": 0.9998664351542674,
+  "GT_used": false
+}

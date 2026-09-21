@@ -1,0 +1,58 @@
+{
+  "scope": "CPU replay of real sealed SAM3/Qwen predictions, not fresh GPU/SLAM inference",
+  "scenes": [
+    {
+      "scene": "scannet/scene0030_00",
+      "arrays_equal": {
+        "semantic": true,
+        "instance": true,
+        "confidence": true
+      },
+      "point_class_names_equal": true,
+      "classes_equal": true
+    },
+    {
+      "scene": "scannet/scene0050_00",
+      "arrays_equal": {
+        "semantic": true,
+        "instance": true,
+        "confidence": true
+      },
+      "point_class_names_equal": true,
+      "classes_equal": true
+    },
+    {
+      "scene": "scannet/scene0011_00",
+      "arrays_equal": {
+        "semantic": true,
+        "instance": true,
+        "confidence": true
+      },
+      "point_class_names_equal": true,
+      "classes_equal": true
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "arrays_equal": {
+        "semantic": true,
+        "instance": true,
+        "confidence": true
+      },
+      "point_class_names_equal": true,
+      "classes_equal": true
+    },
+    {
+      "scene": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+      "arrays_equal": {
+        "semantic": true,
+        "instance": true,
+        "confidence": true,
+        "support": true,
+        "visible_count": true,
+        "single_view_added": true
+      },
+      "point_class_names_equal": true,
+      "classes_equal": true
+    }
+  ]
+}

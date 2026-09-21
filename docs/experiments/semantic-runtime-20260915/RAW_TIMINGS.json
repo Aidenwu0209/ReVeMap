@@ -1,0 +1,819 @@
+{
+  "scope": "120 raw frames per scene,25 SAM3 frames; VLM names are metadata, semantic_id not rewritten by VLM. Not full latest research pipeline or full-scene FPS.",
+  "GPU_memory_scope": "nvidia-smi whole device including desktop; sampled250ms",
+  "RAM_scope": "sum of process RSS, shared pages may be counted repeatedly, not unique physical RAM",
+  "latency_scope": "crop runtime is preparation+generation; name latency starts at crop creation and includes queue waiting",
+  "quality": "coverage and name count are not accuracy; only paired output equivalence is evaluated here",
+  "aggregates": [
+    {
+      "model": "glm53flash_api",
+      "scene": "orbbec",
+      "schedule": "async_resident",
+      "repeats": 1,
+      "total_seconds_mean": 143.26011622900114,
+      "total_seconds_range": [
+        143.26011622900114,
+        143.26011622900114
+      ],
+      "raw_fps_pooled": 0.8376371816436343,
+      "peak_device_used_mib": 6263.0,
+      "peak_sum_process_rss_gib": 7.3290557861328125,
+      "named_instances": [
+        1
+      ]
+    },
+    {
+      "model": "glm53flash_api",
+      "scene": "orbbec",
+      "schedule": "serial",
+      "repeats": 1,
+      "total_seconds_mean": 179.12866976200166,
+      "total_seconds_range": [
+        179.12866976200166,
+        179.12866976200166
+      ],
+      "raw_fps_pooled": 0.6699095134209244,
+      "peak_device_used_mib": 6263.0,
+      "peak_sum_process_rss_gib": 7.256660461425781,
+      "named_instances": [
+        1
+      ]
+    },
+    {
+      "model": "qwen35_08b_nf4",
+      "scene": "orbbec",
+      "schedule": "async_resident",
+      "repeats": 1,
+      "total_seconds_mean": 102.23590011399938,
+      "total_seconds_range": [
+        102.23590011399938,
+        102.23590011399938
+      ],
+      "raw_fps_pooled": 1.1737559885147248,
+      "peak_device_used_mib": 7508.0,
+      "peak_sum_process_rss_gib": 20.349227905273438,
+      "named_instances": [
+        1
+      ]
+    },
+    {
+      "model": "qwen35_08b_nf4",
+      "scene": "orbbec",
+      "schedule": "serial",
+      "repeats": 1,
+      "total_seconds_mean": 109.90061074299592,
+      "total_seconds_range": [
+        109.90061074299592,
+        109.90061074299592
+      ],
+      "raw_fps_pooled": 1.0918956608951123,
+      "peak_device_used_mib": 6263.0,
+      "peak_sum_process_rss_gib": 15.871337890625,
+      "named_instances": [
+        1
+      ]
+    },
+    {
+      "model": "qwen35_4b_nf4",
+      "scene": "orbbec",
+      "schedule": "async_stage",
+      "repeats": 1,
+      "total_seconds_mean": 122.27113953299704,
+      "total_seconds_range": [
+        122.27113953299704,
+        122.27113953299704
+      ],
+      "raw_fps_pooled": 0.9814253834414937,
+      "peak_device_used_mib": 6263.0,
+      "peak_sum_process_rss_gib": 23.030040740966797,
+      "named_instances": [
+        1
+      ]
+    },
+    {
+      "model": "qwen35_4b_nf4",
+      "scene": "orbbec",
+      "schedule": "serial",
+      "repeats": 1,
+      "total_seconds_mean": 122.21437197499472,
+      "total_seconds_range": [
+        122.21437197499472,
+        122.21437197499472
+      ],
+      "raw_fps_pooled": 0.9818812473589621,
+      "peak_device_used_mib": 6263.0,
+      "peak_sum_process_rss_gib": 22.542518615722656,
+      "named_instances": [
+        1
+      ]
+    },
+    {
+      "model": "qwen3vl_2b_bf16",
+      "scene": "orbbec",
+      "schedule": "async_stage",
+      "repeats": 2,
+      "total_seconds_mean": 96.93896900700202,
+      "total_seconds_range": [
+        96.90542695500335,
+        96.97251105900068
+      ],
+      "raw_fps_pooled": 1.237892265919728,
+      "peak_device_used_mib": 6263.0,
+      "peak_sum_process_rss_gib": 7.300209045410156,
+      "named_instances": [
+        1,
+        1
+      ]
+    },
+    {
+      "model": "qwen3vl_2b_bf16",
+      "scene": "orbbec",
+      "schedule": "serial",
+      "repeats": 2,
+      "total_seconds_mean": 101.76030962049845,
+      "total_seconds_range": [
+        100.8180795570006,
+        102.70253968399629
+      ],
+      "raw_fps_pooled": 1.17924169499409,
+      "peak_device_used_mib": 6263.0,
+      "peak_sum_process_rss_gib": 7.299976348876953,
+      "named_instances": [
+        1,
+        1
+      ]
+    },
+    {
+      "model": "glm53flash_api",
+      "scene": "scannet0030",
+      "schedule": "async_resident",
+      "repeats": 1,
+      "total_seconds_mean": 111.73195622699859,
+      "total_seconds_range": [
+        111.73195622699859,
+        111.73195622699859
+      ],
+      "raw_fps_pooled": 1.0739989171603133,
+      "peak_device_used_mib": 6279.0,
+      "peak_sum_process_rss_gib": 7.181640625,
+      "named_instances": [
+        3
+      ]
+    },
+    {
+      "model": "glm53flash_api",
+      "scene": "scannet0030",
+      "schedule": "serial",
+      "repeats": 1,
+      "total_seconds_mean": 174.64865675700275,
+      "total_seconds_range": [
+        174.64865675700275,
+        174.64865675700275
+      ],
+      "raw_fps_pooled": 0.6870937471163141,
+      "peak_device_used_mib": 6279.0,
+      "peak_sum_process_rss_gib": 7.289134979248047,
+      "named_instances": [
+        3
+      ]
+    },
+    {
+      "model": "qwen35_08b_nf4",
+      "scene": "scannet0030",
+      "schedule": "async_resident",
+      "repeats": 1,
+      "total_seconds_mean": 105.09994836899568,
+      "total_seconds_range": [
+        105.09994836899568,
+        105.09994836899568
+      ],
+      "raw_fps_pooled": 1.1417703040033063,
+      "peak_device_used_mib": 7522.0,
+      "peak_sum_process_rss_gib": 20.33216094970703,
+      "named_instances": [
+        3
+      ]
+    },
+    {
+      "model": "qwen35_08b_nf4",
+      "scene": "scannet0030",
+      "schedule": "serial",
+      "repeats": 1,
+      "total_seconds_mean": 114.6145187889997,
+      "total_seconds_range": [
+        114.6145187889997,
+        114.6145187889997
+      ],
+      "raw_fps_pooled": 1.0469877749163239,
+      "peak_device_used_mib": 6279.0,
+      "peak_sum_process_rss_gib": 15.928085327148438,
+      "named_instances": [
+        3
+      ]
+    },
+    {
+      "model": "qwen35_4b_nf4",
+      "scene": "scannet0030",
+      "schedule": "async_stage",
+      "repeats": 1,
+      "total_seconds_mean": 127.08747583100194,
+      "total_seconds_range": [
+        127.08747583100194,
+        127.08747583100194
+      ],
+      "raw_fps_pooled": 0.9442315162477009,
+      "peak_device_used_mib": 6279.0,
+      "peak_sum_process_rss_gib": 22.97740936279297,
+      "named_instances": [
+        3
+      ]
+    },
+    {
+      "model": "qwen35_4b_nf4",
+      "scene": "scannet0030",
+      "schedule": "serial",
+      "repeats": 1,
+      "total_seconds_mean": 134.06280115100526,
+      "total_seconds_range": [
+        134.06280115100526,
+        134.06280115100526
+      ],
+      "raw_fps_pooled": 0.8951028843924778,
+      "peak_device_used_mib": 6279.0,
+      "peak_sum_process_rss_gib": 23.242538452148438,
+      "named_instances": [
+        3
+      ]
+    },
+    {
+      "model": "qwen3vl_2b_bf16",
+      "scene": "scannet0030",
+      "schedule": "async_stage",
+      "repeats": 2,
+      "total_seconds_mean": 101.13386146050107,
+      "total_seconds_range": [
+        100.91678583699832,
+        101.35093708400382
+      ],
+      "raw_fps_pooled": 1.186546209815862,
+      "peak_device_used_mib": 6279.0,
+      "peak_sum_process_rss_gib": 7.300212860107422,
+      "named_instances": [
+        3,
+        3
+      ]
+    },
+    {
+      "model": "qwen3vl_2b_bf16",
+      "scene": "scannet0030",
+      "schedule": "serial",
+      "repeats": 2,
+      "total_seconds_mean": 107.27429661600036,
+      "total_seconds_range": [
+        105.8430442070021,
+        108.70554902499862
+      ],
+      "raw_fps_pooled": 1.118627702864859,
+      "peak_device_used_mib": 6279.0,
+      "peak_sum_process_rss_gib": 7.299903869628906,
+      "named_instances": [
+        3,
+        3
+      ]
+    }
+  ],
+  "paired_output_checks": [
+    {
+      "model": "glm53flash_api",
+      "scene": "orbbec",
+      "reference": "runs/orbbec/glm53flash_api_serial_r1",
+      "candidate": "runs/orbbec/glm53flash_api_async_resident_r1",
+      "same_raw_selected_inputs": true,
+      "all25_SAM3_arrays_equal": true,
+      "trajectory_array_equal": false,
+      "max_pose_matrix_abs_difference": 5.6438148021698e-06,
+      "map_xyz_equal": false,
+      "map_labels_equal": false,
+      "map_correspondence": {
+        "reference_points": 7487,
+        "candidate_points": 7487,
+        "reference_to_candidate_distance_m": {
+          "n": 7487,
+          "mean": 2.932436506911877e-06,
+          "p50": 5.694492318797373e-07,
+          "p95": 7.620846110917285e-06,
+          "min": 1.0927148075268178e-11,
+          "max": 0.000984581988607221
+        },
+        "candidate_to_reference_distance_m": {
+          "n": 7487,
+          "mean": 2.713946086262083e-06,
+          "p50": 5.692678417545949e-07,
+          "p95": 7.620846110917285e-06,
+          "min": 1.0927148075268178e-11,
+          "max": 0.0006119990159376698
+        },
+        "reference_within_5mm": 1.0,
+        "candidate_within_5mm": 1.0,
+        "semantic_id_agreement_at_reference_nearest_point": 1.0,
+        "instance_id_agreement_at_reference_nearest_point": 1.0,
+        "scope": "Paired-output consistency, not GT accuracy;5mm tolerance fixed before reading these distances"
+      },
+      "same_instance_naming_metadata": false
+    },
+    {
+      "model": "qwen35_08b_nf4",
+      "scene": "orbbec",
+      "reference": "runs/orbbec/qwen35_08b_nf4_serial_r1",
+      "candidate": "runs/orbbec/qwen35_08b_nf4_async_resident_r1",
+      "same_raw_selected_inputs": true,
+      "all25_SAM3_arrays_equal": true,
+      "trajectory_array_equal": true,
+      "max_pose_matrix_abs_difference": 0.0,
+      "map_xyz_equal": true,
+      "map_labels_equal": true,
+      "map_correspondence": {
+        "reference_points": 7487,
+        "candidate_points": 7487,
+        "reference_to_candidate_distance_m": {
+          "n": 7487,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate_to_reference_distance_m": {
+          "n": 7487,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "reference_within_5mm": 1.0,
+        "candidate_within_5mm": 1.0,
+        "semantic_id_agreement_at_reference_nearest_point": 1.0,
+        "instance_id_agreement_at_reference_nearest_point": 1.0,
+        "scope": "Paired-output consistency, not GT accuracy;5mm tolerance fixed before reading these distances"
+      },
+      "same_instance_naming_metadata": true
+    },
+    {
+      "model": "qwen35_4b_nf4",
+      "scene": "orbbec",
+      "reference": "runs/orbbec/qwen35_4b_nf4_serial_r1",
+      "candidate": "runs/orbbec/qwen35_4b_nf4_async_stage_r1",
+      "same_raw_selected_inputs": true,
+      "all25_SAM3_arrays_equal": true,
+      "trajectory_array_equal": false,
+      "max_pose_matrix_abs_difference": 1.3872981071472168e-05,
+      "map_xyz_equal": false,
+      "map_labels_equal": false,
+      "map_correspondence": {
+        "reference_points": 7487,
+        "candidate_points": 7487,
+        "reference_to_candidate_distance_m": {
+          "n": 7487,
+          "mean": 1.729431462092423e-05,
+          "p50": 5.718731795056886e-06,
+          "p95": 5.7033180023525995e-05,
+          "min": 4.543096204789876e-09,
+          "max": 0.006053139502937196
+        },
+        "candidate_to_reference_distance_m": {
+          "n": 7487,
+          "mean": 1.6592901579241683e-05,
+          "p50": 5.713755520053709e-06,
+          "p95": 5.740357502806433e-05,
+          "min": 4.543096204789876e-09,
+          "max": 0.005851472863278195
+        },
+        "reference_within_5mm": 0.9997328703085347,
+        "candidate_within_5mm": 0.9998664351542674,
+        "semantic_id_agreement_at_reference_nearest_point": 0.9998664351542674,
+        "instance_id_agreement_at_reference_nearest_point": 1.0,
+        "scope": "Paired-output consistency, not GT accuracy;5mm tolerance fixed before reading these distances"
+      },
+      "same_instance_naming_metadata": true
+    },
+    {
+      "model": "qwen35_4b_nf4",
+      "scene": "orbbec",
+      "reference": "runs/orbbec/qwen35_4b_nf4_serial_r1",
+      "candidate": "runs/orbbec/qwen35_4b_nf4_serial_timing_clean_r3",
+      "same_raw_selected_inputs": true,
+      "all25_SAM3_arrays_equal": true,
+      "trajectory_array_equal": false,
+      "max_pose_matrix_abs_difference": 1.3872981071472168e-05,
+      "map_xyz_equal": false,
+      "map_labels_equal": false,
+      "map_correspondence": {
+        "reference_points": 7487,
+        "candidate_points": 7487,
+        "reference_to_candidate_distance_m": {
+          "n": 7487,
+          "mean": 1.729431462092423e-05,
+          "p50": 5.718731795056886e-06,
+          "p95": 5.7033180023525995e-05,
+          "min": 4.543096204789876e-09,
+          "max": 0.006053139502937196
+        },
+        "candidate_to_reference_distance_m": {
+          "n": 7487,
+          "mean": 1.6592901579241683e-05,
+          "p50": 5.713755520053709e-06,
+          "p95": 5.740357502806433e-05,
+          "min": 4.543096204789876e-09,
+          "max": 0.005851472863278195
+        },
+        "reference_within_5mm": 0.9997328703085347,
+        "candidate_within_5mm": 0.9998664351542674,
+        "semantic_id_agreement_at_reference_nearest_point": 0.9998664351542674,
+        "instance_id_agreement_at_reference_nearest_point": 1.0,
+        "scope": "Paired-output consistency, not GT accuracy;5mm tolerance fixed before reading these distances"
+      },
+      "same_instance_naming_metadata": true
+    },
+    {
+      "model": "qwen3vl_2b_bf16",
+      "scene": "orbbec",
+      "reference": "runs/orbbec/qwen3vl_2b_bf16_serial_r1",
+      "candidate": "runs/orbbec/qwen3vl_2b_bf16_async_stage_r1",
+      "same_raw_selected_inputs": true,
+      "all25_SAM3_arrays_equal": true,
+      "trajectory_array_equal": true,
+      "max_pose_matrix_abs_difference": 0.0,
+      "map_xyz_equal": true,
+      "map_labels_equal": true,
+      "map_correspondence": {
+        "reference_points": 7487,
+        "candidate_points": 7487,
+        "reference_to_candidate_distance_m": {
+          "n": 7487,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate_to_reference_distance_m": {
+          "n": 7487,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "reference_within_5mm": 1.0,
+        "candidate_within_5mm": 1.0,
+        "semantic_id_agreement_at_reference_nearest_point": 1.0,
+        "instance_id_agreement_at_reference_nearest_point": 1.0,
+        "scope": "Paired-output consistency, not GT accuracy;5mm tolerance fixed before reading these distances"
+      },
+      "same_instance_naming_metadata": true
+    },
+    {
+      "model": "qwen3vl_2b_bf16",
+      "scene": "orbbec",
+      "reference": "runs/orbbec/qwen3vl_2b_bf16_serial_r1",
+      "candidate": "runs/orbbec/qwen3vl_2b_bf16_async_stage_r2",
+      "same_raw_selected_inputs": true,
+      "all25_SAM3_arrays_equal": true,
+      "trajectory_array_equal": true,
+      "max_pose_matrix_abs_difference": 0.0,
+      "map_xyz_equal": true,
+      "map_labels_equal": true,
+      "map_correspondence": {
+        "reference_points": 7487,
+        "candidate_points": 7487,
+        "reference_to_candidate_distance_m": {
+          "n": 7487,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate_to_reference_distance_m": {
+          "n": 7487,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "reference_within_5mm": 1.0,
+        "candidate_within_5mm": 1.0,
+        "semantic_id_agreement_at_reference_nearest_point": 1.0,
+        "instance_id_agreement_at_reference_nearest_point": 1.0,
+        "scope": "Paired-output consistency, not GT accuracy;5mm tolerance fixed before reading these distances"
+      },
+      "same_instance_naming_metadata": true
+    },
+    {
+      "model": "qwen3vl_2b_bf16",
+      "scene": "orbbec",
+      "reference": "runs/orbbec/qwen3vl_2b_bf16_serial_r1",
+      "candidate": "runs/orbbec/qwen3vl_2b_bf16_serial_r2",
+      "same_raw_selected_inputs": true,
+      "all25_SAM3_arrays_equal": true,
+      "trajectory_array_equal": true,
+      "max_pose_matrix_abs_difference": 0.0,
+      "map_xyz_equal": true,
+      "map_labels_equal": true,
+      "map_correspondence": {
+        "reference_points": 7487,
+        "candidate_points": 7487,
+        "reference_to_candidate_distance_m": {
+          "n": 7487,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate_to_reference_distance_m": {
+          "n": 7487,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "reference_within_5mm": 1.0,
+        "candidate_within_5mm": 1.0,
+        "semantic_id_agreement_at_reference_nearest_point": 1.0,
+        "instance_id_agreement_at_reference_nearest_point": 1.0,
+        "scope": "Paired-output consistency, not GT accuracy;5mm tolerance fixed before reading these distances"
+      },
+      "same_instance_naming_metadata": true
+    },
+    {
+      "model": "glm53flash_api",
+      "scene": "scannet0030",
+      "reference": "runs/scannet0030/glm53flash_api_serial_r1",
+      "candidate": "runs/scannet0030/glm53flash_api_async_resident_r1",
+      "same_raw_selected_inputs": true,
+      "all25_SAM3_arrays_equal": true,
+      "trajectory_array_equal": false,
+      "max_pose_matrix_abs_difference": 2.4318695068359375e-05,
+      "map_xyz_equal": false,
+      "map_labels_equal": false,
+      "map_correspondence": {
+        "reference_points": 40671,
+        "candidate_points": 40669,
+        "reference_to_candidate_distance_m": {
+          "n": 40671,
+          "mean": 2.5157813660504417e-06,
+          "p50": 6.393016525052531e-07,
+          "p95": 3.7725352734600814e-06,
+          "min": 0.0,
+          "max": 0.0015485639064243273
+        },
+        "candidate_to_reference_distance_m": {
+          "n": 40669,
+          "mean": 2.516986263084112e-06,
+          "p50": 6.392655367837285e-07,
+          "p95": 3.768665734060758e-06,
+          "min": 0.0,
+          "max": 0.0015485639064243273
+        },
+        "reference_within_5mm": 1.0,
+        "candidate_within_5mm": 1.0,
+        "semantic_id_agreement_at_reference_nearest_point": 1.0,
+        "instance_id_agreement_at_reference_nearest_point": 1.0,
+        "scope": "Paired-output consistency, not GT accuracy;5mm tolerance fixed before reading these distances"
+      },
+      "same_instance_naming_metadata": false
+    },
+    {
+      "model": "qwen35_08b_nf4",
+      "scene": "scannet0030",
+      "reference": "runs/scannet0030/qwen35_08b_nf4_serial_r1",
+      "candidate": "runs/scannet0030/qwen35_08b_nf4_async_resident_r1",
+      "same_raw_selected_inputs": true,
+      "all25_SAM3_arrays_equal": true,
+      "trajectory_array_equal": true,
+      "max_pose_matrix_abs_difference": 0.0,
+      "map_xyz_equal": true,
+      "map_labels_equal": true,
+      "map_correspondence": {
+        "reference_points": 40669,
+        "candidate_points": 40669,
+        "reference_to_candidate_distance_m": {
+          "n": 40669,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate_to_reference_distance_m": {
+          "n": 40669,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "reference_within_5mm": 1.0,
+        "candidate_within_5mm": 1.0,
+        "semantic_id_agreement_at_reference_nearest_point": 1.0,
+        "instance_id_agreement_at_reference_nearest_point": 1.0,
+        "scope": "Paired-output consistency, not GT accuracy;5mm tolerance fixed before reading these distances"
+      },
+      "same_instance_naming_metadata": true
+    },
+    {
+      "model": "qwen35_08b_nf4",
+      "scene": "scannet0030",
+      "reference": "runs/scannet0030/qwen35_08b_nf4_serial_r1",
+      "candidate": "runs/scannet0030/qwen35_08b_nf4_serial_timing_clean_r2",
+      "same_raw_selected_inputs": true,
+      "all25_SAM3_arrays_equal": true,
+      "trajectory_array_equal": true,
+      "max_pose_matrix_abs_difference": 0.0,
+      "map_xyz_equal": true,
+      "map_labels_equal": true,
+      "map_correspondence": {
+        "reference_points": 40669,
+        "candidate_points": 40669,
+        "reference_to_candidate_distance_m": {
+          "n": 40669,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate_to_reference_distance_m": {
+          "n": 40669,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "reference_within_5mm": 1.0,
+        "candidate_within_5mm": 1.0,
+        "semantic_id_agreement_at_reference_nearest_point": 1.0,
+        "instance_id_agreement_at_reference_nearest_point": 1.0,
+        "scope": "Paired-output consistency, not GT accuracy;5mm tolerance fixed before reading these distances"
+      },
+      "same_instance_naming_metadata": true
+    },
+    {
+      "model": "qwen35_4b_nf4",
+      "scene": "scannet0030",
+      "reference": "runs/scannet0030/qwen35_4b_nf4_serial_r1",
+      "candidate": "runs/scannet0030/qwen35_4b_nf4_async_stage_r1",
+      "same_raw_selected_inputs": true,
+      "all25_SAM3_arrays_equal": true,
+      "trajectory_array_equal": false,
+      "max_pose_matrix_abs_difference": 9.179115295410156e-06,
+      "map_xyz_equal": false,
+      "map_labels_equal": false,
+      "map_correspondence": {
+        "reference_points": 40666,
+        "candidate_points": 40669,
+        "reference_to_candidate_distance_m": {
+          "n": 40666,
+          "mean": 1.2479940118984219e-05,
+          "p50": 6.115665200367992e-06,
+          "p95": 3.161847592947874e-05,
+          "min": 1.6783265444075823e-08,
+          "max": 0.002040292313153058
+        },
+        "candidate_to_reference_distance_m": {
+          "n": 40669,
+          "mean": 1.2630323170049292e-05,
+          "p50": 6.116321598081953e-06,
+          "p95": 3.168517154231714e-05,
+          "min": 1.6783265444075823e-08,
+          "max": 0.005378375651360201
+        },
+        "reference_within_5mm": 1.0,
+        "candidate_within_5mm": 0.9999754112468957,
+        "semantic_id_agreement_at_reference_nearest_point": 1.0,
+        "instance_id_agreement_at_reference_nearest_point": 1.0,
+        "scope": "Paired-output consistency, not GT accuracy;5mm tolerance fixed before reading these distances"
+      },
+      "same_instance_naming_metadata": true
+    },
+    {
+      "model": "qwen3vl_2b_bf16",
+      "scene": "scannet0030",
+      "reference": "runs/scannet0030/qwen3vl_2b_bf16_serial_r1",
+      "candidate": "runs/scannet0030/qwen3vl_2b_bf16_async_stage_r1",
+      "same_raw_selected_inputs": true,
+      "all25_SAM3_arrays_equal": true,
+      "trajectory_array_equal": false,
+      "max_pose_matrix_abs_difference": 1.2964010238647461e-05,
+      "map_xyz_equal": false,
+      "map_labels_equal": false,
+      "map_correspondence": {
+        "reference_points": 40669,
+        "candidate_points": 40665,
+        "reference_to_candidate_distance_m": {
+          "n": 40669,
+          "mean": 1.1328318660464632e-05,
+          "p50": 4.0686889279939464e-06,
+          "p95": 2.8094467467631982e-05,
+          "min": 0.0,
+          "max": 0.009542629567995453
+        },
+        "candidate_to_reference_distance_m": {
+          "n": 40665,
+          "mean": 1.0976290225361672e-05,
+          "p50": 4.0676121931815246e-06,
+          "p95": 2.803328787259751e-05,
+          "min": 0.0,
+          "max": 0.009542629567995453
+        },
+        "reference_within_5mm": 0.9999016449875827,
+        "candidate_within_5mm": 0.9999508176564613,
+        "semantic_id_agreement_at_reference_nearest_point": 0.9999754112468957,
+        "instance_id_agreement_at_reference_nearest_point": 0.9999754112468957,
+        "scope": "Paired-output consistency, not GT accuracy;5mm tolerance fixed before reading these distances"
+      },
+      "same_instance_naming_metadata": true
+    },
+    {
+      "model": "qwen3vl_2b_bf16",
+      "scene": "scannet0030",
+      "reference": "runs/scannet0030/qwen3vl_2b_bf16_serial_r1",
+      "candidate": "runs/scannet0030/qwen3vl_2b_bf16_async_stage_r2",
+      "same_raw_selected_inputs": true,
+      "all25_SAM3_arrays_equal": true,
+      "trajectory_array_equal": true,
+      "max_pose_matrix_abs_difference": 0.0,
+      "map_xyz_equal": true,
+      "map_labels_equal": true,
+      "map_correspondence": {
+        "reference_points": 40669,
+        "candidate_points": 40669,
+        "reference_to_candidate_distance_m": {
+          "n": 40669,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate_to_reference_distance_m": {
+          "n": 40669,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "reference_within_5mm": 1.0,
+        "candidate_within_5mm": 1.0,
+        "semantic_id_agreement_at_reference_nearest_point": 1.0,
+        "instance_id_agreement_at_reference_nearest_point": 1.0,
+        "scope": "Paired-output consistency, not GT accuracy;5mm tolerance fixed before reading these distances"
+      },
+      "same_instance_naming_metadata": true
+    },
+    {
+      "model": "qwen3vl_2b_bf16",
+      "scene": "scannet0030",
+      "reference": "runs/scannet0030/qwen3vl_2b_bf16_serial_r1",
+      "candidate": "runs/scannet0030/qwen3vl_2b_bf16_serial_r2",
+      "same_raw_selected_inputs": true,
+      "all25_SAM3_arrays_equal": true,
+      "trajectory_array_equal": true,
+      "max_pose_matrix_abs_difference": 0.0,
+      "map_xyz_equal": true,
+      "map_labels_equal": true,
+      "map_correspondence": {
+        "reference_points": 40669,
+        "candidate_points": 40669,
+        "reference_to_candidate_distance_m": {
+          "n": 40669,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate_to_reference_distance_m": {
+          "n": 40669,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "reference_within_5mm": 1.0,
+        "candidate_within_5mm": 1.0,
+        "semantic_id_agreement_at_reference_nearest_point": 1.0,
+        "instance_id_agreement_at_reference_nearest_point": 1.0,
+        "scope": "Paired-output consistency, not GT accuracy;5mm tolerance fixed before reading these distances"
+      },
+      "same_instance_naming_metadata": true
+    }
+  ]
+}

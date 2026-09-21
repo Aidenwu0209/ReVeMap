@@ -1,0 +1,6492 @@
+[
+  {
+    "job": {
+      "id": "scannet0030_qwen_min65536_serial",
+      "scene": "scannet0030",
+      "profile": "qwen_min65536",
+      "model": "qwen3vl_2b_bf16_min65536",
+      "schedule": "serial",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 112.11376262600243,
+    "peak_gpu_total_mib": 6348.0,
+    "peak_tree_rss_gib": 7.1298370361328125,
+    "gpu_monitor_samples": 400,
+    "status": "completed",
+    "pipeline_seconds": 111.94047882599989,
+    "raw_fps": 1.0719982731762996,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1/runs/scannet0030_qwen_min65536_serial/pipeline",
+    "model_id": "qwen3vl_2b_bf16_min65536",
+    "scene": "scannet0030",
+    "schedule": "serial",
+    "map_points": 40669,
+    "instances": 6,
+    "named_instances": 3,
+    "unknown_instances": 3,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.5710246133418574,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 17.15055247899727,
+    "VLM_mean_crop_seconds": 0.1698477784325473,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 4,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 4,
+    "VLM_model_repo": "Qwen/Qwen3-VL-2B-Instruct",
+    "VLM_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "stages": {
+      "mapping": [
+        96228.809954165,
+        96252.417817109
+      ],
+      "sam3": [
+        96252.41801603,
+        96320.285875572
+      ],
+      "vlm": [
+        96320.286106817,
+        96338.191325174
+      ],
+      "fusion": [
+        96338.191521198,
+        96340.548634278
+      ],
+      "backfill": [
+        96340.548894135,
+        96340.750199428
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 0.0,
+    "stage_overlap_fusion_vlm_s": 0.0,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2324.0,
+      "sam3": 6348.0,
+      "vlm": 5274.0,
+      "fusion": 867.0,
+      "backfill": 867.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 251,
+        "support_frames": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          65,
+          70,
+          85,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "recliner",
+        "points": 7188,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4534,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5672,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 262,
+        "support_frames": [
+          30,
+          35,
+          40,
+          45
+        ]
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_qwen_base_parallel",
+      "scene": "scannet0030",
+      "profile": "qwen_base",
+      "model": "qwen3vl_2b_bf16",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 101.84292264700343,
+    "peak_gpu_total_mib": 6348.0,
+    "peak_tree_rss_gib": 7.312877655029297,
+    "gpu_monitor_samples": 364,
+    "status": "completed",
+    "pipeline_seconds": 101.6677293870016,
+    "raw_fps": 1.1803155310296742,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1/runs/scannet0030_qwen_base_parallel/pipeline",
+    "model_id": "qwen3vl_2b_bf16",
+    "scene": "scannet0030",
+    "schedule": "parallel",
+    "map_points": 40667,
+    "instances": 6,
+    "named_instances": 3,
+    "unknown_instances": 3,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.5709297464774878,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 12.88315527800296,
+    "VLM_mean_crop_seconds": 0.10941315574637517,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 4,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 5,
+    "VLM_model_repo": "Qwen/Qwen3-VL-2B-Instruct",
+    "VLM_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "stages": {
+      "mapping": [
+        96020.919837981,
+        96044.192284159
+      ],
+      "sam3": [
+        96040.681058443,
+        96108.79040976
+      ],
+      "vlm": [
+        96108.790631048,
+        96122.335666599
+      ],
+      "fusion": [
+        96108.79113219,
+        96111.199331715
+      ],
+      "backfill": [
+        96122.33618314,
+        96122.58732358
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 3.511225715992623,
+    "stage_overlap_fusion_vlm_s": 2.4081995250016917,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2324.0,
+      "sam3": 6348.0,
+      "vlm": 5138.0,
+      "fusion": 867.0,
+      "backfill": 867.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 251,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          30,
+          35,
+          45,
+          70,
+          75,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "recliner",
+        "points": 7188,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          35,
+          40,
+          45,
+          50,
+          55,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4530,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5671,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 261,
+        "support_frames": [
+          25,
+          30,
+          35,
+          40,
+          45
+        ]
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_qwen_base_serial",
+      "scene": "scannet0030",
+      "profile": "qwen_base",
+      "model": "qwen3vl_2b_bf16",
+      "schedule": "serial",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 108.01898078099475,
+    "peak_gpu_total_mib": 6346.0,
+    "peak_tree_rss_gib": 7.313426971435547,
+    "gpu_monitor_samples": 386,
+    "status": "completed",
+    "pipeline_seconds": 107.84761120298936,
+    "raw_fps": 1.112681112371952,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1/runs/scannet0030_qwen_base_serial/pipeline",
+    "model_id": "qwen3vl_2b_bf16",
+    "scene": "scannet0030",
+    "schedule": "serial",
+    "map_points": 40669,
+    "instances": 6,
+    "named_instances": 3,
+    "unknown_instances": 3,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.5710246133418574,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 12.800011674989946,
+    "VLM_mean_crop_seconds": 0.10855190422378981,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 4,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 5,
+    "VLM_model_repo": "Qwen/Qwen3-VL-2B-Instruct",
+    "VLM_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "stages": {
+      "mapping": [
+        95826.98722875,
+        95850.515234918
+      ],
+      "sam3": [
+        95850.516332715,
+        95918.779516109
+      ],
+      "vlm": [
+        95918.779676299,
+        95932.225344596
+      ],
+      "fusion": [
+        95932.225503212,
+        95934.633239427
+      ],
+      "backfill": [
+        95934.633482188,
+        95934.834598426
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 0.0,
+    "stage_overlap_fusion_vlm_s": 0.0,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2308.0,
+      "sam3": 6346.0,
+      "vlm": 5138.0,
+      "fusion": 867.0,
+      "backfill": 867.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 251,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          30,
+          35,
+          45,
+          70,
+          75,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "recliner",
+        "points": 7188,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          35,
+          40,
+          45,
+          50,
+          55,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4534,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5672,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 262,
+        "support_frames": [
+          25,
+          30,
+          35,
+          40,
+          45
+        ]
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_qwen_min65536_parallel",
+      "scene": "scannet0030",
+      "profile": "qwen_min65536",
+      "model": "qwen3vl_2b_bf16_min65536",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 105.9941730670107,
+    "peak_gpu_total_mib": 6348.0,
+    "peak_tree_rss_gib": 7.280643463134766,
+    "gpu_monitor_samples": 379,
+    "status": "completed",
+    "pipeline_seconds": 105.81020168399846,
+    "raw_fps": 1.1341061456283705,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1/runs/scannet0030_qwen_min65536_parallel/pipeline",
+    "model_id": "qwen3vl_2b_bf16_min65536",
+    "scene": "scannet0030",
+    "schedule": "parallel",
+    "map_points": 40669,
+    "instances": 6,
+    "named_instances": 3,
+    "unknown_instances": 3,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.5710246133418574,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 16.9357973820006,
+    "VLM_mean_crop_seconds": 0.1711017968506229,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 4,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 4,
+    "VLM_model_repo": "Qwen/Qwen3-VL-2B-Instruct",
+    "VLM_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "stages": {
+      "mapping": [
+        96122.790158672,
+        96146.207052376
+      ],
+      "sam3": [
+        96142.496649547,
+        96210.79450603
+      ],
+      "vlm": [
+        96210.794666835,
+        96228.39836137
+      ],
+      "fusion": [
+        96210.796107765,
+        96213.253279423
+      ],
+      "backfill": [
+        96228.398847293,
+        96228.60016265
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 3.7104028290050337,
+    "stage_overlap_fusion_vlm_s": 2.4571716580103384,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2324.0,
+      "sam3": 6348.0,
+      "vlm": 5274.0,
+      "fusion": 867.0,
+      "backfill": null
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 251,
+        "support_frames": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          65,
+          70,
+          85,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "recliner",
+        "points": 7188,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4534,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5672,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 262,
+        "support_frames": [
+          30,
+          35,
+          40,
+          45
+        ]
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_gemma_base_parallel",
+      "scene": "scannet0030",
+      "profile": "gemma_base",
+      "model": "gemma4_e2b_qat_q4",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 104.18116739600373,
+    "peak_gpu_total_mib": 6348.0,
+    "peak_tree_rss_gib": 7.312931060791016,
+    "gpu_monitor_samples": 372,
+    "status": "completed",
+    "pipeline_seconds": 104.0206283209991,
+    "raw_fps": 1.1536173347241268,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1/runs/scannet0030_gemma_base_parallel/pipeline",
+    "model_id": "gemma4_e2b_qat_q4",
+    "scene": "scannet0030",
+    "schedule": "parallel",
+    "map_points": 40669,
+    "instances": 6,
+    "named_instances": 3,
+    "unknown_instances": 3,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.5710246133418574,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 14.716829170996789,
+    "VLM_mean_crop_seconds": 0.16243334270061563,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 4,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 0,
+    "VLM_model_repo": "google/gemma-4-E2B-it-qat-q4_0-gguf",
+    "VLM_revision": "675cff42a74c774d6cb76f76d8eacb49b48c9b93",
+    "stages": {
+      "mapping": [
+        96450.057756798,
+        96473.630907283
+      ],
+      "sam3": [
+        96469.969784091,
+        96538.777803979
+      ],
+      "vlm": [
+        96538.777971367,
+        96553.82688761
+      ],
+      "fusion": [
+        96538.778575584,
+        96541.188366033
+      ],
+      "backfill": [
+        96553.827032965,
+        96554.078164368
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 3.661123192010564,
+    "stage_overlap_fusion_vlm_s": 2.409790449004504,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2324.0,
+      "sam3": 6348.0,
+      "vlm": 3616.0,
+      "fusion": 867.0,
+      "backfill": 867.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "offloaded_layers": [
+        [
+          "36",
+          "36"
+        ]
+      ],
+      "vision_cuda0": true
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "electronic device",
+        "points": 251,
+        "support_frames": [
+          75,
+          100,
+          105,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "armchair",
+        "points": 7188,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4534,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5672,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 262,
+        "support_frames": [
+          25,
+          35,
+          40,
+          45
+        ]
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_gemma_base_serial",
+      "scene": "scannet0030",
+      "profile": "gemma_base",
+      "model": "gemma4_e2b_qat_q4",
+      "schedule": "serial",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 109.06870509299915,
+    "peak_gpu_total_mib": 6348.0,
+    "peak_tree_rss_gib": 7.3128509521484375,
+    "gpu_monitor_samples": 390,
+    "status": "completed",
+    "pipeline_seconds": 108.88593354499608,
+    "raw_fps": 1.1020707275325985,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1/runs/scannet0030_gemma_base_serial/pipeline",
+    "model_id": "gemma4_e2b_qat_q4",
+    "scene": "scannet0030",
+    "schedule": "serial",
+    "map_points": 40669,
+    "instances": 6,
+    "named_instances": 3,
+    "unknown_instances": 3,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.5710246133418574,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 14.964872341006412,
+    "VLM_mean_crop_seconds": 0.16312913501564824,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 4,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 0,
+    "VLM_model_repo": "google/gemma-4-E2B-it-qat-q4_0-gguf",
+    "VLM_revision": "675cff42a74c774d6cb76f76d8eacb49b48c9b93",
+    "stages": {
+      "mapping": [
+        96340.958286821,
+        96364.374978337
+      ],
+      "sam3": [
+        96364.375191215,
+        96431.982609101
+      ],
+      "vlm": [
+        96431.98315878,
+        96447.281616505
+      ],
+      "fusion": [
+        96447.28219253,
+        96449.642043452
+      ],
+      "backfill": [
+        96449.642383107,
+        96449.843978114
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 0.0,
+    "stage_overlap_fusion_vlm_s": 0.0,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2324.0,
+      "sam3": 6348.0,
+      "vlm": 3616.0,
+      "fusion": 867.0,
+      "backfill": null
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "offloaded_layers": [
+        [
+          "36",
+          "36"
+        ]
+      ],
+      "vision_cuda0": true
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "electronic device",
+        "points": 251,
+        "support_frames": [
+          75,
+          100,
+          105,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "armchair",
+        "points": 7188,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4534,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5672,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 262,
+        "support_frames": [
+          25,
+          35,
+          40,
+          45
+        ]
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_qwen_base_serial",
+      "scene": "orbbec",
+      "profile": "qwen_base",
+      "model": "qwen3vl_2b_bf16",
+      "schedule": "serial",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 102.3722143920022,
+    "peak_gpu_total_mib": 6332.0,
+    "peak_tree_rss_gib": 7.188358306884766,
+    "gpu_monitor_samples": 365,
+    "status": "completed",
+    "pipeline_seconds": 102.19763666199287,
+    "raw_fps": 1.1741954503007386,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1/runs/orbbec_qwen_base_serial/pipeline",
+    "model_id": "qwen3vl_2b_bf16",
+    "scene": "orbbec",
+    "schedule": "serial",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 11.913590559008298,
+    "VLM_mean_crop_seconds": 0.09274614195622105,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 3,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 5,
+    "VLM_model_repo": "Qwen/Qwen3-VL-2B-Instruct",
+    "VLM_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "stages": {
+      "mapping": [
+        96654.213655409,
+        96678.036431666
+      ],
+      "sam3": [
+        96678.036977038,
+        96742.016630543
+      ],
+      "vlm": [
+        96742.016802271,
+        96754.603599776
+      ],
+      "fusion": [
+        96754.603799305,
+        96756.259518567
+      ],
+      "backfill": [
+        96756.259788833,
+        96756.411055149
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 0.0,
+    "stage_overlap_fusion_vlm_s": 0.0,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2322.0,
+      "sam3": 6332.0,
+      "vlm": 5138.0,
+      "fusion": 867.0,
+      "backfill": 867.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "container",
+        "points": 1331,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_qwen_base_parallel",
+      "scene": "orbbec",
+      "profile": "qwen_base",
+      "model": "qwen3vl_2b_bf16",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 99.91747437498998,
+    "peak_gpu_total_mib": 6332.0,
+    "peak_tree_rss_gib": 7.312992095947266,
+    "gpu_monitor_samples": 356,
+    "status": "completed",
+    "pipeline_seconds": 99.76050800899975,
+    "raw_fps": 1.2028808031849074,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1/runs/orbbec_qwen_base_parallel/pipeline",
+    "model_id": "qwen3vl_2b_bf16",
+    "scene": "orbbec",
+    "schedule": "parallel",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 13.226738672005013,
+    "VLM_mean_crop_seconds": 0.09375998897116265,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 3,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 5,
+    "VLM_model_repo": "Qwen/Qwen3-VL-2B-Instruct",
+    "VLM_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "stages": {
+      "mapping": [
+        96554.272332393,
+        96578.195975865
+      ],
+      "sam3": [
+        96575.588041468,
+        96639.988212604
+      ],
+      "vlm": [
+        96639.98844195,
+        96653.881300127
+      ],
+      "fusion": [
+        96639.989094656,
+        96641.644204185
+      ],
+      "backfill": [
+        96653.881510467,
+        96654.032598846
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 2.6079343970050104,
+    "stage_overlap_fusion_vlm_s": 1.6551095289905788,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2322.0,
+      "sam3": 6332.0,
+      "vlm": 5138.0,
+      "fusion": 867.0,
+      "backfill": null
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "container",
+        "points": 1331,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_qwen_min65536_parallel",
+      "scene": "orbbec",
+      "profile": "qwen_min65536",
+      "model": "qwen3vl_2b_bf16_min65536",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 99.2756396120094,
+    "peak_gpu_total_mib": 6332.0,
+    "peak_tree_rss_gib": 7.312828063964844,
+    "gpu_monitor_samples": 354,
+    "status": "completed",
+    "pipeline_seconds": 99.1173354019993,
+    "raw_fps": 1.2106862993572713,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1/runs/orbbec_qwen_min65536_parallel/pipeline",
+    "model_id": "qwen3vl_2b_bf16_min65536",
+    "scene": "orbbec",
+    "schedule": "parallel",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 12.667463151010452,
+    "VLM_mean_crop_seconds": 0.1036419971417802,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 3,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 2,
+    "VLM_model_repo": "Qwen/Qwen3-VL-2B-Instruct",
+    "VLM_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "stages": {
+      "mapping": [
+        96859.293752344,
+        96883.624096606
+      ],
+      "sam3": [
+        96881.016617476,
+        96944.962186175
+      ],
+      "vlm": [
+        96944.962415193,
+        96958.259093608
+      ],
+      "fusion": [
+        96944.96301946,
+        96946.71946823
+      ],
+      "backfill": [
+        96958.259647925,
+        96958.410852604
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 2.607479130005231,
+    "stage_overlap_fusion_vlm_s": 1.7564487700001337,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2322.0,
+      "sam3": 6332.0,
+      "vlm": 5158.0,
+      "fusion": 867.0,
+      "backfill": null
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "container",
+        "points": 1331,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          30,
+          40,
+          45,
+          50,
+          55,
+          65,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_qwen_min65536_serial",
+      "scene": "orbbec",
+      "profile": "qwen_min65536",
+      "model": "qwen3vl_2b_bf16_min65536",
+      "schedule": "serial",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 102.66484369999671,
+    "peak_gpu_total_mib": 6332.0,
+    "peak_tree_rss_gib": 7.313179016113281,
+    "gpu_monitor_samples": 366,
+    "status": "completed",
+    "pipeline_seconds": 102.5123231690086,
+    "raw_fps": 1.1705909718011176,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1/runs/orbbec_qwen_min65536_serial/pipeline",
+    "model_id": "qwen3vl_2b_bf16_min65536",
+    "scene": "orbbec",
+    "schedule": "serial",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 12.491438678000122,
+    "VLM_mean_crop_seconds": 0.10142971959992013,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 3,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 2,
+    "VLM_model_repo": "Qwen/Qwen3-VL-2B-Instruct",
+    "VLM_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "stages": {
+      "mapping": [
+        96756.603587064,
+        96780.473310623
+      ],
+      "sam3": [
+        96780.473517966,
+        96844.165467312
+      ],
+      "vlm": [
+        96844.165693421,
+        96857.358299075
+      ],
+      "fusion": [
+        96857.358506987,
+        96858.964133603
+      ],
+      "backfill": [
+        96858.96437565,
+        96859.115615254
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 0.0,
+    "stage_overlap_fusion_vlm_s": 0.0,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2324.0,
+      "sam3": 6332.0,
+      "vlm": 5158.0,
+      "fusion": 867.0,
+      "backfill": null
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "container",
+        "points": 1331,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          30,
+          40,
+          45,
+          50,
+          55,
+          65,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_gemma_base_parallel",
+      "scene": "orbbec",
+      "profile": "gemma_base",
+      "model": "gemma4_e2b_qat_q4",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 98.47012739699858,
+    "peak_gpu_total_mib": 6332.0,
+    "peak_tree_rss_gib": 7.312953948974609,
+    "gpu_monitor_samples": 352,
+    "status": "completed",
+    "pipeline_seconds": 98.31752893399971,
+    "raw_fps": 1.2205351507619324,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1/runs/orbbec_gemma_base_parallel/pipeline",
+    "model_id": "gemma4_e2b_qat_q4",
+    "scene": "orbbec",
+    "schedule": "parallel",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 11.735639945996809,
+    "VLM_mean_crop_seconds": 0.11343881167101375,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 3,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 0,
+    "VLM_model_repo": "google/gemma-4-E2B-it-qat-q4_0-gguf",
+    "VLM_revision": "675cff42a74c774d6cb76f76d8eacb49b48c9b93",
+    "stages": {
+      "mapping": [
+        96958.583792163,
+        96983.22411547
+      ],
+      "sam3": [
+        96980.516029925,
+        97044.710538708
+      ],
+      "vlm": [
+        97044.710743563,
+        97056.74831529
+      ],
+      "fusion": [
+        97044.711644278,
+        97046.368022991
+      ],
+      "backfill": [
+        97056.749969273,
+        97056.901075116
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 2.7080855450039962,
+    "stage_overlap_fusion_vlm_s": 1.6563787129998673,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2322.0,
+      "sam3": 6332.0,
+      "vlm": 3606.0,
+      "fusion": 867.0,
+      "backfill": null
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "offloaded_layers": [
+        [
+          "36",
+          "36"
+        ]
+      ],
+      "vision_cuda0": true
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "cabinet",
+        "points": 1331,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          55,
+          60,
+          65,
+          80,
+          85,
+          90,
+          100,
+          105
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_gemma_base_serial",
+      "scene": "orbbec",
+      "profile": "gemma_base",
+      "model": "gemma4_e2b_qat_q4",
+      "schedule": "serial",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 101.76975966600003,
+    "peak_gpu_total_mib": 6332.0,
+    "peak_tree_rss_gib": 7.313072204589844,
+    "gpu_monitor_samples": 363,
+    "status": "completed",
+    "pipeline_seconds": 101.6081270440045,
+    "raw_fps": 1.1810078926858905,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/qwen_gemma_pipeline_parallel_20260915_v1/runs/orbbec_gemma_base_serial/pipeline",
+    "model_id": "gemma4_e2b_qat_q4",
+    "scene": "orbbec",
+    "schedule": "serial",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 11.715025093988515,
+    "VLM_mean_crop_seconds": 0.11398702560005144,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 3,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 0,
+    "VLM_model_repo": "google/gemma-4-E2B-it-qat-q4_0-gguf",
+    "VLM_revision": "675cff42a74c774d6cb76f76d8eacb49b48c9b93",
+    "stages": {
+      "mapping": [
+        97057.072685986,
+        97081.147237289
+      ],
+      "sam3": [
+        97081.147443921,
+        97144.891719221
+      ],
+      "vlm": [
+        97144.891895361,
+        97156.925565835
+      ],
+      "fusion": [
+        97156.92577272,
+        97158.529523787
+      ],
+      "backfill": [
+        97158.529789759,
+        97158.680610183
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 0.0,
+    "stage_overlap_fusion_vlm_s": 0.0,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2322.0,
+      "sam3": 6332.0,
+      "vlm": 3606.0,
+      "fusion": 867.0,
+      "backfill": 867.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "offloaded_layers": [
+        [
+          "36",
+          "36"
+        ]
+      ],
+      "vision_cuda0": true
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "cabinet",
+        "points": 1331,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          55,
+          60,
+          65,
+          80,
+          85,
+          90,
+          100,
+          105
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_smolvlm2_500m_bf16_parallel",
+      "scene": "scannet0030",
+      "profile": "smolvlm2_500m_bf16",
+      "model": "smolvlm2_500m_bf16",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 122.25060701899929,
+    "peak_gpu_total_mib": 6348.0,
+    "peak_tree_rss_gib": 7.313194274902344,
+    "gpu_monitor_samples": 436,
+    "status": "completed",
+    "pipeline_seconds": 122.09404063499824,
+    "raw_fps": 0.9828489529537449,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/scannet0030_smolvlm2_500m_bf16_parallel/pipeline",
+    "model_id": "smolvlm2_500m_bf16",
+    "scene": "scannet0030",
+    "schedule": "parallel",
+    "map_points": 40671,
+    "instances": 6,
+    "named_instances": 3,
+    "unknown_instances": 3,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.5709473580684026,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 32.79316952799854,
+    "VLM_mean_crop_seconds": 0.37459266486594195,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 3,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 0,
+    "VLM_model_repo": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+    "VLM_revision": "7b375e1b73b11138ff12fe22c8f2822d8fe03467",
+    "stages": {
+      "mapping": [
+        97233.324421115,
+        97256.856383048
+      ],
+      "sam3": [
+        97253.196244964,
+        97321.712537972
+      ],
+      "vlm": [
+        97321.712689316,
+        97355.166881378
+      ],
+      "fusion": [
+        97321.713264372,
+        97324.271553668
+      ],
+      "backfill": [
+        97355.167054035,
+        97355.418250425
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 3.6601380840002093,
+    "stage_overlap_fusion_vlm_s": 2.5582892960082972,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2324.0,
+      "sam3": 6348.0,
+      "vlm": 2668.0,
+      "fusion": 867.0,
+      "backfill": null
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 251,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          55,
+          60,
+          70,
+          75,
+          85,
+          90,
+          95,
+          100,
+          105,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "recliner",
+        "points": 7188,
+        "support_frames": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4532,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5672,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5111,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 262,
+        "support_frames": [
+          20,
+          25,
+          30,
+          40
+        ]
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_qwen35_08b_bf16_parallel",
+      "scene": "orbbec",
+      "profile": "qwen35_08b_bf16",
+      "model": "qwen35_08b_bf16",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 105.75569161699968,
+    "peak_gpu_total_mib": 6339.0,
+    "peak_tree_rss_gib": 13.953380584716797,
+    "gpu_monitor_samples": 376,
+    "status": "completed",
+    "pipeline_seconds": 105.59035809600027,
+    "raw_fps": 1.1364674025529757,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/orbbec_qwen35_08b_bf16_parallel/pipeline",
+    "model_id": "qwen35_08b_bf16",
+    "scene": "orbbec",
+    "schedule": "parallel",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 18.262830936990213,
+    "VLM_mean_crop_seconds": 0.17835280891449656,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 5,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 0,
+    "VLM_model_repo": "Qwen/Qwen3.5-0.8B",
+    "VLM_revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "stages": {
+      "mapping": [
+        97506.7831772,
+        97531.020674152
+      ],
+      "sam3": [
+        97528.464100234,
+        97592.867068612
+      ],
+      "vlm": [
+        97592.867693094,
+        97612.222352392
+      ],
+      "fusion": [
+        97592.868475287,
+        97594.523924675
+      ],
+      "backfill": [
+        97612.222534056,
+        97612.373330771
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 2.556573917987407,
+    "stage_overlap_fusion_vlm_s": 1.655449387995759,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2331.0,
+      "sam3": 6339.0,
+      "vlm": 2959.0,
+      "fusion": 874.0,
+      "backfill": 874.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "container",
+        "points": 1331,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_qwen35_08b_bf16_parallel",
+      "scene": "scannet0030",
+      "profile": "qwen35_08b_bf16",
+      "model": "qwen35_08b_bf16",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 108.65158565000456,
+    "peak_gpu_total_mib": 6356.0,
+    "peak_tree_rss_gib": 14.35622787475586,
+    "gpu_monitor_samples": 387,
+    "status": "completed",
+    "pipeline_seconds": 108.49423276200832,
+    "raw_fps": 1.1060495746647714,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/scannet0030_qwen35_08b_bf16_parallel/pipeline",
+    "model_id": "qwen35_08b_bf16",
+    "scene": "scannet0030",
+    "schedule": "parallel",
+    "map_points": 40674,
+    "instances": 6,
+    "named_instances": 3,
+    "unknown_instances": 3,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.5709544180557604,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 18.513569659000495,
+    "VLM_mean_crop_seconds": 0.18986054016372758,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 6,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 0,
+    "VLM_model_repo": "Qwen/Qwen3.5-0.8B",
+    "VLM_revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "stages": {
+      "mapping": [
+        97398.088943528,
+        97421.366285577
+      ],
+      "sam3": [
+        97417.957462412,
+        97486.625873432
+      ],
+      "vlm": [
+        97486.626532491,
+        97506.381962641
+      ],
+      "fusion": [
+        97486.627358576,
+        97489.185834575
+      ],
+      "backfill": [
+        97506.382109061,
+        97506.582946905
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 3.4088231649948284,
+    "stage_overlap_fusion_vlm_s": 2.558475998986978,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2324.0,
+      "sam3": 6356.0,
+      "vlm": 2961.0,
+      "fusion": 875.0,
+      "backfill": 874.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 251,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          45,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "recliner",
+        "points": 7192,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          65,
+          90,
+          100,
+          115
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4527,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5674,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 262,
+        "support_frames": [
+          20,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_qwen35_08b_nf4_parallel",
+      "scene": "orbbec",
+      "profile": "qwen35_08b_nf4",
+      "model": "qwen35_08b_nf4",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 107.05716832500184,
+    "peak_gpu_total_mib": 6339.0,
+    "peak_tree_rss_gib": 13.949249267578125,
+    "gpu_monitor_samples": 380,
+    "status": "completed",
+    "pipeline_seconds": 106.8635816820024,
+    "raw_fps": 1.122926988888395,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/orbbec_qwen35_08b_nf4_parallel/pipeline",
+    "model_id": "qwen35_08b_nf4",
+    "scene": "orbbec",
+    "schedule": "parallel",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 19.561469320004107,
+    "VLM_mean_crop_seconds": 0.19504603214133698,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 5,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 0,
+    "VLM_model_repo": "Qwen/Qwen3.5-0.8B",
+    "VLM_revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "stages": {
+      "mapping": [
+        97612.547408025,
+        97636.667006151
+      ],
+      "sam3": [
+        97634.162318332,
+        97698.596124775
+      ],
+      "vlm": [
+        97698.596286603,
+        97719.259093023
+      ],
+      "fusion": [
+        97698.596827134,
+        97700.302082964
+      ],
+      "backfill": [
+        97719.259320766,
+        97719.410679095
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 2.5046878189896233,
+    "stage_overlap_fusion_vlm_s": 1.7052558300056262,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2329.0,
+      "sam3": 6339.0,
+      "vlm": 2145.0,
+      "fusion": 874.0,
+      "backfill": null
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "container",
+        "points": 1331,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_qwen35_08b_nf4_parallel",
+      "scene": "scannet0030",
+      "profile": "qwen35_08b_nf4",
+      "model": "qwen35_08b_nf4",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 109.61656561799464,
+    "peak_gpu_total_mib": 6355.0,
+    "peak_tree_rss_gib": 13.975418090820312,
+    "gpu_monitor_samples": 391,
+    "status": "completed",
+    "pipeline_seconds": 109.45169385499321,
+    "raw_fps": 1.0963740785865013,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/scannet0030_qwen35_08b_nf4_parallel/pipeline",
+    "model_id": "qwen35_08b_nf4",
+    "scene": "scannet0030",
+    "schedule": "parallel",
+    "map_points": 40669,
+    "instances": 6,
+    "named_instances": 3,
+    "unknown_instances": 3,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.5710246133418574,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 19.672953813991626,
+    "VLM_mean_crop_seconds": 0.20705586573158552,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 6,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 0,
+    "VLM_model_repo": "Qwen/Qwen3.5-0.8B",
+    "VLM_revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "stages": {
+      "mapping": [
+        97719.628030383,
+        97743.207617312
+      ],
+      "sam3": [
+        97739.645664906,
+        97808.012209832
+      ],
+      "vlm": [
+        97808.012435819,
+        97828.828447339
+      ],
+      "fusion": [
+        97808.01307439,
+        97810.421240224
+      ],
+      "backfill": [
+        97828.828604054,
+        97829.079416348
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 3.561952406002092,
+    "stage_overlap_fusion_vlm_s": 2.4081658340001013,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2331.0,
+      "sam3": 6355.0,
+      "vlm": 2142.0,
+      "fusion": 871.0,
+      "backfill": 871.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 251,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          45,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 7188,
+        "support_frames": [
+          5,
+          15,
+          40,
+          45,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4534,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5672,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 262,
+        "support_frames": [
+          20,
+          25,
+          35,
+          40,
+          50
+        ]
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_qwen3vl_2b_nf4_parallel",
+      "scene": "scannet0030",
+      "profile": "qwen3vl_2b_nf4",
+      "model": "qwen3vl_2b_nf4",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 103.64945019900915,
+    "peak_gpu_total_mib": 6352.0,
+    "peak_tree_rss_gib": 13.825752258300781,
+    "gpu_monitor_samples": 370,
+    "status": "completed",
+    "pipeline_seconds": 103.48092322300363,
+    "raw_fps": 1.159634029756358,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/scannet0030_qwen3vl_2b_nf4_parallel/pipeline",
+    "model_id": "qwen3vl_2b_nf4",
+    "scene": "scannet0030",
+    "schedule": "parallel",
+    "map_points": 40669,
+    "instances": 6,
+    "named_instances": 3,
+    "unknown_instances": 3,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.5710246133418574,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 13.460878864003462,
+    "VLM_mean_crop_seconds": 0.10464719304473508,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 4,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 13,
+    "VLM_model_repo": "Qwen/Qwen3-VL-2B-Instruct",
+    "VLM_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "stages": {
+      "mapping": [
+        97829.272153404,
+        97852.85241423
+      ],
+      "sam3": [
+        97849.491155993,
+        97918.002768649
+      ],
+      "vlm": [
+        97918.002954079,
+        97932.551528302
+      ],
+      "fusion": [
+        97918.003387176,
+        97920.512388022
+      ],
+      "backfill": [
+        97932.551735996,
+        97932.752846521
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 3.361258236996946,
+    "stage_overlap_fusion_vlm_s": 2.509000846010167,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2330.0,
+      "sam3": 6352.0,
+      "vlm": 2638.0,
+      "fusion": 871.0,
+      "backfill": 871.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 251,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          30,
+          35,
+          45,
+          60,
+          70,
+          75,
+          85,
+          90,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 7188,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4534,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5672,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 262,
+        "support_frames": [
+          40,
+          45
+        ]
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_qwen3vl_2b_nf4_parallel",
+      "scene": "orbbec",
+      "profile": "qwen3vl_2b_nf4",
+      "model": "qwen3vl_2b_nf4",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 101.38671702099964,
+    "peak_gpu_total_mib": 6336.0,
+    "peak_tree_rss_gib": 13.806690216064453,
+    "gpu_monitor_samples": 362,
+    "status": "completed",
+    "pipeline_seconds": 101.19011144599062,
+    "raw_fps": 1.1858866275095368,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/orbbec_qwen3vl_2b_nf4_parallel/pipeline",
+    "model_id": "qwen3vl_2b_nf4",
+    "scene": "orbbec",
+    "schedule": "parallel",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 13.987163579993648,
+    "VLM_mean_crop_seconds": 0.10555439327103418,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 3,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 4,
+    "VLM_model_repo": "Qwen/Qwen3-VL-2B-Instruct",
+    "VLM_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "stages": {
+      "mapping": [
+        97932.964658146,
+        97957.0052746
+      ],
+      "sam3": [
+        97954.446925183,
+        98018.958245846
+      ],
+      "vlm": [
+        98018.958459549,
+        98034.003277368
+      ],
+      "fusion": [
+        98018.959115921,
+        98020.61420363
+      ],
+      "backfill": [
+        98034.003432278,
+        98034.154536844
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 2.5583494169986807,
+    "stage_overlap_fusion_vlm_s": 1.6550877090048743,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2326.0,
+      "sam3": 6336.0,
+      "vlm": 2638.0,
+      "fusion": 871.0,
+      "backfill": null
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "container",
+        "points": 1331,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          30,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_qwen35_2b_bf16_parallel",
+      "scene": "orbbec",
+      "profile": "qwen35_2b_bf16",
+      "model": "qwen35_2b_bf16",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 118.24237113099662,
+    "peak_gpu_total_mib": 6336.0,
+    "peak_tree_rss_gib": 13.94314193725586,
+    "gpu_monitor_samples": 420,
+    "status": "completed",
+    "pipeline_seconds": 118.0753633090062,
+    "raw_fps": 1.0163000700320266,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/orbbec_qwen35_2b_bf16_parallel/pipeline",
+    "model_id": "qwen35_2b_bf16",
+    "scene": "orbbec",
+    "schedule": "parallel",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 31.13724479499797,
+    "VLM_mean_crop_seconds": 0.23097327302779636,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 5,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 0,
+    "VLM_model_repo": "Qwen/Qwen3.5-2B",
+    "VLM_revision": "15852e8c16360a2fea060d615a32b45270f8a8fc",
+    "stages": {
+      "mapping": [
+        98034.373625176,
+        98058.361327039
+      ],
+      "sam3": [
+        98055.804408406,
+        98120.054025904
+      ],
+      "vlm": [
+        98120.054188608,
+        98152.297317213
+      ],
+      "fusion": [
+        98120.054620595,
+        98121.759633794
+      ],
+      "backfill": [
+        98152.297526662,
+        98152.448753646
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 2.556918633010355,
+    "stage_overlap_fusion_vlm_s": 1.705013199010864,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2326.0,
+      "sam3": 6336.0,
+      "vlm": 5562.0,
+      "fusion": 871.0,
+      "backfill": 871.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "container",
+        "points": 1331,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_qwen35_2b_bf16_parallel",
+      "scene": "scannet0030",
+      "profile": "qwen35_2b_bf16",
+      "model": "qwen35_2b_bf16",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 116.0196753610071,
+    "peak_gpu_total_mib": 6352.0,
+    "peak_tree_rss_gib": 15.87939453125,
+    "gpu_monitor_samples": 412,
+    "status": "completed",
+    "pipeline_seconds": 115.86767886100279,
+    "raw_fps": 1.0356641401607296,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/scannet0030_qwen35_2b_bf16_parallel/pipeline",
+    "model_id": "qwen35_2b_bf16",
+    "scene": "scannet0030",
+    "schedule": "parallel",
+    "map_points": 40669,
+    "instances": 6,
+    "named_instances": 3,
+    "unknown_instances": 3,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.5710246133418574,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 25.08112021999841,
+    "VLM_mean_crop_seconds": 0.2488331091490317,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 7,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 4,
+    "VLM_model_repo": "Qwen/Qwen3.5-2B",
+    "VLM_revision": "15852e8c16360a2fea060d615a32b45270f8a8fc",
+    "stages": {
+      "mapping": [
+        98152.630759983,
+        98176.209209181
+      ],
+      "sam3": [
+        98172.648583217,
+        98242.013718203
+      ],
+      "vlm": [
+        98242.013944604,
+        98268.296616337
+      ],
+      "fusion": [
+        98242.01456417,
+        98245.42633743
+      ],
+      "backfill": [
+        98268.297014044,
+        98268.498214328
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 3.56062596400443,
+    "stage_overlap_fusion_vlm_s": 3.411773260013433,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2328.0,
+      "sam3": 6352.0,
+      "vlm": 5564.0,
+      "fusion": 871.0,
+      "backfill": 871.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 251,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          45,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 7188,
+        "support_frames": [
+          0,
+          10,
+          45,
+          55,
+          70,
+          80,
+          85,
+          90,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4534,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5672,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 262,
+        "support_frames": [
+          20,
+          25,
+          30,
+          40,
+          45
+        ]
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_qwen35_4b_nf4_parallel",
+      "scene": "scannet0030",
+      "profile": "qwen35_4b_nf4",
+      "model": "qwen35_4b_nf4",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 149.0717492650001,
+    "peak_gpu_total_mib": 6352.0,
+    "peak_tree_rss_gib": 13.980293273925781,
+    "gpu_monitor_samples": 531,
+    "status": "completed",
+    "pipeline_seconds": 148.85761771499529,
+    "raw_fps": 0.8061394629447419,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/scannet0030_qwen35_4b_nf4_parallel/pipeline",
+    "model_id": "qwen35_4b_nf4",
+    "scene": "scannet0030",
+    "schedule": "parallel",
+    "map_points": 40669,
+    "instances": 6,
+    "named_instances": 3,
+    "unknown_instances": 3,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.5710246133418574,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 43.76129359100014,
+    "VLM_mean_crop_seconds": 0.3841647776708167,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 7,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 16,
+    "VLM_model_repo": "Qwen/Qwen3.5-4B",
+    "VLM_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "stages": {
+      "mapping": [
+        98268.688875266,
+        98299.918451387
+      ],
+      "sam3": [
+        98296.205671478,
+        98372.203297843
+      ],
+      "vlm": [
+        98372.203526405,
+        98417.295156914
+      ],
+      "fusion": [
+        98372.20427264,
+        98375.113091194
+      ],
+      "backfill": [
+        98417.295315936,
+        98417.546291475
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 3.71277990899398,
+    "stage_overlap_fusion_vlm_s": 2.9088185540022096,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2330.0,
+      "sam3": 6352.0,
+      "vlm": 4502.0,
+      "fusion": 871.0,
+      "backfill": 871.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 251,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          30,
+          60,
+          70,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "recliner chair",
+        "points": 7188,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4534,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5672,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 262,
+        "support_frames": [
+          25,
+          30,
+          35,
+          40
+        ]
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_qwen35_4b_nf4_parallel",
+      "scene": "orbbec",
+      "profile": "qwen35_4b_nf4",
+      "model": "qwen35_4b_nf4",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 125.43565669500094,
+    "peak_gpu_total_mib": 6336.0,
+    "peak_tree_rss_gib": 20.418373107910156,
+    "gpu_monitor_samples": 446,
+    "status": "completed",
+    "pipeline_seconds": 125.23574414500035,
+    "raw_fps": 0.9581928930853933,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/orbbec_qwen35_4b_nf4_parallel/pipeline",
+    "model_id": "qwen35_4b_nf4",
+    "scene": "orbbec",
+    "schedule": "parallel",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 36.47335132599983,
+    "VLM_mean_crop_seconds": 0.3594072573007517,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 7,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 3,
+    "VLM_model_repo": "Qwen/Qwen3.5-4B",
+    "VLM_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "stages": {
+      "mapping": [
+        98417.798411181,
+        98442.529223561
+      ],
+      "sam3": [
+        98439.971529297,
+        98505.320560951
+      ],
+      "vlm": [
+        98505.32078705,
+        98542.882491451
+      ],
+      "fusion": [
+        98505.321605967,
+        98507.930385645
+      ],
+      "backfill": [
+        98542.882716881,
+        98543.033923364
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 2.557694263989106,
+    "stage_overlap_fusion_vlm_s": 2.608779678004794,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2326.0,
+      "sam3": 6336.0,
+      "vlm": 4502.0,
+      "fusion": 871.0,
+      "backfill": 871.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "green metal container",
+        "points": 1331,
+        "support_frames": [
+          5,
+          15,
+          25,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          80,
+          85,
+          90,
+          95
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_qwen25_3b_awq_parallel",
+      "scene": "orbbec",
+      "profile": "qwen25_3b_awq",
+      "model": "qwen25_3b_awq",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 124.45837703500001,
+    "peak_gpu_total_mib": 6336.0,
+    "peak_tree_rss_gib": 13.853416442871094,
+    "gpu_monitor_samples": 444,
+    "status": "completed",
+    "pipeline_seconds": 124.28235995900468,
+    "raw_fps": 0.9655433002687007,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/orbbec_qwen25_3b_awq_parallel/pipeline",
+    "model_id": "qwen25_3b_awq",
+    "scene": "orbbec",
+    "schedule": "parallel",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 34.357157153004664,
+    "VLM_mean_crop_seconds": 0.3129411032568896,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 6,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 20,
+    "VLM_model_repo": "Qwen/Qwen2.5-VL-3B-Instruct-AWQ",
+    "VLM_revision": "e7b623934290c5a4da0ee3c6e1e57bfb6b5abbf2",
+    "stages": {
+      "mapping": [
+        98543.24795454,
+        98569.890463621
+      ],
+      "sam3": [
+        98567.333105262,
+        98631.866323946
+      ],
+      "vlm": [
+        98631.86655938,
+        98667.378275638
+      ],
+      "fusion": [
+        98631.867373316,
+        98633.62315397
+      ],
+      "backfill": [
+        98667.378868746,
+        98667.530098524
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 2.5573583590012277,
+    "stage_overlap_fusion_vlm_s": 1.7557806539989542,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2326.0,
+      "sam3": 6336.0,
+      "vlm": 4550.0,
+      "fusion": 871.0,
+      "backfill": 871.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "green container",
+        "points": 1331,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          105,
+          115
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_qwen25_3b_awq_parallel",
+      "scene": "scannet0030",
+      "profile": "qwen25_3b_awq",
+      "model": "qwen25_3b_awq",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 116.94809787799022,
+    "peak_gpu_total_mib": 6352.0,
+    "peak_tree_rss_gib": 13.832221984863281,
+    "gpu_monitor_samples": 417,
+    "status": "completed",
+    "pipeline_seconds": 116.4196069430036,
+    "raw_fps": 1.0307542101456268,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/scannet0030_qwen25_3b_awq_parallel/pipeline",
+    "model_id": "qwen25_3b_awq",
+    "scene": "scannet0030",
+    "schedule": "parallel",
+    "map_points": 40668,
+    "instances": 6,
+    "named_instances": 1,
+    "unknown_instances": 5,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 2,
+    "semantic_coverage": 0.5709157076817154,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 25.459220864999224,
+    "VLM_mean_crop_seconds": 0.2940786082074724,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 5,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 39,
+    "VLM_model_repo": "Qwen/Qwen2.5-VL-3B-Instruct-AWQ",
+    "VLM_revision": "e7b623934290c5a4da0ee3c6e1e57bfb6b5abbf2",
+    "stages": {
+      "mapping": [
+        98668.056074516,
+        98692.34543138
+      ],
+      "sam3": [
+        98688.684558295,
+        98757.587926118
+      ],
+      "vlm": [
+        98757.58810414,
+        98784.223657597
+      ],
+      "fusion": [
+        98757.588575711,
+        98760.048290859
+      ],
+      "backfill": [
+        98784.224090531,
+        98784.475423337
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 3.6608730849984568,
+    "stage_overlap_fusion_vlm_s": 2.4597151480120374,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2330.0,
+      "sam3": 6352.0,
+      "vlm": 4554.0,
+      "fusion": 871.0,
+      "backfill": 871.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "unknown",
+        "points": 251,
+        "support_frames": []
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "recliner chair",
+        "points": 7187,
+        "support_frames": [
+          0,
+          5,
+          15,
+          40,
+          45,
+          65,
+          90,
+          95
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4530,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5671,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5111,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "unknown",
+        "points": 262,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_minicpmv46_bf16_16x_parallel",
+      "scene": "scannet0030",
+      "profile": "minicpmv46_bf16_16x",
+      "model": "minicpmv46_bf16_16x",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 116.39022891200148,
+    "peak_gpu_total_mib": 6352.0,
+    "peak_tree_rss_gib": 15.219921112060547,
+    "gpu_monitor_samples": 414,
+    "status": "completed",
+    "pipeline_seconds": 116.1957344859984,
+    "raw_fps": 1.032740147741482,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/scannet0030_minicpmv46_bf16_16x_parallel/pipeline",
+    "model_id": "minicpmv46_bf16_16x",
+    "scene": "scannet0030",
+    "schedule": "parallel",
+    "map_points": 40669,
+    "instances": 6,
+    "named_instances": 2,
+    "unknown_instances": 4,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 1,
+    "semantic_coverage": 0.5710246133418574,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 25.989851656995597,
+    "VLM_mean_crop_seconds": 0.2179185463881829,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 7,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 0,
+    "VLM_model_repo": "openbmb/MiniCPM-V-4.6",
+    "VLM_revision": "36f34a661a4bd35d0dc2294cb044d2584646c7d3",
+    "stages": {
+      "mapping": [
+        98784.714884471,
+        98808.399103822
+      ],
+      "sam3": [
+        98804.738478014,
+        98873.61350029
+      ],
+      "vlm": [
+        98873.613746181,
+        98900.70872103
+      ],
+      "fusion": [
+        98873.614605575,
+        98876.072728025
+      ],
+      "backfill": [
+        98900.70893794,
+        98900.910379335
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 3.6606258079991676,
+    "stage_overlap_fusion_vlm_s": 2.4581224499997916,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2330.0,
+      "sam3": 6352.0,
+      "vlm": 3806.0,
+      "fusion": 871.0,
+      "backfill": 871.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair backrest",
+        "points": 251,
+        "support_frames": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          70,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "recliner chair",
+        "points": 7188,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4534,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5672,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "unknown",
+        "points": 262,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_minicpmv46_bf16_16x_parallel",
+      "scene": "orbbec",
+      "profile": "minicpmv46_bf16_16x",
+      "model": "minicpmv46_bf16_16x",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 107.77506451800582,
+    "peak_gpu_total_mib": 6336.0,
+    "peak_tree_rss_gib": 13.919692993164062,
+    "gpu_monitor_samples": 384,
+    "status": "completed",
+    "pipeline_seconds": 107.59086618300353,
+    "raw_fps": 1.1153363129904497,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/orbbec_minicpmv46_bf16_16x_parallel/pipeline",
+    "model_id": "minicpmv46_bf16_16x",
+    "scene": "orbbec",
+    "schedule": "parallel",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 20.562554042000556,
+    "VLM_mean_crop_seconds": 0.19517454768543496,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 6,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 1,
+    "VLM_model_repo": "openbmb/MiniCPM-V-4.6",
+    "VLM_revision": "36f34a661a4bd35d0dc2294cb044d2584646c7d3",
+    "stages": {
+      "mapping": [
+        98901.117279991,
+        98925.145170588
+      ],
+      "sam3": [
+        98922.537226418,
+        98986.788316697
+      ],
+      "vlm": [
+        98986.788465135,
+        99008.556695345
+      ],
+      "fusion": [
+        98986.788980478,
+        98988.444815938
+      ],
+      "backfill": [
+        99008.55692719,
+        99008.707928986
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 2.607944169998518,
+    "stage_overlap_fusion_vlm_s": 1.6558354599983431,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2328.0,
+      "sam3": 6336.0,
+      "vlm": 3806.0,
+      "fusion": 871.0,
+      "backfill": 871.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "container door",
+        "points": 1331,
+        "support_frames": [
+          0,
+          5,
+          10,
+          30,
+          35,
+          40,
+          50,
+          55,
+          65,
+          75,
+          80,
+          95,
+          100
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_minicpmv4_nf4_parallel",
+      "scene": "orbbec",
+      "profile": "minicpmv4_nf4",
+      "model": "minicpmv4_nf4",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 140.61235896901053,
+    "peak_gpu_total_mib": 6336.0,
+    "peak_tree_rss_gib": 17.565563201904297,
+    "gpu_monitor_samples": 500,
+    "status": "completed",
+    "pipeline_seconds": 140.4081316160009,
+    "raw_fps": 0.854651355437058,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/orbbec_minicpmv4_nf4_parallel/pipeline",
+    "model_id": "minicpmv4_nf4",
+    "scene": "orbbec",
+    "schedule": "parallel",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 53.4993078999978,
+    "VLM_mean_crop_seconds": 0.4141541397722904,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 0,
+    "max_output_tokens_observed": null,
+    "requests_at_or_above_24_token_limit": null,
+    "unknown_crop_labels": 0,
+    "VLM_model_repo": "openbmb/MiniCPM-V-4",
+    "VLM_revision": "6f69a8235885be89608f3a71ffd40695b379e1e7",
+    "stages": {
+      "mapping": [
+        99008.930161182,
+        99033.015108561
+      ],
+      "sam3": [
+        99030.458158853,
+        99094.656271561
+      ],
+      "vlm": [
+        99094.656431454,
+        99149.186480068
+      ],
+      "fusion": [
+        99094.656984075,
+        99096.312627842
+      ],
+      "backfill": [
+        99149.186699073,
+        99149.338054359
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 2.5569497079995926,
+    "stage_overlap_fusion_vlm_s": 1.6556437669933075,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2326.0,
+      "sam3": 6336.0,
+      "vlm": 4410.0,
+      "fusion": 871.0,
+      "backfill": 871.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "storage container door",
+        "points": 1331,
+        "support_frames": [
+          5,
+          10,
+          25,
+          35,
+          40,
+          45,
+          65,
+          70,
+          80,
+          100,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_minicpmv4_nf4_parallel",
+      "scene": "scannet0030",
+      "profile": "minicpmv4_nf4",
+      "model": "minicpmv4_nf4",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 131.13899393301108,
+    "peak_gpu_total_mib": 6352.0,
+    "peak_tree_rss_gib": 17.33218002319336,
+    "gpu_monitor_samples": 467,
+    "status": "completed",
+    "pipeline_seconds": 130.9598986320052,
+    "raw_fps": 0.9163110330223887,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/scannet0030_minicpmv4_nf4_parallel/pipeline",
+    "model_id": "minicpmv4_nf4",
+    "scene": "scannet0030",
+    "schedule": "parallel",
+    "map_points": 40669,
+    "instances": 6,
+    "named_instances": 2,
+    "unknown_instances": 4,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 1,
+    "semantic_coverage": 0.5710246133418574,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 41.07704982098949,
+    "VLM_mean_crop_seconds": 0.44572152022499095,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 0,
+    "max_output_tokens_observed": null,
+    "requests_at_or_above_24_token_limit": null,
+    "unknown_crop_labels": 0,
+    "VLM_model_repo": "openbmb/MiniCPM-V-4",
+    "VLM_revision": "6f69a8235885be89608f3a71ffd40695b379e1e7",
+    "stages": {
+      "mapping": [
+        99149.543205761,
+        99173.267526558
+      ],
+      "sam3": [
+        99169.706341669,
+        99238.168088533
+      ],
+      "vlm": [
+        99238.168314705,
+        99280.251471525
+      ],
+      "fusion": [
+        99238.168977206,
+        99240.577187326
+      ],
+      "backfill": [
+        99280.251631681,
+        99280.50288221
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 3.5611848889966495,
+    "stage_overlap_fusion_vlm_s": 2.408210119989235,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2328.0,
+      "sam3": 6352.0,
+      "vlm": 4410.0,
+      "fusion": 871.0,
+      "backfill": null
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "couch cushion",
+        "points": 251,
+        "support_frames": [
+          0,
+          20,
+          25,
+          30,
+          45,
+          55,
+          75,
+          90
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "leather recliner chair",
+        "points": 7188,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          70,
+          85,
+          90,
+          100,
+          105,
+          110,
+          115
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4534,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5672,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "unknown",
+        "points": 262,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_internvl35_1b_bf16_parallel",
+      "scene": "scannet0030",
+      "profile": "internvl35_1b_bf16",
+      "model": "internvl35_1b_bf16",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 121.8412792050076,
+    "peak_gpu_total_mib": 6352.0,
+    "peak_tree_rss_gib": 7.276981353759766,
+    "gpu_monitor_samples": 434,
+    "status": "completed",
+    "pipeline_seconds": 121.68335937600932,
+    "raw_fps": 0.9861660675326391,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/scannet0030_internvl35_1b_bf16_parallel/pipeline",
+    "model_id": "internvl35_1b_bf16",
+    "scene": "scannet0030",
+    "schedule": "parallel",
+    "map_points": 40669,
+    "instances": 6,
+    "named_instances": 3,
+    "unknown_instances": 3,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.5710246133418574,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 31.866142576996936,
+    "VLM_mean_crop_seconds": 0.3527826395078211,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 4,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 6,
+    "VLM_model_repo": "OpenGVLab/InternVL3_5-1B-HF",
+    "VLM_revision": "9191dbccf312b537016f041b25d61c72e7c5c9f3",
+    "stages": {
+      "mapping": [
+        99280.723823839,
+        99304.654017717
+      ],
+      "sam3": [
+        99301.093611234,
+        99369.652230907
+      ],
+      "vlm": [
+        99369.652459304,
+        99402.20534334
+      ],
+      "fusion": [
+        99369.653128959,
+        99372.060292507
+      ],
+      "backfill": [
+        99402.205591559,
+        99402.406942787
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 3.5604064829967683,
+    "stage_overlap_fusion_vlm_s": 2.4071635479922406,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2330.0,
+      "sam3": 6352.0,
+      "vlm": 3654.0,
+      "fusion": 871.0,
+      "backfill": 871.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 251,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          30,
+          60,
+          65,
+          75,
+          80,
+          85,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 7188,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4534,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5672,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 262,
+        "support_frames": [
+          30,
+          40
+        ]
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_internvl35_1b_bf16_parallel",
+      "scene": "orbbec",
+      "profile": "internvl35_1b_bf16",
+      "model": "internvl35_1b_bf16",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 115.6857127980038,
+    "peak_gpu_total_mib": 6336.0,
+    "peak_tree_rss_gib": 7.312961578369141,
+    "gpu_monitor_samples": 412,
+    "status": "completed",
+    "pipeline_seconds": 115.53070862099412,
+    "raw_fps": 1.0386848780930418,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/orbbec_internvl35_1b_bf16_parallel/pipeline",
+    "model_id": "internvl35_1b_bf16",
+    "scene": "orbbec",
+    "schedule": "parallel",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 28.25895027400111,
+    "VLM_mean_crop_seconds": 0.33948259904323747,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 3,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 5,
+    "VLM_model_repo": "OpenGVLab/InternVL3_5-1B-HF",
+    "VLM_revision": "9191dbccf312b537016f041b25d61c72e7c5c9f3",
+    "stages": {
+      "mapping": [
+        99402.586780881,
+        99427.078395388
+      ],
+      "sam3": [
+        99424.419499678,
+        99489.017825562
+      ],
+      "vlm": [
+        99489.018072434,
+        99517.966059552
+      ],
+      "fusion": [
+        99489.018988633,
+        99490.778504108
+      ],
+      "backfill": [
+        99517.966206207,
+        99518.117245943
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 2.65889571000298,
+    "stage_overlap_fusion_vlm_s": 1.7595154750015354,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2326.0,
+      "sam3": 6336.0,
+      "vlm": 3652.0,
+      "fusion": 871.0,
+      "backfill": null
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "boxed",
+        "points": 1331,
+        "support_frames": [
+          5,
+          15,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_internvl35_2b_bf16_parallel",
+      "scene": "orbbec",
+      "profile": "internvl35_2b_bf16",
+      "model": "internvl35_2b_bf16",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 137.85736270398775,
+    "peak_gpu_total_mib": 6336.0,
+    "peak_tree_rss_gib": 7.279857635498047,
+    "gpu_monitor_samples": 492,
+    "status": "completed",
+    "pipeline_seconds": 137.70093930100848,
+    "raw_fps": 0.871453750491019,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/orbbec_internvl35_2b_bf16_parallel/pipeline",
+    "model_id": "internvl35_2b_bf16",
+    "scene": "orbbec",
+    "schedule": "parallel",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 50.74377796599583,
+    "VLM_mean_crop_seconds": 0.4889447988713593,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 4,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 1,
+    "VLM_model_repo": "OpenGVLab/InternVL3_5-2B-HF",
+    "VLM_revision": "3f301ffcf3dcbb47893afae6650ea3e78d96fb6d",
+    "stages": {
+      "mapping": [
+        99518.28731197,
+        99542.629287793
+      ],
+      "sam3": [
+        99540.122553043,
+        99604.37330384
+      ],
+      "vlm": [
+        99604.373535719,
+        99655.836760226
+      ],
+      "fusion": [
+        99604.374244435,
+        99606.029287765
+      ],
+      "backfill": [
+        99655.836971698,
+        99655.987982846
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 2.50673475000076,
+    "stage_overlap_fusion_vlm_s": 1.6550433299998986,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2326.0,
+      "sam3": 6336.0,
+      "vlm": 6208.0,
+      "fusion": 871.0,
+      "backfill": 871.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "storage locker",
+        "points": 1331,
+        "support_frames": [
+          10,
+          35,
+          40,
+          45,
+          60,
+          65,
+          70,
+          75,
+          85
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_internvl35_2b_bf16_parallel",
+      "scene": "scannet0030",
+      "profile": "internvl35_2b_bf16",
+      "model": "internvl35_2b_bf16",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 131.56253140199988,
+    "peak_gpu_total_mib": 6352.0,
+    "peak_tree_rss_gib": 7.312946319580078,
+    "gpu_monitor_samples": 469,
+    "status": "completed",
+    "pipeline_seconds": 131.420090168991,
+    "raw_fps": 0.9131024019668066,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/scannet0030_internvl35_2b_bf16_parallel/pipeline",
+    "model_id": "internvl35_2b_bf16",
+    "scene": "scannet0030",
+    "schedule": "parallel",
+    "map_points": 40669,
+    "instances": 6,
+    "named_instances": 3,
+    "unknown_instances": 3,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.5710246133418574,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 41.50036296200415,
+    "VLM_mean_crop_seconds": 0.5258951514929797,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 5,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 1,
+    "VLM_model_repo": "OpenGVLab/InternVL3_5-2B-HF",
+    "VLM_revision": "3f301ffcf3dcbb47893afae6650ea3e78d96fb6d",
+    "stages": {
+      "mapping": [
+        99656.192719792,
+        99680.121356673
+      ],
+      "sam3": [
+        99676.511670652,
+        99745.227521208
+      ],
+      "vlm": [
+        99745.227735512,
+        99787.41126001
+      ],
+      "fusion": [
+        99745.228376561,
+        99747.786946278
+      ],
+      "backfill": [
+        99787.411473098,
+        99787.612567507
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 3.609686020994559,
+    "stage_overlap_fusion_vlm_s": 2.5585697170026833,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2330.0,
+      "sam3": 6352.0,
+      "vlm": 6236.0,
+      "fusion": 871.0,
+      "backfill": 871.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 251,
+        "support_frames": [
+          15,
+          20,
+          30,
+          65,
+          75,
+          85,
+          90,
+          95,
+          100,
+          115
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "leather recliner",
+        "points": 7188,
+        "support_frames": [
+          0,
+          5,
+          10,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          75,
+          95,
+          105
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4534,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5672,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 262,
+        "support_frames": [
+          30,
+          35,
+          40,
+          45
+        ]
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_smolvlm2_500m_bf16_parallel",
+      "scene": "orbbec",
+      "profile": "smolvlm2_500m_bf16",
+      "model": "smolvlm2_500m_bf16",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 118.11743233300513,
+    "peak_gpu_total_mib": 6336.0,
+    "peak_tree_rss_gib": 7.1896820068359375,
+    "gpu_monitor_samples": 421,
+    "status": "completed",
+    "pipeline_seconds": 117.9368361759989,
+    "raw_fps": 1.0174938033857566,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/orbbec_smolvlm2_500m_bf16_parallel/pipeline",
+    "model_id": "smolvlm2_500m_bf16",
+    "scene": "orbbec",
+    "schedule": "parallel",
+    "map_points": 7488,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8154380341880342,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 31.018304408993572,
+    "VLM_mean_crop_seconds": 0.335991305657704,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 6,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 0,
+    "VLM_model_repo": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+    "VLM_revision": "7b375e1b73b11138ff12fe22c8f2822d8fe03467",
+    "stages": {
+      "mapping": [
+        99787.947638065,
+        99812.23772565
+      ],
+      "sam3": [
+        99809.679335918,
+        99873.981609275
+      ],
+      "vlm": [
+        99873.981855251,
+        99905.732868765
+      ],
+      "fusion": [
+        99873.983167415,
+        99875.688207995
+      ],
+      "backfill": [
+        99905.733091908,
+        99905.884230932
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 2.558389732002979,
+    "stage_overlap_fusion_vlm_s": 1.705040579996421,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2330.0,
+      "sam3": 6336.0,
+      "vlm": 2672.0,
+      "fusion": 871.0,
+      "backfill": 870.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "lock",
+        "points": 1331,
+        "support_frames": [
+          5,
+          10,
+          40,
+          50,
+          55,
+          60,
+          85,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1809,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_smolvlm2_22b_bf16_parallel",
+      "scene": "orbbec",
+      "profile": "smolvlm2_22b_bf16",
+      "model": "smolvlm2_22b_bf16",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 169.47538386299857,
+    "peak_gpu_total_mib": 6335.0,
+    "peak_tree_rss_gib": 9.353031158447266,
+    "gpu_monitor_samples": 604,
+    "status": "completed",
+    "pipeline_seconds": 169.2985723800084,
+    "raw_fps": 0.7088069220728419,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/orbbec_smolvlm2_22b_bf16_parallel/pipeline",
+    "model_id": "smolvlm2_22b_bf16",
+    "scene": "orbbec",
+    "schedule": "parallel",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8154133831975424,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 82.45297655499598,
+    "VLM_mean_crop_seconds": 0.714719310757729,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 3,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 0,
+    "VLM_model_repo": "HuggingFaceTB/SmolVLM2-2.2B-Instruct",
+    "VLM_revision": "482adb537c021c86670beed01cd58990d01e72e4",
+    "stages": {
+      "mapping": [
+        99906.081910687,
+        99930.514119836
+      ],
+      "sam3": [
+        99927.805589416,
+        99992.057176397
+      ],
+      "vlm": [
+        99992.057409429,
+        100075.22873398
+      ],
+      "fusion": [
+        99992.058027272,
+        99993.714620214
+      ],
+      "backfill": [
+        100075.228983899,
+        100075.38023821
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 2.7085304200008977,
+    "stage_overlap_fusion_vlm_s": 1.6565929420030443,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2325.0,
+      "sam3": 6335.0,
+      "vlm": 5787.0,
+      "fusion": 870.0,
+      "backfill": null
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "container",
+        "points": 1331,
+        "support_frames": [
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          55,
+          60,
+          65,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_smolvlm2_22b_bf16_parallel",
+      "scene": "scannet0030",
+      "profile": "smolvlm2_22b_bf16",
+      "model": "smolvlm2_22b_bf16",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 155.52715730199998,
+    "peak_gpu_total_mib": 6351.0,
+    "peak_tree_rss_gib": 7.399101257324219,
+    "gpu_monitor_samples": 554,
+    "status": "completed",
+    "pipeline_seconds": 155.39125558998785,
+    "raw_fps": 0.7722442266418743,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/scannet0030_smolvlm2_22b_bf16_parallel/pipeline",
+    "model_id": "smolvlm2_22b_bf16",
+    "scene": "scannet0030",
+    "schedule": "parallel",
+    "map_points": 40669,
+    "instances": 6,
+    "named_instances": 2,
+    "unknown_instances": 4,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 1,
+    "semantic_coverage": 0.5710246133418574,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 65.53019887600385,
+    "VLM_mean_crop_seconds": 0.8016318789248462,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 3,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 0,
+    "VLM_model_repo": "HuggingFaceTB/SmolVLM2-2.2B-Instruct",
+    "VLM_revision": "482adb537c021c86670beed01cd58990d01e72e4",
+    "stages": {
+      "mapping": [
+        100075.598316857,
+        100099.272688576
+      ],
+      "sam3": [
+        100095.762499889,
+        100164.47018872
+      ],
+      "vlm": [
+        100164.47036443,
+        100230.73633734
+      ],
+      "fusion": [
+        100164.471334007,
+        100166.879232506
+      ],
+      "backfill": [
+        100230.7365014,
+        100230.989343259
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 3.510188687010668,
+    "stage_overlap_fusion_vlm_s": 2.4078984990046592,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2329.0,
+      "sam3": 6351.0,
+      "vlm": 5787.0,
+      "fusion": 870.0,
+      "backfill": 870.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "unknown",
+        "points": 251,
+        "support_frames": []
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 7188,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4534,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5672,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 262,
+        "support_frames": [
+          25,
+          35,
+          40
+        ]
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_joy_nf4_parallel",
+      "scene": "orbbec",
+      "profile": "joy_nf4",
+      "model": "joy_nf4",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 159.29466400099045,
+    "peak_gpu_total_mib": 7335.0,
+    "peak_tree_rss_gib": 28.525554656982422,
+    "gpu_monitor_samples": 566,
+    "status": "completed",
+    "pipeline_seconds": 159.07908209999732,
+    "raw_fps": 0.7543417928736089,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/orbbec_joy_nf4_parallel/pipeline",
+    "model_id": "joy_nf4",
+    "scene": "orbbec",
+    "schedule": "parallel",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 69.78750197299814,
+    "VLM_mean_crop_seconds": 0.3176831477003621,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 4,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 1,
+    "VLM_model_repo": "jdopensource/JoyAI-VL-Interaction",
+    "VLM_revision": "86124c620faddd7be7b7f2722f29cd5192f21c38",
+    "stages": {
+      "mapping": [
+        100496.129956589,
+        100521.978290502
+      ],
+      "sam3": [
+        100519.370714971,
+        100583.831532923
+      ],
+      "vlm": [
+        100583.831689879,
+        100654.706826387
+      ],
+      "fusion": [
+        100583.832119926,
+        100585.53784536
+      ],
+      "backfill": [
+        100654.706993089,
+        100655.208843921
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 2.6075755310012028,
+    "stage_overlap_fusion_vlm_s": 1.7057254340033978,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2327.0,
+      "sam3": 6335.0,
+      "vlm": 7335.0,
+      "fusion": 870.0,
+      "backfill": 870.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "metal cabinet",
+        "points": 1331,
+        "support_frames": [
+          5,
+          35,
+          45,
+          50,
+          60,
+          70,
+          75,
+          85,
+          90,
+          95,
+          115
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_joy_nf4_parallel",
+      "scene": "scannet0030",
+      "profile": "joy_nf4",
+      "model": "joy_nf4",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 132.55340070399689,
+    "peak_gpu_total_mib": 7335.0,
+    "peak_tree_rss_gib": 28.68425750732422,
+    "gpu_monitor_samples": 472,
+    "status": "completed",
+    "pipeline_seconds": 132.36447640499682,
+    "raw_fps": 0.906587652965399,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/small_models_parallel_extension_20260915_v1/runs/scannet0030_joy_nf4_parallel/pipeline",
+    "model_id": "joy_nf4",
+    "scene": "scannet0030",
+    "schedule": "parallel",
+    "map_points": 40669,
+    "instances": 6,
+    "named_instances": 3,
+    "unknown_instances": 3,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.5710246133418574,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 41.343760278992704,
+    "VLM_mean_crop_seconds": 0.3036522877025991,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 4,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 5,
+    "VLM_model_repo": "jdopensource/JoyAI-VL-Interaction",
+    "VLM_revision": "86124c620faddd7be7b7f2722f29cd5192f21c38",
+    "stages": {
+      "mapping": [
+        100655.460930256,
+        100679.641715125
+      ],
+      "sam3": [
+        100676.030500851,
+        100745.1905811
+      ],
+      "vlm": [
+        100745.19076265,
+        100787.623578676
+      ],
+      "fusion": [
+        100745.191751226,
+        100747.79857325
+      ],
+      "backfill": [
+        100787.623787967,
+        100787.825165359
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 3.6112142740021227,
+    "stage_overlap_fusion_vlm_s": 2.6068220239976654,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2327.0,
+      "sam3": 6351.0,
+      "vlm": 7335.0,
+      "fusion": 870.0,
+      "backfill": 870.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 251,
+        "support_frames": [
+          0,
+          5,
+          20,
+          25,
+          30,
+          35,
+          45,
+          55,
+          60,
+          65,
+          70,
+          75,
+          85,
+          90,
+          95,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "recliner",
+        "points": 7188,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          45,
+          50,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4534,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5672,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 262,
+        "support_frames": [
+          25,
+          30,
+          35,
+          40,
+          45
+        ]
+      }
+    ],
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "orbbec_mage_nf4_repaired_parallel",
+      "scene": "orbbec",
+      "profile": "mage_nf4",
+      "model": "mage_nf4",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/orbbec.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 112.57457255398913,
+    "peak_gpu_total_mib": 6335.0,
+    "peak_tree_rss_gib": 21.304534912109375,
+    "gpu_monitor_samples": 400,
+    "status": "completed",
+    "pipeline_seconds": 112.40157029499824,
+    "raw_fps": 1.0676007433442403,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/mage_image_input_repair_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/mage_image_input_repair_20260915_v1/runs/orbbec_mage_nf4_repaired_parallel/pipeline",
+    "model_id": "mage_nf4",
+    "scene": "orbbec",
+    "schedule": "parallel",
+    "map_points": 7487,
+    "instances": 3,
+    "named_instances": 1,
+    "unknown_instances": 2,
+    "unknown_instances_with_predicted_floor_or_wall": 2,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.8152798183518098,
+    "selected_frames": 25,
+    "VLM_crops": 70,
+    "VLM_crops_executed": 70,
+    "VLM_seconds_including_load": 24.864617193001322,
+    "VLM_mean_crop_seconds": 0.18487749147087534,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 70,
+    "max_output_tokens_observed": 3,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 11,
+    "VLM_model_repo": "microsoft/Mage-VL",
+    "VLM_revision": "d88b153285f1633a61b2f693c59c8576693af185",
+    "stages": {
+      "mapping": [
+        101315.365439974,
+        101339.597350356
+      ],
+      "sam3": [
+        101337.040327204,
+        101401.481910153
+      ],
+      "vlm": [
+        101401.482478152,
+        101427.614871132
+      ],
+      "fusion": [
+        101401.482992148,
+        101405.04332242
+      ],
+      "backfill": [
+        101427.615472244,
+        101427.766764212
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 2.5570231519959634,
+    "stage_overlap_fusion_vlm_s": 3.5603302719973726,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2327.0,
+      "sam3": 6335.0,
+      "vlm": 4671.0,
+      "fusion": 870.0,
+      "backfill": 870.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 9,
+        "sam3_semantic_name": "door",
+        "vlm_name": "door",
+        "points": 1331,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          35,
+          40,
+          45,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 1808,
+        "support_frames": []
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 540,
+        "support_frames": []
+      }
+    ],
+    "Mage_all_image_inputs_verified": true,
+    "adapter_repair": "explicit image processor invocation; same model weights and inference settings",
+    "visual_benchmark_valid": true
+  },
+  {
+    "job": {
+      "id": "scannet0030_mage_nf4_repaired_parallel",
+      "scene": "scannet0030",
+      "profile": "mage_nf4",
+      "model": "mage_nf4",
+      "schedule": "parallel",
+      "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/model_scale_deployment_20260915_v1/pipeline/inputs/scannet0030.json",
+      "frames": 120,
+      "stride": 5
+    },
+    "returncode": 0,
+    "wall_seconds_including_input_hashing": 114.29626090900274,
+    "peak_gpu_total_mib": 6349.0,
+    "peak_tree_rss_gib": 20.465518951416016,
+    "gpu_monitor_samples": 407,
+    "status": "completed",
+    "pipeline_seconds": 114.1253353869979,
+    "raw_fps": 1.0514755517964627,
+    "root": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/mage_image_input_repair_20260915_v1",
+    "pipeline": "/Users/wu/Desktop/wu/SGF-SGA/comparisons/mage_image_input_repair_20260915_v1/runs/scannet0030_mage_nf4_repaired_parallel/pipeline",
+    "model_id": "mage_nf4",
+    "scene": "scannet0030",
+    "schedule": "parallel",
+    "map_points": 40669,
+    "instances": 6,
+    "named_instances": 3,
+    "unknown_instances": 3,
+    "unknown_instances_with_predicted_floor_or_wall": 3,
+    "nonstructural_unknown_instances": 0,
+    "semantic_coverage": 0.5710246133418574,
+    "selected_frames": 25,
+    "VLM_crops": 67,
+    "VLM_crops_executed": 67,
+    "VLM_seconds_including_load": 24.189971462008543,
+    "VLM_mean_crop_seconds": 0.17820551510445892,
+    "invalid_crop_labels": 0,
+    "reported_output_token_counts": 67,
+    "max_output_tokens_observed": 2,
+    "requests_at_or_above_24_token_limit": 0,
+    "unknown_crop_labels": 22,
+    "VLM_model_repo": "microsoft/Mage-VL",
+    "VLM_revision": "d88b153285f1633a61b2f693c59c8576693af185",
+    "stages": {
+      "mapping": [
+        101139.799440374,
+        101163.37627197
+      ],
+      "sam3": [
+        101159.766320486,
+        101228.437197055
+      ],
+      "vlm": [
+        101228.437449242,
+        101253.672915072
+      ],
+      "fusion": [
+        101228.438296463,
+        101231.197726899
+      ],
+      "backfill": [
+        101253.673136209,
+        101253.924525869
+      ]
+    },
+    "stage_overlap_mapping_sam3_s": 3.609951484002522,
+    "stage_overlap_fusion_vlm_s": 2.759430435995455,
+    "frame_processing_overlap_with_mapping_s": 0.0,
+    "naming_requests_overlap_with_fusion_s": 0.0,
+    "overlap_scope": "process intervals and request/frame bounds; not a CUDA kernel trace",
+    "stage_gpu_total_peaks_mib": {
+      "mapping": 2311.0,
+      "sam3": 6349.0,
+      "vlm": 4671.0,
+      "fusion": 870.0,
+      "backfill": 870.0
+    },
+    "model_cuda_verified": true,
+    "cuda_evidence": {
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      }
+    },
+    "GT_used": false,
+    "identity_fallback": false,
+    "PLY_labels_xyz_readback_exact": true,
+    "VLM_after_SAM3_exit": true,
+    "names": [
+      {
+        "instance_id": 1,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 251,
+        "support_frames": [
+          10,
+          15,
+          20,
+          70,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 2,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 7188,
+        "support_frames": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100,
+          105,
+          110,
+          115,
+          119
+        ]
+      },
+      {
+        "instance_id": 3,
+        "sam3_semantic_id": 10,
+        "sam3_semantic_name": "floor",
+        "vlm_name": "unknown",
+        "points": 4534,
+        "support_frames": []
+      },
+      {
+        "instance_id": 4,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5672,
+        "support_frames": []
+      },
+      {
+        "instance_id": 5,
+        "sam3_semantic_id": 19,
+        "sam3_semantic_name": "wall",
+        "vlm_name": "unknown",
+        "points": 5110,
+        "support_frames": []
+      },
+      {
+        "instance_id": 6,
+        "sam3_semantic_id": 5,
+        "sam3_semantic_name": "chair",
+        "vlm_name": "chair",
+        "points": 262,
+        "support_frames": [
+          30,
+          35,
+          40
+        ]
+      }
+    ],
+    "Mage_all_image_inputs_verified": true,
+    "adapter_repair": "explicit image processor invocation; same model weights and inference settings",
+    "visual_benchmark_valid": true
+  }
+]

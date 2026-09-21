@@ -1,0 +1,139 @@
+{
+  "methods": {
+    "sgf": {
+      "map_points": 462705,
+      "eligible_GT": 185436,
+      "geometry_coverage": 0.9151405336612093,
+      "known_coverage_all_classes": 0.673067796975776,
+      "known_coverage_common20": 0.673067796975776,
+      "correct_coverage_common20": 0.5213874328609331,
+      "conditional_accuracy_all_labels": 0.7746432606100424,
+      "conditional_accuracy_common20_labels": 0.7746432606100424,
+      "novel_label_GT_points": 0,
+      "per_class": {
+        "bookshelf": {
+          "GT_points": 32100,
+          "correct": 4015,
+          "false_positive": 0,
+          "recall": 0.1250778816199377,
+          "iou_fixed_eligible": 0.1250778816199377
+        },
+        "chair": {
+          "GT_points": 26848,
+          "correct": 6648,
+          "false_positive": 1128,
+          "recall": 0.24761620977353993,
+          "iou_fixed_eligible": 0.2376322562196168
+        },
+        "door": {
+          "GT_points": 6390,
+          "correct": 0,
+          "false_positive": 0,
+          "recall": 0.0,
+          "iou_fixed_eligible": 0.0
+        },
+        "floor": {
+          "GT_points": 50496,
+          "correct": 43343,
+          "false_positive": 1099,
+          "recall": 0.8583452154626109,
+          "iou_fixed_eligible": 0.8400620215137126
+        },
+        "table": {
+          "GT_points": 22124,
+          "correct": 14143,
+          "false_positive": 1582,
+          "recall": 0.6392605315494485,
+          "iou_fixed_eligible": 0.5966000168733654
+        },
+        "wall": {
+          "GT_points": 35128,
+          "correct": 25254,
+          "false_positive": 9747,
+          "recall": 0.7189136870872239,
+          "iou_fixed_eligible": 0.5627632311977716
+        },
+        "window": {
+          "GT_points": 12350,
+          "correct": 3281,
+          "false_positive": 26,
+          "recall": 0.265668016194332,
+          "iou_fixed_eligible": 0.2651098901098901
+        }
+      }
+    },
+    "sam3": {
+      "map_points": 462705,
+      "eligible_GT": 185436,
+      "geometry_coverage": 0.9151405336612093,
+      "known_coverage_all_classes": 0.8473273797968032,
+      "known_coverage_common20": 0.8416380853771651,
+      "correct_coverage_common20": 0.7647652020103971,
+      "conditional_accuracy_all_labels": 0.9025616547334925,
+      "conditional_accuracy_common20_labels": 0.9086627795220094,
+      "novel_label_GT_points": 1055,
+      "per_class": {
+        "bookshelf": {
+          "GT_points": 32100,
+          "correct": 18817,
+          "false_positive": 988,
+          "recall": 0.5861993769470405,
+          "iou_fixed_eligible": 0.5686955996131529
+        },
+        "chair": {
+          "GT_points": 26848,
+          "correct": 20415,
+          "false_positive": 6012,
+          "recall": 0.7603918355184743,
+          "iou_fixed_eligible": 0.6212720632988435
+        },
+        "door": {
+          "GT_points": 6390,
+          "correct": 5038,
+          "false_positive": 14,
+          "recall": 0.7884194053208138,
+          "iou_fixed_eligible": 0.7866958151155528
+        },
+        "floor": {
+          "GT_points": 50496,
+          "correct": 45444,
+          "false_positive": 2172,
+          "recall": 0.8999524714828897,
+          "iou_fixed_eligible": 0.8628389154704944
+        },
+        "table": {
+          "GT_points": 22124,
+          "correct": 14178,
+          "false_positive": 747,
+          "recall": 0.640842523955885,
+          "iou_fixed_eligible": 0.6199116785448822
+        },
+        "wall": {
+          "GT_points": 35128,
+          "correct": 28756,
+          "false_positive": 1948,
+          "recall": 0.8186062400364381,
+          "iou_fixed_eligible": 0.7755960729312763
+        },
+        "window": {
+          "GT_points": 12350,
+          "correct": 9167,
+          "false_positive": 238,
+          "recall": 0.7422672064777328,
+          "iou_fixed_eligible": 0.7282332380044487
+        }
+      }
+    }
+  },
+  "input_sha256": {
+    "/Users/wu/Desktop/wu/Xia/jojo_updated_scene0030_run_20260902/source/Jojo_current_panoptic_scene_graph_aligment_on_full_scene0030_00/full_scene0030_00_dataset/gt_scannet_data_scene0030_00/scene0030_00_vh_clean_2.ply": "1541b52e8037f212d1c060b8e89f0cc5ed31b5a1a7be48fb5f446d9ab14b5f69",
+    "/Users/wu/Desktop/wu/Xia/jojo_updated_scene0030_run_20260902/source/Jojo_current_panoptic_scene_graph_aligment_on_full_scene0030_00/full_scene0030_00_dataset/gt_scannet_data_scene0030_00/scene0030_00_vh_clean_2.0.010000.segs.json": "80e3189c1a3440d43df56a775fa9dc54dc91c7c595e1eb0db545b69660f27242",
+    "/Users/wu/Desktop/wu/Xia/jojo_updated_scene0030_run_20260902/source/Jojo_current_panoptic_scene_graph_aligment_on_full_scene0030_00/full_scene0030_00_dataset/gt_scannet_data_scene0030_00/scene0030_00.aggregation.json": "b2ce5891041bdf645955a92e7a3bb5efe55c07a1ba56d6d035c492982066c87e",
+    "/Users/wu/Desktop/wu/SGF-SGA/comparisons/scannet0030_semantic_comparison_20260909_v1/developnew_full/evaluation/diagnostic.json": "63ec66a69bb7d51dac0f8b80fa5069b512505010a29896c07a1f52cb33efbd8a",
+    "/Users/wu/Desktop/wu/SGF-SGA/comparisons/sgf_sga_all_scannet_orbbec_20260910_v1/scenes/scannet/scene0030_00/map/map_labeled.ply": "504df052038a9740707d670ae9dff981cce2d68adc887736c38d27d1d0a2cb00",
+    "/Users/wu/Desktop/wu/SGF-SGA/comparisons/scannet0030_frame_ablation_20260912_v1/stride1/map/map_labeled.ply": "0d5ef059c7e6938bc00e594881b6eba380b2993141642fb4b3448ae022df73b2"
+  },
+  "scope": "same 185436 eligible GT vertices; geometry5cm; fixed earlier evaluation-only alignment; not official ScanNet mIoU/AP; appended SAM classes reported separately",
+  "ground_truth_in_inference": false,
+  "adopted": false
+}

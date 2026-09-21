@@ -1,0 +1,1806 @@
+{
+  "scope": "Same frozen82-object diagnostic as previous experiment, not official AP/mIoU",
+  "eligible_objects": 82,
+  "results": {
+    "P2_baseline": {
+      "matches": {
+        "0.25": {
+          "classagnostic": 40,
+          "category_correct": 38,
+          "category_correct_pairs": [
+            {
+              "gt_id": 0,
+              "pred_id": 12,
+              "gt_label": "office chair",
+              "pred_label": "chair",
+              "iou": 0.4565619223659889
+            },
+            {
+              "gt_id": 1,
+              "pred_id": 17,
+              "gt_label": "office chair",
+              "pred_label": "chair",
+              "iou": 0.4689593568557392
+            },
+            {
+              "gt_id": 2,
+              "pred_id": 19,
+              "gt_label": "office chair",
+              "pred_label": "chair",
+              "iou": 0.7515468824369348
+            },
+            {
+              "gt_id": 3,
+              "pred_id": 85,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6828204506905743
+            },
+            {
+              "gt_id": 4,
+              "pred_id": 13,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.660896371828314
+            },
+            {
+              "gt_id": 5,
+              "pred_id": 84,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.5639913232104121
+            },
+            {
+              "gt_id": 6,
+              "pred_id": 92,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6460544531610521
+            },
+            {
+              "gt_id": 7,
+              "pred_id": 18,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.4875219683655536
+            },
+            {
+              "gt_id": 8,
+              "pred_id": 60,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.46432964329643295
+            },
+            {
+              "gt_id": 9,
+              "pred_id": 37,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6178982547344969
+            },
+            {
+              "gt_id": 10,
+              "pred_id": 51,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7098692033293698
+            },
+            {
+              "gt_id": 11,
+              "pred_id": 93,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7001295336787565
+            },
+            {
+              "gt_id": 12,
+              "pred_id": 11,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6430868167202572
+            },
+            {
+              "gt_id": 13,
+              "pred_id": 22,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7449481157837248
+            },
+            {
+              "gt_id": 15,
+              "pred_id": 69,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.47895229186155286
+            },
+            {
+              "gt_id": 17,
+              "pred_id": 67,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.33045856121161127
+            },
+            {
+              "gt_id": 19,
+              "pred_id": 21,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.528974158183242
+            },
+            {
+              "gt_id": 20,
+              "pred_id": 82,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.43458731049971927
+            },
+            {
+              "gt_id": 26,
+              "pred_id": 33,
+              "gt_label": "window",
+              "pred_label": "window",
+              "iou": 0.5656638704078681
+            },
+            {
+              "gt_id": 27,
+              "pred_id": 35,
+              "gt_label": "window",
+              "pred_label": "window",
+              "iou": 0.7139856467705233
+            },
+            {
+              "gt_id": 33,
+              "pred_id": 43,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.559580552907531
+            },
+            {
+              "gt_id": 34,
+              "pred_id": 25,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.3645320197044335
+            },
+            {
+              "gt_id": 35,
+              "pred_id": 28,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.5123537061118335
+            },
+            {
+              "gt_id": 36,
+              "pred_id": 41,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.7258536585365853
+            },
+            {
+              "gt_id": 37,
+              "pred_id": 34,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.7239915074309978
+            },
+            {
+              "gt_id": 39,
+              "pred_id": 36,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.2768361581920904
+            },
+            {
+              "gt_id": 47,
+              "pred_id": 8,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.42692460580363056
+            },
+            {
+              "gt_id": 48,
+              "pred_id": 57,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.3411436541143654
+            },
+            {
+              "gt_id": 49,
+              "pred_id": 30,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.35248447204968947
+            },
+            {
+              "gt_id": 51,
+              "pred_id": 79,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.6545889277174912
+            },
+            {
+              "gt_id": 52,
+              "pred_id": 2,
+              "gt_label": "armchair",
+              "pred_label": "chair",
+              "iou": 0.8041520378568158
+            },
+            {
+              "gt_id": 53,
+              "pred_id": 74,
+              "gt_label": "door",
+              "pred_label": "door",
+              "iou": 0.7573408853778506
+            },
+            {
+              "gt_id": 57,
+              "pred_id": 90,
+              "gt_label": "trash can",
+              "pred_label": "trash bin",
+              "iou": 0.55096011816839
+            },
+            {
+              "gt_id": 61,
+              "pred_id": 58,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.2538141470180305
+            },
+            {
+              "gt_id": 62,
+              "pred_id": 52,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.5377942998760843
+            },
+            {
+              "gt_id": 63,
+              "pred_id": 50,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.49700598802395207
+            },
+            {
+              "gt_id": 66,
+              "pred_id": 66,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.26548672566371684
+            },
+            {
+              "gt_id": 68,
+              "pred_id": 65,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.30341518487157776
+            }
+          ]
+        },
+        "0.5": {
+          "classagnostic": 24,
+          "category_correct": 22,
+          "category_correct_pairs": [
+            {
+              "gt_id": 2,
+              "pred_id": 19,
+              "gt_label": "office chair",
+              "pred_label": "chair",
+              "iou": 0.7515468824369348
+            },
+            {
+              "gt_id": 3,
+              "pred_id": 85,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6828204506905743
+            },
+            {
+              "gt_id": 4,
+              "pred_id": 13,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.660896371828314
+            },
+            {
+              "gt_id": 5,
+              "pred_id": 84,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.5639913232104121
+            },
+            {
+              "gt_id": 6,
+              "pred_id": 92,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6460544531610521
+            },
+            {
+              "gt_id": 9,
+              "pred_id": 37,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6178982547344969
+            },
+            {
+              "gt_id": 10,
+              "pred_id": 51,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7098692033293698
+            },
+            {
+              "gt_id": 11,
+              "pred_id": 93,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7001295336787565
+            },
+            {
+              "gt_id": 12,
+              "pred_id": 11,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6430868167202572
+            },
+            {
+              "gt_id": 13,
+              "pred_id": 22,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7449481157837248
+            },
+            {
+              "gt_id": 19,
+              "pred_id": 21,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.528974158183242
+            },
+            {
+              "gt_id": 26,
+              "pred_id": 33,
+              "gt_label": "window",
+              "pred_label": "window",
+              "iou": 0.5656638704078681
+            },
+            {
+              "gt_id": 27,
+              "pred_id": 35,
+              "gt_label": "window",
+              "pred_label": "window",
+              "iou": 0.7139856467705233
+            },
+            {
+              "gt_id": 33,
+              "pred_id": 43,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.559580552907531
+            },
+            {
+              "gt_id": 35,
+              "pred_id": 28,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.5123537061118335
+            },
+            {
+              "gt_id": 36,
+              "pred_id": 41,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.7258536585365853
+            },
+            {
+              "gt_id": 37,
+              "pred_id": 34,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.7239915074309978
+            },
+            {
+              "gt_id": 51,
+              "pred_id": 79,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.6545889277174912
+            },
+            {
+              "gt_id": 52,
+              "pred_id": 2,
+              "gt_label": "armchair",
+              "pred_label": "chair",
+              "iou": 0.8041520378568158
+            },
+            {
+              "gt_id": 53,
+              "pred_id": 74,
+              "gt_label": "door",
+              "pred_label": "door",
+              "iou": 0.7573408853778506
+            },
+            {
+              "gt_id": 57,
+              "pred_id": 90,
+              "gt_label": "trash can",
+              "pred_label": "trash bin",
+              "iou": 0.55096011816839
+            },
+            {
+              "gt_id": 62,
+              "pred_id": 52,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.5377942998760843
+            }
+          ]
+        }
+      },
+      "point_metrics": {
+        "annotated_GT_points": 264339,
+        "correct_point_fraction": 0.5810947306299865,
+        "new_named_annotated_GT_points": 0,
+        "new_named_correct_GT_points": 0,
+        "new_named_incorrect_GT_points": 0
+      }
+    },
+    "qwen3vl_2b_bf16": {
+      "matches": {
+        "0.25": {
+          "classagnostic": 40,
+          "category_correct": 39,
+          "category_correct_pairs": [
+            {
+              "gt_id": 0,
+              "pred_id": 12,
+              "gt_label": "office chair",
+              "pred_label": "chair",
+              "iou": 0.4565619223659889
+            },
+            {
+              "gt_id": 1,
+              "pred_id": 17,
+              "gt_label": "office chair",
+              "pred_label": "chair",
+              "iou": 0.4689593568557392
+            },
+            {
+              "gt_id": 2,
+              "pred_id": 19,
+              "gt_label": "office chair",
+              "pred_label": "chair",
+              "iou": 0.7515468824369348
+            },
+            {
+              "gt_id": 3,
+              "pred_id": 85,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6828204506905743
+            },
+            {
+              "gt_id": 4,
+              "pred_id": 13,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.660896371828314
+            },
+            {
+              "gt_id": 5,
+              "pred_id": 84,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.5639913232104121
+            },
+            {
+              "gt_id": 6,
+              "pred_id": 92,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6460544531610521
+            },
+            {
+              "gt_id": 7,
+              "pred_id": 18,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.4875219683655536
+            },
+            {
+              "gt_id": 8,
+              "pred_id": 60,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.46432964329643295
+            },
+            {
+              "gt_id": 9,
+              "pred_id": 37,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6178982547344969
+            },
+            {
+              "gt_id": 10,
+              "pred_id": 51,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7098692033293698
+            },
+            {
+              "gt_id": 11,
+              "pred_id": 93,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7001295336787565
+            },
+            {
+              "gt_id": 12,
+              "pred_id": 11,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6430868167202572
+            },
+            {
+              "gt_id": 13,
+              "pred_id": 22,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7449481157837248
+            },
+            {
+              "gt_id": 15,
+              "pred_id": 69,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.47895229186155286
+            },
+            {
+              "gt_id": 17,
+              "pred_id": 67,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.33045856121161127
+            },
+            {
+              "gt_id": 19,
+              "pred_id": 21,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.528974158183242
+            },
+            {
+              "gt_id": 20,
+              "pred_id": 82,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.43458731049971927
+            },
+            {
+              "gt_id": 21,
+              "pred_id": 101,
+              "gt_label": "blackboard",
+              "pred_label": "blackboard",
+              "iou": 0.7997985543310819
+            },
+            {
+              "gt_id": 26,
+              "pred_id": 33,
+              "gt_label": "window",
+              "pred_label": "window",
+              "iou": 0.5656638704078681
+            },
+            {
+              "gt_id": 27,
+              "pred_id": 35,
+              "gt_label": "window",
+              "pred_label": "window",
+              "iou": 0.7139856467705233
+            },
+            {
+              "gt_id": 33,
+              "pred_id": 43,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.559580552907531
+            },
+            {
+              "gt_id": 34,
+              "pred_id": 25,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.3645320197044335
+            },
+            {
+              "gt_id": 35,
+              "pred_id": 28,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.5123537061118335
+            },
+            {
+              "gt_id": 36,
+              "pred_id": 41,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.7258536585365853
+            },
+            {
+              "gt_id": 37,
+              "pred_id": 34,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.7239915074309978
+            },
+            {
+              "gt_id": 39,
+              "pred_id": 36,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.2768361581920904
+            },
+            {
+              "gt_id": 47,
+              "pred_id": 8,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.42692460580363056
+            },
+            {
+              "gt_id": 48,
+              "pred_id": 57,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.3411436541143654
+            },
+            {
+              "gt_id": 49,
+              "pred_id": 30,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.35248447204968947
+            },
+            {
+              "gt_id": 51,
+              "pred_id": 79,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.6545889277174912
+            },
+            {
+              "gt_id": 52,
+              "pred_id": 2,
+              "gt_label": "armchair",
+              "pred_label": "chair",
+              "iou": 0.8041520378568158
+            },
+            {
+              "gt_id": 53,
+              "pred_id": 74,
+              "gt_label": "door",
+              "pred_label": "door",
+              "iou": 0.7573408853778506
+            },
+            {
+              "gt_id": 57,
+              "pred_id": 90,
+              "gt_label": "trash can",
+              "pred_label": "trash bin",
+              "iou": 0.55096011816839
+            },
+            {
+              "gt_id": 61,
+              "pred_id": 58,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.2538141470180305
+            },
+            {
+              "gt_id": 62,
+              "pred_id": 52,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.5377942998760843
+            },
+            {
+              "gt_id": 63,
+              "pred_id": 50,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.49700598802395207
+            },
+            {
+              "gt_id": 66,
+              "pred_id": 66,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.26548672566371684
+            },
+            {
+              "gt_id": 68,
+              "pred_id": 65,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.30341518487157776
+            }
+          ]
+        },
+        "0.5": {
+          "classagnostic": 24,
+          "category_correct": 23,
+          "category_correct_pairs": [
+            {
+              "gt_id": 2,
+              "pred_id": 19,
+              "gt_label": "office chair",
+              "pred_label": "chair",
+              "iou": 0.7515468824369348
+            },
+            {
+              "gt_id": 3,
+              "pred_id": 85,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6828204506905743
+            },
+            {
+              "gt_id": 4,
+              "pred_id": 13,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.660896371828314
+            },
+            {
+              "gt_id": 5,
+              "pred_id": 84,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.5639913232104121
+            },
+            {
+              "gt_id": 6,
+              "pred_id": 92,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6460544531610521
+            },
+            {
+              "gt_id": 9,
+              "pred_id": 37,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6178982547344969
+            },
+            {
+              "gt_id": 10,
+              "pred_id": 51,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7098692033293698
+            },
+            {
+              "gt_id": 11,
+              "pred_id": 93,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7001295336787565
+            },
+            {
+              "gt_id": 12,
+              "pred_id": 11,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6430868167202572
+            },
+            {
+              "gt_id": 13,
+              "pred_id": 22,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7449481157837248
+            },
+            {
+              "gt_id": 19,
+              "pred_id": 21,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.528974158183242
+            },
+            {
+              "gt_id": 21,
+              "pred_id": 101,
+              "gt_label": "blackboard",
+              "pred_label": "blackboard",
+              "iou": 0.7997985543310819
+            },
+            {
+              "gt_id": 26,
+              "pred_id": 33,
+              "gt_label": "window",
+              "pred_label": "window",
+              "iou": 0.5656638704078681
+            },
+            {
+              "gt_id": 27,
+              "pred_id": 35,
+              "gt_label": "window",
+              "pred_label": "window",
+              "iou": 0.7139856467705233
+            },
+            {
+              "gt_id": 33,
+              "pred_id": 43,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.559580552907531
+            },
+            {
+              "gt_id": 35,
+              "pred_id": 28,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.5123537061118335
+            },
+            {
+              "gt_id": 36,
+              "pred_id": 41,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.7258536585365853
+            },
+            {
+              "gt_id": 37,
+              "pred_id": 34,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.7239915074309978
+            },
+            {
+              "gt_id": 51,
+              "pred_id": 79,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.6545889277174912
+            },
+            {
+              "gt_id": 52,
+              "pred_id": 2,
+              "gt_label": "armchair",
+              "pred_label": "chair",
+              "iou": 0.8041520378568158
+            },
+            {
+              "gt_id": 53,
+              "pred_id": 74,
+              "gt_label": "door",
+              "pred_label": "door",
+              "iou": 0.7573408853778506
+            },
+            {
+              "gt_id": 57,
+              "pred_id": 90,
+              "gt_label": "trash can",
+              "pred_label": "trash bin",
+              "iou": 0.55096011816839
+            },
+            {
+              "gt_id": 62,
+              "pred_id": 52,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.5377942998760843
+            }
+          ]
+        }
+      },
+      "point_metrics": {
+        "annotated_GT_points": 264339,
+        "correct_point_fraction": 0.6321617317157135,
+        "new_named_annotated_GT_points": 13550,
+        "new_named_correct_GT_points": 13499,
+        "new_named_incorrect_GT_points": 51
+      }
+    },
+    "mage_nf4": {
+      "matches": {
+        "0.25": {
+          "classagnostic": 40,
+          "category_correct": 38,
+          "category_correct_pairs": [
+            {
+              "gt_id": 0,
+              "pred_id": 12,
+              "gt_label": "office chair",
+              "pred_label": "chair",
+              "iou": 0.4565619223659889
+            },
+            {
+              "gt_id": 1,
+              "pred_id": 17,
+              "gt_label": "office chair",
+              "pred_label": "chair",
+              "iou": 0.4689593568557392
+            },
+            {
+              "gt_id": 2,
+              "pred_id": 19,
+              "gt_label": "office chair",
+              "pred_label": "chair",
+              "iou": 0.7515468824369348
+            },
+            {
+              "gt_id": 3,
+              "pred_id": 85,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6828204506905743
+            },
+            {
+              "gt_id": 4,
+              "pred_id": 13,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.660896371828314
+            },
+            {
+              "gt_id": 5,
+              "pred_id": 84,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.5639913232104121
+            },
+            {
+              "gt_id": 6,
+              "pred_id": 92,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6460544531610521
+            },
+            {
+              "gt_id": 7,
+              "pred_id": 18,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.4875219683655536
+            },
+            {
+              "gt_id": 8,
+              "pred_id": 60,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.46432964329643295
+            },
+            {
+              "gt_id": 9,
+              "pred_id": 37,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6178982547344969
+            },
+            {
+              "gt_id": 10,
+              "pred_id": 51,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7098692033293698
+            },
+            {
+              "gt_id": 11,
+              "pred_id": 93,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7001295336787565
+            },
+            {
+              "gt_id": 12,
+              "pred_id": 11,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6430868167202572
+            },
+            {
+              "gt_id": 13,
+              "pred_id": 22,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7449481157837248
+            },
+            {
+              "gt_id": 15,
+              "pred_id": 69,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.47895229186155286
+            },
+            {
+              "gt_id": 17,
+              "pred_id": 67,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.33045856121161127
+            },
+            {
+              "gt_id": 19,
+              "pred_id": 21,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.528974158183242
+            },
+            {
+              "gt_id": 20,
+              "pred_id": 82,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.43458731049971927
+            },
+            {
+              "gt_id": 26,
+              "pred_id": 33,
+              "gt_label": "window",
+              "pred_label": "window",
+              "iou": 0.5656638704078681
+            },
+            {
+              "gt_id": 27,
+              "pred_id": 35,
+              "gt_label": "window",
+              "pred_label": "window",
+              "iou": 0.7139856467705233
+            },
+            {
+              "gt_id": 33,
+              "pred_id": 43,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.559580552907531
+            },
+            {
+              "gt_id": 34,
+              "pred_id": 25,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.3645320197044335
+            },
+            {
+              "gt_id": 35,
+              "pred_id": 28,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.5123537061118335
+            },
+            {
+              "gt_id": 36,
+              "pred_id": 41,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.7258536585365853
+            },
+            {
+              "gt_id": 37,
+              "pred_id": 34,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.7239915074309978
+            },
+            {
+              "gt_id": 39,
+              "pred_id": 36,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.2768361581920904
+            },
+            {
+              "gt_id": 47,
+              "pred_id": 8,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.42692460580363056
+            },
+            {
+              "gt_id": 48,
+              "pred_id": 57,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.3411436541143654
+            },
+            {
+              "gt_id": 49,
+              "pred_id": 30,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.35248447204968947
+            },
+            {
+              "gt_id": 51,
+              "pred_id": 79,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.6545889277174912
+            },
+            {
+              "gt_id": 52,
+              "pred_id": 2,
+              "gt_label": "armchair",
+              "pred_label": "chair",
+              "iou": 0.8041520378568158
+            },
+            {
+              "gt_id": 53,
+              "pred_id": 74,
+              "gt_label": "door",
+              "pred_label": "door",
+              "iou": 0.7573408853778506
+            },
+            {
+              "gt_id": 57,
+              "pred_id": 90,
+              "gt_label": "trash can",
+              "pred_label": "trash bin",
+              "iou": 0.55096011816839
+            },
+            {
+              "gt_id": 61,
+              "pred_id": 58,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.2538141470180305
+            },
+            {
+              "gt_id": 62,
+              "pred_id": 52,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.5377942998760843
+            },
+            {
+              "gt_id": 63,
+              "pred_id": 50,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.49700598802395207
+            },
+            {
+              "gt_id": 66,
+              "pred_id": 66,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.26548672566371684
+            },
+            {
+              "gt_id": 68,
+              "pred_id": 65,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.30341518487157776
+            }
+          ]
+        },
+        "0.5": {
+          "classagnostic": 24,
+          "category_correct": 22,
+          "category_correct_pairs": [
+            {
+              "gt_id": 2,
+              "pred_id": 19,
+              "gt_label": "office chair",
+              "pred_label": "chair",
+              "iou": 0.7515468824369348
+            },
+            {
+              "gt_id": 3,
+              "pred_id": 85,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6828204506905743
+            },
+            {
+              "gt_id": 4,
+              "pred_id": 13,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.660896371828314
+            },
+            {
+              "gt_id": 5,
+              "pred_id": 84,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.5639913232104121
+            },
+            {
+              "gt_id": 6,
+              "pred_id": 92,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6460544531610521
+            },
+            {
+              "gt_id": 9,
+              "pred_id": 37,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6178982547344969
+            },
+            {
+              "gt_id": 10,
+              "pred_id": 51,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7098692033293698
+            },
+            {
+              "gt_id": 11,
+              "pred_id": 93,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7001295336787565
+            },
+            {
+              "gt_id": 12,
+              "pred_id": 11,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6430868167202572
+            },
+            {
+              "gt_id": 13,
+              "pred_id": 22,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7449481157837248
+            },
+            {
+              "gt_id": 19,
+              "pred_id": 21,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.528974158183242
+            },
+            {
+              "gt_id": 26,
+              "pred_id": 33,
+              "gt_label": "window",
+              "pred_label": "window",
+              "iou": 0.5656638704078681
+            },
+            {
+              "gt_id": 27,
+              "pred_id": 35,
+              "gt_label": "window",
+              "pred_label": "window",
+              "iou": 0.7139856467705233
+            },
+            {
+              "gt_id": 33,
+              "pred_id": 43,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.559580552907531
+            },
+            {
+              "gt_id": 35,
+              "pred_id": 28,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.5123537061118335
+            },
+            {
+              "gt_id": 36,
+              "pred_id": 41,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.7258536585365853
+            },
+            {
+              "gt_id": 37,
+              "pred_id": 34,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.7239915074309978
+            },
+            {
+              "gt_id": 51,
+              "pred_id": 79,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.6545889277174912
+            },
+            {
+              "gt_id": 52,
+              "pred_id": 2,
+              "gt_label": "armchair",
+              "pred_label": "chair",
+              "iou": 0.8041520378568158
+            },
+            {
+              "gt_id": 53,
+              "pred_id": 74,
+              "gt_label": "door",
+              "pred_label": "door",
+              "iou": 0.7573408853778506
+            },
+            {
+              "gt_id": 57,
+              "pred_id": 90,
+              "gt_label": "trash can",
+              "pred_label": "trash bin",
+              "iou": 0.55096011816839
+            },
+            {
+              "gt_id": 62,
+              "pred_id": 52,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.5377942998760843
+            }
+          ]
+        }
+      },
+      "point_metrics": {
+        "annotated_GT_points": 264339,
+        "correct_point_fraction": 0.5810947306299865,
+        "new_named_annotated_GT_points": 13550,
+        "new_named_correct_GT_points": 0,
+        "new_named_incorrect_GT_points": 13550
+      }
+    },
+    "joy_nf4": {
+      "matches": {
+        "0.25": {
+          "classagnostic": 40,
+          "category_correct": 39,
+          "category_correct_pairs": [
+            {
+              "gt_id": 0,
+              "pred_id": 12,
+              "gt_label": "office chair",
+              "pred_label": "chair",
+              "iou": 0.4565619223659889
+            },
+            {
+              "gt_id": 1,
+              "pred_id": 17,
+              "gt_label": "office chair",
+              "pred_label": "chair",
+              "iou": 0.4689593568557392
+            },
+            {
+              "gt_id": 2,
+              "pred_id": 19,
+              "gt_label": "office chair",
+              "pred_label": "chair",
+              "iou": 0.7515468824369348
+            },
+            {
+              "gt_id": 3,
+              "pred_id": 85,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6828204506905743
+            },
+            {
+              "gt_id": 4,
+              "pred_id": 13,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.660896371828314
+            },
+            {
+              "gt_id": 5,
+              "pred_id": 84,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.5639913232104121
+            },
+            {
+              "gt_id": 6,
+              "pred_id": 92,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6460544531610521
+            },
+            {
+              "gt_id": 7,
+              "pred_id": 18,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.4875219683655536
+            },
+            {
+              "gt_id": 8,
+              "pred_id": 60,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.46432964329643295
+            },
+            {
+              "gt_id": 9,
+              "pred_id": 37,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6178982547344969
+            },
+            {
+              "gt_id": 10,
+              "pred_id": 51,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7098692033293698
+            },
+            {
+              "gt_id": 11,
+              "pred_id": 93,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7001295336787565
+            },
+            {
+              "gt_id": 12,
+              "pred_id": 11,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6430868167202572
+            },
+            {
+              "gt_id": 13,
+              "pred_id": 22,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7449481157837248
+            },
+            {
+              "gt_id": 15,
+              "pred_id": 69,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.47895229186155286
+            },
+            {
+              "gt_id": 17,
+              "pred_id": 67,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.33045856121161127
+            },
+            {
+              "gt_id": 19,
+              "pred_id": 21,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.528974158183242
+            },
+            {
+              "gt_id": 20,
+              "pred_id": 82,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.43458731049971927
+            },
+            {
+              "gt_id": 21,
+              "pred_id": 101,
+              "gt_label": "blackboard",
+              "pred_label": "blackboard",
+              "iou": 0.7997985543310819
+            },
+            {
+              "gt_id": 26,
+              "pred_id": 33,
+              "gt_label": "window",
+              "pred_label": "window",
+              "iou": 0.5656638704078681
+            },
+            {
+              "gt_id": 27,
+              "pred_id": 35,
+              "gt_label": "window",
+              "pred_label": "window",
+              "iou": 0.7139856467705233
+            },
+            {
+              "gt_id": 33,
+              "pred_id": 43,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.559580552907531
+            },
+            {
+              "gt_id": 34,
+              "pred_id": 25,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.3645320197044335
+            },
+            {
+              "gt_id": 35,
+              "pred_id": 28,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.5123537061118335
+            },
+            {
+              "gt_id": 36,
+              "pred_id": 41,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.7258536585365853
+            },
+            {
+              "gt_id": 37,
+              "pred_id": 34,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.7239915074309978
+            },
+            {
+              "gt_id": 39,
+              "pred_id": 36,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.2768361581920904
+            },
+            {
+              "gt_id": 47,
+              "pred_id": 8,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.42692460580363056
+            },
+            {
+              "gt_id": 48,
+              "pred_id": 57,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.3411436541143654
+            },
+            {
+              "gt_id": 49,
+              "pred_id": 30,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.35248447204968947
+            },
+            {
+              "gt_id": 51,
+              "pred_id": 79,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.6545889277174912
+            },
+            {
+              "gt_id": 52,
+              "pred_id": 2,
+              "gt_label": "armchair",
+              "pred_label": "chair",
+              "iou": 0.8041520378568158
+            },
+            {
+              "gt_id": 53,
+              "pred_id": 74,
+              "gt_label": "door",
+              "pred_label": "door",
+              "iou": 0.7573408853778506
+            },
+            {
+              "gt_id": 57,
+              "pred_id": 90,
+              "gt_label": "trash can",
+              "pred_label": "trash bin",
+              "iou": 0.55096011816839
+            },
+            {
+              "gt_id": 61,
+              "pred_id": 58,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.2538141470180305
+            },
+            {
+              "gt_id": 62,
+              "pred_id": 52,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.5377942998760843
+            },
+            {
+              "gt_id": 63,
+              "pred_id": 50,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.49700598802395207
+            },
+            {
+              "gt_id": 66,
+              "pred_id": 66,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.26548672566371684
+            },
+            {
+              "gt_id": 68,
+              "pred_id": 65,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.30341518487157776
+            }
+          ]
+        },
+        "0.5": {
+          "classagnostic": 24,
+          "category_correct": 23,
+          "category_correct_pairs": [
+            {
+              "gt_id": 2,
+              "pred_id": 19,
+              "gt_label": "office chair",
+              "pred_label": "chair",
+              "iou": 0.7515468824369348
+            },
+            {
+              "gt_id": 3,
+              "pred_id": 85,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6828204506905743
+            },
+            {
+              "gt_id": 4,
+              "pred_id": 13,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.660896371828314
+            },
+            {
+              "gt_id": 5,
+              "pred_id": 84,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.5639913232104121
+            },
+            {
+              "gt_id": 6,
+              "pred_id": 92,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6460544531610521
+            },
+            {
+              "gt_id": 9,
+              "pred_id": 37,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6178982547344969
+            },
+            {
+              "gt_id": 10,
+              "pred_id": 51,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7098692033293698
+            },
+            {
+              "gt_id": 11,
+              "pred_id": 93,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7001295336787565
+            },
+            {
+              "gt_id": 12,
+              "pred_id": 11,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.6430868167202572
+            },
+            {
+              "gt_id": 13,
+              "pred_id": 22,
+              "gt_label": "chair",
+              "pred_label": "chair",
+              "iou": 0.7449481157837248
+            },
+            {
+              "gt_id": 19,
+              "pred_id": 21,
+              "gt_label": "bookshelf",
+              "pred_label": "bookshelf",
+              "iou": 0.528974158183242
+            },
+            {
+              "gt_id": 21,
+              "pred_id": 101,
+              "gt_label": "blackboard",
+              "pred_label": "blackboard",
+              "iou": 0.7997985543310819
+            },
+            {
+              "gt_id": 26,
+              "pred_id": 33,
+              "gt_label": "window",
+              "pred_label": "window",
+              "iou": 0.5656638704078681
+            },
+            {
+              "gt_id": 27,
+              "pred_id": 35,
+              "gt_label": "window",
+              "pred_label": "window",
+              "iou": 0.7139856467705233
+            },
+            {
+              "gt_id": 33,
+              "pred_id": 43,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.559580552907531
+            },
+            {
+              "gt_id": 35,
+              "pred_id": 28,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.5123537061118335
+            },
+            {
+              "gt_id": 36,
+              "pred_id": 41,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.7258536585365853
+            },
+            {
+              "gt_id": 37,
+              "pred_id": 34,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.7239915074309978
+            },
+            {
+              "gt_id": 51,
+              "pred_id": 79,
+              "gt_label": "table",
+              "pred_label": "table",
+              "iou": 0.6545889277174912
+            },
+            {
+              "gt_id": 52,
+              "pred_id": 2,
+              "gt_label": "armchair",
+              "pred_label": "chair",
+              "iou": 0.8041520378568158
+            },
+            {
+              "gt_id": 53,
+              "pred_id": 74,
+              "gt_label": "door",
+              "pred_label": "door",
+              "iou": 0.7573408853778506
+            },
+            {
+              "gt_id": 57,
+              "pred_id": 90,
+              "gt_label": "trash can",
+              "pred_label": "trash bin",
+              "iou": 0.55096011816839
+            },
+            {
+              "gt_id": 62,
+              "pred_id": 52,
+              "gt_label": "box",
+              "pred_label": "box",
+              "iou": 0.5377942998760843
+            }
+          ]
+        }
+      },
+      "point_metrics": {
+        "annotated_GT_points": 264339,
+        "correct_point_fraction": 0.6321617317157135,
+        "new_named_annotated_GT_points": 13550,
+        "new_named_correct_GT_points": 13499,
+        "new_named_incorrect_GT_points": 51
+      }
+    }
+  }
+}

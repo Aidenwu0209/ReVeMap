@@ -1,0 +1,228 @@
+{
+  "candidate": "P2_verified_fill",
+  "relative_baseline": "previous experimental T1_anchor_original",
+  "source_commit": "741c9656b92953103c4ecdaa2739536dc97c1f42",
+  "scenes_evaluated": 4,
+  "main_scene_arm_outputs": 28,
+  "GPU_image_encodes": 9,
+  "GPU_mask_decodes": 18,
+  "GT_scope": "Exploratory all-annotated-category instance diagnostic; excludes wall/floor/ceiling, >=50 GT vertices; IoU union includes all annotated GT categories. Fixed original alignment and5cm correspondence. Not official AP and not preregistered confirmation.",
+  "rows": [
+    {
+      "arm": "S0_T1_repeat",
+      "description": "上一轮 T1（复现）",
+      "blackboard_IoU": 0.3201233981964879,
+      "all82_IoU25_matches": 40,
+      "all82_IoU50_matches": 23,
+      "fixed27_classcorrect_IoU50_matches": 17,
+      "fixed27_classagnostic_IoU50_matches": 18,
+      "fixed27_purity": 0.9291119016037622,
+      "fixed27_mixed_instances": 11,
+      "matched_background_fraction": 0.026812723439361995,
+      "new_points_relative_T1": 0
+    },
+    {
+      "arm": "S1_union_control",
+      "description": "直接放宽到单帧支持",
+      "blackboard_IoU": 0.40264650283553877,
+      "all82_IoU25_matches": 40,
+      "all82_IoU50_matches": 23,
+      "fixed27_classcorrect_IoU50_matches": 17,
+      "fixed27_classagnostic_IoU50_matches": 18,
+      "fixed27_purity": 0.9291129700806391,
+      "fixed27_mixed_instances": 11,
+      "matched_background_fraction": 0.026812723439361995,
+      "new_points_relative_T1": 2370
+    },
+    {
+      "arm": "S2_unopposed_single",
+      "description": "仅补单次可见的点",
+      "blackboard_IoU": 0.397781205505458,
+      "all82_IoU25_matches": 40,
+      "all82_IoU50_matches": 23,
+      "fixed27_classcorrect_IoU50_matches": 17,
+      "fixed27_classagnostic_IoU50_matches": 18,
+      "fixed27_purity": 0.9291119016037622,
+      "fixed27_mixed_instances": 11,
+      "matched_background_fraction": 0.026812723439361995,
+      "new_points_relative_T1": 2137
+    },
+    {
+      "arm": "S3_local_unopposed",
+      "description": "单次可见 + 10cm 邻近",
+      "blackboard_IoU": 0.3708471760797342,
+      "all82_IoU25_matches": 40,
+      "all82_IoU50_matches": 23,
+      "fixed27_classcorrect_IoU50_matches": 17,
+      "fixed27_classagnostic_IoU50_matches": 18,
+      "fixed27_purity": 0.9291119016037622,
+      "fixed27_mixed_instances": 11,
+      "matched_background_fraction": 0.026812723439361995,
+      "new_points_relative_T1": 1558
+    },
+    {
+      "arm": "P1_verified_identity",
+      "description": "共同视角验证后合并",
+      "blackboard_IoU": 0.5787819486449624,
+      "all82_IoU25_matches": 40,
+      "all82_IoU50_matches": 24,
+      "fixed27_classcorrect_IoU50_matches": 17,
+      "fixed27_classagnostic_IoU50_matches": 18,
+      "fixed27_purity": 0.9291119016037622,
+      "fixed27_mixed_instances": 11,
+      "matched_background_fraction": 0.026812723439361995,
+      "new_points_relative_T1": 0
+    },
+    {
+      "arm": "P2_verified_fill",
+      "description": "验证合并 + 多视角补全",
+      "blackboard_IoU": 0.7997985543310819,
+      "all82_IoU25_matches": 40,
+      "all82_IoU50_matches": 24,
+      "fixed27_classcorrect_IoU50_matches": 17,
+      "fixed27_classagnostic_IoU50_matches": 18,
+      "fixed27_purity": 0.9291119016037622,
+      "fixed27_mixed_instances": 11,
+      "matched_background_fraction": 0.026812723439361995,
+      "new_points_relative_T1": 6103
+    }
+  ],
+  "cross_scene_array_audit": [
+    {
+      "scene": "scannet/scene0030_00",
+      "P2_all_arrays_identical_to_T1": false,
+      "semantic_changed_points": 0,
+      "instance_changed_points": 14603,
+      "new_instance_support_points": 6103,
+      "confidence_identical": true,
+      "original_A0_instances_preserved": true,
+      "baseline_repeat_exact": true,
+      "accepted_pairs": 1,
+      "geometry_xyz_sha256": "d9e4eec1092d360f41e885ca2d144c66326d1dbf0c9e0e45e023d197ed76cd09"
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "P2_all_arrays_identical_to_T1": true,
+      "semantic_changed_points": 0,
+      "instance_changed_points": 0,
+      "new_instance_support_points": 0,
+      "confidence_identical": true,
+      "original_A0_instances_preserved": true,
+      "baseline_repeat_exact": true,
+      "accepted_pairs": 0,
+      "geometry_xyz_sha256": "2cdadcb09b3a2fa0c32581f2e23717060a0e8b933c438e4e7c9e9b3e3a0c1c24"
+    },
+    {
+      "scene": "scannet/scene0050_00",
+      "P2_all_arrays_identical_to_T1": true,
+      "semantic_changed_points": 0,
+      "instance_changed_points": 0,
+      "new_instance_support_points": 0,
+      "confidence_identical": true,
+      "original_A0_instances_preserved": true,
+      "baseline_repeat_exact": true,
+      "accepted_pairs": 0,
+      "geometry_xyz_sha256": "5f1244dc6d7af51ecf432e2e8b59f985fa032221a36d8641a71b7678593c1f6a"
+    },
+    {
+      "scene": "scannet/scene0011_00",
+      "P2_all_arrays_identical_to_T1": true,
+      "semantic_changed_points": 0,
+      "instance_changed_points": 0,
+      "new_instance_support_points": 0,
+      "confidence_identical": true,
+      "original_A0_instances_preserved": true,
+      "baseline_repeat_exact": true,
+      "accepted_pairs": 0,
+      "geometry_xyz_sha256": "8c492ba45126e5ed1b856121920318549a26da7230b049ba4e9535676b2c07a8"
+    }
+  ],
+  "extra_view_review": {
+    "same_scene_extra_views_only": true,
+    "not_an_independent_scene_test": true,
+    "fusion_outputs_unchanged": true,
+    "GT_used": false,
+    "queries_recomputed": 6,
+    "rows": [
+      {
+        "scene": "scannet/scene0030_00",
+        "pair": [
+          101,
+          102
+        ],
+        "frame_id": 150,
+        "pair_passed": true,
+        "independent_mask_point_iou": 0.9951078496775628,
+        "new_P2_points_visible": 4988,
+        "new_P2_points_supported_by_both_masks": 4922,
+        "new_point_support_fraction": 0.9867682437850842
+      },
+      {
+        "scene": "scannet/scene0030_00",
+        "pair": [
+          101,
+          102
+        ],
+        "frame_id": 170,
+        "pair_passed": true,
+        "independent_mask_point_iou": 0.9957437275985663,
+        "new_P2_points_visible": 5211,
+        "new_P2_points_supported_by_both_masks": 5118,
+        "new_point_support_fraction": 0.982153137593552
+      },
+      {
+        "scene": "scannet/scene0030_00",
+        "pair": [
+          101,
+          102
+        ],
+        "frame_id": 190,
+        "pair_passed": true,
+        "independent_mask_point_iou": 0.9848351648351649,
+        "new_P2_points_visible": 2874,
+        "new_P2_points_supported_by_both_masks": 2831,
+        "new_point_support_fraction": 0.9850382741823243
+      }
+    ]
+  },
+  "development_screening_passed": true,
+  "independent_new_scene_GT_confirmation": "not completed; no additional full instance GT found in inspected local and SSH44 experiment/data roots",
+  "production_adopted": false,
+  "production_commit_unchanged": true,
+  "geometry_changed": false,
+  "semantic_classification_improved": false,
+  "newly_completed_object_semantic_id": 0,
+  "3RScan_executed_in_this_round": false,
+  "remote_inputs_checked": 2102,
+  "remote_failures": [],
+  "previous_sealed_files_verified": 893,
+  "timing": {
+    "pair_experiment": {
+      "actual_encodes": 6,
+      "actual_decodes": 12,
+      "timing_seconds": {
+        "encode": 1.1582117659854703,
+        "decode": 2.1385748789762147
+      },
+      "wall_seconds": 72.97825057600858,
+      "peak_cuda_gib": 4.527313709259033,
+      "GT_used": false,
+      "semantic_names_changed": false,
+      "production_changed": false
+    },
+    "extra_view_validation": {
+      "actual_encodes": 3,
+      "actual_decodes": 6,
+      "timing_seconds": {
+        "encode": 0.8398943089996465,
+        "decode": 2.151964553981088
+      },
+      "wall_seconds": 71.14287831098773,
+      "peak_cuda_gib": 4.527313709259033,
+      "GT_used": false,
+      "semantic_names_changed": false,
+      "production_changed": false
+    }
+  },
+  "decision": "Keep P2 as a promising prototype. Do not adopt the surface-threshold controls or promote to developnew before independent scene confirmation."
+}

@@ -1,0 +1,245 @@
+{
+  "scope": "N2 non-unknown counts are NOT correctness; pool/object groups may repeat the same physical object across pools",
+  "rows": [
+    {
+      "model": "Qwen3-VL-2B BF16",
+      "scene": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+      "pool_object_groups": 1,
+      "named_by_N2": 1,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "Qwen3-VL-2B BF16",
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "pool_object_groups": 18,
+      "named_by_N2": 6,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "Qwen3-VL-2B BF16",
+      "scene": "scannet/scene0011_00",
+      "pool_object_groups": 9,
+      "named_by_N2": 4,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "Qwen3-VL-2B BF16",
+      "scene": "scannet/scene0030_00",
+      "pool_object_groups": 23,
+      "named_by_N2": 15,
+      "eligible_GT_objects": 18,
+      "eligible_GT_correct_N2": 11
+    },
+    {
+      "model": "Qwen3-VL-2B BF16",
+      "scene": "scannet/scene0050_00",
+      "pool_object_groups": 15,
+      "named_by_N2": 8,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "Qwen3-VL-2B NF4",
+      "scene": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+      "pool_object_groups": 1,
+      "named_by_N2": 1,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "Qwen3-VL-2B NF4",
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "pool_object_groups": 18,
+      "named_by_N2": 4,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "Qwen3-VL-2B NF4",
+      "scene": "scannet/scene0011_00",
+      "pool_object_groups": 9,
+      "named_by_N2": 4,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "Qwen3-VL-2B NF4",
+      "scene": "scannet/scene0030_00",
+      "pool_object_groups": 23,
+      "named_by_N2": 18,
+      "eligible_GT_objects": 18,
+      "eligible_GT_correct_N2": 14
+    },
+    {
+      "model": "Qwen3-VL-2B NF4",
+      "scene": "scannet/scene0050_00",
+      "pool_object_groups": 15,
+      "named_by_N2": 8,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "Gemma4 E2B QAT Q4",
+      "scene": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+      "pool_object_groups": 1,
+      "named_by_N2": 1,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "Gemma4 E2B QAT Q4",
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "pool_object_groups": 18,
+      "named_by_N2": 6,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "Gemma4 E2B QAT Q4",
+      "scene": "scannet/scene0011_00",
+      "pool_object_groups": 9,
+      "named_by_N2": 4,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "Gemma4 E2B QAT Q4",
+      "scene": "scannet/scene0030_00",
+      "pool_object_groups": 23,
+      "named_by_N2": 15,
+      "eligible_GT_objects": 18,
+      "eligible_GT_correct_N2": 7
+    },
+    {
+      "model": "Gemma4 E2B QAT Q4",
+      "scene": "scannet/scene0050_00",
+      "pool_object_groups": 15,
+      "named_by_N2": 8,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "Mage-VL NF4",
+      "scene": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+      "pool_object_groups": 1,
+      "named_by_N2": 0,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "Mage-VL NF4",
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "pool_object_groups": 18,
+      "named_by_N2": 4,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "Mage-VL NF4",
+      "scene": "scannet/scene0011_00",
+      "pool_object_groups": 9,
+      "named_by_N2": 5,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "Mage-VL NF4",
+      "scene": "scannet/scene0030_00",
+      "pool_object_groups": 23,
+      "named_by_N2": 13,
+      "eligible_GT_objects": 18,
+      "eligible_GT_correct_N2": 10
+    },
+    {
+      "model": "Mage-VL NF4",
+      "scene": "scannet/scene0050_00",
+      "pool_object_groups": 15,
+      "named_by_N2": 5,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "JoyAI-VL NF4",
+      "scene": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+      "pool_object_groups": 1,
+      "named_by_N2": 1,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "JoyAI-VL NF4",
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "pool_object_groups": 18,
+      "named_by_N2": 2,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "JoyAI-VL NF4",
+      "scene": "scannet/scene0011_00",
+      "pool_object_groups": 9,
+      "named_by_N2": 5,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "JoyAI-VL NF4",
+      "scene": "scannet/scene0030_00",
+      "pool_object_groups": 23,
+      "named_by_N2": 15,
+      "eligible_GT_objects": 18,
+      "eligible_GT_correct_N2": 6
+    },
+    {
+      "model": "JoyAI-VL NF4",
+      "scene": "scannet/scene0050_00",
+      "pool_object_groups": 15,
+      "named_by_N2": 6,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "DeepSeek V4.1 Flash",
+      "scene": "3rscan/00d42bed-778d-2ac6-86a7-0e0e5f5f5660",
+      "pool_object_groups": 1,
+      "named_by_N2": 0,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "DeepSeek V4.1 Flash",
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "pool_object_groups": 18,
+      "named_by_N2": 8,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "DeepSeek V4.1 Flash",
+      "scene": "scannet/scene0011_00",
+      "pool_object_groups": 9,
+      "named_by_N2": 4,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    },
+    {
+      "model": "DeepSeek V4.1 Flash",
+      "scene": "scannet/scene0030_00",
+      "pool_object_groups": 23,
+      "named_by_N2": 19,
+      "eligible_GT_objects": 18,
+      "eligible_GT_correct_N2": 9
+    },
+    {
+      "model": "DeepSeek V4.1 Flash",
+      "scene": "scannet/scene0050_00",
+      "pool_object_groups": 15,
+      "named_by_N2": 8,
+      "eligible_GT_objects": 0,
+      "eligible_GT_correct_N2": 0
+    }
+  ]
+}

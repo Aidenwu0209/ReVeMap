@@ -1,0 +1,85 @@
+{
+  "scope": "new portable CPU implementation versus sealed real cached predictions; no new GPU/GT inference",
+  "rows": [
+    {
+      "scene": "scannet/scene0030_00",
+      "array_exact": {
+        "semantic": true,
+        "instance": true,
+        "confidence": true
+      },
+      "pointwise_semantic_name_exact": true,
+      "P2_added_points": 6103,
+      "naming": [
+        {
+          "instance_id": 101,
+          "label": "blackboard",
+          "points": 22637,
+          "support_frames": [
+            145,
+            165,
+            1655
+          ],
+          "support_fraction": 1.0
+        }
+      ]
+    },
+    {
+      "scene": "orbbec/scan_20260909_142829_5ef1fa",
+      "array_exact": {
+        "semantic": true,
+        "instance": true,
+        "confidence": true
+      },
+      "pointwise_semantic_name_exact": true,
+      "P2_added_points": 0,
+      "naming": [
+        {
+          "instance_id": 123,
+          "label": "graphics card",
+          "points": 123,
+          "support_frames": [
+            4080,
+            4535,
+            4685
+          ],
+          "support_fraction": 1.0
+        }
+      ]
+    },
+    {
+      "scene": "scannet/scene0050_00",
+      "array_exact": {
+        "semantic": false,
+        "instance": true,
+        "confidence": true
+      },
+      "pointwise_semantic_name_exact": true,
+      "P2_added_points": 0,
+      "naming": [
+        {
+          "instance_id": 57,
+          "label": "piano",
+          "points": 3957,
+          "support_frames": [
+            15,
+            975,
+            995
+          ],
+          "support_fraction": 1.0
+        }
+      ]
+    },
+    {
+      "scene": "scannet/scene0011_00",
+      "array_exact": {
+        "semantic": true,
+        "instance": true,
+        "confidence": true
+      },
+      "pointwise_semantic_name_exact": true,
+      "P2_added_points": 0,
+      "naming": []
+    }
+  ]
+}
