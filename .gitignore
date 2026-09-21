@@ -40,3 +40,16 @@ configs/semantic_runtime.local.json
 *.pem
 *.key
 verification/local/
+
+# Xcode build products and developer-local state
+DerivedData/
+.derived-data*/
+.dd-*/
+xcuserdata/
+*.xcuserstate
+*.ipa
+*.dSYM/
+*.xcarchive/
+*.mobileprovision
+*.p12
+*.cer
