@@ -10,11 +10,14 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.12']
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: ${{ matrix.python-version }}
           cache: pip
       - name: Install CPU dependencies
         run: python -m pip install -e '.[dev]'
@@ -26,5 +29,22 @@ jobs:
           revemap --version
           revemap list-vlm-models
           revemap gui --help
+          revemap evaluate-semantic --help
+          revemap build-scene-graph --help
       - name: Build package
         run: python -m build
+      - name: Install and exercise wheel outside checkout
+        shell: bash
+        run: |
+          python -m venv "$RUNNER_TEMP/revemap-wheel-env"
+          "$RUNNER_TEMP/revemap-wheel-env/bin/python" -m pip install dist/*.whl
+          cd "$RUNNER_TEMP"
+          unset PYTHONPATH
+          CLI="$RUNNER_TEMP/revemap-wheel-env/bin/revemap"
+          "$CLI" --version
+          "$CLI" list-vlm-models
+          "$CLI" gui --help
+          "$CLI" evaluate-semantic --help
+          "$CLI" demo --output "$RUNNER_TEMP/revemap-demo"
+          "$CLI" query-scene --graph "$RUNNER_TEMP/revemap-demo/scene_graph.json" --label chair
+          "$RUNNER_TEMP/revemap-wheel-env/bin/python" -c 'from importlib.resources import files; assert files("pose_pipeline").joinpath("live_gui.html").is_file()'

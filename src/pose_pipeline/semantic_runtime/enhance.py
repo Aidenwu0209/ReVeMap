@@ -289,4 +289,8 @@ def run(args):
               "GT_used": False, "new_model_inference": False, "geometry_modified": False,
               "bundle_sha256": sha(args.bundle), "naming_support_is_calibrated_probability": False}
     write(output / "result.json", result)
+    from ..artifacts import write_artifact_manifest
+    write_artifact_manifest(output, map_path=output / "semantic_labeled.ply",
+        classes_path=output / "classes.json", result_path=output / "result.json",
+        extra_files={"bundle": args.bundle})
     return result

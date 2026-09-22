@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "revemap"
 version = "0.1.0"
 description = "Multi-view verified instance recovery for RGB-D semantic mapping"
+readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
 license-files = ["LICENSE"]

@@ -7,7 +7,7 @@ import signal
 import subprocess
 import sys
 
-from .live_io import atomic_json, read_json
+from .live_io import atomic_json, read_json, guard_gui_parent
 
 
 def prepare_refinement(output, manifest, runtime):
@@ -36,12 +36,15 @@ def main():
     p.add_argument('--schedule', choices=['serial', 'parallel'], default='serial')
     p.add_argument('--vlm', default='qwen3vl_2b_nf4')
     p.add_argument('--refine', action='store_true')
+    p.add_argument('--checkpoint-stages', action='store_true')
+    p.add_argument('--resume-from', type=Path)
     args = p.parse_args()
     args.stride = 5
     def terminate(*_):
         raise KeyboardInterrupt('GUI cancelled')
     signal.signal(signal.SIGTERM, terminate)
     signal.signal(signal.SIGINT, terminate)
+    guard_gui_parent()
     from .semantic_runtime.pipeline import run
     result = run(args)
     output = args.output.resolve()
@@ -57,7 +60,8 @@ def main():
                               ('apply', cfg['cpu_python'])]:
             atomic_json(output / 'GUI_STAGE.json', {'stage': 'refine/' + stage})
             child = subprocess.Popen([python, '-m', 'pose_pipeline.semantic_runtime.refinement',
-                                      '--workspace', str(root), '--stage', stage])
+                                      '--workspace', str(root), '--stage', stage],
+                                     env={**os.environ, 'REVEMAP_SUPERVISOR_PID': str(os.getpid())})
             try:
                 code = child.wait()
                 if code:
@@ -73,10 +77,17 @@ def main():
         classes = root / 'refined/capture/classes.json'
     if not Path(final).is_file():
         raise RuntimeError('Missing final labeled PLY')
-    atomic_json(output / 'GUI_STAGE.json', {'stage': 'completed'})
-    atomic_json(output / 'GUI_RESULT.json', {'final_cloud': final, 'trajectory': geom['trajectory'],
+    atomic_json(output / 'GUI_STAGE.json', {'stage': 'export'})
+    atomic_json(output / 'GUI_RESULT.json', {'status': 'completed', 'final_cloud': final, 'trajectory': geom['trajectory'],
                 'classes': str(classes), 'raw_map': result['map'], 'names': result['names'], 'refinement': args.refine,
+                'artifacts': str(output / 'ARTIFACTS.json'),
                 'scope': 'run-sam3 plus optional direct unknown-point refinement; no offline P2'})
+    from .artifacts import write_artifact_manifest
+    write_artifact_manifest(output, map_path=Path(final), classes_path=classes,
+                            result_path=output / 'GUI_RESULT.json', manifest_path=args.manifest,
+                            trajectory_path=Path(geom['trajectory']),
+                            extra_files={'names': result['names']} if not args.refine else None)
+    atomic_json(output / 'GUI_STAGE.json', {'stage': 'completed'})
 
 
 if __name__ == '__main__':

@@ -57,6 +57,22 @@ def export(baseline, labels, result, output):
                'inference_result': str(result), 'label_sha256': sha256_file(labels),
                'sga_inference_executed': report['sga_inference_executed'],
                'quality_accepted': False, 'complete_full_sequence': report['complete_full_sequence']}
+    classes = Path(result).parent / 'classes.json'
+    if classes.is_file():
+        from .artifacts import write_artifact_manifest
+        provenance = report.get('provenance', {})
+        def source_path(name):
+            value = provenance.get(name)
+            if value is None:
+                return None
+            path = Path(value)
+            return path if path.is_absolute() else Path(result).parent / path
+        inventory = write_artifact_manifest(
+            output, map_path=output/'map_labeled.ply', classes_path=classes,
+            result_path=result, manifest_path=source_path('manifest'),
+            trajectory_path=source_path('trajectory'),
+            scene_id=provenance.get('scene_id'), dataset=provenance.get('dataset'))
+        receipt['artifact_manifest'] = str(inventory)
     (output/'MAP_CONTRACT.json').write_text(json.dumps(receipt, indent=2))
     return receipt
 

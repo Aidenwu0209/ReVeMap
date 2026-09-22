@@ -17,6 +17,7 @@ import threading
 import time
 
 from .contracts import load_manifest, load_trajectory, sha256_file
+from .live_io import guard_parent_process
 
 
 def _write(path: Path, value: dict) -> None:
@@ -30,20 +31,26 @@ def _run_stage(command: list[str], log: Path, timeout_s: float, env: dict) -> di
     with log.open("xb") as stream:
         child = subprocess.Popen(
             command, stdout=stream, stderr=subprocess.STDOUT,
-            env=env, start_new_session=True,
+            env={**env, 'REVEMAP_SUPERVISOR_PID': str(os.getpid())}, start_new_session=True,
         )
         try:
             code = child.wait(timeout=timeout_s)
-        except BaseException:
-            # Only this stage's process group belongs to this runner.
-            if child.poll() is None:
+        finally:
+            # The leader can exit successfully or fail while leaving a model
+            # descendant behind. This group is exclusively owned by this stage.
+            try:
                 os.killpg(child.pid, signal.SIGTERM)
-                try:
-                    child.wait(timeout=15)
-                except subprocess.TimeoutExpired:
-                    os.killpg(child.pid, signal.SIGKILL)
-                    child.wait()
-            raise
+            except ProcessLookupError:
+                pass
+            try:
+                child.wait(timeout=15)
+            except subprocess.TimeoutExpired:
+                pass
+            try:
+                os.killpg(child.pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+            child.wait()
     return {
         "command": command, "returncode": code,
         "seconds": time.monotonic() - started, "log": str(log),
@@ -134,6 +141,7 @@ def run_rgbd_mapping(
         def terminated(signum, _frame):
             raise KeyboardInterrupt(f"Signal {signum}")
         previous_sigterm = signal.signal(signal.SIGTERM, terminated)
+    guard_parent_process()
     try:
         for stage in ("dense", "graph", "refill", "fusion"):
             gpu = stage in {"dense", "refill"}
@@ -182,6 +190,7 @@ def _main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--provider-root", type=Path, required=True)
     args = parser.parse_args()
+    guard_parent_process()
     root = args.output.resolve()
     if args.stage == "dense":
         from .rgbd_droid import run_dense

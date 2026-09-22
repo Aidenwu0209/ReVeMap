@@ -8,7 +8,7 @@ import cv2
 import numpy as np
 
 from .contracts import load_manifest
-from .live_io import atomic_json, seal_capture
+from .live_io import atomic_json, seal_capture, guard_gui_parent
 
 
 def decode_color(frame, ob):
@@ -28,13 +28,39 @@ def decode_color(frame, ob):
     raise RuntimeError(f"Unsupported color format: {fmt}")
 
 
-def camera_frames(pipeline=None):
+class ValidFrameWatchdog:
+    """Timeouts measure valid synchronized RGB-D, not SDK frameset traffic."""
+    REASONS = {"no_frames": "未返回帧", "missing_color": "缺少彩色帧",
+               "missing_depth": "缺少深度帧", "sync_mismatch": "RGB-D 时间差超过 15 ms"}
+
+    def __init__(self, *, startup_timeout=20., valid_timeout=8., counts=None, clock=None):
+        if not all(np.isfinite(x) and x > 0 for x in (startup_timeout, valid_timeout)):
+            raise ValueError("RGB-D timeouts must be finite and positive")
+        self.clock = clock or time.monotonic
+        self.last_valid = self.clock()
+        self.seen_valid = False
+        self.startup_timeout, self.valid_timeout = startup_timeout, valid_timeout
+        self.counts = counts if counts is not None else {}
+
+    def reject(self, reason):
+        self.counts[reason] = self.counts.get(reason, 0) + 1
+        limit = self.valid_timeout if self.seen_valid else self.startup_timeout
+        if self.clock() - self.last_valid >= limit:
+            detail = self.REASONS.get(reason, reason)
+            raise RuntimeError(f"连续 {limit:g} 秒未收到有效同步 RGB-D（{detail}），已保留采集数据。")
+
+    def accept(self):
+        self.last_valid = self.clock()
+        self.seen_valid = True
+
+
+def camera_frames(pipeline=None, *, startup_timeout=20., valid_timeout=8., rejected_counts=None):
     import pyorbbecsdk as ob
     ob.Context.set_logger_level(ob.OBLogLevel.ERROR)
     if pipeline is None:
         context = ob.Context()
         if context.query_devices().get_count() == 0:
-            raise RuntimeError("未检测到奥比中光相机。请接入 ssh33 的 USB 3 接口后重试。")
+            raise RuntimeError("未检测到奥比中光相机。请检查当前采集主机的 USB 3 连接。")
     # Injection permits SDK playback validation of the identical D2C path.
     pipe = ob.Pipeline() if pipeline is None else pipeline
     pipe.enable_frame_sync()
@@ -58,26 +84,27 @@ def camera_frames(pipeline=None):
     cfg.set_align_mode(ob.OBAlignMode.HW_MODE)
     cfg.set_depth_scale_require(True)
     cfg.set_frame_aggregate_output_mode(ob.OBFrameAggregateOutputMode.FULL_FRAME_REQUIRE)
+    watchdog = ValidFrameWatchdog(startup_timeout=startup_timeout, valid_timeout=valid_timeout,
+                                  counts=rejected_counts)
     pipe.start(cfg)
-    last = time.monotonic()
     try:
         while True:
             fs = pipe.wait_for_frames(1000)
             if fs is None:
-                if time.monotonic()-last > 8:
-                    raise RuntimeError("相机连续 8 秒未返回 RGB-D，请检查 USB 连接。")
+                watchdog.reject("no_frames")
                 yield None
                 continue
             c, d = fs.get_color_frame(), fs.get_depth_frame()
             if c is None or d is None:
+                watchdog.reject("missing_color" if c is None else "missing_depth")
                 yield None
                 continue
-            last = time.monotonic()
             h, w = c.get_height(), c.get_width()
             if (d.get_height(), d.get_width()) != (h, w):
                 raise RuntimeError("D2C 深度与彩色图尺寸不匹配")
             tc, td = c.get_timestamp_us(), d.get_timestamp_us()
             if abs(tc-td) > 15000:
+                watchdog.reject("sync_mismatch")
                 yield None
                 continue
             k = d.get_stream_profile().as_video_stream_profile().get_intrinsic()
@@ -95,6 +122,7 @@ def camera_frames(pipeline=None):
             color = cv2.resize(color[oy:oy+ch, ox:ox+cw], (640, 480))
             depth = cv2.resize(depth[oy:oy+ch, ox:ox+cw], (640, 480), interpolation=cv2.INTER_NEAREST)
             intrinsic = (k.fx*640/cw, k.fy*480/ch, (k.cx-ox)*640/cw, (k.cy-oy)*480/ch)
+            watchdog.accept()
             yield color, depth, intrinsic, tc, {"depth_timestamp_us": td, "sdk_frame_id": c.get_index(), "sdk_depth_scale_mm": scale}
     finally:
         pipe.stop()
@@ -132,7 +160,11 @@ def capture(args):
         stopped = True
     signal.signal(signal.SIGTERM, stop)
     signal.signal(signal.SIGINT, stop)
-    source = (replay_frames(args.replay, args.fps, args.max_frames) if args.replay else camera_frames())
+    guard_gui_parent()
+    rejected_counts = {}
+    source = (replay_frames(args.replay, args.fps, args.max_frames) if args.replay else camera_frames(
+        startup_timeout=getattr(args, "startup_timeout", 20.),
+        valid_timeout=getattr(args, "valid_timeout", 8.), rejected_counts=rejected_counts))
     count, rejected, previous = 0, 0, -1
     started = time.monotonic()
     status = {"status": "starting", "frames": 0}
@@ -144,6 +176,9 @@ def capture(args):
                     break
                 if sample is None:
                     rejected += 1
+                    status.update(rejected_pairs=rejected, rejected_reasons=dict(rejected_counts),
+                                  elapsed_s=time.monotonic()-started)
+                    atomic_json(args.session / "capture_status.json", status)
                     continue
                 color, depth, intrinsic, timestamp, audit = sample
                 if timestamp <= previous:
@@ -167,6 +202,7 @@ def capture(args):
                             tmp.write_bytes(encoded.tobytes())
                             tmp.replace(args.session / (name+".jpg"))
                 status.update(status="recording", frames=count, rejected_pairs=rejected,
+                    rejected_reasons=dict(rejected_counts),
                     elapsed_s=time.monotonic()-started, fps=count/max(.01, time.monotonic()-started),
                     valid_depth_fraction=float((depth > 0).mean()))
                 atomic_json(args.session / "capture_status.json", status)
@@ -181,6 +217,9 @@ def capture(args):
         raise
     finally:
         source.close()
+        status["rejected_reasons"] = dict(rejected_counts)
+        if rejected_counts:
+            status["rejected_pairs"] = sum(rejected_counts.values())
         atomic_json(args.session / "capture_status.json", status)
 
 
@@ -190,4 +229,6 @@ if __name__ == "__main__":
     parser.add_argument("--replay", type=Path)
     parser.add_argument("--fps", type=float, default=10)
     parser.add_argument("--max-frames", type=int, default=0)
+    parser.add_argument("--startup-timeout", type=float, default=20.)
+    parser.add_argument("--valid-timeout", type=float, default=8.)
     capture(parser.parse_args())

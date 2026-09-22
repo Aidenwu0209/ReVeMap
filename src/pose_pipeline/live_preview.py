@@ -11,7 +11,7 @@ import torch
 import yaml
 
 from .rgbd_droid import load_provider, Printer, RawStream
-from .live_io import atomic_json, journal_frames, frame_record, point_cloud, publish_cloud, preview_next_frame
+from .live_io import atomic_json, FrameJournalReader, frame_record, point_cloud, publish_cloud, preview_next_frame, guard_gui_parent
 
 
 def run(session, provider):
@@ -22,14 +22,16 @@ def run(session, provider):
         stop = True
     signal.signal(signal.SIGTERM, requested)
     signal.signal(signal.SIGINT, requested)
+    guard_gui_parent()
     def stopping():
         return stop or (session / "stop_preview").exists()
     status = {"status": "loading", "processed_frames": 0, "keyframes": 0}
     atomic_json(session / "preview_status.json", status)
     try:
         api = load_provider(provider)
+        journal = FrameJournalReader(session / "capture" / "frames.jsonl")
         while not stopping():
-            rows = journal_frames(session / "capture" / "frames.jsonl")
+            rows = journal.poll()
             if rows:
                 break
             time.sleep(.1)
@@ -78,8 +80,7 @@ def run(session, provider):
         started = time.monotonic()
         with torch.no_grad():
             while not stopping():
-                rows = journal_frames(session / "capture" / "frames.jsonl")
-                records.extend(frame_record(row) for row in rows[len(records):])
+                records.extend(frame_record(row) for row in journal.poll())
                 if i >= len(records):
                     time.sleep(.05)
                     continue

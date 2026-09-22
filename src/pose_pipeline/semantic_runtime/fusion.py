@@ -5,7 +5,48 @@ import sys,time,argparse,hashlib,traceback
 from pathlib import Path
 from .common import CONFIG_ROOT, read, write, event, sha
 
+def protect_semantic_conflicts(votes, baseline, labels):
+    """Object propagation cannot resolve a point-level cross-class abstention.
+
+    A coherent object can fill unobserved/weak points, but its geometry alone
+    is not evidence to overturn conflicting observed semantic categories.
+    """
+    import numpy as np
+    conflict = (baseline['semantic'] == 0) & ((votes.counts > 0).sum(axis=1) > 1)
+    result = {key: value.copy() for key, value in labels.items()}
+    audit = {'conflicting_abstained_points': int(conflict.sum()),
+             'prevented_semantic_fills': int(np.sum(conflict & (labels['semantic'] > 0))),
+             'prevented_instance_assignments': int(np.sum(conflict & (labels['instance'] > 0)))}
+    result['semantic'][conflict] = 0
+    result['confidence'][conflict] = 0
+    result['instance'][conflict] = 0
+    return result, audit
+
+def apply_semantic_conflict_policy(votes, baseline, labels, policy='consensus'):
+    """Keep object consensus by default; strict point abstention is opt-in.
+
+    Confidence ownership is selected separately. The stricter conflict guard
+    changes the decision rule and can withdraw correct labels, so its behavior
+    is separately selected and reported.
+    """
+    if policy not in ('consensus', 'abstain'):
+        raise ValueError('semantic_conflict_policy must be consensus or abstain')
+    if policy == 'abstain':
+        result, audit = protect_semantic_conflicts(votes, baseline, labels)
+    else:
+        result = labels
+        audit = {'conflicting_abstained_points': int(
+                     ((baseline['semantic'] == 0) & ((votes.counts > 0).sum(axis=1) > 1)).sum()),
+                 'prevented_semantic_fills': 0, 'prevented_instance_assignments': 0}
+    return result, {**audit, 'policy': policy, 'enabled': policy == 'abstain'}
+
 def main(args):
+    confidence_policy = getattr(args, 'semantic_confidence_policy', 'legacy')
+    if confidence_policy not in ('legacy', 'track'):
+        raise ValueError('semantic_confidence_policy must be legacy or track')
+    conflict_policy = getattr(args, 'semantic_conflict_policy', 'consensus')
+    if conflict_policy not in ('consensus', 'abstain'):
+        raise ValueError('semantic_conflict_policy must be consensus or abstain')
     import numpy as np
     from plyfile import PlyData
     from reconstruction.rgbd_refusion import _read_rgbd
@@ -32,20 +73,24 @@ def main(args):
             frame={'frame_id':fid,'point_ids':ids,'mask_ids':z['local_instance'][v,u],'semantic':z['semantic'][v,u],'confidence':z['confidence'][v,u],'interior':interior(z['semantic'])[v,u]}
         safe=frame['interior'];votes.add(fid,ids,frame['semantic'],frame['confidence'])
         high[ids[safe]]=np.maximum(high[ids[safe]],frame['confidence'][safe])
-        streams[ordinal%2].add(fid,ids[safe],frame['mask_ids'][safe],frame['semantic'][safe]);frames.append(frame)
+        streams[ordinal%2].add(fid,ids[safe],frame['mask_ids'][safe],frame['semantic'][safe],frame['confidence'][safe]);frames.append(frame)
         np.savez_compressed(out/f'projection_{fid:06}.npz',point_ids=ids,mask_ids=frame['mask_ids'],semantic=frame['semantic'],row=v,col=u)
         projections.append({'frame_id':fid,'depth_consistent_points':len(ids),'projected_at':time.monotonic()})
     sem,conf,_=votes.finalize();single=(sem==0)&(votes.counts.sum(1)==1)&(high>=.9)
     sem[single]=votes.scores.argmax(1)[single];conf[single]=high[single]
-    trackrecords=[]
-    for tr in streams:
-        trackrecords.append([{'track_id':i+1,'category':t['category'],'frames':sorted(t['frames']),'points':sorted(t['points']),'mean_point_score':float(high[np.array(sorted(t['points']),np.int64)].mean())} for i,t in enumerate(tr.tracks)])
+    trackrecords=[tr.records(confidence_policy, point_scores=high) for tr in streams]
     chosen=[select_tracks(t) for t in trackrecords]
     if min(map(len,chosen))<2:pairs=[]
     else:
         candidates=[(a['track_id'],b['track_id'],0.) for a in chosen[0] for b in chosen[1] if compatible(a['category'],b['category'])]
         pairs=greedy_pairs(measure_candidates(candidates,*chosen,xyz),'geometry')
-    c,_,cm=object_consensus(trackrecords,pairs,{'semantic':sem,'confidence':conf},xyz)
+    baseline={'semantic':sem,'confidence':conf}
+    c,_,cm=object_consensus(trackrecords,pairs,baseline,xyz)
+    c,conflicts=apply_semantic_conflict_policy(votes,baseline,c,conflict_policy)
+    cm['semantic_conflict_guard']=conflicts
+    cm['semantic_confidence_policy']=confidence_policy
+    cm['track_score_scope']=('accepted track-local observations only' if confidence_policy == 'track'
+                             else 'legacy global per-point maxima; may include other categories')
     cfg={'min_mask_points':30,'min_output_points':50,'min_point_views':1,'min_group_frames':2,'object_score_mode':'max_point'}
     current,audit=fuse_instances(n,frames,c['semantic'].copy(),config=cfg)
     blocked=[(int(x['frame_id']),int(x['mask_id'])) for x in audit['filtered_masks']]
@@ -56,8 +101,11 @@ def main(args):
     write(out/'PROJECTIONS.json',projections);write(out/'CONSENSUS.json',{'pairs':pairs,'metrics':cm});write(out/'MULTIVIEW.json',audit);write(out/'GUIDED.json',ga)
     result={'status':'completed','map_points':n,'semantic_coverage':float(np.mean(c['semantic']>0)),'instance_coverage':float(np.mean(inst>0)),
         'instance_count':len(np.unique(inst[inst>0])),'selected_frames':len(frames),'geometry_xyz_sha256':hashlib.sha256(np.ascontiguousarray(xyz).tobytes()).hexdigest(),
+        'semantic_conflict_policy':conflict_policy,
+        'semantic_confidence_policy':confidence_policy,'object_score_scope':cm['track_score_scope'],
         'sga_inference_executed':False,'sgf_prior_used':False,'complete_full_sequence':True,'raw_window_complete':True,'GT_used':False,'geometry_modified':False,
         'pipeline_scope':'fresh raw map + fixed SAM3 concepts + measured geometry association + multiview consensus + guided recovery; no frozen-map birth/completion or SGF subtype prior',
+        'provenance':{'manifest':geom['manifest'],'trajectory':geom['trajectory'],'scene_id':m.sequence_id,'dataset':m.dataset},
         'seconds':time.monotonic()-started,'completed_at':time.monotonic()}
     write(out/'classes.json', {'0':'unknown', **{str(c['id']):c['name'] for c in read(CONFIG_ROOT/'sam3_indoor_v1.json')['classes']}})
     write(out/'result.json',result);export(cloud,out/'map_labels.npz',out/'result.json',out/'export')
@@ -65,6 +113,9 @@ def main(args):
     event(arm,'projection_fusion_complete',points=n)
     print('FUSED',result,flush=True)
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--arm-root',required=True);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--arm-root',required=True)
+    p.add_argument('--semantic-confidence-policy', choices=('legacy','track'), default='legacy')
+    p.add_argument('--semantic-conflict-policy', choices=('consensus','abstain'), default='consensus')
+    a=p.parse_args()
     try:main(a)
     except BaseException:write(Path(a.arm_root)/'FUSION_FAILURE.json',{'error':traceback.format_exc()});raise

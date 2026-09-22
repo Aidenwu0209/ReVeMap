@@ -58,6 +58,18 @@ def add_commands(commands):
     run.add_argument("--schedule", choices=("serial", "parallel"), default="parallel")
     run.add_argument("--vlm", choices=[k for k, v in registry().items() if v["kind"] != "ocr"], default="qwen3vl_2b_bf16")
     run.add_argument("--stride", type=int, default=5)
+    run.add_argument("--view-policy", choices=('stride', 'quality', 'quality-diverse'), default='stride',
+                     help='SAM3 only; quality policies are experimental (matched tests regressed); mapping uses all frames')
+    run.add_argument("--view-budget", type=int,
+                     help='exact SAM3 frame count; defaults to stride count; explicit stride budget uses uniform temporal sampling')
+    run.add_argument('--semantic-confidence-policy', choices=('legacy', 'track'), default='legacy',
+                     help='track is experimental; matched quality tests do not justify promotion')
+    run.add_argument('--semantic-conflict-policy', choices=('consensus', 'abstain'), default='consensus',
+                     help='abstain is experimental; may turn correct labels into unknown')
+    run.add_argument('--checkpoint-stages', action='store_true',
+                     help='seal completed mapping/SAM3 stages for verified reuse')
+    run.add_argument('--resume-from', type=Path,
+                     help='reuse verified completed mapping/SAM3 in a NEW output; rerun later stages')
     def deploy(args):
         from .pipeline import run
         print(json.dumps(run(args), indent=2))
