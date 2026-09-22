@@ -15,7 +15,8 @@ def test_packaged_configs_match_reviewable_copies():
 
 
 def test_public_cli_works_outside_checkout_without_gpu_imports(tmp_path):
-    for arguments in (["--help"], ["--version"], ["list-vlm-models"], ["gui", "--help"]):
+    for arguments in (["--help"], ["--version"], ["list-vlm-models"], ["gui", "--help"],
+                      ["clean-pointcloud", "--help"]):
         code = (
             "import runpy,sys; sys.argv=['revemap', *sys.argv[1:]]; "
             "sys.path.insert(0, " + repr(str(SOURCE_ROOT)) + "); "
