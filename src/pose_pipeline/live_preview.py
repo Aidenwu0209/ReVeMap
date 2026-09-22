@@ -11,7 +11,7 @@ import torch
 import yaml
 
 from .rgbd_droid import load_provider, Printer, RawStream
-from .live_io import atomic_json, FrameJournalReader, frame_record, point_cloud, publish_cloud, preview_next_frame
+from .live_io import atomic_json, FrameJournalReader, frame_record, point_cloud, publish_cloud, preview_next_frame, guard_gui_parent
 
 
 def run(session, provider):
@@ -22,6 +22,7 @@ def run(session, provider):
         stop = True
     signal.signal(signal.SIGTERM, requested)
     signal.signal(signal.SIGINT, requested)
+    guard_gui_parent()
     def stopping():
         return stop or (session / "stop_preview").exists()
     status = {"status": "loading", "processed_frames": 0, "keyframes": 0}

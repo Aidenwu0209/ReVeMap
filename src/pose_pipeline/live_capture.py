@@ -8,7 +8,7 @@ import cv2
 import numpy as np
 
 from .contracts import load_manifest
-from .live_io import atomic_json, seal_capture
+from .live_io import atomic_json, seal_capture, guard_gui_parent
 
 
 def decode_color(frame, ob):
@@ -160,6 +160,7 @@ def capture(args):
         stopped = True
     signal.signal(signal.SIGTERM, stop)
     signal.signal(signal.SIGINT, stop)
+    guard_gui_parent()
     rejected_counts = {}
     source = (replay_frames(args.replay, args.fps, args.max_frames) if args.replay else camera_frames(
         startup_timeout=getattr(args, "startup_timeout", 20.),

@@ -7,7 +7,7 @@ import signal
 import subprocess
 import sys
 
-from .live_io import atomic_json, read_json
+from .live_io import atomic_json, read_json, guard_gui_parent
 
 
 def prepare_refinement(output, manifest, runtime):
@@ -36,12 +36,15 @@ def main():
     p.add_argument('--schedule', choices=['serial', 'parallel'], default='serial')
     p.add_argument('--vlm', default='qwen3vl_2b_nf4')
     p.add_argument('--refine', action='store_true')
+    p.add_argument('--checkpoint-stages', action='store_true')
+    p.add_argument('--resume-from', type=Path)
     args = p.parse_args()
     args.stride = 5
     def terminate(*_):
         raise KeyboardInterrupt('GUI cancelled')
     signal.signal(signal.SIGTERM, terminate)
     signal.signal(signal.SIGINT, terminate)
+    guard_gui_parent()
     from .semantic_runtime.pipeline import run
     result = run(args)
     output = args.output.resolve()
@@ -57,7 +60,8 @@ def main():
                               ('apply', cfg['cpu_python'])]:
             atomic_json(output / 'GUI_STAGE.json', {'stage': 'refine/' + stage})
             child = subprocess.Popen([python, '-m', 'pose_pipeline.semantic_runtime.refinement',
-                                      '--workspace', str(root), '--stage', stage])
+                                      '--workspace', str(root), '--stage', stage],
+                                     env={**os.environ, 'REVEMAP_SUPERVISOR_PID': str(os.getpid())})
             try:
                 code = child.wait()
                 if code:

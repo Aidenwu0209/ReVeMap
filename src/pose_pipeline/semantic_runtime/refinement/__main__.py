@@ -22,6 +22,8 @@ def validate_workspace(root):
 
 
 def run(root, stage, fragments=False):
+    from ...live_io import guard_parent_process
+    guard_parent_process()
     root = root.resolve(strict=True)
     scenes, inputs = validate_workspace(root)
     lock = root / 'REFINEMENT_INPUT_LOCK.json'
@@ -33,7 +35,7 @@ def run(root, stage, fragments=False):
     if stage == 'all':
         cfg = read(root / 'runtime.json')
         validate_runtime(cfg, 'qwen3vl_2b_nf4', raw_mapping=False)
-        env = dict(os.environ)
+        env = dict(os.environ, REVEMAP_SUPERVISOR_PID=str(os.getpid()))
         src = str(Path(__file__).resolve().parents[3])
         env['PYTHONPATH'] = src + os.pathsep + env.get('PYTHONPATH', '')
         for step, python in [('prepare', cfg['cpu_python']), ('name', cfg['vlm_python']),

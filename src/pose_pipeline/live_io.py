@@ -22,6 +22,101 @@ def read_json(path, default=None):
         return {} if default is None else default
 
 
+_PARENT_GUARD = None
+
+
+def guard_parent_process(*, interval=.25, grace=10.):
+    """Stop an owned worker if its immediate supervisor disappears abruptly.
+
+    A separate stdlib-only watchdog survives even default SIGTERM or SIGKILL of
+    this worker. Parent loss notifies its pipe; worker exit closes the pipe.
+    Both paths reap the owned process group, including uninstrumented children.
+    """
+    import os
+    import atexit
+    import subprocess
+    import sys
+    import threading
+    import time
+    global _PARENT_GUARD
+    parent = os.environ.get("REVEMAP_SUPERVISOR_PID", os.environ.get("REVEMAP_GUI_PARENT_PID"))
+    if parent is None:
+        return
+    parent = int(parent)
+    own_pid = os.getpid()
+    if _PARENT_GUARD is not None and _PARENT_GUARD[:2] == (own_pid, parent):
+        return
+    # This monitor has its own session and cannot be killed with the owner.
+    # No package imports are needed, including during a broken model import.
+    code = '''import os,signal,subprocess,sys,time
+pid,group,grace=int(sys.argv[1]),int(sys.argv[2]),float(sys.argv[3])
+notice=os.read(0,1)
+if notice==b'n':
+    # atexit runs before the interpreter actually exits. Signaling it here
+    # could change a successful return code into -SIGTERM. Zombies have already
+    # fixed their exit status even when their supervisor has not reaped them.
+    while True:
+        state=subprocess.run(['/bin/ps','-p',str(pid),'-o','stat='],
+                             stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,
+                             text=True).stdout.strip()
+        if not state or state.startswith('Z'):
+            break
+        time.sleep(.02)
+def send(sig):
+    try:
+        (os.killpg if group else os.kill)(pid,sig)
+        return True
+    except ProcessLookupError:
+        return False
+if send(signal.SIGTERM):
+    end=time.monotonic()+grace
+    while time.monotonic()<end and send(0):
+        time.sleep(min(.05,max(0,end-time.monotonic())))
+    send(signal.SIGKILL)
+'''
+    monitor = subprocess.Popen([sys.executable, "-I", "-S", "-c", code, str(own_pid),
+                                str(int(os.getpgrp() == own_pid)), str(grace)],
+                               stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                               start_new_session=True, close_fds=True)
+    _PARENT_GUARD = (own_pid, parent, monitor)
+
+    def normal_exit():
+        try:
+            monitor.stdin.write(b"n")
+            monitor.stdin.flush()
+            monitor.stdin.close()
+        except (BrokenPipeError, OSError, ValueError):
+            pass
+
+    atexit.register(normal_exit)
+
+    def after_fork():
+        # A forked model child must not retain the liveness writer after its
+        # owner dies; otherwise the monitor would never observe pipe EOF.
+        global _PARENT_GUARD
+        monitor.stdin.close()
+        _PARENT_GUARD = None
+
+    if hasattr(os, "register_at_fork"):
+        os.register_at_fork(after_in_child=after_fork)
+
+    def watch():
+        while os.getppid() == parent:
+            time.sleep(interval)
+        try:
+            monitor.stdin.write(b"x")
+            monitor.stdin.flush()
+        except (BrokenPipeError, OSError, ValueError):
+            pass  # Interpreter shutdown or the monitor already consumed EOF.
+
+    threading.Thread(target=watch, name="supervisor-watchdog", daemon=True).start()
+
+
+# Existing GUI entry points keep the same small hook; CLI runners can use the
+# generic name and override REVEMAP_SUPERVISOR_PID at each child launch.
+guard_gui_parent = guard_parent_process
+
+
 class FrameJournalReader:
     """Tail committed rows without reparsing the growing capture journal.
 

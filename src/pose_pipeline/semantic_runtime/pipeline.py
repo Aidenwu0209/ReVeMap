@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import signal
 import subprocess
+import threading
 import time
 
 from .common import SOURCE_ROOT, event, model_spec, read, sha, validate_runtime, write
@@ -16,7 +17,7 @@ class Processes:
         self.output, self.timeout, self.jobs = Path(output), timeout, []
 
     def launch(self, name, command):
-        env = dict(os.environ, PYTHONPATH=str(SOURCE_ROOT), OMP_NUM_THREADS="2",
+        env = dict(os.environ, PYTHONPATH=str(SOURCE_ROOT), REVEMAP_SUPERVISOR_PID=str(os.getpid()), OMP_NUM_THREADS="2",
                    MKL_NUM_THREADS="2", OPENBLAS_NUM_THREADS="2", TOKENIZERS_PARALLELISM="false")
         event(self.output, "process_start", stage=name)
         with (self.output / (name + ".log")).open("x") as stream:
@@ -74,6 +75,10 @@ def run(args):
     view_policy = getattr(args, 'view_policy', 'stride')
     view_budget = getattr(args, 'view_budget', None)
     effective_budget = selection_budget(manifest.frames, args.stride, view_budget, view_policy)
+    confidence_policy = getattr(args, 'semantic_confidence_policy', 'legacy')
+    conflict_policy = getattr(args, 'semantic_conflict_policy', 'consensus')
+    if confidence_policy not in ('legacy', 'track') or conflict_policy not in ('consensus', 'abstain'):
+        raise ValueError('invalid semantic evidence policy')
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
     # Resolve all runtime paths before workers switch interpreters; no machine
@@ -83,22 +88,41 @@ def run(args):
     paths = [args.manifest] + [p for f in manifest.frames for p in (f.color_path, f.depth_path)]
     inputs = {str(Path(p).resolve()): sha(p) for p in paths}
     write(output / "INPUTS.json", inputs)
-    write(output / "CONFIG.json", {"schedule": args.schedule, "vlm": args.vlm, "stride": args.stride,
+    options = {"schedule": args.schedule, "vlm": args.vlm, "stride": args.stride,
                                   "raw_frames": len(manifest.frames), "profile": "sam3_stage_v2",
                                   "view_policy": view_policy, "view_budget": view_budget,
-                                  "effective_view_budget": effective_budget})
+                                  "effective_view_budget": effective_budget,
+                                  "semantic_confidence_policy": confidence_policy,
+                                  "semantic_conflict_policy": conflict_policy}
+    write(output / "CONFIG.json", options)
     processes = Processes(output, config.get("stage_timeout", 7200))
     def command(stage, python, target, *extra):
         return [python, "-u", "-m", "pose_pipeline.semantic_runtime.worker", stage,
                 "--runtime", str(runtime), "--output", str(target), *map(str, extra)]
     start = time.monotonic()
+    previous_sigterm = None
+    if threading.current_thread() is threading.main_thread() and signal.getsignal(signal.SIGTERM) == signal.SIG_DFL:
+        def terminated(signum, _frame):
+            raise KeyboardInterrupt(f'Signal {signum}')
+        previous_sigterm = signal.signal(signal.SIGTERM, terminated)
+    from ..live_io import guard_parent_process
+    guard_parent_process()
     try:
         event(output, "run_start", schedule=args.schedule)
-        mapping = processes.launch("mapping", command("mapping", config["cpu_python"], output / "mapping",
+        checkpoints = None
+        if getattr(args, 'checkpoint_stages', False) or getattr(args, 'resume_from', None):
+            from .checkpoints import CheckpointStore, context
+            checkpoints = CheckpointStore(output, context(inputs, config, options),
+                                          getattr(args, 'resume_from', None))
+        mapping_reused = bool(checkpoints and checkpoints.restore('mapping'))
+        sam3_reused = False
+        mapping = None if mapping_reused else processes.launch("mapping", command("mapping", config["cpu_python"], output / "mapping",
                                    "--manifest", args.manifest.resolve()))
-        if args.schedule == "serial":
+        if mapping and args.schedule == "serial":
             processes.wait(mapping)
-        else:
+            if checkpoints:
+                checkpoints.seal('mapping')
+        elif mapping:
             # run_rgbd_mapping marks refill complete only after the final GPU
             # process exits. SAM3 may now overlap the remaining CPU TSDF fusion.
             while True:
@@ -121,11 +145,21 @@ def run(args):
         processes.wait(selection)
         view_plan = output / 'view_selection/VIEW_PLAN.json'
         selection_audit = read(view_plan)
-        sam3 = processes.launch("sam3", command("sam3", config["sam3_python"], output / "semantic",
+        if checkpoints and mapping_reused:
+            sam3_reused = checkpoints.restore('sam3', view_plan=view_plan)
+            if sam3_reused and [row['frame_id'] for row in read(output / 'semantic/FRAMES.json')] != selection_audit['selected_frame_ids']:
+                raise ValueError('restored SAM3 frames do not match the current selection')
+        sam3 = None if sam3_reused else processes.launch("sam3", command("sam3", config["sam3_python"], output / "semantic",
                                  "--manifest", args.manifest.resolve(), "--stride", args.stride,
                                  '--view-plan', view_plan, '--view-plan-sha256', sha(view_plan)))
-        processes.wait(mapping)
-        processes.wait(sam3)
+        if mapping and args.schedule != 'serial':
+            processes.wait(mapping)
+            if checkpoints:
+                checkpoints.seal('mapping')
+        if sam3:
+            processes.wait(sam3)
+            if checkpoints:
+                checkpoints.seal('sam3')
         # SAM3 process exit releases weights and allocator state before any VLM.
         naming = None
         if args.vlm != "none":
@@ -134,7 +168,8 @@ def run(args):
                                       "--tasks", output / "semantic/CROP_TASKS.json", "--model", args.vlm))
         if args.schedule == "serial" and naming:
             processes.wait(naming)
-        fusion = processes.launch("fusion", command("fusion", config["cpu_python"], output))
+        fusion = processes.launch("fusion", command("fusion", config["cpu_python"], output,
+            '--semantic-confidence-policy', confidence_policy, '--semantic-conflict-policy', conflict_policy))
         processes.wait(fusion)
         if naming:
             processes.wait(naming)
@@ -146,6 +181,10 @@ def run(args):
         for path, digest in inputs.items():
             if sha(path) != digest:
                 raise RuntimeError("raw input changed during execution")
+        if read(runtime) != config or read(output / 'CONFIG.json') != options or read(output / 'INPUTS.json') != inputs:
+            raise RuntimeError('execution records changed during execution')
+        if checkpoints:
+            checkpoints.verify_context()
         from ..artifacts import write_artifact_manifest
         fused = output / 'fused'
         write_artifact_manifest(fused, map_path=fused / 'export/map_labeled.ply',
@@ -154,14 +193,19 @@ def run(args):
             extra_files={'names': fused / 'instance_names.json'})
         summary = {"status": "completed", "schedule": args.schedule, "vlm": args.vlm,
                    "raw_frames": len(manifest.frames), "seconds": end-start,
-                   "raw_fps": len(manifest.frames)/(end-start), "stride": args.stride,
+                   "raw_fps": None if mapping_reused or sam3_reused else len(manifest.frames)/(end-start),
+                   "effective_replay_frames_per_second": len(manifest.frames)/(end-start) if mapping_reused or sam3_reused else None,
+                   "stride": args.stride,
                    "view_policy": view_policy, "view_budget": effective_budget,
                    "selected_frames": len(selection_audit['selected_frame_ids']),
                    "view_plan": str(view_plan), "view_plan_sha256": sha(view_plan),
                    "diversity_fallback_frames": len(selection_audit.get('diversity_fallback_frame_ids', [])),
-                   "scope": "fresh raw RGB-D map + SAM3 masks/fusion + optional VLM naming metadata",
+                   "scope": ("verified completed-stage reuse + fresh fusion/optional naming" if mapping_reused or sam3_reused
+                             else "fresh raw RGB-D map + SAM3 masks/fusion + optional VLM naming metadata"),
+                   "stage_reuse": {"mapping": mapping_reused, "sam3": sam3_reused},
+                   "semantic_confidence_policy": confidence_policy, "semantic_conflict_policy": conflict_policy,
                    "includes_offline_P2_enhancement": False, "VLM_changes_semantic_id": False,
-                   "timing": "all worker startup/load/inference/fusion/export; excludes pre/post input hashing and final inventory sealing",
+                   "timing": "all worker startup/load/inference/fusion/export; excludes pre/post input hashing and final inventory sealing; includes checkpoint verification/copy when enabled",
                    "GT_used": False, "local_models_resident_together": False,
                    "map": str(output / "fused/export/map_labeled.ply"),
                    "artifacts": str(output / "fused/ARTIFACTS.json"),
@@ -174,3 +218,5 @@ def run(args):
         raise
     finally:
         processes.close()
+        if previous_sigterm is not None:
+            signal.signal(signal.SIGTERM, previous_sigterm)

@@ -12,6 +12,36 @@ import pytest
 from pose_pipeline.contracts import FrameRecord, SequenceManifest, write_manifest
 
 
+@pytest.mark.parametrize('exitcode', [0, 7])
+def test_exited_stage_leader_does_not_leave_its_descendant(tmp_path, exitcode):
+    from pose_pipeline.rgbd_mapping import _run_stage
+    pidfile = tmp_path / 'descendant.pid'
+    descendant = "import os,signal,sys,time;from pathlib import Path;signal.signal(signal.SIGTERM,signal.SIG_IGN);Path(sys.argv[1]).write_text(str(os.getpid()));time.sleep(60)"
+    script = tmp_path / 'leader.py'
+    script.write_text('import subprocess,sys,time\nfrom pathlib import Path\n'
+        'subprocess.Popen([sys.executable,"-c",sys.argv[1],sys.argv[2]])\n'
+        'while not Path(sys.argv[2]).exists():time.sleep(.01)\n'
+        'sys.exit(int(sys.argv[3]))\n')
+    pid = None
+    try:
+        result = _run_stage([sys.executable, str(script), descendant, str(pidfile), str(exitcode)],
+                            tmp_path / 'stage.log', 5, dict(os.environ))
+        pid = int(pidfile.read_text())
+        assert result['returncode'] == exitcode
+        deadline = time.monotonic() + 3
+        while time.monotonic() < deadline:
+            state = subprocess.run(['ps', '-p', str(pid), '-o', 'stat='], capture_output=True, text=True).stdout.strip()
+            if not state or state.startswith('Z'):
+                break
+            time.sleep(.02)
+        else:
+            pytest.fail('isolated stage descendant remains alive after leader exit')
+    finally:
+        if pid is not None:
+            try: os.kill(pid, signal.SIGKILL)
+            except ProcessLookupError: pass
+
+
 @pytest.mark.skipif(os.name != "posix", reason="POSIX process-group runner")
 def test_sigterm_stops_stage_and_records_failure(tmp_path):
     color, depth = tmp_path / "color.jpg", tmp_path / "depth.png"

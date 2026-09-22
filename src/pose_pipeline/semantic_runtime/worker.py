@@ -142,7 +142,11 @@ def main():
     parser.add_argument("--view-budget", type=int)
     parser.add_argument("--view-plan", type=Path)
     parser.add_argument("--view-plan-sha256")
+    parser.add_argument('--semantic-confidence-policy', choices=('legacy', 'track'), default='legacy')
+    parser.add_argument('--semantic-conflict-policy', choices=('consensus', 'abstain'), default='consensus')
     args = parser.parse_args()
+    from ..live_io import guard_parent_process
+    guard_parent_process()
     config = read(args.runtime)
     if args.stage == "select":
         from .view_selection import build_view_plan
@@ -164,7 +168,8 @@ def main():
             stage_timeout_s=config.get("stage_timeout", 7200))
     elif args.stage == "fusion":
         from .fusion import main as fuse
-        fuse(argparse.Namespace(arm_root=args.output))
+        fuse(argparse.Namespace(arm_root=args.output, semantic_confidence_policy=args.semantic_confidence_policy,
+                                semantic_conflict_policy=args.semantic_conflict_policy))
     else:
         from .backfill import main as backfill
         backfill(argparse.Namespace(arm_root=args.output))

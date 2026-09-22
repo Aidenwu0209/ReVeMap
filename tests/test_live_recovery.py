@@ -1,6 +1,11 @@
 """CPU regression tests for committed capture data and recoverable GUI sessions."""
 import json
+import os
 from pathlib import Path
+import signal
+import subprocess
+import sys
+import time
 from types import SimpleNamespace
 from unittest.mock import Mock, patch
 
@@ -10,6 +15,283 @@ import pytest
 from pose_pipeline import live_capture
 from pose_pipeline.live_gui import Controller, pipeline_progress
 from pose_pipeline.live_io import FrameJournalReader, atomic_json, journal_frames, seal_capture
+
+
+def wait_until(predicate, timeout=6):
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        if predicate():
+            return
+        time.sleep(.02)
+    raise AssertionError("real process did not reach the expected state")
+
+
+def process_running(pid):
+    state = subprocess.run(["ps", "-p", str(pid), "-o", "stat="], capture_output=True, text=True).stdout.strip()
+    return bool(state) and not state.startswith("Z")
+
+
+@pytest.fixture
+def process_probe(tmp_path):
+    """Real OS fault worker: emits stage files, never emits model predictions."""
+    module = tmp_path / "recovery_process_probe.py"
+    module.write_text('''import argparse, json, os, signal, subprocess, sys, time
+from pathlib import Path
+p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True)
+args,_=p.parse_known_args();args.output.mkdir(parents=True,exist_ok=True)
+stage=os.environ.get('RECOVERY_TEST_STAGE','mapping')
+(args.output/'events_probe.jsonl').write_text(json.dumps({'event':'process_start','stage':stage,'monotonic':time.monotonic()})+'\\n')
+(args.output/'partial-stage.bin').write_bytes(b'incomplete fault-injection stage; not model output')
+if os.environ.get('RECOVERY_TEST_DESCENDANT'):
+ code="import signal,time;signal.signal(signal.SIGINT,signal.SIG_IGN);signal.signal(signal.SIGTERM,signal.SIG_IGN);time.sleep(60)"
+ child=subprocess.Popen([sys.executable,'-c',code])
+ (args.output/'descendant.pid').write_text(str(child.pid))
+if os.environ.get('RECOVERY_TEST_EXIT_ZERO'):
+ sys.exit(0)
+(args.output/'ready').write_text(str(os.getpid()))
+while True:time.sleep(.05)
+''')
+    return module
+
+
+def probe_controller(tmp_path, module, *, stage="mapping"):
+    class ProbeController(Controller):
+        def launch(self, python, original_module, arguments, name, *, output=None):
+            return super().launch(sys.executable, module.stem, arguments, name, output=output)
+    controller = ProbeController(SimpleNamespace(replay=None, output=tmp_path,
+        cpu_python=sys.executable, runtime=tmp_path / 'runtime.json'))
+    controller.env['PYTHONPATH'] = str(module.parent) + os.pathsep + controller.env['PYTHONPATH']
+    controller.env['RECOVERY_TEST_STAGE'] = stage
+    return controller
+
+
+@pytest.mark.parametrize("stage", ["mapping", "sam3", "vlm", "refine/ground", "export"])
+def test_real_stage_process_kill_and_retry_preserves_previous_attempt(tmp_path, process_probe, stage):
+    session = saved_session(tmp_path)
+    controller = probe_controller(tmp_path, process_probe, stage=stage)
+    options = {"vlm": "none", "schedule": "serial", "refine": False}
+    with patch.object(controller, 'validate_options', return_value=options):
+        controller.reprocess({'session': session.name, **options})
+        first = Path(controller.state['attempt'])
+        wait_until(lambda: (first / 'pipeline/ready').exists())
+        os.kill(controller.children[0].pid, signal.SIGKILL)
+        controller.thread.join(timeout=6)
+        assert not controller.thread.is_alive()
+        assert controller.state['status'] == 'failed'
+        before = {str(p.relative_to(first)): p.read_bytes() for p in first.rglob('*') if p.is_file()}
+        restarted = probe_controller(tmp_path, process_probe, stage=stage)
+        restarted.open_session(session.name)
+        assert restarted.state['status'] == 'failed' and restarted.snapshot()['can_reprocess']
+        with patch.object(restarted, 'validate_options', return_value=options):
+            restarted.reprocess({'session': session.name, **options})
+            second = Path(restarted.state['attempt'])
+            try:
+                wait_until(lambda: (second / 'pipeline/ready').exists())
+                assert second != first
+                command = json.loads((second / 'mapping_launch.json').read_text())['command']
+                assert '--checkpoint-stages' in command
+                assert command[command.index('--resume-from') + 1] == str(first / 'pipeline')
+            finally:
+                restarted.cancel()
+                restarted.thread.join(timeout=6)
+        assert not restarted.thread.is_alive()
+        assert restarted.state['status'] == 'cancelled'
+        assert before == {str(p.relative_to(first)): p.read_bytes() for p in first.rglob('*') if p.is_file()}
+        assert all(not process_running(p.pid) for p in controller.children + restarted.children)
+
+
+def test_real_cancel_reaps_descendant_after_its_leader_exits(tmp_path, process_probe):
+    session = saved_session(tmp_path)
+    controller = probe_controller(tmp_path, process_probe)
+    controller.env['RECOVERY_TEST_DESCENDANT'] = '1'
+    options = {"vlm": "none", "schedule": "serial", "refine": False}
+    with patch.object(controller, 'validate_options', return_value=options):
+        controller.reprocess({'session': session.name, **options})
+    output = controller.pipeline_path()
+    try:
+        wait_until(lambda: (output / 'ready').exists())
+        descendant = int((output / 'descendant.pid').read_text())
+        wait_until(lambda: process_running(descendant))
+        controller.cancel()
+        controller.thread.join(timeout=6)
+        assert not controller.thread.is_alive()
+        assert controller.state['status'] == 'cancelled'
+        wait_until(lambda: not process_running(descendant))
+        assert not process_running(controller.children[0].pid)
+    finally:
+        controller.cancel()
+        for child in controller.children:
+            try: os.killpg(child.pid, signal.SIGKILL)
+            except ProcessLookupError: pass
+
+
+def test_real_zero_exit_without_final_seal_is_not_completed(tmp_path, process_probe):
+    session = saved_session(tmp_path)
+    controller = probe_controller(tmp_path, process_probe)
+    controller.env['RECOVERY_TEST_EXIT_ZERO'] = '1'
+    options = {"vlm": "none", "schedule": "serial", "refine": False}
+    with patch.object(controller, 'validate_options', return_value=options):
+        controller.reprocess({'session': session.name, **options})
+    controller.thread.join(timeout=6)
+    assert not controller.thread.is_alive()
+    assert controller.state['status'] == 'failed'
+    assert '封存' in controller.state['error']
+
+
+def test_second_gui_cannot_reprocess_while_prior_worker_is_alive(tmp_path, process_probe):
+    session = saved_session(tmp_path)
+    first = probe_controller(tmp_path, process_probe)
+    options = {"vlm": "none", "schedule": "serial", "refine": False}
+    with patch.object(first, 'validate_options', return_value=options):
+        first.reprocess({'session': session.name, **options})
+    try:
+        wait_until(lambda: (first.pipeline_path() / 'ready').exists())
+        original = (session / 'session.json').read_bytes()
+        second = probe_controller(tmp_path, process_probe)
+        with patch.object(second, 'validate_options', return_value=options):
+            with pytest.raises(ValueError, match='仍在退出'):
+                second.reprocess({'session': session.name, **options})
+        assert (session / 'session.json').read_bytes() == original
+        assert len(list((session / 'attempts').iterdir())) == 1
+    finally:
+        first.cancel(); first.thread.join(timeout=6)
+    assert not first.thread.is_alive()
+
+
+@pytest.mark.parametrize('after_first_frame', [False, True])
+def test_real_stalled_capture_has_supervisor_deadline(tmp_path, after_first_frame):
+    controller = Controller(SimpleNamespace(replay=None, first_frame_timeout=.3, capture_frame_timeout=.3))
+    controller.session = tmp_path
+    atomic_json(tmp_path / 'capture_status.json', {'frames': int(after_first_frame), 'status': 'recording'})
+    child = subprocess.Popen([sys.executable, '-c', 'import time;time.sleep(60)'], start_new_session=True)
+    controller.children = [child]
+    start = time.monotonic()
+    try:
+        with pytest.raises(TimeoutError):
+            (controller.wait_capture if after_first_frame else controller.wait_first_frame)(child)
+        assert time.monotonic() - start < 2
+    finally:
+        controller.cleanup_children()
+    assert not process_running(child.pid)
+
+
+def test_real_writer_killed_mid_journal_recovers_only_committed_frame(tmp_path):
+    session = saved_session(tmp_path, status='recording', seal=False)
+    journal = session / 'capture/frames.jsonl'
+    committed = journal.read_bytes().split(b'\n')[0] + b'\n'
+    journal.write_bytes(committed)
+    ready = session / 'writer_ready'
+    code = "from pathlib import Path;import sys,time;p=Path(sys.argv[1]);f=p.open('ab');f.write(b'{\"frame_id\":1,');f.flush();Path(sys.argv[2]).touch();time.sleep(60)"
+    child = subprocess.Popen([sys.executable, '-c', code, str(journal), str(ready)], start_new_session=True)
+    try:
+        wait_until(ready.exists)
+        child.kill(); child.wait(timeout=3)
+        before = journal.read_bytes()
+        controller = Controller(SimpleNamespace(replay=None, output=tmp_path))
+        controller.open_session(session.name)
+        assert controller.state['status'] == 'interrupted'
+        assert seal_capture(session / 'capture', source='explicit_process_interrupt_test') == 1
+        assert journal.read_bytes() == before
+        assert len(json.loads((session / 'capture/manifest.json').read_text())['frames']) == 1
+    finally:
+        if child.poll() is None: child.kill(); child.wait()
+
+
+def test_real_replay_capture_seals_after_supervisor_sigkill(tmp_path):
+    """Actual capture module with synthetic RGB-D inputs; no SDK or models."""
+    from PIL import Image
+    from pose_pipeline.contracts import FrameRecord, SequenceManifest, write_manifest
+    inputs = tmp_path / 'inputs'; inputs.mkdir()
+    color, depth = inputs / 'color.png', inputs / 'depth.png'
+    Image.fromarray(np.zeros((6, 8, 3), np.uint8)).save(color)
+    Image.fromarray(np.full((6, 8), 1000, np.uint16)).save(depth)
+    manifest = inputs / 'manifest.json'
+    write_manifest(manifest, SequenceManifest('orbbec', 'replay-fixture', inputs, 1000.,
+        tuple(FrameRecord(i, (i+1)*1000, color, depth, (8., 8., 4., 3.)) for i in range(200)), 'synthetic process recovery fixture'))
+    session = tmp_path / 'scan_parent_killed'; session.mkdir()
+    atomic_json(session / 'session.json', {'status': 'recording', 'mode': 'replay'})
+    code = """import os,subprocess,sys,time
+from pathlib import Path
+session,manifest=sys.argv[1:]
+child=subprocess.Popen([sys.executable,'-m','pose_pipeline.live_capture','--session',session,'--replay',manifest,'--fps','20'],env={**os.environ,'REVEMAP_GUI_PARENT_PID':str(os.getpid())},start_new_session=True)
+Path(session,'capture.pid').write_text(str(child.pid))
+while True:time.sleep(.05)
+"""
+    env = {**os.environ, 'PYTHONPATH': str(Path(live_capture.__file__).resolve().parents[1]), 'PYTHONDONTWRITEBYTECODE': '1'}
+    with (session / 'capture.log').open('w') as log:
+        parent = subprocess.Popen([sys.executable, '-c', code, str(session), str(manifest)], env=env,
+                                  stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
+    pid = None
+    try:
+        wait_until(lambda: (session / 'capture.pid').exists())
+        pid = int((session / 'capture.pid').read_text())
+        wait_until(lambda: json.loads((session / 'capture_status.json').read_text()).get('frames', 0) >= 2
+                   if (session / 'capture_status.json').exists() else False)
+        parent.kill(); parent.wait(timeout=3)
+        wait_until(lambda: (session / 'capture/manifest.json').exists())
+        wait_until(lambda: not process_running(pid))
+        status = json.loads((session / 'capture_status.json').read_text())
+        assert status['status'] == 'sealed' and status['frames'] >= 2
+        controller = Controller(SimpleNamespace(replay=None, output=tmp_path))
+        controller.open_session(session.name)
+        assert controller.state['status'] == 'interrupted'
+        assert controller.snapshot()['can_reprocess']
+        assert not (session / 'pipeline/GUI_RESULT.json').exists()
+    finally:
+        if parent.poll() is None: parent.kill(); parent.wait()
+        if pid and process_running(pid):
+            try: os.killpg(pid, signal.SIGKILL)
+            except ProcessLookupError: pass
+
+
+def test_parent_watchdog_cascades_across_real_setsid_process_tree(tmp_path):
+    """Nested supervisors each own a session, like CLI -> mapping -> GPU stage."""
+    script = tmp_path / 'owned_tree.py'
+    script.write_text('''import os,subprocess,sys,time
+from pathlib import Path
+from pose_pipeline.live_io import guard_parent_process
+root=Path(sys.argv[1]);depth=int(sys.argv[2])
+guard_parent_process(interval=.02,grace=.2)
+if depth:
+ subprocess.Popen([sys.executable,__file__,str(root),str(depth-1)],
+  env={**os.environ,'REVEMAP_SUPERVISOR_PID':str(os.getpid())},start_new_session=True)
+(root/(str(depth)+'.pid')).write_text(str(os.getpid()))
+while True:time.sleep(.02)
+''')
+    env = {**os.environ, 'PYTHONPATH': str(Path(live_capture.__file__).resolve().parents[1]), 'PYTHONDONTWRITEBYTECODE': '1'}
+    env.pop('REVEMAP_SUPERVISOR_PID', None); env.pop('REVEMAP_GUI_PARENT_PID', None)
+    leader = subprocess.Popen([sys.executable, str(script), str(tmp_path), '2'], env=env, start_new_session=True)
+    pids = []
+    try:
+        wait_until(lambda: all((tmp_path / f'{depth}.pid').exists() for depth in range(3)))
+        pids = [int((tmp_path / f'{depth}.pid').read_text()) for depth in range(3)]
+        assert len({os.getpgid(pid) for pid in pids}) == 3
+        leader.kill(); leader.wait(timeout=3)
+        wait_until(lambda: all(not process_running(pid) for pid in pids))
+    finally:
+        if leader.poll() is None: leader.kill(); leader.wait()
+        for pid in pids:
+            if process_running(pid):
+                try: os.killpg(pid, signal.SIGKILL)
+                except ProcessLookupError: pass
+
+
+def test_semantic_bridge_forwards_checkpoint_resume_options(tmp_path, monkeypatch):
+    from pose_pipeline import live_semantic
+    from pose_pipeline.semantic_runtime import pipeline
+    received = {}
+    def stop_at_pipeline(args):
+        received.update(vars(args))
+        raise RuntimeError('no model execution in CLI option test')
+    monkeypatch.setattr(pipeline, 'run', stop_at_pipeline)
+    monkeypatch.setattr(sys, 'argv', ['live_semantic', '--manifest', str(tmp_path / 'manifest.json'),
+        '--runtime', str(tmp_path / 'runtime.json'), '--output', str(tmp_path / 'new'),
+        '--checkpoint-stages', '--resume-from', str(tmp_path / 'previous')])
+    with patch.object(live_semantic.signal, 'signal'):
+        with pytest.raises(RuntimeError, match='no model execution'):
+            live_semantic.main()
+    assert received['checkpoint_stages'] is True
+    assert received['resume_from'] == tmp_path / 'previous'
 
 
 def test_incremental_journal_commits_only_complete_rows(tmp_path):
@@ -288,3 +570,144 @@ def test_progress_tracks_semantics_after_geometry(tmp_path):
     atomic_json(tmp_path / "GUI_STAGE.json", {"stage": "refine/ground"})
     assert pipeline_progress(tmp_path, state)["label"] == "未知点补全 / 候选定位"
     assert all(row["status"] == "completed" for row in pipeline_progress(tmp_path, {**state, "status": "completed"})["stages"])
+
+
+def sealed_gui_fixture(controller):
+    """Synthetic one-point artifact for publication checks; no model was run."""
+    from plyfile import PlyData, PlyElement
+    from pose_pipeline.artifacts import write_artifact_manifest
+    from pose_pipeline.contracts import PoseRecord, write_trajectory
+    output = controller.pipeline_path()
+    output.mkdir()
+    vertices = np.zeros(1, dtype=[(key, 'f4') for key in ('x', 'y', 'z')] +
+        [(key, 'u1') for key in ('red', 'green', 'blue')] +
+        [(key, 'i4') for key in ('semantic_id', 'instance_id')])
+    cloud = output / 'map.ply'
+    PlyData([PlyElement.describe(vertices, 'vertex')]).write(cloud)
+    classes, trajectory = output / 'classes.json', output / 'trajectory.json'
+    atomic_json(classes, {'0': 'unknown'})
+    write_trajectory(trajectory, [PoseRecord(0, 1000, np.eye(4))], sequence_id=controller.session.name, arm='synthetic-test')
+    result = {'status': 'completed', 'final_cloud': str(cloud), 'raw_map': str(cloud),
+        'classes': str(classes), 'trajectory': str(trajectory), 'artifacts': str(output / 'ARTIFACTS.json'),
+        'model_inference_executed': False, 'scope': 'synthetic publication test only'}
+    atomic_json(output / 'GUI_RESULT.json', result)
+    write_artifact_manifest(output, map_path=cloud, classes_path=classes,
+        result_path=output / 'GUI_RESULT.json', manifest_path=controller.session / 'capture/manifest.json', trajectory_path=trajectory)
+    atomic_json(output / 'GUI_STAGE.json', {'stage': 'completed'})
+    return result
+
+
+def test_final_result_validates_before_committing_attempt_and_rejects_old_output(tmp_path):
+    controller = Controller(SimpleNamespace(replay=None, output=tmp_path))
+    controller.session = saved_session(tmp_path)
+    controller.new_attempt()
+    first_output = controller.pipeline_path()
+    result = sealed_gui_fixture(controller)
+    assert controller.validate_final_result(first_output) == result
+    assert json.loads((Path(controller.state['attempt']) / 'attempt.json').read_text())['status'] == 'mapping'
+    controller.update(status='failed', error='injected before GUI commit')
+    first_receipt = (Path(controller.state['attempt']) / 'attempt.json').read_bytes()
+    controller.new_attempt()
+    second = controller.pipeline_path(); second.mkdir()
+    # Copy only old pointers and its inventory: no new output is manufactured.
+    for name in ('GUI_RESULT.json', 'ARTIFACTS.json', 'GUI_STAGE.json'):
+        (second / name).write_bytes((first_output / name).read_bytes())
+    with pytest.raises(ValueError):
+        controller.validate_final_result(second)
+    assert (first_output.parent / 'attempt.json').read_bytes() == first_receipt
+    assert controller.state['status'] == 'mapping'
+
+
+def test_history_does_not_publish_tampered_completed_attempt(tmp_path):
+    controller = Controller(SimpleNamespace(replay=None, output=tmp_path))
+    controller.session = saved_session(tmp_path)
+    controller.new_attempt()
+    result = sealed_gui_fixture(controller)
+    controller.update(status='completed', result=result)
+    session = controller.session
+    before = (session / 'session.json').read_bytes()
+    Path(result['classes']).write_text('{"0":"tampered"}')
+    restarted = Controller(SimpleNamespace(replay=None, output=tmp_path))
+    restarted.open_session(session.name)
+    assert restarted.state['status'] == 'failed'
+    assert '摘要' in restarted.state['error']
+    assert (session / 'session.json').read_bytes() == before
+    assert not (session / 'cloud.json').exists()
+
+
+def test_history_cannot_bind_old_map_to_a_failed_new_attempt(tmp_path):
+    controller = Controller(SimpleNamespace(replay=None, output=tmp_path))
+    controller.session = saved_session(tmp_path)
+    controller.new_attempt()
+    old_output = controller.pipeline_path()
+    old_result = sealed_gui_fixture(controller)
+    controller.update(status='completed', result=old_result)
+    controller.new_attempt()
+    failed_attempt = Path(controller.state['attempt'])
+    controller.update(status='failed', error='new attempt has no map')
+    before = (failed_attempt / 'attempt.json').read_bytes()
+    # An inconsistent history pointer must not publish the old map or turn the
+    # failed attempt into a completed one via show_cloud -> update.
+    atomic_json(controller.session / 'session.json', {
+        **controller.state, 'status': 'completed', 'pipeline': str(old_output), 'result': old_result})
+    restarted = Controller(SimpleNamespace(replay=None, output=tmp_path))
+    restarted.open_session(controller.session.name)
+    assert restarted.state['status'] == 'failed'
+    assert '归属' in restarted.state['error']
+    assert (failed_attempt / 'attempt.json').read_bytes() == before
+    assert not (controller.session / 'cloud.json').exists()
+
+
+def test_final_result_rejects_an_attempt_outside_its_session(tmp_path):
+    controller = Controller(SimpleNamespace(replay=None, output=tmp_path))
+    controller.session = saved_session(tmp_path)
+    controller.new_attempt()
+    original_output = controller.pipeline_path()
+    sealed_gui_fixture(controller)
+    foreign = tmp_path / 'foreign_attempt'
+    Path(controller.state['attempt']).rename(foreign)
+    controller.state.update(attempt=str(foreign), pipeline=str(foreign / 'pipeline'))
+    with pytest.raises(ValueError, match='归属'):
+        controller.validate_final_result(foreign / 'pipeline')
+    assert not original_output.exists()
+
+
+def test_retry_waits_for_real_group_members_after_leader_exit(tmp_path):
+    attempt = tmp_path / 'attempts/old'
+    attempt.mkdir(parents=True)
+    script = tmp_path / 'early_exit.py'
+    script.write_text('''import subprocess,sys,time
+from pathlib import Path
+p=subprocess.Popen([sys.executable,'-c','import time;time.sleep(30)'])
+Path(sys.argv[1]).write_text(str(p.pid))
+''')
+    leader = subprocess.Popen([sys.executable, str(script), str(tmp_path / 'descendant.pid')],
+                              start_new_session=True)
+    try:
+        leader.wait(timeout=3)
+        child = int((tmp_path / 'descendant.pid').read_text())
+        assert process_running(child)
+        atomic_json(attempt / 'mapping_launch.json', {'pid': leader.pid, 'process_start': 'exited owner'})
+        controller = Controller(SimpleNamespace(replay=None, output=tmp_path))
+        with pytest.raises(ValueError, match='仍有工作进程'):
+            controller.ensure_session_workers_stopped(tmp_path)
+        assert process_running(child)  # This read-only guard must not kill it.
+    finally:
+        try:
+            os.killpg(leader.pid, signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+        if leader.poll() is None:
+            leader.kill(); leader.wait()
+
+
+def test_retry_does_not_treat_a_reused_leader_pid_as_owned(tmp_path, monkeypatch):
+    attempt = tmp_path / 'attempts/old'
+    attempt.mkdir(parents=True)
+    atomic_json(attempt / 'mapping_launch.json', {'pid': 123456, 'process_start': 'original start'})
+    controller = Controller(SimpleNamespace(replay=None, output=tmp_path))
+    monkeypatch.setattr(controller, 'process_identity', lambda pid: {'started': 'different start', 'command': 'unrelated'})
+    def do_not_probe_unrelated_group(pid):
+        raise AssertionError('reused leader PID is not this attempt\'s owned group')
+    monkeypatch.setattr(controller, 'process_group_members', do_not_probe_unrelated_group)
+    controller.ensure_session_workers_stopped(tmp_path)

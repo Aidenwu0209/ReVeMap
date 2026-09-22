@@ -184,8 +184,12 @@ class Controller:
             self.children = []
             if state.get("status") == "completed":
                 try:
+                    if state.get("attempt"):
+                        self.state["result"] = self.validate_final_result(self.pipeline_path())
+                        from .artifacts import load_artifacts
+                        load_artifacts(self.pipeline_path(), require_provenance=True)
                     self.show_cloud(state.get("view", "semantic_id"))
-                except (OSError, ValueError, KeyError) as error:
+                except (OSError, ValueError, KeyError, TypeError) as error:
                     self.state.update(status="failed", error=f"历史结果无法打开：{error}；可从原始数据重新处理。")
 
     def start(self, options=None):
@@ -211,6 +215,7 @@ class Controller:
             self.ensure_idle()
             name = requested.get("session") or (self.session.name if self.session else None)
             path = self.resolve_session(name)
+            self.ensure_session_workers_stopped(path)
             manifest = path / "capture/manifest.json"
             if not manifest.is_file():
                 # Abrupt termination can leave a valid committed journal without
@@ -220,6 +225,10 @@ class Controller:
             if not load_manifest(manifest).frames:
                 raise ValueError("该扫描没有可重新处理的有效 RGB-D 帧")
             old = read_json(path / "session.json")
+            previous_pipeline = Path(old["pipeline"]).resolve() if old.get("pipeline") else None
+            if previous_pipeline and (not previous_pipeline.is_relative_to(path / "attempts")
+                                      or not previous_pipeline.is_dir()):
+                previous_pipeline = None
             history = path / "history"
             history.mkdir(exist_ok=True)
             atomic_json(history / (f"session_{time.time_ns()}.json"), old)
@@ -229,7 +238,7 @@ class Controller:
             self.children = []
             self.state = {"status": "mapping", "base_commit": BASE_COMMIT,
                           "mode": old.get("mode", "replay"), "started": old.get("started", time.time()),
-                          "options": options}
+                          "options": options, "resume_from": str(previous_pipeline) if previous_pipeline else None}
             self.new_attempt()
             self.thread = threading.Thread(target=self.run_reprocess, daemon=True)
             self.thread.start()
@@ -241,6 +250,57 @@ class Controller:
         self.update(status="mapping", attempt=str(attempt), pipeline=str(attempt / "pipeline"),
                     processing_started=time.time())
 
+    @staticmethod
+    def process_identity(pid):
+        """Read a local process identity without signaling an unrelated PID."""
+        result = subprocess.run(["ps", "-ww", "-p", str(pid), "-o", "stat=", "-o", "lstart=", "-o", "args="],
+                                capture_output=True, text=True, check=False)
+        fields = result.stdout.strip().split(maxsplit=6)
+        if len(fields) != 7 or fields[0].startswith("Z"):
+            return None
+        return {"started": " ".join(fields[1:6]), "command": fields[6]}
+
+    def ensure_session_workers_stopped(self, session):
+        receipts = [session / "capture_launch.json", session / "preview_launch.json",
+                    *(session / "attempts").glob("*/mapping_launch.json")]
+        for path in receipts:
+            receipt = read_json(path)
+            if type(receipt.get("pid")) is not int or receipt["pid"] <= 0:
+                continue
+            current = self.process_identity(receipt["pid"])
+            if current is None:
+                # A start_new_session leader may exit before its owned group.
+                # Do not allow a retry to overlap those remaining workers.
+                if self.process_group_members(receipt["pid"]):
+                    raise ValueError("该扫描的上次处理仍有工作进程在退出，请稍后重新处理；未改动已有 attempt。")
+                continue
+            # Creation time protects against PID reuse. Older launch receipts
+            # can still be recognized by their exact session/attempt argument.
+            same_start = receipt.get("process_start") == current["started"]
+            legacy_match = (not receipt.get("process_start") and str(session) in current["command"])
+            if same_start or legacy_match:
+                raise ValueError("该扫描的上次处理进程仍在退出，请稍后重新处理；未改动已有 attempt。")
+
+    @staticmethod
+    def process_group_members(group_id):
+        """Read live members of an owned launch group; never signal a process.
+
+        The caller first checks any extant leader's creation identity, so a
+        reused leader PID does not make an unrelated group block this session.
+        An orphaned live group retains its PGID after its leader is reaped.
+        """
+        result = subprocess.run(["ps", "-ax", "-o", "pid=", "-o", "pgid=", "-o", "stat="],
+                                capture_output=True, text=True, check=False)
+        if result.returncode:
+            raise ValueError("无法确认上次处理进程是否已退出，请稍后重新处理。")
+        members = []
+        for line in result.stdout.splitlines():
+            fields = line.split()
+            if (len(fields) == 3 and fields[0].isdigit() and fields[1].isdigit()
+                    and int(fields[1]) == group_id and not fields[2].startswith("Z")):
+                members.append(int(fields[0]))
+        return members
+
     def stop(self):
         with self.lock:
             if self.state["status"] not in ("starting", "recording"):
@@ -249,18 +309,22 @@ class Controller:
             self.update(status="stopping")
 
     @staticmethod
-    def reap_cancelled(children):
+    def reap_cancelled(children, timeout=20.):
         # Give owned workers time to run their own descendant cleanup first.
-        deadline = time.monotonic() + 20
+        deadline = time.monotonic() + timeout
         for child in children:
             try:
                 child.wait(timeout=max(.01, deadline-time.monotonic()))
             except subprocess.TimeoutExpired:
-                try:
-                    os.killpg(child.pid, signal.SIGKILL)
-                except ProcessLookupError:
-                    pass
-                child.wait()
+                pass
+        # A leader can exit before its descendants. Every group belongs to a
+        # start_new_session launch, so also reap groups whose leader exited.
+        for child in children:
+            try:
+                os.killpg(child.pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+            child.wait()
 
     def cancel(self):
         with self.lock:
@@ -271,9 +335,12 @@ class Controller:
             (self.session / "stop_preview").touch()
             self.update(status="cancelling")
             for child in self.children:
-                if child.poll() is None:
-                    child.send_signal(signal.SIGINT)
-            threading.Thread(target=self.reap_cancelled, args=(list(self.children),), daemon=True).start()
+                try:
+                    os.killpg(child.pid, signal.SIGINT)
+                except ProcessLookupError:
+                    pass
+            # The owning run thread performs bounded cleanup before a new
+            # attempt is allowed; no detached reaper races a later attempt.
 
     def launch(self, python, module, arguments, name, *, output=None):
         with self.lock:
@@ -283,9 +350,12 @@ class Controller:
             output = output or self.session
             with (output / (name+".log")).open("xb") as log:
                 child = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT,
-                                         env=self.env, start_new_session=True)
+                                         env={**self.env, "REVEMAP_SUPERVISOR_PID": str(os.getpid())},
+                                         start_new_session=True)
             self.children.append(child)
-            atomic_json(output / (name+"_launch.json"), {"pid": child.pid, "command": command})
+            identity = self.process_identity(child.pid)
+            atomic_json(output / (name+"_launch.json"), {"pid": child.pid, "command": command,
+                        "process_start": identity["started"] if identity else None})
             return child
 
     def wait_first_frame(self, camera):
@@ -305,26 +375,94 @@ class Controller:
             "--manifest", self.session / "capture/manifest.json", "--runtime", self.args.runtime,
             "--output", output, "--schedule", self.options["schedule"],
             "--vlm", self.options["vlm"], *(["--refine"] if self.options["refine"] else []),
+            "--checkpoint-stages",
+            *(["--resume-from", self.state["resume_from"]] if self.state.get("resume_from") else []),
         ], "mapping", output=Path(self.state["attempt"]))
+        while child.poll() is None:
+            if self.cancelled.is_set():
+                raise InterruptedError("已取消，原始数据保留")
+            time.sleep(.1)
         code = child.wait()
         if self.cancelled.is_set():
             raise InterruptedError("已取消，原始数据保留")
         if code:
             raise RuntimeError(f"语义建图失败，日志：{Path(self.state['attempt']) / 'mapping.log'}")
-        result = read_json(output / "GUI_RESULT.json")
-        if not result.get("final_cloud") or not Path(result["final_cloud"]).is_file():
-            raise RuntimeError("语义建图未生成完整结果，请查看本次处理日志。")
+        result = self.validate_final_result(output)
         self.update(status="completed", result=result, finished=time.time())
         self.show_cloud("semantic_id")
 
+    def validate_final_result(self, output):
+        """Validate before committing completed; the public reader rejects active attempts."""
+        from .contracts import sha256_file, load_manifest, load_trajectory, bind_manifest_trajectory
+        from plyfile import PlyData
+        import numpy as np
+        output = Path(output).resolve()
+        session = self.session.resolve()
+        attempt = Path(self.state.get("attempt", "")).resolve()
+        if (attempt.parent != session / "attempts" or not attempt.is_dir()
+                or output != attempt / "pipeline"
+                or Path(self.state.get("pipeline", "")).resolve() != output):
+            raise ValueError("结果的 session、attempt 与 pipeline 归属不一致")
+        attempt_state = read_json(attempt / "attempt.json")
+        if (Path(attempt_state.get("attempt", "")).resolve() != attempt
+                or Path(attempt_state.get("pipeline", "")).resolve() != output):
+            raise ValueError("结果与本次 attempt 的记录不一致")
+        result_path, inventory_path = output / "GUI_RESULT.json", output / "ARTIFACTS.json"
+        result, inventory = read_json(result_path), read_json(inventory_path)
+        if (result.get("status") != "completed" or inventory.get("schema") != "revemap.artifacts.v1"
+                or inventory.get("provenance_bound") is not True
+                or read_json(output / "GUI_STAGE.json").get("stage") != "completed"):
+            raise ValueError("本次处理未生成完整、已封存的 GUI 结果。")
+        paths = {}
+        for name, entry in inventory.get("files", {}).items():
+            path = (inventory_path.parent / entry["path"]).resolve()
+            if name == "input_manifest":
+                if path != (self.session / "capture/manifest.json").resolve():
+                    raise ValueError("结果绑定了其他采集数据")
+            elif not path.is_relative_to(output):
+                raise ValueError("结果引用了本次 attempt 以外的文件")
+            if not path.is_file() or sha256_file(path) != entry["sha256"]:
+                raise ValueError("GUI 结果文件摘要不一致：" + name)
+            paths[name] = path
+        required = {"map", "classes", "result", "input_manifest", "trajectory"}
+        if not required <= paths.keys() or paths["result"] != result_path:
+            raise ValueError("GUI 结果清单缺少必要文件")
+        for field, key in (("final_cloud", "map"), ("classes", "classes"), ("trajectory", "trajectory")):
+            if Path(result.get(field, "")).resolve() != paths[key]:
+                raise ValueError("GUI 结果指针与清单不一致：" + field)
+        if Path(result.get("artifacts", "")).resolve() != inventory_path:
+            raise ValueError("GUI 结果指向其他 attempt 的清单")
+        manifest = load_manifest(paths["input_manifest"])
+        poses, trajectory = load_trajectory(paths["trajectory"])
+        if (manifest.sequence_id != inventory.get("scene_id") or manifest.dataset != inventory.get("dataset")
+                or trajectory.get("sequence_id") != manifest.sequence_id):
+            raise ValueError("GUI 结果场景绑定不一致")
+        bind_manifest_trajectory(manifest, poses)
+        for name in ("FAILURE.json", "FUSION_FAILURE.json"):
+            if (output / name).exists() or (output / "fused" / name).exists():
+                raise ValueError("本次处理存在失败记录")
+        raw = Path(result.get("raw_map", "")).resolve()
+        if not raw.is_relative_to(output) or not raw.is_file():
+            raise ValueError("GUI 原始地图不属于本次 attempt")
+        final_vertex, raw_vertex = (PlyData.read(p)["vertex"].data for p in (paths["map"], raw))
+        if not {"x", "y", "z", "semantic_id", "instance_id"} <= set(final_vertex.dtype.names):
+            raise ValueError("GUI 地图缺少坐标或标签")
+        if not {"x", "y", "z", "red", "green", "blue"} <= set(raw_vertex.dtype.names):
+            raise ValueError("GUI 原始地图缺少坐标或颜色")
+        if len(final_vertex) == 0 or len(final_vertex) != len(raw_vertex):
+            raise ValueError("GUI 地图点数无效或点序不匹配")
+        for name in ("x", "y", "z"):
+            if not np.isfinite(final_vertex[name]).all() or not np.array_equal(final_vertex[name], raw_vertex[name]):
+                raise ValueError("GUI 最终地图与原始地图坐标不匹配")
+        return result
+
     def cleanup_children(self):
-        running = [child for child in self.children if child.poll() is None]
-        for child in running:
+        for child in self.children:
             try:
-                child.send_signal(signal.SIGINT)
+                os.killpg(child.pid, signal.SIGINT)
             except ProcessLookupError:
                 pass
-        self.reap_cancelled(running)
+        self.reap_cancelled(self.children)
 
     def run_reprocess(self):
         try:
@@ -344,8 +482,23 @@ class Controller:
             try:
                 child.wait(timeout=10)
             except subprocess.TimeoutExpired:
-                child.kill()
-                child.wait()
+                self.reap_cancelled([child], timeout=0)
+
+    def wait_capture(self, child):
+        """Bound stalled SDK calls after startup by saved-frame progress."""
+        previous = read_json(self.session / "capture_status.json").get("frames", 0)
+        last_valid = time.monotonic()
+        limit = getattr(self.args, "capture_frame_timeout", 15.)
+        while child.poll() is None:
+            if self.cancelled.is_set():
+                raise InterruptedError("已取消，原始数据保留")
+            count = read_json(self.session / "capture_status.json").get("frames", 0)
+            if count > previous:
+                previous, last_valid = count, time.monotonic()
+            if not self.args.replay and time.monotonic() - last_valid >= limit:
+                raise TimeoutError("采集进程长时间未保存有效 RGB-D 帧，已停止并保留原始数据。")
+            time.sleep(.1)
+        return child.wait()
 
     def run(self):
         preview = None
@@ -363,7 +516,7 @@ class Controller:
                 with self.lock:
                     if self.state["status"] == "starting":
                         self.update(status="recording")
-            code = camera.wait()
+            code = self.wait_capture(camera)
             if preview:
                 self.finish_preview(preview)
             if self.cancelled.is_set():
@@ -617,10 +770,14 @@ def main():
     p.add_argument("--max-frames", type=int, default=0, help="Explicit replay-only frame limit")
     p.add_argument("--first-frame-timeout", type=float, default=30.,
                    help="Maximum seconds to wait for the first saved RGB-D frame")
+    p.add_argument("--capture-frame-timeout", type=float, default=15.,
+                   help="Maximum seconds without a newly saved RGB-D frame during camera capture")
     p.add_argument("--no-browser", action="store_true")
     args = p.parse_args()
     if not 0 < args.first_frame_timeout < float("inf"):
         p.error("first-frame-timeout must be finite and positive")
+    if not 0 < args.capture_frame_timeout < float("inf"):
+        p.error("capture-frame-timeout must be finite and positive")
     if args.fps <= 0 or args.max_frames < 0 or (args.max_frames and not args.replay):
         p.error("fps must be positive; max-frames is a nonnegative replay-only option")
     for key in ("provider_root", "gpu_python", "cpu_python", "capture_python"):
