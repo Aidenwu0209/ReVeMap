@@ -113,7 +113,9 @@ def test_invalid_geometry_fails(points):
 def test_topology_and_vertex_lists_are_rejected(tmp_path):
     source = tmp_path / "source.ply"
     write_cloud(source)
-    cloud = PlyData.read(source)
+    # This fixture rewrites source below; a live mmap would reference a file
+    # truncated by write(), which can trigger SIGBUS on Linux.
+    cloud = PlyData.read(source, mmap=False)
     edge = np.array([(0, 1)], dtype=[("vertex1", "i4"), ("vertex2", "i4")])
     PlyData([cloud["vertex"], PlyElement.describe(edge, "edge")]).write(source)
     with pytest.raises(ValueError, match="topology"):
