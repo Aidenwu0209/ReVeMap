@@ -6,6 +6,7 @@ world-up vector; camera coordinates are never silently treated as gravity.
 from __future__ import annotations
 
 import json
+import heapq
 from pathlib import Path
 
 import numpy as np
@@ -44,9 +45,31 @@ def _box_distance(a, b):
     return float(np.linalg.norm(np.maximum(0., np.maximum(low_a - high_b, low_b - high_a))))
 
 
+def _candidate_pairs(lows, highs, margin, limit):
+    """Sweep the widest axis; cap dense workloads without dropping relations."""
+    if len(lows) < 2:
+        return
+    lows, highs = np.asarray(lows), np.asarray(highs)
+    axis = int(np.argmax(np.ptp((lows + highs) / 2, axis=0)))
+    active, expiry, checked = {}, [], 0
+    for index in np.argsort(lows[:, axis], kind="stable"):
+        start = lows[index, axis] - margin
+        while expiry and expiry[0][0] < start:
+            _, expired = heapq.heappop(expiry)
+            active.pop(expired)
+        for other in active:
+            checked += 1
+            if checked > limit:
+                raise ValueError("scene graph relation candidate limit exceeded; reduce map scope or explicitly raise max_relation_candidates")
+            if np.all(np.maximum(lows[index] - highs[other], lows[other] - highs[index]) <= margin):
+                yield min(int(index), int(other)), max(int(index), int(other))
+        active[int(index)] = True
+        heapq.heappush(expiry, (highs[index, axis], int(index)))
+
+
 def build_graph(xyz, semantic, instance, classes, *, confidence=None, names=None,
                 world_up=None, near_m=.5, support_gap_m=.05, footprint_overlap=.25,
-                min_points=1):
+                min_points=1, max_relation_candidates=1_000_000):
     """Build one node per positive instance without changing point labels."""
     xyz = np.asarray(xyz, dtype=float)
     semantic, instance = np.asarray(semantic), np.asarray(instance)
@@ -57,6 +80,7 @@ def build_graph(xyz, semantic, instance, classes, *, confidence=None, names=None
         if values.shape != (n,) or not np.issubdtype(values.dtype, np.integer) or np.any(values < 0):
             raise ValueError("nonnegative integer point labels required")
     if (isinstance(min_points, bool) or not isinstance(min_points, int) or min_points < 1
+            or type(max_relation_candidates) is not int or max_relation_candidates < 1
             or not np.isfinite([near_m, support_gap_m, footprint_overlap]).all()
             or near_m <= 0 or support_gap_m <= 0 or not 0 < footprint_overlap <= 1):
         raise ValueError("invalid scene graph thresholds")
@@ -75,15 +99,17 @@ def build_graph(xyz, semantic, instance, classes, *, confidence=None, names=None
             raise ValueError("duplicate instance naming record")
         records[oid] = row
     nodes, projected, omitted = [], {}, []
-    for oid in np.unique(instance):
+    order = np.argsort(instance, kind="stable")
+    ids, starts, sizes = np.unique(instance[order], return_index=True, return_counts=True)
+    for oid, start, size in zip(ids, starts, sizes):
         if oid <= 0:
             continue
-        mask = instance == oid
-        points = xyz[mask]
+        indices = order[start:start + size]
+        points = xyz[indices]
         if len(points) < min_points:
             omitted.append(int(oid))
             continue
-        labels, counts = np.unique(semantic[mask], return_counts=True)
+        labels, counts = np.unique(semantic[indices], return_counts=True)
         winners = labels[counts == counts.max()]
         sid = int(winners[0]) if len(winners) == 1 else 0
         record = records.get(int(oid), {})
@@ -95,10 +121,14 @@ def build_graph(xyz, semantic, instance, classes, *, confidence=None, names=None
         node = {
             "instance_id": int(oid), "semantic_id": sid, "label": classes[str(sid)],
             "name": name, "name_source": "multiview_naming_metadata" if name else None,
+            "name_category_conflict": bool(name and sid > 0 and _label(name) in {_label(v) for v in classes.values()}
+                                            and _label(name) != _label(classes[str(sid)])),
+            "semantic_class_counts": {str(int(k)): int(v) for k, v in zip(labels, counts)},
+            "semantic_class_tie": len(winners) > 1,
             "point_count": len(points), "centroid_m": points.mean(axis=0).tolist(),
             "aabb_min_m": points.min(axis=0).tolist(), "aabb_max_m": points.max(axis=0).tolist(),
             "class_share": float(counts.max() / len(points)),
-            "mean_observation_score": float(confidence[mask].mean()) if confidence is not None else None,
+            "mean_observation_score": float(confidence[indices].mean()) if confidence is not None else None,
             "evidence_frames": frames, "evidence": record.get("evidence", []),
         }
         nodes.append(node)
@@ -106,14 +136,18 @@ def build_graph(xyz, semantic, instance, classes, *, confidence=None, names=None
             aligned = points @ basis
             projected[int(oid)] = (aligned.min(axis=0), aligned.max(axis=0), aligned.mean(axis=0))
     edges = []
-    for i, a in enumerate(nodes):
-        for b in nodes[i + 1:]:
-            distance = _box_distance(a, b)
-            if distance <= near_m:
-                edges.append({"source": a["instance_id"], "target": b["instance_id"],
-                              "relation": "near", "symmetric": True, "aabb_gap_m": distance})
-            if basis is None:
-                continue
+    for i, j in _candidate_pairs([n["aabb_min_m"] for n in nodes], [n["aabb_max_m"] for n in nodes],
+                                 near_m, max_relation_candidates):
+        a, b = nodes[i], nodes[j]
+        distance = _box_distance(a, b)
+        if distance <= near_m:
+            edges.append({"source": a["instance_id"], "target": b["instance_id"],
+                          "relation": "near", "symmetric": True, "aabb_gap_m": distance})
+    if basis is not None:
+        for i, j in _candidate_pairs([projected[n["instance_id"]][0][:2] for n in nodes],
+                                     [projected[n["instance_id"]][1][:2] for n in nodes],
+                                     0., max_relation_candidates):
+            a, b = nodes[i], nodes[j]
             for upper, lower in ((a, b), (b, a)):
                 lo_u, hi_u, center_u = projected[upper["instance_id"]]
                 lo_l, hi_l, center_l = projected[lower["instance_id"]]
@@ -135,6 +169,8 @@ def build_graph(xyz, semantic, instance, classes, *, confidence=None, names=None
         "score_scope": "observation scores and class shares are not calibrated probabilities",
         "parameters": {"near_m": near_m, "support_gap_m": support_gap_m,
                        "footprint_overlap": footprint_overlap, "min_points": min_points},
+        "resource_limits": {"max_relation_candidates_per_sweep": max_relation_candidates,
+                            "on_exceeded": "error; no partial graph returned"},
         "nodes": nodes, "edges": edges, "omitted_small_instances": omitted,
         "unknown_points": int(np.sum(instance == 0)),
         "unknown_points_scope": "unassigned instance points; see semantic_unknown_points separately",
@@ -146,7 +182,7 @@ def build_graph(xyz, semantic, instance, classes, *, confidence=None, names=None
 def build_from_artifacts(source, **options):
     """Use the same verified file resolution as the evaluator, including legacy maps."""
     from plyfile import PlyData
-    from .artifacts import load_artifacts
+    from .artifacts import load_artifacts, verify_artifact_snapshot
     bundle = load_artifacts(Path(source), require_provenance=False)
     paths = bundle["paths"]
     vertices = PlyData.read(paths["map"])["vertex"].data
@@ -168,20 +204,67 @@ def build_from_artifacts(source, **options):
     receipt = json.loads(paths["result"].read_text())
     graph["provenance"].update(data_source=receipt.get("data_source", "completed_map"),
                                source_scope=receipt.get("scope", receipt.get("pipeline_scope")))
+    verify_artifact_snapshot(bundle)
     return graph
+
+
+def _validate_graph(graph):
+    """Validate serialized graphs before queries; never overwrite duplicate IDs."""
+    if graph.get("schema") != SCHEMA:
+        raise ValueError("unsupported scene graph schema")
+    nodes = {}
+    for node in graph.get("nodes", []):
+        oid = node.get("instance_id")
+        if type(oid) is not int or oid <= 0 or oid in nodes:
+            raise ValueError("graph requires unique positive instance IDs")
+        center = np.asarray(node.get("centroid_m"), dtype=float)
+        if center.shape != (3,) or not np.isfinite(center).all():
+            raise ValueError("graph node requires a finite centroid")
+        nodes[oid] = node
+    if graph.get("world_up") is not None:
+        _basis(graph["world_up"])
+    successors = {oid: set() for oid in nodes}
+    for edge in graph.get("edges", []):
+        source, target, relation = edge.get("source"), edge.get("target"), edge.get("relation")
+        if type(source) is not int or type(target) is not int or source not in nodes or target not in nodes or source == target:
+            raise ValueError("graph edge requires two distinct existing instances")
+        if relation not in ("near", "above", "supported_by") or edge.get("symmetric") is not (relation == "near"):
+            raise ValueError("invalid graph relation or symmetry")
+        if relation != "near":
+            if graph.get("world_up") is None:
+                raise ValueError("vertical graph relations require world_up")
+            successors[source].add(target)
+    # Iterative topological validation also handles long support chains without
+    # recursion-depth failures. Symmetric near cycles are valid and excluded.
+    incoming = dict.fromkeys(nodes, 0)
+    for targets in successors.values():
+        for target in targets:
+            incoming[target] += 1
+    ready = [oid for oid, count in incoming.items() if count == 0]
+    visited = 0
+    while ready:
+        oid = ready.pop()
+        visited += 1
+        for target in successors[oid]:
+            incoming[target] -= 1
+            if incoming[target] == 0:
+                ready.append(target)
+    if visited != len(nodes):
+        raise ValueError("vertical graph relations contain a cycle")
+    return nodes
 
 
 def query_graph(graph, *, label=None, nearest_to=None, relation=None, reference_id=None):
     """Query labels/names or measured relations; never invent missing objects."""
-    if graph.get("schema") != SCHEMA:
-        raise ValueError("unsupported scene graph schema")
+    nodes = _validate_graph(graph)
     if label is not None and (not isinstance(label, str) or not label.strip()):
         raise ValueError("label must be nonempty text; omit it to list every object")
     if nearest_to is not None and relation is not None:
         raise ValueError("nearest and relation queries are mutually exclusive")
+    if reference_id is not None and relation is None:
+        raise ValueError("reference_id is only valid with a relation query")
     if relation not in (None, "near", "above", "supported_by"):
         raise ValueError("unsupported relation")
-    nodes = {n["instance_id"]: n for n in graph["nodes"]}
     selected = [n for n in nodes.values() if label is None or _label(label) in
                 {_label(n["label"]), _label(n["name"]) if n["name"] else None}]
     reason, evidence = None, []
@@ -219,6 +302,11 @@ def query_graph(graph, *, label=None, nearest_to=None, relation=None, reference_
     selected.sort(key=lambda n: n["instance_id"])
     return {"status": "matched" if selected else "unknown", "reason": reason or (None if selected else "no_matching_object"),
             "instance_ids": [n["instance_id"] for n in selected], "objects": selected,
+            "label_matches": [{"instance_id": n["instance_id"],
+                               "fields": [field for field, value in (("class_label", n["label"]), ("consensus_name", n["name"]))
+                                          if value and _label(value) == _label(label)],
+                               "name_category_conflict": n.get("name_category_conflict", False)}
+                              for n in selected] if label is not None else [],
             "evidence": evidence, "query": {"label": label, "nearest_to": nearest_to,
                                             "relation": relation, "reference_id": reference_id},
             "provenance": graph.get("provenance", {"bound": False}),

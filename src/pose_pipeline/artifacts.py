@@ -86,6 +86,7 @@ def _check_run_state(source, inventory_path=None):
 The bounded ancestor walk covers run/fused/export and a GUI final inventory;
 it does not scan unrelated runs or the entire filesystem hierarchy.
 """
+    state_files = set()
     origins = {source if source.is_dir() else source.parent}
     if inventory_path is not None:
         origins.add(inventory_path.parent)
@@ -108,11 +109,13 @@ it does not scan unrelated runs or the entire filesystem hierarchy.
         attempt = directory / "attempt.json"
         belongs_to_attempt = any(origin.is_relative_to(directory / "pipeline") for origin in origins)
         if attempt.is_file() and belongs_to_attempt:
+            state_files.add(attempt)
             if _read(attempt).get("status") != "completed":
                 raise ValueError("GUI attempt is not completed: " + str(directory))
             gui_result = directory / "pipeline" / "GUI_RESULT.json"
             if not gui_result.is_file() or _read(gui_result).get("status") != "completed":
                 raise ValueError("GUI attempt has no completed final result: " + str(directory))
+            state_files.add(gui_result)
     for directory in run_directories:
         failures = [directory / name for name in ("FAILURE.json", "FUSION_FAILURE.json")]
         if any(path.is_file() for path in failures):
@@ -121,12 +124,15 @@ it does not scan unrelated runs or the entire filesystem hierarchy.
         # receipt. Actual raw attempts have these persisted launch inputs.
         if not (directory / "INPUTS.json").is_file():
             continue
+        state_files.add(directory / "INPUTS.json")
         complete = directory / "COMPLETE.json"
         gui = directory / "GUI_RESULT.json"
         finished = any(path.is_file() and _read(path).get("status") == "completed"
                        for path in (complete, gui))
         if not finished:
             raise ValueError("pipeline run is not completed: " + str(directory))
+        state_files.update(path for path in (complete, gui) if path.is_file())
+    return {str(path): sha256_file(path) for path in state_files}
 
 
 def _legacy_refinement_complete(receipt, result_path):
@@ -159,9 +165,10 @@ and ``provenance_bound``. Explicit input paths must match the bound digests.
                       source / "export" / ARTIFACT_FILENAME,
                       source / "fused" / "export" / ARTIFACT_FILENAME]
     inventory_path = next((path for path in candidates if path.is_file()), None)
-    _check_run_state(source, inventory_path)
+    snapshot = _check_run_state(source, inventory_path)
     inventory = None
     if inventory_path is not None:
+        snapshot[str(inventory_path)] = sha256_file(inventory_path)
         inventory = _read(inventory_path)
         if inventory.get("schema") != ARTIFACT_SCHEMA:
             raise ValueError("unsupported artifact schema")
@@ -173,6 +180,7 @@ and ``provenance_bound``. Explicit input paths must match the bound digests.
             path = (inventory_path.parent / entry["path"]).resolve()
             if not path.is_file() or sha256_file(path) != entry["sha256"]:
                 raise ValueError("artifact digest mismatch: " + name)
+            snapshot[str(path)] = entry["sha256"]
             paths[name] = path
         bound = {"input_manifest", "trajectory"} <= paths.keys()
         if inventory.get("provenance_bound") is not bound:
@@ -185,6 +193,12 @@ and ``provenance_bound``. Explicit input paths must match the bound digests.
             raise ValueError("artifact inventory does not exist")
         paths = _legacy_paths(source)
         bound = False
+        snapshot.update({str(path): sha256_file(path) for path in paths.values()})
+    # A copied inventory must not detach an early map from its failed owner.
+    for path, digest in _check_run_state(paths["map"], paths["result"]).items():
+        if path in snapshot and snapshot[path] != digest:
+            raise RuntimeError("artifact completion changed while loading: " + path)
+        snapshot[path] = digest
     if require_provenance and not bound:
         raise ValueError("result has no bound input provenance; explicitly allow unbound legacy evaluation")
     for name, supplied in (("input_manifest", manifest_path), ("trajectory", trajectory_path)):
@@ -193,6 +207,10 @@ and ``provenance_bound``. Explicit input paths must match the bound digests.
             if name in paths and sha256_file(supplied) != sha256_file(paths[name]):
                 raise ValueError("supplied " + name + " differs from bound artifact")
             paths[name] = supplied
+            digest = sha256_file(supplied)
+            if str(supplied) in snapshot and snapshot[str(supplied)] != digest:
+                raise RuntimeError("artifact changed while loading: " + str(supplied))
+            snapshot[str(supplied)] = digest
     receipt = _read(paths["result"])
     legacy_completed = False
     if receipt.get("status") != "completed":
@@ -200,5 +218,20 @@ and ``provenance_bound``. Explicit input paths must match the bound digests.
                             and _legacy_refinement_complete(receipt, paths["result"]))
         if not legacy_completed:
             raise ValueError("prediction must be completed; recognized old refinement receipts require explicit legacy opt-in")
+    for path, digest in snapshot.items():
+        if sha256_file(Path(path)) != digest:
+            raise RuntimeError("artifact changed while loading: " + path)
+    _check_run_state(source, inventory_path)
     return {"paths": paths, "manifest": inventory, "manifest_path": inventory_path,
-            "provenance_bound": bound, "legacy_completion_accepted": bool(legacy_completed)}
+            "provenance_bound": bound, "legacy_completion_accepted": bool(legacy_completed),
+            "input_sha256": snapshot,
+            "load_options": dict(source=source, manifest_path=manifest_path, trajectory_path=trajectory_path,
+                                 require_provenance=require_provenance, allow_legacy_completion=allow_legacy_completion)}
+
+
+def verify_artifact_snapshot(bundle):
+    """Recheck completion and resolution, including a newly published final inventory."""
+    current = load_artifacts(**bundle["load_options"])
+    if (current["manifest_path"] != bundle["manifest_path"] or current["paths"] != bundle["paths"]
+            or current["input_sha256"] != bundle["input_sha256"]):
+        raise RuntimeError("artifact selection or completion changed during consumption")

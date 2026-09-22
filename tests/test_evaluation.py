@@ -317,3 +317,77 @@ def test_parent_gui_runtime_config_is_not_an_unfinished_run(fixture, tmp_path):
     # Refinement workspaces have an input plan and runtime, not a raw run receipt.
     (tmp_path / "INPUT_PLAN.json").write_text("{}")
     assert load_artifacts(root)["provenance_bound"] is False
+
+
+def test_copied_inventory_cannot_hide_failed_map_owner(fixture, tmp_path):
+    root = fixture["make_result"]()
+    paths = load_artifacts(root)["paths"]
+    alias = tmp_path / "detached-inventory"
+    write_artifact_manifest(alias, map_path=paths["map"], classes_path=paths["classes"],
+                            result_path=paths["result"], manifest_path=paths["input_manifest"],
+                            trajectory_path=paths["trajectory"])
+    (root / "FAILURE.json").write_text('{"status":"failed"}')
+    with pytest.raises(ValueError, match="failed run"):
+        load_artifacts(alias)
+
+
+def test_inventory_cannot_change_between_validation_and_snapshot(fixture, monkeypatch):
+    import pose_pipeline.artifacts as module
+    root = fixture["make_result"]()
+    inventory = root / "fused/export/ARTIFACTS.json"
+    original = module._read
+    def changing_read(path):
+        value = original(path)
+        if Path(path) == inventory:
+            inventory.write_text(inventory.read_text() + " ")
+        return value
+    monkeypatch.setattr(module, "_read", changing_read)
+    with pytest.raises(RuntimeError, match="changed while loading"):
+        load_artifacts(root)
+
+
+@pytest.mark.parametrize("mutation", ["failure", "completion", "new_final_inventory"])
+def test_evaluation_rechecks_completion_and_final_inventory(fixture, monkeypatch, mutation):
+    import pose_pipeline.evaluation as module
+    root = fixture["make_result"]()
+    (root / "INPUTS.json").write_text("{}")
+    complete = root / "COMPLETE.json"
+    complete.write_text('{"status":"completed"}')
+    paths = load_artifacts(root)["paths"]
+    original = module.evaluate_points
+    def changing_evaluation(*args, **kwargs):
+        report = original(*args, **kwargs)
+        if mutation == "failure":
+            (root / "FAILURE.json").write_text('{"status":"failed"}')
+        elif mutation == "completion":
+            complete.write_text('{"status":"running"}')
+        else:
+            write_artifact_manifest(root / "fused", map_path=paths["map"], classes_path=paths["classes"],
+                                    result_path=paths["result"], manifest_path=paths["input_manifest"],
+                                    trajectory_path=paths["trajectory"])
+        return report
+    monkeypatch.setattr(module, "evaluate_points", changing_evaluation)
+    with pytest.raises((ValueError, RuntimeError), match="failed run|input changed|selection or completion changed"):
+        evaluate_result(root, fixture["reference"])
+
+
+def test_before_vocabulary_subset_cannot_change_evaluation_denominator(fixture):
+    root, old = fixture["make_result"]("new"), fixture["make_result"]("old")
+    paths = load_artifacts(old)["paths"]
+    paths["classes"].write_text('{"0":"unknown","1":"chair"}')
+    (old / "fused/export/ARTIFACTS.json").unlink()
+    write_artifact_manifest(old / "fused/export", map_path=paths["map"], classes_path=paths["classes"],
+                            result_path=paths["result"], manifest_path=paths["input_manifest"],
+                            trajectory_path=paths["trajectory"])
+    with pytest.raises(ValueError, match="class name sets must be identical"):
+        evaluate_result(root, fixture["reference"], before_result=old)
+
+
+@pytest.mark.parametrize("classes", [{"1": "chair"}, {"0": "unlabeled", "1": "chair"},
+                                     {"0": "unknown", "1": "unknown"}])
+def test_unknown_class_contract_is_required(tmp_path, classes):
+    from pose_pipeline.evaluation import _class_dictionary
+    path = tmp_path / "classes.json"
+    path.write_text(json.dumps(classes))
+    with pytest.raises(ValueError, match="class 0 must be unknown"):
+        _class_dictionary(path)

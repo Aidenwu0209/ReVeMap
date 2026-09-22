@@ -199,6 +199,8 @@ def _class_dictionary(path):
             raise ValueError("invalid semantic class definition")
         result[cid] = name
     positive = [name for cid, name in result.items() if cid > 0]
+    if result.get(0) != "unknown" or "unknown" in positive:
+        raise ValueError("class 0 must be unknown and positive classes must be named")
     if len(positive) != len(set(positive)):
         raise ValueError("duplicate class names make evaluation ambiguous")
     return result
@@ -223,7 +225,7 @@ def evaluate_result(result, reference_dir, *, manifest_path=None, trajectory_pat
     import json
     from pathlib import Path
     from plyfile import PlyData
-    from .artifacts import load_artifacts
+    from .artifacts import load_artifacts, verify_artifact_snapshot
     from .contracts import bind_manifest_trajectory, load_manifest, load_trajectory, sha256_file
 
     artifacts = load_artifacts(result, manifest_path=manifest_path, trajectory_path=trajectory_path,
@@ -235,7 +237,7 @@ def evaluate_result(result, reference_dir, *, manifest_path=None, trajectory_pat
     inputs = dict(paths)
     if artifacts["manifest_path"]:
         inputs["artifacts"] = artifacts["manifest_path"]
-    input_hashes = {str(path): sha256_file(path) for path in inputs.values()}
+    input_hashes = dict(artifacts["input_sha256"])
     manifest = load_manifest(paths["input_manifest"], require_files=False)
     poses, trajectory = load_trajectory(paths["trajectory"])
     if trajectory.get("sequence_id") != manifest.sequence_id:
@@ -252,19 +254,17 @@ def evaluate_result(result, reference_dir, *, manifest_path=None, trajectory_pat
         inputs.update({"before_" + name: path for name, path in old["paths"].items()})
         if old["manifest_path"]:
             inputs["before_artifacts"] = old["manifest_path"]
-        for name, path in inputs.items():
-            if name.startswith("before_"):
-                digest = sha256_file(path)
-                if str(path) in input_hashes and input_hashes[str(path)] != digest:
-                    raise RuntimeError("evaluation input changed: " + str(path))
-                input_hashes[str(path)] = digest
+        for path, digest in old["input_sha256"].items():
+            if path in input_hashes and input_hashes[path] != digest:
+                raise RuntimeError("evaluation input changed: " + path)
+            input_hashes[path] = digest
         old_classes = _class_dictionary(old["paths"]["classes"])
         old_xyz, old_sem, old_inst = _read_prediction(old["paths"], old_classes)
         if xyz.dtype != old_xyz.dtype or not np.array_equal(xyz, old_xyz):
             raise ValueError("before/after evaluation requires identical point order, precision and geometry")
         vocabulary = {name: cid for cid, name in classes.items() if cid > 0}
-        if any(name not in vocabulary for cid, name in old_classes.items() if cid > 0):
-            raise ValueError("before class names must exist in after evaluation vocabulary")
+        if {name for cid, name in old_classes.items() if cid > 0} != set(vocabulary):
+            raise ValueError("before/after class name sets must be identical to keep evaluation denominators fixed")
         remapped = np.array([0 if cid == 0 else vocabulary[old_classes[int(cid)]] for cid in old_sem], dtype=np.int64)
         before = {"semantic": remapped, "instance": old_inst}
     reference = Path(reference_dir).resolve()
@@ -336,6 +336,9 @@ def evaluate_result(result, reference_dir, *, manifest_path=None, trajectory_pat
     for path, digest in {**input_hashes, **reference_hashes}.items():
         if sha256_file(Path(path)) != digest:
             raise RuntimeError("evaluation input changed: " + path)
+    verify_artifact_snapshot(artifacts)
+    if before_result is not None:
+        verify_artifact_snapshot(old)
     report["prediction_unchanged"] = True
     return report
 
