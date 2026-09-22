@@ -5,6 +5,23 @@ import sys,time,argparse,hashlib,traceback
 from pathlib import Path
 from .common import CONFIG_ROOT, read, write, event, sha
 
+def protect_semantic_conflicts(votes, baseline, labels):
+    """Object propagation cannot resolve a point-level cross-class abstention.
+
+    A coherent object can fill unobserved/weak points, but its geometry alone
+    is not evidence to overturn conflicting observed semantic categories.
+    """
+    import numpy as np
+    conflict = (baseline['semantic'] == 0) & ((votes.counts > 0).sum(axis=1) > 1)
+    result = {key: value.copy() for key, value in labels.items()}
+    audit = {'conflicting_abstained_points': int(conflict.sum()),
+             'prevented_semantic_fills': int(np.sum(conflict & (labels['semantic'] > 0))),
+             'prevented_instance_assignments': int(np.sum(conflict & (labels['instance'] > 0)))}
+    result['semantic'][conflict] = 0
+    result['confidence'][conflict] = 0
+    result['instance'][conflict] = 0
+    return result, audit
+
 def main(args):
     import numpy as np
     from plyfile import PlyData
@@ -32,20 +49,22 @@ def main(args):
             frame={'frame_id':fid,'point_ids':ids,'mask_ids':z['local_instance'][v,u],'semantic':z['semantic'][v,u],'confidence':z['confidence'][v,u],'interior':interior(z['semantic'])[v,u]}
         safe=frame['interior'];votes.add(fid,ids,frame['semantic'],frame['confidence'])
         high[ids[safe]]=np.maximum(high[ids[safe]],frame['confidence'][safe])
-        streams[ordinal%2].add(fid,ids[safe],frame['mask_ids'][safe],frame['semantic'][safe]);frames.append(frame)
+        streams[ordinal%2].add(fid,ids[safe],frame['mask_ids'][safe],frame['semantic'][safe],frame['confidence'][safe]);frames.append(frame)
         np.savez_compressed(out/f'projection_{fid:06}.npz',point_ids=ids,mask_ids=frame['mask_ids'],semantic=frame['semantic'],row=v,col=u)
         projections.append({'frame_id':fid,'depth_consistent_points':len(ids),'projected_at':time.monotonic()})
     sem,conf,_=votes.finalize();single=(sem==0)&(votes.counts.sum(1)==1)&(high>=.9)
     sem[single]=votes.scores.argmax(1)[single];conf[single]=high[single]
-    trackrecords=[]
-    for tr in streams:
-        trackrecords.append([{'track_id':i+1,'category':t['category'],'frames':sorted(t['frames']),'points':sorted(t['points']),'mean_point_score':float(high[np.array(sorted(t['points']),np.int64)].mean())} for i,t in enumerate(tr.tracks)])
+    trackrecords=[tr.records() for tr in streams]
     chosen=[select_tracks(t) for t in trackrecords]
     if min(map(len,chosen))<2:pairs=[]
     else:
         candidates=[(a['track_id'],b['track_id'],0.) for a in chosen[0] for b in chosen[1] if compatible(a['category'],b['category'])]
         pairs=greedy_pairs(measure_candidates(candidates,*chosen,xyz),'geometry')
-    c,_,cm=object_consensus(trackrecords,pairs,{'semantic':sem,'confidence':conf},xyz)
+    baseline={'semantic':sem,'confidence':conf}
+    c,_,cm=object_consensus(trackrecords,pairs,baseline,xyz)
+    c,conflicts=protect_semantic_conflicts(votes,baseline,c)
+    cm['semantic_conflict_guard']=conflicts
+    cm['track_score_scope']='accepted track-local observations only'
     cfg={'min_mask_points':30,'min_output_points':50,'min_point_views':1,'min_group_frames':2,'object_score_mode':'max_point'}
     current,audit=fuse_instances(n,frames,c['semantic'].copy(),config=cfg)
     blocked=[(int(x['frame_id']),int(x['mask_id'])) for x in audit['filtered_masks']]
@@ -58,6 +77,7 @@ def main(args):
         'instance_count':len(np.unique(inst[inst>0])),'selected_frames':len(frames),'geometry_xyz_sha256':hashlib.sha256(np.ascontiguousarray(xyz).tobytes()).hexdigest(),
         'sga_inference_executed':False,'sgf_prior_used':False,'complete_full_sequence':True,'raw_window_complete':True,'GT_used':False,'geometry_modified':False,
         'pipeline_scope':'fresh raw map + fixed SAM3 concepts + measured geometry association + multiview consensus + guided recovery; no frozen-map birth/completion or SGF subtype prior',
+        'provenance':{'manifest':geom['manifest'],'trajectory':geom['trajectory'],'scene_id':m.sequence_id,'dataset':m.dataset},
         'seconds':time.monotonic()-started,'completed_at':time.monotonic()}
     write(out/'classes.json', {'0':'unknown', **{str(c['id']):c['name'] for c in read(CONFIG_ROOT/'sam3_indoor_v1.json')['classes']}})
     write(out/'result.json',result);export(cloud,out/'map_labels.npz',out/'result.json',out/'export')

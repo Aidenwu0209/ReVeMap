@@ -10,6 +10,9 @@ from . import __version__
 
 
 def main():
+    if sys.argv[1:2] == ["evaluate-semantic"]:
+        from pose_pipeline.evaluation import main as evaluate_main
+        return evaluate_main(sys.argv[2:])
     if sys.argv[1:2] == ["gui"]:
         from pose_pipeline.live_gui import main as gui_main
         sys.argv = [f"{sys.argv[0]} gui", *sys.argv[2:]]
@@ -23,6 +26,11 @@ def main():
     parser.add_argument("--version", action="version", version=f"ReVeMap {__version__}")
     commands = parser.add_subparsers(dest="command", required=True)
     add_commands(commands)
+    from pose_pipeline.scene_graph import add_commands as add_scene_commands
+    add_scene_commands(commands)
+    from .demo import add_command as add_demo_command
+    add_demo_command(commands)
+    commands.add_parser("evaluate-semantic", help="evaluate a completed artifact; use evaluate-semantic --help")
     commands.add_parser("gui", help="capture/replay GUI; use revemap gui --help for options")
     mapping = commands.add_parser("run-rgbd", help="build geometry and estimated poses from raw RGB-D")
     for name in ("manifest", "output", "provider-root", "gpu-python", "cpu-python"):

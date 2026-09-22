@@ -22,13 +22,44 @@ def read_json(path, default=None):
         return {} if default is None else default
 
 
+class FrameJournalReader:
+    """Tail committed rows without reparsing the growing capture journal.
+
+    The offset only advances past complete newline-terminated records. A partial
+    UTF-8/JSON row remains on disk until the writer commits it. Replacing or
+    truncating a live journal is an error, never a reason to replay old frames.
+    """
+    def __init__(self, path):
+        self.path = Path(path)
+        self.offset = 0
+        self.identity = None
+        self.size = 0
+
+    def poll(self):
+        try:
+            stream = self.path.open("rb")
+        except FileNotFoundError:
+            if self.identity is not None:
+                raise ValueError("Active frame journal disappeared")
+            return []
+        with stream:
+            import os
+            stat = os.fstat(stream.fileno())
+            identity = (stat.st_dev, stat.st_ino)
+            if self.identity is not None and (identity != self.identity or stat.st_size < self.size):
+                raise ValueError("Active frame journal was replaced or truncated")
+            stream.seek(self.offset)
+            data = stream.read()
+            end = data.rfind(b"\n") + 1
+            rows = [json.loads(line) for line in data[:end].split(b"\n") if line]
+            self.identity, self.size = identity, stat.st_size
+            self.offset += end
+            return rows
+
+
 def journal_frames(path):
-    """Only newline-committed rows are visible to a concurrent reader."""
-    try:
-        data = Path(path).read_bytes()
-    except FileNotFoundError:
-        return []
-    return [json.loads(line) for line in data.split(b"\n")[:-1] if line]
+    """Read a snapshot of all newline-committed rows."""
+    return FrameJournalReader(path).poll()
 
 
 def frame_record(row):

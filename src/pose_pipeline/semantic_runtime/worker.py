@@ -62,7 +62,17 @@ def infer_sam3(args, config):
     (output / "frames").mkdir()
     (output / "crops").mkdir()
     manifest = load_manifest(args.manifest)
-    frames = selected_frames(manifest.frames, args.stride)
+    plan_path = getattr(args, 'view_plan', None)
+    if plan_path:
+        from .view_selection import frames_from_plan
+        frames, view_plan = frames_from_plan(args.manifest, plan_path, args.view_plan_sha256)
+        write(output / 'VIEW_PLAN.json', view_plan)
+    else:
+        if getattr(args, 'view_policy', 'stride') != 'stride' or getattr(args, 'view_budget', None) is not None:
+            raise ValueError('nondefault semantic selection requires a verified view plan')
+        frames = selected_frames(manifest.frames, args.stride)
+        view_plan = {'policy': 'stride', 'effective_budget': len(frames),
+                     'selected_frame_ids': [frame.frame_id for frame in frames]}
     taxonomy = read(CONFIG_ROOT / "sam3_indoor_v1.json")["classes"]
     processor, audit = load_model(Path(config["sam3_checkpoint"]), config["sam3_sha256"])
     write(output / "MODEL.json", audit)
@@ -112,22 +122,37 @@ def infer_sam3(args, config):
     write(output / "CROP_TASKS.json", tasks)
     write(output / "COMPLETE.json", {"status": "completed", "selected_frames": len(frames),
           "raw_frames": len(manifest.frames), "stride": args.stride,
+          "view_policy": view_plan['policy'], "view_budget": view_plan['effective_budget'],
+          "view_plan_sha256": sha(plan_path) if plan_path else None,
           "seconds_after_load": time.monotonic()-started, "GT_used": False})
     # The process exits before a local VLM is loaded, releasing ALL SAM3 CUDA state.
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("stage", choices=("sam3", "naming", "mapping", "fusion", "backfill"))
+    parser.add_argument("stage", choices=("select", "sam3", "naming", "mapping", "fusion", "backfill"))
     parser.add_argument("--runtime", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--manifest", type=Path)
     parser.add_argument("--tasks", type=Path)
     parser.add_argument("--model", default="qwen3vl_2b_bf16")
     parser.add_argument("--stride", type=int, default=5)
+    parser.add_argument("--trajectory", type=Path)
+    parser.add_argument("--view-policy", choices=('stride', 'quality', 'quality-diverse'), default='stride')
+    parser.add_argument("--view-budget", type=int)
+    parser.add_argument("--view-plan", type=Path)
+    parser.add_argument("--view-plan-sha256")
     args = parser.parse_args()
     config = read(args.runtime)
-    if args.stage == "sam3":
+    if args.stage == "select":
+        from .view_selection import build_view_plan
+        if args.manifest is None or args.trajectory is None:
+            raise ValueError('view selection requires manifest and final refill trajectory')
+        plan = build_view_plan(args.manifest, args.trajectory, policy=args.view_policy,
+                               stride=args.stride, budget=args.view_budget)
+        args.output.mkdir(parents=True, exist_ok=False)
+        write(args.output / 'VIEW_PLAN.json', plan)
+    elif args.stage == "sam3":
         infer_sam3(args, config)
     elif args.stage == "naming":
         name_tasks(read(args.tasks), args.model, config, args.output)

@@ -129,11 +129,16 @@ def apply(workspace, *, fragments=False):
         np.savez_compressed(dest / 'map_labels.npz', **labels)
         write(dest / 'classes.json', classes)
         export_map(xyz, labels, classes, dest, strength)
-        result = {'scene': scene, 'changed_points': int(np.sum(labels['semantic'] != base['semantic'])),
+        result = {'status': 'completed', 'scene': scene, 'changed_points': int(np.sum(labels['semantic'] != base['semantic'])),
                   'known_labels_preserved': True, 'geometry_modified': False,
                   'instance_ids_preserved': True, 'GT_used': False, 'fragment_policy': fragments,
                   'scope': 'fixed geometry semantic refinement; no SLAM or SGA inference', 'objects': audit}
         write(dest / 'RESULT.json', result)
+        from ...artifacts import write_artifact_manifest
+        write_artifact_manifest(dest, map_path=dest / 'semantic_labeled.ply',
+            classes_path=dest / 'classes.json', result_path=dest / 'RESULT.json',
+            manifest_path=inp / 'manifest.json', trajectory_path=inp / 'trajectory.json',
+            extra_files={'labels': dest / 'map_labels.npz'})
         results.append(result)
     write(out / 'RESULTS.json', results)
     write(out / 'PREDICTIONS_LOCK.json', {str(p.relative_to(out)): sha(p) for p in out.rglob('*') if p.is_file()})

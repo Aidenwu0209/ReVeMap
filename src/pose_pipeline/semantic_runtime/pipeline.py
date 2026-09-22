@@ -66,10 +66,14 @@ class Processes:
 
 def run(args):
     from ..contracts import load_manifest
+    from .view_selection import selection_budget
     config = validate_runtime(read(args.runtime), args.vlm)
     manifest = load_manifest(args.manifest)
     if args.stride < 1 or not manifest.frames:
         raise ValueError("nonempty manifest and positive stride required")
+    view_policy = getattr(args, 'view_policy', 'stride')
+    view_budget = getattr(args, 'view_budget', None)
+    effective_budget = selection_budget(manifest.frames, args.stride, view_budget, view_policy)
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
     # Resolve all runtime paths before workers switch interpreters; no machine
@@ -80,7 +84,9 @@ def run(args):
     inputs = {str(Path(p).resolve()): sha(p) for p in paths}
     write(output / "INPUTS.json", inputs)
     write(output / "CONFIG.json", {"schedule": args.schedule, "vlm": args.vlm, "stride": args.stride,
-                                  "raw_frames": len(manifest.frames), "profile": "sam3_stride5_stage_v1"})
+                                  "raw_frames": len(manifest.frames), "profile": "sam3_stage_v2",
+                                  "view_policy": view_policy, "view_budget": view_budget,
+                                  "effective_view_budget": effective_budget})
     processes = Processes(output, config.get("stage_timeout", 7200))
     def command(stage, python, target, *extra):
         return [python, "-u", "-m", "pose_pipeline.semantic_runtime.worker", stage,
@@ -104,8 +110,20 @@ def run(args):
                 if mapping[1].poll() is not None:
                     raise RuntimeError("mapping ended without a completed GPU refill stage")
                 time.sleep(.05)
+        # Selection sees finalized refill poses, never dense or graph estimates.
+        # It may overlap CPU TSDF fusion, and does not subset the mapping input.
+        selection_command = command('select', config['cpu_python'], output / 'view_selection',
+            '--manifest', args.manifest.resolve(), '--trajectory', output / 'mapping/refill/trajectory.json',
+            '--stride', args.stride, '--view-policy', view_policy)
+        if view_budget is not None:
+            selection_command.extend(['--view-budget', str(view_budget)])
+        selection = processes.launch('view_selection', selection_command)
+        processes.wait(selection)
+        view_plan = output / 'view_selection/VIEW_PLAN.json'
+        selection_audit = read(view_plan)
         sam3 = processes.launch("sam3", command("sam3", config["sam3_python"], output / "semantic",
-                                 "--manifest", args.manifest.resolve(), "--stride", args.stride))
+                                 "--manifest", args.manifest.resolve(), "--stride", args.stride,
+                                 '--view-plan', view_plan, '--view-plan-sha256', sha(view_plan)))
         processes.wait(mapping)
         processes.wait(sam3)
         # SAM3 process exit releases weights and allocator state before any VLM.
@@ -123,17 +141,30 @@ def run(args):
         backfill = processes.launch("backfill", command("backfill", config["cpu_python"], output))
         processes.wait(backfill)
         end = time.monotonic()
+        # Final inventory/COMPLETE are success seals, so input verification must
+        # finish first. A failed run must not leave a newly sealed inventory.
         for path, digest in inputs.items():
             if sha(path) != digest:
                 raise RuntimeError("raw input changed during execution")
+        from ..artifacts import write_artifact_manifest
+        fused = output / 'fused'
+        write_artifact_manifest(fused, map_path=fused / 'export/map_labeled.ply',
+            classes_path=fused / 'classes.json', result_path=fused / 'result.json',
+            manifest_path=args.manifest, trajectory_path=output / 'mapping/refill/trajectory.json',
+            extra_files={'names': fused / 'instance_names.json'})
         summary = {"status": "completed", "schedule": args.schedule, "vlm": args.vlm,
                    "raw_frames": len(manifest.frames), "seconds": end-start,
                    "raw_fps": len(manifest.frames)/(end-start), "stride": args.stride,
+                   "view_policy": view_policy, "view_budget": effective_budget,
+                   "selected_frames": len(selection_audit['selected_frame_ids']),
+                   "view_plan": str(view_plan), "view_plan_sha256": sha(view_plan),
+                   "diversity_fallback_frames": len(selection_audit.get('diversity_fallback_frame_ids', [])),
                    "scope": "fresh raw RGB-D map + SAM3 masks/fusion + optional VLM naming metadata",
                    "includes_offline_P2_enhancement": False, "VLM_changes_semantic_id": False,
-                   "timing": "all worker startup/load/inference/fusion/export; excludes pre/post input hashing",
+                   "timing": "all worker startup/load/inference/fusion/export; excludes pre/post input hashing and final inventory sealing",
                    "GT_used": False, "local_models_resident_together": False,
                    "map": str(output / "fused/export/map_labeled.ply"),
+                   "artifacts": str(output / "fused/ARTIFACTS.json"),
                    "names": str(output / "fused/instance_names.json")}
         write(output / "COMPLETE.json", summary)
         return summary

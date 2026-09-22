@@ -58,6 +58,10 @@ def add_commands(commands):
     run.add_argument("--schedule", choices=("serial", "parallel"), default="parallel")
     run.add_argument("--vlm", choices=[k for k, v in registry().items() if v["kind"] != "ocr"], default="qwen3vl_2b_bf16")
     run.add_argument("--stride", type=int, default=5)
+    run.add_argument("--view-policy", choices=('stride', 'quality', 'quality-diverse'), default='stride',
+                     help='SAM3 view selection only; reconstruction always uses all raw frames')
+    run.add_argument("--view-budget", type=int,
+                     help='exact SAM3 frame count; defaults to stride count; explicit stride budget uses uniform temporal sampling')
     def deploy(args):
         from .pipeline import run
         print(json.dumps(run(args), indent=2))

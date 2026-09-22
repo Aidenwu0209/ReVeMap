@@ -73,10 +73,17 @@ def main():
         classes = root / 'refined/capture/classes.json'
     if not Path(final).is_file():
         raise RuntimeError('Missing final labeled PLY')
-    atomic_json(output / 'GUI_STAGE.json', {'stage': 'completed'})
-    atomic_json(output / 'GUI_RESULT.json', {'final_cloud': final, 'trajectory': geom['trajectory'],
+    atomic_json(output / 'GUI_STAGE.json', {'stage': 'export'})
+    atomic_json(output / 'GUI_RESULT.json', {'status': 'completed', 'final_cloud': final, 'trajectory': geom['trajectory'],
                 'classes': str(classes), 'raw_map': result['map'], 'names': result['names'], 'refinement': args.refine,
+                'artifacts': str(output / 'ARTIFACTS.json'),
                 'scope': 'run-sam3 plus optional direct unknown-point refinement; no offline P2'})
+    from .artifacts import write_artifact_manifest
+    write_artifact_manifest(output, map_path=Path(final), classes_path=classes,
+                            result_path=output / 'GUI_RESULT.json', manifest_path=args.manifest,
+                            trajectory_path=Path(geom['trajectory']),
+                            extra_files={'names': result['names']} if not args.refine else None)
+    atomic_json(output / 'GUI_STAGE.json', {'stage': 'completed'})
 
 
 if __name__ == '__main__':

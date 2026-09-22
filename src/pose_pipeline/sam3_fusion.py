@@ -119,7 +119,13 @@ class GeometricInstances:
         self.min_points = min_points
         self.min_overlap = min_overlap
 
-    def add(self, frame_id, point_ids, mask_ids, classes):
+    def add(self, frame_id, point_ids, mask_ids, classes, confidence=None):
+        point_ids, mask_ids, classes = map(np.asarray, (point_ids, mask_ids, classes))
+        if confidence is not None:
+            confidence = np.asarray(confidence, np.float32)
+            if (confidence.shape != point_ids.shape or not np.isfinite(confidence).all()
+                    or np.any((confidence < 0) | (confidence > 1))):
+                raise ValueError('one finite confidence in [0, 1] per observed point required')
         used = set()
         assignments = {}
         for mask_id in np.unique(mask_ids):
@@ -149,9 +155,32 @@ class GeometricInstances:
                 self.tracks[i]['frames'].add(frame_id)
             else:
                 i = len(self.tracks)
-                self.tracks.append({'category': category, 'points': points, 'frames': {frame_id}})
+                self.tracks.append({'category': category, 'points': points, 'frames': {frame_id},
+                                    'point_scores': {}, 'scored_frames': set()})
+            if confidence is not None:
+                track = self.tracks[i]
+                # A track may only borrow strength from its own accepted masks.
+                # Keep the existing max-per-point statistic without consulting
+                # another category's observations of the same map point.
+                for point, score in zip(point_ids[chosen], confidence[chosen]):
+                    key = int(point)
+                    track['point_scores'][key] = max(track['point_scores'].get(key, 0.), float(score))
+                track['scored_frames'].add(frame_id)
             used.add(i); assignments[int(mask_id)] = i + 1
         return assignments
+
+    def records(self):
+        """Export track-local evidence; unscored legacy callers cannot invent it."""
+        records = []
+        for i, track in enumerate(self.tracks):
+            if track['scored_frames'] != track['frames'] or set(track['point_scores']) != track['points']:
+                raise ValueError('track records require confidence for every accepted observation')
+            points = sorted(track['points'])
+            records.append({'track_id': i + 1, 'category': track['category'],
+                            'frames': sorted(track['frames']), 'points': points,
+                            'mean_point_score': float(np.mean([track['point_scores'][p] for p in points])),
+                            'score_scope': 'mean of track-local per-point maximum mask scores'})
+        return records
 
     def finalize(self, semantic, min_views=2):
         instances = np.zeros(len(semantic), np.int32)
