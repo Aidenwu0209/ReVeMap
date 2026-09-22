@@ -169,17 +169,39 @@ class GeometricInstances:
             used.add(i); assignments[int(mask_id)] = i + 1
         return assignments
 
-    def records(self):
-        """Export track-local evidence; unscored legacy callers cannot invent it."""
+    def records(self, confidence_policy='legacy', *, point_scores=None):
+        """Export measured tracks with an explicitly selected score source.
+
+        Legacy reproduces the original global point maxima, including its
+        cross-category score sharing. Track scores only use accepted masks of
+        this track. Both require real scores for every accepted observation.
+        """
+        if confidence_policy not in ('legacy', 'track'):
+            raise ValueError('semantic_confidence_policy must be legacy or track')
+        if confidence_policy == 'legacy':
+            point_scores = np.asarray(point_scores)
+            if (point_scores.ndim != 1 or not np.issubdtype(point_scores.dtype, np.number)
+                    or not np.isfinite(point_scores).all()
+                    or np.any((point_scores < 0) | (point_scores > 1))):
+                raise ValueError('legacy records require finite global point scores in [0, 1]')
         records = []
         for i, track in enumerate(self.tracks):
             if track['scored_frames'] != track['frames'] or set(track['point_scores']) != track['points']:
                 raise ValueError('track records require confidence for every accepted observation')
             points = sorted(track['points'])
+            if confidence_policy == 'legacy':
+                if points[0] < 0 or points[-1] >= len(point_scores):
+                    raise ValueError('legacy point scores must cover every track point')
+                # Preserve the original array dtype and reduction; float32
+                # global maxima must not silently become a float64 mean.
+                score = float(point_scores[np.asarray(points, np.int64)].mean())
+                scope = 'legacy global per-point maxima; may include other categories'
+            else:
+                score = float(np.mean([track['point_scores'][p] for p in points]))
+                scope = 'mean of track-local per-point maximum mask scores'
             records.append({'track_id': i + 1, 'category': track['category'],
                             'frames': sorted(track['frames']), 'points': points,
-                            'mean_point_score': float(np.mean([track['point_scores'][p] for p in points])),
-                            'score_scope': 'mean of track-local per-point maximum mask scores'})
+                            'mean_point_score': score, 'score_scope': scope})
         return records
 
     def finalize(self, semantic, min_views=2):
