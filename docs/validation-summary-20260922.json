@@ -1,0 +1,151 @@
+{
+  "schema": "revemap.merge_acceptance.v1",
+  "date": "2026-09-22",
+  "baseline_commit": "0d462120c8da6c7997083db668a7de0bdf8e3bac",
+  "defaults": {
+    "semantic_confidence_policy": "legacy",
+    "semantic_conflict_policy": "consensus"
+  },
+  "scope": "Engineering merge readiness with preserved default outputs; no general model-quality improvement claim",
+  "default_parity": [
+    {
+      "scene": "scene0030_00",
+      "PLY_bytes_equal": true,
+      "sha256": "0fcdd2c51a56b70957adb891ed1ada12cc925cb2bd248bb8c092b916873bb24b"
+    },
+    {
+      "scene": "scene0050_00",
+      "PLY_bytes_equal": true,
+      "sha256": "3abc98c3aef5188e12cde43faadfc4746830009fdcb5f6689beaf5e377e7316f"
+    },
+    {
+      "scene": "scene0011_00",
+      "PLY_bytes_equal": true,
+      "sha256": "230413c715ef8ce4e28062bef9406c5c41f7bc9dfabba6e931cacee8eb4514c7"
+    }
+  ],
+  "experimental_track_only_macro_accuracy_delta_percentage_points": -0.027279966625842294,
+  "query_oracle": {
+    "independently_authored_cases": 30,
+    "passed": 30,
+    "expected_unknown": 11,
+    "scope": "deterministic hand-authored geometry, not model recognition"
+  },
+  "fresh_v1": {
+    "raw_frames": 120,
+    "sam3_frames": 25,
+    "mapping_and_sam3_reused": false,
+    "VLM": "qwen3vl_2b_nf4",
+    "points": 40669,
+    "instances": 6,
+    "named_instances": 3,
+    "outer_wall_seconds": 102.07120633125305,
+    "GT_full_scene_geometry_coverage_approx": 0.096804,
+    "scope": "single prefix window; not a complete scene or comparison to cached A/B"
+  },
+  "final_source_tests": {
+    "macOS_Python_3_12": {
+      "passed": 304,
+      "skipped": 1,
+      "skip_reason": "optional Open3D not installed"
+    },
+    "Linux_Python_3_11_Open3D": {
+      "passed": 305,
+      "skipped": 0
+    }
+  },
+  "limitations": [
+    "Physical Orbbec disconnect/reconnect and long capture not verified.",
+    "No new independent heldout accuracy study.",
+    "Experimental track/abstain/quality policies are not promoted.",
+    "Refinement real run had zero grounding requests and zero changed points; no positive refinement benefit acceptance.",
+    "Partial VLM and refinement stages are recomputed."
+  ],
+  "runtime_source_sha256": {
+    "src/pose_pipeline/__init__.py": "e3f1c0f515c88439439a4c15c504ff5b1acf6c731a31269a101146469ab0d64d",
+    "src/pose_pipeline/__main__.py": "a7b4b1275a7a26e316d482621300e855243e12705f768d6f2f0cce30ba4e55c9",
+    "src/pose_pipeline/artifacts.py": "8dbd0e96a6ef3263a6279990782c1452a5fa8bedcf89a4c1bf10e4040602035f",
+    "src/pose_pipeline/contracts.py": "03f1d4d8d261a2b1782576fc706d97848de6012d38b705ee33c3ecc1d79735af",
+    "src/pose_pipeline/evaluation.py": "f7c15b2c12d2d3f8f2ccf4998a01824d24dfb696db067c9a08ec631945006699",
+    "src/pose_pipeline/instance_association.py": "78a5bfb09c4e9e90ed552be8704875ac46cc1178fea1e1fd4703b0dc823ee2c5",
+    "src/pose_pipeline/live_capture.py": "618abebc42ddad3864ec6d60f55bf252b31a9a695e35d36ed1833d4e7473400d",
+    "src/pose_pipeline/live_gui.html": "a6bb2859b4410e9fb6d008cd092f79fb4c5c811500c5b761fe0e75f02f49191f",
+    "src/pose_pipeline/live_gui.py": "482fbb1f3b59ebd6d81be380166cfa12c3a890d6c368263ede63bde7c148ecfd",
+    "src/pose_pipeline/live_io.py": "d301fc3a255794df723dbf775634f44b29ffb9c07bf922730737f60a3871bfaf",
+    "src/pose_pipeline/live_preview.py": "737924ba08e5cc36cd91bf4bf07da507528a4ece44aa71451bfea08d9e0541b5",
+    "src/pose_pipeline/live_semantic.py": "95176a4d5d5232ab488cce063f531f795c1e1a78a63054788b5be71203b300b8",
+    "src/pose_pipeline/rgbd_droid.py": "31519cae1a7a42b5f82f11a0ca56d6e9d33fd8165505c5ff764d1d9bc2b0fe44",
+    "src/pose_pipeline/rgbd_empty_anchor.py": "2603200897dfff8c786e3c79bc8ed1930835d7f4c42441f823835a5707c59c73",
+    "src/pose_pipeline/rgbd_mapping.py": "3b09660d1f1d26f99932b702f74cf376a58f62364516f52f65af46ebe0fd04cc",
+    "src/pose_pipeline/rgbd_measured.py": "58199abb29f52388423a3cdbf35e9b4336346ca9137232c9b10a4d558dea1d94",
+    "src/pose_pipeline/rgbd_refill.py": "6ef35a29334515fd0864a4837e8fcdcd6e9776c6fbcaec1246ca97d01c65cbac",
+    "src/pose_pipeline/sam3_export.py": "02799dab4851bfd2d7d1b5a75543fe5b657039e14d23e440b4b947e6d4c7215d",
+    "src/pose_pipeline/sam3_fusion.py": "2e446f6ccbb4e1e155c06ed5ea1c2653d06289c7e68c5768ac5eeee51d6cf6b6",
+    "src/pose_pipeline/sam3_guided.py": "eabb4051929d0a8be68fd89e709fcdcdc3b4ee12fad722b64c41ff48af177763",
+    "src/pose_pipeline/sam3_loss_audit.py": "2ed68aa6ed85b0ccb5d987036f632766b9921014716c15cd8ff5fbf0b291bdcd",
+    "src/pose_pipeline/sam3_mapping.py": "caa1eba66ead1ddb280745d47557ecf275df662f7184ce8f615e7e0b320ed719",
+    "src/pose_pipeline/sam3_multiview.py": "1dc5d52825fea2413b0f2c7fb8b8ad84fabfe5a6049f853964ae5b1f6f149870",
+    "src/pose_pipeline/sam3_object_naming.py": "b27027ab1953b355907c5ba865daa9cc7692721c1c8a5546d56d78292b1bce8a",
+    "src/pose_pipeline/sam3_refine.py": "8501523487ae79931353bfdc6e229378a0d39727bb4e8a81c2c68cd57fc23788",
+    "src/pose_pipeline/sam3_tracking_probe.py": "c142906453dd89785e823b27bf8885610b992b22ba08a33979cc6cece1c0ca68",
+    "src/pose_pipeline/sam3_unknown.py": "7ded56ee04552612f360dc5b02c208b520688211a6674d87881c10e2d53c3d6e",
+    "src/pose_pipeline/scene_graph.py": "789a3e99c917b6e88fad604aef680277dd73e00d007d339bea42498edc43ccd3",
+    "src/pose_pipeline/semantic_runtime/__init__.py": "9fc19a425b71a1aed9fe7e747f18cbb95344522de99ce41801bb7b7033c80ab6",
+    "src/pose_pipeline/semantic_runtime/__main__.py": "e1e98713351984f6fc18fb532345154b32c64cd102928eb68c4665f6a1c84caf",
+    "src/pose_pipeline/semantic_runtime/backfill.py": "ba7876562884ab9f25ae314a0716b38b32147a01d0606b5a4ac24219cbe92b20",
+    "src/pose_pipeline/semantic_runtime/checkpoints.py": "9d296c16cfd46b43e75a24223d298bef5b6937a5d40586e617b86f052673c4fd",
+    "src/pose_pipeline/semantic_runtime/common.py": "2bedbc109bc49d60261e4a93b53f1c1a63eaefa7f4966ba9739c822e18b8821f",
+    "src/pose_pipeline/semantic_runtime/enhance.py": "d4d25a78a72665921c594a4d391721e0d48b06879f121592bb9afc204d5aedc6",
+    "src/pose_pipeline/semantic_runtime/fusion.py": "69eedd407ef819f0a7f0ace00ad99ca6df81eced005fd9d92daf4dc640c12f53",
+    "src/pose_pipeline/semantic_runtime/identity.py": "46ed21c471c674024e21636bdc89e976328909b36db9bb9e49fc9c6d0cd9b7b1",
+    "src/pose_pipeline/semantic_runtime/multiview.py": "ec9277463c3aa0c5da3726e37d56f3677c983b9833525c371d496f73078ebc76",
+    "src/pose_pipeline/semantic_runtime/pipeline.py": "c83c800a3d8977df13c71ffd89b9863c768caf133a965fa45241dda02845d13d",
+    "src/pose_pipeline/semantic_runtime/refinement/__init__.py": "6cc476aa98e73c8b04fb11af097041103210e67de54860cd73daa269c619a8d6",
+    "src/pose_pipeline/semantic_runtime/refinement/__main__.py": "dafe4c4fa24e1380e8e722cb9b9f7a26712a1a4404e3111cc81b4d7ff46d3fe5",
+    "src/pose_pipeline/semantic_runtime/refinement/assignment.py": "afa4fe74cd92cb44f442246f5d97d19330ce8d378db041d3a99a2a3b052ee3dc",
+    "src/pose_pipeline/semantic_runtime/refinement/grounding.py": "836ad247cad2f92e4a74af244cd6b14d3233ee4e0154f4bb827988420c6f225f",
+    "src/pose_pipeline/semantic_runtime/refinement/normalization.py": "02628d0987b60a4c67fefd3fe0e4d72225daf84d8e15ccdabe7bad2839285f95",
+    "src/pose_pipeline/semantic_runtime/refinement/observations.py": "163e174ad5a211c78416dd7336848dce64b88af762efb15ffc512571f1a866bc",
+    "src/pose_pipeline/semantic_runtime/refinement/registered_input.py": "af9debc982a149dce102c603bdb3ecbda3d8f2d7f92267de4f3888cd706bf44c",
+    "src/pose_pipeline/semantic_runtime/view_selection.py": "f2e5e207d34602c8b29e5eddea081232ead3652be04c28f41a591a406d2c60bc",
+    "src/pose_pipeline/semantic_runtime/vlm.py": "219a7683a9995899034d125c55a83544919cd0dc949b519dff50687c68bffa8f",
+    "src/pose_pipeline/semantic_runtime/worker.py": "4fe0b8168022f3f4fc6d29da0beee218890be2422331667985d81d32e6dedf73",
+    "src/reconstruction/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/reconstruction/rgbd_refusion.py": "2218ed2ea6df075daa56a188a41a24540bc68cb0b7aa5115ca0c8fa73ed7a5a2",
+    "src/revemap/__init__.py": "3fb728ff85a98a7996b06f27ed4be6ef9d340d2b1ecc0bdd4d1b1bcc26edb019",
+    "src/revemap/__main__.py": "3129adff95e0f38b87ab34cddfc27082c7892bcaec267ff5d40f160fdf55b44a",
+    "src/revemap/cli.py": "0705d4a277fcee0c042108b5d95dac29b554eaba77fdb36f6bfa2dffe9a4c828",
+    "src/revemap/demo.py": "c0568636e3553b1f3a1a998d6df401e793694914e6200c3be39720044fc5b55c",
+    "src/revemap/resources/sam3_indoor_v1.json": "66f843be39ba7d4d42d9bf48275f107745d971677583aab104078f4d16f8dd26",
+    "src/revemap/resources/vlm_models.json": "373dda5bac008403e5cb6d2e27c98314074ec9b6e1cec48fbbab24b583f97e66"
+  },
+  "evidence_sha256": {
+    "default-parity/DEFAULT_PARITY.json": "87c2cbadf7981c7f1f19d77aba03fe2a6d59bc38a9e07034f26947294d64336c",
+    "default-parity/POLICY_EVIDENCE.json": "71bd1b1442bdf83e4fe16a5a489267d8906ec807319b79b8ed9363fa0d1f1429",
+    "SOURCE_V2_SHA256.json": "6b78c804b6d3497a868b6599e83a8a5148ace2d33467f18e8b794e1d1a06d30d",
+    "final-review/BOUNDARY_AUDIT.json": "7a20fb89c03ef68228fa1b52342d57f3bbae1e16632aa4d5c0b362fbd475dfbd",
+    "recovery/WATCHDOG_NORMAL_EXIT_ACCEPTANCE.json": "5b716640c61265616dc2acb75e12a68b2647603efaa2c10b02fa0b4d6f9abd53",
+    "packaging/source-v2/CPU_TEST_RECEIPT.json": "5112994c968e7cd488707adbd6a63141aab5a797e3fd7700f93fe44794ad2819",
+    "real-recovery/INTERRUPT_V2_RECEIPT.json": "2326e4caf721466f700c3849acce602c71d1fcb6ac5b4198c1cb937abb7d573c",
+    "real-recovery/RESUME_V2_RECEIPT.json": "e8667388f0429b17cbfe11f8c05ca258de6c7823eb6e063664963d8271a10773"
+  },
+  "real_recovery_v2": {
+    "status": "completed",
+    "returncode": 0,
+    "seconds_including_input_hashing_and_checkpoint_sealing": 43.44115233421326,
+    "stage_reuse": {
+      "mapping": true,
+      "sam3": true
+    },
+    "raw_fps": null,
+    "old_attempt_unchanged": true,
+    "trajectory_and_all_masks_identical": true,
+    "interruption_signal": "SIGKILL",
+    "real_VLM_response_files_before_kill": 1,
+    "remaining_owned_processes": 0,
+    "downloaded_interrupted_files_verified": 115,
+    "refinement": true,
+    "refinement_grounding_queries": 0,
+    "refinement_changed_points": 0
+  }
+}

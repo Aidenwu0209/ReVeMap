@@ -32,7 +32,9 @@ revemap run-sam3 \
   --schedule serial --vlm none --stride 5
 ```
 
-默认保留原有固定步长选帧。下面的可选模式在最终回填轨迹可用后，用图像清晰度、有效深度比例和位姿差异选取语义帧；**几何重建仍使用全部原始帧**。
+默认保留原有固定步长选帧及融合判定。三个冻结输入场景中，新默认与原版导出的 PLY 字节一致；这项验证说明兼容性，不代表新的精度提升。
+
+下面的实验模式在最终回填轨迹可用后，用图像清晰度、有效深度比例和位姿差异选取语义帧；**几何重建仍使用全部原始帧**。
 
 ```bash
 revemap run-sam3 \
@@ -43,7 +45,23 @@ revemap run-sam3 \
   --view-policy quality-diverse --view-budget 60
 ```
 
-预算不得超过输入帧数。公平比较时，`stride`、`quality` 和 `quality-diverse` 使用相同的显式 `--view-budget`。视角多样性不足时会按质量补足预算，降级帧记录在 `view_selection/VIEW_PLAN.json` 中；位姿差异不等于统计独立，当前也不代表已经证实准确率提升。
+预算不得超过输入帧数。公平比较时，`stride`、`quality` 和 `quality-diverse` 使用相同的显式 `--view-budget`。视角多样性不足时会按质量补足预算，降级帧记录在 `view_selection/VIEW_PLAN.json` 中；位姿差异不等于统计独立，本轮三个场景的同预算对照均未支持默认启用：`quality` 与 `quality-diverse` 的平均 unknown-as-error 准确率分别下降约 0.945 和 0.471 个百分点。
+
+置信度和冲突策略也分开选择：默认 `--semantic-confidence-policy legacy --semantic-conflict-policy consensus` 保留原判定。`track` 修复跨类别共享最高分的分数归属问题，但单独重放仍出现平均约 0.027 个百分点的准确率下降；`abstain` 会额外撤回冲突标签，可能包括正确标签。两者目前只适合显式对照实验。保留 legacy 意味着其已知的共享分数局限仍然存在。
+
+### 已完成阶段复用
+
+```bash
+revemap run-sam3 --manifest /absolute/path/to/manifest.json \
+  --runtime configs/semantic_runtime.local.json --output outputs/attempt-1 \
+  --schedule parallel --vlm none --checkpoint-stages
+# 中断后，保持输入、代码、环境和算法选项相同，输出必须使用新目录。
+revemap run-sam3 --manifest /absolute/path/to/manifest.json \
+  --runtime configs/semantic_runtime.local.json --output outputs/attempt-2 \
+  --schedule parallel --vlm none --resume-from outputs/attempt-1
+```
+
+只复用已封存的完整建图和 SAM3 阶段，校验原始帧、选项、源码、外部模型代码/权重、解释器包版本及输出 SHA256。部分阶段、旧版无检查点、文件变化或选项变化会重新计算；原尝试不会被修改。VLM、融合、命名和可选 refinement 会重新运行。`RESUME.json` 记录实际复用情况，复用运行的 `raw_fps` 为 null，避免与完整建图吞吐混用。
 
 ## 结果与评价
 
@@ -78,7 +96,7 @@ revemap query-scene --graph outputs/scene_graph.json --label chair --nearest-to 
 
 完成后可在“对象查询”中按类别/名称、最近对象或空间关系查找并高亮实例。对象卡显示命名支持帧，可打开仍然存在且哈希匹配的原始观察裁图。查询、裁图及高亮绑定当前地图，切换扫描后旧页签的对象操作会被拒绝。小对象的代表点会保留在预览预算内。
 
-“重新处理”目前是从封存 RGB-D 重新运行完整流程，**不是跳过未核验阶段的断点续算**。停止/失败时已保存的完整帧会尽可能封存。缺少彩色帧、深度帧或同步超限都会受到有效帧超时约束。
+GUI 自动记录已完成阶段的检查点，“重新处理”创建新 attempt，并尝试复用上一次通过完整校验的建图和 SAM3 阶段；旧版结果没有检查点时会全量重跑。停止/失败时已保存的完整帧会尽可能封存。缺少彩色帧、深度帧或同步超限都会受到有效帧超时约束。
 
 ## 验证与下一步实验
 
@@ -87,4 +105,4 @@ python -m pytest -q
 python -m build
 ```
 
-CI 覆盖 Python 3.11/3.12 CPU 测试，并在 checkout 外安装 wheel、运行 CLI 和合成查询示例。真实 GPU 流程、相机断连、长时间扫描和真实数据效果仍需在配置好的设备上验收。研究对照及接受条件见 [验证计划](docs/validation.md)。
+CI 覆盖 Python 3.11/3.12 CPU 测试，并在 checkout 外安装 wheel、运行 CLI 和合成查询示例。实测范围、负结果和设备限制见 [本轮验收记录](docs/acceptance-20260922.md)。相机实际拔插、长时间扫描和更广泛的真实数据效果仍需在配置好的设备上继续验收；研究接受条件见 [验证计划](docs/validation.md)。
