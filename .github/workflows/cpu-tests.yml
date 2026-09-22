@@ -29,6 +29,7 @@ jobs:
           revemap --version
           revemap list-vlm-models
           revemap gui --help
+          revemap clean-pointcloud --help
           revemap evaluate-semantic --help
           revemap build-scene-graph --help
       - name: Build package
@@ -44,6 +45,7 @@ jobs:
           "$CLI" --version
           "$CLI" list-vlm-models
           "$CLI" gui --help
+          "$CLI" clean-pointcloud --help
           "$CLI" evaluate-semantic --help
           "$CLI" demo --output "$RUNNER_TEMP/revemap-demo"
           "$CLI" query-scene --graph "$RUNNER_TEMP/revemap-demo/scene_graph.json" --label chair
