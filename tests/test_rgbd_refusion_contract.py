@@ -16,6 +16,44 @@ from reconstruction.rgbd_refusion import FullRefusionRequest, run_full_rgbd_refu
 
 @unittest.skipUnless(importlib.util.find_spec("open3d"), "Open3D runtime required")
 class RGBDRefusionContractTests(unittest.TestCase):
+    def test_plane_exports_a_measured_triangle_surface(self):
+        import open3d as o3d
+        from PIL import Image
+        from pose_pipeline.contracts import sha256_file
+        from pose_pipeline.surface import publish_surface
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            color, depth = root / 'color.png', root / 'depth.png'
+            Image.fromarray(np.full((48, 48, 3), [90, 160, 210], dtype=np.uint8)).save(color)
+            Image.fromarray(np.full((48, 48), 1000, dtype=np.uint16)).save(depth)
+            manifest, trajectory = root / 'manifest.json', root / 'trajectory.json'
+            write_manifest(manifest, SequenceManifest(
+                'scannet', 'plane', root, 1000.,
+                (FrameRecord(0, 0., color, depth, (50., 50., 23.5, 23.5)),), 'test'))
+            write_trajectory(trajectory, [PoseRecord(0, 0., np.eye(4))], sequence_id='plane', arm='candidate')
+            output = root / 'fusion'
+            receipt = run_full_rgbd_refusion(FullRefusionRequest(
+                manifest=manifest, trajectory=trajectory, output_dir=output,
+                voxel_length_m=.02, sdf_trunc_m=.08))
+            mesh = o3d.io.read_triangle_mesh(receipt['mesh'])
+            self.assertGreater(len(mesh.triangles), 0)
+            self.assertEqual(len(mesh.triangles), receipt['mesh_triangles'])
+            self.assertEqual(sha256_file(receipt['mesh']), receipt['mesh_sha256'])
+            self.assertTrue(mesh.has_vertex_colors() and mesh.has_vertex_normals())
+            np.testing.assert_allclose(np.asarray(mesh.vertices)[:, 2], 1., atol=.025)
+            source_hashes = {p: sha256_file(p) for p in root.rglob('*') if p.is_file()}
+            index = publish_surface(root, map_path=receipt['cloud'], manifest=manifest,
+                                    trajectory=trajectory, refusion_receipt=output / 'refusion_result.json',
+                                    viewer_triangles=100)
+            import json
+            value = json.loads(index.read_text())
+            self.assertLessEqual(value['viewer_triangles'], 100)
+            self.assertTrue(all(sha256_file(p) == digest for p, digest in source_hashes.items()))
+            with self.assertRaises(FileExistsError):
+                publish_surface(root, map_path=receipt['cloud'], manifest=manifest,
+                                trajectory=trajectory, refusion_receipt=output / 'refusion_result.json')
+
     def test_default_frame_list_rejects_missing_pose(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

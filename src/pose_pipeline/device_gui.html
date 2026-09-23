@@ -45,7 +45,7 @@ let buffer, program, posLoc, colLoc, pointSize=2.0;
 function shader(type,source){const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s}
 if(gl){program=gl.createProgram();gl.attachShader(program,shader(gl.VERTEX_SHADER,`attribute vec3 position; attribute vec3 color; uniform vec3 center; uniform float pointSize; uniform float scale; uniform vec2 angle; uniform vec2 pan; uniform float aspect; varying vec3 rgb; void main(){vec3 p=(position-center)*scale;float a=angle.x,b=angle.y;vec3 q=vec3(cos(a)*p.x+sin(a)*p.z,p.y,-sin(a)*p.x+cos(a)*p.z);p=vec3(q.x,cos(b)*q.y-sin(b)*q.z,sin(b)*q.y+cos(b)*q.z);gl_Position=vec4((p.x+pan.x)/aspect,-p.y+pan.y,p.z*.08,1.);gl_PointSize=pointSize;rgb=color;}`));gl.attachShader(program,shader(gl.FRAGMENT_SHADER,`precision mediump float;varying vec3 rgb;void main(){gl_FragColor=vec4(rgb,1.);}`));gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));gl.useProgram(program);buffer=gl.createBuffer();posLoc=gl.getAttribLocation(program,'position');colLoc=gl.getAttribLocation(program,'color');gl.enable(gl.DEPTH_TEST)}
 function setPointSize(v){pointSize=Math.max(0.5,Math.min(10,v));$('psv').textContent=pointSize.toFixed(1);draw()}
-function draw(){if(!gl||!canvas.clientWidth||!canvas.clientHeight)return;if(fitPending){fit();return}const ratio=window.devicePixelRatio||1;const w=Math.round(canvas.clientWidth*ratio),h=Math.round(canvas.clientHeight*ratio);if(canvas.width!==w)canvas.width=w;if(canvas.height!==h)canvas.height=h;gl.viewport(0,0,canvas.width,canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.useProgram(program);gl.uniform1f(gl.getUniformLocation(program,'pointSize'),pointSize);gl.uniform3fv(gl.getUniformLocation(program,'center'),center);gl.uniform1f(gl.getUniformLocation(program,'scale'),scale*zoom);gl.uniform2f(gl.getUniformLocation(program,'angle'),yaw,pitch);gl.uniform2fv(gl.getUniformLocation(program,'pan'),pan);gl.uniform1f(gl.getUniformLocation(program,'aspect'),canvas.width/canvas.height);gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.enableVertexAttribArray(posLoc);gl.enableVertexAttribArray(colLoc);gl.vertexAttribPointer(posLoc,3,gl.FLOAT,false,24,0);gl.vertexAttribPointer(colLoc,3,gl.FLOAT,false,24,12);gl.drawArrays(gl.POINTS,0,pointN)}
+function draw(){if(!gl||!canvas.clientWidth||!canvas.clientHeight)return;if(fitPending){fit();return}const ratio=window.devicePixelRatio||1;const w=Math.round(canvas.clientWidth*ratio),h=Math.round(canvas.clientHeight*ratio);if(canvas.width!==w)canvas.width=w;if(canvas.height!==h)canvas.height=h;gl.viewport(0,0,canvas.width,canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);if(window.surfaceViewer?.draw())return;gl.useProgram(program);gl.uniform1f(gl.getUniformLocation(program,'pointSize'),pointSize);gl.uniform3fv(gl.getUniformLocation(program,'center'),center);gl.uniform1f(gl.getUniformLocation(program,'scale'),scale*zoom);gl.uniform2f(gl.getUniformLocation(program,'angle'),yaw,pitch);gl.uniform2fv(gl.getUniformLocation(program,'pan'),pan);gl.uniform1f(gl.getUniformLocation(program,'aspect'),canvas.width/canvas.height);gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.enableVertexAttribArray(posLoc);gl.enableVertexAttribArray(colLoc);gl.vertexAttribPointer(posLoc,3,gl.FLOAT,false,24,0);gl.vertexAttribPointer(colLoc,3,gl.FLOAT,false,24,12);gl.drawArrays(gl.POINTS,0,pointN)}
 let bounds=null,fitPending=false;
 function fit(){if(!canvas.clientWidth||!canvas.clientHeight){fitPending=true;return}fitPending=false;if(bounds){center=bounds.min.map((v,i)=>(v+bounds.max[i])/2);const projected=[];for(let mask=0;mask<8;mask++){const p=center.map((c,i)=>((mask>>i)&1?bounds.max[i]:bounds.min[i])-c);const x=Math.cos(yaw)*p[0]+Math.sin(yaw)*p[2],z=-Math.sin(yaw)*p[0]+Math.cos(yaw)*p[2];projected.push([x,Math.cos(pitch)*p[1]-Math.sin(pitch)*z])}const span=i=>Math.max(.1,Math.max(...projected.map(p=>p[i]))-Math.min(...projected.map(p=>p[i])));const aspect=canvas.clientWidth/Math.max(1,canvas.clientHeight);scale=Math.min(1.7*aspect/span(0),1.35/span(1));zoom=1;pan=[0,0]}draw()}
 async function loadCloud(rev){
@@ -140,6 +140,7 @@ function restoreCamera(c){if(!c)return;({center,scale,yaw,pitch,pan,zoom,bounds}
 function selectedPoint(data,i){if(queryHighlights!==null)return queryHighlights.has(data[i+7]);return !objectSelection||data[i+(objectSelection.kind==='class'?6:7)]===objectSelection.id}
 function objectLabel(){return objectSelection?.title||T('三维点云','3D point cloud')}
 function updateObjectCaption(){
+ if(window.surfaceViewer?.caption())return;
  if(!objectData)return;
  $('cloudKind').textContent=objectSelection?(objectIsolated?T('独立查看 · ','Object · '):T('已选中 · ','Selected · '))+objectLabel():({rgb:T('原色点云','RGB point cloud'),semantic_id:T('语义点云','Semantic point cloud'),instance_id:T('实例点云','Instance point cloud')}[objectMode]);
  $('pointCount').textContent=pointCountText();
@@ -149,6 +150,7 @@ function rebuildObjects(){
  if(!objectData||!gl)return;
  const key=JSON.stringify([objectSelection?.kind,objectSelection?.id,objectIsolated,objectMode,queryHighlights===null?null:[...queryHighlights]]);
  if(key===objectStateKey){updateObjectCaption();return}
+ window.surfaceViewer?.points(false);
  const previous=objectStateKey?JSON.parse(objectStateKey):[null,null,false];
  const wasIsolated=previous[2];
  if(objectIsolated&&!wasIsolated)sceneCamera=cameraState();
@@ -221,6 +223,7 @@ const labels=()=>({idle:T('准备扫描','Idle'),starting:T('正在连接设备'
 const modeLabel=mode=>({wireless:'无线 Orbbec',ipad:'iPad LiDAR',replay:'RGB-D 回放',demo:'数据集演示',camera:'相机扫描'}[mode]||'RGB-D');
 function sessionName(id){const m=String(id||'').match(/^scan_(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})/);return m?`${m[1]}年${m[2]}月${m[3]}日 ${m[4]}:${m[5]}:${m[6]}`:id||'扫描'}
 function resetSession(id){
+ window.surfaceViewer?.reset();
  currentSessionId=id;sessionGeneration++;previewStamp='';cloudRevision=null;pointN=0;bounds=null;fitPending=false;
  center=[0,0,0];scale=1;yaw=.35;pitch=-.2;pan=[0,0];zoom=1;
  objectData=null;objectCatalog=null;objectLoad=null;objectFailedAt=0;objectUnsupported=false;
@@ -253,6 +256,7 @@ function syncViewControls(){
 }
 async function changeView(mode){
  if(lastState?.status!=='completed'||mode==='rgb'&&objectCatalog?.rgb_available===false)return;
+ window.surfaceViewer?.points();
  objectMode=mode;syncViewControls();
  if(objectData){rebuildObjects();return}
  const generation=sessionGeneration,base=sessionBase()||BASE;
@@ -445,5 +449,5 @@ fetch('/api/models').then(response=>response.json()).then(result=>{const current
 if(READONLY){$('scanActions').hidden=true;$('backToRecords').hidden=false}
 applyLanguage();setPage(!EMBED&&query.get('page')==='records'?'records':'scan');draw();poll();if(!READONLY&&!EMBED)pollCamera();
 </script><script>
-window.scanQueryHighlight=function(ids){queryHighlights=ids===null?null:new Set(ids);objectSelection=null;objectIsolated=false;rebuildObjects();};
-</script><script src="/scene_query_ui.js"></script></body></html>
+window.scanQueryHighlight=function(ids){window.surfaceViewer?.points();queryHighlights=ids===null?null:new Set(ids);objectSelection=null;objectIsolated=false;rebuildObjects();};
+</script><script src="/surface_viewer.js"></script><script src="/scene_query_ui.js"></script></body></html>

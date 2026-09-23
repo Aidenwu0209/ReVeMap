@@ -288,7 +288,7 @@ struct WebPage: UIViewRepresentable {
                      decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
             if let url = navigationAction.request.url, let page = webView.url,
                url.scheme == page.scheme, url.host == page.host, url.port == page.port,
-               ["scene_graph.json", "object.ply"].contains(url.lastPathComponent) {
+               ["scene_graph.json", "object.ply", "surface.ply"].contains(url.lastPathComponent) {
                 decisionHandler(.cancel)
                 onExportRequest(url)
                 return
@@ -1203,7 +1203,9 @@ struct SessionDetailView: View {
     private func exportQueryResult(_ url: URL) async {
         guard !exportingObject, let expected = URL(string: "http://\(host):8765"),
               url.scheme == expected.scheme, url.host == expected.host, url.port == expected.port,
-              url.path == "/s/\(record.id)/scene_graph.json" || url.path == "/s/\(record.id)/object.ply" else { return }
+              ["scene_graph.json", "object.ply", "surface.ply"].contains(where: {
+                  url.path == "/s/\(record.id)/\($0)"
+              }) else { return }
         airGrab.stop()
         exportingObject = true
         defer { exportingObject = false }

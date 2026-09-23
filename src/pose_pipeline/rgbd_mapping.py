@@ -81,6 +81,14 @@ def _completed_result(manifest_path: Path, output_dir: Path) -> dict:
         and receipt["cloud_sha256"] == sha256_file(cloud)
     ):
         raise RuntimeError("Full-frame fusion receipt does not match its outputs")
+    surface = {}
+    if receipt.get("mesh"):
+        mesh = Path(receipt["mesh"])
+        if (not mesh.resolve().is_relative_to((output_dir / "fusion").resolve())
+                or sha256_file(mesh) != receipt.get("mesh_sha256")
+                or receipt.get("mesh_triangles", 0) <= 0):
+            raise RuntimeError("TSDF mesh receipt does not match its output")
+        surface = {"mesh": str(mesh), "mesh_sha256": receipt["mesh_sha256"]}
     return {
         "schema": "raw_rgbd_mapping_result.v1", "status": "completed",
         "dataset": manifest.dataset, "sequence_id": manifest.sequence_id,
@@ -91,6 +99,7 @@ def _completed_result(manifest_path: Path, output_dir: Path) -> dict:
         "final_cloud": str(cloud), "final_cloud_sha256": receipt["cloud_sha256"],
         "identity_fallback_used": False, "gt_consumed": False,
         "quality_acceptance": "reported_by_separate_cross_dataset_evaluation",
+        **surface,
     }
 
 
