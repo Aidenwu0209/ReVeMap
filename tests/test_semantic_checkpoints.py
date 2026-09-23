@@ -55,6 +55,30 @@ def test_rebinds_copies_and_never_reuses_later_stage_files(tmp_path):
     assert read(new / 'RESUME.json')['stages'][1]['reused'] is True
 
 
+def test_tsdf_mesh_and_nested_receipt_follow_the_restored_attempt(tmp_path):
+    old, new = tmp_path / 'failed', tmp_path / 'retry'
+    mapping(old)
+    mesh = old / 'mapping/fusion/surface.ply'
+    mesh.write_bytes(b'verified surface fixture')
+    receipt = read(old / 'mapping/mapping_result.json')
+    receipt.update(mesh=str(mesh), mesh_sha256=sha(mesh))
+    write(old / 'mapping/mapping_result.json', receipt)
+    nested = old / 'mapping/fusion/refusion_result.json'
+    write(nested, {'mesh': str(mesh), 'mesh_sha256': sha(mesh),
+                   'trajectory': receipt['trajectory'], 'cloud': receipt['final_cloud']})
+    original = {p: p.read_bytes() for p in old.rglob('*') if p.is_file()}
+    CheckpointStore(old, {}).seal('mapping')
+    assert CheckpointStore(new, {}, old).restore('mapping')
+    rebound = read(new / 'mapping/mapping_result.json')
+    refusion = read(new / 'mapping/fusion/refusion_result.json')
+    assert rebound['mesh'] == refusion['mesh'] == str(new / 'mapping/fusion/surface.ply')
+    assert sha(rebound['mesh']) == rebound['mesh_sha256'] == refusion['mesh_sha256']
+    assert all(p.read_bytes() == content for p, content in original.items())
+    mesh.write_bytes(b'changed surface')
+    with pytest.raises(ValueError, match='surface does not match'):
+        CheckpointStore(old, {}).seal('mapping')
+
+
 @pytest.mark.parametrize('damage', ['input', 'source', 'missing-seal', 'bad-seal', 'file', 'receipt', 'incomplete'])
 def test_changed_or_partial_stages_fall_back_without_copying(tmp_path, damage):
     old, new = tmp_path / 'old', tmp_path / 'new'
