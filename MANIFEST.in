@@ -4,3 +4,6 @@ recursive-include configs *.json
 recursive-include scripts *.py *.sh
 recursive-include src/revemap/resources *.json
 include src/pose_pipeline/live_gui.html
+
+include src/pose_pipeline/device_gui.html
+include src/pose_pipeline/scene_query_ui.js

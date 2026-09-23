@@ -116,7 +116,7 @@ class Controller:
         """Bind a query/evidence interaction to one completed map and attempt."""
         result = self.state.get("result", {})
         files = []
-        for field in ("final_cloud", "classes", "artifacts"):
+        for field in ("final_cloud", "classes", "artifacts", "names"):
             if result.get(field):
                 path = Path(result[field])
                 try:
@@ -543,6 +543,9 @@ class Controller:
             result = self.state["result"]
             inventory = Path(result.get("artifacts", self.pipeline_path() / "ARTIFACTS.json"))
             files = [Path(result["final_cloud"]), Path(result["classes"])]
+            names_file = Path(result.get("names", self.pipeline_path() / "fused/instance_names.json"))
+            if names_file.is_file():
+                files.append(names_file)
             if inventory.is_file():
                 files.append(inventory)
                 files.extend((inventory.parent / row["path"]).resolve()
@@ -560,14 +563,15 @@ class Controller:
                 # Old sessions remain inspectable, with no invented input binding.
                 vertices = PlyData.read(files[0])["vertex"].data
                 graph = build_graph(np.column_stack([vertices[k] for k in ("x", "y", "z")]),
-                    vertices["semantic_id"], vertices["instance_id"], read_json(files[1]), world_up=world_up)
+                    vertices["semantic_id"], vertices["instance_id"], read_json(files[1]), world_up=world_up,
+                    names=read_json(Path(result.get("names", self.pipeline_path() / "fused/instance_names.json"))) or [])
                 graph["provenance"] = {"bound": False, "source": "legacy_gui_result"}
             self._scene_cache = (key, graph)
             return graph
 
     def query_scene(self, options):
         from .scene_graph import query_graph
-        if not isinstance(options, dict) or set(options) - {"label", "nearest_to", "relation", "reference_id", "world_up", "context"}:
+        if not isinstance(options, dict) or set(options) - {"label", "nearest_to", "relation", "reference_id", "world_up", "context", "question", "query"}:
             raise ValueError("Invalid scene query")
         if options.get("label") is not None and (not isinstance(options["label"], str) or len(options["label"]) > 80):
             raise ValueError("对象名称需要不超过 80 字符")
@@ -576,7 +580,13 @@ class Controller:
             if options.get("context") is not None and options["context"] != context:
                 raise ValueError("地图已切换，请刷新后重新查询")
             graph = self.scene_graph(options.get("world_up"))
-            result = query_graph(graph, **{k: v for k, v in options.items() if k not in {"world_up", "context"}})
+            if "question" in options or "query" in options:
+                if any(k in options for k in ("label", "nearest_to", "relation", "reference_id")):
+                    raise ValueError("Do not combine a question with legacy filters")
+                from .scene_query import execute_query
+                result = execute_query(graph, question=options.get("question"), plan=options.get("query"))
+            else:
+                result = query_graph(graph, **{k: v for k, v in options.items() if k not in {"world_up", "context"}})
             self.show_cloud(self.state.get("view", "semantic_id"), result["instance_ids"], context=context)
             result["provenance_bound"] = graph["provenance"]["bound"]
             result["context"] = context
@@ -757,6 +767,10 @@ def handler(controller, token, port):
 
 
 def main():
+    import sys
+    if any(arg in sys.argv for arg in ("--host", "--ipad-port", "--wireless-host", "--devices")):
+        from .device_gui import main as device_main
+        return device_main()
     p = argparse.ArgumentParser(description="ReVeMap RGB-D capture and semantic mapping GUI")
     p.add_argument("--runtime", type=Path, required=True)
     p.add_argument("--provider-root", type=Path, required=True)

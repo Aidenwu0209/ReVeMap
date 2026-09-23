@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Scan</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Streams RGB and LiDAR depth to your configured receiver.</string>
+	<string>Uses the camera to capture RGB-D scans and recognize hand gestures for Air Grab. Gesture camera frames stay on this device.</string>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>Connects to an RGB-D receiver and result console on your private network.</string>
 	<key>NSMotionUsageDescription</key>

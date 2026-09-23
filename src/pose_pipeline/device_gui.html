@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Scan · 空间扫描</title><style>
+:root{color-scheme:dark;--bg:#000;--panel:#1c1c1e;--side:#121212;--line:rgba(255,255,255,.08);--text:#f5f5f7;--muted:rgba(255,255,255,.55);--green:#30d158;--red:#ff453a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif}button,select,input{font:inherit}button,a,select{-webkit-tap-highlight-color:transparent}button,a{touch-action:manipulation}button{cursor:pointer}button:disabled{cursor:default;opacity:.35}button:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid var(--green);outline-offset:3px}a{color:inherit;text-decoration:none}[hidden]{display:none!important}h1,h2,h3,p{margin:0}h1{font-size:20px;letter-spacing:-.5px}h2{font-size:18px;letter-spacing:-.3px}h3{font-size:14px;font-weight:600}.sub{font-size:12px;color:var(--muted)}.app-header{height:76px;padding:0 26px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:12px}.brand svg{width:27px;height:30px;color:var(--green);fill:none;stroke:currentColor;stroke-width:1.5}.brand .sub{font-size:11px}.tabs,.segmented{display:inline-flex;padding:4px;gap:3px;border:1px solid var(--line);border-radius:25px;background:#ffffff0b}.tabs button,.segmented button{border:0;color:var(--muted);background:transparent;border-radius:22px;padding:8px 20px;font-size:13px;font-weight:600;white-space:nowrap}.tabs button[aria-selected="true"],.segmented button[aria-pressed="true"]{color:var(--text);background:#ffffff20;box-shadow:0 1px 5px #0004}.tabs button{min-width:98px}.header-state{color:var(--green);font-size:12px;display:flex;align-items:center;gap:7px}.status-dot{width:7px;height:7px;border-radius:50%;background:currentColor}.workspace{max-width:1920px;margin:auto}.toolbar{padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:20px}.status{font-size:21px;letter-spacing:-.5px;font-weight:600}.toolbar .sub{margin-top:5px;max-width:690px}.actions{display:flex;gap:8px;flex-shrink:0}.button,.download{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:38px;padding:9px 16px;border:1px solid var(--line);border-radius:22px;background:#ffffff0c;color:var(--text);font-weight:600;font-size:13px;white-space:nowrap}.button.primary{background:var(--green);border-color:var(--green);color:#06280f}.button.stop{background:#ff453a1c;color:#ff6961;border-color:#ff453a3b}.button.quiet{background:transparent;color:var(--muted)}.back-link{display:inline-block;font-size:12px;color:var(--green);margin-bottom:6px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 380px;min-height:calc(100dvh - 180px)}.viewer-area{min-width:0;position:relative;background:#000;display:flex;flex-direction:column}.viewer{flex:1;height:calc(100dvh - 180px);min-height:480px;position:relative;overflow:hidden;isolation:isolate;background:#000}.side{padding:18px;display:flex;flex-direction:column;gap:16px;background:var(--side);border-left:1px solid var(--line);max-height:calc(100dvh - 180px);overflow-y:auto;scrollbar-width:thin}.card{padding:14px;background:var(--panel);border-radius:20px;border:1px solid rgba(255,255,255,.06);min-width:0}.card-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.card-heading .sub{font-variant-numeric:tabular-nums}.view-switch{padding:4px;border-radius:12px;width:230px}.view-switch button{flex:1;padding:6px 10px;border-radius:9px;font-size:12px}.preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.preview-title{font-size:11px;color:var(--muted);margin-bottom:7px;display:flex;justify-content:space-between}.imagebox{aspect-ratio:4/3;border-radius:11px;overflow:hidden;background:#080808;position:relative}.imagebox img{width:100%;height:100%;object-fit:contain;display:block}.imagebox img:not([src]){visibility:hidden}.imagebox:has(img:not([src])):after{content:'等待画面';position:absolute;inset:0;display:grid;place-items:center;color:#636366;font-size:11px}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:17px 12px}.metric label{display:block;color:var(--muted);font-size:11px;margin-bottom:3px}.metric b{font-size:19px;line-height:1.3;font-weight:600;font-variant-numeric:tabular-nums}.metric small{font-size:11px;color:var(--muted)}.object-switch{width:100%;border-radius:11px;margin-bottom:10px}.object-switch button{flex:1;padding:6px;border-radius:8px;font-size:12px}.objects-hint{font-size:11px;color:var(--muted);margin-bottom:10px}.object-list{max-height:238px;overflow-y:auto;scrollbar-width:thin}.object-row{display:flex;align-items:center;gap:10px;width:100%;padding:8px;border:0;background:none;color:var(--text);border-radius:10px;text-align:left;margin-bottom:3px}.object-row[aria-pressed="true"]{background:#30d1581f}.object-swatch{width:8px;height:28px;border-radius:3px;flex-shrink:0}.object-copy{flex:1;min-width:0}.object-name{font-size:13px;font-weight:500;overflow-wrap:anywhere}.object-meta{font-size:11px;color:var(--muted);margin-top:2px}.object-mark{color:var(--green);font-size:17px;min-width:17px}.object-filter{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;font-size:12px;color:var(--green)}.link-button{border:0;background:none;padding:2px;color:var(--green);font-size:12px}.selection-bar{padding:14px 20px;background:var(--panel);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:16px}.selection-title{min-width:0}.selection-title strong{font-size:14px;display:block;overflow-wrap:anywhere}.selection-title .sub{margin-top:3px;font-variant-numeric:tabular-nums}.selection-actions{display:flex;gap:8px;flex-shrink:0}.selection-actions .button,.selection-actions .download{padding:8px 12px;font-size:12px}.stages{display:flex;gap:5px;margin-top:12px}.stage{flex:1;min-width:0;padding-top:7px;border-top:3px solid #3a3a3c;color:var(--muted);font-size:10px;white-space:nowrap;text-align:center}.stage.active{border-color:var(--green);color:var(--green)}.stage.done{border-color:#30d15877;color:#ffffffaa}#progressLabel,#backlog{font-size:12px;color:var(--muted)}#backlog{margin-top:9px;font-size:11px}#optsRow summary{cursor:pointer;font-size:14px;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center}#optsRow summary::-webkit-details-marker{display:none}#optsRow summary:after{content:'＋';color:var(--muted)}#optsRow[open] summary:after{content:'−'}.settings{padding-top:15px;display:flex;flex-direction:column;gap:14px}.setting label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}.setting select{width:100%;max-width:100%;background:#2c2c2e;border:1px solid var(--line);border-radius:9px;color:var(--text);padding:9px;font-size:12px}.check-setting{display:flex;align-items:center;gap:8px;font-size:12px}.check-setting input{accent-color:var(--green)}.path{font:10px/1.5 ui-monospace,monospace;color:var(--muted);overflow-wrap:anywhere;margin-top:2px}.downloads{display:flex;gap:8px}.downloads a{flex:1}#notice{display:none;margin:0 26px 18px;padding:12px 16px;border:1px solid #ff9f0a33;background:#ff9f0a14;border-radius:14px;color:#ffd4a0;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}.records-page{max-width:1000px;padding:30px 26px 50px;margin:auto}.records-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px}.records-heading h2{font-size:25px;margin-bottom:4px}.record-list{padding:0;overflow:hidden}.record-row{display:flex;align-items:center;gap:13px;padding:17px 18px;border-bottom:1px solid var(--line)}.record-row:last-child{border-bottom:0}.record-row:hover{background:#ffffff07}.record-bar{width:12px;height:36px;border-radius:6px;flex-shrink:0}.record-copy{min-width:0;flex:1}.record-title{font-size:14px;font-weight:500;display:flex;align-items:center;flex-wrap:wrap;gap:8px}.record-tag{font-size:10px;color:var(--muted);background:#ffffff14;padding:2px 6px;border-radius:20px}.record-meta{font-size:12px;color:var(--muted);margin-top:4px}.record-chevron{font-size:23px;color:#636366}.empty-records{padding:64px 20px;text-align:center;color:var(--muted)}.empty-records strong{display:block;color:var(--text);font-size:16px;margin-bottom:7px}
+canvas{width:100%;height:100%;display:block;touch-action:none}.viewer-top{position:absolute;top:max(22px,env(safe-area-inset-top));left:max(24px,env(safe-area-inset-left));right:max(24px,env(safe-area-inset-right));display:flex;justify-content:space-between;align-items:flex-start;z-index:3;gap:16px;pointer-events:none}.viewer-info{display:flex;flex-direction:column;gap:3px;min-width:0;text-shadow:0 1px 8px #000}#cloudKind{font-size:17px;line-height:1.4;font-weight:600;letter-spacing:-.3px}#pointCount{font-size:13px;color:#a1a1a6;font-variant-numeric:tabular-nums}.viewer button{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:0;border:0;border-radius:50%;background:transparent;color:var(--text);touch-action:manipulation;transition:background .15s}.viewer button:active{background:#ffffff21}.viewer button svg{width:19px;height:19px;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round;fill:none}.viewer #fullscreen{pointer-events:auto;width:46px;height:46px;background:rgba(54,54,56,.72);box-shadow:inset 0 1px 0 #ffffff18,0 4px 16px #0003;backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%)}.viewer-bottom{position:absolute;z-index:3;bottom:max(22px,env(safe-area-inset-bottom));left:max(24px,env(safe-area-inset-left));right:max(24px,env(safe-area-inset-right));display:flex;align-items:center;justify-content:space-between;gap:16px;pointer-events:none}.gesture-hint{display:flex;align-items:center;gap:7px;color:#8e8e93;font-size:12px;line-height:1.5}.gesture-hint svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.3;flex:none}.point-controls{pointer-events:auto;display:flex;align-items:center;gap:2px;padding:3px 5px 3px 16px;border:0;border-radius:28px;background:rgba(54,54,56,.72);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%);box-shadow:inset 0 1px 0 #ffffff18,0 4px 16px #0003;flex-shrink:0}.point-controls label{color:#d1d1d6;font-size:12px;margin-right:10px}.point-controls output{min-width:27px;text-align:center;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums}.empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:110px 28px;gap:8px;text-align:center;pointer-events:none}.empty .empty-symbol{display:grid;place-items:center;width:78px;height:78px;margin-bottom:13px}.empty svg{width:36px;height:36px;margin:0;stroke:#8e8e93}.empty strong{font-size:19px;font-weight:600}.empty>span{font-size:13px;line-height:1.6;max-width:290px;color:#8e8e93}.embed{background:#000;overflow:hidden}.embed .app-header,.embed .toolbar,.embed .side,.embed .selection-bar,.embed .records-page{display:none!important}.embed .workspace,.embed .layout,.embed .viewer-area{height:100%;margin:0;padding:0;display:block}.embed .viewer{height:100vh;height:100dvh;min-height:0;border:0}.embed #notice{position:fixed;top:104px;left:24px;right:24px;z-index:5;margin:0;font-size:12px;background:#422c27d9;backdrop-filter:blur(15px)}.viewer:fullscreen,.page-fullscreen .viewer{position:fixed;inset:0;z-index:1000;width:100vw;height:100vh;height:100dvh;min-height:0;border:0}
+@media(max-width:1000px){.layout{grid-template-columns:minmax(0,1fr) 340px}.toolbar{align-items:flex-start}.actions{flex-wrap:wrap;justify-content:flex-end}.gesture-hint{display:none}.selection-bar{align-items:flex-start;flex-direction:column}.side{max-height:none}.viewer{min-height:520px}}
+@media(min-width:761px){body:not(.embed){height:100dvh;display:flex;flex-direction:column;overflow:hidden}.app-header{flex:0 0 76px}.workspace{width:100%;flex:1;min-height:0;display:flex;flex-direction:column;margin:0 auto}.toolbar,#notice{flex:0 0 auto}.layout{flex:1;min-height:0}.viewer-area{min-height:0}.viewer{height:auto;min-height:0}.selection-bar{flex:0 0 auto}.side{min-height:0;max-height:none;overflow-y:auto}.records-page{flex:1;min-height:0;width:100%;overflow-y:auto}}
+@media(max-width:760px){.app-header{height:70px;padding:0 18px}.brand .sub,.header-state{display:none}.tabs button{min-width:70px;padding:8px 15px}.toolbar{padding:20px 18px;flex-direction:column;gap:14px}.toolbar .sub{max-width:none}.status{font-size:20px}.actions{justify-content:flex-start;width:100%}.actions .button{flex:1;padding:9px 12px}.layout{grid-template-columns:1fr;min-height:0}.viewer{height:58dvh;min-height:380px}.side{border-left:0;border-top:1px solid var(--line);max-height:none;padding:18px;display:grid;grid-template-columns:1fr 1fr;align-items:start}.side>.card{height:fit-content}.view-card,.objects-card,.progress-card{grid-column:1/-1}.view-card{display:flex;align-items:center;justify-content:space-between;gap:12px}.view-card .card-heading{margin:0}.selection-bar{flex-direction:row;align-items:center;flex-wrap:wrap}.records-page{padding:25px 18px}.records-heading h2{font-size:23px}#notice{margin:0 18px 16px}.viewer-top{top:18px;left:18px;right:18px}.viewer-bottom{left:18px;right:18px;bottom:18px;justify-content:flex-end}.embed .viewer{min-height:0}}
+@media(max-width:480px){.side{display:flex;align-items:stretch}.view-card{display:block}.view-card .card-heading{margin-bottom:12px}.view-switch{width:100%}.viewer{height:52dvh;min-height:350px}.selection-actions{width:100%;flex-wrap:wrap}.selection-actions .button,.selection-actions .download{flex:1}.record-row{padding:15px 13px}.record-title{font-size:13px}.record-meta{font-size:11px}.brand svg{width:23px}.brand h1{font-size:18px}}
+@media(prefers-reduced-transparency:reduce){.viewer #fullscreen,.point-controls{background:#323234;backdrop-filter:none;-webkit-backdrop-filter:none}}@media(prefers-contrast:more){:root{--muted:#d1d1d6}.card,.tabs,.segmented{border-color:#ffffff33}#pointCount,.empty>span{color:#d1d1d6}}@media(prefers-reduced-motion:reduce){.viewer button{transition:none}}
+.has-live-preview .camera-card{order:-1}#cameraLiveStatus{font-size:11px;color:var(--muted)}.has-live-preview #cameraLiveStatus{color:var(--green)}
+</style></head><body>
+<header class="app-header"><div class="brand"><svg viewBox="0 0 28 32" aria-hidden="true"><path d="M14 2 26 9v14l-12 7L2 23V9Zm-12 7 12 7 12-7M14 16v14M14 2v14"/></svg><div><h1 id="pageTitle">Scan</h1><div class="sub">空间扫描</div></div></div><nav class="tabs" aria-label="页面"><button id="navScan" aria-selected="true">扫描</button><button id="navRecords" aria-selected="false">记录</button></nav><div class="header-state"><span class="status-dot"></span><span id="mode">RGB-D</span></div></header>
+<main id="scanPage" class="workspace"><div class="toolbar"><div><a id="backToRecords" class="back-link" href="/?page=records" hidden>‹ 扫描记录</a><div class="status" id="status">准备扫描</div><div class="sub" id="hint">开始扫描，记录眼前的三维空间。</div><a id="resultRecordLink" class="back-link" href="/?page=records" hidden>扫描已完成，前往记录查看结果 ›</a></div><div class="actions" id="scanActions"><button class="button primary" id="start">开始扫描</button><button class="button stop" id="stop" disabled>停止并建图</button><button class="button quiet" id="cancel" disabled>取消</button></div></div>
+<div id="notice" role="alert"></div><div class="layout"><div class="viewer-area"><section class="viewer" aria-label="3D viewer"><canvas id="view"></canvas>
+<div class="viewer-top"><div class="viewer-info"><strong id="cloudKind">三维点云</strong><span id="pointCount">0 点</span></div>
+<button id="fullscreen" aria-label="全屏查看" title="全屏查看" aria-pressed="false"><svg id="expandIcon" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg><svg id="collapseIcon" viewBox="0 0 24 24" style="display:none"><path d="M3 8h5V3m8 0v5h5M8 21v-5H3m13 5v-5h5"/></svg></button></div>
+<div class="empty" id="empty"><div class="empty-symbol"><svg viewBox="0 0 80 80" fill="none"><path d="M40 7 69 24v33L40 74 11 57V24Z M11 24l29 17 29-17 M40 41v33 M40 7v34"/></svg></div><strong id="emptyTitle">正在加载三维空间</strong><span id="emptyHint">点云将在这里显示</span></div>
+<div class="viewer-bottom"><div class="gesture-hint"><svg viewBox="0 0 24 24"><path d="M9 12V5a2 2 0 0 1 4 0v6m0-4a2 2 0 0 1 4 0v5m0-3a2 2 0 0 1 4 0v6c0 4-3 6-7 6-3 0-5-2-6-4l-4-6a2 2 0 0 1 3-2l2 3"/></svg><span data-zh="单指旋转 · 双指平移或缩放" data-en="Drag to rotate · Two fingers to pan or zoom">单指旋转 · 双指平移或缩放</span></div>
+<div class="point-controls" role="group" aria-label="点大小"><label data-zh="点大小" data-en="Point size">点大小</label><button id="psm" aria-label="减小点" title="减小点"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button><output id="psv">2.0</output><button id="psi" aria-label="增大点" title="增大点"><svg viewBox="0 0 24 24"><path d="M5 12h14m-7-7v14"/></svg></button></div></div></section>
+<div id="selectedBar" class="selection-bar" hidden><div class="selection-title"><strong id="selectedTitle"></strong><div id="selectedDimensions" class="sub"></div></div><div class="selection-actions"><button id="isolateObject" class="button primary">单独查看</button><a id="exportObject" class="download">导出物体 PLY</a><button id="clearObject" class="button quiet" aria-label="取消选择">✕</button></div></div></div>
+<aside class="side" aria-label="扫描详情"><section class="card view-card" hidden><div class="card-heading"><h3>地图显示</h3></div><div class="segmented view-switch" role="group" aria-label="地图显示"><button data-view="semantic_id" aria-pressed="true">语义</button><button data-view="instance_id" aria-pressed="false">实例</button><button data-view="rgb" aria-pressed="false">原色</button></div><select id="mapView" hidden aria-label="地图显示"><option value="semantic_id">语义</option><option value="instance_id">实例</option><option value="rgb">原色</option></select></section>
+<section id="objectsCard" class="card objects-card" hidden><div class="card-heading"><h3>探索物体</h3><button id="retryObjects" class="link-button" hidden>重试</button></div><div class="segmented object-switch" role="group" aria-label="物体分组"><button data-group="class" aria-pressed="true">类别</button><button data-group="instance" aria-pressed="false">实例</button></div><div id="objectFilter" class="object-filter" hidden><span id="objectFilterLabel"></span><button id="clearFilter" class="link-button">查看全部</button></div><p id="objectsHint" class="objects-hint">点选高亮，再单独查看三维点云。</p><div id="objectList" class="object-list"></div></section>
+<section class="card camera-card"><div class="card-heading"><h3>相机画面</h3><span id="cameraLiveStatus">录制画面</span></div><div class="preview-grid"><div><div class="preview-title">彩色<span>RGB</span></div><div class="imagebox"><img id="color" alt="实际采集的彩色画面"></div></div><div><div class="preview-title">深度<span>0–4.5 m</span></div><div class="imagebox"><img id="depth" alt="实际采集的深度画面"></div></div></div></section>
+<section class="card"><div class="card-heading"><h3>扫描概况</h3></div><div class="metrics"><div class="metric"><label>帧数</label><b id="frames">0</b></div><div class="metric"><label>采集时长</label><b id="elapsed">00:00</b></div><div class="metric"><label>平均帧率</label><b id="fps">—</b> <small>fps</small></div><div class="metric"><label>地图点数</label><b id="totalPoints">—</b></div><div class="metric"><label>有效深度</label><b id="validDepth">—</b></div><div class="metric"><label>实例</label><b id="instanceCount">—</b></div></div></section>
+<section class="card progress-card"><div class="card-heading"><h3>处理进度</h3><span class="sub" id="stageStatus">等待扫描</span></div><p id="progressLabel">扫描时预览，停止后生成完整地图。</p><div class="stages"><div class="stage" data-stage="capture">采集</div><div class="stage" data-stage="dense">轨迹</div><div class="stage" data-stage="graph">优化</div><div class="stage" data-stage="refill">回填</div><div class="stage" data-stage="fusion">融合</div></div><div id="backlog" hidden></div></section>
+<details id="optsRow" class="card"><summary>扫描设置</summary><div class="settings"><div class="setting"><label for="vlm">命名模型</label><select id="vlm"><option value="qwen3vl_2b_nf4">qwen3vl_2b_nf4</option></select></div><div class="setting"><label for="schedule">处理方式</label><select id="schedule"><option value="serial">分开运行</option><option value="parallel">阶段并行</option></select></div><label class="check-setting"><input id="refine" type="checkbox" checked>多视角补全</label><p class="sub">补全可增加处理时间。正在处理的扫描保留原设置。</p><div class="path" id="path"></div></div></details>
+<section id="downloads" class="card" hidden><div class="card-heading"><h3>保存结果</h3></div><div class="downloads"><a class="download" id="dlPly">点云 PLY</a><a class="download" id="dlTraj">相机轨迹</a></div></section></aside></div></main>
+<section id="recordsPage" class="records-page" hidden><div class="records-heading"><div><h2>扫描记录</h2><p id="recordsCount" class="sub">保留每一次采集与建图结果</p></div><button id="refreshRecords" class="button">↻ 刷新</button></div><div id="recordsList" class="card record-list"><div class="empty-records">正在载入记录…</div></div></section>
+<script>
+'use strict';
+const $=id=>document.getElementById(id),token='__TOKEN__';
+const query=new URLSearchParams(location.search),SID=query.get('session'),BASE=SID?('/s/'+encodeURIComponent(SID)):'',READONLY=!!SID,EMBED=query.has('embed');
+let currentSessionId=SID||null,sessionGeneration=0,page='scan',previewStamp='';
+const sessionBase=()=>currentSessionId?'/s/'+encodeURIComponent(currentSessionId):'';
+const sessionId=s=>SID||(s.session?String(s.session).split('/').filter(Boolean).pop():null);
+let LANG=(new URLSearchParams(location.search)).get('lang')==='en'?'en':'zh';
+const T=(z,e)=>LANG==='en'?e:z;
+if(EMBED)document.body.classList.add('embed');
+const canvas=$('view'), gl=canvas.getContext('webgl',{antialias:true});
+let lastState=null, isFullscreen=false, cameraPreview=null;
+let pointN=0, center=[0,0,0], scale=1, yaw=.35,pitch=-.2,pan=[0,0],zoom=1,cloudRevision=null,busy=false;
+let buffer, program, posLoc, colLoc, pointSize=2.0;
+function shader(type,source){const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s}
+if(gl){program=gl.createProgram();gl.attachShader(program,shader(gl.VERTEX_SHADER,`attribute vec3 position; attribute vec3 color; uniform vec3 center; uniform float pointSize; uniform float scale; uniform vec2 angle; uniform vec2 pan; uniform float aspect; varying vec3 rgb; void main(){vec3 p=(position-center)*scale;float a=angle.x,b=angle.y;vec3 q=vec3(cos(a)*p.x+sin(a)*p.z,p.y,-sin(a)*p.x+cos(a)*p.z);p=vec3(q.x,cos(b)*q.y-sin(b)*q.z,sin(b)*q.y+cos(b)*q.z);gl_Position=vec4((p.x+pan.x)/aspect,-p.y+pan.y,p.z*.08,1.);gl_PointSize=pointSize;rgb=color;}`));gl.attachShader(program,shader(gl.FRAGMENT_SHADER,`precision mediump float;varying vec3 rgb;void main(){gl_FragColor=vec4(rgb,1.);}`));gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));gl.useProgram(program);buffer=gl.createBuffer();posLoc=gl.getAttribLocation(program,'position');colLoc=gl.getAttribLocation(program,'color');gl.enable(gl.DEPTH_TEST)}
+function setPointSize(v){pointSize=Math.max(0.5,Math.min(10,v));$('psv').textContent=pointSize.toFixed(1);draw()}
+function draw(){if(!gl||!canvas.clientWidth||!canvas.clientHeight)return;if(fitPending){fit();return}const ratio=window.devicePixelRatio||1;const w=Math.round(canvas.clientWidth*ratio),h=Math.round(canvas.clientHeight*ratio);if(canvas.width!==w)canvas.width=w;if(canvas.height!==h)canvas.height=h;gl.viewport(0,0,canvas.width,canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.useProgram(program);gl.uniform1f(gl.getUniformLocation(program,'pointSize'),pointSize);gl.uniform3fv(gl.getUniformLocation(program,'center'),center);gl.uniform1f(gl.getUniformLocation(program,'scale'),scale*zoom);gl.uniform2f(gl.getUniformLocation(program,'angle'),yaw,pitch);gl.uniform2fv(gl.getUniformLocation(program,'pan'),pan);gl.uniform1f(gl.getUniformLocation(program,'aspect'),canvas.width/canvas.height);gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.enableVertexAttribArray(posLoc);gl.enableVertexAttribArray(colLoc);gl.vertexAttribPointer(posLoc,3,gl.FLOAT,false,24,0);gl.vertexAttribPointer(colLoc,3,gl.FLOAT,false,24,12);gl.drawArrays(gl.POINTS,0,pointN)}
+let bounds=null,fitPending=false;
+function fit(){if(!canvas.clientWidth||!canvas.clientHeight){fitPending=true;return}fitPending=false;if(bounds){center=bounds.min.map((v,i)=>(v+bounds.max[i])/2);const projected=[];for(let mask=0;mask<8;mask++){const p=center.map((c,i)=>((mask>>i)&1?bounds.max[i]:bounds.min[i])-c);const x=Math.cos(yaw)*p[0]+Math.sin(yaw)*p[2],z=-Math.sin(yaw)*p[0]+Math.cos(yaw)*p[2];projected.push([x,Math.cos(pitch)*p[1]-Math.sin(pitch)*z])}const span=i=>Math.max(.1,Math.max(...projected.map(p=>p[i]))-Math.min(...projected.map(p=>p[i])));const aspect=canvas.clientWidth/Math.max(1,canvas.clientHeight);scale=Math.min(1.7*aspect/span(0),1.35/span(1));zoom=1;pan=[0,0]}draw()}
+async function loadCloud(rev){
+ if(!rev||loadCloud.busy||loadCloud.last===rev&&Date.now()-loadCloud.at<6000)return;
+ const request={generation:sessionGeneration,base:sessionBase()||BASE};
+ loadCloud.busy=request;loadCloud.last=rev;loadCloud.at=Date.now();
+ $('pointCount').textContent=pointN?pointCountText():T('点云加载中…','Loading cloud…');
+ try{
+  const response=await fetch(request.base+'/cloud.bin?r='+encodeURIComponent(rev));
+  if(!response.ok)throw Error('cloud '+response.status);
+  const data=new Float32Array(await response.arrayBuffer());
+  if(request.generation!==sessionGeneration||objectData||data.length%6)return;
+  const min=[Infinity,Infinity,Infinity],max=[-Infinity,-Infinity,-Infinity];
+  for(let i=0;i<data.length;i+=6)for(let j=0;j<3;j++){min[j]=Math.min(min[j],data[i+j]);max[j]=Math.max(max[j],data[i+j])}
+  bounds=data.length?{min,max}:null;const first=pointN===0;pointN=data.length/6;
+  if(gl){gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,data,gl.STATIC_DRAW)}
+  $('empty').style.display=pointN?'none':'flex';$('pointCount').textContent=pointCountText();
+  if(first)fit();else draw();cloudRevision=rev;
+ }catch(error){if(request.generation===sessionGeneration){$('notice').textContent=T('点云暂时未能载入，正在重试。','Could not load cloud. Retrying.');$('notice').style.display='block'}}
+ finally{if(loadCloud.busy===request)loadCloud.busy=null}
+}
+// Orbit around the cloud center; express screen motion in viewport units.
+const pts=new Map();let drag=null,pinch=null,gestureFrame=null;
+const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+function queueDraw(){if(gestureFrame!==null)return;gestureFrame=requestAnimationFrame(()=>{gestureFrame=null;draw()})}
+function screenPoint(x,y){const r=canvas.getBoundingClientRect(),h=Math.max(1,r.height);return [(x-r.left-r.width/2)*2/h,(r.top+r.height/2-y)*2/h]}
+function pinchState(){const [a,b]=[...pts.values()];return [Math.max(1,Math.hypot(b.x-a.x,b.y-a.y)),(a.x+b.x)/2,(a.y+b.y)/2]}
+function rebaseGesture(){drag=null;pinch=null;if(pts.size===1)drag=[...pts.values()][0];else if(pts.size===2)pinch=pinchState()}
+function orbitBy(dx,dy){const sensitivity=Math.PI/Math.max(1,Math.min(canvas.clientWidth,canvas.clientHeight));yaw=((yaw-dx*sensitivity+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI;pitch=clamp(pitch+dy*sensitivity,-Math.PI/2+.02,Math.PI/2-.02)}
+function panBy(dx,dy){const units=2/Math.max(1,canvas.clientHeight);pan[0]+=dx*units;pan[1]-=dy*units}
+function zoomAt(factor,from,to=from){const next=clamp(zoom*factor,.1,20),ratio=next/zoom;pan=pan.map((p,i)=>to[i]-(from[i]-p)*ratio);zoom=next}
+canvas.onpointerdown=e=>{if(e.pointerType==='mouse'&&e.button!==0&&e.button!==2)return;e.preventDefault();canvas.setPointerCapture(e.pointerId);pts.set(e.pointerId,{x:e.clientX,y:e.clientY,button:e.button});rebaseGesture()};
+function endPointer(e){if(!pts.delete(e.pointerId))return;rebaseGesture()}
+canvas.onpointerup=endPointer;canvas.onpointercancel=endPointer;canvas.onlostpointercapture=endPointer;
+window.addEventListener('blur',()=>{pts.clear();rebaseGesture()});
+canvas.onpointermove=e=>{const previous=pts.get(e.pointerId);if(!previous)return;pts.set(e.pointerId,{...previous,x:e.clientX,y:e.clientY});
+if(pts.size===2){const next=pinchState();if(pinch)zoomAt(next[0]/pinch[0],screenPoint(pinch[1],pinch[2]),screenPoint(next[1],next[2]));pinch=next;queueDraw();return}
+if(pts.size!==1||!drag)return;const dx=e.clientX-previous.x,dy=e.clientY-previous.y;if(drag.button===2)panBy(dx,dy);else orbitBy(dx,dy);queueDraw()};
+canvas.oncontextmenu=e=>e.preventDefault();canvas.addEventListener('wheel',e=>{e.preventDefault();const delta=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?canvas.clientHeight:1);zoomAt(Math.exp(-delta*.001),screenPoint(e.clientX,e.clientY));queueDraw()},{passive:false});
+$('fullscreen').onclick=toggleFullscreen;$('psm').onclick=()=>setPointSize(pointSize-0.5);$('psi').onclick=()=>setPointSize(pointSize+0.5);window.onresize=()=>{rebaseGesture();draw()};
+
+function pointCountText(){return pointN.toLocaleString(LANG==='en'?'en-US':'zh-CN')+T(' 点',' points')}
+function updateEmpty(s){
+let title=T('正在加载三维空间','Loading 3D space'),hint=T('点云将在这里显示','Your point cloud will appear here');
+if(s.status==='idle'){title=T('开始一次新的扫描','Start a new scan');hint=T('连接采集设备，将眼前空间保存为三维地图','Connect your capture device to build a 3D map')}
+else if(s.status==='failed'||s.status==='cancelled'){title=T('本次扫描未生成地图','No map from this scan');hint=T('可在详情面板查看采集信息','See the details panel for capture information')}
+else if(s.status==='captured'){title=T('采集数据已保存','Capture saved');hint=T('尚未生成可查看的点云','A viewable point cloud has not been generated')}
+else if(s.status==='mapping'){title=T('正在构建三维地图','Building your 3D map');hint=T('处理完成后将在这里显示','The map will appear when processing is complete')}
+else if(s.status==='completed'){title=T('正在载入点云','Loading point cloud');hint=T('首次加载可能需要几秒钟','The first load may take a few seconds')}
+else if(['starting','recording','stopping'].includes(s.status)){title=T('正在采集空间','Capturing your space');hint=T('保持平稳移动，等待预览','Move steadily while the preview is prepared')}
+$('emptyTitle').textContent=title;$('emptyHint').textContent=hint;
+}
+function updateFullscreen(){
+const label=isFullscreen?T('退出全屏','Exit full screen'):T('全屏查看','View full screen');
+$('fullscreen').title=label;$('fullscreen').setAttribute('aria-label',label);$('fullscreen').setAttribute('aria-pressed',String(isFullscreen));
+$('expandIcon').style.display=isFullscreen?'none':'';$('collapseIcon').style.display=isFullscreen?'':'none';
+requestAnimationFrame(draw);
+}
+function applyLanguage(){
+document.documentElement.lang=LANG==='en'?'en':'zh-CN';
+document.querySelectorAll('[data-zh][data-en]').forEach(el=>el.textContent=LANG==='en'?el.dataset.en:el.dataset.zh);
+for(const [id,z,e] of [['psm','减小点','Smaller points'],['psi','增大点','Larger points']]){const el=$(id);el.title=T(z,e);el.setAttribute('aria-label',T(z,e))}
+document.querySelector('.point-controls').setAttribute('aria-label',T('点大小','Point size'));
+document.querySelector('.viewer').setAttribute('aria-label',T('三维查看器','3D viewer'));
+$('pointCount').textContent=pointCountText();updateEmpty(lastState||{});if(lastState)render(lastState);updateFullscreen();
+}
+function toggleFullscreen(){
+const native=window.webkit?.messageHandlers?.scanViewer;
+if(native){native.postMessage({action:'toggleFullscreen'});return}
+const viewer=document.querySelector('.viewer');
+if(document.fullscreenElement){document.exitFullscreen();return}
+if(viewer.requestFullscreen&&!isFullscreen){viewer.requestFullscreen().catch(()=>{document.body.classList.add('page-fullscreen');isFullscreen=true;updateFullscreen()});return}
+isFullscreen=!isFullscreen;document.body.classList.toggle('page-fullscreen',isFullscreen);updateFullscreen();
+}
+document.addEventListener('fullscreenchange',()=>{isFullscreen=!!document.fullscreenElement;updateFullscreen()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('page-fullscreen')){document.body.classList.remove('page-fullscreen');isFullscreen=false;updateFullscreen()}});
+window.scanViewer={configure(settings){const next=settings.language==='en'?'en':'zh';const changed=next!==LANG;LANG=next;isFullscreen=!!settings.fullscreen;if(changed)applyLanguage();else updateFullscreen();configureObjects(settings)}};
+new ResizeObserver(()=>requestAnimationFrame(draw)).observe(canvas);
+// Completed scans use a single immutable buffer. Selection and colour stay local.
+let objectData=null, objectCatalog=null, objectLoad=null, objectFailedAt=0, objectUnsupported=false;
+let queryHighlights=null;
+let nativeSelectionKey='';
+let objectSelection=null, objectIsolated=false, objectMode='semantic_id';
+let objectStateKey='',sceneCamera=null,objectError='';
+let objectGrouping='class',objectClassFilter=null,objectListKey='';
+// Read-only object links use the same rendering path as the native selection.
+const objectQuery=new URLSearchParams(location.search), objectLink=(objectQuery.get('select')||'').match(/^(class|instance):([1-9][0-9]*)$/);
+if(objectLink){objectSelection={kind:objectLink[1],id:Number(objectLink[2]),title:''};objectIsolated=objectQuery.get('isolate')==='1'}
+if(['rgb','semantic_id','instance_id'].includes(objectQuery.get('color')))objectMode=objectQuery.get('color');
+function cameraState(){return {center:[...center],scale,yaw,pitch,pan:[...pan],zoom,bounds}}
+function restoreCamera(c){if(!c)return;({center,scale,yaw,pitch,pan,zoom,bounds}=c)}
+function selectedPoint(data,i){if(queryHighlights!==null)return queryHighlights.has(data[i+7]);return !objectSelection||data[i+(objectSelection.kind==='class'?6:7)]===objectSelection.id}
+function objectLabel(){return objectSelection?.title||T('三维点云','3D point cloud')}
+function updateObjectCaption(){
+ if(!objectData)return;
+ $('cloudKind').textContent=objectSelection?(objectIsolated?T('独立查看 · ','Object · '):T('已选中 · ','Selected · '))+objectLabel():({rgb:T('原色点云','RGB point cloud'),semantic_id:T('语义点云','Semantic point cloud'),instance_id:T('实例点云','Instance point cloud')}[objectMode]);
+ $('pointCount').textContent=pointCountText();
+ if(objectError){$('notice').textContent=objectError;$('notice').style.display='block'}
+}
+function rebuildObjects(){
+ if(!objectData||!gl)return;
+ const key=JSON.stringify([objectSelection?.kind,objectSelection?.id,objectIsolated,objectMode,queryHighlights===null?null:[...queryHighlights]]);
+ if(key===objectStateKey){updateObjectCaption();return}
+ const previous=objectStateKey?JSON.parse(objectStateKey):[null,null,false];
+ const wasIsolated=previous[2];
+ if(objectIsolated&&!wasIsolated)sceneCamera=cameraState();
+ let n=0;
+ for(let i=0;i<objectData.length;i+=8)if(!objectIsolated||selectedPoint(objectData,i))n++;
+ const out=new Float32Array(n*6),min=[Infinity,Infinity,Infinity],max=[-Infinity,-Infinity,-Infinity];
+ let o=0;
+ for(let i=0;i<objectData.length;i+=8){
+  const selected=selectedPoint(objectData,i);if(objectIsolated&&!selected)continue;
+  for(let j=0;j<3;j++){out[o+j]=objectData[i+j];min[j]=Math.min(min[j],out[o+j]);max[j]=Math.max(max[j],out[o+j])}
+  const label=objectData[i+(objectMode==='instance_id'?7:6)];
+  for(let j=0;j<3;j++){
+   let colour=objectMode==='rgb'?objectData[i+3+j]:(label>0?(50+label*[73,151,199][j]%206)/255:90/255);
+   if(queryHighlights!==null)colour=selected?[1,.83,.1][j]:.065+colour*.10;else if(objectSelection&&!selected)colour=.065+colour*.10;
+   out[o+3+j]=colour;
+  }
+  o+=6;
+ }
+ pointN=n;bounds=n?{min,max}:null;
+ gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,out,gl.STATIC_DRAW);
+ $('empty').style.display=n?'none':'flex';
+ if(!n){$('emptyTitle').textContent=T('此物体没有可显示的点','No points for this object');$('emptyHint').textContent=T('返回场景，选择其他类别或实例','Return to the scene and select another object')}
+ if(wasIsolated&&!objectIsolated){restoreCamera(sceneCamera);sceneCamera=null;draw()}
+ else if(!objectStateKey||objectIsolated&&(previous[0]!==objectSelection?.kind||previous[1]!==objectSelection?.id||!wasIsolated)){fit()}
+ else draw();
+ objectStateKey=key;updateObjectCaption();
+}
+async function loadObjects(){
+ if(!currentSessionId)return;
+ if(objectData){rebuildObjects();renderObjects();return}
+ if(objectLoad||Date.now()-objectFailedAt<6000)return objectLoad;
+ const generation=sessionGeneration,base=sessionBase();
+ objectLoad=(async()=>{
+  try{
+   $('pointCount').textContent=T('正在载入可选取点云…','Loading selectable cloud…');
+   const meta=await fetch(base+'/api/objects');
+   if(generation!==sessionGeneration)return;
+   if(meta.status===404||meta.status===422){objectUnsupported=true;renderObjects();await loadCloud(lastState?.cloud?.revision);return}
+   if(!meta.ok)throw Error('catalog '+meta.status);
+   const catalog=await meta.json();
+   if(catalog.stride!==8||catalog.format!=='xyz_rgb_semantic_instance_float32_le')throw Error('format');
+   const response=await fetch(base+'/objects.bin?revision='+encodeURIComponent(catalog.revision));
+   if(!response.ok)throw Error('cloud '+response.status);
+   const data=new Float32Array(await response.arrayBuffer());
+   if(generation!==sessionGeneration)return;
+   if(data.length!==catalog.points*8||!data.length)throw Error('length');
+   objectCatalog=catalog;objectData=data;objectError='';
+   if(objectMode==='rgb'&&!catalog.rgb_available)objectMode='semantic_id';
+   if(objectSelection){const row=selectedObjectRow();if(row)objectSelection.title=objectTitle(row,objectSelection.kind)}
+   rebuildObjects();renderObjects();syncViewControls();
+   $('totalPoints').textContent=catalog.points.toLocaleString();$('instanceCount').textContent=catalog.instances.length.toLocaleString();
+  }catch(error){if(generation===sessionGeneration){objectFailedAt=Date.now();objectError=T('物体点云加载失败，正在重试。','Could not load object cloud. Retrying.');renderObjects();$('notice').textContent=objectError;$('notice').style.display='block'}}
+  finally{if(generation===sessionGeneration)objectLoad=null}
+ })();
+ return objectLoad;
+}
+function configureObjects(settings){
+ if(settings.viewMode&&['rgb','semantic_id','instance_id'].includes(settings.viewMode))objectMode=settings.viewMode;
+ const selection=settings.selection;
+ const nextSelectionKey=JSON.stringify(selection?[selection.kind,selection.id]:null);
+ if(nextSelectionKey!==nativeSelectionKey){queryHighlights=null;nativeSelectionKey=nextSelectionKey;}
+ objectSelection=selection&&['class','instance'].includes(selection.kind)&&Number.isInteger(selection.id)&&selection.id>0?selection:null;
+ objectIsolated=!!settings.isolated&&!!objectSelection;
+ rebuildObjects();renderObjects();syncViewControls();
+}
+
+
+
+const labels=()=>({idle:T('准备扫描','Idle'),starting:T('正在连接设备','Connecting'),recording:T('扫描进行中','Scanning'),stopping:T('正在保存扫描','Saving scan'),mapping:T('正在生成最终地图','Building final map'),completed:T('最终地图已生成','Final map ready'),captured:T('采集数据已保存','Capture saved'),incomplete:T('扫描未完成','Incomplete'),failed:T('本次扫描未完成','Scan failed'),cancelled:T('已取消，数据已保留','Cancelled, data kept'),cancelling:T('正在取消','Cancelling'),active:T('进行中','Active')});
+const modeLabel=mode=>({wireless:'无线 Orbbec',ipad:'iPad LiDAR',replay:'RGB-D 回放',demo:'数据集演示',camera:'相机扫描'}[mode]||'RGB-D');
+function sessionName(id){const m=String(id||'').match(/^scan_(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})/);return m?`${m[1]}年${m[2]}月${m[3]}日 ${m[4]}:${m[5]}:${m[6]}`:id||'扫描'}
+function resetSession(id){
+ currentSessionId=id;sessionGeneration++;previewStamp='';cloudRevision=null;pointN=0;bounds=null;fitPending=false;
+ center=[0,0,0];scale=1;yaw=.35;pitch=-.2;pan=[0,0];zoom=1;
+ objectData=null;objectCatalog=null;objectLoad=null;objectFailedAt=0;objectUnsupported=false;
+ objectSelection=null;queryHighlights=null;objectIsolated=false;objectStateKey='';sceneCamera=null;objectError='';
+ objectMode='semantic_id';objectGrouping='class';objectClassFilter=null;objectListKey='';
+ loadCloud.busy=null;loadCloud.last=null;loadCloud.at=0;
+ $('empty').style.display='flex';$('pointCount').textContent=pointCountText();
+ if(!cameraPreview?.sequence)for(const id of ['color','depth'])$(id).removeAttribute('src');
+ for(const id of ['dlPly','dlTraj','exportObject'])$(id).removeAttribute('href');
+ $('downloads').hidden=true;$('selectedBar').hidden=true;$('objectList').replaceChildren();
+ draw();
+}
+function syncActions(state){
+ const active=['starting','recording','stopping','mapping','cancelling'].includes(state?.status);
+ $('start').disabled=busy||active||READONLY;$('stop').disabled=busy||READONLY||!['starting','recording'].includes(state?.status);$('cancel').disabled=busy||READONLY||!active||state?.status==='cancelling';
+ for(const key of ['vlm','schedule','refine'])$(key).disabled=busy||active||READONLY;
+}
+async function action(name){
+ if(READONLY||busy)return;busy=true;syncActions(lastState);
+ try{
+  const response=await fetch('/api/'+name,{method:'POST',headers:{'X-Scan-Token':token,'Content-Type':'application/json'},body:JSON.stringify(name==='start'?{vlm:$('vlm').value,schedule:$('schedule').value,refine:$('refine').checked}:{})});
+  const state=await response.json();if(!response.ok)throw Error(state.error||'操作未完成');render(state);
+ }catch(error){$('notice').textContent=error.message;$('notice').style.display='block'}finally{busy=false;syncActions(lastState)}
+}
+for(const name of ['start','stop','cancel'])$(name).onclick=()=>action(name);
+function syncViewControls(){
+ document.querySelector('.view-card').hidden=lastState?.status!=='completed'||!(lastState?.cloud?.points||objectCatalog?.points);
+ $('mapView').value=objectMode;$('mapView').disabled=lastState?.status!=='completed';
+ document.querySelectorAll('[data-view]').forEach(button=>{button.setAttribute('aria-pressed',String(button.dataset.view===objectMode));button.disabled=lastState?.status!=='completed'||button.dataset.view==='rgb'&&objectCatalog?.rgb_available===false});
+}
+async function changeView(mode){
+ if(lastState?.status!=='completed'||mode==='rgb'&&objectCatalog?.rgb_available===false)return;
+ objectMode=mode;syncViewControls();
+ if(objectData){rebuildObjects();return}
+ const generation=sessionGeneration,base=sessionBase()||BASE;
+ try{
+  const response=await fetch(base+'/api/view',{method:'POST',headers:{'X-Scan-Token':token,'Content-Type':'application/json'},body:JSON.stringify({mode})});
+  const receipt=await response.json();if(!response.ok)throw Error(receipt.error||'显示模式切换失败');
+  if(generation!==sessionGeneration)return;
+  const status=await fetch(base+'/api/status',{cache:'no-store'});if(!status.ok)throw Error('状态读取失败');
+  const state=await status.json();
+  if(generation===sessionGeneration){render(state);cloudRevision=null;loadCloud.last=null;await loadCloud(state.cloud?.revision)}
+ }catch(error){if(generation===sessionGeneration){$('notice').textContent=error.message;$('notice').style.display='block'}}
+}
+$('mapView').onchange=()=>changeView($('mapView').value);
+document.querySelectorAll('[data-view]').forEach(button=>button.onclick=()=>changeView(button.dataset.view));
+function objectTitle(row,kind){const name=row.vlm_name&&row.vlm_name!=='unknown'?row.vlm_name:row.semantic_name;return (name||'未分类')+(kind==='instance'?' · #'+row.label_id:'')}
+function selectedObjectRow(){return objectSelection?(objectSelection.kind==='class'?objectCatalog?.classes:objectCatalog?.instances)?.find(row=>row.label_id===objectSelection.id):null}
+function objectColour(id){return 'rgb('+[73,151,199].map(multiplier=>id>0?50+id*multiplier%206:115).join(',')+')'}
+function renderSelection(){
+ const row=selectedObjectRow();$('selectedBar').hidden=!row||EMBED;
+ if(!row)return;
+ $('selectedTitle').textContent=objectTitle(row,objectSelection.kind);
+ const dimensions=Array.isArray(row.size_m)?row.size_m.map(value=>Number(value).toFixed(2)).join(' × ')+' m':'';
+ $('selectedDimensions').textContent=[row.semantic_name?'语义：'+row.semantic_name:'',dimensions].filter(Boolean).join(' · ');
+ $('isolateObject').textContent=objectIsolated?'回到场景':'单独查看';
+ $('exportObject').href=sessionBase()+'/object.ply?kind='+objectSelection.kind+'&id='+objectSelection.id;
+ $('exportObject').download=currentSessionId+'_'+objectSelection.kind+'_'+objectSelection.id+'.ply';
+}
+function renderObjects(){
+ $('objectsCard').hidden=lastState?.status!=='completed';
+ $('retryObjects').hidden=!objectError&&!objectUnsupported;
+ document.querySelectorAll('[data-group]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.group===objectGrouping)));
+ const category=objectClassFilter===null?null:objectCatalog?.classes.find(row=>row.semantic_id===objectClassFilter);
+ $('objectFilter').hidden=!category;$('objectFilterLabel').textContent=category?objectTitle(category,'class'):'';
+ $('objectsHint').textContent=objectError||(objectUnsupported?'此记录没有可选取的物体数据。':!objectCatalog?'正在加载物体…':'点选高亮，再单独查看三维点云。');
+ const key=JSON.stringify([objectCatalog?.revision,objectGrouping,objectClassFilter,objectSelection?.kind,objectSelection?.id,objectUnsupported]);
+ if(key!==objectListKey){
+  objectListKey=key;
+  const rows=objectGrouping==='class'?(objectCatalog?.classes||[]):(objectCatalog?.instances||[]).filter(row=>objectClassFilter===null||row.semantic_id===objectClassFilter);
+  const elements=rows.map(row=>{
+   const button=document.createElement('button');button.className='object-row';button.type='button';
+   const selected=objectSelection?.kind===objectGrouping&&objectSelection.id===row.label_id;
+   button.setAttribute('aria-pressed',String(selected));button.dataset.object=objectGrouping+':'+row.label_id;
+   const swatch=document.createElement('span');swatch.className='object-swatch';swatch.style.background=objectColour(objectGrouping==='class'?row.semantic_id:row.label_id);
+   const copy=document.createElement('span');copy.className='object-copy';
+   const name=document.createElement('span');name.className='object-name';name.textContent=objectTitle(row,objectGrouping);name.style.display='block';
+   const meta=document.createElement('span');meta.className='object-meta';meta.style.display='block';meta.textContent=(row.semantic_name?'语义：'+row.semantic_name+' · ':'')+Number(row.point_count||0).toLocaleString()+' 点';
+   copy.append(name,meta);const mark=document.createElement('span');mark.className='object-mark';mark.textContent=selected?'✓':'⌖';
+   button.append(swatch,copy,mark);
+   const kind=objectGrouping;button.onclick=()=>{queryHighlights=null;objectSelection={kind,id:row.label_id,title:objectTitle(row,kind)};rebuildObjects();renderObjects()};
+   return button;
+  });
+  if(objectCatalog&&!rows.length){const empty=document.createElement('p');empty.className='sub';empty.textContent='没有已标注的物体';elements.push(empty)}
+  $('objectList').replaceChildren(...elements);
+ }
+ renderSelection();
+}
+document.querySelectorAll('[data-group]').forEach(button=>button.onclick=()=>{
+ objectGrouping=button.dataset.group;objectClassFilter=objectGrouping==='instance'&&objectSelection?.kind==='class'?selectedObjectRow()?.semantic_id??null:null;renderObjects();
+});
+$('clearFilter').onclick=()=>{objectClassFilter=null;renderObjects()};
+$('isolateObject').onclick=()=>{if(!objectSelection)return;objectIsolated=!objectIsolated;rebuildObjects();renderSelection()};
+$('clearObject').onclick=()=>{queryHighlights=null;objectSelection=null;objectIsolated=false;rebuildObjects();renderObjects()};
+$('retryObjects').onclick=()=>{objectUnsupported=false;objectFailedAt=0;objectError='';loadObjects()};
+function scanPageState(state){
+ if(READONLY||EMBED||!['completed','captured','cancelled','failed'].includes(state.status))return state;
+ return {status:'idle',mode:state.mode,resultInRecords:true,recordOutcome:state.status,error:state.error};
+}
+function render(state){
+ state=scanPageState(state);
+ $('resultRecordLink').hidden=!state.resultInRecords;
+ $('resultRecordLink').textContent=state.recordOutcome==='completed'?'扫描已完成，前往记录查看结果 ›':'扫描已结束，前往记录查看详情 ›';
+ const id=sessionId(state);if(id!==currentSessionId)resetSession(id);
+ lastState=state;updateEmpty(state);
+ const active=['starting','recording','stopping','mapping','cancelling'].includes(state.status),completed=state.status==='completed';
+ if(state.options&&(active||READONLY)){for(const key of ['vlm','schedule'])if(state.options[key])$(key).value=state.options[key];if(typeof state.options.refine==='boolean')$('refine').checked=state.options.refine}
+ $('scanActions').hidden=READONLY;$('backToRecords').hidden=!READONLY;
+ syncActions(state);
+ $('status').textContent=READONLY?sessionName(currentSessionId):labels()[state.status]||state.status;
+ $('mode').textContent=modeLabel(state.mode);document.title=READONLY?'Scan · '+sessionName(currentSessionId):'Scan · '+modeLabel(state.mode);
+ $('hint').textContent=state.status==='mapping'?'原始数据已保存，正在生成最终地图。':completed?'选择物体查看细节，或保存完整点云与相机轨迹。':state.status==='starting'?'正在连接'+(state.mode==='wireless'?'无线采集主机':'采集设备')+'，等待 RGB-D 数据。':state.status==='idle'?'点击开始扫描连接'+(state.mode==='wireless'?'无线 Orbbec':'采集设备')+'；停止后生成最终地图。':READONLY?(labels()[state.status]||state.status):'缓慢移动相机，从不同角度覆盖场景。';
+ const capture=state.capture||{},preview=state.preview||{},mapping=state.mapping||{};
+ $('frames').textContent=Number(capture.frames||0).toLocaleString();$('fps').textContent=Number.isFinite(capture.fps)?capture.fps.toFixed(1):'—';
+ const seconds=Math.floor(capture.elapsed_s||0);$('elapsed').textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0');
+ const total=objectCatalog?.points??state.cloud?.points;$('totalPoints').textContent=Number.isFinite(total)?total.toLocaleString():'—';
+ $('validDepth').textContent=Number.isFinite(capture.valid_depth_fraction)?Math.round(capture.valid_depth_fraction*100)+'%':'—';
+ $('instanceCount').textContent=objectCatalog?objectCatalog.instances.length.toLocaleString():'—';
+ $('backlog').hidden=!['starting','recording'].includes(state.status);$('backlog').textContent=preview.status==='initializing'?'缓慢移动，等待预览初始化':preview.backlog?'预览待处理 '+preview.backlog+' 帧':'已预览 '+(preview.processed_frames||0)+' 帧';
+ const notice=objectError||state.error||(preview.status==='failed'&&!completed?'实时预览未完成；原始采集数据保留，停止后将尝试完整建图。 '+(preview.error||''):'')||(!gl?T('此设备暂时无法显示三维视图','3D rendering is unavailable on this device'):'');
+ $('notice').textContent=notice;$('notice').style.display=notice?'block':'none';
+ const stages=['capture','dense','graph','refill','fusion'];let current=state.status==='mapping'?stages.indexOf(mapping.current_stage):0;if(completed)current=5;
+ document.querySelectorAll('.stage').forEach((element,index)=>element.className='stage'+(index<current?' done':index===current&&active?' active':''));
+ $('stageStatus').textContent=completed?'已完成':labels()[state.status]||state.status;
+ $('progressLabel').textContent=state.status==='mapping'?({'dense':'估计完整轨迹','graph':'优化关键帧约束','refill':'回填每一帧位姿','fusion':'融合全部帧'}[mapping.current_stage]||state.semantic_stage||'准备建图'):completed?'已生成最终地图，可旋转检查场景与物体。':'扫描时预览，停止后生成完整地图。';
+ $('cloudKind').textContent=completed?({semantic_id:T('语义点云','Semantic point cloud'),instance_id:T('实例点云','Instance point cloud'),rgb:T('原色点云','RGB point cloud')}[objectMode]):T('三维预览','3D preview');
+ $('downloads').hidden=!completed||!currentSessionId||EMBED;
+ if(completed&&currentSessionId){$('dlPly').href=sessionBase()+'/final.ply';$('dlPly').download=currentSessionId+'_final.ply';$('dlTraj').href=sessionBase()+'/trajectory.json';$('dlTraj').download=currentSessionId+'_trajectory.json'}
+ $('path').textContent=state.session||'';syncViewControls();renderObjects();updateObjectCaption();
+ const stamp=currentSessionId+':'+capture.frames;
+ if(READONLY&&capture.frames&&!EMBED&&stamp!==previewStamp){previewStamp=stamp;setCameraImages(sessionBase()||BASE,capture.frames)}
+ syncCameraPreview();
+}
+function canStandby(){return !READONLY&&!EMBED&&lastState?.mode==='wireless'&&!['starting','recording','stopping','cancelling'].includes(lastState?.status)}
+let cameraImagesLoading=false,cameraDisplayTimes=[];
+async function setCameraImages(base,revision){
+ if(cameraImagesLoading)return;
+ cameraImagesLoading=true;
+ const generation=sessionGeneration,abort=new AbortController(),urls=[];
+ const timeout=setTimeout(()=>abort.abort(),1500);
+ try{
+  const results=await Promise.allSettled(['color','depth'].map(async key=>{
+   const response=await fetch(base+'/'+key+'.jpg?r='+encodeURIComponent(revision),{signal:abort.signal,cache:'no-store'});
+   if(!response.ok)throw Error('camera '+response.status);
+   const url=URL.createObjectURL(await response.blob());urls.push(url);
+   const picture=new Image();picture.src=url;await picture.decode();
+   return {key,url};
+  }));
+  if(generation!==sessionGeneration||results.some(result=>result.status==='rejected'))return;
+  if(!READONLY&&(base==='/camera-preview')!==canStandby())return;
+  for(const {value:{key,url}} of results){const previous=$(key).src;$(key).src=url;if(previous.startsWith('blob:'))URL.revokeObjectURL(previous)}
+  urls.length=0;
+  const now=performance.now();cameraDisplayTimes=cameraDisplayTimes.filter(t=>now-t<2000);cameraDisplayTimes.push(now);
+ }finally{clearTimeout(timeout);abort.abort();urls.forEach(url=>URL.revokeObjectURL(url));cameraImagesLoading=false}
+}
+function syncCameraPreview(){
+ const standby=canStandby(),live=standby&&cameraPreview?.status==='live'&&Date.now()/1000-cameraPreview.updated_at<3;
+ const recording=!READONLY&&['starting','recording','stopping'].includes(lastState?.status);
+ document.body.classList.toggle('has-live-preview',live);
+ if(standby&&lastState.status==='idle')$('hint').textContent='实时预览不保存数据；点击开始后录制，停止后生成地图。';
+ const displayFps=cameraDisplayTimes.length>1?((cameraDisplayTimes.length-1)*1000/(cameraDisplayTimes.at(-1)-cameraDisplayTimes[0])).toFixed(1):'';
+ $('cameraLiveStatus').textContent=live?'实时预览 · 未录制'+(displayFps?' · '+displayFps+' fps':''):recording?(lastState.status==='starting'?'正在切换到录制':'正在录制'):standby?(cameraPreview?.status==='failed'?'相机暂未连接':'正在连接相机'):'录制画面';
+ document.querySelector('.viewer-bottom').hidden=!pointN;
+ if(standby&&lastState.status==='idle'){$('empty').style.display='flex';$('emptyTitle').textContent='准备构建三维地图';$('emptyHint').textContent='可先查看相机画面，点击开始扫描后在这里生成点云。'}
+}
+async function pollCamera(){
+ const started=performance.now();
+ try{
+  if(!READONLY&&!EMBED&&page==='scan'&&!document.hidden){
+   if(canStandby()){
+    const generation=sessionGeneration;
+    const response=await fetch('/api/camera-preview',{method:'POST',headers:{'X-Scan-Token':token}});
+    if(!response.ok)throw Error('preview '+response.status);
+    const preview=await response.json();
+    if(generation===sessionGeneration&&canStandby()){
+     const changed=preview.sequence!==cameraPreview?.sequence;cameraPreview=preview;
+     if(preview.status==='live'&&changed)await setCameraImages('/camera-preview',preview.sequence);
+    }
+   }else if(lastState?.capture?.frames&&['recording','stopping'].includes(lastState.status))await setCameraImages(sessionBase(),Date.now());
+   syncCameraPreview();
+  }
+ }catch(error){cameraPreview={status:'failed',error:'实时预览连接中断，正在重试。'};syncCameraPreview()}
+ setTimeout(pollCamera,Math.max(20,(page==='scan'&&!document.hidden?100:1000)-(performance.now()-started)));
+}
+let recordsLoading=false,recordsLoadedAt=0;
+function setPage(next){
+ page=next==='records'?'records':'scan';$('scanPage').hidden=page!=='scan';$('recordsPage').hidden=page!=='records';
+ $('navScan').setAttribute('aria-selected',String(page==='scan'&&!READONLY));$('navRecords').setAttribute('aria-selected',String(page==='records'||READONLY));
+ if(page==='records')loadSessions();else requestAnimationFrame(draw);
+}
+$('navScan').onclick=()=>{if(READONLY)location.assign('/');else setPage('scan')};
+$('navRecords').onclick=()=>setPage('records');$('resultRecordLink').onclick=event=>{event.preventDefault();setPage('records')};$('refreshRecords').onclick=()=>loadSessions();
+async function loadSessions(){
+ if(recordsLoading)return;recordsLoading=true;recordsLoadedAt=Date.now();$('refreshRecords').disabled=true;
+ try{
+  const response=await fetch('/api/sessions',{cache:'no-store'});if(!response.ok)throw Error('HTTP '+response.status);
+  const result=await response.json();if(!Array.isArray(result.sessions))throw Error('Invalid sessions');
+  $('recordsCount').textContent=result.sessions.length+' 次扫描';
+  const rows=result.sessions.map(record=>{
+   const link=document.createElement('a');link.className='record-row';link.href='/?session='+encodeURIComponent(record.id);
+   const bar=document.createElement('span');bar.className='record-bar';bar.style.background=record.status==='completed'?'var(--green)':record.status==='active'?'#0a84ff':record.status==='failed'?'var(--red)':record.status==='captured'||record.status==='incomplete'?'#ff9f0a':'#8e8e93';
+   const copy=document.createElement('span');copy.className='record-copy';const title=document.createElement('span');title.className='record-title';
+   const name=document.createElement('span');name.textContent=record.display_name||sessionName(record.id);const tag=document.createElement('span');tag.className='record-tag';tag.textContent=modeLabel(record.mode);title.append(name,tag);
+   const meta=document.createElement('span');meta.className='record-meta';meta.style.display='block';meta.textContent=(labels()[record.status]||record.status)+' · '+Number(record.frames||0).toLocaleString()+' 帧 · '+Number(record.points||0).toLocaleString()+' 点';
+   copy.append(title,meta);const chevron=document.createElement('span');chevron.className='record-chevron';chevron.textContent='›';link.append(bar,copy,chevron);return link;
+  });
+  if(!rows.length){const empty=document.createElement('div');empty.className='empty-records';const title=document.createElement('strong');title.textContent='暂无扫描记录';const hint=document.createElement('span');hint.textContent='完成第一次扫描后，会在这里保留结果。';empty.append(title,hint);rows.push(empty)}
+  $('recordsList').replaceChildren(...rows);recordsLoadedAt=Date.now();
+ }catch(error){$('recordsCount').textContent='无法载入记录，请检查连接后刷新。';if(!$('recordsList').querySelector('.record-row')){const empty=document.createElement('div');empty.className='empty-records';empty.textContent='暂时无法连接工作站';$('recordsList').replaceChildren(empty)}}
+ finally{recordsLoading=false;$('refreshRecords').disabled=false}
+}
+async function poll(){
+ const generation=sessionGeneration;
+ try{
+  const response=await fetch(BASE+'/api/status',{cache:'no-store'});if(!response.ok)throw Error('status '+response.status);const state=scanPageState(await response.json());
+  if(!busy&&generation===sessionGeneration){render(state);if(state.status==='completed'&&!objectUnsupported)loadObjects();else if(state.cloud?.revision&&state.cloud.revision!==cloudRevision)loadCloud(state.cloud.revision)}
+ }catch(error){$('notice').textContent=T('连接已中断，正在重新连接…','Connection lost. Reconnecting…');$('notice').style.display='block'}
+ if(page==='records'&&Date.now()-recordsLoadedAt>3000)loadSessions();
+ setTimeout(poll,1000);
+}
+fetch('/api/models').then(response=>response.json()).then(result=>{const current=$('vlm').value;$('vlm').replaceChildren(...result.models.map(model=>{const option=document.createElement('option');option.value=option.textContent=model;return option}));if(result.models.includes(current))$('vlm').value=current;}).catch(()=>{});
+if(READONLY){$('scanActions').hidden=true;$('backToRecords').hidden=false}
+applyLanguage();setPage(!EMBED&&query.get('page')==='records'?'records':'scan');draw();poll();if(!READONLY&&!EMBED)pollCamera();
+</script><script>
+window.scanQueryHighlight=function(ids){queryHighlights=ids===null?null:new Set(ids);objectSelection=null;objectIsolated=false;rebuildObjects();};
+</script><script src="/scene_query_ui.js"></script></body></html>

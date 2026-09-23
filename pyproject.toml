@@ -27,7 +27,7 @@ visualization = ["matplotlib>=3.8"]
 
 [project.scripts]
 revemap = "revemap.cli:main"
-revemap-gui = "pose_pipeline.live_gui:main"
+revemap-gui = "pose_pipeline.device_gui:main"
 
 [project.urls]
 Repository = "https://github.com/Aidenwu0209/ReVeMap"
@@ -39,7 +39,7 @@ include = ["revemap*", "pose_pipeline*", "reconstruction*"]
 
 [tool.setuptools.package-data]
 revemap = ["resources/*.json"]
-pose_pipeline = ["live_gui.html"]
+pose_pipeline = ["live_gui.html", "device_gui.html", "scene_query_ui.js"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

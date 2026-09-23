@@ -84,17 +84,42 @@ revemap evaluate-semantic \
 revemap build-scene-graph --result outputs/run-stride --output outputs/scene_graph.json
 revemap query-scene --graph outputs/scene_graph.json --label chair
 revemap query-scene --graph outputs/scene_graph.json --label chair --nearest-to 1
+revemap query-scene --graph outputs/scene_graph.json --question '有几把椅子'
+revemap query-scene --graph outputs/scene_graph.json --question '桌子附近有哪些椅子'
 ```
 
 节点包含实例 ID、类别、中心、包围盒及可用的命名支持帧。未知对象和没有匹配项的查询会明确返回 `unknown`。最近对象按中心距离排序，等距时保留并列结果。名称证据是模型观察，不是人工确认标签。
 
-默认只建立 `near` 关系。只有已经知道地图坐标系的重力方向时，才可传入 `--world-up X Y Z` 生成 `above` 和 `supported_by`。例如仅在确认世界 Z 轴向上时使用 `--world-up 0 0 1`。关系来自包围盒、水平投影重叠和高度间隙，是几何假设，不能据此声称验证了真实接触。
+默认建立 `near` 和有向的包围盒 `contains` 关系，查询支持反向的 `inside`。只有已经知道地图坐标系的重力方向时，才可传入 `--world-up X Y Z` 生成 `above` 和 `supported_by`，并查询反向的 `below`。例如仅在确认世界 Z 轴向上时使用 `--world-up 0 0 1`。关系来自包围盒、水平投影重叠和高度间隙，是几何假设；包围盒包含不代表物体真实装载，支撑候选不代表已验证接触。
+
+自然语言入口采用确定的有限语法：查找、当前地图实例计数、附近、上下方、包围盒包含、最近对象以及“且”组合。中英文类别可以匹配已记录的类别或名称。例如 `找出桌子附近且位于显示器下方的物体`。多个参考对象返回 `ambiguous` 和候选实例，选择实例后执行原查询；不自动猜选。未找到参考对象或未确定向上方向时返回 `unknown`，不当作零个。颜色、否定、或条件等未支持语法返回 `unsupported`。计数只表示当前地图中检测到的实例数量。
+
+也可用 `--query-json plan.json` 提交结构化查询。条件均按“候选对象 relation 参考对象”解释，多个条件取交集，最多八个；`nearest` 在其他筛选完成后排序并保留并列结果。
+
+```json
+{"schema":"revemap.scene_query.v1","operation":"find","label":"chair","conditions":[{"relation":"near","reference":{"instance_id":1}},{"relation":"below","reference":{"instance_id":2}}]}
+```
 
 ## 采集界面与恢复
 
-用 `revemap gui --help` 查看相机、解释器和输出目录参数。界面提供原始颜色、语义与实例查看，历史会话打开，以及使用已封存原始帧重新处理。每次处理写入 `session/attempts/<attempt>/pipeline/`，保留之前的失败记录。
+`revemap gui`、`revemap-gui` 现在使用同一设备后端，支持 USB、iPad TCP/可恢复上传、无线 Orbbec 和 RGB-D 回放。iOS 源码在 `ios/`，通过同一后端的内嵌网页查看和查询地图。原 `pose_pipeline.live_gui` 核心处理接口保留兼容；传入设备参数时转到统一入口。用 `revemap gui --help` 查看全部参数。
 
-完成后可在“对象查询”中按类别/名称、最近对象或空间关系查找并高亮实例。对象卡显示命名支持帧，可打开仍然存在且哈希匹配的原始观察裁图。查询、裁图及高亮绑定当前地图，切换扫描后旧页签的对象操作会被拒绝。小对象的代表点会保留在预览预算内。
+```bash
+revemap gui --runtime configs/semantic_runtime.local.json \
+  --provider-root /absolute/path/to/DROID-W \
+  --gpu-python /absolute/path/to/gpu-env/bin/python \
+  --cpu-python /absolute/path/to/geometry-env/bin/python \
+  --capture-python /absolute/path/to/capture-env/bin/python \
+  --output /absolute/path/to/scans \
+  --library-root /absolute/path/to/previous-scans \
+  --replay /absolute/path/to/manifest.json --no-browser
+```
+
+实际设备改用 `--ipad-port 7001` 或 `--wireless-host <采集主机IP> --wireless-port 1024`，每个服务只选择一种输入。默认只监听本机；iPad 访问工作站时按已有可信网络配置指定 `--host`。`--library-root` 可重复添加两个设备原来的扫描目录，页面从 `/api/sessions` 统一列出，`/?session=<扫描ID>` 重开记录。原始采集和失败记录保留，每次重新处理写入新的 `session/attempts/<attempt>/pipeline/`。
+
+完成后在“场景查询”中输入问题，命中实例会在同一地图中高亮，支持逐个选择歧义参考物体、查看命名观察裁图、导出物体 PLY 和场景图 JSON。iPad 内嵌视图右上角有“查询”按钮。裁图缺失或内容变化时明确提示不可用。查询与证据绑定扫描和当前处理结果，重跑后拒绝旧 context；历史记录的查询不切换正在采集的会话。计数、类别冲突和未知关系都保留在结果中。小对象的代表点会保留在预览预算内。
+
+HTTP 调用先读 `/s/<扫描ID>/api/status` 的 `scene_context`，再向同一路径的 `/api/query` 提交 `{"question":"有几把椅子","context":"..."}`，或用 `query` 提交上述结构化对象。POST 沿用页面提供的 `X-Scan-Token`；未知向上方向保持 `world_up: null`。`/scene_graph.json` 导出带地图哈希的图，`/api/evidence` 按实例、观察索引和 context 读取验证后的裁图。新结果遵循 `ARTIFACTS.json`；旧记录可读取，但图中保留未绑定来源标记。
 
 GUI 自动记录已完成阶段的检查点，“重新处理”创建新 attempt，并尝试复用上一次通过完整校验的建图和 SAM3 阶段；旧版结果没有检查点时会全量重跑。停止/失败时已保存的完整帧会尽可能封存。缺少彩色帧、深度帧或同步超限都会受到有效帧超时约束。
 

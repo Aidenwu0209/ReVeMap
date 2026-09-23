@@ -19,6 +19,9 @@ ALIASES = {
     "椅子": "chair", "桌子": "table", "沙发": "sofa", "床": "bed",
     "柜子": "cabinet", "灯": "lamp", "门": "door", "窗户": "window",
     "书": "book", "显示器": "monitor", "瓶子": "bottle", "杯子": "cup",
+    "箱子": "box", "盒子": "box", "纸箱": "box", "窗帘": "curtain",
+    "墙": "wall", "墙壁": "wall", "地板": "floor", "地面": "floor",
+    "三脚架": "tripod", "相机": "camera", "容器": "container",
     "冰箱": "refrigerator", "fridge": "refrigerator", "refridgerator": "refrigerator",
 }
 
@@ -143,6 +146,13 @@ def build_graph(xyz, semantic, instance, classes, *, confidence=None, names=None
         if distance <= near_m:
             edges.append({"source": a["instance_id"], "target": b["instance_id"],
                           "relation": "near", "symmetric": True, "aabb_gap_m": distance})
+        for outer, inner in ((a, b), (b, a)):
+            ol, oh = np.asarray(outer["aabb_min_m"]), np.asarray(outer["aabb_max_m"])
+            il, ih = np.asarray(inner["aabb_min_m"]), np.asarray(inner["aabb_max_m"])
+            if np.all(ol <= il) and np.all(oh >= ih) and (np.any(ol < il) or np.any(oh > ih)):
+                edges.append({"source": outer["instance_id"], "target": inner["instance_id"],
+                              "relation": "contains", "symmetric": False,
+                              "basis": "strict AABB containment, not physical enclosure"})
     if basis is not None:
         for i, j in _candidate_pairs([projected[n["instance_id"]][0][:2] for n in nodes],
                                      [projected[n["instance_id"]][1][:2] for n in nodes],
@@ -228,9 +238,9 @@ def _validate_graph(graph):
         source, target, relation = edge.get("source"), edge.get("target"), edge.get("relation")
         if type(source) is not int or type(target) is not int or source not in nodes or target not in nodes or source == target:
             raise ValueError("graph edge requires two distinct existing instances")
-        if relation not in ("near", "above", "supported_by") or edge.get("symmetric") is not (relation == "near"):
+        if relation not in ("near", "above", "supported_by", "contains") or edge.get("symmetric") is not (relation == "near"):
             raise ValueError("invalid graph relation or symmetry")
-        if relation != "near":
+        if relation in ("above", "supported_by"):
             if graph.get("world_up") is None:
                 raise ValueError("vertical graph relations require world_up")
             successors[source].add(target)
@@ -263,7 +273,7 @@ def query_graph(graph, *, label=None, nearest_to=None, relation=None, reference_
         raise ValueError("nearest and relation queries are mutually exclusive")
     if reference_id is not None and relation is None:
         raise ValueError("reference_id is only valid with a relation query")
-    if relation not in (None, "near", "above", "supported_by"):
+    if relation not in (None, "near", "above", "below", "supported_by", "contains", "inside"):
         raise ValueError("unsupported relation")
     selected = [n for n in nodes.values() if label is None or _label(label) in
                 {_label(n["label"]), _label(n["name"]) if n["name"] else None}]
@@ -273,18 +283,21 @@ def query_graph(graph, *, label=None, nearest_to=None, relation=None, reference_
         raise ValueError("reference instance does not exist")
     if relation is not None and reference is None:
         raise ValueError("relation queries require reference_id")
-    if relation in ("above", "supported_by") and graph["world_up"] is None:
+    if relation in ("above", "below", "supported_by") and graph["world_up"] is None:
         selected, reason = [], "world_up_required"
     elif relation:
         matched = set()
+        stored_relation = {"below": "above", "inside": "contains"}.get(relation, relation)
+        reverse = relation in ("below", "inside")
         for edge in graph["edges"]:
-            if edge["relation"] != relation:
+            if edge["relation"] != stored_relation:
                 continue
-            if edge["target"] == reference:
-                matched.add(edge["source"])
+            source, target = (edge["target"], edge["source"]) if reverse else (edge["source"], edge["target"])
+            if target == reference:
+                matched.add(source)
                 evidence.append(edge)
-            elif edge.get("symmetric") and edge["source"] == reference:
-                matched.add(edge["target"])
+            elif edge.get("symmetric") and source == reference:
+                matched.add(target)
                 evidence.append(edge)
         selected = [n for n in selected if n["instance_id"] in matched]
         ids = {n["instance_id"] for n in selected}
@@ -332,8 +345,20 @@ def add_commands(commands):
     query.add_argument("--label")
     group = query.add_mutually_exclusive_group()
     group.add_argument("--nearest-to", type=int)
-    group.add_argument("--relation", choices=("near", "above", "supported_by"))
+    group.add_argument("--relation", choices=("near", "above", "below", "supported_by", "contains", "inside"))
+    group.add_argument("--question")
+    group.add_argument("--query-json", type=Path)
     query.add_argument("--reference-id", type=int)
-    query.set_defaults(handler=lambda a: print(json.dumps(query_graph(
-        json.loads(a.graph.read_text()), label=a.label, nearest_to=a.nearest_to,
-        relation=a.relation, reference_id=a.reference_id), ensure_ascii=False, indent=2)))
+    def run_query(a):
+        graph = json.loads(a.graph.read_text())
+        if a.question is not None or a.query_json is not None:
+            if a.label is not None or a.reference_id is not None:
+                raise ValueError("Do not combine a question/query plan with legacy filters")
+            from .scene_query import execute_query
+            result = execute_query(graph, question=a.question,
+                                   plan=json.loads(a.query_json.read_text()) if a.query_json else None)
+        else:
+            result = query_graph(graph, label=a.label, nearest_to=a.nearest_to,
+                                 relation=a.relation, reference_id=a.reference_id)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+    query.set_defaults(handler=run_query)

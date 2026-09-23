@@ -49,4 +49,5 @@ jobs:
           "$CLI" evaluate-semantic --help
           "$CLI" demo --output "$RUNNER_TEMP/revemap-demo"
           "$CLI" query-scene --graph "$RUNNER_TEMP/revemap-demo/scene_graph.json" --label chair
-          "$RUNNER_TEMP/revemap-wheel-env/bin/python" -c 'from importlib.resources import files; assert files("pose_pipeline").joinpath("live_gui.html").is_file()'
+          "$CLI" query-scene --graph "$RUNNER_TEMP/revemap-demo/scene_graph.json" --question '有几把椅子'
+          "$RUNNER_TEMP/revemap-wheel-env/bin/python" -c 'from importlib.resources import files; from pose_pipeline import device_gui, device_capture, ipad_protocol; assert all(files("pose_pipeline").joinpath(p).is_file() for p in ("live_gui.html", "device_gui.html", "scene_query_ui.js"))'

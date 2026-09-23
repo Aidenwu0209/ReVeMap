@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0FA3F48CA6F9BFB46803E89C /* SessionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E7DC35814D42FAB4F562AA /* SessionsView.swift */; };
+		18650FF7CE0898EAC88A74B7 /* AirGrabGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9380DE419D2FCDB89CD41A4 /* AirGrabGesture.swift */; };
 		5E5359DD7E9EF901C3C0E27A /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AA1DF98C84F2AC4D3DB26 /* L10n.swift */; };
 		628E5CAC068E069A3818B2AD /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF54F8FD30604F119B4D60B9 /* CaptureView.swift */; };
 		7D356EAB9F7A0A779430FF4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A93A262D96ECF865FD53F2B /* Assets.xcassets */; };
 		BF026E3F4EB3A628019C4607 /* ScanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AA463BBE145A5B670C9E84 /* ScanApp.swift */; };
 		CECBD71EFF02351FBB0A0F07 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 053A20BAE6DBEE590EB4EF70 /* Contents.json */; };
 		DEBA0CA8ACB27493AE3A20CC /* CaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C85924D5C91B3E73CEE7BA /* CaptureController.swift */; };
+		E13DB88425AB63EC9229EDBA /* AirGrabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7154DBCC263C2A71F113E00 /* AirGrabController.swift */; };
 		F8550E2FFB6B532E4CDB5035 /* LocalRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD443A1B72E6BF29A4C2C16B /* LocalRecorder.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,14 +28,18 @@
 		CD443A1B72E6BF29A4C2C16B /* LocalRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRecorder.swift; sourceTree = "<group>"; };
 		CF54F8FD30604F119B4D60B9 /* CaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
 		D3C85924D5C91B3E73CEE7BA /* CaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureController.swift; sourceTree = "<group>"; };
+		D7154DBCC263C2A71F113E00 /* AirGrabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirGrabController.swift; sourceTree = "<group>"; };
 		E988080B206ADADA8FA6430E /* Scan.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Scan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2E7DC35814D42FAB4F562AA /* SessionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsView.swift; sourceTree = "<group>"; };
+		F9380DE419D2FCDB89CD41A4 /* AirGrabGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirGrabGesture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		900E3A00C3A31B0D2E299D20 /* Scan */ = {
 			isa = PBXGroup;
 			children = (
+				D7154DBCC263C2A71F113E00 /* AirGrabController.swift */,
+				F9380DE419D2FCDB89CD41A4 /* AirGrabGesture.swift */,
 				9A93A262D96ECF865FD53F2B /* Assets.xcassets */,
 				D3C85924D5C91B3E73CEE7BA /* CaptureController.swift */,
 				CF54F8FD30604F119B4D60B9 /* CaptureView.swift */,
@@ -135,6 +141,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E13DB88425AB63EC9229EDBA /* AirGrabController.swift in Sources */,
+				18650FF7CE0898EAC88A74B7 /* AirGrabGesture.swift in Sources */,
 				DEBA0CA8ACB27493AE3A20CC /* CaptureController.swift in Sources */,
 				628E5CAC068E069A3818B2AD /* CaptureView.swift in Sources */,
 				5E5359DD7E9EF901C3C0E27A /* L10n.swift in Sources */,
