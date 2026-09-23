@@ -1,0 +1,27 @@
+name: Scan
+options:
+  bundleIdPrefix: com.aidenwu
+  deploymentTarget:
+    iOS: "26.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    TARGETED_DEVICE_FAMILY: "1,2"
+    DEVELOPMENT_TEAM: 4Q678L583P
+    CODE_SIGN_IDENTITY: "Apple Development"
+targets:
+  Scan:
+    type: application
+    platform: iOS
+    sources:
+      - Scan
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.aidenwu.Scan
+        TARGETED_DEVICE_FAMILY: "1,2"
+        CODE_SIGN_STYLE: Automatic
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_FILE: Scan/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    scheme:
+      testTargets: []
