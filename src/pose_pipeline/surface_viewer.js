@@ -8,6 +8,7 @@
   style.textContent = '.surface-controls{position:absolute;z-index:6;top:88px;left:24px;right:24px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;pointer-events:none}.surface-controls[hidden],.point-controls[hidden]{display:none}.viewer .surface-controls button,.surface-controls a{pointer-events:auto;border:1px solid #555;border-radius:9px;background:#29292ee8;color:#eee;padding:7px 12px;min-height:36px;min-width:50px;font:inherit;font-size:13px;text-decoration:none;backdrop-filter:blur(16px)}.surface-controls button[aria-pressed="true"]{background:#316b59;border-color:#58cfa5}.surface-controls button:disabled{opacity:.5}.surface-controls span{font-size:12px;color:#c1c1c6;background:#151518c9;border-radius:6px;padding:4px 7px;max-width:320px}.surface-controls a[hidden]{display:none}';
   document.head.appendChild(style);
   const pointsButton = $('surfacePoints'), meshButton = $('surfaceMesh'), download = $('surfaceExport'), status = $('surfaceStatus');
+  let intent = 0;
   let active = false, identity = '', metadata = null, checkedAt = 0, checking = false;
   let loading = false, errorText = '', geometry = null, savedCamera = null, meshProgram = null;
   let vertexBuffer = null, indexBuffer = null, indexType, attributes = [];
@@ -18,6 +19,7 @@
     vertexBuffer = indexBuffer = null; geometry = null;
   }
   function points(redraw = true) {
+    intent++;
     if (!active) return;
     active = false;
     if (gl) for (const location of attributes) gl.disableVertexAttribArray(location);
@@ -79,6 +81,8 @@
   }
   async function show() {
     if (!metadata?.available || loading || !gl) return;
+    touchOverridesAir();
+    const requestIntent = ++intent;
     const requested = identity, generation = sessionGeneration, meta = metadata, base = sessionBase();
     loading = true; errorText = ''; updateControls();
     try {
@@ -103,7 +107,7 @@
         geometry = {count:faces*3};
         download.href=base+'/surface.ply'+suffix;download.download=currentSessionId+'-surface.ply';
       }
-      if (requested !== identity || generation !== sessionGeneration) return;
+      if (requested !== identity || generation !== sessionGeneration || requestIntent !== intent) return;
       if (!active) savedCamera=cameraState();
       active=true;bounds=meta.bounds;document.querySelector('.point-controls').hidden=true;
       if (objectIsolated) fit();else draw();
@@ -122,7 +126,7 @@
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,indexBuffer);gl.disable(gl.CULL_FACE);
     gl.drawElements(gl.TRIANGLES,geometry.count,indexType,0);return true;
   }
-  pointsButton.onclick=()=>points();meshButton.onclick=show;
+  pointsButton.onclick=()=>{touchOverridesAir();points()};meshButton.onclick=show;
   window.surfaceViewer={draw:renderSurface,points,reset,caption};
   setInterval(inspect,600);inspect();
 })();
