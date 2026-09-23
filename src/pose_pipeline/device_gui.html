@@ -10,10 +10,15 @@ canvas{width:100%;height:100%;display:block;touch-action:none}.viewer-top{positi
 @media(max-width:480px){.side{display:flex;align-items:stretch}.view-card{display:block}.view-card .card-heading{margin-bottom:12px}.view-switch{width:100%}.viewer{height:52dvh;min-height:350px}.selection-actions{width:100%;flex-wrap:wrap}.selection-actions .button,.selection-actions .download{flex:1}.record-row{padding:15px 13px}.record-title{font-size:13px}.record-meta{font-size:11px}.brand svg{width:23px}.brand h1{font-size:18px}}
 @media(prefers-reduced-transparency:reduce){.viewer #fullscreen,.point-controls{background:#323234;backdrop-filter:none;-webkit-backdrop-filter:none}}@media(prefers-contrast:more){:root{--muted:#d1d1d6}.card,.tabs,.segmented{border-color:#ffffff33}#pointCount,.empty>span{color:#d1d1d6}}@media(prefers-reduced-motion:reduce){.viewer button{transition:none}}
 .has-live-preview .camera-card{order:-1}#cameraLiveStatus{font-size:11px;color:var(--muted)}.has-live-preview #cameraLiveStatus{color:var(--green)}
+#airCursor{display:none;position:absolute;z-index:6;pointer-events:none;width:32px;height:32px;border:2px solid #30d158;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 5px #30d15818,0 0 20px #30d15850;background:#30d15815;transition:left 65ms linear,top 65ms linear,background .15s}
+#airCursor:after{content:'';position:absolute;inset:11px;border-radius:50%;background:#30d158}
+#airCursor.holding{background:#30d15850;box-shadow:0 0 0 8px #30d15818,0 0 30px #30d15870}
+#airCursor.needs-open{border-color:#ff9f0a;box-shadow:0 0 0 5px #ff9f0a18}
+@media(prefers-reduced-motion:reduce){#airCursor{transition:none}}
 </style></head><body>
 <header class="app-header"><div class="brand"><svg viewBox="0 0 28 32" aria-hidden="true"><path d="M14 2 26 9v14l-12 7L2 23V9Zm-12 7 12 7 12-7M14 16v14M14 2v14"/></svg><div><h1 id="pageTitle">Scan</h1><div class="sub">空间扫描</div></div></div><nav class="tabs" aria-label="页面"><button id="navScan" aria-selected="true">扫描</button><button id="navRecords" aria-selected="false">记录</button></nav><div class="header-state"><span class="status-dot"></span><span id="mode">RGB-D</span></div></header>
 <main id="scanPage" class="workspace"><div class="toolbar"><div><a id="backToRecords" class="back-link" href="/?page=records" hidden>‹ 扫描记录</a><div class="status" id="status">准备扫描</div><div class="sub" id="hint">开始扫描，记录眼前的三维空间。</div><a id="resultRecordLink" class="back-link" href="/?page=records" hidden>扫描已完成，前往记录查看结果 ›</a></div><div class="actions" id="scanActions"><button class="button primary" id="start">开始扫描</button><button class="button stop" id="stop" disabled>停止并建图</button><button class="button quiet" id="cancel" disabled>取消</button></div></div>
-<div id="notice" role="alert"></div><div class="layout"><div class="viewer-area"><section class="viewer" aria-label="3D viewer"><canvas id="view"></canvas>
+<div id="notice" role="alert"></div><div class="layout"><div class="viewer-area"><section class="viewer" aria-label="3D viewer"><canvas id="view"></canvas><div id="airCursor" aria-hidden="true"></div>
 <div class="viewer-top"><div class="viewer-info"><strong id="cloudKind">三维点云</strong><span id="pointCount">0 点</span></div>
 <button id="fullscreen" aria-label="全屏查看" title="全屏查看" aria-pressed="false"><svg id="expandIcon" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg><svg id="collapseIcon" viewBox="0 0 24 24" style="display:none"><path d="M3 8h5V3m8 0v5h5M8 21v-5H3m13 5v-5h5"/></svg></button></div>
 <div class="empty" id="empty"><div class="empty-symbol"><svg viewBox="0 0 80 80" fill="none"><path d="M40 7 69 24v33L40 74 11 57V24Z M11 24l29 17 29-17 M40 41v33 M40 7v34"/></svg></div><strong id="emptyTitle">正在加载三维空间</strong><span id="emptyHint">点云将在这里显示</span></div>
@@ -43,9 +48,23 @@ let lastState=null, isFullscreen=false, cameraPreview=null;
 let pointN=0, center=[0,0,0], scale=1, yaw=.35,pitch=-.2,pan=[0,0],zoom=1,cloudRevision=null,busy=false;
 let buffer, program, posLoc, colLoc, pointSize=2.0;
 function shader(type,source){const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s}
-if(gl){program=gl.createProgram();gl.attachShader(program,shader(gl.VERTEX_SHADER,`attribute vec3 position; attribute vec3 color; uniform vec3 center; uniform float pointSize; uniform float scale; uniform vec2 angle; uniform vec2 pan; uniform float aspect; varying vec3 rgb; void main(){vec3 p=(position-center)*scale;float a=angle.x,b=angle.y;vec3 q=vec3(cos(a)*p.x+sin(a)*p.z,p.y,-sin(a)*p.x+cos(a)*p.z);p=vec3(q.x,cos(b)*q.y-sin(b)*q.z,sin(b)*q.y+cos(b)*q.z);gl_Position=vec4((p.x+pan.x)/aspect,-p.y+pan.y,p.z*.08,1.);gl_PointSize=pointSize;rgb=color;}`));gl.attachShader(program,shader(gl.FRAGMENT_SHADER,`precision mediump float;varying vec3 rgb;void main(){gl_FragColor=vec4(rgb,1.);}`));gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));gl.useProgram(program);buffer=gl.createBuffer();posLoc=gl.getAttribLocation(program,'position');colLoc=gl.getAttribLocation(program,'color');gl.enable(gl.DEPTH_TEST)}
+if(gl){program=gl.createProgram();gl.attachShader(program,shader(gl.VERTEX_SHADER,`attribute vec3 position; attribute vec3 color; uniform vec3 center; uniform float pointSize; uniform float scale; uniform vec2 angle; uniform vec2 pan; uniform float aspect; varying vec3 rgb; void main(){vec3 p=(position-center)*scale;float a=angle.x,b=angle.y;vec3 q=vec3(cos(a)*p.x+sin(a)*p.z,p.y,-sin(a)*p.x+cos(a)*p.z);p=vec3(q.x,cos(b)*q.y-sin(b)*q.z,sin(b)*q.y+cos(b)*q.z);gl_Position=vec4((p.x+pan.x)/aspect,-p.y+pan.y,p.z*.08,1.);gl_PointSize=pointSize;rgb=color;}`));gl.attachShader(program,shader(gl.FRAGMENT_SHADER,`precision mediump float;uniform float opacity;varying vec3 rgb;void main(){gl_FragColor=vec4(rgb*opacity,1.);}`));gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));gl.useProgram(program);buffer=gl.createBuffer();posLoc=gl.getAttribLocation(program,'position');colLoc=gl.getAttribLocation(program,'color');gl.enable(gl.DEPTH_TEST)}
 function setPointSize(v){pointSize=Math.max(0.5,Math.min(10,v));$('psv').textContent=pointSize.toFixed(1);draw()}
-function draw(){if(!gl||!canvas.clientWidth||!canvas.clientHeight)return;if(fitPending){fit();return}const ratio=window.devicePixelRatio||1;const w=Math.round(canvas.clientWidth*ratio),h=Math.round(canvas.clientHeight*ratio);if(canvas.width!==w)canvas.width=w;if(canvas.height!==h)canvas.height=h;gl.viewport(0,0,canvas.width,canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);if(window.surfaceViewer?.draw())return;gl.useProgram(program);gl.uniform1f(gl.getUniformLocation(program,'pointSize'),pointSize);gl.uniform3fv(gl.getUniformLocation(program,'center'),center);gl.uniform1f(gl.getUniformLocation(program,'scale'),scale*zoom);gl.uniform2f(gl.getUniformLocation(program,'angle'),yaw,pitch);gl.uniform2fv(gl.getUniformLocation(program,'pan'),pan);gl.uniform1f(gl.getUniformLocation(program,'aspect'),canvas.width/canvas.height);gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.enableVertexAttribArray(posLoc);gl.enableVertexAttribArray(colLoc);gl.vertexAttribPointer(posLoc,3,gl.FLOAT,false,24,0);gl.vertexAttribPointer(colLoc,3,gl.FLOAT,false,24,12);gl.drawArrays(gl.POINTS,0,pointN)}
+function drawPoints(camera,count,vertexBuffer,opacity=1){
+ gl.uniform1f(gl.getUniformLocation(program,'pointSize'),pointSize);
+ gl.uniform1f(gl.getUniformLocation(program,'opacity'),opacity);
+ gl.uniform3fv(gl.getUniformLocation(program,'center'),camera.center);
+ gl.uniform1f(gl.getUniformLocation(program,'scale'),camera.scale*camera.zoom);
+ gl.uniform2f(gl.getUniformLocation(program,'angle'),camera.yaw,camera.pitch);
+ gl.uniform2fv(gl.getUniformLocation(program,'pan'),camera.pan);
+ gl.uniform1f(gl.getUniformLocation(program,'aspect'),canvas.width/canvas.height);
+ gl.bindBuffer(gl.ARRAY_BUFFER,vertexBuffer);gl.enableVertexAttribArray(posLoc);gl.enableVertexAttribArray(colLoc);
+ gl.vertexAttribPointer(posLoc,3,gl.FLOAT,false,24,0);gl.vertexAttribPointer(colLoc,3,gl.FLOAT,false,24,12);gl.drawArrays(gl.POINTS,0,count);
+}
+function draw(){if(!gl||!canvas.clientWidth||!canvas.clientHeight)return;if(fitPending){fit();return}const ratio=window.devicePixelRatio||1;const w=Math.round(canvas.clientWidth*ratio),h=Math.round(canvas.clientHeight*ratio);if(canvas.width!==w)canvas.width=w;if(canvas.height!==h)canvas.height=h;gl.viewport(0,0,canvas.width,canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);if(window.surfaceViewer?.draw())return;gl.useProgram(program);
+ if(airTransition?.ghostBuffer){drawPoints(airTransition.start,airTransition.ghostCount,airTransition.ghostBuffer,.7*(1-airTransition.progress));gl.clear(gl.DEPTH_BUFFER_BIT)}
+ drawPoints({center,scale,zoom,yaw,pitch,pan},pointN,buffer);
+}
 let bounds=null,fitPending=false;
 function fit(){if(!canvas.clientWidth||!canvas.clientHeight){fitPending=true;return}fitPending=false;if(bounds){center=bounds.min.map((v,i)=>(v+bounds.max[i])/2);const projected=[];for(let mask=0;mask<8;mask++){const p=center.map((c,i)=>((mask>>i)&1?bounds.max[i]:bounds.min[i])-c);const x=Math.cos(yaw)*p[0]+Math.sin(yaw)*p[2],z=-Math.sin(yaw)*p[0]+Math.cos(yaw)*p[2];projected.push([x,Math.cos(pitch)*p[1]-Math.sin(pitch)*z])}const span=i=>Math.max(.1,Math.max(...projected.map(p=>p[i]))-Math.min(...projected.map(p=>p[i])));const aspect=canvas.clientWidth/Math.max(1,canvas.clientHeight);scale=Math.min(1.7*aspect/span(0),1.35/span(1));zoom=1;pan=[0,0]}draw()}
 async function loadCloud(rev){
@@ -77,14 +96,14 @@ function rebaseGesture(){drag=null;pinch=null;if(pts.size===1)drag=[...pts.value
 function orbitBy(dx,dy){const sensitivity=Math.PI/Math.max(1,Math.min(canvas.clientWidth,canvas.clientHeight));yaw=((yaw-dx*sensitivity+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI;pitch=clamp(pitch+dy*sensitivity,-Math.PI/2+.02,Math.PI/2-.02)}
 function panBy(dx,dy){const units=2/Math.max(1,canvas.clientHeight);pan[0]+=dx*units;pan[1]-=dy*units}
 function zoomAt(factor,from,to=from){const next=clamp(zoom*factor,.1,20),ratio=next/zoom;pan=pan.map((p,i)=>to[i]-(from[i]-p)*ratio);zoom=next}
-canvas.onpointerdown=e=>{if(e.pointerType==='mouse'&&e.button!==0&&e.button!==2)return;e.preventDefault();canvas.setPointerCapture(e.pointerId);pts.set(e.pointerId,{x:e.clientX,y:e.clientY,button:e.button});rebaseGesture()};
+canvas.onpointerdown=e=>{touchOverridesAir();if(e.pointerType==='mouse'&&e.button!==0&&e.button!==2)return;e.preventDefault();canvas.setPointerCapture(e.pointerId);pts.set(e.pointerId,{x:e.clientX,y:e.clientY,button:e.button});rebaseGesture()};
 function endPointer(e){if(!pts.delete(e.pointerId))return;rebaseGesture()}
 canvas.onpointerup=endPointer;canvas.onpointercancel=endPointer;canvas.onlostpointercapture=endPointer;
 window.addEventListener('blur',()=>{pts.clear();rebaseGesture()});
 canvas.onpointermove=e=>{const previous=pts.get(e.pointerId);if(!previous)return;pts.set(e.pointerId,{...previous,x:e.clientX,y:e.clientY});
 if(pts.size===2){const next=pinchState();if(pinch)zoomAt(next[0]/pinch[0],screenPoint(pinch[1],pinch[2]),screenPoint(next[1],next[2]));pinch=next;queueDraw();return}
 if(pts.size!==1||!drag)return;const dx=e.clientX-previous.x,dy=e.clientY-previous.y;if(drag.button===2)panBy(dx,dy);else orbitBy(dx,dy);queueDraw()};
-canvas.oncontextmenu=e=>e.preventDefault();canvas.addEventListener('wheel',e=>{e.preventDefault();const delta=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?canvas.clientHeight:1);zoomAt(Math.exp(-delta*.001),screenPoint(e.clientX,e.clientY));queueDraw()},{passive:false});
+canvas.oncontextmenu=e=>e.preventDefault();canvas.addEventListener('wheel',e=>{touchOverridesAir();e.preventDefault();const delta=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?canvas.clientHeight:1);zoomAt(Math.exp(-delta*.001),screenPoint(e.clientX,e.clientY));queueDraw()},{passive:false});
 $('fullscreen').onclick=toggleFullscreen;$('psm').onclick=()=>setPointSize(pointSize-0.5);$('psi').onclick=()=>setPointSize(pointSize+0.5);window.onresize=()=>{rebaseGesture();draw()};
 
 function pointCountText(){return pointN.toLocaleString(LANG==='en'?'en-US':'zh-CN')+T(' 点',' points')}
@@ -122,7 +141,7 @@ isFullscreen=!isFullscreen;document.body.classList.toggle('page-fullscreen',isFu
 }
 document.addEventListener('fullscreenchange',()=>{isFullscreen=!!document.fullscreenElement;updateFullscreen()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('page-fullscreen')){document.body.classList.remove('page-fullscreen');isFullscreen=false;updateFullscreen()}});
-window.scanViewer={configure(settings){const next=settings.language==='en'?'en':'zh';const changed=next!==LANG;LANG=next;isFullscreen=!!settings.fullscreen;if(changed)applyLanguage();else updateFullscreen();configureObjects(settings)}};
+window.scanViewer={configure(settings){const next=settings.language==='en'?'en':'zh';const changed=next!==LANG;LANG=next;isFullscreen=!!settings.fullscreen;if(changed)applyLanguage();else updateFullscreen();configureAir(settings);configureObjects(settings)},hand:receiveAirHand};
 new ResizeObserver(()=>requestAnimationFrame(draw)).observe(canvas);
 // Completed scans use a single immutable buffer. Selection and colour stay local.
 let objectData=null, objectCatalog=null, objectLoad=null, objectFailedAt=0, objectUnsupported=false;
@@ -201,6 +220,7 @@ async function loadObjects(){
    if(objectMode==='rgb'&&!catalog.rgb_available)objectMode='semantic_id';
    if(objectSelection){const row=selectedObjectRow();if(row)objectSelection.title=objectTitle(row,objectSelection.kind)}
    rebuildObjects();renderObjects();syncViewControls();
+   if(gl&&pointN)window.webkit?.messageHandlers?.scanViewer?.postMessage({action:'objectsReady'});
    $('totalPoints').textContent=catalog.points.toLocaleString();$('instanceCount').textContent=catalog.instances.length.toLocaleString();
   }catch(error){if(generation===sessionGeneration){objectFailedAt=Date.now();objectError=T('物体点云加载失败，正在重试。','Could not load object cloud. Retrying.');renderObjects();$('notice').textContent=objectError;$('notice').style.display='block'}}
   finally{if(generation===sessionGeneration)objectLoad=null}
@@ -208,21 +228,131 @@ async function loadObjects(){
  return objectLoad;
 }
 function configureObjects(settings){
+ const request=Number.isInteger(settings.isolationRevision)?settings.isolationRevision:0;
+ if(request!==isolationRevision){
+  isolationRevision=request;stopAirHold();finishAirTransition();airNeedsOpen=true;
+ }
+ const previousKey=airObjectKey();
  if(settings.viewMode&&['rgb','semantic_id','instance_id'].includes(settings.viewMode))objectMode=settings.viewMode;
  const selection=settings.selection;
  const nextSelectionKey=JSON.stringify(selection?[selection.kind,selection.id]:null);
  if(nextSelectionKey!==nativeSelectionKey){queryHighlights=null;nativeSelectionKey=nextSelectionKey;}
  objectSelection=selection&&['class','instance'].includes(selection.kind)&&Number.isInteger(selection.id)&&selection.id>0?selection:null;
- objectIsolated=!!settings.isolated&&!!objectSelection;
+ if(previousKey!==airObjectKey()){stopAirHold();finishAirTransition();airNeedsOpen=true}
+ const nextIsolated=!!settings.isolated&&!!objectSelection;
+ if(!nextIsolated&&!airHolding)finishAirTransition();
+ objectIsolated=(nextIsolated||airHolding)&&!!objectSelection;
  rebuildObjects();renderObjects();syncViewControls();
 }
 
 
 
+// Native Vision sends normalized coordinates only; no camera images enter this page.
+let airEnabled=false, airSession='', airSequence=-1, airHolding=false, airReducedMotion=false;
+let isolationRevision=0, airNeedsOpen=false, airMode='move';
+let airAnchor=null, airBasePan=null, airTargetPan=null, airTransition=null, airFrame=null;
+let airBaseAngles=null, airTargetAngles=null;
+function airObjectKey(){return objectSelection?objectSelection.kind+':'+objectSelection.id:''}
+function updateAirCursor(packet){
+ const cursor=$('airCursor');if(!cursor)return;
+ const visible=airEnabled&&Number.isFinite(packet.x)&&Number.isFinite(packet.y)&&!['lost','searching','reset'].includes(packet.phase);
+ cursor.style.display=visible?'block':'none';
+ if(visible){cursor.style.left=(packet.x*100)+'%';cursor.style.top=(packet.y*100)+'%';cursor.classList.toggle('holding',airHolding);cursor.classList.toggle('needs-open',packet.phase==='needsOpen')}
+}
+function stopAirHold(){airHolding=false;airAnchor=null;airBasePan=null;airTargetPan=null;airBaseAngles=null;airTargetAngles=null;updateAirCursor({phase:'reset'})}
+function finishAirTransition(){
+ if(!airTransition)return;
+ const t=airTransition;airTransition=null;
+ restoreCamera(t.end);pan=t.end.pan.map((p,i)=>p+t.delta[i]);
+ yaw=t.end.yaw+t.deltaAngles[0];pitch=clamp(t.end.pitch+t.deltaAngles[1],-Math.PI/2+.02,Math.PI/2-.02);
+ if(t.ghostBuffer&&gl)gl.deleteBuffer(t.ghostBuffer);
+ draw();
+}
+function scheduleAirFrame(){if(airFrame!==null)return;airFrame=requestAnimationFrame(tickAirFrame)}
+function tickAirFrame(){
+ airFrame=null;
+ if(airTransition){
+  const t=airTransition,u=Math.min(1,Math.max(0,(Date.now()-t.began)/420)),ease=1-Math.pow(1-u,3);
+  t.progress=ease;
+  const lerp=(a,b)=>a+(b-a)*ease;
+  center=t.start.center.map((v,i)=>lerp(v,t.end.center[i]));scale=lerp(t.start.scale,t.end.scale);
+  zoom=lerp(t.start.zoom,t.end.zoom);pan=t.start.pan.map((v,i)=>lerp(v,t.end.pan[i])+t.delta[i]);
+  yaw=lerp(t.start.yaw,t.end.yaw)+t.deltaAngles[0];pitch=clamp(lerp(t.start.pitch,t.end.pitch)+t.deltaAngles[1],-Math.PI/2+.02,Math.PI/2-.02);
+  draw();
+  if(u>=1){finishAirTransition()}else scheduleAirFrame();
+ }else if(airHolding&&airMode==='rotate'&&airTargetAngles){
+  const distance=Math.hypot(yaw-airTargetAngles[0],pitch-airTargetAngles[1]);
+  yaw+=(airTargetAngles[0]-yaw)*.45;pitch+=(airTargetAngles[1]-pitch)*.45;draw();
+  if(distance>.0005)scheduleAirFrame();
+ }else if(airHolding&&airTargetPan){
+  const distance=Math.hypot(pan[0]-airTargetPan[0],pan[1]-airTargetPan[1]);
+  pan=pan.map((v,i)=>v+(airTargetPan[i]-v)*.45);draw();
+  if(distance>.0005)scheduleAirFrame();
+ }
+}
+function beginAirLift(packet){
+ if(!gl||!objectData||!objectSelection||!pointN)return false;
+ window.surfaceViewer?.points(false);
+ finishAirTransition();
+ const before=cameraState(),count=pointN,wasIsolated=objectIsolated;
+ let ghost=null;
+ if(!wasIsolated&&!airReducedMotion){ghost=buffer;buffer=gl.createBuffer()}
+ if(!wasIsolated){objectIsolated=true;rebuildObjects()}
+ if(!pointN){if(ghost)gl.deleteBuffer(ghost);return false}
+ const after=cameraState();
+ if(ghost){airTransition={start:before,end:after,ghostBuffer:ghost,ghostCount:count,delta:[0,0],deltaAngles:[0,0],began:Date.now(),progress:0};restoreCamera(before);bounds=after.bounds;scheduleAirFrame()}
+ airHolding=true;airAnchor=[packet.x,packet.y];airBasePan=[...after.pan];airBaseAngles=[after.yaw,after.pitch];
+ airTargetPan=airMode==='move'?[...after.pan]:null;airTargetAngles=airMode==='rotate'?[...airBaseAngles]:null;
+ window.webkit?.messageHandlers?.scanViewer?.postMessage({action:'airGrabbed',session:airSession,isolationRevision:String(isolationRevision),mode:airMode});
+ draw();return true;
+}
+function receiveAirHand(packet){
+ if(!airEnabled||packet.session!==airSession||!Number.isInteger(packet.sequence)||packet.sequence<=airSequence)return;
+ if(packet.mode&&packet.mode!==airMode)return;
+ airSequence=packet.sequence;
+ const hasPoint=Number.isFinite(packet.x)&&Number.isFinite(packet.y)&&packet.x>=0&&packet.x<=1&&packet.y>=0&&packet.y<=1;
+ if(packet.phase==='ready'&&hasPoint)airNeedsOpen=false;
+ if(packet.phase==='began'&&hasPoint&&!airNeedsOpen){beginAirLift(packet)}
+ else if(packet.phase==='changed'&&hasPoint&&airHolding&&airAnchor){
+  if(airMode==='rotate'){
+   const gain=Math.PI*1.6;
+   airTargetAngles=[airBaseAngles[0]-(packet.x-airAnchor[0])*gain,clamp(airBaseAngles[1]+(packet.y-airAnchor[1])*gain,-Math.PI/2+.02,Math.PI/2-.02)];
+   if(airTransition)airTransition.deltaAngles=[airTargetAngles[0]-airTransition.end.yaw,airTargetAngles[1]-airTransition.end.pitch];
+  }else{
+  const aspect=canvas.clientWidth/Math.max(1,canvas.clientHeight);
+  const delta=[(packet.x-airAnchor[0])*2*aspect,-(packet.y-airAnchor[1])*2];
+  const target=[clamp(airBasePan[0]+delta[0],-.85*aspect,.85*aspect),clamp(airBasePan[1]+delta[1],-.85,.85)];
+  airTargetPan=target;
+  if(airTransition)airTransition.delta=target.map((p,i)=>p-airTransition.end.pan[i]);
+  }
+  scheduleAirFrame();
+ }else if(['ended','lost','searching','needsOpen','reset'].includes(packet.phase)){
+  if(packet.phase!=='ended')airNeedsOpen=true;
+  // Freeze at the last stable sample; reacquiring a closed hand cannot resume a grab.
+  if(airHolding&&airTargetPan&&!airTransition)pan=[...airTargetPan];
+  if(airHolding&&airTargetAngles&&!airTransition){yaw=airTargetAngles[0];pitch=airTargetAngles[1]}
+  airHolding=false;airAnchor=null;airTargetPan=null;airTargetAngles=null;draw();
+ }
+ updateAirCursor(packet);
+}
+function configureAir(settings){
+ const enabled=!!settings.airEnabled;
+ if(!enabled||airSession!==(settings.airSession||'')){stopAirHold();finishAirTransition();airSequence=-1;airNeedsOpen=false}
+ const mode=settings.airMode==='rotate'?'rotate':'move';
+ if(mode!==airMode){stopAirHold();finishAirTransition();airMode=mode;airNeedsOpen=true}
+ airEnabled=enabled;airSession=settings.airSession||'';airReducedMotion=!!settings.reduceMotion;
+}
+function touchOverridesAir(){
+ if(!airEnabled)return;
+ stopAirHold();finishAirTransition();airNeedsOpen=true;
+ window.webkit?.messageHandlers?.scanViewer?.postMessage({action:'airTouch'});
+}
+
 const labels=()=>({idle:T('准备扫描','Idle'),starting:T('正在连接设备','Connecting'),recording:T('扫描进行中','Scanning'),stopping:T('正在保存扫描','Saving scan'),mapping:T('正在生成最终地图','Building final map'),completed:T('最终地图已生成','Final map ready'),captured:T('采集数据已保存','Capture saved'),incomplete:T('扫描未完成','Incomplete'),failed:T('本次扫描未完成','Scan failed'),cancelled:T('已取消，数据已保留','Cancelled, data kept'),cancelling:T('正在取消','Cancelling'),active:T('进行中','Active')});
 const modeLabel=mode=>({wireless:'无线 Orbbec',ipad:'iPad LiDAR',replay:'RGB-D 回放',demo:'数据集演示',camera:'相机扫描'}[mode]||'RGB-D');
 function sessionName(id){const m=String(id||'').match(/^scan_(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})/);return m?`${m[1]}年${m[2]}月${m[3]}日 ${m[4]}:${m[5]}:${m[6]}`:id||'扫描'}
 function resetSession(id){
+ stopAirHold();finishAirTransition();airNeedsOpen=true;
  window.surfaceViewer?.reset();
  currentSessionId=id;sessionGeneration++;previewStamp='';cloudRevision=null;pointN=0;bounds=null;fitPending=false;
  center=[0,0,0];scale=1;yaw=.35;pitch=-.2;pan=[0,0];zoom=1;
@@ -254,7 +384,7 @@ function syncViewControls(){
  $('mapView').value=objectMode;$('mapView').disabled=lastState?.status!=='completed';
  document.querySelectorAll('[data-view]').forEach(button=>{button.setAttribute('aria-pressed',String(button.dataset.view===objectMode));button.disabled=lastState?.status!=='completed'||button.dataset.view==='rgb'&&objectCatalog?.rgb_available===false});
 }
-async function changeView(mode){
+async function changeView(mode){touchOverridesAir();
  if(lastState?.status!=='completed'||mode==='rgb'&&objectCatalog?.rgb_available===false)return;
  window.surfaceViewer?.points();
  objectMode=mode;syncViewControls();
@@ -305,7 +435,7 @@ function renderObjects(){
    const meta=document.createElement('span');meta.className='object-meta';meta.style.display='block';meta.textContent=(row.semantic_name?'语义：'+row.semantic_name+' · ':'')+Number(row.point_count||0).toLocaleString()+' 点';
    copy.append(name,meta);const mark=document.createElement('span');mark.className='object-mark';mark.textContent=selected?'✓':'⌖';
    button.append(swatch,copy,mark);
-   const kind=objectGrouping;button.onclick=()=>{queryHighlights=null;objectSelection={kind,id:row.label_id,title:objectTitle(row,kind)};rebuildObjects();renderObjects()};
+   const kind=objectGrouping;button.onclick=()=>{touchOverridesAir();queryHighlights=null;objectSelection={kind,id:row.label_id,title:objectTitle(row,kind)};rebuildObjects();renderObjects()};
    return button;
   });
   if(objectCatalog&&!rows.length){const empty=document.createElement('p');empty.className='sub';empty.textContent='没有已标注的物体';elements.push(empty)}
@@ -317,8 +447,8 @@ document.querySelectorAll('[data-group]').forEach(button=>button.onclick=()=>{
  objectGrouping=button.dataset.group;objectClassFilter=objectGrouping==='instance'&&objectSelection?.kind==='class'?selectedObjectRow()?.semantic_id??null:null;renderObjects();
 });
 $('clearFilter').onclick=()=>{objectClassFilter=null;renderObjects()};
-$('isolateObject').onclick=()=>{if(!objectSelection)return;objectIsolated=!objectIsolated;rebuildObjects();renderSelection()};
-$('clearObject').onclick=()=>{queryHighlights=null;objectSelection=null;objectIsolated=false;rebuildObjects();renderObjects()};
+$('isolateObject').onclick=()=>{touchOverridesAir();if(!objectSelection)return;objectIsolated=!objectIsolated;rebuildObjects();renderSelection()};
+$('clearObject').onclick=()=>{touchOverridesAir();queryHighlights=null;objectSelection=null;objectIsolated=false;rebuildObjects();renderObjects()};
 $('retryObjects').onclick=()=>{objectUnsupported=false;objectFailedAt=0;objectError='';loadObjects()};
 function scanPageState(state){
  if(READONLY||EMBED||!['completed','captured','cancelled','failed'].includes(state.status))return state;
@@ -449,5 +579,5 @@ fetch('/api/models').then(response=>response.json()).then(result=>{const current
 if(READONLY){$('scanActions').hidden=true;$('backToRecords').hidden=false}
 applyLanguage();setPage(!EMBED&&query.get('page')==='records'?'records':'scan');draw();poll();if(!READONLY&&!EMBED)pollCamera();
 </script><script>
-window.scanQueryHighlight=function(ids){window.surfaceViewer?.points();queryHighlights=ids===null?null:new Set(ids);objectSelection=null;objectIsolated=false;rebuildObjects();};
+window.scanQueryHighlight=function(ids){touchOverridesAir();window.surfaceViewer?.points();queryHighlights=ids===null?null:new Set(ids);objectSelection=null;objectIsolated=false;rebuildObjects();};
 </script><script src="/surface_viewer.js"></script><script src="/scene_query_ui.js"></script></body></html>
