@@ -71,6 +71,10 @@ def _completed(stage, directory):
                             ('final_cloud', 'final_cloud_sha256')):
             if sha(receipt[key]) != receipt[digest]:
                 raise ValueError('mapping checkpoint source does not match: ' + key)
+        if receipt.get('mesh'):
+            mesh = Path(receipt['mesh']).resolve()
+            if not mesh.is_relative_to(directory.resolve()) or sha(mesh) != receipt.get('mesh_sha256'):
+                raise ValueError('mapping checkpoint surface does not match')
     else:
         receipt = read(directory / 'COMPLETE.json')
         frames = read(directory / 'FRAMES.json')
@@ -159,7 +163,9 @@ class CheckpointStore:
                 raise ValueError('checkpoint changed while copying')
             if stage == 'mapping':
                 receipt = read(temporary / 'mapping_result.json')
-                for key in ('manifest', 'trajectory', 'final_cloud'):
+                for key in ('manifest', 'trajectory', 'final_cloud', 'mesh'):
+                    if key not in receipt:
+                        continue
                     path = Path(receipt[key]).resolve()
                     if path.is_relative_to(source_dir):
                         receipt[key] = str(destination / path.relative_to(source_dir))
@@ -167,7 +173,7 @@ class CheckpointStore:
                 nested = temporary / 'fusion/refusion_result.json'
                 if nested.exists():
                     refusion = read(nested)
-                    for key in ('cloud', 'manifest', 'trajectory'):
+                    for key in ('cloud', 'manifest', 'trajectory', 'mesh'):
                         if key in refusion and Path(refusion[key]).resolve().is_relative_to(source_dir):
                             refusion[key] = str(destination / Path(refusion[key]).resolve().relative_to(source_dir))
                     write(nested, refusion)
