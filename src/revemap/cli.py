@@ -17,7 +17,7 @@ def main():
         from pose_pipeline.evaluation import main as evaluate_main
         return evaluate_main(sys.argv[2:])
     if sys.argv[1:2] == ["gui"]:
-        from pose_pipeline.live_gui import main as gui_main
+        from pose_pipeline.device_gui import main as gui_main
         sys.argv = [f"{sys.argv[0]} gui", *sys.argv[2:]]
         return gui_main()
 

@@ -8,6 +8,8 @@ enum AppTab: Hashable {
 @main
 struct ScanApp: App {
     @StateObject private var capture = CaptureController()
+    @StateObject private var airGrab = AirGrabController()
+    @Environment(\.scenePhase) private var scenePhase
     @AppStorage("receiverHost") private var receiverHost = ""
     @AppStorage("receiverPort") private var receiverPort = 7001
     @State private var handledLaunchArguments = false
@@ -27,6 +29,11 @@ struct ScanApp: App {
                     .tabItem { Label(L10n.t("记录", "Records"), systemImage: "clock.arrow.circlepath") }
                     .tag(AppTab.records)
             }
+            .environmentObject(capture)
+            .environmentObject(airGrab)
+            .environment(\.scanRecordsVisible, tab == .records)
+            .onChange(of: tab) { _, newTab in if newTab != .records { airGrab.stop() } }
+            .onChange(of: scenePhase) { _, phase in if phase != .active { airGrab.stop() } }
             .environment(\.locale, Locale(identifier: lang == "en" ? "en" : "zh-Hans"))
             .preferredColorScheme(.dark)
             .task {

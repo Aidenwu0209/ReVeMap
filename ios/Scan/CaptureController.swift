@@ -38,7 +38,9 @@ final class CaptureController: ObservableObject {
     private var uploadTask: Task<UploadReceipt, Error>?
     private var localStore: LocalPacketStore?
 
-    var canStartCapture: Bool { !isSavingRecording && !isUploading && pendingRecordings == 0 }
+    @Published var handCameraInUse = false
+
+    var canStartCapture: Bool { !handCameraInUse && !isSavingRecording && !isUploading && pendingRecordings == 0 }
 
     init() { recoverPendingRecording() }
 

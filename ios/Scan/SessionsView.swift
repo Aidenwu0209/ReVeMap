@@ -1,5 +1,6 @@
 import SwiftUI
 import WebKit
+import Combine
 
 // MARK: - Models
 
@@ -9,8 +10,10 @@ struct SessionRecord: Codable, Identifiable, Hashable {
     let status: String
     let frames: Int
     let points: Int
+    var display_name: String? = nil
 
     var displayDate: String {
+        if let display_name, !display_name.isEmpty { return display_name }
         // scan_YYYYMMDD_HHMMSS_hex
         let parts = id.split(separator: "_")
         guard parts.count >= 3 else { return id }
@@ -43,6 +46,7 @@ struct SessionRecord: Codable, Identifiable, Hashable {
         switch mode {
         case "ipad": return "iPad"
         case "replay": return L10n.t("回放", "Replay")
+        case "demo": return L10n.t("数据集演示", "Dataset demo")
         default: return L10n.t("相机", "Camera")
         }
     }
@@ -168,6 +172,14 @@ struct WebPage: UIViewRepresentable {
     let url: URL
     var language: String = "zh"
     var isFullscreen = false
+    var selection: CloudObject? = nil
+    var isolated = false
+    var isolationRevision = 0
+    var viewMode = "semantic_id"
+    var airGrab: AirGrabController? = nil
+    var onAirGrab: (Int) -> Void = { _ in }
+    var onObjectsReady: (Bool) -> Void = { _ in }
+    var onExportRequest: (URL) -> Void = { _ in }
     var onToggleFullscreen: () -> Void = {}
 
     func makeCoordinator() -> Coordinator { Coordinator() }
@@ -197,22 +209,50 @@ struct WebPage: UIViewRepresentable {
     static func dismantleUIView(_ view: WKWebView, coordinator: Coordinator) {
         view.configuration.userContentController.removeScriptMessageHandler(forName: "scanViewer")
         view.navigationDelegate = nil
+        coordinator.detachHandTracking()
     }
 
     @MainActor final class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler {
         private var loadedPage: String?
         private var language = "zh"
         private var fullscreen = false
+        private var selection: CloudObject?
+        private var isolated = false
+        private var isolationRevision = 0
+        private var viewMode = "semantic_id"
+        private weak var airGrab: AirGrabController?
+        private var airSubscription: AnyCancellable?
+        private var lastSettings: Data?
+        private var onAirGrab: (Int) -> Void = { _ in }
+        private var onObjectsReady: (Bool) -> Void = { _ in }
+        private var onExportRequest: (URL) -> Void = { _ in }
         private var onToggleFullscreen: () -> Void = {}
 
         func update(from page: WebPage, view: WKWebView) {
             language = page.language
             fullscreen = page.isFullscreen
+            selection = page.selection
+            isolated = page.isolated
+            isolationRevision = page.isolationRevision
+            viewMode = page.viewMode
             onToggleFullscreen = page.onToggleFullscreen
+            onAirGrab = page.onAirGrab
+            onObjectsReady = page.onObjectsReady
+            onExportRequest = page.onExportRequest
+            if airGrab !== page.airGrab {
+                airSubscription?.cancel()
+                airGrab = page.airGrab
+                airSubscription = page.airGrab?.packets.sink { [weak view] packet in
+                    guard let view, let data = try? JSONEncoder().encode(packet),
+                          let json = String(data: data, encoding: .utf8) else { return }
+                    view.evaluateJavaScript("window.scanViewer?.hand(\(json))", completionHandler: nil)
+                }
+            }
             var identity = URLComponents(url: page.url, resolvingAgainstBaseURL: false)
             identity?.queryItems?.removeAll { $0.name == "lang" }
             if loadedPage != identity?.string {
                 loadedPage = identity?.string
+                lastSettings = nil
                 view.load(URLRequest(url: page.url))
             } else {
                 synchronize(view)
@@ -220,21 +260,66 @@ struct WebPage: UIViewRepresentable {
         }
 
         private func synchronize(_ view: WKWebView) {
-            let settings: [String: Any] = ["language": language, "fullscreen": fullscreen]
-            guard let data = try? JSONSerialization.data(withJSONObject: settings),
+            var settings: [String: Any] = ["language": language, "fullscreen": fullscreen,
+                                           "isolated": isolated, "viewMode": viewMode,
+                                           "isolationRevision": isolationRevision,
+                                           "airEnabled": airGrab?.enabled ?? false,
+                                           "airSession": airGrab?.sessionID ?? "",
+                                           "airMode": airGrab?.mode.rawValue ?? "move",
+                                           "reduceMotion": UIAccessibility.isReduceMotionEnabled]
+            if let selection {
+                settings["selection"] = ["kind": selection.kind, "id": selection.label_id, "title": selection.title]
+            } else {
+                settings["selection"] = NSNull()
+            }
+            guard let data = try? JSONSerialization.data(withJSONObject: settings, options: [.sortedKeys]),
                   let json = String(data: data, encoding: .utf8) else { return }
+            guard data != lastSettings else { return }
+            lastSettings = data
             view.evaluateJavaScript("window.scanViewer?.configure(\(json))", completionHandler: nil)
         }
 
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            lastSettings = nil
             synchronize(webView)
         }
 
+        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
+                     decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+            if let url = navigationAction.request.url, let page = webView.url,
+               url.scheme == page.scheme, url.host == page.host, url.port == page.port,
+               ["scene_graph.json", "object.ply"].contains(url.lastPathComponent) {
+                decisionHandler(.cancel)
+                onExportRequest(url)
+                return
+            }
+            decisionHandler(.allow)
+        }
+
+        func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+            airGrab?.stop()
+            onObjectsReady(false)
+            lastSettings = nil
+            webView.reload()
+        }
+
+        func detachHandTracking() { airSubscription?.cancel(); airSubscription = nil }
+
         func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
             guard message.frameInfo.isMainFrame,
-                  let body = message.body as? [String: String],
-                  body["action"] == "toggleFullscreen" else { return }
-            onToggleFullscreen()
+                  let body = message.body as? [String: String] else { return }
+            switch body["action"] {
+            case "toggleFullscreen": onToggleFullscreen()
+            case "airGrabbed":
+                guard airGrab?.enabled == true, body["session"] == airGrab?.sessionID else { return }
+                guard (body["mode"] ?? "move") == airGrab?.mode.rawValue else { return }
+                guard let revision = Int(body["isolationRevision"] ?? ""), revision == isolationRevision else { return }
+                airGrab?.viewerDidGrab()
+                onAirGrab(revision)
+            case "airTouch": airGrab?.rearm()
+            case "objectsReady": onObjectsReady(true)
+            default: break
+            }
         }
     }
 }
@@ -456,10 +541,50 @@ struct InstanceRow: Codable, Identifiable {
     var id: Int { instance_id }
 }
 
+struct CloudObject: Codable, Identifiable, Equatable {
+    let kind: String
+    let label_id: Int
+    let semantic_id: Int
+    let semantic_name: String
+    let vlm_name: String?
+    let point_count: Int
+    let size_m: [Double]
+    var id: String { "\(kind)-\(label_id)" }
+    var title: String {
+        let name = (vlm_name?.isEmpty == false && vlm_name != "unknown") ? vlm_name! : semantic_name
+        let localized = L10n.semanticName(name)
+        return kind == "instance" ? "\(localized) · #\(label_id)" : localized
+    }
+    var dimensions: String { size_m.map { String(format: "%.2f", $0) }.joined(separator: " × ") + " m" }
+}
+
+struct ObjectCatalog: Codable {
+    let revision: String
+    let points: Int
+    let rgb_available: Bool
+    let classes: [CloudObject]
+    let instances: [CloudObject]
+}
+
+private struct ObjectShareFile: Identifiable {
+    let url: URL
+    var id: URL { url }
+}
+
+private struct ObjectShareSheet: UIViewControllerRepresentable {
+    let url: URL
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: [url], applicationActivities: nil)
+    }
+    func updateUIViewController(_ controller: UIActivityViewController, context: Context) {}
+}
+
 @MainActor
 final class SessionDetailStore: ObservableObject {
     @Published var status: DetailStatus?
     @Published var instances: [InstanceRow] = []
+    @Published var objects: ObjectCatalog?
+    @Published var objectError: String?
     @Published var viewMode = "semantic_id"
     @Published var busy = false
     @Published var errorText: String?
@@ -482,9 +607,23 @@ final class SessionDetailStore: ObservableObject {
            let list = try? JSONDecoder().decode([InstanceRow].self, from: idata) {
             instances = list
         }
+        await loadObjects()
+    }
+
+    func loadObjects() async {
+        guard let url = URL(string: "http://\(host):8765/s/\(recordID)/api/objects") else { return }
+        do {
+            let (data, response) = try await URLSession.shared.data(for: URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData))
+            guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw URLError(.badServerResponse) }
+            objects = try JSONDecoder().decode(ObjectCatalog.self, from: data)
+            objectError = nil
+        } catch {
+            objectError = L10n.t("暂时无法加载可选取物体", "Selectable objects are unavailable")
+        }
     }
 
     func setView(_ mode: String) async {
+        if objects != nil { viewMode = mode; return }
         busy = true
         defer { busy = false }
         guard let token = await fetchToken() else { return }
@@ -514,10 +653,22 @@ struct SessionDetailView: View {
     let host: String
     let record: SessionRecord
     @StateObject private var store = SessionDetailStore()
+    @EnvironmentObject private var capture: CaptureController
+    @EnvironmentObject private var airGrab: AirGrabController
+    @Environment(\.scanRecordsVisible) private var recordsVisible
     @AppStorage("appLang") private var lang = "zh"
     @Environment(\.dismiss) private var dismiss
     @Environment(\.horizontalSizeClass) private var hSize
     @State private var isViewerFullscreen = false
+    @State private var selectedObject: CloudObject?
+    @State private var isolateObject = false
+    @State private var isolationRevision = 0
+    @State private var objectGrouping = "class"
+    @State private var objectClassFilter: Int?
+    @State private var viewerObjectsReady = false
+    @State private var exportingObject = false
+    @State private var shareFile: ObjectShareFile?
+    @State private var exportError: String?
 
     var body: some View {
         Group {
@@ -563,6 +714,7 @@ struct SessionDetailView: View {
                     Text(L10n.t("语义", "Semantic")).tag("semantic_id")
                     Text(L10n.t("实例", "Instance")).tag("instance_id")
                     Text(L10n.t("原色", "RGB")).tag("rgb")
+                        .disabled(store.objects?.rgb_available == false)
                 }
                 .pickerStyle(.segmented)
                 .frame(width: 230)
@@ -571,6 +723,24 @@ struct SessionDetailView: View {
             // The segmented picker already draws its own surface.
             .sharedBackgroundVisibility(.hidden)
         }
+        .onDisappear { airGrab.stop() }
+        .onChange(of: recordsVisible) { _, visible in if !visible { airGrab.stop() } }
+        .onChange(of: selectedObject?.id) { _, id in
+            if id == nil { airGrab.stop() } else { airGrab.rearm() }
+        }
+        .alert(L10n.t("隔空操控", "Air Grab"), isPresented: Binding(
+            get: { airGrab.error != nil }, set: { if !$0 { airGrab.error = nil } }
+        )) {
+            Button(L10n.t("知道了", "OK"), role: .cancel) { airGrab.error = nil }
+        } message: { Text(airGrab.error ?? "") }
+        .sheet(item: $shareFile) { file in
+            ObjectShareSheet(url: file.url)
+        }
+        .alert(L10n.t("导出未完成", "Export not completed"), isPresented: Binding(
+            get: { exportError != nil }, set: { if !$0 { exportError = nil } }
+        )) {
+            Button(L10n.t("知道了", "OK"), role: .cancel) { exportError = nil }
+        } message: { Text(exportError ?? "") }
         .task {
             store.host = host
             store.recordID = record.id
@@ -581,8 +751,23 @@ struct SessionDetailView: View {
     @ViewBuilder
     private var viewer: some View {
         if let pageURL = URL(string: "http://\(host):8765/?session=\(record.id)&embed=1&lang=\(lang)") {
-            WebPage(url: pageURL, language: lang, isFullscreen: isViewerFullscreen) {
+            WebPage(url: pageURL, language: lang, isFullscreen: isViewerFullscreen,
+                    selection: selectedObject, isolated: isolateObject, isolationRevision: isolationRevision, viewMode: store.viewMode,
+                    airGrab: airGrab, onAirGrab: { revision in
+                        guard revision == isolationRevision else { return }
+                        isolateObject = true
+                        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                    }, onObjectsReady: { viewerObjectsReady = $0 }, onExportRequest: { url in
+                        Task { await exportQueryResult(url) }
+                    }) {
                 isViewerFullscreen.toggle()
+            }
+            .background(AirGrabOrientationReader { airGrab.updateOrientation($0) })
+            .safeAreaInset(edge: .top, spacing: 0) {
+                if airGrab.enabled { airGrabBanner }
+            }
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                if let object = selectedObject { selectionBar(object) }
             }
         } else {
             Text(L10n.t("会话地址无效", "Invalid session URL"))
@@ -597,13 +782,26 @@ struct SessionDetailView: View {
                     .font(.caption.monospacedDigit())
                     .foregroundStyle(.white.opacity(0.55))
                 if let status = store.status {
+                    if record.mode == "demo" {
+                        Label(L10n.t("ScanNet 数据集 · SAM3 预测结果", "ScanNet dataset · SAM3 predictions"), systemImage: "testtube.2")
+                            .font(.caption).foregroundStyle(.secondary)
+                    }
+                    if store.objects != nil { objectSection }
                     overviewSection(status)
                     if let timeline = status.timeline, timeline.count >= 2 {
                         fullTimelineSection(timeline)
                     } else if let stages = status.mapping?.stages, !stages.isEmpty {
                         timingSection(stages)
                     }
-                    instanceSection
+                    if store.objects == nil {
+                        if let error = store.objectError, status.status == "completed" {
+                            Button { Task { await store.loadObjects() } } label: {
+                                Label(error + L10n.t("，点此重试", ". Tap to retry"), systemImage: "arrow.clockwise")
+                                    .font(.caption)
+                            }
+                        }
+                        instanceSection
+                    }
                 } else if let error = store.errorText {
                     Text(error).font(.footnote).foregroundStyle(.red)
                 } else {
@@ -625,7 +823,7 @@ struct SessionDetailView: View {
                     metricCell(L10n.t("点数", "Points"),
                                status.cloud?.points.map { String($0) } ?? "—")
                     metricCell(L10n.t("实例", "Instances"),
-                               String(store.instances.count))
+                               String(store.objects?.instances.count ?? store.instances.count))
                     metricCell(L10n.t("已命名", "Named"),
                                "\(namedCount)/\(store.instances.count)")
                     if let valid = status.capture?.valid_depth_fraction {
@@ -821,6 +1019,214 @@ struct SessionDetailView: View {
         }
     }
 
+    private var objectSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Label(L10n.t("探索物体", "Explore objects"), systemImage: "cube.transparent")
+                .font(.subheadline.weight(.semibold))
+            Picker(L10n.t("选择方式", "Group by"), selection: $objectGrouping) {
+                Text(L10n.t("类别", "Classes")).tag("class")
+                Text(L10n.t("实例", "Instances")).tag("instance")
+            }
+            .pickerStyle(.segmented)
+            .onChange(of: objectGrouping) { _, grouping in
+                objectClassFilter = grouping == "instance" && selectedObject?.kind == "class" ? selectedObject?.semantic_id : nil
+            }
+            if objectGrouping == "instance", let classID = objectClassFilter,
+               let category = store.objects?.classes.first(where: { $0.semantic_id == classID }) {
+                HStack {
+                    Text(category.title).font(.caption.weight(.medium)).foregroundStyle(.green)
+                    Spacer()
+                    Button(L10n.t("查看全部", "Show all")) { objectClassFilter = nil }
+                        .font(.caption)
+                }
+            }
+            Text(L10n.t("点选高亮，再单独查看三维点云", "Select to highlight, then open the object in 3D"))
+                .font(.caption2).foregroundStyle(.secondary)
+            let rows = objectGrouping == "class" ? (store.objects?.classes ?? []) : (store.objects?.instances ?? []).filter {
+                objectClassFilter == nil || $0.semantic_id == objectClassFilter
+            }
+            if rows.isEmpty {
+                Text(L10n.t("没有已标注的物体", "No labeled objects")).font(.footnote).foregroundStyle(.secondary)
+            } else {
+                ScrollView {
+                    LazyVStack(spacing: 4) {
+                        ForEach(rows) { object in
+                            Button {
+                                selectedObject = object
+                            } label: {
+                                HStack(spacing: 10) {
+                                    RoundedRectangle(cornerRadius: 3)
+                                        .fill(instanceColor(objectGrouping == "class" ? object.semantic_id : object.label_id))
+                                        .frame(width: 8, height: 28)
+                                    VStack(alignment: .leading, spacing: 3) {
+                                        Text(object.title).font(.footnote.weight(.medium)).foregroundStyle(.primary)
+                                        Text(L10n.t("\(object.point_count.formatted()) 点", "\(object.point_count.formatted()) points"))
+                                            .font(.caption2).foregroundStyle(.secondary)
+                                    }
+                                    Spacer(minLength: 4)
+                                    Image(systemName: selectedObject?.id == object.id ? "checkmark.circle.fill" : "viewfinder")
+                                        .foregroundStyle(selectedObject?.id == object.id ? Color.green : Color.secondary)
+                                }
+                                .padding(.horizontal, 8).padding(.vertical, 8)
+                                .background(selectedObject?.id == object.id ? Color.green.opacity(0.12) : .clear,
+                                            in: RoundedRectangle(cornerRadius: 10))
+                                .contentShape(Rectangle())
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityIdentifier("object-\(object.id)")
+                            .accessibilityAddTraits(selectedObject?.id == object.id ? .isSelected : [])
+                        }
+                    }
+                }
+                .frame(maxHeight: 238)
+            }
+        }
+        .padding(14)
+        .background(Color(uiColor: .secondarySystemGroupedBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .overlay { RoundedRectangle(cornerRadius: 20, style: .continuous).strokeBorder(.white.opacity(0.06), lineWidth: 0.5) }
+    }
+
+    private var airGrabBanner: some View {
+        VStack(alignment: .leading, spacing: 10) {
+          HStack(spacing: 10) {
+            Image(systemName: "hand.draw.fill").foregroundStyle(.green)
+            VStack(alignment: .leading, spacing: 3) {
+                Text(airGrab.instruction).font(.caption.weight(.medium)).lineLimit(2, reservesSpace: true)
+                Text(L10n.t("前置相机 · 仅本机识别", "Front camera · On-device processing"))
+                    .font(.caption2).foregroundStyle(.secondary)
+            }
+            Spacer(minLength: 0)
+            if hSize != .compact { airGrabModePicker }
+            Button { airGrab.stop() } label: { Image(systemName: "xmark.circle.fill").font(.title3) }
+                .buttonStyle(.plain).foregroundStyle(.secondary)
+                .accessibilityLabel(L10n.t("关闭隔空操控", "Turn off Air Grab"))
+          }
+          if hSize == .compact { airGrabModePicker }
+        }
+        .padding(.horizontal, 20).padding(.vertical, 10)
+        .background(Color(uiColor: .secondarySystemGroupedBackground))
+    }
+
+    private var airGrabModePicker: some View {
+        Picker(L10n.t("手势操作", "Hand control"), selection: Binding(
+            get: { airGrab.mode }, set: { airGrab.setMode($0) }
+        )) {
+            Text(L10n.t("移动", "Move")).tag(AirGrabController.Mode.move)
+            Text(L10n.t("旋转", "Rotate")).tag(AirGrabController.Mode.rotate)
+        }
+        .pickerStyle(.segmented)
+        .frame(width: 172)
+        .accessibilityIdentifier("air-grab-mode")
+    }
+
+    private func selectionBar(_ object: CloudObject) -> some View {
+        ViewThatFits(in: .horizontal) {
+            HStack(spacing: 16) { selectionTitle(object); Spacer(minLength: 8); selectionActions(object) }
+            VStack(alignment: .leading, spacing: 12) { selectionTitle(object); selectionActions(object) }
+        }
+        .padding(.horizontal, 20).padding(.vertical, 14)
+        .background(Color(uiColor: .secondarySystemGroupedBackground))
+    }
+
+    private func selectionTitle(_ object: CloudObject) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(object.title).font(.subheadline.weight(.semibold)).lineLimit(1)
+            Text(object.dimensions).font(.caption.monospacedDigit()).foregroundStyle(.secondary)
+                .accessibilityLabel(L10n.t("包围盒尺寸 \(object.dimensions)", "Bounding box size \(object.dimensions)"))
+        }
+    }
+
+    private func selectionActions(_ object: CloudObject) -> some View {
+        HStack(spacing: 12) {
+            Button {
+                airGrab.rearm()
+                isolationRevision += 1
+                isolateObject.toggle()
+            } label: {
+                Label(isolateObject ? L10n.t("放回场景", "Put back") : L10n.t("单独查看", "Isolate"),
+                      systemImage: isolateObject ? "arrow.uturn.backward" : "cube")
+            }
+            .buttonStyle(.borderedProminent).tint(.green)
+            .accessibilityIdentifier("isolate-object")
+            .accessibilityHint(isolateObject ? L10n.t("放回原位置并恢复抓取前的场景视角", "Return to the original position and scene view") : "")
+            Button {
+                if airGrab.enabled { airGrab.stop() }
+                else { airGrab.start(capture: capture) }
+            } label: {
+                Image(systemName: airGrab.enabled ? "hand.draw.fill" : "hand.draw")
+            }
+            .buttonStyle(.bordered).tint(airGrab.enabled ? .green : .white)
+            .accessibilityLabel(L10n.t("隔空操控", "Air Grab"))
+            .accessibilityValue(airGrab.enabled ? L10n.t("已开启", "On") : L10n.t("已关闭", "Off"))
+            .accessibilityIdentifier("air-grab-toggle")
+            .disabled(!viewerObjectsReady)
+            Button {
+                Task { await exportObject(object) }
+            } label: {
+                if exportingObject { ProgressView() } else { Image(systemName: "square.and.arrow.up") }
+            }
+            .buttonStyle(.bordered).disabled(exportingObject)
+            .accessibilityLabel(L10n.t("导出物体 PLY", "Export object PLY"))
+            Button {
+                selectedObject = nil
+                isolateObject = false
+                isolationRevision += 1
+            } label: { Image(systemName: "xmark") }
+            .buttonStyle(.bordered)
+            .accessibilityLabel(L10n.t("取消选择", "Clear selection"))
+        }
+        .font(.footnote.weight(.semibold))
+        .controlSize(.regular)
+    }
+
+    private func exportObject(_ object: CloudObject) async {
+        guard !exportingObject else { return }
+        airGrab.stop()
+        exportingObject = true
+        defer { exportingObject = false }
+        guard let url = URL(string: "http://\(host):8765/s/\(record.id)/object.ply?kind=\(object.kind)&id=\(object.label_id)") else { return }
+        do {
+            let (data, response) = try await URLSession.shared.data(for: URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData))
+            guard (response as? HTTPURLResponse)?.statusCode == 200,
+                  data.starts(with: Data("ply\n".utf8)) else { throw URLError(.badServerResponse) }
+            let folder = FileManager.default.temporaryDirectory.appendingPathComponent("ScanObjectExports", isDirectory: true)
+            try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+            let file = folder.appendingPathComponent("\(record.id)_\(object.kind)_\(object.label_id).ply")
+            try data.write(to: file, options: .atomic)
+            shareFile = ObjectShareFile(url: file)
+        } catch {
+            exportError = L10n.t("请检查工作站连接后重试：", "Check the workstation connection and retry: ") + error.localizedDescription
+        }
+    }
+
+    private func exportQueryResult(_ url: URL) async {
+        guard !exportingObject, let expected = URL(string: "http://\(host):8765"),
+              url.scheme == expected.scheme, url.host == expected.host, url.port == expected.port,
+              url.path == "/s/\(record.id)/scene_graph.json" || url.path == "/s/\(record.id)/object.ply" else { return }
+        airGrab.stop()
+        exportingObject = true
+        defer { exportingObject = false }
+        do {
+            let (data, response) = try await URLSession.shared.data(for: URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData))
+            guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw URLError(.badServerResponse) }
+            let graph = url.lastPathComponent == "scene_graph.json"
+            if graph {
+                let value = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+                let requested = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.first { $0.name == "context" }?.value
+                guard value?["schema"] as? String == "revemap.scene_graph.v1",
+                      let context = value?["context"] as? String, context == requested else { throw URLError(.badServerResponse) }
+            } else if !data.starts(with: Data("ply\n".utf8)) { throw URLError(.badServerResponse) }
+            let folder = FileManager.default.temporaryDirectory.appendingPathComponent("ScanQueryExports", isDirectory: true)
+            try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+            let file = folder.appendingPathComponent("\(record.id)_\(UUID().uuidString).\(graph ? "json" : "ply")")
+            try data.write(to: file, options: .atomic)
+            shareFile = ObjectShareFile(url: file)
+        } catch {
+            exportError = L10n.t("请检查工作站连接后重试：", "Check the workstation connection and retry: ") + error.localizedDescription
+        }
+    }
+
     private var instanceSection: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
@@ -880,9 +1286,9 @@ struct SessionDetailView: View {
 
     private func instanceColor(_ id: Int) -> Color {
         if id <= 0 { return Color(white: 0.45) }
-        let r = Double((50 + id * 73) % 206) / 255.0
-        let g = Double((50 + id * 151) % 206) / 255.0
-        let b = Double((50 + id * 199) % 206) / 255.0
+        let r = Double(50 + (id * 73) % 206) / 255.0
+        let g = Double(50 + (id * 151) % 206) / 255.0
+        let b = Double(50 + (id * 199) % 206) / 255.0
         return Color(red: r, green: g, blue: b)
     }
 

@@ -86,7 +86,10 @@ def main():
     write_artifact_manifest(output, map_path=Path(final), classes_path=classes,
                             result_path=output / 'GUI_RESULT.json', manifest_path=args.manifest,
                             trajectory_path=Path(geom['trajectory']),
-                            extra_files={'names': result['names']} if not args.refine else None)
+                            # Refinement preserves instance IDs; retain the
+                            # same measured naming observations in the final
+                            # inventory, including conflicts with final labels.
+                            extra_files={'names': result['names']})
     atomic_json(output / 'GUI_STAGE.json', {'stage': 'completed'})
 
 
