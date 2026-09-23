@@ -98,3 +98,14 @@ def test_session_library_rejects_duplicate_ids(server):
     controller,_,first,second=server
     saved_scene(second.parent,first.name)
     with pytest.raises(ValueError,match='ambiguous'):controller.resolve_session(first.name)
+
+
+def test_shared_records_are_newest_first_regardless_of_library_path(server):
+    controller,request,first,second=server
+    newest=saved_scene(first.parent,'scan_20260924_010000_a3')
+    expected=[newest.name,second.name,first.name]
+    assert [s['id'] for s in request('/api/sessions')[1]['sessions']]==expected
+    # The iPad and wireless services use opposite primary/library directories.
+    controller.args.output=second.parent
+    controller.args.library_root=[first.parent]
+    assert [s['id'] for s in request('/api/sessions')[1]['sessions']]==expected
