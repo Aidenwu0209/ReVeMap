@@ -47,6 +47,8 @@ def get(handler, controller, path):
                     controller.resolve_session(root.name)
                     seen.add(root.name)
                     rows.append(_session_summary(root, current))
+            # Session IDs encode capture time; library paths differ by device.
+            rows.sort(key=lambda row: row['id'], reverse=True)
             handler.respond(200, {'current': current, 'sessions': rows})
             return True
         view, rest = route(controller, path)
