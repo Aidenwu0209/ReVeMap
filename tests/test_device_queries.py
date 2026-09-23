@@ -60,6 +60,7 @@ def test_query_saved_wireless_scene_without_switching_active_scan(server):
     assert request(base+'/api/objects')[1]['points']>0
     assert request(base+'/object.ply?kind=instance&id=3')[0]==200
     assert request(base+'/trajectory.json')[0]==200
+    assert request(base+'/scene_graph.json?context=stale')[0]==409
 
 
 def test_context_is_required_and_cannot_cross_sessions(server):

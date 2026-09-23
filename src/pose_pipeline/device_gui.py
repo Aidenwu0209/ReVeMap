@@ -447,7 +447,7 @@ def handler(controller, token, port):
         def log_message(self, *_):
             pass
 
-        def respond(self, status, data, mime="application/json"):
+        def respond(self, status, data, mime="application/json", filename=None):
             if not isinstance(data, bytes):
                 data = json.dumps(data, ensure_ascii=False).encode()
             self.send_response(status)
@@ -455,6 +455,8 @@ def handler(controller, token, port):
             self.send_header("Content-Length", str(len(data)))
             self.send_header("Cache-Control", "no-store")
             self.send_header("X-Content-Type-Options", "nosniff")
+            if filename:
+                self.send_header("Content-Disposition", 'attachment; filename="' + filename + '"')
             self.end_headers()
             try:
                 self.wfile.write(data)

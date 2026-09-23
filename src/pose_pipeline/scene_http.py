@@ -62,7 +62,12 @@ def get(handler, controller, path):
             return True
         up = [float(v) for v in query['world_up'][0].split(',')] if query.get('world_up') else None
         graph = graph_for(view, up)
-        handler.respond(200, graph)
+        if query.get('context') and query['context'][0] != graph['context']:
+            raise ValueError('地图已更新，请重新导出。')
+        if rest == '/scene_graph.json':
+            handler.respond(200, graph, filename=view.session.name + '-scene-graph.json')
+        else:
+            handler.respond(200, graph)
     except (ValueError, OSError, KeyError, TypeError, IndexError) as error:
         handler.respond(409, {'error': str(error)})
     return True

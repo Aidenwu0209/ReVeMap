@@ -95,8 +95,9 @@
       const response = await fetch(source() + '/scene_graph.json' + (up() ? '?world_up=' + up().join(',') : ''));
       const graph = await response.json(); if (!response.ok) throw Error(graph.error);
       if (sid !== currentSessionId || graph.context !== context) throw Error('地图已更新，请重试。');
-      const url = URL.createObjectURL(new Blob([JSON.stringify(graph,null,2)],{type:'application/json'}));
-      const link = document.createElement('a'); link.href = url; link.download = sid + '-scene-graph.json'; link.click(); setTimeout(()=>URL.revokeObjectURL(url),1000);
+      const link = document.createElement('a');
+      link.href = source() + '/scene_graph.json?context=' + encodeURIComponent(context) + (up() ? '&world_up=' + up().join(',') : '');
+      link.download = sid + '-scene-graph.json'; link.click();
     } catch(error) { el('sceneAnswer').textContent = error.message; }
   };
   setInterval(() => {

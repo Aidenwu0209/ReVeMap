@@ -179,6 +179,7 @@ struct WebPage: UIViewRepresentable {
     var airGrab: AirGrabController? = nil
     var onAirGrab: (Int) -> Void = { _ in }
     var onObjectsReady: (Bool) -> Void = { _ in }
+    var onExportRequest: (URL) -> Void = { _ in }
     var onToggleFullscreen: () -> Void = {}
 
     func makeCoordinator() -> Coordinator { Coordinator() }
@@ -224,6 +225,7 @@ struct WebPage: UIViewRepresentable {
         private var lastSettings: Data?
         private var onAirGrab: (Int) -> Void = { _ in }
         private var onObjectsReady: (Bool) -> Void = { _ in }
+        private var onExportRequest: (URL) -> Void = { _ in }
         private var onToggleFullscreen: () -> Void = {}
 
         func update(from page: WebPage, view: WKWebView) {
@@ -236,6 +238,7 @@ struct WebPage: UIViewRepresentable {
             onToggleFullscreen = page.onToggleFullscreen
             onAirGrab = page.onAirGrab
             onObjectsReady = page.onObjectsReady
+            onExportRequest = page.onExportRequest
             if airGrab !== page.airGrab {
                 airSubscription?.cancel()
                 airGrab = page.airGrab
@@ -279,6 +282,18 @@ struct WebPage: UIViewRepresentable {
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             lastSettings = nil
             synchronize(webView)
+        }
+
+        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
+                     decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+            if let url = navigationAction.request.url, let page = webView.url,
+               url.scheme == page.scheme, url.host == page.host, url.port == page.port,
+               ["scene_graph.json", "object.ply"].contains(url.lastPathComponent) {
+                decisionHandler(.cancel)
+                onExportRequest(url)
+                return
+            }
+            decisionHandler(.allow)
         }
 
         func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
@@ -742,7 +757,9 @@ struct SessionDetailView: View {
                         guard revision == isolationRevision else { return }
                         isolateObject = true
                         UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-                    }, onObjectsReady: { viewerObjectsReady = $0 }) {
+                    }, onObjectsReady: { viewerObjectsReady = $0 }, onExportRequest: { url in
+                        Task { await exportQueryResult(url) }
+                    }) {
                 isViewerFullscreen.toggle()
             }
             .background(AirGrabOrientationReader { airGrab.updateOrientation($0) })
@@ -1176,6 +1193,33 @@ struct SessionDetailView: View {
             let folder = FileManager.default.temporaryDirectory.appendingPathComponent("ScanObjectExports", isDirectory: true)
             try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
             let file = folder.appendingPathComponent("\(record.id)_\(object.kind)_\(object.label_id).ply")
+            try data.write(to: file, options: .atomic)
+            shareFile = ObjectShareFile(url: file)
+        } catch {
+            exportError = L10n.t("请检查工作站连接后重试：", "Check the workstation connection and retry: ") + error.localizedDescription
+        }
+    }
+
+    private func exportQueryResult(_ url: URL) async {
+        guard !exportingObject, let expected = URL(string: "http://\(host):8765"),
+              url.scheme == expected.scheme, url.host == expected.host, url.port == expected.port,
+              url.path == "/s/\(record.id)/scene_graph.json" || url.path == "/s/\(record.id)/object.ply" else { return }
+        airGrab.stop()
+        exportingObject = true
+        defer { exportingObject = false }
+        do {
+            let (data, response) = try await URLSession.shared.data(for: URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData))
+            guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw URLError(.badServerResponse) }
+            let graph = url.lastPathComponent == "scene_graph.json"
+            if graph {
+                let value = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+                let requested = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.first { $0.name == "context" }?.value
+                guard value?["schema"] as? String == "revemap.scene_graph.v1",
+                      let context = value?["context"] as? String, context == requested else { throw URLError(.badServerResponse) }
+            } else if !data.starts(with: Data("ply\n".utf8)) { throw URLError(.badServerResponse) }
+            let folder = FileManager.default.temporaryDirectory.appendingPathComponent("ScanQueryExports", isDirectory: true)
+            try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+            let file = folder.appendingPathComponent("\(record.id)_\(UUID().uuidString).\(graph ? "json" : "ply")")
             try data.write(to: file, options: .atomic)
             shareFile = ObjectShareFile(url: file)
         } catch {
