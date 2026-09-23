@@ -29,11 +29,14 @@ def graph_for(view, up=None):
 
 def get(handler, controller, path):
     rest = '/' + '/'.join(path.split('/')[3:]) if path.startswith('/s/') else path
-    if rest not in {'/api/graph', '/scene_graph.json', '/api/evidence', '/api/status'} and path not in {'/api/sessions', '/scene_query_ui.js'}:
+    if rest not in {'/api/graph', '/scene_graph.json', '/api/evidence', '/api/status', '/api/surface', '/surface.bin', '/surface.ply'} and path not in {'/api/sessions', '/scene_query_ui.js', '/surface_viewer.js'}:
         return False
     try:
         if path == '/scene_query_ui.js':
             handler.respond(200, Path(__file__).with_name('scene_query_ui.js').read_bytes(), 'text/javascript; charset=utf-8')
+            return True
+        if path == '/surface_viewer.js':
+            handler.respond(200, Path(__file__).with_name('surface_viewer.js').read_bytes(), 'text/javascript; charset=utf-8')
             return True
         if path == '/api/sessions':
             from .device_gui import _session_summary
@@ -58,6 +61,34 @@ def get(handler, controller, path):
             handler.respond(200, state)
             return True
         query = parse_qs(urlparse(handler.path).query)
+        if rest in {'/api/surface', '/surface.bin', '/surface.ply'}:
+            from .surface import load_surface
+            if view.state.get('status') != 'completed' or not view.session:
+                raise ValueError('地图尚未完成。')
+            context = view.scene_context()
+            if query.get('context') and query['context'][0] != context:
+                raise ValueError('地图已更新，请重新加载表面。')
+            bundle = load_surface(view.session)
+            if bundle is None:
+                handler.respond(200 if rest == '/api/surface' else 404,
+                                {'available': False, 'context': context})
+                return True
+            metadata = {**bundle['metadata'], 'context': context}
+            if query.get('revision') and query['revision'][0] != metadata['revision']:
+                raise ValueError('表面已更新，请重新加载。')
+            if rest == '/api/surface':
+                handler.respond(200, metadata)
+            else:
+                import hashlib
+                key = 'mesh' if rest == '/surface.ply' else 'viewer'
+                source = bundle['paths'][key]
+                expected = bundle['hashes'][key]
+                blob = source.read_bytes()
+                if hashlib.sha256(blob).hexdigest() != expected or view.scene_context() != context:
+                    raise ValueError('表面在下载期间发生变化。')
+                handler.respond(200, blob, 'application/octet-stream',
+                                **({'filename': view.session.name + '-surface.ply'} if key == 'mesh' else {}))
+            return True
         if rest == '/api/evidence':
             data = view.evidence_image(int(query['instance_id'][0]), int(query['index'][0]), query['context'][0])
             handler.respond(200, data, 'image/jpeg')

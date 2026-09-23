@@ -131,6 +131,14 @@ def run_full_rgbd_refusion(request: FullRefusionRequest) -> dict:
     cloud_path = output_dir / "refused.ply"
     if not o3d.io.write_point_cloud(str(cloud_path), cloud, write_ascii=False):
         raise RuntimeError("Open3D failed to write refused.ply")
+    mesh = volume.extract_triangle_mesh()
+    mesh.remove_degenerate_triangles().remove_duplicated_triangles().remove_unreferenced_vertices()
+    if not len(mesh.triangles) or not np.isfinite(np.asarray(mesh.vertices)).all():
+        raise RuntimeError("TSDF produced an empty or non-finite surface")
+    mesh.compute_vertex_normals()
+    mesh_path = output_dir / "surface.ply"
+    if not o3d.io.write_triangle_mesh(str(mesh_path), mesh, write_ascii=False):
+        raise RuntimeError("Open3D failed to write surface.ply")
     report = {
         "schema": "rgbd_full_refusion.v1",
         "status": "completed",
@@ -147,6 +155,8 @@ def run_full_rgbd_refusion(request: FullRefusionRequest) -> dict:
         "trajectory_payload_sha256": trajectory_payload["payload_sha256"],
         "cloud": str(cloud_path),
         "cloud_sha256": sha256_file(cloud_path),
+        "mesh": str(mesh_path), "mesh_sha256": sha256_file(mesh_path),
+        "mesh_vertices": len(mesh.vertices), "mesh_triangles": len(mesh.triangles),
         "identity_fallback_used": False,
         "gt_consumed": False,
     }

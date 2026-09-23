@@ -83,13 +83,20 @@ def main():
                 'artifacts': str(output / 'ARTIFACTS.json'),
                 'scope': 'run-sam3 plus optional direct unknown-point refinement; no offline P2'})
     from .artifacts import write_artifact_manifest
+    extras = {'names': result['names']}
+    if geom.get('mesh'):
+        from .surface import publish_surface
+        surface = publish_surface(output, map_path=final, manifest=args.manifest,
+                                  trajectory=geom['trajectory'],
+                                  refusion_receipt=output / 'mapping/fusion/refusion_result.json')
+        extras.update(surface=surface, mesh=geom['mesh'])
     write_artifact_manifest(output, map_path=Path(final), classes_path=classes,
                             result_path=output / 'GUI_RESULT.json', manifest_path=args.manifest,
                             trajectory_path=Path(geom['trajectory']),
                             # Refinement preserves instance IDs; retain the
                             # same measured naming observations in the final
                             # inventory, including conflicts with final labels.
-                            extra_files={'names': result['names']})
+                            extra_files=extras)
     atomic_json(output / 'GUI_STAGE.json', {'stage': 'completed'})
 
 

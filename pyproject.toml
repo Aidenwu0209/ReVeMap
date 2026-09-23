@@ -39,7 +39,7 @@ include = ["revemap*", "pose_pipeline*", "reconstruction*"]
 
 [tool.setuptools.package-data]
 revemap = ["resources/*.json"]
-pose_pipeline = ["live_gui.html", "device_gui.html", "scene_query_ui.js"]
+pose_pipeline = ["live_gui.html", "device_gui.html", "scene_query_ui.js", "surface_viewer.js"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
