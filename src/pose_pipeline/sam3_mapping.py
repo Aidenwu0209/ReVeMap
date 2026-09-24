@@ -12,6 +12,7 @@ import json
 import os
 from pathlib import Path
 import time
+import zipfile
 
 import numpy as np
 from .contracts import load_manifest, load_trajectory, bind_manifest_trajectory, sha256_file
@@ -20,6 +21,34 @@ from .sam3_fusion import PixelClaims, MapVotes, GeometricInstances, visible_map_
 
 def write_json(path, data):
     path.write_text(json.dumps(data, indent=2, allow_nan=False) + '\n')
+
+
+def _load_image_checkpoint(model, path, audit):
+    import torch
+    # Map modern checkpoints lazily: the image worker never needs the
+    # video-only tensors. Keep legacy checkpoint formats readable.
+    mapped = zipfile.is_zipfile(path)
+    ckpt = torch.load(path, map_location='cpu', weights_only=True, mmap=mapped)
+    audit['checkpoint_mmap'] = mapped
+    if 'model' in ckpt and isinstance(ckpt['model'], dict):
+        ckpt = ckpt['model']
+    image_ckpt = {k.replace('detector.', ''): v for k, v in ckpt.items() if 'detector' in k}
+    # Replace initialization storage with the mapped tensors instead of
+    # keeping a second full CPU copy until the model moves to CUDA. Fall
+    # back to copy semantics when a checkpoint needs dtype/layout casting.
+    target_state = model.state_dict()
+    assign = mapped and all(
+        v.dtype == target_state[k].dtype
+        and v.layout == target_state[k].layout and v.stride() == target_state[k].stride()
+        for k, v in image_ckpt.items() if k in target_state)
+    del target_state
+    missing, unexpected = model.load_state_dict(image_ckpt, strict=False, assign=assign)
+    audit['checkpoint_assign'] = assign
+    audit.update(missing_keys=list(missing), unexpected_keys=list(unexpected),
+                 loaded_image_tensors=len(image_ckpt))
+    if missing or not image_ckpt:
+        raise RuntimeError(f'incomplete SAM 3 image checkpoint: {missing}')
+
 
 
 def load_model(checkpoint, expected_sha256):
@@ -41,15 +70,7 @@ def load_model(checkpoint, expected_sha256):
     original_loader = model_builder._load_checkpoint
 
     def checked_load(model, path):
-        ckpt = torch.load(path, map_location='cpu', weights_only=True)
-        if 'model' in ckpt and isinstance(ckpt['model'], dict):
-            ckpt = ckpt['model']
-        image_ckpt = {k.replace('detector.', ''): v for k, v in ckpt.items() if 'detector' in k}
-        missing, unexpected = model.load_state_dict(image_ckpt, strict=False)
-        audit.update(missing_keys=list(missing), unexpected_keys=list(unexpected),
-                     loaded_image_tensors=len(image_ckpt))
-        if missing or not image_ckpt:
-            raise RuntimeError(f'incomplete SAM 3 image checkpoint: {missing}')
+        _load_image_checkpoint(model, path, audit)
 
     model_builder._load_checkpoint = checked_load
     try:

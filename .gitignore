@@ -40,6 +40,7 @@ configs/semantic_runtime.local.json
 *.pem
 *.key
 verification/local/
+/profile_output/
 
 # Xcode build products and developer-local state
 DerivedData/
