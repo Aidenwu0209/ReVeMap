@@ -1,0 +1,186 @@
+{
+  "baseline_commit": "a468bb2c6620e10b86d694c913ff00f046a8a5e5",
+  "scope": "SAM3 stage on all 72 stride-selected views of one real 352-frame sequence; not an end-to-end pipeline benchmark",
+  "baseline": {
+    "scope": "SAM3 stage only; model load, inference and exports included",
+    "seconds": 142.72859550299972,
+    "cpu_seconds": 144.685879,
+    "peak_rss_mib": 7453.453125,
+    "peak_cuda_allocated_mib": 5088.41552734375,
+    "peak_cuda_reserved_mib": 5332.0,
+    "profile_enabled": false,
+    "manifest": "/home/aidenwu/Documents/ReVeMap-unified-20260923/pipeline-acceptance-v2/sessions/scan_20260923_144808_3f5b93/capture/manifest.json",
+    "manifest_sha256": "2f76ab7e066f802e56a4b39c3fee9925a0eb575585cd021fac9aa802cdae82d4",
+    "source_sha256": {
+      "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/semantic_runtime/worker.py": "4fe0b8168022f3f4fc6d29da0beee218890be2422331667985d81d32e6dedf73",
+      "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_refine.py": "8501523487ae79931353bfdc6e229378a0d39727bb4e8a81c2c68cd57fc23788",
+      "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_fusion.py": "2e446f6ccbb4e1e155c06ed5ea1c2653d06289c7e68c5768ac5eeee51d6cf6b6",
+      "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_mapping.py": "caa1eba66ead1ddb280745d47557ecf275df662f7184ce8f615e7e0b320ed719"
+    },
+    "stage": {
+      "status": "completed",
+      "selected_frames": 72,
+      "raw_frames": 352,
+      "stride": 5,
+      "view_policy": "stride",
+      "view_budget": 72,
+      "view_plan_sha256": null,
+      "seconds_after_load": 134.82662111200034,
+      "GT_used": false
+    }
+  },
+  "candidate": {
+    "scope": "SAM3 stage only; model load, inference and exports included",
+    "seconds": 133.86308861299995,
+    "cpu_seconds": 135.66201,
+    "peak_rss_mib": 4398.41015625,
+    "peak_cuda_allocated_mib": 5092.7900390625,
+    "peak_cuda_reserved_mib": 5336.0,
+    "profile_enabled": false,
+    "manifest": "/home/aidenwu/Documents/ReVeMap-unified-20260923/pipeline-acceptance-v2/sessions/scan_20260923_144808_3f5b93/capture/manifest.json",
+    "manifest_sha256": "2f76ab7e066f802e56a4b39c3fee9925a0eb575585cd021fac9aa802cdae82d4",
+    "source_sha256": {
+      "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/semantic_runtime/worker.py": "4ebd2823f7366c620f6c8857459b9813e38cdddbfa48a9d72b5cac868612ca96",
+      "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_refine.py": "8501523487ae79931353bfdc6e229378a0d39727bb4e8a81c2c68cd57fc23788",
+      "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_fusion.py": "2e446f6ccbb4e1e155c06ed5ea1c2653d06289c7e68c5768ac5eeee51d6cf6b6",
+      "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_mapping.py": "d1e0bde8f6ec507f7c9297f1a5464b9b4f5cd4e17a2d21a1d7082fd69704e771",
+      "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_text_cache.py": "a7a08336d9a999fb7395238f10f0e3901af9e0a4d08d8ac0a7d99178dcd1683a"
+    },
+    "stage": {
+      "status": "completed",
+      "selected_frames": 72,
+      "raw_frames": 352,
+      "stride": 5,
+      "view_policy": "stride",
+      "view_budget": 72,
+      "view_plan_sha256": null,
+      "seconds_after_load": 127.07725518200004,
+      "GT_used": false,
+      "text_feature_cache": {
+        "hits": 2201,
+        "misses": 31,
+        "entries": 31,
+        "bytes": 4572128
+      }
+    }
+  },
+  "parity": {
+    "scope": "exact saved masks, semantic, instance, confidence, input digests and crop evidence",
+    "left": "profile_output/baseline-full",
+    "right": "profile_output/candidate-full",
+    "frames": 72,
+    "arrays_checked": 360,
+    "crops_checked": 576,
+    "errors": [],
+    "passed": true
+  },
+  "time_reduction_percent": 6.211444075909411,
+  "rss_reduction_percent": 40.988289823718446,
+  "reverse_parity": {
+    "scope": "exact saved masks, semantic, instance, confidence, input digests and crop evidence",
+    "left": "profile_output/baseline-reverse",
+    "right": "profile_output/candidate-reverse",
+    "frames": 9,
+    "arrays_checked": 45,
+    "crops_checked": 72,
+    "errors": [],
+    "passed": true
+  },
+  "fusion_parity": {
+    "scope": "fixed original geometry plus fresh SAM3 evidence and fusion; no SLAM/VLM rerun",
+    "reference": "/home/aidenwu/Documents/ReVeMap-unified-20260923/pipeline-acceptance-v2/sessions/scan_20260923_144808_3f5b93/attempts/attempt_20260923_144822_33ade5/pipeline",
+    "semantic": "/home/aidenwu/Documents/ReVeMap-performance-20260924/profile_output/candidate-full",
+    "labels_equal": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    },
+    "map_sha256_before": "0ef4281a3793d33ed26c99eb9e55fdefe75428a3370aed103e86444ff71a78d4",
+    "map_sha256_after": "0ef4281a3793d33ed26c99eb9e55fdefe75428a3370aed103e86444ff71a78d4",
+    "passed": true
+  },
+  "hardware": {
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "cpu_count": 32,
+    "meminfo": [
+      "MemTotal:       65635992 kB",
+      "MemFree:        50384904 kB"
+    ],
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU, 8188 MiB, 595.84"
+  },
+  "reverse_control": {
+    "candidate-reverse": {
+      "scope": "SAM3 stage only; model load, inference and exports included",
+      "seconds": 23.56090777700001,
+      "cpu_seconds": 25.255475999999998,
+      "peak_rss_mib": 4398.30078125,
+      "peak_cuda_allocated_mib": 5092.7900390625,
+      "peak_cuda_reserved_mib": 5336.0,
+      "profile_enabled": false,
+      "manifest": "/home/aidenwu/Documents/ReVeMap-unified-20260923/pipeline-acceptance-v2/sessions/scan_20260923_144808_3f5b93/capture/manifest.json",
+      "manifest_sha256": "2f76ab7e066f802e56a4b39c3fee9925a0eb575585cd021fac9aa802cdae82d4",
+      "source_sha256": {
+        "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/semantic_runtime/worker.py": "4ebd2823f7366c620f6c8857459b9813e38cdddbfa48a9d72b5cac868612ca96",
+        "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_refine.py": "8501523487ae79931353bfdc6e229378a0d39727bb4e8a81c2c68cd57fc23788",
+        "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_fusion.py": "2e446f6ccbb4e1e155c06ed5ea1c2653d06289c7e68c5768ac5eeee51d6cf6b6",
+        "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_mapping.py": "d1e0bde8f6ec507f7c9297f1a5464b9b4f5cd4e17a2d21a1d7082fd69704e771",
+        "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_text_cache.py": "a7a08336d9a999fb7395238f10f0e3901af9e0a4d08d8ac0a7d99178dcd1683a"
+      },
+      "stage": {
+        "status": "completed",
+        "selected_frames": 9,
+        "raw_frames": 352,
+        "stride": 50,
+        "view_policy": "stride",
+        "view_budget": 9,
+        "view_plan_sha256": null,
+        "seconds_after_load": 16.31834808399981,
+        "GT_used": false,
+        "text_feature_cache": {
+          "hits": 248,
+          "misses": 31,
+          "entries": 31,
+          "bytes": 4572128
+        }
+      }
+    },
+    "baseline-reverse": {
+      "scope": "SAM3 stage only; model load, inference and exports included",
+      "seconds": 25.192801606999637,
+      "cpu_seconds": 27.453231000000002,
+      "peak_rss_mib": 7453.77734375,
+      "peak_cuda_allocated_mib": 5088.41552734375,
+      "peak_cuda_reserved_mib": 5332.0,
+      "profile_enabled": false,
+      "manifest": "/home/aidenwu/Documents/ReVeMap-unified-20260923/pipeline-acceptance-v2/sessions/scan_20260923_144808_3f5b93/capture/manifest.json",
+      "manifest_sha256": "2f76ab7e066f802e56a4b39c3fee9925a0eb575585cd021fac9aa802cdae82d4",
+      "source_sha256": {
+        "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/semantic_runtime/worker.py": "4fe0b8168022f3f4fc6d29da0beee218890be2422331667985d81d32e6dedf73",
+        "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_refine.py": "8501523487ae79931353bfdc6e229378a0d39727bb4e8a81c2c68cd57fc23788",
+        "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_fusion.py": "2e446f6ccbb4e1e155c06ed5ea1c2653d06289c7e68c5768ac5eeee51d6cf6b6",
+        "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_mapping.py": "caa1eba66ead1ddb280745d47557ecf275df662f7184ce8f615e7e0b320ed719"
+      },
+      "stage": {
+        "status": "completed",
+        "selected_frames": 9,
+        "raw_frames": 352,
+        "stride": 50,
+        "view_policy": "stride",
+        "view_budget": 9,
+        "view_plan_sha256": null,
+        "seconds_after_load": 17.19346847199995,
+        "GT_used": false
+      }
+    }
+  },
+  "validation": {
+    "existing_local_cpu_suite": {
+      "passed": 429,
+      "skipped": 3,
+      "subtests_passed": 24
+    },
+    "final_loader_targeted_tests_passed": 30,
+    "remote_torch_tests_passed": 11,
+    "production_deployed": false
+  }
+}

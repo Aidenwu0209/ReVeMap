@@ -1,0 +1,720 @@
+{
+  "date": "2026-09-24",
+  "baseline_commit": "a468bb2c6620e10b86d694c913ff00f046a8a5e5",
+  "candidate_commit": "aaf0c2f29400f2618b840880517378c2ee861022",
+  "source_commit_hashes_verified": true,
+  "remote_root": "/home/aidenwu/Documents/ReVeMap-performance-20260924",
+  "scope": "Four new paired SAM3 and fixed-geometry fusion cases; one fixed-decision refinement replay; VLM profile and offline batch probe. No new full end-to-end timing or GT accuracy.",
+  "production_vlm_batching_enabled": false,
+  "scenes": [
+    {
+      "scene": "scene0011_00",
+      "window": [
+        1127,
+        120
+      ],
+      "raw_frames": 120,
+      "first_frame": 1127,
+      "last_frame": 1246,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "sam3_parity": {
+        "scope": "exact saved masks, semantic, instance, confidence, input digests and crop evidence",
+        "left": "/home/aidenwu/Documents/ReVeMap-performance-20260924/profile_output/multiscene/scene0011_00/baseline",
+        "right": "/home/aidenwu/Documents/ReVeMap-performance-20260924/profile_output/multiscene/scene0011_00/candidate",
+        "frames": 25,
+        "arrays_checked": 125,
+        "crops_checked": 130,
+        "errors": [],
+        "passed": true
+      },
+      "labels_equal": {
+        "semantic": true,
+        "instance": true,
+        "confidence": true
+      },
+      "map_sha256": {
+        "baseline": "d7cd46b40729c0f69d78818a53455982df0e80d473f7dbfb6cd8341836cffe57",
+        "candidate": "d7cd46b40729c0f69d78818a53455982df0e80d473f7dbfb6cd8341836cffe57"
+      },
+      "inputs_unchanged": true,
+      "baseline": {
+        "scope": "SAM3 stage only; model load, inference and exports included",
+        "seconds": 56.05297769800018,
+        "cpu_seconds": 58.275695,
+        "peak_rss_mib": 7452.87890625,
+        "peak_cuda_allocated_mib": 5088.41552734375,
+        "peak_cuda_reserved_mib": 5348.0,
+        "profile_enabled": false,
+        "manifest": "/home/aidenwu/Documents/ReVeMap-performance-20260924/profile_output/multiscene/scene0011_00/manifest.json",
+        "manifest_sha256": "5dbf9c4f455fd4205672d52fe304e65818fe0890da9091e36805ce5ebd4231d8",
+        "source_sha256": {
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/semantic_runtime/worker.py": "4fe0b8168022f3f4fc6d29da0beee218890be2422331667985d81d32e6dedf73",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_refine.py": "8501523487ae79931353bfdc6e229378a0d39727bb4e8a81c2c68cd57fc23788",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_fusion.py": "2e446f6ccbb4e1e155c06ed5ea1c2653d06289c7e68c5768ac5eeee51d6cf6b6",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_mapping.py": "caa1eba66ead1ddb280745d47557ecf275df662f7184ce8f615e7e0b320ed719"
+        },
+        "stage": {
+          "status": "completed",
+          "selected_frames": 25,
+          "raw_frames": 120,
+          "stride": 5,
+          "view_policy": "stride",
+          "view_budget": 25,
+          "view_plan_sha256": null,
+          "seconds_after_load": 48.22316135300025,
+          "GT_used": false
+        }
+      },
+      "candidate": {
+        "scope": "SAM3 stage only; model load, inference and exports included",
+        "seconds": 52.48373569100022,
+        "cpu_seconds": 54.60159,
+        "peak_rss_mib": 4397.46484375,
+        "peak_cuda_allocated_mib": 5092.7900390625,
+        "peak_cuda_reserved_mib": 5352.0,
+        "profile_enabled": false,
+        "manifest": "/home/aidenwu/Documents/ReVeMap-performance-20260924/profile_output/multiscene/scene0011_00/manifest.json",
+        "manifest_sha256": "5dbf9c4f455fd4205672d52fe304e65818fe0890da9091e36805ce5ebd4231d8",
+        "source_sha256": {
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/semantic_runtime/worker.py": "4ebd2823f7366c620f6c8857459b9813e38cdddbfa48a9d72b5cac868612ca96",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_refine.py": "8501523487ae79931353bfdc6e229378a0d39727bb4e8a81c2c68cd57fc23788",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_fusion.py": "2e446f6ccbb4e1e155c06ed5ea1c2653d06289c7e68c5768ac5eeee51d6cf6b6",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_mapping.py": "d1e0bde8f6ec507f7c9297f1a5464b9b4f5cd4e17a2d21a1d7082fd69704e771",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_text_cache.py": "a7a08336d9a999fb7395238f10f0e3901af9e0a4d08d8ac0a7d99178dcd1683a"
+        },
+        "stage": {
+          "status": "completed",
+          "selected_frames": 25,
+          "raw_frames": 120,
+          "stride": 5,
+          "view_policy": "stride",
+          "view_budget": 25,
+          "view_plan_sha256": null,
+          "seconds_after_load": 45.614851659000124,
+          "GT_used": false,
+          "text_feature_cache": {
+            "hits": 744,
+            "misses": 31,
+            "entries": 31,
+            "bytes": 4572128
+          }
+        }
+      },
+      "scope": "SAM3 and fusion only; fixed saved geometry; no new GT accuracy claim",
+      "passed": true,
+      "wall_reduction_percent": 6.367622477132551,
+      "rss_reduction_percent": 40.996427030871565
+    },
+    {
+      "scene": "scene0030_00",
+      "window": [
+        1189,
+        120
+      ],
+      "raw_frames": 120,
+      "first_frame": 1189,
+      "last_frame": 1308,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "sam3_parity": {
+        "scope": "exact saved masks, semantic, instance, confidence, input digests and crop evidence",
+        "left": "/home/aidenwu/Documents/ReVeMap-performance-20260924/profile_output/multiscene/scene0030_00/baseline",
+        "right": "/home/aidenwu/Documents/ReVeMap-performance-20260924/profile_output/multiscene/scene0030_00/candidate",
+        "frames": 25,
+        "arrays_checked": 125,
+        "crops_checked": 150,
+        "errors": [],
+        "passed": true
+      },
+      "labels_equal": {
+        "semantic": true,
+        "instance": true,
+        "confidence": true
+      },
+      "map_sha256": {
+        "baseline": "325479470ff1e71c5f3d152b909d128345ae965713ea5316dc7d71bb47b6fae4",
+        "candidate": "325479470ff1e71c5f3d152b909d128345ae965713ea5316dc7d71bb47b6fae4"
+      },
+      "inputs_unchanged": true,
+      "baseline": {
+        "scope": "SAM3 stage only; model load, inference and exports included",
+        "seconds": 58.733138391000466,
+        "cpu_seconds": 61.011561,
+        "peak_rss_mib": 7452.9453125,
+        "peak_cuda_allocated_mib": 5088.41552734375,
+        "peak_cuda_reserved_mib": 5348.0,
+        "profile_enabled": false,
+        "manifest": "/home/aidenwu/Documents/ReVeMap-performance-20260924/profile_output/multiscene/scene0030_00/manifest.json",
+        "manifest_sha256": "cd61dc090207ecd75daf133354f2cc216b1b75bd86dde3e37406023cb09b5e13",
+        "source_sha256": {
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/semantic_runtime/worker.py": "4fe0b8168022f3f4fc6d29da0beee218890be2422331667985d81d32e6dedf73",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_refine.py": "8501523487ae79931353bfdc6e229378a0d39727bb4e8a81c2c68cd57fc23788",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_fusion.py": "2e446f6ccbb4e1e155c06ed5ea1c2653d06289c7e68c5768ac5eeee51d6cf6b6",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_mapping.py": "caa1eba66ead1ddb280745d47557ecf275df662f7184ce8f615e7e0b320ed719"
+        },
+        "stage": {
+          "status": "completed",
+          "selected_frames": 25,
+          "raw_frames": 120,
+          "stride": 5,
+          "view_policy": "stride",
+          "view_budget": 25,
+          "view_plan_sha256": null,
+          "seconds_after_load": 50.915207267999904,
+          "GT_used": false
+        }
+      },
+      "candidate": {
+        "scope": "SAM3 stage only; model load, inference and exports included",
+        "seconds": 55.04400240799987,
+        "cpu_seconds": 57.097851,
+        "peak_rss_mib": 4397.6796875,
+        "peak_cuda_allocated_mib": 5092.7900390625,
+        "peak_cuda_reserved_mib": 5352.0,
+        "profile_enabled": false,
+        "manifest": "/home/aidenwu/Documents/ReVeMap-performance-20260924/profile_output/multiscene/scene0030_00/manifest.json",
+        "manifest_sha256": "cd61dc090207ecd75daf133354f2cc216b1b75bd86dde3e37406023cb09b5e13",
+        "source_sha256": {
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/semantic_runtime/worker.py": "4ebd2823f7366c620f6c8857459b9813e38cdddbfa48a9d72b5cac868612ca96",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_refine.py": "8501523487ae79931353bfdc6e229378a0d39727bb4e8a81c2c68cd57fc23788",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_fusion.py": "2e446f6ccbb4e1e155c06ed5ea1c2653d06289c7e68c5768ac5eeee51d6cf6b6",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_mapping.py": "d1e0bde8f6ec507f7c9297f1a5464b9b4f5cd4e17a2d21a1d7082fd69704e771",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_text_cache.py": "a7a08336d9a999fb7395238f10f0e3901af9e0a4d08d8ac0a7d99178dcd1683a"
+        },
+        "stage": {
+          "status": "completed",
+          "selected_frames": 25,
+          "raw_frames": 120,
+          "stride": 5,
+          "view_policy": "stride",
+          "view_budget": 25,
+          "view_plan_sha256": null,
+          "seconds_after_load": 48.30711775200052,
+          "GT_used": false,
+          "text_feature_cache": {
+            "hits": 744,
+            "misses": 31,
+            "entries": 31,
+            "bytes": 4572128
+          }
+        }
+      },
+      "scope": "SAM3 and fusion only; fixed saved geometry; no new GT accuracy claim",
+      "passed": true,
+      "wall_reduction_percent": 6.2811831345383595,
+      "rss_reduction_percent": 40.99407008764362
+    },
+    {
+      "scene": "scene0050_00",
+      "window": [
+        2266,
+        120
+      ],
+      "raw_frames": 120,
+      "first_frame": 2266,
+      "last_frame": 2385,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "sam3_parity": {
+        "scope": "exact saved masks, semantic, instance, confidence, input digests and crop evidence",
+        "left": "/home/aidenwu/Documents/ReVeMap-performance-20260924/profile_output/multiscene/scene0050_00/baseline",
+        "right": "/home/aidenwu/Documents/ReVeMap-performance-20260924/profile_output/multiscene/scene0050_00/candidate",
+        "frames": 25,
+        "arrays_checked": 125,
+        "crops_checked": 33,
+        "errors": [],
+        "passed": true
+      },
+      "labels_equal": {
+        "semantic": true,
+        "instance": true,
+        "confidence": true
+      },
+      "map_sha256": {
+        "baseline": "02c18292a81e0e4958cb39d2abb4ecb7daf1b0d7eaa24c448c59661c38fb9a04",
+        "candidate": "02c18292a81e0e4958cb39d2abb4ecb7daf1b0d7eaa24c448c59661c38fb9a04"
+      },
+      "inputs_unchanged": true,
+      "baseline": {
+        "scope": "SAM3 stage only; model load, inference and exports included",
+        "seconds": 61.81354812999962,
+        "cpu_seconds": 64.15944900000001,
+        "peak_rss_mib": 7453.49609375,
+        "peak_cuda_allocated_mib": 5088.41552734375,
+        "peak_cuda_reserved_mib": 5348.0,
+        "profile_enabled": false,
+        "manifest": "/home/aidenwu/Documents/ReVeMap-performance-20260924/profile_output/multiscene/scene0050_00/manifest.json",
+        "manifest_sha256": "44ba0c9f483d53982c6202b8727672f1694e3422dfe51ef6f1f84ad6c2419308",
+        "source_sha256": {
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/semantic_runtime/worker.py": "4fe0b8168022f3f4fc6d29da0beee218890be2422331667985d81d32e6dedf73",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_refine.py": "8501523487ae79931353bfdc6e229378a0d39727bb4e8a81c2c68cd57fc23788",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_fusion.py": "2e446f6ccbb4e1e155c06ed5ea1c2653d06289c7e68c5768ac5eeee51d6cf6b6",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_mapping.py": "caa1eba66ead1ddb280745d47557ecf275df662f7184ce8f615e7e0b320ed719"
+        },
+        "stage": {
+          "status": "completed",
+          "selected_frames": 25,
+          "raw_frames": 120,
+          "stride": 5,
+          "view_policy": "stride",
+          "view_budget": 25,
+          "view_plan_sha256": null,
+          "seconds_after_load": 53.74121221800033,
+          "GT_used": false
+        }
+      },
+      "candidate": {
+        "scope": "SAM3 stage only; model load, inference and exports included",
+        "seconds": 57.55365191799956,
+        "cpu_seconds": 59.639093,
+        "peak_rss_mib": 4397.62890625,
+        "peak_cuda_allocated_mib": 5092.7900390625,
+        "peak_cuda_reserved_mib": 5352.0,
+        "profile_enabled": false,
+        "manifest": "/home/aidenwu/Documents/ReVeMap-performance-20260924/profile_output/multiscene/scene0050_00/manifest.json",
+        "manifest_sha256": "44ba0c9f483d53982c6202b8727672f1694e3422dfe51ef6f1f84ad6c2419308",
+        "source_sha256": {
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/semantic_runtime/worker.py": "4ebd2823f7366c620f6c8857459b9813e38cdddbfa48a9d72b5cac868612ca96",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_refine.py": "8501523487ae79931353bfdc6e229378a0d39727bb4e8a81c2c68cd57fc23788",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_fusion.py": "2e446f6ccbb4e1e155c06ed5ea1c2653d06289c7e68c5768ac5eeee51d6cf6b6",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_mapping.py": "d1e0bde8f6ec507f7c9297f1a5464b9b4f5cd4e17a2d21a1d7082fd69704e771",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_text_cache.py": "a7a08336d9a999fb7395238f10f0e3901af9e0a4d08d8ac0a7d99178dcd1683a"
+        },
+        "stage": {
+          "status": "completed",
+          "selected_frames": 25,
+          "raw_frames": 120,
+          "stride": 5,
+          "view_policy": "stride",
+          "view_budget": 25,
+          "view_plan_sha256": null,
+          "seconds_after_load": 50.83984229999987,
+          "GT_used": false,
+          "text_feature_cache": {
+            "hits": 744,
+            "misses": 31,
+            "entries": 31,
+            "bytes": 4572128
+          }
+        }
+      },
+      "scope": "SAM3 and fusion only; fixed saved geometry; no new GT accuracy claim",
+      "passed": true,
+      "wall_reduction_percent": 6.8915251443601,
+      "rss_reduction_percent": 40.99911167944992
+    },
+    {
+      "scene": "orbbec1005",
+      "window": null,
+      "raw_frames": 1005,
+      "first_frame": 0,
+      "last_frame": 1004,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "sam3_parity": {
+        "scope": "exact saved masks, semantic, instance, confidence, input digests and crop evidence",
+        "left": "/home/aidenwu/Documents/ReVeMap-performance-20260924/profile_output/multiscene/orbbec1005/baseline",
+        "right": "/home/aidenwu/Documents/ReVeMap-performance-20260924/profile_output/multiscene/orbbec1005/candidate",
+        "frames": 202,
+        "arrays_checked": 1010,
+        "crops_checked": 1278,
+        "errors": [],
+        "passed": true
+      },
+      "labels_equal": {
+        "semantic": true,
+        "instance": true,
+        "confidence": true
+      },
+      "map_sha256": {
+        "baseline": "04cf09bf2e8ea53844a4e017599184ef3c25e5c6a6156575d17d6cc2bde12317",
+        "candidate": "04cf09bf2e8ea53844a4e017599184ef3c25e5c6a6156575d17d6cc2bde12317"
+      },
+      "inputs_unchanged": true,
+      "baseline": {
+        "scope": "SAM3 stage only; model load, inference and exports included",
+        "seconds": 385.83985952500007,
+        "cpu_seconds": 387.59045000000003,
+        "peak_rss_mib": 7454.12890625,
+        "peak_cuda_allocated_mib": 5088.41552734375,
+        "peak_cuda_reserved_mib": 5332.0,
+        "profile_enabled": false,
+        "manifest": "/home/aidenwu/Documents/ReVeMap-performance-20260924/profile_output/multiscene/orbbec1005/manifest.json",
+        "manifest_sha256": "21f560bff6d6e218189c899e58257082a2b6ee36213d2868b6937f0a4dc82f42",
+        "source_sha256": {
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/semantic_runtime/worker.py": "4fe0b8168022f3f4fc6d29da0beee218890be2422331667985d81d32e6dedf73",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_refine.py": "8501523487ae79931353bfdc6e229378a0d39727bb4e8a81c2c68cd57fc23788",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_fusion.py": "2e446f6ccbb4e1e155c06ed5ea1c2653d06289c7e68c5768ac5eeee51d6cf6b6",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/baseline-src/pose_pipeline/sam3_mapping.py": "caa1eba66ead1ddb280745d47557ecf275df662f7184ce8f615e7e0b320ed719"
+        },
+        "stage": {
+          "status": "completed",
+          "selected_frames": 202,
+          "raw_frames": 1005,
+          "stride": 5,
+          "view_policy": "stride",
+          "view_budget": 202,
+          "view_plan_sha256": null,
+          "seconds_after_load": 377.90756094399967,
+          "GT_used": false
+        }
+      },
+      "candidate": {
+        "scope": "SAM3 stage only; model load, inference and exports included",
+        "seconds": 360.65811147600016,
+        "cpu_seconds": 362.03675499999997,
+        "peak_rss_mib": 4398.9453125,
+        "peak_cuda_allocated_mib": 5092.7900390625,
+        "peak_cuda_reserved_mib": 5336.0,
+        "profile_enabled": false,
+        "manifest": "/home/aidenwu/Documents/ReVeMap-performance-20260924/profile_output/multiscene/orbbec1005/manifest.json",
+        "manifest_sha256": "21f560bff6d6e218189c899e58257082a2b6ee36213d2868b6937f0a4dc82f42",
+        "source_sha256": {
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/semantic_runtime/worker.py": "4ebd2823f7366c620f6c8857459b9813e38cdddbfa48a9d72b5cac868612ca96",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_refine.py": "8501523487ae79931353bfdc6e229378a0d39727bb4e8a81c2c68cd57fc23788",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_fusion.py": "2e446f6ccbb4e1e155c06ed5ea1c2653d06289c7e68c5768ac5eeee51d6cf6b6",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_mapping.py": "d1e0bde8f6ec507f7c9297f1a5464b9b4f5cd4e17a2d21a1d7082fd69704e771",
+          "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/sam3_text_cache.py": "a7a08336d9a999fb7395238f10f0e3901af9e0a4d08d8ac0a7d99178dcd1683a"
+        },
+        "stage": {
+          "status": "completed",
+          "selected_frames": 202,
+          "raw_frames": 1005,
+          "stride": 5,
+          "view_policy": "stride",
+          "view_budget": 202,
+          "view_plan_sha256": null,
+          "seconds_after_load": 353.88079238299997,
+          "GT_used": false,
+          "text_feature_cache": {
+            "hits": 6231,
+            "misses": 31,
+            "entries": 31,
+            "bytes": 4572128
+          }
+        }
+      },
+      "scope": "SAM3 and fusion only; fixed saved geometry; no new GT accuracy claim",
+      "passed": true,
+      "wall_reduction_percent": 6.526476575022777,
+      "rss_reduction_percent": 40.98646041911545
+    }
+  ],
+  "totals": {
+    "new_cases": 4,
+    "new_sam3_views": 277,
+    "new_sam3_arrays": 1385,
+    "new_crops": 1591
+  },
+  "refinement": {
+    "scope": "fresh grounding and apply; fixed geometry, objects and VLM decisions; no fresh VLM",
+    "arrays_checked": 530,
+    "maps": {
+      "refined/capture/semantic_labeled.ply": {
+        "baseline": "87b6dfbf222cbc9aad3f1e20d66de6635263c689dd9af744a7d1f004ad300043",
+        "candidate": "87b6dfbf222cbc9aad3f1e20d66de6635263c689dd9af744a7d1f004ad300043"
+      }
+    },
+    "errors": [],
+    "source_unchanged": true,
+    "passed": true
+  },
+  "symmetric_array_audit": {
+    "scope": "symmetric post-run file/key/array audit of saved fusion and refinement artifacts",
+    "checks": [
+      {
+        "name": "scene0011_00",
+        "npz_files": 27,
+        "arrays": 129,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "name": "scene0030_00",
+        "npz_files": 27,
+        "arrays": 129,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "name": "scene0050_00",
+        "npz_files": 27,
+        "arrays": 129,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "name": "orbbec1005",
+        "npz_files": 204,
+        "arrays": 1014,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "name": "refinement/grounding",
+        "npz_files": 53,
+        "arrays": 527,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "name": "refinement/refined",
+        "npz_files": 1,
+        "arrays": 3,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "vlm_historical": {
+    "scope": "historical stage receipts; not new end-to-end timings",
+    "runs": 22,
+    "examples": [
+      {
+        "pipeline": "/home/aidenwu/Documents/ReVeMap-wireless-scans/scan_20260923_151747_f992e1/attempts/attempt_20260923_151951_22b3c0/pipeline",
+        "raw_frames": 1005,
+        "main_seconds": 742.4135091569915,
+        "schedule": "serial",
+        "model": "qwen3vl_2b_nf4",
+        "main_vlm_seconds": 109.03720438701566,
+        "crops": 1278,
+        "mean_crop_seconds": 0.08084483367825165,
+        "weight_load_seconds": 1.4361219669808634,
+        "main_vlm_fraction": 0.14686856184880998,
+        "refinement_naming": {
+          "status": "completed",
+          "rows": 278,
+          "actual_requests": 278,
+          "seconds_excluding_load": 20.78454729699297,
+          "GT_used": false
+        }
+      },
+      {
+        "pipeline": "/home/aidenwu/Documents/ReVeMap-unified-20260923/pipeline-acceptance-v2/sessions/scan_20260923_144808_3f5b93/attempts/attempt_20260923_144822_33ade5/pipeline",
+        "raw_frames": 352,
+        "main_seconds": 299.6157739349874,
+        "schedule": "serial",
+        "model": "qwen3vl_2b_nf4",
+        "main_vlm_seconds": 51.126381260022754,
+        "crops": 576,
+        "mean_crop_seconds": 0.07875821077565585,
+        "weight_load_seconds": 1.4915721500001382,
+        "main_vlm_fraction": 0.17063981841996242,
+        "refinement_naming": {
+          "status": "completed",
+          "rows": 146,
+          "actual_requests": 146,
+          "seconds_excluding_load": 10.475279707985464,
+          "GT_used": false
+        }
+      }
+    ],
+    "crop_352": {
+      "name": "352",
+      "crops": 576,
+      "main_duplicates": 0,
+      "refinement_crops": 146,
+      "refinement_duplicates": 0,
+      "refinement_matching_main_hashes": 0,
+      "request_sum": 45.36472940677777,
+      "median_request": 0.06709322800452355,
+      "p95_request": 0.12177632297971286,
+      "output_tokens_total": 1331,
+      "mean_output_tokens": 2.310763888888889,
+      "max_output_tokens": 4
+    },
+    "crop_1005": {
+      "name": "1005",
+      "crops": 1278,
+      "main_duplicates": 2,
+      "refinement_crops": 278,
+      "refinement_duplicates": 0,
+      "refinement_matching_main_hashes": 6,
+      "request_sum": 103.31969744080561,
+      "median_request": 0.06661232300393749,
+      "p95_request": 0.12132743600523099,
+      "output_tokens_total": 2970,
+      "mean_output_tokens": 2.323943661971831,
+      "max_output_tokens": 4
+    }
+  },
+  "vlm_profile": {
+    "scope": "instrumented original local VLM; timings include cProfile and synchronization overhead",
+    "wall_seconds": 65.59885435800061,
+    "components": {
+      "weight_verification": {
+        "seconds": 9.271447290000651,
+        "calls": 1
+      },
+      "create_namer_including_import_verify_load": {
+        "seconds": 16.30375537800046,
+        "calls": 1
+      },
+      "image_text_preprocessing": {
+        "seconds": 1.028973032990507,
+        "calls": 576
+      },
+      "generate_including_vision_prefill_decode": {
+        "seconds": 47.232438722015104,
+        "calls": 576
+      },
+      "text_decoding": {
+        "seconds": 0.02600983800857648,
+        "calls": 576
+      }
+    },
+    "component_nesting": "weight_verification is inside create_namer; preprocessing/generate/decoding are inside requests",
+    "requests_sum_seconds": 49.038212286008275,
+    "crop_count": 576,
+    "output_tokens": 1331,
+    "median_request_seconds": 0.07265556199945422,
+    "p95_request_seconds": 0.12545819499973732,
+    "identical_crop_extra_requests": 0,
+    "peak_rss_mib": 5137.93359375,
+    "peak_cuda_allocated_mib": 1576.359375,
+    "tasks_sha256": "d5c86ffd43799487a4e000150757a05d05f9c28a1238d175892012f9f78a22a7",
+    "model": {
+      "repo": "Qwen/Qwen3-VL-2B-Instruct",
+      "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+      "receipt_sha256": "f8e0825bd79e6e154cfe43f1bd61adfe077cdce197bacff79019a9c5814b6041",
+      "verified_files": 11,
+      "id": "qwen3vl_2b_nf4",
+      "kind": "native",
+      "quant": "nf4",
+      "load_seconds": 2.293735696999647,
+      "torch": "2.7.1+cu128",
+      "transformers": "5.17.0",
+      "model_class": "Qwen3VLForConditionalGeneration",
+      "processor_class": "Qwen3VLProcessor",
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      },
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "static_images_only": true,
+      "requested_thinking_disabled": true,
+      "thinking_disabled_verified": false
+    },
+    "source_sha256": {
+      "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/semantic_runtime/vlm.py": "219a7683a9995899034d125c55a83544919cd0dc949b519dff50687c68bffa8f",
+      "/home/aidenwu/Documents/ReVeMap-performance-20260924/candidate-src/pose_pipeline/semantic_runtime/worker.py": "4ebd2823f7366c620f6c8857459b9813e38cdddbfa48a9d72b5cac868612ca96"
+    },
+    "reference_comparison": {
+      "reference": "/home/aidenwu/Documents/ReVeMap-unified-20260923/pipeline-acceptance-v2/sessions/scan_20260923_144808_3f5b93/attempts/attempt_20260923_144822_33ade5/pipeline/semantic/vlm",
+      "differences": [],
+      "same_count": true
+    }
+  },
+  "vlm_batch_probe": {
+    "runs": [
+      {
+        "batch_size": 1,
+        "seconds": 6.856421149999733,
+        "peak_cuda_allocated_mib": 1576.359375,
+        "label_differences": [],
+        "raw_response_differences": 0,
+        "wall_reduction_vs_first_serial_percent": 0.0
+      },
+      {
+        "batch_size": 2,
+        "seconds": 5.038695584000379,
+        "peak_cuda_allocated_mib": 1615.0322265625,
+        "label_differences": [
+          {
+            "index": 0,
+            "frame_id": 0,
+            "mask_id": 4,
+            "baseline": "green curtain",
+            "candidate": "unknown"
+          }
+        ],
+        "raw_response_differences": 1,
+        "wall_reduction_vs_first_serial_percent": 26.511288122950617
+      },
+      {
+        "batch_size": 4,
+        "seconds": 4.480637241000295,
+        "peak_cuda_allocated_mib": 1684.0517578125,
+        "label_differences": [
+          {
+            "index": 0,
+            "frame_id": 0,
+            "mask_id": 4,
+            "baseline": "green curtain",
+            "candidate": "unknown"
+          },
+          {
+            "index": 32,
+            "frame_id": 120,
+            "mask_id": 4,
+            "baseline": "cabinet",
+            "candidate": "shelves"
+          },
+          {
+            "index": 63,
+            "frame_id": 235,
+            "mask_id": 5,
+            "baseline": "unknown",
+            "candidate": "cabinet"
+          }
+        ],
+        "raw_response_differences": 3,
+        "wall_reduction_vs_first_serial_percent": 34.6504956014776
+      },
+      {
+        "batch_size": 1,
+        "seconds": 6.715095081999607,
+        "peak_cuda_allocated_mib": 1579.19970703125,
+        "label_differences": [],
+        "raw_response_differences": 0,
+        "wall_reduction_vs_first_serial_percent": 2.061222099814153
+      }
+    ],
+    "complete": {
+      "scope": "96-crop prototype only; not enabled in production",
+      "crops": 96,
+      "batch_sizes": [
+        1,
+        2,
+        4,
+        1
+      ],
+      "serial_repeat_equal": true,
+      "all_inputs_unchanged": true
+    }
+  },
+  "artifact_sha256": {
+    "multiscene/PLAN.json": "7011d1565973ce8344e5b63d79bb8e5deceea9b6916a37f6702d66f776eecfbf",
+    "multiscene/RESULTS.json": "c807522e5c43c51aa97566328b16b8d8af788d05417b1b6441ecc6129e0f73cb",
+    "multiscene/COMPLETE.json": "81f0a484246f9d169ad7dc227c9ad4549333e5096d779890dc520d325ab7bf93",
+    "refinement-pair/RESULT.json": "1a9f202af367afd7628c9a4d9a94212727a86f29ee53b3a8881379dc0f9140ce",
+    "vlm-profile/PROFILE_SUMMARY.json": "affafd5f27ad78ab12f517885dd8665b5444ea700023e85fcc20541ee509da7e",
+    "vlm-profile/profile.pstats": "6532e2007067cb5e8edce1a07d6cb1dce75872cf2572cce11aafc14489aa158d",
+    "vlm-profile/profile.txt": "97d4a5e2dcba7b46f510380d1e3a35362b4ad5f3c1b61ce586b758da1d100c05",
+    "vlm-batches/RESULTS.json": "4b3da994a4b4e056a65ca9e34a218be69daa370faa9b76eecc20a2a29c7496f9",
+    "vlm-batches/COMPLETE.json": "47a829727364c2874aa8831800558e5a2e284df8c5e9c0906f7459c430b98704",
+    "FINAL_ARRAY_AUDIT.json": "4142438fb551a39aae1bc638cfec51daeb0a200d5dcc5fa8028ec5fa556b4a1e",
+    "vlm-historical-audit.json": "5f90aeb98565bf0b4e89919c201cee16dc115bfdbda6bd142233675bffb03633"
+  },
+  "instrumentation_sha256": {
+    "tools/validate_semantic_scenes.py": "59df9beed27f06e7e68d6b9d4823cdaf52ce97f51a2580edc64fb3c4a400c4ca",
+    "tools/validate_refinement_replay.py": "deeaf7d69acfc890ae80188ee778ff8a8a4e01eec144357fdc4f151eca55f655",
+    "tools/profile_vlm.py": "4a9430e8c983eca988d710b0b74b6fb4e4f89ff610c2cdd07bc279b149d37913",
+    "tools/probe_vlm_batches.py": "c21cf19109093ba3e1af2dab2e298e9828d7869b28d75a8b931e3ded37cf84fb"
+  }
+}

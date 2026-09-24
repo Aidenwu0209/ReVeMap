@@ -78,53 +78,56 @@ def infer_sam3(args, config):
     write(output / "MODEL.json", audit)
     tasks, records = [], []
     started = time.monotonic()
-    for ordinal, frame in enumerate(frames):
-        event(output, "frame_start", frame_id=frame.frame_id)
-        tick = time.monotonic()
-        image, depth, _ = read_frame(frame)
-        claims, packed = infer_claims(processor, image, depth.shape, taxonomy)
-        semantic, instance, confidence = claims.finalize()
-        path = output / "frames" / f"{frame.frame_id:06}.npz"
-        np.savez_compressed(path, semantic=semantic, local_instance=instance, confidence=confidence,
-                            raw_masks_packed=packed, depth_shape=depth.shape)
-        candidates = []
-        for row in claims.records:
-            if row["class_id"] in (10, 19):
-                continue
-            yy, xx = np.nonzero(instance == row["mask_id"])
-            if len(xx) < 300:
-                continue
-            bbox = (int(xx.min()), int(yy.min()), int(xx.max() + 1), int(yy.max() + 1))
-            if bbox[2] - bbox[0] >= 10 and bbox[3] - bbox[1] >= 10:
-                candidates.append((len(xx), row, bbox))
-        candidates.sort(key=lambda x: (-x[0], x[1]["mask_id"]))
-        crops = []
-        for area, row, bbox in candidates[:8]:
-            x0, y0, x1, y1 = bbox
-            dx, dy = max(2, round((x1-x0)*.15)), max(2, round((y1-y0)*.15))
-            height, width = depth.shape
-            box = (max(0, round((x0-dx)*image.width/width)), max(0, round((y0-dy)*image.height/height)),
-                   min(image.width, round((x1+dx)*image.width/width)), min(image.height, round((y1+dy)*image.height/height)))
-            crop = output / "crops" / f'{frame.frame_id:06}_{row["mask_id"]:04}.png'
-            image.crop(box).save(crop)
-            crops.append({"frame_id": frame.frame_id, "mask_id": row["mask_id"], "sam_class_id": row["class_id"],
-                          "file": str(crop), "sha256": sha(crop), "bbox_rgb": box, "mask_pixels": area})
-        tasks.append({"task_id": ordinal, "frame_id": frame.frame_id, "crops": crops})
-        records.append({"frame_id": frame.frame_id, "mask_sha256": sha(path),
-                        "color_sha256": sha(frame.color_path), "depth_sha256": sha(frame.depth_path),
-                        "seconds": time.monotonic() - tick, "crops": len(crops)})
-        write(output / "FRAMES.json", records)
-        if ordinal in (0, len(frames)-1):
-            image.save(output / "frames" / f'{frame.frame_id:06}_rgb.jpg')
-            save_overlay(image, semantic, taxonomy, output / "frames" / f'{frame.frame_id:06}_overlay.png')
-        torch.cuda.empty_cache()
-        event(output, "frame_complete", frame_id=frame.frame_id)
+    from ..sam3_text_cache import cached_text_features
+    with cached_text_features(processor) as text_cache:
+        for ordinal, frame in enumerate(frames):
+            event(output, "frame_start", frame_id=frame.frame_id)
+            tick = time.monotonic()
+            image, depth, _ = read_frame(frame)
+            claims, packed = infer_claims(processor, image, depth.shape, taxonomy)
+            semantic, instance, confidence = claims.finalize()
+            path = output / "frames" / f"{frame.frame_id:06}.npz"
+            np.savez_compressed(path, semantic=semantic, local_instance=instance, confidence=confidence,
+                                raw_masks_packed=packed, depth_shape=depth.shape)
+            candidates = []
+            for row in claims.records:
+                if row["class_id"] in (10, 19):
+                    continue
+                yy, xx = np.nonzero(instance == row["mask_id"])
+                if len(xx) < 300:
+                    continue
+                bbox = (int(xx.min()), int(yy.min()), int(xx.max() + 1), int(yy.max() + 1))
+                if bbox[2] - bbox[0] >= 10 and bbox[3] - bbox[1] >= 10:
+                    candidates.append((len(xx), row, bbox))
+            candidates.sort(key=lambda x: (-x[0], x[1]["mask_id"]))
+            crops = []
+            for area, row, bbox in candidates[:8]:
+                x0, y0, x1, y1 = bbox
+                dx, dy = max(2, round((x1-x0)*.15)), max(2, round((y1-y0)*.15))
+                height, width = depth.shape
+                box = (max(0, round((x0-dx)*image.width/width)), max(0, round((y0-dy)*image.height/height)),
+                       min(image.width, round((x1+dx)*image.width/width)), min(image.height, round((y1+dy)*image.height/height)))
+                crop = output / "crops" / f'{frame.frame_id:06}_{row["mask_id"]:04}.png'
+                image.crop(box).save(crop)
+                crops.append({"frame_id": frame.frame_id, "mask_id": row["mask_id"], "sam_class_id": row["class_id"],
+                              "file": str(crop), "sha256": sha(crop), "bbox_rgb": box, "mask_pixels": area})
+            tasks.append({"task_id": ordinal, "frame_id": frame.frame_id, "crops": crops})
+            records.append({"frame_id": frame.frame_id, "mask_sha256": sha(path),
+                            "color_sha256": sha(frame.color_path), "depth_sha256": sha(frame.depth_path),
+                            "seconds": time.monotonic() - tick, "crops": len(crops)})
+            write(output / "FRAMES.json", records)
+            if ordinal in (0, len(frames)-1):
+                image.save(output / "frames" / f'{frame.frame_id:06}_rgb.jpg')
+                save_overlay(image, semantic, taxonomy, output / "frames" / f'{frame.frame_id:06}_overlay.png')
+            torch.cuda.empty_cache()
+            event(output, "frame_complete", frame_id=frame.frame_id)
     write(output / "CROP_TASKS.json", tasks)
     write(output / "COMPLETE.json", {"status": "completed", "selected_frames": len(frames),
           "raw_frames": len(manifest.frames), "stride": args.stride,
           "view_policy": view_plan['policy'], "view_budget": view_plan['effective_budget'],
           "view_plan_sha256": sha(plan_path) if plan_path else None,
-          "seconds_after_load": time.monotonic()-started, "GT_used": False})
+          "seconds_after_load": time.monotonic()-started, "GT_used": False,
+          "text_feature_cache": text_cache})
     # The process exits before a local VLM is loaded, releasing ALL SAM3 CUDA state.
 
 

@@ -1,0 +1,949 @@
+{
+  "scope": "Fixed-crop naming only. No end-to-end speed or GT accuracy claim.",
+  "requested_luna_unavailable": [
+    {
+      "crop_id": 0,
+      "scene": "scene0011_00",
+      "sha256": "c08976735f931b16af00dc68840d92666bf9c2f51562d3e5ed8b371410edee45",
+      "profile": "gpt6luna_low",
+      "ok": false,
+      "http_status": 404,
+      "error": "{'message': 'Model \"gpt-6-luna\" is not supported by any configured account in this group', 'type': 'model_not_found'}",
+      "seconds": 14.69865413900061,
+      "total_seconds": 14.702556201999869
+    }
+  ],
+  "baseline": {
+    "profile": "qwen3vl_2b_nf4",
+    "requests": 24,
+    "requests_seconds": 2.2601792270024816,
+    "p50_request_seconds": 0.0725633260003633,
+    "p95_request_seconds": 0.13501012199958495,
+    "unknown": 6,
+    "scope": "24 selected crops, local Qwen worker including import/verification/load; no cProfile",
+    "wall_seconds": 7.099525723000625,
+    "peak_rss_mib": 5109.359375,
+    "peak_cuda_allocated_mib": 1576.1796875
+  },
+  "profiles": [
+    {
+      "profile": "deepseek_flash_none",
+      "requests": 24,
+      "http_successes": 24,
+      "completed_valid": 24,
+      "unknown": 1,
+      "wall_seconds": 25.69287307600007,
+      "mean_request_seconds": 1.070353419000033,
+      "p50_request_seconds": 0.9961131190002561,
+      "p95_request_seconds": 1.5485007569996014,
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "usage_numeric_totals": {
+        "prompt_tokens": 8108,
+        "completion_tokens": 58,
+        "total_tokens": 8166,
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 7980
+      },
+      "endpoint": "https://api.deepseek.com/chat/completions",
+      "model": "deepseek-flash",
+      "effort": "none",
+      "concurrency": 1,
+      "crop_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "format_invalid": 0,
+      "truncated": 0,
+      "failures": {},
+      "returned_efforts": {
+        "not returned": 24
+      },
+      "effort_mismatches": 0,
+      "exact_label_matches_to_local": 4,
+      "exact_label_match_is_accuracy": false,
+      "reasoning_tokens": null,
+      "cached_tokens": 128
+    },
+    {
+      "profile": "deepseek_flash_high",
+      "requests": 24,
+      "http_successes": 24,
+      "completed_valid": 20,
+      "unknown": 1,
+      "wall_seconds": 115.31230098599917,
+      "mean_request_seconds": 4.8044971382917465,
+      "p50_request_seconds": 2.487004534999869,
+      "p95_request_seconds": 14.162502010000026,
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "usage_numeric_totals": {
+        "prompt_tokens": 8732,
+        "completion_tokens": 18148,
+        "total_tokens": 26880,
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 8732
+      },
+      "endpoint": "https://api.deepseek.com/chat/completions",
+      "model": "deepseek-flash",
+      "effort": "high",
+      "concurrency": 1,
+      "crop_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "format_invalid": 4,
+      "truncated": 1,
+      "failures": {},
+      "returned_efforts": {
+        "not returned": 24
+      },
+      "effort_mismatches": 0,
+      "exact_label_matches_to_local": 5,
+      "exact_label_match_is_accuracy": false,
+      "reasoning_tokens": 17800,
+      "cached_tokens": 0
+    },
+    {
+      "profile": "gpt6sol_none_c4",
+      "requests": 24,
+      "http_successes": 18,
+      "completed_valid": 18,
+      "unknown": 0,
+      "wall_seconds": 248.5447403039998,
+      "mean_request_seconds": 38.673413945791786,
+      "p50_request_seconds": 20.42899893450067,
+      "p95_request_seconds": 90.27747145400099,
+      "response_models": [
+        "gpt-6-sol"
+      ],
+      "usage_numeric_totals": {
+        "input_tokens": 6043,
+        "output_tokens": 3091,
+        "total_tokens": 9134
+      },
+      "endpoint": "https://api.huanling.icu/v1/responses",
+      "model": "gpt-6-sol",
+      "effort": "none",
+      "concurrency": 4,
+      "crop_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "format_invalid": 0,
+      "truncated": 0,
+      "failures": {
+        "ConnectionError": 1,
+        "ReadTimeout": 5
+      },
+      "returned_efforts": {
+        "medium": 18
+      },
+      "effort_mismatches": 18,
+      "exact_label_matches_to_local": 5,
+      "exact_label_match_is_accuracy": false,
+      "reasoning_tokens": 2954,
+      "cached_tokens": 0
+    },
+    {
+      "profile": "gpt6sol_low_c4",
+      "requests": 24,
+      "http_successes": 17,
+      "completed_valid": 17,
+      "unknown": 0,
+      "wall_seconds": 241.6935026760002,
+      "mean_request_seconds": 36.253047650125005,
+      "p50_request_seconds": 18.35283512299975,
+      "p95_request_seconds": 90.09561487700012,
+      "response_models": [
+        "gpt-6-sol"
+      ],
+      "usage_numeric_totals": {
+        "input_tokens": 5602,
+        "output_tokens": 1091,
+        "total_tokens": 6693
+      },
+      "endpoint": "https://api.huanling.icu/v1/responses",
+      "model": "gpt-6-sol",
+      "effort": "low",
+      "concurrency": 4,
+      "crop_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "format_invalid": 0,
+      "truncated": 0,
+      "failures": {
+        "ConnectionError": 1,
+        "ReadTimeout": 6
+      },
+      "returned_efforts": {
+        "low": 17
+      },
+      "effort_mismatches": 0,
+      "exact_label_matches_to_local": 3,
+      "exact_label_match_is_accuracy": false,
+      "reasoning_tokens": 979,
+      "cached_tokens": 0
+    },
+    {
+      "profile": "gpt6sol_medium_c4",
+      "requests": 24,
+      "http_successes": 19,
+      "completed_valid": 19,
+      "unknown": 0,
+      "wall_seconds": 238.22463525899911,
+      "mean_request_seconds": 33.533498331083514,
+      "p50_request_seconds": 27.87007979700138,
+      "p95_request_seconds": 90.18438942899957,
+      "response_models": [
+        "gpt-6-sol"
+      ],
+      "usage_numeric_totals": {
+        "input_tokens": 5858,
+        "output_tokens": 3646,
+        "total_tokens": 9504
+      },
+      "endpoint": "https://api.huanling.icu/v1/responses",
+      "model": "gpt-6-sol",
+      "effort": "medium",
+      "concurrency": 4,
+      "crop_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "format_invalid": 0,
+      "truncated": 0,
+      "failures": {
+        "ConnectionError": 1,
+        "SSLError": 1,
+        "ReadTimeout": 3
+      },
+      "returned_efforts": {
+        "medium": 19
+      },
+      "effort_mismatches": 0,
+      "exact_label_matches_to_local": 4,
+      "exact_label_match_is_accuracy": false,
+      "reasoning_tokens": 3508,
+      "cached_tokens": 1599
+    },
+    {
+      "profile": "gpt6sol_high_c4",
+      "requests": 24,
+      "http_successes": 23,
+      "completed_valid": 23,
+      "unknown": 2,
+      "wall_seconds": 179.5922736199991,
+      "mean_request_seconds": 25.322029823416567,
+      "p50_request_seconds": 20.460694415000034,
+      "p95_request_seconds": 63.70715306800048,
+      "response_models": [
+        "gpt-6-sol"
+      ],
+      "usage_numeric_totals": {
+        "input_tokens": 7730,
+        "output_tokens": 7466,
+        "total_tokens": 15196
+      },
+      "endpoint": "https://api.huanling.icu/v1/responses",
+      "model": "gpt-6-sol",
+      "effort": "high",
+      "concurrency": 4,
+      "crop_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "format_invalid": 0,
+      "truncated": 0,
+      "failures": {
+        "ReadTimeout": 1
+      },
+      "returned_efforts": {
+        "high": 23
+      },
+      "effort_mismatches": 0,
+      "exact_label_matches_to_local": 8,
+      "exact_label_match_is_accuracy": false,
+      "reasoning_tokens": 7295,
+      "cached_tokens": 0
+    },
+    {
+      "profile": "gpt6sol_xhigh_c4",
+      "requests": 24,
+      "http_successes": 19,
+      "completed_valid": 19,
+      "unknown": 2,
+      "wall_seconds": 157.60554847299863,
+      "mean_request_seconds": 24.63886852345854,
+      "p50_request_seconds": 22.845169690999683,
+      "p95_request_seconds": 38.588288524000745,
+      "response_models": [
+        "gpt-6-sol"
+      ],
+      "usage_numeric_totals": {
+        "input_tokens": 5676,
+        "output_tokens": 10129,
+        "total_tokens": 15805
+      },
+      "endpoint": "https://api.huanling.icu/v1/responses",
+      "model": "gpt-6-sol",
+      "effort": "xhigh",
+      "concurrency": 4,
+      "crop_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "format_invalid": 0,
+      "truncated": 0,
+      "failures": {
+        "SSLError": 2,
+        "ConnectionError": 3
+      },
+      "returned_efforts": {
+        "xhigh": 19
+      },
+      "effort_mismatches": 0,
+      "exact_label_matches_to_local": 4,
+      "exact_label_match_is_accuracy": false,
+      "reasoning_tokens": 9983,
+      "cached_tokens": 0
+    },
+    {
+      "profile": "gpt6sol_max_c4",
+      "requests": 24,
+      "http_successes": 22,
+      "completed_valid": 22,
+      "unknown": 1,
+      "wall_seconds": 190.97307442700003,
+      "mean_request_seconds": 29.818121937750146,
+      "p50_request_seconds": 27.64300154549983,
+      "p95_request_seconds": 60.524497882001015,
+      "response_models": [
+        "gpt-6-sol"
+      ],
+      "usage_numeric_totals": {
+        "input_tokens": 6587,
+        "output_tokens": 25423,
+        "total_tokens": 32010
+      },
+      "endpoint": "https://api.huanling.icu/v1/responses",
+      "model": "gpt-6-sol",
+      "effort": "max",
+      "concurrency": 4,
+      "crop_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "format_invalid": 0,
+      "truncated": 0,
+      "failures": {
+        "ConnectionError": 2
+      },
+      "returned_efforts": {
+        "max": 22
+      },
+      "effort_mismatches": 0,
+      "exact_label_matches_to_local": 6,
+      "exact_label_match_is_accuracy": false,
+      "reasoning_tokens": 25255,
+      "cached_tokens": 0
+    },
+    {
+      "profile": "deepseek_flash_none_c4",
+      "requests": 24,
+      "http_successes": 24,
+      "completed_valid": 24,
+      "unknown": 0,
+      "wall_seconds": 6.604396855998857,
+      "mean_request_seconds": 0.993915969916543,
+      "p50_request_seconds": 1.0111626520001664,
+      "p95_request_seconds": 1.4418470059990796,
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "usage_numeric_totals": {
+        "prompt_tokens": 8108,
+        "completion_tokens": 59,
+        "total_tokens": 8167,
+        "prompt_cache_hit_tokens": 4476,
+        "prompt_cache_miss_tokens": 3632
+      },
+      "endpoint": "https://api.deepseek.com/chat/completions",
+      "model": "deepseek-flash",
+      "effort": "none",
+      "concurrency": 4,
+      "crop_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "format_invalid": 0,
+      "truncated": 0,
+      "failures": {},
+      "returned_efforts": {
+        "not returned": 24
+      },
+      "effort_mismatches": 0,
+      "exact_label_matches_to_local": 2,
+      "exact_label_match_is_accuracy": false,
+      "reasoning_tokens": null,
+      "cached_tokens": 4476
+    },
+    {
+      "profile": "deepseek_flash_high_c4",
+      "requests": 24,
+      "http_successes": 24,
+      "completed_valid": 23,
+      "unknown": 2,
+      "wall_seconds": 23.285964982000223,
+      "mean_request_seconds": 3.2056859575002363,
+      "p50_request_seconds": 1.8764195955000105,
+      "p95_request_seconds": 7.919055526999728,
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "usage_numeric_totals": {
+        "prompt_tokens": 8732,
+        "completion_tokens": 11043,
+        "total_tokens": 19775,
+        "prompt_cache_hit_tokens": 4480,
+        "prompt_cache_miss_tokens": 4252
+      },
+      "endpoint": "https://api.deepseek.com/chat/completions",
+      "model": "deepseek-flash",
+      "effort": "high",
+      "concurrency": 4,
+      "crop_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "format_invalid": 1,
+      "truncated": 0,
+      "failures": {},
+      "returned_efforts": {
+        "not returned": 24
+      },
+      "effort_mismatches": 0,
+      "exact_label_matches_to_local": 8,
+      "exact_label_match_is_accuracy": false,
+      "reasoning_tokens": 10893,
+      "cached_tokens": 4480
+    }
+  ],
+  "crop_selection": "uniform ordered indices per source; chosen before API responses",
+  "crops": [
+    {
+      "id": 0,
+      "scene": "scene0011_00",
+      "sha256": "c08976735f931b16af00dc68840d92666bf9c2f51562d3e5ed8b371410edee45",
+      "frame_id": 1127,
+      "mask_id": 2
+    },
+    {
+      "id": 1,
+      "scene": "scene0011_00",
+      "sha256": "473bf166593903dacd53727ad2cd4f5eaa08070d398da37c0e136d35e1e53fd4",
+      "frame_id": 1152,
+      "mask_id": 2
+    },
+    {
+      "id": 2,
+      "scene": "scene0011_00",
+      "sha256": "257c005c7110a54471c45ea053075a2ca874a524733f6b034e57d4226d7853a8",
+      "frame_id": 1202,
+      "mask_id": 1
+    },
+    {
+      "id": 3,
+      "scene": "scene0011_00",
+      "sha256": "286e890874793e5901af05c3be882aca8cfdc0a9c68e05c7673486b6f4462a8b",
+      "frame_id": 1246,
+      "mask_id": 1
+    },
+    {
+      "id": 4,
+      "scene": "scene0030_00",
+      "sha256": "69258c8017ae2045840219af5f10efbc02d663ed59579511b5ded83503120c12",
+      "frame_id": 1189,
+      "mask_id": 6
+    },
+    {
+      "id": 5,
+      "scene": "scene0030_00",
+      "sha256": "bf170b4239b6adad4ef748ca4dd84f9488d98a210e1ddb0146228bded55d6020",
+      "frame_id": 1224,
+      "mask_id": 14
+    },
+    {
+      "id": 6,
+      "scene": "scene0030_00",
+      "sha256": "9077264deb4558c9efb035ca7b1f2c0fa383f9c415afbbc66c15ace465549b56",
+      "frame_id": 1269,
+      "mask_id": 4
+    },
+    {
+      "id": 7,
+      "scene": "scene0030_00",
+      "sha256": "837b4e1635060841703457765c58bdae9ff76cf2a060e803690662636e2826f1",
+      "frame_id": 1308,
+      "mask_id": 10
+    },
+    {
+      "id": 8,
+      "scene": "scene0050_00",
+      "sha256": "f430ae2e13f27682046b166d423a4d7a5ace1c75ed76c68a94b804a00d67140d",
+      "frame_id": 2266,
+      "mask_id": 2
+    },
+    {
+      "id": 9,
+      "scene": "scene0050_00",
+      "sha256": "a5de1b7bfc6a92390c56a1c530585e5195ebd32600eb82268f5f8a93f8648c5a",
+      "frame_id": 2321,
+      "mask_id": 4
+    },
+    {
+      "id": 10,
+      "scene": "scene0050_00",
+      "sha256": "d9f5e8e011bab735e997d857d596f8b407f941052cb0fba09f74e5f273a83227",
+      "frame_id": 2356,
+      "mask_id": 2
+    },
+    {
+      "id": 11,
+      "scene": "scene0050_00",
+      "sha256": "178ce878d3064c9c147355e7d0098c94746c98787c0e643bb8f8b36b8b5a2ea6",
+      "frame_id": 2385,
+      "mask_id": 4
+    },
+    {
+      "id": 12,
+      "scene": "orbbec352",
+      "sha256": "8e00eaed697b2f709f689d6b12e3a8b608bf5a16423b9c67bf5a66003a6c6f7a",
+      "frame_id": 0,
+      "mask_id": 4
+    },
+    {
+      "id": 13,
+      "scene": "orbbec352",
+      "sha256": "b7496aa04b9eb1f3baddbd01aa00a895a9ff5f63c50369d2850cea55909efd86",
+      "frame_id": 70,
+      "mask_id": 5
+    },
+    {
+      "id": 14,
+      "scene": "orbbec352",
+      "sha256": "05583f69f66641cb9bc4a2960647df4891a900d4ca5eb0d689bca832067dddd9",
+      "frame_id": 140,
+      "mask_id": 9
+    },
+    {
+      "id": 15,
+      "scene": "orbbec352",
+      "sha256": "4592cd534cf5c309a10ba729171d0b38432a7727f385f0bd4d448529b0c8a2ad",
+      "frame_id": 215,
+      "mask_id": 7
+    },
+    {
+      "id": 16,
+      "scene": "orbbec352",
+      "sha256": "276db38f983aef40ffd505d552089dee8d1a7352dcc6ebae979c949ed9a4f194",
+      "frame_id": 285,
+      "mask_id": 24
+    },
+    {
+      "id": 17,
+      "scene": "orbbec352",
+      "sha256": "b2e1bd76d16dd484833c7042265c48ca6c2a0e30fdabb27652971d04082708c2",
+      "frame_id": 351,
+      "mask_id": 19
+    },
+    {
+      "id": 18,
+      "scene": "orbbec1005",
+      "sha256": "9ae6a4ae75ecad44eeab5e43b1df1a965471fe8822c8a91202749681698122ba",
+      "frame_id": 0,
+      "mask_id": 6
+    },
+    {
+      "id": 19,
+      "scene": "orbbec1005",
+      "sha256": "8d3965649bd6e10d3ff268883e1781fcd0ff30dff8b3b9d937ea75f797a295e9",
+      "frame_id": 155,
+      "mask_id": 36
+    },
+    {
+      "id": 20,
+      "scene": "orbbec1005",
+      "sha256": "965cb010bdd36141a26a4fa739106c560cbb42a64af2097ccb4dc1ab39809293",
+      "frame_id": 315,
+      "mask_id": 7
+    },
+    {
+      "id": 21,
+      "scene": "orbbec1005",
+      "sha256": "416d7db6d6ce1b5e5153a8d8e43ccc8ff1960e28f01c35c6ea4de9bcaa3f42e3",
+      "frame_id": 555,
+      "mask_id": 6
+    },
+    {
+      "id": 22,
+      "scene": "orbbec1005",
+      "sha256": "1bb4683b3722d95a7f180d3deab440ca2f9a8469de6f0297dad2bff659455c06",
+      "frame_id": 835,
+      "mask_id": 7
+    },
+    {
+      "id": 23,
+      "scene": "orbbec1005",
+      "sha256": "5c3b50071804f69caa949931c7045580b3462fc71664851ef482969f144e844d",
+      "frame_id": 1004,
+      "mask_id": 36
+    }
+  ],
+  "source_sha256": {
+    "deepseek-serial/PLAN.json": "9058ca2db9a507d498ca8a3fa8e44c43a1c94c854b3d9bcfe845d52b979016c9",
+    "deepseek-serial/RECORDS.json": "604878c799e42e66d6ae54c20e2cee772f578486f58786fea8d6e38c2caa63d1",
+    "deepseek-serial/SUMMARY.json": "42120fffbba86ebfe1adc301e37398d55313019aaaec18a20e273f4a1dc44e20",
+    "deepseek-serial/COMPLETE.json": "8c6f8adcc5088762b747853e41b65b7e221189c0dad04379f2e3b1e28857c857",
+    "concurrent4/PLAN.json": "c54946775ae221b6a574fa9383675e84c9e73e7e052db26bc08ea2e0627160cf",
+    "concurrent4/RECORDS.json": "5ae825124bd8f357093cf01eba4dcaa6921dc1f936c061ad8017bd6f0476a46c",
+    "concurrent4/SUMMARY.json": "eaee9f0f047dcec0fd9ec9f470594bc4c6235c3af13880370db1874dfc666dd3",
+    "concurrent4/COMPLETE.json": "8c6f8adcc5088762b747853e41b65b7e221189c0dad04379f2e3b1e28857c857",
+    "plan/PLAN.json": "9018453243e20158b5b45ec216eb283046e36619e7d8f33c56c9fa78b724ad39",
+    "MODELS.json": "8ac8b938c04fee163f0c27c988292c501c4573e3a4e1eb485fd40b6bfe1b35eb",
+    "smoke/RECORDS.json": "7d573ec0bffc603cfa56bc9a9bb1f85d1d3e22b3b8e6a885d9512e1351f3fa09",
+    "local24/RECORDS.json": "b3050d6b3f93f8ed743133f524b3899c4fe84192c617de5f37ca3925f76836b4",
+    "local24/PROFILE_SUMMARY.json": "97ad76dc0cb8dc6a19c73458a93ccb6199cd8ee4eaee89e7814261dbccdb6740",
+    "local24/MODEL.json": "a413deefbf82eced2549ab864dc6e48245e3b2e89a0a8daf5c2ae0ac426dab6e",
+    "VISUAL_NOTES.json": "3ce8906639894e8b127f1acd8cbb35c91e53ee0b3ec5adb75ece6f1aae0ae6dc"
+  },
+  "instrumentation_sha256": {
+    "/Users/wu/Desktop/wu/毕设/ReVeMap性能优化_20260924/tools/summarize_cloud_vlm.py": "fbea5e89f64dce814af4a75b01402e9800a0ab9bdf4c360b9d09596a512c094a",
+    "/Users/wu/Desktop/wu/毕设/ReVeMap性能优化_20260924/tools/benchmark_cloud_vlm.py": "a919b9d42e1d11f467ee95ee290982e86c19c99379fd4e8142919e289b62d32d"
+  },
+  "api_memory_snapshot": {
+    "scope": "external VmHWM snapshot during the API benchmark, not whole-system memory",
+    "processes": [
+      {
+        "pid": 16579,
+        "VmHWM": "64592 kB",
+        "VmRSS": "49568 kB",
+        "Threads": "5"
+      }
+    ]
+  },
+  "baseline_model": {
+    "repo": "Qwen/Qwen3-VL-2B-Instruct",
+    "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "receipt_sha256": "f8e0825bd79e6e154cfe43f1bd61adfe077cdce197bacff79019a9c5814b6041",
+    "verified_files": 11,
+    "id": "qwen3vl_2b_nf4",
+    "kind": "native",
+    "quant": "nf4",
+    "load_seconds": 1.3575159550000535,
+    "torch": "2.7.1+cu128",
+    "transformers": "5.17.0",
+    "model_class": "Qwen3VLForConditionalGeneration",
+    "processor_class": "Qwen3VLProcessor",
+    "loading_info": {
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "mismatched_keys": [],
+      "error_msgs": []
+    },
+    "parameter_devices": [
+      "cuda:0"
+    ],
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "static_images_only": true,
+    "requested_thinking_disabled": true,
+    "thinking_disabled_verified": false
+  },
+  "repeat_comparisons": [
+    {
+      "effort": "none",
+      "scope": "two runs differ in concurrency and time; no causal attribution to concurrency",
+      "label_changes": [
+        {
+          "crop_id": 2,
+          "serial": "unknown",
+          "c4": "person"
+        },
+        {
+          "crop_id": 11,
+          "serial": "wooden drawer",
+          "c4": "wooden dresser"
+        },
+        {
+          "crop_id": 17,
+          "serial": "printer",
+          "c4": "projector"
+        },
+        {
+          "crop_id": 18,
+          "serial": "tripod",
+          "c4": "light stand"
+        }
+      ]
+    },
+    {
+      "effort": "high",
+      "scope": "two runs differ in concurrency and time; no causal attribution to concurrency",
+      "label_changes": [
+        {
+          "crop_id": 5,
+          "serial": "chair",
+          "c4": "table"
+        },
+        {
+          "crop_id": 6,
+          "serial": "armchair",
+          "c4": "chair"
+        },
+        {
+          "crop_id": 10,
+          "serial": "sofa",
+          "c4": "armchair"
+        },
+        {
+          "crop_id": 12,
+          "serial": "green screen",
+          "c4": "tripod"
+        },
+        {
+          "crop_id": 17,
+          "serial": "unknown",
+          "c4": "printer"
+        },
+        {
+          "crop_id": 22,
+          "serial": "unknown",
+          "c4": "box"
+        }
+      ]
+    }
+  ]
+}
