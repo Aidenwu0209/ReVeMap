@@ -1,0 +1,235 @@
+{
+  "schema": "revemap.performance_deployment.v1",
+  "release_commit": "0a7a4457b712abdd0936fa17d7d3fb5582a710d7",
+  "merge_commit": "3683f6b902a1891da5a85d438f37b5461910a63f",
+  "pr": "https://github.com/Aidenwu0209/ReVeMap/pull/9",
+  "baseline_processing_seconds": 739.5425536632538,
+  "verification": {
+    "baseline": "/home/aidenwu/Documents/ReVeMap-wireless-scans/scan_20260924_170000_b22854/attempts/attempt_20260924_170247_211f3c/pipeline",
+    "candidate": "/home/aidenwu/Documents/ReVeMap-wireless-scans/scan_20260924_170000_b22854/attempts/attempt_20260924_173231_8e0ebe/pipeline",
+    "processing_seconds": 709.4109270572662,
+    "checks": {
+      "original_capture_and_attempt_unchanged": true,
+      "run_source_matches_release": true,
+      "new_cache_source_recorded": true,
+      "fresh_mapping_and_sam3": true,
+      "text_cache_used": true,
+      "mmap_and_assign_used": true,
+      "input_receipts_match": true,
+      "same_sam3_evidence": true,
+      "same_vlm_responses": true,
+      "complete_valid_trajectory": true,
+      "final_artifact_hashes": true,
+      "finite_final_geometry": true
+    },
+    "protected_files": {
+      "count": 5733,
+      "changed": []
+    },
+    "source_mismatches": [],
+    "baseline_complete": {
+      "status": "completed",
+      "schedule": "serial",
+      "vlm": "qwen3vl_2b_nf4",
+      "raw_frames": 961,
+      "seconds": 667.1525213109999,
+      "raw_fps": 1.4404502258517586,
+      "effective_replay_frames_per_second": null,
+      "stride": 5,
+      "view_policy": "stride",
+      "view_budget": 193,
+      "selected_frames": 193,
+      "view_plan": "/home/aidenwu/Documents/ReVeMap-wireless-scans/scan_20260924_170000_b22854/attempts/attempt_20260924_170247_211f3c/pipeline/view_selection/VIEW_PLAN.json",
+      "view_plan_sha256": "036caa056e250b4418b2f60e60d348dfcb785a1506630d2bae2ec213adf3eb00",
+      "diversity_fallback_frames": 0,
+      "scope": "fresh raw RGB-D map + SAM3 masks/fusion + optional VLM naming metadata",
+      "stage_reuse": {
+        "mapping": false,
+        "sam3": false
+      },
+      "semantic_confidence_policy": "legacy",
+      "semantic_conflict_policy": "consensus",
+      "includes_offline_P2_enhancement": false,
+      "VLM_changes_semantic_id": false,
+      "timing": "all worker startup/load/inference/fusion/export; excludes pre/post input hashing and final inventory sealing; includes checkpoint verification/copy when enabled",
+      "GT_used": false,
+      "local_models_resident_together": false,
+      "map": "/home/aidenwu/Documents/ReVeMap-wireless-scans/scan_20260924_170000_b22854/attempts/attempt_20260924_170247_211f3c/pipeline/fused/export/map_labeled.ply",
+      "artifacts": "/home/aidenwu/Documents/ReVeMap-wireless-scans/scan_20260924_170000_b22854/attempts/attempt_20260924_170247_211f3c/pipeline/fused/ARTIFACTS.json",
+      "names": "/home/aidenwu/Documents/ReVeMap-wireless-scans/scan_20260924_170000_b22854/attempts/attempt_20260924_170247_211f3c/pipeline/fused/instance_names.json"
+    },
+    "candidate_complete": {
+      "status": "completed",
+      "schedule": "serial",
+      "vlm": "qwen3vl_2b_nf4",
+      "raw_frames": 961,
+      "seconds": 638.6179331650001,
+      "raw_fps": 1.5048121107988146,
+      "effective_replay_frames_per_second": null,
+      "stride": 5,
+      "view_policy": "stride",
+      "view_budget": 193,
+      "selected_frames": 193,
+      "view_plan": "/home/aidenwu/Documents/ReVeMap-wireless-scans/scan_20260924_170000_b22854/attempts/attempt_20260924_173231_8e0ebe/pipeline/view_selection/VIEW_PLAN.json",
+      "view_plan_sha256": "65494bb3653da8a33be88965c947983f137ca0a60b5e1700794f937ad86270e4",
+      "diversity_fallback_frames": 0,
+      "scope": "fresh raw RGB-D map + SAM3 masks/fusion + optional VLM naming metadata",
+      "stage_reuse": {
+        "mapping": false,
+        "sam3": false
+      },
+      "semantic_confidence_policy": "legacy",
+      "semantic_conflict_policy": "consensus",
+      "includes_offline_P2_enhancement": false,
+      "VLM_changes_semantic_id": false,
+      "timing": "all worker startup/load/inference/fusion/export; excludes pre/post input hashing and final inventory sealing; includes checkpoint verification/copy when enabled",
+      "GT_used": false,
+      "local_models_resident_together": false,
+      "map": "/home/aidenwu/Documents/ReVeMap-wireless-scans/scan_20260924_170000_b22854/attempts/attempt_20260924_173231_8e0ebe/pipeline/fused/export/map_labeled.ply",
+      "artifacts": "/home/aidenwu/Documents/ReVeMap-wireless-scans/scan_20260924_170000_b22854/attempts/attempt_20260924_173231_8e0ebe/pipeline/fused/ARTIFACTS.json",
+      "names": "/home/aidenwu/Documents/ReVeMap-wireless-scans/scan_20260924_170000_b22854/attempts/attempt_20260924_173231_8e0ebe/pipeline/fused/instance_names.json"
+    },
+    "sam3": {
+      "status": "completed",
+      "selected_frames": 193,
+      "raw_frames": 961,
+      "stride": 5,
+      "view_policy": "stride",
+      "view_budget": 193,
+      "view_plan_sha256": "65494bb3653da8a33be88965c947983f137ca0a60b5e1700794f937ad86270e4",
+      "seconds_after_load": 335.14813401599895,
+      "GT_used": false,
+      "text_feature_cache": {
+        "hits": 5952,
+        "misses": 31,
+        "entries": 31,
+        "bytes": 4572128
+      }
+    },
+    "sam3_model": {
+      "checkpoint_sha256": "9999e2341ceef5e136daa386eecb55cb414446a00ac2b55eb2dfd2f7c3cf8c9e",
+      "checkpoint_bytes": 3450062241,
+      "checkpoint_mmap": true,
+      "checkpoint_assign": true,
+      "missing_keys": [],
+      "unexpected_keys": [
+        "backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.weight",
+        "backbone.vision_backbone.sam2_convs.0.dconv_2x2_0.bias",
+        "backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.weight",
+        "backbone.vision_backbone.sam2_convs.0.dconv_2x2_1.bias",
+        "backbone.vision_backbone.sam2_convs.0.conv_1x1.weight",
+        "backbone.vision_backbone.sam2_convs.0.conv_1x1.bias",
+        "backbone.vision_backbone.sam2_convs.0.conv_3x3.weight",
+        "backbone.vision_backbone.sam2_convs.0.conv_3x3.bias",
+        "backbone.vision_backbone.sam2_convs.1.dconv_2x2.weight",
+        "backbone.vision_backbone.sam2_convs.1.dconv_2x2.bias",
+        "backbone.vision_backbone.sam2_convs.1.conv_1x1.weight",
+        "backbone.vision_backbone.sam2_convs.1.conv_1x1.bias",
+        "backbone.vision_backbone.sam2_convs.1.conv_3x3.weight",
+        "backbone.vision_backbone.sam2_convs.1.conv_3x3.bias",
+        "backbone.vision_backbone.sam2_convs.2.conv_1x1.weight",
+        "backbone.vision_backbone.sam2_convs.2.conv_1x1.bias",
+        "backbone.vision_backbone.sam2_convs.2.conv_3x3.weight",
+        "backbone.vision_backbone.sam2_convs.2.conv_3x3.bias",
+        "backbone.vision_backbone.sam2_convs.3.conv_1x1.weight",
+        "backbone.vision_backbone.sam2_convs.3.conv_1x1.bias",
+        "backbone.vision_backbone.sam2_convs.3.conv_3x3.weight",
+        "backbone.vision_backbone.sam2_convs.3.conv_3x3.bias"
+      ],
+      "loaded_image_tensors": 1156,
+      "torch": "2.7.1+cu128",
+      "cuda": "12.8",
+      "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "random_weight_fallback": false,
+      "load_from_HF": false,
+      "precision": "bfloat16 autocast",
+      "seed": 42
+    },
+    "sam3_parity": {
+      "scope": "exact saved masks, semantic, instance, confidence, input digests and crop evidence",
+      "left": "/home/aidenwu/Documents/ReVeMap-wireless-scans/scan_20260924_170000_b22854/attempts/attempt_20260924_170247_211f3c/pipeline/semantic",
+      "right": "/home/aidenwu/Documents/ReVeMap-wireless-scans/scan_20260924_170000_b22854/attempts/attempt_20260924_173231_8e0ebe/pipeline/semantic",
+      "frames": 193,
+      "arrays_checked": 965,
+      "crops_checked": 1250,
+      "errors": [],
+      "passed": true
+    },
+    "vlm_parity": {
+      "baseline_crops": 1250,
+      "candidate_crops": 1250,
+      "changed": []
+    },
+    "trajectory": {
+      "frames": 961,
+      "raw_frames": 961,
+      "valid": 961
+    },
+    "artifact_mismatches": [],
+    "final_points": 410605,
+    "exact_output_comparison": {
+      "mapping/refill/final_raw_poses.npy": true,
+      "fused/map_labels.npz": true,
+      "fused/export/map_labeled.ply": true,
+      "refinement/refined/capture/map_labels.npz": true,
+      "refinement/refined/capture/semantic_labeled.ply": true
+    },
+    "baseline_stage_seconds": {
+      "mapping": 176.7706882800012,
+      "view_selection": 0.2012718340010906,
+      "sam3": 369.2665085160006,
+      "vlm": 94.8970577709988,
+      "fusion": 17.61416449799981,
+      "backfill": 2.2592041210009484
+    },
+    "candidate_stage_seconds": {
+      "mapping": 175.38859610200052,
+      "view_selection": 0.1510628859996359,
+      "sam3": 343.70306705500116,
+      "vlm": 94.21969639599956,
+      "fusion": 17.0619027190005,
+      "backfill": 2.2087426250000135
+    },
+    "passed": true
+  },
+  "live_readback": {
+    "passed": true,
+    "services": [
+      {
+        "port": 8765,
+        "attempt": "/home/aidenwu/Documents/ReVeMap-wireless-scans/scan_20260924_170000_b22854/attempts/attempt_20260924_173231_8e0ebe",
+        "objects": 69,
+        "query_count": 69,
+        "relations": 482,
+        "map_sha256": "ada780830378a4af9af6279c62ae1f776fbf9504f029bf060f7c68ecf2cc5c05",
+        "surface_available": true,
+        "graph_export_ok": true
+      },
+      {
+        "port": 8766,
+        "attempt": "/home/aidenwu/Documents/ReVeMap-wireless-scans/scan_20260924_170000_b22854/attempts/attempt_20260924_173231_8e0ebe",
+        "objects": 69,
+        "query_count": 69,
+        "relations": 482,
+        "map_sha256": "ada780830378a4af9af6279c62ae1f776fbf9504f029bf060f7c68ecf2cc5c05",
+        "surface_available": true,
+        "graph_export_ok": true
+      }
+    ]
+  },
+  "validation": {
+    "local_pytest_passed": 429,
+    "local_skipped": 3,
+    "local_subtests_passed": 24,
+    "remote_torch_pytest_passed": 48,
+    "js_tests_passed": 5,
+    "github_merge_ci": [
+      {
+        "conclusion": "success",
+        "databaseId": 35981822183,
+        "headSha": "3683f6b902a1891da5a85d438f37b5461910a63f",
+        "status": "completed"
+      }
+    ]
+  }
+}
