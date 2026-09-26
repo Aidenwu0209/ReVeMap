@@ -1,0 +1,275 @@
+{
+  "method": "sparse-view consensus with component cannot-link veto",
+  "config": {
+    "min_mask_points": 30,
+    "min_output_points": 50,
+    "min_group_frames": 2,
+    "visibility_fraction": 0.3,
+    "containment_fraction": 0.8,
+    "split_piece_fraction": 0.2,
+    "split_frame_fraction": 0.2,
+    "min_split_frames": 2,
+    "min_support_frames": 3,
+    "consensus_fraction": 0.9,
+    "cannot_link_frames": 2,
+    "min_point_views": 1,
+    "ownership_share": 0.65,
+    "ownership_margin": 0.15,
+    "min_object_score": 0.8,
+    "object_score_mode": "max_point"
+  },
+  "frame_count": 25,
+  "mask_nodes": 181,
+  "semantic_labels_modified": false,
+  "gt_consumed": false,
+  "unknown_observations": "abstain; not counted as agreement or separation",
+  "point_support": "only cached depth-consistent mask interiors; no spatial expansion",
+  "candidate_edges": 1061,
+  "accepted_merges": 143,
+  "component_contradiction_vetoes": 10,
+  "filtered_masks": [
+    {
+      "frame_id": 305,
+      "mask_id": 9,
+      "split_frames": 6,
+      "evaluable_frames": 10
+    },
+    {
+      "frame_id": 305,
+      "mask_id": 12,
+      "split_frames": 5,
+      "evaluable_frames": 8
+    },
+    {
+      "frame_id": 310,
+      "mask_id": 4,
+      "split_frames": 5,
+      "evaluable_frames": 8
+    },
+    {
+      "frame_id": 315,
+      "mask_id": 4,
+      "split_frames": 5,
+      "evaluable_frames": 8
+    },
+    {
+      "frame_id": 320,
+      "mask_id": 5,
+      "split_frames": 5,
+      "evaluable_frames": 8
+    },
+    {
+      "frame_id": 350,
+      "mask_id": 6,
+      "split_frames": 4,
+      "evaluable_frames": 14
+    },
+    {
+      "frame_id": 350,
+      "mask_id": 7,
+      "split_frames": 3,
+      "evaluable_frames": 13
+    },
+    {
+      "frame_id": 355,
+      "mask_id": 9,
+      "split_frames": 4,
+      "evaluable_frames": 7
+    },
+    {
+      "frame_id": 360,
+      "mask_id": 9,
+      "split_frames": 4,
+      "evaluable_frames": 5
+    },
+    {
+      "frame_id": 370,
+      "mask_id": 7,
+      "split_frames": 2,
+      "evaluable_frames": 9
+    },
+    {
+      "frame_id": 380,
+      "mask_id": 7,
+      "split_frames": 3,
+      "evaluable_frames": 13
+    },
+    {
+      "frame_id": 390,
+      "mask_id": 10,
+      "split_frames": 7,
+      "evaluable_frames": 13
+    },
+    {
+      "frame_id": 390,
+      "mask_id": 11,
+      "split_frames": 2,
+      "evaluable_frames": 5
+    },
+    {
+      "frame_id": 390,
+      "mask_id": 13,
+      "split_frames": 2,
+      "evaluable_frames": 9
+    },
+    {
+      "frame_id": 395,
+      "mask_id": 9,
+      "split_frames": 5,
+      "evaluable_frames": 5
+    },
+    {
+      "frame_id": 410,
+      "mask_id": 9,
+      "split_frames": 3,
+      "evaluable_frames": 7
+    }
+  ],
+  "groups_before_output": 22,
+  "eligible_groups": 6,
+  "group_rejections": {
+    "insufficient_frames": 3,
+    "low_score": 13
+  },
+  "retained_instances": 6,
+  "objects": [
+    {
+      "instance_id": 1,
+      "semantic_id": 10,
+      "point_count": 3006,
+      "mask_nodes": 14,
+      "supporting_frames": [
+        305,
+        310,
+        315,
+        320,
+        325,
+        330,
+        335,
+        340,
+        345,
+        350,
+        355,
+        360,
+        420,
+        425
+      ]
+    },
+    {
+      "instance_id": 2,
+      "semantic_id": 15,
+      "point_count": 431,
+      "mask_nodes": 25,
+      "supporting_frames": [
+        305,
+        310,
+        315,
+        320,
+        325,
+        330,
+        335,
+        340,
+        345,
+        350,
+        355,
+        360,
+        365,
+        370,
+        375,
+        380,
+        385,
+        390,
+        395,
+        400,
+        405,
+        410,
+        415,
+        420,
+        425
+      ]
+    },
+    {
+      "instance_id": 3,
+      "semantic_id": 19,
+      "point_count": 3270,
+      "mask_nodes": 26,
+      "supporting_frames": [
+        305,
+        310,
+        315,
+        320,
+        325,
+        330,
+        335,
+        340,
+        345,
+        350,
+        355,
+        360,
+        365,
+        370,
+        375,
+        380,
+        385,
+        390,
+        395,
+        400,
+        405,
+        410,
+        415,
+        420,
+        425
+      ]
+    },
+    {
+      "instance_id": 4,
+      "semantic_id": 9,
+      "point_count": 2862,
+      "mask_nodes": 12,
+      "supporting_frames": [
+        335,
+        340,
+        345,
+        355,
+        360,
+        370,
+        375,
+        380,
+        385,
+        390,
+        395,
+        400
+      ]
+    },
+    {
+      "instance_id": 5,
+      "semantic_id": 9,
+      "point_count": 747,
+      "mask_nodes": 3,
+      "supporting_frames": [
+        390,
+        395,
+        400
+      ]
+    },
+    {
+      "instance_id": 6,
+      "semantic_id": 9,
+      "point_count": 2820,
+      "mask_nodes": 5,
+      "supporting_frames": [
+        405,
+        410,
+        415,
+        420,
+        425
+      ]
+    }
+  ],
+  "ambiguous_ownership_points": 532,
+  "points_in_eligible_groups": 13705,
+  "points_below_min_views": 0,
+  "owned_points_without_semantic": 3,
+  "owned_known_points_in_small_objects": 34,
+  "instance_coverage": 0.1477964423542119
+}

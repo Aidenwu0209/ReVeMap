@@ -1,0 +1,170 @@
+[
+  {
+    "scene": "scene0030_00",
+    "arm": "B",
+    "same_final_names": true,
+    "same_base_crop_labels": true,
+    "same_context_crop_labels": true,
+    "same_review_decisions": true
+  },
+  {
+    "scene": "scene0030_00",
+    "arm": "D",
+    "same_final_names": true,
+    "same_base_crop_labels": true,
+    "same_context_crop_labels": true,
+    "same_review_decisions": true
+  },
+  {
+    "scene": "scene0030_00",
+    "arm": "E",
+    "same_final_names": true
+  },
+  {
+    "scene": "scene0050_00",
+    "arm": "B",
+    "same_final_names": true,
+    "same_base_crop_labels": true,
+    "same_context_crop_labels": true,
+    "same_review_decisions": true
+  },
+  {
+    "scene": "scene0050_00",
+    "arm": "D",
+    "same_final_names": true,
+    "same_base_crop_labels": true,
+    "same_context_crop_labels": true,
+    "same_review_decisions": true
+  },
+  {
+    "scene": "scene0050_00",
+    "arm": "E",
+    "same_final_names": true
+  },
+  {
+    "scene": "scene0011_00",
+    "arm": "B",
+    "same_final_names": true,
+    "same_base_crop_labels": true,
+    "same_context_crop_labels": true,
+    "same_review_decisions": true
+  },
+  {
+    "scene": "scene0011_00",
+    "arm": "D",
+    "same_final_names": true,
+    "same_base_crop_labels": true,
+    "same_context_crop_labels": true,
+    "same_review_decisions": true
+  },
+  {
+    "scene": "scene0011_00",
+    "arm": "E",
+    "same_final_names": true
+  },
+  {
+    "scene": "scene0000_00",
+    "arm": "B",
+    "same_final_names": true,
+    "same_base_crop_labels": true,
+    "same_context_crop_labels": true,
+    "same_review_decisions": true
+  },
+  {
+    "scene": "scene0000_00",
+    "arm": "D",
+    "same_final_names": true,
+    "same_base_crop_labels": true,
+    "same_context_crop_labels": true,
+    "same_review_decisions": true
+  },
+  {
+    "scene": "scene0000_00",
+    "arm": "E",
+    "same_final_names": true
+  },
+  {
+    "scene": "scene0062_00",
+    "arm": "B",
+    "same_final_names": true,
+    "same_base_crop_labels": true,
+    "same_context_crop_labels": true,
+    "same_review_decisions": true
+  },
+  {
+    "scene": "scene0062_00",
+    "arm": "D",
+    "same_final_names": true,
+    "same_base_crop_labels": true,
+    "same_context_crop_labels": true,
+    "same_review_decisions": true
+  },
+  {
+    "scene": "scene0062_00",
+    "arm": "E",
+    "same_final_names": true
+  },
+  {
+    "scene": "scene0070_00",
+    "arm": "B",
+    "same_final_names": true,
+    "same_base_crop_labels": true,
+    "same_context_crop_labels": true,
+    "same_review_decisions": true
+  },
+  {
+    "scene": "scene0070_00",
+    "arm": "D",
+    "same_final_names": true,
+    "same_base_crop_labels": true,
+    "same_context_crop_labels": true,
+    "same_review_decisions": true
+  },
+  {
+    "scene": "scene0070_00",
+    "arm": "E",
+    "same_final_names": true
+  },
+  {
+    "scene": "scene0097_00",
+    "arm": "B",
+    "same_final_names": true,
+    "same_base_crop_labels": true,
+    "same_context_crop_labels": true,
+    "same_review_decisions": true
+  },
+  {
+    "scene": "scene0097_00",
+    "arm": "D",
+    "same_final_names": true,
+    "same_base_crop_labels": true,
+    "same_context_crop_labels": true,
+    "same_review_decisions": true
+  },
+  {
+    "scene": "scene0097_00",
+    "arm": "E",
+    "same_final_names": true
+  },
+  {
+    "scene": "scene0200_00",
+    "arm": "B",
+    "same_final_names": true,
+    "same_base_crop_labels": true,
+    "same_context_crop_labels": true,
+    "same_review_decisions": true
+  },
+  {
+    "scene": "scene0200_00",
+    "arm": "D",
+    "same_final_names": true,
+    "same_base_crop_labels": true,
+    "same_context_crop_labels": true,
+    "same_review_decisions": true
+  },
+  {
+    "scene": "scene0200_00",
+    "arm": "E",
+    "same_final_names": true
+  }
+]

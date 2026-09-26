@@ -1,0 +1,101 @@
+{
+  "status": "completed",
+  "model": "qwen3vl_2b_nf4",
+  "base_calls": 63,
+  "context_calls": 9,
+  "total_calls": 72,
+  "base_inference_seconds": 4.69290354199984,
+  "context_inference_seconds": 1.0215438169993831,
+  "context_stage_seconds": 1.5909330559998125,
+  "seconds_including_load": 11.466406288999679,
+  "groups": [
+    {
+      "object_id": 1,
+      "eligible_crops": 25,
+      "initial": [
+        "001308_0003",
+        "001279_0004",
+        "001209_0005"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "chair"
+    },
+    {
+      "object_id": 2,
+      "eligible_crops": 4,
+      "initial": [
+        "001189_0006",
+        "001199_0004",
+        "001194_0006"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "book"
+    },
+    {
+      "object_id": 3,
+      "eligible_crops": 11,
+      "initial": [
+        "001204_0007",
+        "001194_0008",
+        "001209_0008"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "door"
+    },
+    {
+      "object_id": 6,
+      "eligible_crops": 23,
+      "initial": [
+        "001308_0014",
+        "001284_0013",
+        "001294_0015"
+      ],
+      "fallback": true,
+      "calls": 23,
+      "name": "unknown"
+    },
+    {
+      "object_id": 7,
+      "eligible_crops": 25,
+      "initial": [
+        "001304_0012",
+        "001274_0015",
+        "001229_0017"
+      ],
+      "fallback": true,
+      "calls": 25,
+      "name": "bin"
+    },
+    {
+      "object_id": 8,
+      "eligible_crops": 5,
+      "initial": [
+        "001254_0001",
+        "001199_0002",
+        "001244_0001"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "bookshelf"
+    },
+    {
+      "object_id": 9,
+      "eligible_crops": 19,
+      "initial": [
+        "001224_0003",
+        "001284_0003",
+        "001254_0002"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "chair"
+    }
+  ],
+  "reviewed_objects": 3,
+  "peak_rss_mib": 5117.87109375,
+  "peak_reserved_mib": 1636.0,
+  "peak_allocated_mib": 1578.30517578125
+}

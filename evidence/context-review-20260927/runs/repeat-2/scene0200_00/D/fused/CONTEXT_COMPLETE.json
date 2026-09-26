@@ -1,0 +1,13 @@
+{
+  "status": "completed",
+  "base_backfill_receipt": "NAME_COMPLETE.json describes B backfill before review",
+  "final_named_objects": {
+    "D": 4,
+    "E": 4
+  },
+  "final_name_sha256": {
+    "D": "b82b8eaaa82c86ed1ed489e77c223497fcaee6eae06b401da22b674ef4a8d802",
+    "E": "6b58aab01b3930db08699fa88ff04bc5a7d390fac080dc613f3df61499dd6944"
+  },
+  "role": "derived completion audit; no prediction modifications"
+}

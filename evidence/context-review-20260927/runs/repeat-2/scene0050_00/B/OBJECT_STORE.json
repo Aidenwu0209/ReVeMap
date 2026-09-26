@@ -1,0 +1,1027 @@
+{
+  "identity": "0e3400b6e2d5e3adee6a8335f457eb4cdf8a5ba29a08271dbfe2225a5a047fe5",
+  "crops": [
+    {
+      "frame_id": 2266,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002266_0002.png",
+      "sha256": "b8377f5698573747e9e16a3c40f6e45e535c565972fa8a120451bdf4bd1bf859",
+      "bbox_rgb": [
+        0,
+        0,
+        640,
+        480
+      ],
+      "mask_pixels": 252398,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9984313725490196,
+        "visible_points": 2550,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 2546,
+            "share": 0.9984313725490196
+          },
+          {
+            "object_id": 1,
+            "points": 1,
+            "share": 0.000392156862745098
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.5099117501500792,
+        -0.5956592015989386,
+        -0.6206288122617241
+      ]
+    },
+    {
+      "frame_id": 2271,
+      "mask_id": 1,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002271_0001.png",
+      "sha256": "6425f54203351c22d353e4f9e455c3a0a65d3cd1258a51d284c0c293b09e40ba",
+      "bbox_rgb": [
+        0,
+        0,
+        640,
+        480
+      ],
+      "mask_pixels": 253431,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9987541528239202,
+        "visible_points": 2408,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 2405,
+            "share": 0.9987541528239202
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.458673052126871,
+        -0.5766699888544765,
+        -0.6760700815797122
+      ]
+    },
+    {
+      "frame_id": 2281,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002281_0002.png",
+      "sha256": "2d4722e085c3f2345cdddef0e5b3b88d4de45feadfb05c0e9e4acf79c2ce4dfe",
+      "bbox_rgb": [
+        0,
+        0,
+        640,
+        480
+      ],
+      "mask_pixels": 234594,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9990762124711317,
+        "visible_points": 2165,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 2163,
+            "share": 0.9990762124711317
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.38545221635591503,
+        -0.5410382519545714,
+        -0.7474651823518301
+      ]
+    },
+    {
+      "frame_id": 2286,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002286_0002.png",
+      "sha256": "90e06dac734377cb8ca44e097dea7ebc86e049a5826aa2bc3826bc3fb4f6c9d6",
+      "bbox_rgb": [
+        0,
+        0,
+        640,
+        480
+      ],
+      "mask_pixels": 222047,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9995114802149487,
+        "visible_points": 2047,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 2046,
+            "share": 0.9995114802149487
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.3571710180066774,
+        -0.528102374677827,
+        -0.7704133603175078
+      ]
+    },
+    {
+      "frame_id": 2291,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002291_0002.png",
+      "sha256": "0070a52bc8e6a5336be1ff3320d3389486e16c4f28b63237f128b4454374627c",
+      "bbox_rgb": [
+        0,
+        0,
+        640,
+        480
+      ],
+      "mask_pixels": 217628,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9989954796584631,
+        "visible_points": 1991,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 1989,
+            "share": 0.9989954796584631
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.32984763717459803,
+        -0.510862257112816,
+        -0.7938641511668945
+      ]
+    },
+    {
+      "frame_id": 2296,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002296_0002.png",
+      "sha256": "2b51ef9e8d744d0c97e10c0a20a9d5a6cdb158f2a27e434b80cf6634971fd82a",
+      "bbox_rgb": [
+        0,
+        0,
+        591,
+        480
+      ],
+      "mask_pixels": 212095,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9979633401221996,
+        "visible_points": 1964,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 1960,
+            "share": 0.9979633401221996
+          },
+          {
+            "object_id": 1,
+            "points": 3,
+            "share": 0.0015274949083503055
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.2977567376540843,
+        -0.4598349140058242,
+        -0.8365959461071115
+      ]
+    },
+    {
+      "frame_id": 2301,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002301_0002.png",
+      "sha256": "fbfe8015c6179ffd47bc454a69a747ce8b25f810a862c856d60e69ad60a9bcb0",
+      "bbox_rgb": [
+        0,
+        0,
+        566,
+        480
+      ],
+      "mask_pixels": 199419,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9989212513484358,
+        "visible_points": 1854,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 1852,
+            "share": 0.9989212513484358
+          },
+          {
+            "object_id": 1,
+            "points": 2,
+            "share": 0.0010787486515641855
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.2187961666705733,
+        -0.3962469704876413,
+        -0.8916930950891282
+      ]
+    },
+    {
+      "frame_id": 2306,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002306_0002.png",
+      "sha256": "b7a23b2a7794354013775c1df5a6ab379aa756c7509cf9b943402638d75967b7",
+      "bbox_rgb": [
+        0,
+        0,
+        549,
+        480
+      ],
+      "mask_pixels": 179443,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9982153480071386,
+        "visible_points": 1681,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 1678,
+            "share": 0.9982153480071386
+          },
+          {
+            "object_id": 1,
+            "points": 3,
+            "share": 0.001784651992861392
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.15917370076020923,
+        -0.31781187509438324,
+        -0.9346974617678662
+      ]
+    },
+    {
+      "frame_id": 2311,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002311_0002.png",
+      "sha256": "416581e7c5cc54601b7eab20ebc52762007015fe2bd8ed08768f0e1358fc5745",
+      "bbox_rgb": [
+        0,
+        0,
+        542,
+        480
+      ],
+      "mask_pixels": 167756,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9968769519050593,
+        "visible_points": 1601,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 1596,
+            "share": 0.9968769519050593
+          },
+          {
+            "object_id": 1,
+            "points": 5,
+            "share": 0.003123048094940662
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.11625455022671088,
+        -0.24556089055162025,
+        -0.9623849170592194
+      ]
+    },
+    {
+      "frame_id": 2316,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002316_0002.png",
+      "sha256": "bfec7d207c6447003d08019790f1a7fc0391eae6e56a73df93c6bf0d459ba46f",
+      "bbox_rgb": [
+        0,
+        0,
+        535,
+        480
+      ],
+      "mask_pixels": 161264,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9956736711990112,
+        "visible_points": 1618,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 1611,
+            "share": 0.9956736711990112
+          },
+          {
+            "object_id": 1,
+            "points": 1,
+            "share": 0.0006180469715698393
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.08854313165338856,
+        -0.19094498667317172,
+        -0.9775991642290786
+      ]
+    },
+    {
+      "frame_id": 2321,
+      "mask_id": 3,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002321_0003.png",
+      "sha256": "1aab0f5d5140f55e9196348d4f7922037a811b167692a86267179ee16b6ce242",
+      "bbox_rgb": [
+        0,
+        0,
+        515,
+        480
+      ],
+      "mask_pixels": 150339,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9993455497382199,
+        "visible_points": 1528,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 1527,
+            "share": 0.9993455497382199
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.0704292668826903,
+        -0.140048831602077,
+        -0.9876365946709649
+      ]
+    },
+    {
+      "frame_id": 2326,
+      "mask_id": 4,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002326_0004.png",
+      "sha256": "be8f31cd4b456133980665883797844f2b8bf44922c7ca2d2e8e7b04f42f3347",
+      "bbox_rgb": [
+        0,
+        0,
+        492,
+        480
+      ],
+      "mask_pixels": 144706,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9993610223642172,
+        "visible_points": 1565,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 1564,
+            "share": 0.9993610223642172
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.06030187696110451,
+        -0.10765046927988087,
+        -0.9923583325083684
+      ]
+    },
+    {
+      "frame_id": 2326,
+      "mask_id": 1,
+      "sam_class_id": 8,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002326_0001.png",
+      "sha256": "05e9f8e88d0942c53f821d87b755b4ade96d7ea494a10397bc22bdf7e1d12152",
+      "bbox_rgb": [
+        523,
+        0,
+        640,
+        480
+      ],
+      "mask_pixels": 18371,
+      "association": {
+        "object_id": 0,
+        "eligible": false,
+        "share": 0.0,
+        "candidates": []
+      }
+    },
+    {
+      "frame_id": 2331,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002331_0002.png",
+      "sha256": "048b8a448973d33249eb2153a9cb39880ce2cc4ecf1a218277b146a73a64e681",
+      "bbox_rgb": [
+        0,
+        0,
+        488,
+        480
+      ],
+      "mask_pixels": 137990,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9916724496877168,
+        "visible_points": 1441,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 1429,
+            "share": 0.9916724496877168
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.05157895015027394,
+        -0.07996507836486898,
+        -0.9954623037280196
+      ]
+    },
+    {
+      "frame_id": 2331,
+      "mask_id": 1,
+      "sam_class_id": 8,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002331_0001.png",
+      "sha256": "6668fe32a4500844d8deb85332f63cd062b058637f9b4696ea48ed70c968dd9c",
+      "bbox_rgb": [
+        516,
+        0,
+        640,
+        480
+      ],
+      "mask_pixels": 21578,
+      "association": {
+        "object_id": 0,
+        "eligible": false,
+        "share": 0.0,
+        "candidates": []
+      }
+    },
+    {
+      "frame_id": 2336,
+      "mask_id": 3,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002336_0003.png",
+      "sha256": "974c3f2da1454f8c9708ca78574617a9dda7a8c2f5304c53199ac1152733ec05",
+      "bbox_rgb": [
+        0,
+        0,
+        490,
+        480
+      ],
+      "mask_pixels": 130523,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9954093343534812,
+        "visible_points": 1307,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 1301,
+            "share": 0.9954093343534812
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.05787538163463683,
+        -0.06521563176727738,
+        -0.9961914281772555
+      ]
+    },
+    {
+      "frame_id": 2336,
+      "mask_id": 4,
+      "sam_class_id": 17,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002336_0004.png",
+      "sha256": "55689c913227d91803e1d4abc5d18bab2bcfff8bc8d4bf95f6335bc7c275e072",
+      "bbox_rgb": [
+        541,
+        0,
+        640,
+        480
+      ],
+      "mask_pixels": 864,
+      "association": {
+        "object_id": 0,
+        "eligible": false,
+        "share": 0.0,
+        "candidates": []
+      }
+    },
+    {
+      "frame_id": 2341,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002341_0002.png",
+      "sha256": "f82ca1ac7fcf83dceedfc37c299184eacfd92f0c0902cd8cd948603a9926e0f1",
+      "bbox_rgb": [
+        0,
+        0,
+        507,
+        480
+      ],
+      "mask_pixels": 135019,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.994748687171793,
+        "visible_points": 1333,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 1326,
+            "share": 0.994748687171793
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.05801485645718857,
+        -0.07243024348741424,
+        -0.9956847574702576
+      ]
+    },
+    {
+      "frame_id": 2341,
+      "mask_id": 1,
+      "sam_class_id": 8,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002341_0001.png",
+      "sha256": "bc173900cb749a85c3ea300e636b234693416955577710e6aae2d183a2c4ef80",
+      "bbox_rgb": [
+        466,
+        0,
+        640,
+        480
+      ],
+      "mask_pixels": 24447,
+      "association": {
+        "object_id": 0,
+        "eligible": false,
+        "share": 0.0,
+        "candidates": []
+      }
+    },
+    {
+      "frame_id": 2346,
+      "mask_id": 4,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002346_0004.png",
+      "sha256": "655f8ed2b1e575ddafcefded2428d010c3e835c7e892343ddceaabec62c17ef2",
+      "bbox_rgb": [
+        0,
+        0,
+        499,
+        480
+      ],
+      "mask_pixels": 145839,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9965870307167235,
+        "visible_points": 1465,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 1460,
+            "share": 0.9965870307167235
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.04921255513874703,
+        -0.10827041369102991,
+        -0.9929026346706352
+      ]
+    },
+    {
+      "frame_id": 2351,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002351_0002.png",
+      "sha256": "30eddb77a71ec0cc8b5f596d273790d5015f54748b37961d9ee29a9c9c9cb2b9",
+      "bbox_rgb": [
+        0,
+        0,
+        489,
+        480
+      ],
+      "mask_pixels": 123815,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9978828510938603,
+        "visible_points": 1417,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 1414,
+            "share": 0.9978828510938603
+          },
+          {
+            "object_id": 1,
+            "points": 2,
+            "share": 0.0014114326040931546
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.049711689736315415,
+        -0.16276956486713767,
+        -0.9854109887029487
+      ]
+    },
+    {
+      "frame_id": 2356,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002356_0002.png",
+      "sha256": "d35d884bb03275a8161510556436bbfe877222596880e6ab50a846849a9af9af",
+      "bbox_rgb": [
+        0,
+        0,
+        523,
+        480
+      ],
+      "mask_pixels": 151678,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 1.0,
+        "visible_points": 1678,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 1678,
+            "share": 1.0
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.06972337217807902,
+        -0.22737718314975597,
+        -0.9713075043234246
+      ]
+    },
+    {
+      "frame_id": 2361,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002361_0002.png",
+      "sha256": "ee5e45b7ff82e39c2925f13c263f7989151900b6ff599017303c118a3751ded4",
+      "bbox_rgb": [
+        0,
+        0,
+        547,
+        480
+      ],
+      "mask_pixels": 174339,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9994775339602926,
+        "visible_points": 1914,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 1913,
+            "share": 0.9994775339602926
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.103558511083402,
+        -0.3006429911426914,
+        -0.9480977938266518
+      ]
+    },
+    {
+      "frame_id": 2366,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002366_0002.png",
+      "sha256": "bb338e880406d91e29c6e5e628ffbe08d91ef9bf77a00e91708ef04e2367075f",
+      "bbox_rgb": [
+        0,
+        0,
+        585,
+        480
+      ],
+      "mask_pixels": 191652,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 1.0,
+        "visible_points": 2171,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 2171,
+            "share": 1.0
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.154397093367998,
+        -0.3888628354463189,
+        -0.9082660583596432
+      ]
+    },
+    {
+      "frame_id": 2366,
+      "mask_id": 4,
+      "sam_class_id": 29,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002366_0004.png",
+      "sha256": "8c4591f0156405aebe7b3d78c53f421f75998cc67df1a25d4bd9db9d440280db",
+      "bbox_rgb": [
+        525,
+        0,
+        640,
+        419
+      ],
+      "mask_pixels": 21686,
+      "association": {
+        "object_id": 1,
+        "eligible": false,
+        "share": 0.010014306151645207,
+        "visible_points": 699,
+        "candidates": [
+          {
+            "object_id": 1,
+            "points": 7,
+            "share": 0.010014306151645207
+          }
+        ],
+        "ambiguous": true
+      },
+      "view_direction": [
+        -0.5285699958067209,
+        -0.5168584018104493,
+        -0.6734026670654278
+      ]
+    },
+    {
+      "frame_id": 2366,
+      "mask_id": 3,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002366_0003.png",
+      "sha256": "774b202231afafbd289a3c980d82090e2f58c66f480aa38d49ed44910f0c5d16",
+      "bbox_rgb": [
+        205,
+        0,
+        450,
+        46
+      ],
+      "mask_pixels": 3911,
+      "association": {
+        "object_id": 0,
+        "eligible": false,
+        "share": 0.0,
+        "candidates": []
+      }
+    },
+    {
+      "frame_id": 2371,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002371_0002.png",
+      "sha256": "6200c176eed3ba72caa3b5f87518c3f0246f3cff2f6c81f4282a629584c61c35",
+      "bbox_rgb": [
+        0,
+        0,
+        629,
+        480
+      ],
+      "mask_pixels": 209803,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 1.0,
+        "visible_points": 2260,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 2260,
+            "share": 1.0
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.2395107867935859,
+        -0.4647873126438014,
+        -0.852412656531372
+      ]
+    },
+    {
+      "frame_id": 2371,
+      "mask_id": 3,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002371_0003.png",
+      "sha256": "e3341eedc264093472759bf67273d02496d95a0afc2e70e019e8303d47e69dd5",
+      "bbox_rgb": [
+        195,
+        0,
+        452,
+        43
+      ],
+      "mask_pixels": 3693,
+      "association": {
+        "object_id": 0,
+        "eligible": false,
+        "share": 0.0,
+        "candidates": []
+      }
+    },
+    {
+      "frame_id": 2376,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002376_0002.png",
+      "sha256": "3bf5a5401c35d881de24890836bd33977e1887c6dbd6fac76ffc5afc1cbeace9",
+      "bbox_rgb": [
+        0,
+        0,
+        640,
+        480
+      ],
+      "mask_pixels": 239856,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 1.0,
+        "visible_points": 2423,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 2423,
+            "share": 1.0
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.3221491155185597,
+        -0.5334743882510364,
+        -0.7820645909710989
+      ]
+    },
+    {
+      "frame_id": 2381,
+      "mask_id": 1,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002381_0001.png",
+      "sha256": "7ced6145b19a9d6d7d625ef42f63de005cf3f6b602efaa3696a16883c2af4649",
+      "bbox_rgb": [
+        0,
+        0,
+        640,
+        480
+      ],
+      "mask_pixels": 258128,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.9995859213250518,
+        "visible_points": 2415,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 2414,
+            "share": 0.9995859213250518
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.3902136542493142,
+        -0.592138974232412,
+        -0.7050565503790341
+      ]
+    },
+    {
+      "frame_id": 2381,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002381_0002.png",
+      "sha256": "68d339016a95cec6a026b813e9f9fbb7eb1ec928392cba005fe23fa815d93fcc",
+      "bbox_rgb": [
+        227,
+        0,
+        522,
+        64
+      ],
+      "mask_pixels": 9884,
+      "association": {
+        "object_id": 0,
+        "eligible": false,
+        "share": 0.0,
+        "candidates": []
+      }
+    },
+    {
+      "frame_id": 2385,
+      "mask_id": 2,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002385_0002.png",
+      "sha256": "569f703b13b240f4cf4812eb7f1808c8cce0834660163e8f740e4dd34e455793",
+      "bbox_rgb": [
+        0,
+        0,
+        640,
+        480
+      ],
+      "mask_pixels": 250090,
+      "association": {
+        "object_id": 2,
+        "eligible": true,
+        "share": 0.999569151227919,
+        "visible_points": 2321,
+        "candidates": [
+          {
+            "object_id": 2,
+            "points": 2320,
+            "share": 0.999569151227919
+          }
+        ],
+        "ambiguous": false
+      },
+      "view_direction": [
+        -0.4296173932144343,
+        -0.6298127479631371,
+        -0.6471203890705006
+      ]
+    },
+    {
+      "frame_id": 2385,
+      "mask_id": 3,
+      "sam_class_id": 16,
+      "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/inputs/scene0050_00/crops/002385_0003.png",
+      "sha256": "f5fc6cb47d07999b63711a54f4ea7ad639f2a7aa72387796fcbe7303162c38f8",
+      "bbox_rgb": [
+        239,
+        0,
+        543,
+        87
+      ],
+      "mask_pixels": 13430,
+      "association": {
+        "object_id": 0,
+        "eligible": false,
+        "share": 0.0,
+        "candidates": []
+      }
+    }
+  ],
+  "scope": "predicted final objects, no GT; metadata evidence only",
+  "seconds": 0.06228013400004784
+}

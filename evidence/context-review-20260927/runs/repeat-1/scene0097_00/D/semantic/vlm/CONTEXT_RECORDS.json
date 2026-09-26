@@ -1,0 +1,247 @@
+[
+  {
+    "frame_id": 430,
+    "mask_id": 6,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/runs/repeat-1/scene0097_00/D/semantic/context_images/000430_0006.png",
+    "sha256": "fd73f2b08b528270a756c6d0205013b8218dcdd3a823dfb1b55d36a5caf2b879",
+    "bbox_rgb": [
+      294,
+      270,
+      749,
+      893
+    ],
+    "mask_pixels": 28604,
+    "association": {
+      "object_id": 4,
+      "eligible": true,
+      "share": 0.9892205638474295,
+      "visible_points": 1206,
+      "candidates": [
+        {
+          "object_id": 4,
+          "points": 1193,
+          "share": 0.9892205638474295
+        }
+      ],
+      "ambiguous": false
+    },
+    "view_direction": [
+      -0.11999324691334975,
+      -0.5851143611787935,
+      0.8020241923019059
+    ],
+    "original_crop_file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0097_00/pipeline/semantic/crops/000430_0006.png",
+    "original_crop_sha256": "92707ff2d876063fccba1d21d7c08e232f53d396ce17479a1f5c7ecc654760a7",
+    "context_image_audit": {
+      "source_size": [
+        1296,
+        968
+      ],
+      "target_box": [
+        346,
+        343,
+        697,
+        821
+      ],
+      "context_box": [
+        0,
+        0,
+        1048,
+        968
+      ],
+      "composite_size": [
+        776,
+        384
+      ],
+      "panel_size": 384,
+      "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0097_00/color/430.jpg",
+      "image_sha256": "e4906987d05013d9034c6e02cfb5e2f43a5d3cde81399f3561b47ce5394a13e3",
+      "rotate_ccw": false,
+      "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0097_00/pipeline/semantic/frames/000430.npz",
+      "mask_sha256": "1b31af25ab62d5185ad0e05ba400e4d969111526135fa94a7c115da653fa729d"
+    },
+    "raw_response": "trash can",
+    "label": "trash can",
+    "valid": true,
+    "request_seconds": 0.12557327099966642,
+    "executed": true,
+    "output_tokens": 3,
+    "source_image_size": [
+      776,
+      384
+    ],
+    "adapter_image_size": [
+      776,
+      384
+    ],
+    "peak_allocated_mib": 1578.30517578125,
+    "review_object_id": 4,
+    "view_choice": "previously_uninferred_frames"
+  },
+  {
+    "frame_id": 395,
+    "mask_id": 5,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/runs/repeat-1/scene0097_00/D/semantic/context_images/000395_0005.png",
+    "sha256": "3afdc5771f119ce42b0e535c4ace5cdee3e48fe69b220199f1c63bb5be4c1b82",
+    "bbox_rgb": [
+      0,
+      411,
+      245,
+      968
+    ],
+    "mask_pixels": 18904,
+    "association": {
+      "object_id": 4,
+      "eligible": true,
+      "share": 0.9961389961389961,
+      "visible_points": 518,
+      "candidates": [
+        {
+          "object_id": 4,
+          "points": 516,
+          "share": 0.9961389961389961
+        }
+      ],
+      "ambiguous": false
+    },
+    "view_direction": [
+      -0.12534173668286377,
+      -0.5122159009264394,
+      0.8496612971551896
+    ],
+    "original_crop_file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0097_00/pipeline/semantic/crops/000395_0005.png",
+    "original_crop_sha256": "22ffaf0bd809add5021018974a97f998512a447d57755f6e85cde7fe3ee74452",
+    "context_image_audit": {
+      "source_size": [
+        1296,
+        968
+      ],
+      "target_box": [
+        0,
+        476,
+        213,
+        905
+      ],
+      "context_box": [
+        0,
+        47,
+        426,
+        968
+      ],
+      "composite_size": [
+        776,
+        384
+      ],
+      "panel_size": 384,
+      "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0097_00/color/395.jpg",
+      "image_sha256": "dc48f68fc800927859d931a6133449e21fbc2b7be799fc4953acc3be39f772b3",
+      "rotate_ccw": false,
+      "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0097_00/pipeline/semantic/frames/000395.npz",
+      "mask_sha256": "8fe06d45e2805f66a5a2a152c3b24135eb5562cc821341e2727c2ca05c825b7f"
+    },
+    "raw_response": "trash can",
+    "label": "trash can",
+    "valid": true,
+    "request_seconds": 0.1228202809998038,
+    "executed": true,
+    "output_tokens": 3,
+    "source_image_size": [
+      776,
+      384
+    ],
+    "adapter_image_size": [
+      776,
+      384
+    ],
+    "peak_allocated_mib": 1578.30517578125,
+    "review_object_id": 4,
+    "view_choice": "previously_uninferred_frames"
+  },
+  {
+    "frame_id": 415,
+    "mask_id": 4,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/runs/repeat-1/scene0097_00/D/semantic/context_images/000415_0004.png",
+    "sha256": "f87d59894c90a235d40871d3494f58ab8b7cd6fbae9312403903215b7d49d732",
+    "bbox_rgb": [
+      0,
+      250,
+      462,
+      845
+    ],
+    "mask_pixels": 28323,
+    "association": {
+      "object_id": 4,
+      "eligible": true,
+      "share": 0.9838854073410922,
+      "visible_points": 1117,
+      "candidates": [
+        {
+          "object_id": 4,
+          "points": 1099,
+          "share": 0.9838854073410922
+        },
+        {
+          "object_id": 3,
+          "points": 1,
+          "share": 0.0008952551477170994
+        }
+      ],
+      "ambiguous": false
+    },
+    "view_direction": [
+      -0.09679300611207028,
+      -0.5502720925482096,
+      0.829356219082249
+    ],
+    "original_crop_file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0097_00/pipeline/semantic/crops/000415_0004.png",
+    "original_crop_sha256": "5ae18b980b29a53bdeba8cddce8eb227835d183be6f635974254075fbe5c6686",
+    "context_image_audit": {
+      "source_size": [
+        1296,
+        968
+      ],
+      "target_box": [
+        47,
+        319,
+        407,
+        776
+      ],
+      "context_box": [
+        0,
+        0,
+        767,
+        968
+      ],
+      "composite_size": [
+        776,
+        384
+      ],
+      "panel_size": 384,
+      "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0097_00/color/415.jpg",
+      "image_sha256": "bbf6afa4d2da44a0e9f5ff8c7104023f7eaa89ee74765262555870799f2d22f9",
+      "rotate_ccw": false,
+      "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0097_00/pipeline/semantic/frames/000415.npz",
+      "mask_sha256": "e53f8d74ca8b21b2867dc1cc54bbae2058e855519f34fd799c7d42be7a9a4ef7"
+    },
+    "raw_response": "trash can",
+    "label": "trash can",
+    "valid": true,
+    "request_seconds": 0.12457328199980111,
+    "executed": true,
+    "output_tokens": 3,
+    "source_image_size": [
+      776,
+      384
+    ],
+    "adapter_image_size": [
+      776,
+      384
+    ],
+    "peak_allocated_mib": 1578.30517578125,
+    "review_object_id": 4,
+    "view_choice": "previously_uninferred_frames"
+  }
+]

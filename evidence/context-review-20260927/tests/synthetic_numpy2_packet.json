@@ -1,0 +1,8 @@
+{
+  "python": "3.11.15 (main, Mar 25 2026, 02:58:47) [Clang 22.1.1 ]",
+  "numpy": "2.4.6",
+  "protocol": 4,
+  "synthetic": true,
+  "bytes": 550,
+  "sha256": "2f8a8bee2b2f5c441b2bc0be179bc881be66e664f40feac7e63ec2c37189a7d3"
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "object_id": 2,
+    "base_name": "desk",
+    "sam_class": "desk",
+    "triggers": [
+      "cross_view_disagreement"
+    ],
+    "view_choice": "existing_frames_wider_context",
+    "context_keys": [
+      "000610_0002",
+      "000600_0002",
+      "000620_0002"
+    ],
+    "context_name": "unknown",
+    "D_name": "desk",
+    "E_name": "desk",
+    "decision_reason": "no_context_consensus"
+  },
+  {
+    "object_id": 6,
+    "base_name": "cabinet",
+    "sam_class": "cabinet",
+    "triggers": [
+      "cross_view_disagreement"
+    ],
+    "view_choice": "previously_uninferred_frames",
+    "context_keys": [
+      "000695_0005",
+      "000690_0001"
+    ],
+    "context_name": "unknown",
+    "D_name": "cabinet",
+    "E_name": "cabinet",
+    "decision_reason": "no_context_consensus"
+  }
+]

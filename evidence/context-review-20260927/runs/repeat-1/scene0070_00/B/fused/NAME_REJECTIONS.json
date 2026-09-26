@@ -1,0 +1,210 @@
+[
+  {
+    "frame_id": 600,
+    "mask_id": 2,
+    "sam_class_id": 8,
+    "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0070_00/pipeline/semantic/crops/000600_0002.png",
+    "sha256": "908d932983a3fdf6327b9e00b639673b7478a70fa889cbccdc46618f87bf4a62",
+    "bbox_rgb": [
+      0,
+      0,
+      547,
+      841
+    ],
+    "mask_pixels": 17425,
+    "association": {
+      "object_id": 2,
+      "eligible": true,
+      "share": 0.9912280701754386,
+      "visible_points": 912,
+      "candidates": [
+        {
+          "object_id": 2,
+          "points": 904,
+          "share": 0.9912280701754386
+        }
+      ],
+      "ambiguous": false
+    },
+    "view_direction": [
+      -0.06988337662420543,
+      -0.3979361429504143,
+      0.9147475825632702
+    ],
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.11197198000036224,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      547,
+      841
+    ],
+    "adapter_image_size": [
+      547,
+      841
+    ],
+    "peak_allocated_mib": 1576.1796875,
+    "candidate_instance_id": 2,
+    "projected_instance_share": 0.9912280701754386,
+    "visible_points": 912,
+    "model_completed_at": 2857.429638904
+  },
+  {
+    "frame_id": 690,
+    "mask_id": 5,
+    "sam_class_id": 4,
+    "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0070_00/pipeline/semantic/crops/000690_0005.png",
+    "sha256": "0c203ab899eedeb2756d5f2ad9616cab0d43087784d676b82c321437aba0c9e6",
+    "bbox_rgb": [
+      537,
+      0,
+      942,
+      190
+    ],
+    "mask_pixels": 10662,
+    "association": {
+      "object_id": 7,
+      "eligible": true,
+      "share": 1.0,
+      "visible_points": 274,
+      "candidates": [
+        {
+          "object_id": 7,
+          "points": 274,
+          "share": 1.0
+        }
+      ],
+      "ambiguous": false
+    },
+    "view_direction": [
+      0.9806483799077853,
+      0.19577412854142973,
+      0.0011160546938269956
+    ],
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.09241485499978808,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      405,
+      190
+    ],
+    "adapter_image_size": [
+      405,
+      190
+    ],
+    "peak_allocated_mib": 1576.359375,
+    "candidate_instance_id": 7,
+    "projected_instance_share": 1.0,
+    "visible_points": 274,
+    "model_completed_at": 2857.429638904
+  },
+  {
+    "frame_id": 715,
+    "mask_id": 5,
+    "sam_class_id": 4,
+    "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0070_00/pipeline/semantic/crops/000715_0005.png",
+    "sha256": "12f7644fbcbbcc420721c31d902aa1852cd42dae2ef6589b294cedd5c0030ff6",
+    "bbox_rgb": [
+      85,
+      0,
+      381,
+      188
+    ],
+    "mask_pixels": 7815,
+    "association": {
+      "object_id": 9,
+      "eligible": true,
+      "share": 0.7083333333333334,
+      "visible_points": 72,
+      "candidates": [
+        {
+          "object_id": 9,
+          "points": 51,
+          "share": 0.7083333333333334
+        }
+      ],
+      "ambiguous": true
+    },
+    "view_direction": [
+      0.964383192049171,
+      0.1379775182928018,
+      0.22567069667728484
+    ],
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.08780417299976762,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      296,
+      188
+    ],
+    "adapter_image_size": [
+      296,
+      188
+    ],
+    "peak_allocated_mib": 1576.359375,
+    "candidate_instance_id": 9,
+    "projected_instance_share": 0.7083333333333334,
+    "visible_points": 72,
+    "model_completed_at": 2857.429638904
+  },
+  {
+    "frame_id": 710,
+    "mask_id": 5,
+    "sam_class_id": 4,
+    "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0070_00/pipeline/semantic/crops/000710_0005.png",
+    "sha256": "f65401e36b5e286ab50856b6a48678d7cdc0f5afe6f685f9307be670ded817c5",
+    "bbox_rgb": [
+      122,
+      0,
+      431,
+      230
+    ],
+    "mask_pixels": 9931,
+    "association": {
+      "object_id": 9,
+      "eligible": true,
+      "share": 0.8037383177570093,
+      "visible_points": 107,
+      "candidates": [
+        {
+          "object_id": 9,
+          "points": 86,
+          "share": 0.8037383177570093
+        }
+      ],
+      "ambiguous": false
+    },
+    "view_direction": [
+      0.9671884964222185,
+      0.13712606876765124,
+      0.21387579024484707
+    ],
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.09215441100013777,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      309,
+      230
+    ],
+    "adapter_image_size": [
+      309,
+      230
+    ],
+    "peak_allocated_mib": 1576.359375,
+    "candidate_instance_id": 9,
+    "projected_instance_share": 0.8037383177570093,
+    "visible_points": 107,
+    "model_completed_at": 2857.429638904
+  }
+]

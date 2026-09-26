@@ -1,0 +1,53 @@
+{
+  "status": "completed",
+  "model": "qwen3vl_2b_nf4",
+  "base_calls": 9,
+  "context_calls": 0,
+  "total_calls": 9,
+  "base_inference_seconds": 1.3420638880006663,
+  "context_inference_seconds": 0,
+  "context_stage_seconds": 3.7199970392975956e-07,
+  "seconds_including_load": 6.511788625000008,
+  "groups": [
+    {
+      "object_id": 1,
+      "eligible_crops": 25,
+      "initial": [
+        "000395_0001",
+        "000415_0001",
+        "000405_0001"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "door"
+    },
+    {
+      "object_id": 4,
+      "eligible_crops": 20,
+      "initial": [
+        "000435_0006",
+        "000390_0005",
+        "000425_0008"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "trash can"
+    },
+    {
+      "object_id": 7,
+      "eligible_crops": 3,
+      "initial": [
+        "000435_0002",
+        "000430_0002",
+        "000425_0002"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "door"
+    }
+  ],
+  "reviewed_objects": 0,
+  "peak_rss_mib": 5114.57421875,
+  "peak_reserved_mib": 1636.0,
+  "peak_allocated_mib": 1575.638671875
+}

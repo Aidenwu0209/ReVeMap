@@ -1,0 +1,21 @@
+{
+  "baseline_sha256": "780a8a5fce9499561ce69a80585d1808787bb0f6af6804bb467148c2aedba527",
+  "geometry_xyz_sha256": "5f1244dc6d7af51ecf432e2e8b59f985fa032221a36d8641a71b7678593c1f6a",
+  "original_vertex_properties_preserved": {
+    "x": true,
+    "y": true,
+    "z": true,
+    "red": true,
+    "green": true,
+    "blue": true
+  },
+  "point_count": 348841,
+  "semantic_coverage": 0.02151123291126903,
+  "instance_coverage": 0.02016964748983061,
+  "inference_result": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/runs/repeat-2/scene0050_00/D/fused/result.json",
+  "label_sha256": "1f85af892a6f1d3e3ff10ce3b7e73d0ec1d1891e9bb7b8f509f77344b2ebb2c6",
+  "sga_inference_executed": false,
+  "quality_accepted": false,
+  "complete_full_sequence": false,
+  "artifact_manifest": "/home/aidenwu/Documents/ReVeMap-context-review-20260927/runs/repeat-2/scene0050_00/D/fused/export/ARTIFACTS.json"
+}

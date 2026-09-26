@@ -1,0 +1,72 @@
+[
+  {
+    "object_id": 1,
+    "GT_object_id": 2,
+    "GT_name": "wall",
+    "canonical_GT_name": "wall",
+    "owned_points": 4770,
+    "supported_points": 4002,
+    "dominant_GT_points": 3978,
+    "eligible": false
+  },
+  {
+    "object_id": 2,
+    "GT_object_id": 2,
+    "GT_name": "wall",
+    "canonical_GT_name": "wall",
+    "owned_points": 887,
+    "supported_points": 887,
+    "dominant_GT_points": 801,
+    "eligible": false
+  },
+  {
+    "object_id": 3,
+    "GT_object_id": 2,
+    "GT_name": "wall",
+    "canonical_GT_name": "wall",
+    "owned_points": 6365,
+    "supported_points": 3109,
+    "dominant_GT_points": 2897,
+    "eligible": false
+  },
+  {
+    "object_id": 4,
+    "GT_object_id": 14,
+    "GT_name": "trash can",
+    "canonical_GT_name": "trash can",
+    "owned_points": 1583,
+    "supported_points": 1048,
+    "dominant_GT_points": 1001,
+    "eligible": false
+  },
+  {
+    "object_id": 5,
+    "GT_object_id": 7,
+    "GT_name": "floor",
+    "canonical_GT_name": "floor",
+    "owned_points": 3028,
+    "supported_points": 2983,
+    "dominant_GT_points": 2961,
+    "eligible": false
+  },
+  {
+    "object_id": 6,
+    "GT_object_id": 18,
+    "GT_name": "wall",
+    "canonical_GT_name": "wall",
+    "owned_points": 853,
+    "supported_points": 412,
+    "dominant_GT_points": 412,
+    "eligible": false
+  },
+  {
+    "object_id": 7,
+    "GT_object_id": 5,
+    "GT_name": "door",
+    "canonical_GT_name": "door",
+    "owned_points": 1726,
+    "supported_points": 1697,
+    "dominant_GT_points": 1697,
+    "eligible": true
+  }
+]

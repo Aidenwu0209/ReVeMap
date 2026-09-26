@@ -1,0 +1,51 @@
+{
+  "pairs": [
+    [
+      1,
+      1
+    ],
+    [
+      4,
+      4
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      5,
+      5
+    ],
+    [
+      7,
+      7
+    ],
+    [
+      3,
+      3
+    ],
+    [
+      6,
+      8
+    ]
+  ],
+  "metrics": {
+    "groups_before": 16,
+    "groups_after": 9,
+    "retained_groups": 8,
+    "ambiguous_ownership_points": 4630,
+    "semantic_added_points": 110,
+    "coarse_refined_points": 0,
+    "b_fine_labels_preserved": true,
+    "only_observed_mask_interior_points": true,
+    "semantic_conflict_guard": {
+      "conflicting_abstained_points": 6,
+      "prevented_semantic_fills": 0,
+      "prevented_instance_assignments": 0,
+      "policy": "consensus",
+      "enabled": false
+    },
+    "semantic_confidence_policy": "legacy",
+    "track_score_scope": "legacy global per-point maxima; may include other categories"
+  }
+}

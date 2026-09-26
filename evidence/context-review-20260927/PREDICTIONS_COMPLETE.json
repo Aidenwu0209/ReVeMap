@@ -1,0 +1,7 @@
+{
+  "status": "completed",
+  "GT_used": false,
+  "files": 2010,
+  "raw_model_runs": 32,
+  "E_scope": "decision replay from D; same inference cost, no separate GPU run"
+}

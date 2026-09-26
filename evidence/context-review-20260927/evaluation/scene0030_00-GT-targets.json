@@ -1,0 +1,112 @@
+[
+  {
+    "object_id": 1,
+    "GT_object_id": 4,
+    "GT_name": "chair",
+    "canonical_GT_name": "chair",
+    "owned_points": 3167,
+    "supported_points": 2869,
+    "dominant_GT_points": 2590,
+    "eligible": true
+  },
+  {
+    "object_id": 2,
+    "GT_object_id": 16,
+    "GT_name": "chair",
+    "canonical_GT_name": "chair",
+    "owned_points": 213,
+    "supported_points": 212,
+    "dominant_GT_points": 150,
+    "eligible": false
+  },
+  {
+    "object_id": 3,
+    "GT_object_id": 54,
+    "GT_name": "door",
+    "canonical_GT_name": "door",
+    "owned_points": 7250,
+    "supported_points": 6745,
+    "dominant_GT_points": 6482,
+    "eligible": true
+  },
+  {
+    "object_id": 4,
+    "GT_object_id": 31,
+    "GT_name": "wall",
+    "canonical_GT_name": "wall",
+    "owned_points": 6666,
+    "supported_points": 2580,
+    "dominant_GT_points": 1951,
+    "eligible": false
+  },
+  {
+    "object_id": 5,
+    "GT_object_id": 30,
+    "GT_name": "wall",
+    "canonical_GT_name": "wall",
+    "owned_points": 5867,
+    "supported_points": 4515,
+    "dominant_GT_points": 4303,
+    "eligible": false
+  },
+  {
+    "object_id": 6,
+    "GT_object_id": 58,
+    "GT_name": "trash can",
+    "canonical_GT_name": "trash can",
+    "owned_points": 411,
+    "supported_points": 137,
+    "dominant_GT_points": 104,
+    "eligible": false
+  },
+  {
+    "object_id": 7,
+    "GT_object_id": 58,
+    "GT_name": "trash can",
+    "canonical_GT_name": "trash can",
+    "owned_points": 788,
+    "supported_points": 594,
+    "dominant_GT_points": 580,
+    "eligible": false
+  },
+  {
+    "object_id": 8,
+    "GT_object_id": 21,
+    "GT_name": "bookshelf",
+    "canonical_GT_name": "bookshelf",
+    "owned_points": 1806,
+    "supported_points": 1791,
+    "dominant_GT_points": 1365,
+    "eligible": false
+  },
+  {
+    "object_id": 9,
+    "GT_object_id": 7,
+    "GT_name": "chair",
+    "canonical_GT_name": "chair",
+    "owned_points": 1373,
+    "supported_points": 1235,
+    "dominant_GT_points": 1093,
+    "eligible": true
+  },
+  {
+    "object_id": 10,
+    "GT_object_id": 17,
+    "GT_name": "floor",
+    "canonical_GT_name": "floor",
+    "owned_points": 4784,
+    "supported_points": 4414,
+    "dominant_GT_points": 4189,
+    "eligible": false
+  },
+  {
+    "object_id": 11,
+    "GT_object_id": 17,
+    "GT_name": "floor",
+    "canonical_GT_name": "floor",
+    "owned_points": 456,
+    "supported_points": 450,
+    "dominant_GT_points": 422,
+    "eligible": false
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "object_id": 4,
+    "base_name": "mirror",
+    "sam_class": "door",
+    "triggers": [
+      "sam_vlm_category_conflict",
+      "cross_view_disagreement"
+    ],
+    "view_choice": "previously_uninferred_frames",
+    "context_keys": [
+      "000355_0003",
+      "000390_0003",
+      "000340_0002"
+    ],
+    "context_name": "mirror",
+    "D_name": "mirror",
+    "E_name": "mirror",
+    "decision_reason": "context_consensus_matches_sam"
+  }
+]

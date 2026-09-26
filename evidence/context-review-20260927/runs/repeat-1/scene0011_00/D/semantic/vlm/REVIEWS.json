@@ -1,0 +1,56 @@
+[
+  {
+    "object_id": 5,
+    "base_name": "gravestone",
+    "sam_class": "trash bin",
+    "triggers": [
+      "sam_vlm_category_conflict"
+    ],
+    "view_choice": "previously_uninferred_frames",
+    "context_keys": [
+      "001242_0014",
+      "001177_0014",
+      "001197_0013"
+    ],
+    "context_name": "trash can",
+    "D_name": "trash can",
+    "E_name": "gravestone",
+    "decision_reason": "context_consensus_differs_from_sam"
+  },
+  {
+    "object_id": 7,
+    "base_name": "unknown",
+    "sam_class": "chair",
+    "triggers": [
+      "unknown_name"
+    ],
+    "view_choice": "existing_frames_wider_context",
+    "context_keys": [
+      "001246_0001",
+      "001242_0001",
+      "001232_0001"
+    ],
+    "context_name": "leg",
+    "D_name": "leg",
+    "E_name": "unknown",
+    "decision_reason": "context_consensus_differs_from_sam"
+  },
+  {
+    "object_id": 9,
+    "base_name": "unknown",
+    "sam_class": "table",
+    "triggers": [
+      "unknown_name"
+    ],
+    "view_choice": "existing_frames_wider_context",
+    "context_keys": [
+      "001232_0010",
+      "001227_0009",
+      "001192_0008"
+    ],
+    "context_name": "table",
+    "D_name": "table",
+    "E_name": "table",
+    "decision_reason": "context_consensus_matches_sam"
+  }
+]

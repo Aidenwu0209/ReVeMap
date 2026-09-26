@@ -1,0 +1,366 @@
+{
+  "method": "conservative original-point recovery using tentative 3D object guides",
+  "paper_scope": "MV3DIS-inspired common 3D guide only; not full reproduction or depth reweighting",
+  "config": {
+    "min_mask_points": 30,
+    "min_visible_fraction": 0.3,
+    "containment_fraction": 0.8,
+    "mask_guide_purity": 0.8,
+    "split_piece_fraction": 0.2,
+    "min_split_frames": 2,
+    "min_support_frames": 2,
+    "min_point_views": 2,
+    "min_point_confidence": 0.8,
+    "min_output_points": 50,
+    "anchor_min_fraction": 0.2,
+    "anchor_dominance": 0.8
+  },
+  "guides": [
+    {
+      "guide_instance_id": 1,
+      "guide_points": 3012,
+      "supporting_frames": [
+        530,
+        535,
+        540,
+        545,
+        555,
+        560,
+        570,
+        575,
+        580
+      ],
+      "split_frames": [],
+      "ambiguous_mask_frames": [],
+      "blocked_mask_frames": [
+        510
+      ],
+      "recovered_points": 1,
+      "supported_lost_points": 1,
+      "status": "recovered",
+      "destination_instance_id": 1,
+      "new_instance": false
+    },
+    {
+      "guide_instance_id": 2,
+      "guide_points": 176,
+      "supporting_frames": [
+        495,
+        500
+      ],
+      "split_frames": [],
+      "ambiguous_mask_frames": [],
+      "blocked_mask_frames": [],
+      "recovered_points": 92,
+      "supported_lost_points": 92,
+      "status": "recovered",
+      "destination_instance_id": 11,
+      "new_instance": true
+    },
+    {
+      "guide_instance_id": 3,
+      "guide_points": 8935,
+      "supporting_frames": [
+        495,
+        500,
+        505,
+        510,
+        515,
+        520,
+        525,
+        530,
+        535,
+        540,
+        545,
+        550,
+        555,
+        560,
+        565,
+        570,
+        575,
+        580,
+        585
+      ],
+      "split_frames": [],
+      "ambiguous_mask_frames": [],
+      "blocked_mask_frames": [],
+      "recovered_points": 0,
+      "supported_lost_points": 0,
+      "status": "no_sufficient_measured_recovery"
+    },
+    {
+      "guide_instance_id": 4,
+      "guide_points": 4510,
+      "supporting_frames": [
+        495,
+        500,
+        505,
+        510,
+        515,
+        520,
+        525,
+        530,
+        535,
+        540,
+        545,
+        550,
+        555,
+        560,
+        565,
+        570,
+        575,
+        580
+      ],
+      "split_frames": [],
+      "ambiguous_mask_frames": [],
+      "blocked_mask_frames": [],
+      "recovered_points": 0,
+      "supported_lost_points": 0,
+      "status": "no_sufficient_measured_recovery"
+    },
+    {
+      "guide_instance_id": 5,
+      "guide_points": 1189,
+      "supporting_frames": [
+        500,
+        505,
+        510,
+        515,
+        520,
+        525,
+        530,
+        535,
+        540,
+        545,
+        550,
+        555,
+        560,
+        565,
+        570,
+        575,
+        580,
+        585,
+        600,
+        605,
+        610
+      ],
+      "split_frames": [],
+      "ambiguous_mask_frames": [],
+      "blocked_mask_frames": [],
+      "recovered_points": 1,
+      "supported_lost_points": 1,
+      "status": "recovered",
+      "destination_instance_id": 4,
+      "new_instance": false
+    },
+    {
+      "guide_instance_id": 6,
+      "guide_points": 18,
+      "supporting_frames": [],
+      "split_frames": [],
+      "ambiguous_mask_frames": [],
+      "blocked_mask_frames": [],
+      "recovered_points": 0,
+      "status": "insufficient_compatible_frames"
+    },
+    {
+      "guide_instance_id": 7,
+      "guide_points": 3682,
+      "supporting_frames": [
+        535,
+        540,
+        545,
+        550,
+        555,
+        560,
+        565,
+        570,
+        575,
+        580,
+        585,
+        590,
+        595,
+        600,
+        605,
+        610,
+        615
+      ],
+      "split_frames": [],
+      "ambiguous_mask_frames": [],
+      "blocked_mask_frames": [],
+      "recovered_points": 0,
+      "supported_lost_points": 0,
+      "status": "no_sufficient_measured_recovery"
+    },
+    {
+      "guide_instance_id": 8,
+      "guide_points": 1313,
+      "supporting_frames": [
+        515,
+        520,
+        525,
+        530,
+        535,
+        550,
+        555,
+        560,
+        565,
+        570,
+        575,
+        585,
+        610
+      ],
+      "split_frames": [],
+      "ambiguous_mask_frames": [],
+      "blocked_mask_frames": [
+        540,
+        545,
+        580,
+        590,
+        595,
+        600,
+        605,
+        615
+      ],
+      "recovered_points": 0,
+      "supported_lost_points": 0,
+      "status": "no_sufficient_measured_recovery"
+    },
+    {
+      "guide_instance_id": 12,
+      "guide_points": 1763,
+      "supporting_frames": [
+        525,
+        530,
+        535,
+        545,
+        550,
+        560,
+        570
+      ],
+      "split_frames": [],
+      "ambiguous_mask_frames": [],
+      "blocked_mask_frames": [
+        510,
+        585
+      ],
+      "recovered_points": 2,
+      "supported_lost_points": 2,
+      "status": "recovered",
+      "destination_instance_id": 6,
+      "new_instance": false
+    },
+    {
+      "guide_instance_id": 14,
+      "guide_points": 2127,
+      "supporting_frames": [
+        550,
+        555,
+        560,
+        565,
+        570,
+        575,
+        585,
+        610
+      ],
+      "split_frames": [],
+      "ambiguous_mask_frames": [],
+      "blocked_mask_frames": [
+        545,
+        580,
+        590,
+        595,
+        600,
+        605,
+        615
+      ],
+      "recovered_points": 0,
+      "supported_lost_points": 0,
+      "status": "no_sufficient_measured_recovery"
+    },
+    {
+      "guide_instance_id": 15,
+      "guide_points": 3014,
+      "supporting_frames": [
+        590,
+        595,
+        600,
+        605,
+        610,
+        615
+      ],
+      "split_frames": [],
+      "ambiguous_mask_frames": [],
+      "blocked_mask_frames": [],
+      "recovered_points": 0,
+      "supported_lost_points": 0,
+      "status": "no_sufficient_measured_recovery"
+    },
+    {
+      "guide_instance_id": 26,
+      "guide_points": 23,
+      "supporting_frames": [],
+      "split_frames": [],
+      "ambiguous_mask_frames": [],
+      "blocked_mask_frames": [],
+      "recovered_points": 0,
+      "status": "insufficient_compatible_frames"
+    }
+  ],
+  "guide_rejections": {
+    "no_sufficient_measured_recovery": 6,
+    "insufficient_compatible_frames": 2
+  },
+  "recovered_points": 96,
+  "recovered_guides": 4,
+  "frame_count": 25,
+  "semantic_labels_modified": false,
+  "prior_filtered_mask_nodes": [
+    [
+      510,
+      2
+    ],
+    [
+      540,
+      7
+    ],
+    [
+      545,
+      5
+    ],
+    [
+      580,
+      2
+    ],
+    [
+      585,
+      4
+    ],
+    [
+      590,
+      6
+    ],
+    [
+      595,
+      4
+    ],
+    [
+      600,
+      3
+    ],
+    [
+      605,
+      3
+    ],
+    [
+      615,
+      6
+    ]
+  ],
+  "prior_filtered_mask_nodes_may_support_recovery": false,
+  "current_owners_preserved": true,
+  "ground_truth_consumed": false,
+  "old_guides_are_correctness_evidence": false,
+  "scope": "Only existing-guide lost ownership with repeated measured mask support; no spatial expansion",
+  "instance_coverage": 0.2277519210345474
+}

@@ -1,0 +1,27 @@
+{
+  "repo": "Qwen/Qwen3-VL-2B-Instruct",
+  "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "receipt_sha256": "f8e0825bd79e6e154cfe43f1bd61adfe077cdce197bacff79019a9c5814b6041",
+  "verified_files": 11,
+  "id": "qwen3vl_2b_nf4",
+  "kind": "native",
+  "quant": "nf4",
+  "load_seconds": 1.4730514500001846,
+  "torch": "2.7.1+cu128",
+  "transformers": "5.17.0",
+  "model_class": "Qwen3VLForConditionalGeneration",
+  "processor_class": "Qwen3VLProcessor",
+  "loading_info": {
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "mismatched_keys": [],
+    "error_msgs": []
+  },
+  "parameter_devices": [
+    "cuda:0"
+  ],
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "static_images_only": true,
+  "requested_thinking_disabled": true,
+  "thinking_disabled_verified": false
+}

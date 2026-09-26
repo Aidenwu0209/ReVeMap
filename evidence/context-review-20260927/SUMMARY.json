@@ -1,0 +1,88 @@
+{
+  "scenes": 8,
+  "selected_views": 200,
+  "candidate_crops": 806,
+  "raw_model_runs": 32,
+  "decision_replay": "E reuses D inference",
+  "second_pass": {
+    "B": {
+      "repeat": 2,
+      "split": "all",
+      "arm": "B",
+      "tail_wall_seconds": 97.62142989800122,
+      "base_calls": 184,
+      "context_calls": 0,
+      "total_calls": 184,
+      "reviewed_objects": 0,
+      "objects": 79,
+      "named_objects": 38,
+      "GT_eligible": 10,
+      "GT_correct": 8,
+      "GT_unknown": 1,
+      "GT_named_unmatched": 1,
+      "GT_new_correct": 0,
+      "GT_regressions": 0,
+      "GT_out_of_vocab": 1,
+      "changed_names": 0
+    },
+    "D": {
+      "repeat": 2,
+      "split": "all",
+      "arm": "D",
+      "tail_wall_seconds": 112.46862949600018,
+      "base_calls": 184,
+      "context_calls": 77,
+      "total_calls": 261,
+      "reviewed_objects": 27,
+      "objects": 79,
+      "named_objects": 43,
+      "GT_eligible": 10,
+      "GT_correct": 9,
+      "GT_unknown": 0,
+      "GT_named_unmatched": 1,
+      "GT_new_correct": 1,
+      "GT_regressions": 0,
+      "GT_out_of_vocab": 1,
+      "changed_names": 8
+    },
+    "E": {
+      "repeat": 2,
+      "split": "all",
+      "arm": "E",
+      "tail_wall_seconds": 112.46862949600018,
+      "base_calls": 184,
+      "context_calls": 77,
+      "total_calls": 261,
+      "reviewed_objects": 27,
+      "objects": 79,
+      "named_objects": 41,
+      "GT_eligible": 10,
+      "GT_correct": 9,
+      "GT_unknown": 0,
+      "GT_named_unmatched": 1,
+      "GT_new_correct": 1,
+      "GT_regressions": 0,
+      "GT_out_of_vocab": 1,
+      "changed_names": 3
+    }
+  },
+  "review_tail_cost_increase": 0.15208955260655266,
+  "review_extra_seconds": 14.847199597998952,
+  "query_audit": {
+    "D": {
+      "label_queries_compared": 268,
+      "label_queries_changed": 7,
+      "spatial_queries_compared": 1264,
+      "spatial_queries_changed": 94
+    },
+    "E": {
+      "label_queries_compared": 268,
+      "label_queries_changed": 0,
+      "spatial_queries_compared": 1264,
+      "spatial_queries_changed": 0
+    }
+  },
+  "interpretation": "one development-object metadata gain, also obtainable with existing SAM3 display fallback; E returned-instance queries unchanged; no confirmed end-user retrieval or 3D map quality gain",
+  "production_modified": false,
+  "GT_only_after_prediction_seal": true
+}

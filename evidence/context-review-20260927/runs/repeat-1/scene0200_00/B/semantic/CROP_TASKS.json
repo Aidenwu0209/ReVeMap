@@ -1,0 +1,1258 @@
+[
+  {
+    "task_id": 99,
+    "frame_id": 495,
+    "crops": [
+      {
+        "frame_id": 495,
+        "mask_id": 1,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000495_0001.png",
+        "sha256": "e19f96e69978136aeffb28ab103ed1641d7da3cd2dd75d066292388c132c123b",
+        "bbox_rgb": [
+          824,
+          0,
+          1296,
+          813
+        ],
+        "mask_pixels": 25445
+      },
+      {
+        "frame_id": 495,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000495_0003.png",
+        "sha256": "3563f23ff33bda8298eecaf3d0bc1052edc7d6bd4666094dc20cd6fbd18b6467",
+        "bbox_rgb": [
+          2,
+          294,
+          105,
+          797
+        ],
+        "mask_pixels": 4008
+      }
+    ]
+  },
+  {
+    "task_id": 100,
+    "frame_id": 500,
+    "crops": [
+      {
+        "frame_id": 500,
+        "mask_id": 1,
+        "sam_class_id": 4,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000500_0001.png",
+        "sha256": "2e27e010adaf9522385382c23ebbfcfcbd94b42baf84edd4b37302622f797833",
+        "bbox_rgb": [
+          0,
+          10,
+          705,
+          968
+        ],
+        "mask_pixels": 81695
+      },
+      {
+        "frame_id": 500,
+        "mask_id": 2,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000500_0002.png",
+        "sha256": "540a07779ccea44ca787f89b31650b6c6a5aa194e5012b5e5a8379cddc019917",
+        "bbox_rgb": [
+          778,
+          0,
+          1296,
+          817
+        ],
+        "mask_pixels": 27904
+      },
+      {
+        "frame_id": 500,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000500_0003.png",
+        "sha256": "74002c0e7cc63d0a3b4102a7397a94868641d9fa385f76e9675740a631c8e6c3",
+        "bbox_rgb": [
+          6,
+          456,
+          81,
+          784
+        ],
+        "mask_pixels": 1960
+      }
+    ]
+  },
+  {
+    "task_id": 101,
+    "frame_id": 505,
+    "crops": [
+      {
+        "frame_id": 505,
+        "mask_id": 1,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000505_0001.png",
+        "sha256": "c330717346e6397a7c4de37d4d0430b7f8a741496ff94e32b3d8cb542f434000",
+        "bbox_rgb": [
+          751,
+          0,
+          1262,
+          795
+        ],
+        "mask_pixels": 27021
+      },
+      {
+        "frame_id": 505,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000505_0003.png",
+        "sha256": "dcbf6e18986901c32bc4c94a3ca241646988ebebcb68b6bfe271f5d4623cae18",
+        "bbox_rgb": [
+          8,
+          617,
+          55,
+          780
+        ],
+        "mask_pixels": 556
+      }
+    ]
+  },
+  {
+    "task_id": 102,
+    "frame_id": 510,
+    "crops": [
+      {
+        "frame_id": 510,
+        "mask_id": 2,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000510_0002.png",
+        "sha256": "d766aaf3ca213201fb25b6b487edb48a2f469a26c2dd646a115613189851c739",
+        "bbox_rgb": [
+          705,
+          0,
+          1211,
+          694
+        ],
+        "mask_pixels": 39164
+      }
+    ]
+  },
+  {
+    "task_id": 103,
+    "frame_id": 515,
+    "crops": [
+      {
+        "frame_id": 515,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000515_0003.png",
+        "sha256": "6eed03369ca1b6e3e188aa158c6d801139e17703c2cb9daeea2dfaba3079b50e",
+        "bbox_rgb": [
+          664,
+          0,
+          1134,
+          631
+        ],
+        "mask_pixels": 20629
+      },
+      {
+        "frame_id": 515,
+        "mask_id": 2,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000515_0002.png",
+        "sha256": "45beade2f7f74b0a1b11a684471785eb9a95d2fb39abab6e8e1597e3ee75f82e",
+        "bbox_rgb": [
+          1085,
+          0,
+          1296,
+          791
+        ],
+        "mask_pixels": 15757
+      },
+      {
+        "frame_id": 515,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000515_0001.png",
+        "sha256": "29b8bb768fc485387c92dbb2cf05c8c676e7b3ccddb977597a6249e35bc1a66a",
+        "bbox_rgb": [
+          774,
+          635,
+          1296,
+          968
+        ],
+        "mask_pixels": 14048
+      }
+    ]
+  },
+  {
+    "task_id": 104,
+    "frame_id": 520,
+    "crops": [
+      {
+        "frame_id": 520,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000520_0001.png",
+        "sha256": "f4cdd4fc86e2e9cedb81fd41f26f5d2d085a02e313dd30e162dc9ad86d1b1737",
+        "bbox_rgb": [
+          573,
+          520,
+          1296,
+          968
+        ],
+        "mask_pixels": 25422
+      },
+      {
+        "frame_id": 520,
+        "mask_id": 2,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000520_0002.png",
+        "sha256": "68f790c220939d3f912623664f4ade43a5c4ae4eda23fe556b17501989dbc227",
+        "bbox_rgb": [
+          1059,
+          0,
+          1296,
+          738
+        ],
+        "mask_pixels": 18590
+      },
+      {
+        "frame_id": 520,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000520_0003.png",
+        "sha256": "aa95b9536b14c197794feb577b82daf114c2d94c497d45878acaad1bc0bf9383",
+        "bbox_rgb": [
+          670,
+          0,
+          1096,
+          593
+        ],
+        "mask_pixels": 16178
+      }
+    ]
+  },
+  {
+    "task_id": 105,
+    "frame_id": 525,
+    "crops": [
+      {
+        "frame_id": 525,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000525_0001.png",
+        "sha256": "fa2ca2bb6c5968c8a3c8464e8080cf78d3da8d25114acf3bf0aa4a167885ed38",
+        "bbox_rgb": [
+          348,
+          484,
+          1296,
+          968
+        ],
+        "mask_pixels": 18022
+      },
+      {
+        "frame_id": 525,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000525_0003.png",
+        "sha256": "dd89557602b244a4d18f74c77c37fd99600f4280a4936514a2bb960de9eee3ef",
+        "bbox_rgb": [
+          701,
+          0,
+          1053,
+          577
+        ],
+        "mask_pixels": 390
+      }
+    ]
+  },
+  {
+    "task_id": 106,
+    "frame_id": 530,
+    "crops": [
+      {
+        "frame_id": 530,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000530_0001.png",
+        "sha256": "c53664037b5f91dc34ccc01b45e4cd5cbb6e5eb93b5a3ce1e21b220191af6a62",
+        "bbox_rgb": [
+          229,
+          460,
+          1296,
+          968
+        ],
+        "mask_pixels": 48694
+      },
+      {
+        "frame_id": 530,
+        "mask_id": 2,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000530_0002.png",
+        "sha256": "04a367c72e3e8c1260b605bb9415d78f390e8e5f1def8d6e902dc02c39a1515c",
+        "bbox_rgb": [
+          960,
+          0,
+          1296,
+          843
+        ],
+        "mask_pixels": 33399
+      },
+      {
+        "frame_id": 530,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000530_0003.png",
+        "sha256": "b6f34975b6c3e68ac36d70a5a52f478440764572952521bafc2b96c085368782",
+        "bbox_rgb": [
+          599,
+          0,
+          1000,
+          559
+        ],
+        "mask_pixels": 15127
+      }
+    ]
+  },
+  {
+    "task_id": 107,
+    "frame_id": 535,
+    "crops": [
+      {
+        "frame_id": 535,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000535_0001.png",
+        "sha256": "38f7a963821cc0745477a214f9586a8c685b3b356e6660a882df91753cb82c7d",
+        "bbox_rgb": [
+          105,
+          426,
+          1296,
+          968
+        ],
+        "mask_pixels": 62874
+      },
+      {
+        "frame_id": 535,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000535_0003.png",
+        "sha256": "76b327f3150ca1b135e7c25044d1ec50cc10d215dd8f509345745b8fb31cbf6a",
+        "bbox_rgb": [
+          543,
+          0,
+          915,
+          530
+        ],
+        "mask_pixels": 14057
+      },
+      {
+        "frame_id": 535,
+        "mask_id": 2,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000535_0002.png",
+        "sha256": "d17d008a37e6737745ece991e664adacff279213d08d9697de43a848d9620967",
+        "bbox_rgb": [
+          889,
+          0,
+          1207,
+          758
+        ],
+        "mask_pixels": 313
+      }
+    ]
+  },
+  {
+    "task_id": 108,
+    "frame_id": 540,
+    "crops": [
+      {
+        "frame_id": 540,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000540_0001.png",
+        "sha256": "1552e0b56720f8b9ebb761dd2d195217cfbe6655c8d0dded11d1817b1396c008",
+        "bbox_rgb": [
+          20,
+          361,
+          1296,
+          968
+        ],
+        "mask_pixels": 78408
+      },
+      {
+        "frame_id": 540,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000540_0003.png",
+        "sha256": "8c7b01ed0896d46f4b07a9455ca4985744755ee6de740e5a8a1b0d09f1cdb64a",
+        "bbox_rgb": [
+          474,
+          0,
+          822,
+          490
+        ],
+        "mask_pixels": 12226
+      },
+      {
+        "frame_id": 540,
+        "mask_id": 2,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000540_0002.png",
+        "sha256": "aeaab5c58433955c3e345b522a7860b256129f0074cab7dc14499dad930c6fe3",
+        "bbox_rgb": [
+          796,
+          0,
+          1296,
+          643
+        ],
+        "mask_pixels": 582
+      }
+    ]
+  },
+  {
+    "task_id": 109,
+    "frame_id": 545,
+    "crops": [
+      {
+        "frame_id": 545,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000545_0001.png",
+        "sha256": "61e70c2f8468144da2008b418b9bdf8b05ebca4876929a5e6fe083dd226f91ae",
+        "bbox_rgb": [
+          0,
+          333,
+          1296,
+          968
+        ],
+        "mask_pixels": 86820
+      },
+      {
+        "frame_id": 545,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000545_0003.png",
+        "sha256": "adeedee682a1cf7fdc959d3c62df3f60c14728c1cf990152e0a238163d23e21f",
+        "bbox_rgb": [
+          413,
+          0,
+          757,
+          470
+        ],
+        "mask_pixels": 11727
+      },
+      {
+        "frame_id": 545,
+        "mask_id": 2,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000545_0002.png",
+        "sha256": "c9a787d7c3acdc5be82f74a8a757430116dec7e986dfe19e55fb5bdcf13d0608",
+        "bbox_rgb": [
+          755,
+          0,
+          1207,
+          647
+        ],
+        "mask_pixels": 379
+      }
+    ]
+  },
+  {
+    "task_id": 110,
+    "frame_id": 550,
+    "crops": [
+      {
+        "frame_id": 550,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000550_0001.png",
+        "sha256": "0a4e60ac196896e3130b935100970a111ce48c0f87d3bb57fd449d38715985e7",
+        "bbox_rgb": [
+          0,
+          341,
+          1296,
+          968
+        ],
+        "mask_pixels": 87418
+      },
+      {
+        "frame_id": 550,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000550_0003.png",
+        "sha256": "f5910aa29d1f031c82037e59cb0f1814fae5b0d64f5386394fc8aee86d11b79c",
+        "bbox_rgb": [
+          889,
+          0,
+          1296,
+          879
+        ],
+        "mask_pixels": 48584
+      },
+      {
+        "frame_id": 550,
+        "mask_id": 5,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000550_0005.png",
+        "sha256": "fdce7f37d6f12c145480b2c8818f443ef319d9ac409074cfe7c09cfff6bada29",
+        "bbox_rgb": [
+          674,
+          0,
+          1096,
+          663
+        ],
+        "mask_pixels": 31705
+      },
+      {
+        "frame_id": 550,
+        "mask_id": 2,
+        "sam_class_id": 4,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000550_0002.png",
+        "sha256": "40a26e79e6d6f4ccb94942472bbf48daf70e1500083cf7016d538a47bb43c9a1",
+        "bbox_rgb": [
+          0,
+          18,
+          148,
+          627
+        ],
+        "mask_pixels": 6884
+      },
+      {
+        "frame_id": 550,
+        "mask_id": 4,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000550_0004.png",
+        "sha256": "71c938fec0125c8a2f8f22749f89cfc3089da59561c598e3d7855890ce7cc7cd",
+        "bbox_rgb": [
+          318,
+          0,
+          654,
+          482
+        ],
+        "mask_pixels": 384
+      }
+    ]
+  },
+  {
+    "task_id": 111,
+    "frame_id": 555,
+    "crops": [
+      {
+        "frame_id": 555,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000555_0001.png",
+        "sha256": "0123bf0f509fb535d073ae7aa1739e7d7e59ec3e740387bc5775a7c1ad26282d",
+        "bbox_rgb": [
+          0,
+          298,
+          1296,
+          968
+        ],
+        "mask_pixels": 99355
+      },
+      {
+        "frame_id": 555,
+        "mask_id": 4,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000555_0004.png",
+        "sha256": "0a3bf63ec18ee18e15ff0e4683a13f87740d36d667041336bba8475bd68faa05",
+        "bbox_rgb": [
+          842,
+          0,
+          1296,
+          827
+        ],
+        "mask_pixels": 52901
+      },
+      {
+        "frame_id": 555,
+        "mask_id": 6,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000555_0006.png",
+        "sha256": "e82ba8bc1e7a834c0118be4562982f978b8980a43885af6b731ea017858ce880",
+        "bbox_rgb": [
+          644,
+          0,
+          1029,
+          623
+        ],
+        "mask_pixels": 28715
+      },
+      {
+        "frame_id": 555,
+        "mask_id": 5,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000555_0005.png",
+        "sha256": "11136a471c96b4460b6558d6b7431aac448d5ae80236d623357a12b03508b70f",
+        "bbox_rgb": [
+          288,
+          0,
+          605,
+          462
+        ],
+        "mask_pixels": 11030
+      },
+      {
+        "frame_id": 555,
+        "mask_id": 3,
+        "sam_class_id": 4,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000555_0003.png",
+        "sha256": "000f6374556f59b1cdefc88ec68149e869ff95e7e5c3ec46fb3303923131f76b",
+        "bbox_rgb": [
+          2,
+          190,
+          109,
+          563
+        ],
+        "mask_pixels": 3145
+      }
+    ]
+  },
+  {
+    "task_id": 112,
+    "frame_id": 560,
+    "crops": [
+      {
+        "frame_id": 560,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000560_0001.png",
+        "sha256": "7d18d5e4d8dd031aceeec3085cc0535c241ab1747e35c6ebc76791839420a0de",
+        "bbox_rgb": [
+          0,
+          335,
+          1296,
+          968
+        ],
+        "mask_pixels": 91560
+      },
+      {
+        "frame_id": 560,
+        "mask_id": 4,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000560_0004.png",
+        "sha256": "ff5448cf32568f28aaaf414aa7b3d2811c594856175bd0b720cf4a4396ca6619",
+        "bbox_rgb": [
+          836,
+          0,
+          1296,
+          845
+        ],
+        "mask_pixels": 55771
+      },
+      {
+        "frame_id": 560,
+        "mask_id": 5,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000560_0005.png",
+        "sha256": "6098f70b431b433e28bbfe5d5741e95e35b7484e7a2b46070ae5cf7122c563d9",
+        "bbox_rgb": [
+          640,
+          0,
+          1002,
+          653
+        ],
+        "mask_pixels": 29281
+      },
+      {
+        "frame_id": 560,
+        "mask_id": 3,
+        "sam_class_id": 4,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000560_0003.png",
+        "sha256": "121b75ff354bb893be6a1d80d1632c9ef2c9c8b003087f840ec7a0cedc30ab28",
+        "bbox_rgb": [
+          2,
+          216,
+          113,
+          607
+        ],
+        "mask_pixels": 3256
+      },
+      {
+        "frame_id": 560,
+        "mask_id": 2,
+        "sam_class_id": 4,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000560_0002.png",
+        "sha256": "345e19500a9cc52e8b74f9b8452103776f5d959a7531a394c468a6d74095c3df",
+        "bbox_rgb": [
+          674,
+          0,
+          1296,
+          845
+        ],
+        "mask_pixels": 1340
+      }
+    ]
+  },
+  {
+    "task_id": 113,
+    "frame_id": 565,
+    "crops": [
+      {
+        "frame_id": 565,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000565_0001.png",
+        "sha256": "6cec40ed937e5a7b1aec60fed6ece19aa7b86b427a59ce79f96679682064b60c",
+        "bbox_rgb": [
+          0,
+          367,
+          1296,
+          968
+        ],
+        "mask_pixels": 83749
+      },
+      {
+        "frame_id": 565,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000565_0003.png",
+        "sha256": "9755cf8bfb939e6fa15022761f65568fe72abcd0af829f96f0d55cc1ed2c34d8",
+        "bbox_rgb": [
+          788,
+          0,
+          1296,
+          873
+        ],
+        "mask_pixels": 62581
+      },
+      {
+        "frame_id": 565,
+        "mask_id": 4,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000565_0004.png",
+        "sha256": "d7cee532067592b72070dfb8698b9c77c28465f8fcc739c849e2282d0dee2dde",
+        "bbox_rgb": [
+          605,
+          0,
+          950,
+          682
+        ],
+        "mask_pixels": 29814
+      },
+      {
+        "frame_id": 565,
+        "mask_id": 6,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000565_0006.png",
+        "sha256": "e7bcb82db56cbc9b21b321d5691969b4d33e8d2e15d8319ab9dd575a29aa3734",
+        "bbox_rgb": [
+          241,
+          0,
+          573,
+          534
+        ],
+        "mask_pixels": 11870
+      },
+      {
+        "frame_id": 565,
+        "mask_id": 2,
+        "sam_class_id": 4,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000565_0002.png",
+        "sha256": "e95adb5c98cf238ce7cc45937699fc40add488866807ef287aa8a44e956b912b",
+        "bbox_rgb": [
+          6,
+          387,
+          77,
+          619
+        ],
+        "mask_pixels": 1243
+      }
+    ]
+  },
+  {
+    "task_id": 114,
+    "frame_id": 570,
+    "crops": [
+      {
+        "frame_id": 570,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000570_0001.png",
+        "sha256": "a87ebc3ece040224e541abce134776f76d49ed65813082c186dac6c8e811d2ac",
+        "bbox_rgb": [
+          0,
+          341,
+          1296,
+          968
+        ],
+        "mask_pixels": 91263
+      },
+      {
+        "frame_id": 570,
+        "mask_id": 2,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000570_0002.png",
+        "sha256": "3d355b385594fd863632022d49c8cc9a13a1898b88b9802fe3403d4246b6f123",
+        "bbox_rgb": [
+          695,
+          0,
+          1296,
+          863
+        ],
+        "mask_pixels": 61966
+      },
+      {
+        "frame_id": 570,
+        "mask_id": 5,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000570_0005.png",
+        "sha256": "92f3429475364d325e6c98768415dad43d6698c66b13b912428a96add9d1d0db",
+        "bbox_rgb": [
+          603,
+          0,
+          934,
+          659
+        ],
+        "mask_pixels": 27876
+      },
+      {
+        "frame_id": 570,
+        "mask_id": 4,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000570_0004.png",
+        "sha256": "b362fce95b7e69216c46ee6d1cd913511238b746e29325115e31aa8ab8788eed",
+        "bbox_rgb": [
+          253,
+          0,
+          569,
+          512
+        ],
+        "mask_pixels": 10662
+      }
+    ]
+  },
+  {
+    "task_id": 115,
+    "frame_id": 575,
+    "crops": [
+      {
+        "frame_id": 575,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000575_0001.png",
+        "sha256": "3d7b0b0080430af06dc718768c0158daae7e28b6bb62dd0b86cccc30a8e4b95a",
+        "bbox_rgb": [
+          0,
+          341,
+          1296,
+          968
+        ],
+        "mask_pixels": 89825
+      },
+      {
+        "frame_id": 575,
+        "mask_id": 2,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000575_0002.png",
+        "sha256": "a2e02510e186e60b36e0ed010048af11ba66fb9f6c29a42bc606037c847af5b7",
+        "bbox_rgb": [
+          757,
+          0,
+          1296,
+          885
+        ],
+        "mask_pixels": 62853
+      },
+      {
+        "frame_id": 575,
+        "mask_id": 5,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000575_0005.png",
+        "sha256": "f39dacad1994106913c60a23e4a11dc3ef32f9bfd63324b8d0fe2fa0c50db743",
+        "bbox_rgb": [
+          608,
+          0,
+          929,
+          670
+        ],
+        "mask_pixels": 27703
+      },
+      {
+        "frame_id": 575,
+        "mask_id": 4,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000575_0004.png",
+        "sha256": "8debd699a555b2089d680e62174165e75fd95cdf157381f715cc4ea2c36f7604",
+        "bbox_rgb": [
+          288,
+          0,
+          567,
+          508
+        ],
+        "mask_pixels": 9909
+      },
+      {
+        "frame_id": 575,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000575_0003.png",
+        "sha256": "18d91f90a81d90dd3b9c78c5b8688cfa8c6eaa69f8eecfcc531c2914365b6d26",
+        "bbox_rgb": [
+          1126,
+          311,
+          1296,
+          912
+        ],
+        "mask_pixels": 8147
+      }
+    ]
+  },
+  {
+    "task_id": 116,
+    "frame_id": 580,
+    "crops": [
+      {
+        "frame_id": 580,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000580_0001.png",
+        "sha256": "1c18dcf521bea3f09a3a641c0bf8720d16bf19948c619b0d4c0081504b27446d",
+        "bbox_rgb": [
+          0,
+          302,
+          1296,
+          968
+        ],
+        "mask_pixels": 99086
+      },
+      {
+        "frame_id": 580,
+        "mask_id": 2,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000580_0002.png",
+        "sha256": "45463313be6d32cd1f9580bf3e3faaf7cac05d3112c565b50a1e5e9ef5e31cda",
+        "bbox_rgb": [
+          508,
+          0,
+          1296,
+          847
+        ],
+        "mask_pixels": 86366
+      },
+      {
+        "frame_id": 580,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000580_0003.png",
+        "sha256": "a8f5d3a6f8c928c542f5d381873c48216afc6b9a03a74be6dc1da68388786d15",
+        "bbox_rgb": [
+          247,
+          0,
+          535,
+          470
+        ],
+        "mask_pixels": 9557
+      },
+      {
+        "frame_id": 580,
+        "mask_id": 4,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000580_0004.png",
+        "sha256": "713710a7c626bf9815ce539e83f7a610fe017bf5a73ecb9e4beea4b199ee4d69",
+        "bbox_rgb": [
+          573,
+          0,
+          871,
+          611
+        ],
+        "mask_pixels": 314
+      }
+    ]
+  },
+  {
+    "task_id": 117,
+    "frame_id": 585,
+    "crops": [
+      {
+        "frame_id": 585,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000585_0001.png",
+        "sha256": "4e90a47f57545075b09f8f7550fa65d6934b63820e07d3d8c21fdb057703db85",
+        "bbox_rgb": [
+          0,
+          272,
+          1296,
+          968
+        ],
+        "mask_pixels": 105194
+      },
+      {
+        "frame_id": 585,
+        "mask_id": 2,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000585_0002.png",
+        "sha256": "939457bb27e0b853b4816f38dea241ccaf35c3af4b0bc1cb9ac35bd36f3c90fc",
+        "bbox_rgb": [
+          640,
+          0,
+          1290,
+          791
+        ],
+        "mask_pixels": 55641
+      },
+      {
+        "frame_id": 585,
+        "mask_id": 5,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000585_0005.png",
+        "sha256": "fea97d29d2cc053f4995982aa3645cb05f5db2bc19bb10b732bfcab43974cb33",
+        "bbox_rgb": [
+          504,
+          0,
+          814,
+          589
+        ],
+        "mask_pixels": 23911
+      },
+      {
+        "frame_id": 585,
+        "mask_id": 4,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000585_0004.png",
+        "sha256": "7a1ab0c4baa028d5c120f5ad587d63500b5cad833faef47c1fcf5a0617e6ea5a",
+        "bbox_rgb": [
+          196,
+          0,
+          480,
+          432
+        ],
+        "mask_pixels": 14531
+      },
+      {
+        "frame_id": 585,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000585_0003.png",
+        "sha256": "9d28ed2f8402ac2662d85dcb51219fd4d1cacc9f304f116966eb66d288c8971d",
+        "bbox_rgb": [
+          1015,
+          0,
+          1296,
+          908
+        ],
+        "mask_pixels": 449
+      }
+    ]
+  },
+  {
+    "task_id": 118,
+    "frame_id": 590,
+    "crops": [
+      {
+        "frame_id": 590,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000590_0001.png",
+        "sha256": "c314d2dbdcbe8bb045bd426a579a68e462f8ce3b53b7ed2d68af91148017a745",
+        "bbox_rgb": [
+          0,
+          236,
+          1296,
+          968
+        ],
+        "mask_pixels": 109155
+      },
+      {
+        "frame_id": 590,
+        "mask_id": 2,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000590_0002.png",
+        "sha256": "7281fde64d349ce617ea70bb69bc8a08b2f47cb2c24016d71b66b948b8037e7c",
+        "bbox_rgb": [
+          49,
+          0,
+          358,
+          405
+        ],
+        "mask_pixels": 9524
+      }
+    ]
+  },
+  {
+    "task_id": 119,
+    "frame_id": 595,
+    "crops": [
+      {
+        "frame_id": 595,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000595_0001.png",
+        "sha256": "38abcc37f323ff80c6f864c34f02c1e1143b093cf4787f9dca4f431cbc1e57aa",
+        "bbox_rgb": [
+          0,
+          226,
+          1296,
+          968
+        ],
+        "mask_pixels": 103677
+      },
+      {
+        "frame_id": 595,
+        "mask_id": 4,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000595_0004.png",
+        "sha256": "2afce172d5d4fc2763002bdc736d2b5716ff9c9803a22a6a949a332657d2a401",
+        "bbox_rgb": [
+          180,
+          0,
+          1004,
+          706
+        ],
+        "mask_pixels": 69489
+      },
+      {
+        "frame_id": 595,
+        "mask_id": 2,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000595_0002.png",
+        "sha256": "83e4d79112675dec4a1a7c4bbeeb30a7f495c26cf25c67ffac81784accc62444",
+        "bbox_rgb": [
+          0,
+          0,
+          211,
+          397
+        ],
+        "mask_pixels": 7030
+      },
+      {
+        "frame_id": 595,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000595_0003.png",
+        "sha256": "620b7149d97c333db6a647b5cdcadfed3ae97ce15d7e588cf63a0cbf3272297b",
+        "bbox_rgb": [
+          739,
+          0,
+          1296,
+          873
+        ],
+        "mask_pixels": 389
+      },
+      {
+        "frame_id": 595,
+        "mask_id": 5,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000595_0005.png",
+        "sha256": "d8dac0827ee1fa16ff70770960fd8ebc4ccac29b5b6478d7005e5a439e59b9ef",
+        "bbox_rgb": [
+          18,
+          0,
+          294,
+          413
+        ],
+        "mask_pixels": 318
+      }
+    ]
+  },
+  {
+    "task_id": 120,
+    "frame_id": 600,
+    "crops": [
+      {
+        "frame_id": 600,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000600_0001.png",
+        "sha256": "8b0558690e3672a57ec71c6b14f28c4b2f737fc5e1f06e8ee53e7ce15ac49d2d",
+        "bbox_rgb": [
+          0,
+          236,
+          1296,
+          968
+        ],
+        "mask_pixels": 101007
+      },
+      {
+        "frame_id": 600,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000600_0003.png",
+        "sha256": "fb76d3ffec286029d5d23af792894994ff6d178f7f01ea88dea725562d7ba1c7",
+        "bbox_rgb": [
+          83,
+          0,
+          907,
+          684
+        ],
+        "mask_pixels": 67397
+      }
+    ]
+  },
+  {
+    "task_id": 121,
+    "frame_id": 605,
+    "crops": [
+      {
+        "frame_id": 605,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000605_0001.png",
+        "sha256": "62580e8dfa3ff935ea9997de0be74808e6cd09ca7cabf7184a7c2adf848d813f",
+        "bbox_rgb": [
+          0,
+          244,
+          1296,
+          968
+        ],
+        "mask_pixels": 100320
+      },
+      {
+        "frame_id": 605,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000605_0003.png",
+        "sha256": "c1b6691e69cc80c31b55766de411d53488139ecef4af8da8949e85baa9cfbb81",
+        "bbox_rgb": [
+          40,
+          0,
+          853,
+          672
+        ],
+        "mask_pixels": 66585
+      }
+    ]
+  },
+  {
+    "task_id": 122,
+    "frame_id": 610,
+    "crops": [
+      {
+        "frame_id": 610,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000610_0001.png",
+        "sha256": "c7a87847e184d75a28a515ca19821ed4045037ba0b760d679d77cdd16459e7a2",
+        "bbox_rgb": [
+          0,
+          218,
+          1296,
+          968
+        ],
+        "mask_pixels": 101622
+      }
+    ]
+  },
+  {
+    "task_id": 123,
+    "frame_id": 615,
+    "crops": [
+      {
+        "frame_id": 615,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000615_0001.png",
+        "sha256": "71eb520048e0e68047da04828a9c3448504c43ec36de6f456d46af9d50c085d9",
+        "bbox_rgb": [
+          0,
+          302,
+          1296,
+          968
+        ],
+        "mask_pixels": 96217
+      }
+    ]
+  }
+]

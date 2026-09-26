@@ -1,0 +1,8 @@
+{
+  "status": "completed",
+  "GT_only_after_prediction_seal": true,
+  "all_locks_passed": true,
+  "primary_protocol_unchanged": true,
+  "heldout_reported_separately": true,
+  "crop_GT_scope": "correlated reviewed mask views using true per-frame GT pose; diagnostic only, not independent object accuracy"
+}

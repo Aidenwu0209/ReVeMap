@@ -1,0 +1,112 @@
+[
+  {
+    "object_id": 1,
+    "GT_object_id": 9,
+    "GT_name": "wall",
+    "canonical_GT_name": "wall",
+    "owned_points": 2219,
+    "supported_points": 894,
+    "dominant_GT_points": 428,
+    "eligible": false
+  },
+  {
+    "object_id": 2,
+    "GT_object_id": 5,
+    "GT_name": "floor",
+    "canonical_GT_name": "floor",
+    "owned_points": 8932,
+    "supported_points": 8653,
+    "dominant_GT_points": 7924,
+    "eligible": false
+  },
+  {
+    "object_id": 3,
+    "GT_object_id": 9,
+    "GT_name": "wall",
+    "canonical_GT_name": "wall",
+    "owned_points": 4504,
+    "supported_points": 937,
+    "dominant_GT_points": 625,
+    "eligible": false
+  },
+  {
+    "object_id": 4,
+    "GT_object_id": 10,
+    "GT_name": "door",
+    "canonical_GT_name": "door",
+    "owned_points": 1208,
+    "supported_points": 1105,
+    "dominant_GT_points": 1099,
+    "eligible": false
+  },
+  {
+    "object_id": 5,
+    "GT_object_id": 0,
+    "GT_name": "unknown",
+    "canonical_GT_name": "unknown",
+    "owned_points": 230,
+    "supported_points": 0,
+    "dominant_GT_points": 0,
+    "eligible": false
+  },
+  {
+    "object_id": 6,
+    "GT_object_id": 10,
+    "GT_name": "door",
+    "canonical_GT_name": "door",
+    "owned_points": 1819,
+    "supported_points": 84,
+    "dominant_GT_points": 66,
+    "eligible": false
+  },
+  {
+    "object_id": 7,
+    "GT_object_id": 4,
+    "GT_name": "bed",
+    "canonical_GT_name": "bed",
+    "owned_points": 3700,
+    "supported_points": 3452,
+    "dominant_GT_points": 3447,
+    "eligible": true
+  },
+  {
+    "object_id": 8,
+    "GT_object_id": 11,
+    "GT_name": "closet doors",
+    "canonical_GT_name": "closet doors",
+    "owned_points": 1315,
+    "supported_points": 1309,
+    "dominant_GT_points": 1108,
+    "eligible": false
+  },
+  {
+    "object_id": 9,
+    "GT_object_id": 11,
+    "GT_name": "closet doors",
+    "canonical_GT_name": "closet doors",
+    "owned_points": 2130,
+    "supported_points": 2130,
+    "dominant_GT_points": 2130,
+    "eligible": false
+  },
+  {
+    "object_id": 10,
+    "GT_object_id": 12,
+    "GT_name": "wall",
+    "canonical_GT_name": "wall",
+    "owned_points": 3016,
+    "supported_points": 2279,
+    "dominant_GT_points": 1962,
+    "eligible": false
+  },
+  {
+    "object_id": 11,
+    "GT_object_id": 7,
+    "GT_name": "door",
+    "canonical_GT_name": "door",
+    "owned_points": 92,
+    "supported_points": 92,
+    "dominant_GT_points": 92,
+    "eligible": false
+  }
+]

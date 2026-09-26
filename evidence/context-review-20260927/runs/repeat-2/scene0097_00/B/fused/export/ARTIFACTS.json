@@ -1,0 +1,28 @@
+{
+  "dataset": "scannet",
+  "files": {
+    "classes": {
+      "path": "../classes.json",
+      "sha256": "3716e36ab4688ed8d2e426c2f8835b0c79810cdc8c7021428efdd05a08aa4689"
+    },
+    "input_manifest": {
+      "path": "../../../../../../../ReVeMap-ScanNet10-20260926/inputs/scene0097_00.json",
+      "sha256": "29d17f1a9dc372d939183e3efad49784244688473178c4ab7b1399e3ced2becb"
+    },
+    "map": {
+      "path": "map_labeled.ply",
+      "sha256": "39d08b6e8fcab365f0bb7c02a6c45b0417fde56a4f896bd5daf722363a36b99b"
+    },
+    "result": {
+      "path": "../result.json",
+      "sha256": "79b0fc37ae1447be29e97017002c975edf8689c4e78a0c8ce53ee75e804a3a34"
+    },
+    "trajectory": {
+      "path": "../../../../../../../ReVeMap-ScanNet10-20260926/runs/scene0097_00/pipeline/mapping/refill/trajectory.json",
+      "sha256": "ddddc7a545635f4028e9590a9c7911797b469c4c7722866a4ac060b9a286e338"
+    }
+  },
+  "provenance_bound": true,
+  "scene_id": "scene0097_00",
+  "schema": "revemap.artifacts.v1"
+}

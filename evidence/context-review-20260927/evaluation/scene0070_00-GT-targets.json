@@ -1,0 +1,92 @@
+[
+  {
+    "object_id": 1,
+    "GT_object_id": 12,
+    "GT_name": "chair",
+    "canonical_GT_name": "chair",
+    "owned_points": 1593,
+    "supported_points": 1226,
+    "dominant_GT_points": 657,
+    "eligible": false
+  },
+  {
+    "object_id": 2,
+    "GT_object_id": 1,
+    "GT_name": "table",
+    "canonical_GT_name": "table",
+    "owned_points": 1599,
+    "supported_points": 196,
+    "dominant_GT_points": 109,
+    "eligible": false
+  },
+  {
+    "object_id": 3,
+    "GT_object_id": 5,
+    "GT_name": "floor",
+    "canonical_GT_name": "floor",
+    "owned_points": 5825,
+    "supported_points": 1351,
+    "dominant_GT_points": 1328,
+    "eligible": false
+  },
+  {
+    "object_id": 4,
+    "GT_object_id": 10,
+    "GT_name": "wall",
+    "canonical_GT_name": "wall",
+    "owned_points": 1989,
+    "supported_points": 1521,
+    "dominant_GT_points": 1161,
+    "eligible": false
+  },
+  {
+    "object_id": 5,
+    "GT_object_id": 2,
+    "GT_name": "cabinet",
+    "canonical_GT_name": "cabinet",
+    "owned_points": 1159,
+    "supported_points": 278,
+    "dominant_GT_points": 155,
+    "eligible": false
+  },
+  {
+    "object_id": 6,
+    "GT_object_id": 3,
+    "GT_name": "shelf",
+    "canonical_GT_name": "shelf",
+    "owned_points": 364,
+    "supported_points": 101,
+    "dominant_GT_points": 101,
+    "eligible": false
+  },
+  {
+    "object_id": 7,
+    "GT_object_id": 3,
+    "GT_name": "shelf",
+    "canonical_GT_name": "shelf",
+    "owned_points": 738,
+    "supported_points": 464,
+    "dominant_GT_points": 464,
+    "eligible": false
+  },
+  {
+    "object_id": 8,
+    "GT_object_id": 18,
+    "GT_name": "file cabinet",
+    "canonical_GT_name": "file cabinet",
+    "owned_points": 245,
+    "supported_points": 70,
+    "dominant_GT_points": 35,
+    "eligible": false
+  },
+  {
+    "object_id": 9,
+    "GT_object_id": 3,
+    "GT_name": "shelf",
+    "canonical_GT_name": "shelf",
+    "owned_points": 174,
+    "supported_points": 174,
+    "dominant_GT_points": 174,
+    "eligible": false
+  }
+]

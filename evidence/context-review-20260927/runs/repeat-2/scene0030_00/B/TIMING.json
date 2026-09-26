@@ -1,0 +1,14 @@
+{
+  "scene": "scene0030_00",
+  "arm": "B",
+  "repeat": 2,
+  "tail_wall_seconds": 14.868429553000169,
+  "fusion_process_seconds": 3.5130030850000367,
+  "naming_process_seconds": 11.156591969000146,
+  "base_calls": 63,
+  "context_calls": 0,
+  "total_calls": 63,
+  "reviewed_objects": 0,
+  "objects": 11,
+  "named_objects": 6
+}

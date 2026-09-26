@@ -1,0 +1,568 @@
+[
+  {
+    "instance_id": 1,
+    "semantic_id": 9,
+    "point_count": 2219,
+    "vlm_name": "door",
+    "support_frames": [
+      500,
+      520
+    ],
+    "evidence": [
+      {
+        "frame_id": 500,
+        "mask_id": 2,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000500_0002.png",
+        "sha256": "540a07779ccea44ca787f89b31650b6c6a5aa194e5012b5e5a8379cddc019917",
+        "bbox_rgb": [
+          778,
+          0,
+          1296,
+          817
+        ],
+        "mask_pixels": 27904,
+        "association": {
+          "object_id": 1,
+          "eligible": true,
+          "share": 0.9715591670898933,
+          "visible_points": 1969,
+          "candidates": [
+            {
+              "object_id": 1,
+              "points": 1913,
+              "share": 0.9715591670898933
+            },
+            {
+              "object_id": 6,
+              "points": 4,
+              "share": 0.002031488065007618
+            },
+            {
+              "object_id": 3,
+              "points": 2,
+              "share": 0.001015744032503809
+            }
+          ],
+          "ambiguous": false
+        },
+        "view_direction": [
+          0.5747586934052071,
+          -0.7433557383353505,
+          0.3421617901505733
+        ],
+        "raw_response": "door",
+        "label": "door",
+        "valid": true,
+        "request_seconds": 0.40666926299991246,
+        "executed": true,
+        "output_tokens": 2,
+        "source_image_size": [
+          518,
+          817
+        ],
+        "adapter_image_size": [
+          518,
+          817
+        ],
+        "peak_allocated_mib": 1574.73828125,
+        "candidate_instance_id": 1,
+        "projected_instance_share": 0.9715591670898933,
+        "visible_points": 1969,
+        "model_completed_at": 3113.493041477
+      },
+      {
+        "frame_id": 535,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000535_0003.png",
+        "sha256": "76b327f3150ca1b135e7c25044d1ec50cc10d215dd8f509345745b8fb31cbf6a",
+        "bbox_rgb": [
+          543,
+          0,
+          915,
+          530
+        ],
+        "mask_pixels": 14057,
+        "association": {
+          "object_id": 1,
+          "eligible": true,
+          "share": 0.9761114797611148,
+          "visible_points": 1507,
+          "candidates": [
+            {
+              "object_id": 1,
+              "points": 1471,
+              "share": 0.9761114797611148
+            },
+            {
+              "object_id": 6,
+              "points": 4,
+              "share": 0.0026542800265428003
+            },
+            {
+              "object_id": 4,
+              "points": 1,
+              "share": 0.0006635700066357001
+            }
+          ],
+          "ambiguous": false
+        },
+        "view_direction": [
+          0.48092425004975553,
+          -0.7730297333996186,
+          0.41368695531064903
+        ],
+        "raw_response": "mirror",
+        "label": "mirror",
+        "valid": true,
+        "request_seconds": 0.10898680200034505,
+        "executed": true,
+        "output_tokens": 2,
+        "source_image_size": [
+          372,
+          530
+        ],
+        "adapter_image_size": [
+          372,
+          530
+        ],
+        "peak_allocated_mib": 1575.638671875,
+        "candidate_instance_id": 1,
+        "projected_instance_share": 0.9761114797611148,
+        "visible_points": 1507,
+        "model_completed_at": 3113.493041477
+      },
+      {
+        "frame_id": 520,
+        "mask_id": 3,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000520_0003.png",
+        "sha256": "aa95b9536b14c197794feb577b82daf114c2d94c497d45878acaad1bc0bf9383",
+        "bbox_rgb": [
+          670,
+          0,
+          1096,
+          593
+        ],
+        "mask_pixels": 16178,
+        "association": {
+          "object_id": 1,
+          "eligible": true,
+          "share": 0.9896142433234422,
+          "visible_points": 1348,
+          "candidates": [
+            {
+              "object_id": 1,
+              "points": 1334,
+              "share": 0.9896142433234422
+            }
+          ],
+          "ambiguous": false
+        },
+        "view_direction": [
+          0.5445687061250847,
+          -0.7531715445342174,
+          0.36902242318481476
+        ],
+        "raw_response": "door",
+        "label": "door",
+        "valid": true,
+        "request_seconds": 0.10903882100001283,
+        "executed": true,
+        "output_tokens": 2,
+        "source_image_size": [
+          426,
+          593
+        ],
+        "adapter_image_size": [
+          426,
+          593
+        ],
+        "peak_allocated_mib": 1575.638671875,
+        "candidate_instance_id": 1,
+        "projected_instance_share": 0.9896142433234422,
+        "visible_points": 1348,
+        "model_completed_at": 3113.493041477
+      }
+    ],
+    "assignment_scope": "multiview naming metadata; original semantic_id retained, no new SAM3 text grounding or geometry change"
+  },
+  {
+    "instance_id": 2,
+    "semantic_id": 10,
+    "point_count": 8932,
+    "vlm_name": "unknown",
+    "support_frames": [],
+    "evidence": [],
+    "assignment_scope": "multiview naming metadata; original semantic_id retained, no new SAM3 text grounding or geometry change"
+  },
+  {
+    "instance_id": 3,
+    "semantic_id": 19,
+    "point_count": 4504,
+    "vlm_name": "unknown",
+    "support_frames": [],
+    "evidence": [],
+    "assignment_scope": "multiview naming metadata; original semantic_id retained, no new SAM3 text grounding or geometry change"
+  },
+  {
+    "instance_id": 4,
+    "semantic_id": 19,
+    "point_count": 1208,
+    "vlm_name": "unknown",
+    "support_frames": [],
+    "evidence": [],
+    "assignment_scope": "multiview naming metadata; original semantic_id retained, no new SAM3 text grounding or geometry change"
+  },
+  {
+    "instance_id": 5,
+    "semantic_id": 9,
+    "point_count": 230,
+    "vlm_name": "unknown",
+    "support_frames": [],
+    "evidence": [],
+    "assignment_scope": "multiview naming metadata; original semantic_id retained, no new SAM3 text grounding or geometry change"
+  },
+  {
+    "instance_id": 6,
+    "semantic_id": 19,
+    "point_count": 1819,
+    "vlm_name": "unknown",
+    "support_frames": [],
+    "evidence": [],
+    "assignment_scope": "multiview naming metadata; original semantic_id retained, no new SAM3 text grounding or geometry change"
+  },
+  {
+    "instance_id": 7,
+    "semantic_id": 2,
+    "point_count": 3700,
+    "vlm_name": "bed",
+    "support_frames": [
+      535,
+      565,
+      590
+    ],
+    "evidence": [
+      {
+        "frame_id": 590,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000590_0001.png",
+        "sha256": "c314d2dbdcbe8bb045bd426a579a68e462f8ce3b53b7ed2d68af91148017a745",
+        "bbox_rgb": [
+          0,
+          236,
+          1296,
+          968
+        ],
+        "mask_pixels": 109155,
+        "association": {
+          "object_id": 7,
+          "eligible": true,
+          "share": 0.9954299958454508,
+          "visible_points": 2407,
+          "candidates": [
+            {
+              "object_id": 7,
+              "points": 2396,
+              "share": 0.9954299958454508
+            },
+            {
+              "object_id": 2,
+              "points": 3,
+              "share": 0.0012463647694225177
+            }
+          ],
+          "ambiguous": false
+        },
+        "view_direction": [
+          0.3764847611450577,
+          -0.9259781298515839,
+          -0.02870065612685799
+        ],
+        "raw_response": "bed",
+        "label": "bed",
+        "valid": true,
+        "request_seconds": 0.12480305300005057,
+        "executed": true,
+        "output_tokens": 2,
+        "source_image_size": [
+          1296,
+          732
+        ],
+        "adapter_image_size": [
+          1296,
+          732
+        ],
+        "peak_allocated_mib": 1576.359375,
+        "candidate_instance_id": 7,
+        "projected_instance_share": 0.9954299958454508,
+        "visible_points": 2407,
+        "model_completed_at": 3113.493041477
+      },
+      {
+        "frame_id": 535,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000535_0001.png",
+        "sha256": "38f7a963821cc0745477a214f9586a8c685b3b356e6660a882df91753cb82c7d",
+        "bbox_rgb": [
+          105,
+          426,
+          1296,
+          968
+        ],
+        "mask_pixels": 62874,
+        "association": {
+          "object_id": 7,
+          "eligible": true,
+          "share": 0.9916805324459235,
+          "visible_points": 1202,
+          "candidates": [
+            {
+              "object_id": 7,
+              "points": 1192,
+              "share": 0.9916805324459235
+            },
+            {
+              "object_id": 2,
+              "points": 7,
+              "share": 0.005823627287853577
+            }
+          ],
+          "ambiguous": false
+        },
+        "view_direction": [
+          0.585857779491174,
+          -0.7354499784221409,
+          -0.34041737829985047
+        ],
+        "raw_response": "bed",
+        "label": "bed",
+        "valid": true,
+        "request_seconds": 0.1162485560003006,
+        "executed": true,
+        "output_tokens": 2,
+        "source_image_size": [
+          1191,
+          542
+        ],
+        "adapter_image_size": [
+          1191,
+          542
+        ],
+        "peak_allocated_mib": 1576.359375,
+        "candidate_instance_id": 7,
+        "projected_instance_share": 0.9916805324459235,
+        "visible_points": 1202,
+        "model_completed_at": 3113.493041477
+      },
+      {
+        "frame_id": 565,
+        "mask_id": 1,
+        "sam_class_id": 2,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000565_0001.png",
+        "sha256": "6cec40ed937e5a7b1aec60fed6ece19aa7b86b427a59ce79f96679682064b60c",
+        "bbox_rgb": [
+          0,
+          367,
+          1296,
+          968
+        ],
+        "mask_pixels": 83749,
+        "association": {
+          "object_id": 7,
+          "eligible": true,
+          "share": 0.9932677369238736,
+          "visible_points": 1931,
+          "candidates": [
+            {
+              "object_id": 7,
+              "points": 1918,
+              "share": 0.9932677369238736
+            },
+            {
+              "object_id": 2,
+              "points": 13,
+              "share": 0.006732263076126359
+            }
+          ],
+          "ambiguous": false
+        },
+        "view_direction": [
+          0.4889424617323388,
+          -0.8556379530465374,
+          -0.16976148686157233
+        ],
+        "raw_response": "bed",
+        "label": "bed",
+        "valid": true,
+        "request_seconds": 0.11814575800008242,
+        "executed": true,
+        "output_tokens": 2,
+        "source_image_size": [
+          1296,
+          601
+        ],
+        "adapter_image_size": [
+          1296,
+          601
+        ],
+        "peak_allocated_mib": 1576.359375,
+        "candidate_instance_id": 7,
+        "projected_instance_share": 0.9932677369238736,
+        "visible_points": 1931,
+        "model_completed_at": 3113.493041477
+      }
+    ],
+    "assignment_scope": "multiview naming metadata; original semantic_id retained, no new SAM3 text grounding or geometry change"
+  },
+  {
+    "instance_id": 8,
+    "semantic_id": 9,
+    "point_count": 1315,
+    "vlm_name": "unknown",
+    "support_frames": [],
+    "evidence": [
+      {
+        "frame_id": 520,
+        "mask_id": 2,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000520_0002.png",
+        "sha256": "68f790c220939d3f912623664f4ade43a5c4ae4eda23fe556b17501989dbc227",
+        "bbox_rgb": [
+          1059,
+          0,
+          1296,
+          738
+        ],
+        "mask_pixels": 18590,
+        "association": {
+          "object_id": 8,
+          "eligible": true,
+          "share": 0.7594752186588921,
+          "visible_points": 686,
+          "candidates": [
+            {
+              "object_id": 8,
+              "points": 521,
+              "share": 0.7594752186588921
+            },
+            {
+              "object_id": 4,
+              "points": 26,
+              "share": 0.037900874635568516
+            }
+          ],
+          "ambiguous": true
+        },
+        "view_direction": [
+          0.7717903834413326,
+          -0.6252782252984931,
+          0.11561464005500212
+        ],
+        "raw_response": "door",
+        "label": "door",
+        "valid": true,
+        "request_seconds": 0.10185300000011921,
+        "executed": true,
+        "output_tokens": 2,
+        "source_image_size": [
+          237,
+          738
+        ],
+        "adapter_image_size": [
+          237,
+          738
+        ],
+        "peak_allocated_mib": 1576.359375,
+        "candidate_instance_id": 8,
+        "projected_instance_share": 0.7594752186588921,
+        "visible_points": 686,
+        "model_completed_at": 3113.493041477
+      }
+    ],
+    "assignment_scope": "multiview naming metadata; original semantic_id retained, no new SAM3 text grounding or geometry change"
+  },
+  {
+    "instance_id": 9,
+    "semantic_id": 9,
+    "point_count": 2130,
+    "vlm_name": "unknown",
+    "support_frames": [],
+    "evidence": [
+      {
+        "frame_id": 560,
+        "mask_id": 4,
+        "sam_class_id": 9,
+        "file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0200_00/pipeline/semantic/crops/000560_0004.png",
+        "sha256": "ff5448cf32568f28aaaf414aa7b3d2811c594856175bd0b720cf4a4396ca6619",
+        "bbox_rgb": [
+          836,
+          0,
+          1296,
+          845
+        ],
+        "mask_pixels": 55771,
+        "association": {
+          "object_id": 9,
+          "eligible": true,
+          "share": 0.9881221719457014,
+          "visible_points": 1768,
+          "candidates": [
+            {
+              "object_id": 9,
+              "points": 1747,
+              "share": 0.9881221719457014
+            }
+          ],
+          "ambiguous": false
+        },
+        "view_direction": [
+          0.788871530507251,
+          -0.6134114899280521,
+          0.0375240240298742
+        ],
+        "raw_response": "door",
+        "label": "door",
+        "valid": true,
+        "request_seconds": 0.10496090300011929,
+        "executed": true,
+        "output_tokens": 2,
+        "source_image_size": [
+          460,
+          845
+        ],
+        "adapter_image_size": [
+          460,
+          845
+        ],
+        "peak_allocated_mib": 1576.359375,
+        "candidate_instance_id": 9,
+        "projected_instance_share": 0.9881221719457014,
+        "visible_points": 1768,
+        "model_completed_at": 3113.493041477
+      }
+    ],
+    "assignment_scope": "multiview naming metadata; original semantic_id retained, no new SAM3 text grounding or geometry change"
+  },
+  {
+    "instance_id": 10,
+    "semantic_id": 19,
+    "point_count": 3016,
+    "vlm_name": "unknown",
+    "support_frames": [],
+    "evidence": [],
+    "assignment_scope": "multiview naming metadata; original semantic_id retained, no new SAM3 text grounding or geometry change"
+  },
+  {
+    "instance_id": 11,
+    "semantic_id": 9,
+    "point_count": 92,
+    "vlm_name": "unknown",
+    "support_frames": [],
+    "evidence": [],
+    "assignment_scope": "multiview naming metadata; original semantic_id retained, no new SAM3 text grounding or geometry change"
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "object_id": 2,
+    "base_name": "couch",
+    "sam_class": "sofa",
+    "triggers": [
+      "sam_vlm_category_conflict"
+    ],
+    "view_choice": "previously_uninferred_frames",
+    "context_keys": [
+      "002271_0001",
+      "002341_0002",
+      "002301_0002"
+    ],
+    "context_name": "couch",
+    "D_name": "couch",
+    "E_name": "couch",
+    "decision_reason": "context_consensus_matches_sam"
+  }
+]

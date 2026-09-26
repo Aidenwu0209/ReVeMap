@@ -1,0 +1,127 @@
+[
+  {
+    "frame_id": 305,
+    "depth_consistent_points": 9918,
+    "projected_at": 2825.626093597
+  },
+  {
+    "frame_id": 310,
+    "depth_consistent_points": 10262,
+    "projected_at": 2825.64857205
+  },
+  {
+    "frame_id": 315,
+    "depth_consistent_points": 10675,
+    "projected_at": 2825.671779904
+  },
+  {
+    "frame_id": 320,
+    "depth_consistent_points": 10759,
+    "projected_at": 2825.694650964
+  },
+  {
+    "frame_id": 325,
+    "depth_consistent_points": 10616,
+    "projected_at": 2825.718206243
+  },
+  {
+    "frame_id": 330,
+    "depth_consistent_points": 10246,
+    "projected_at": 2825.741199031
+  },
+  {
+    "frame_id": 335,
+    "depth_consistent_points": 10198,
+    "projected_at": 2825.763487659
+  },
+  {
+    "frame_id": 340,
+    "depth_consistent_points": 9910,
+    "projected_at": 2825.786160802
+  },
+  {
+    "frame_id": 345,
+    "depth_consistent_points": 9197,
+    "projected_at": 2825.809121153
+  },
+  {
+    "frame_id": 350,
+    "depth_consistent_points": 8721,
+    "projected_at": 2825.830068923
+  },
+  {
+    "frame_id": 355,
+    "depth_consistent_points": 8420,
+    "projected_at": 2825.850959664
+  },
+  {
+    "frame_id": 360,
+    "depth_consistent_points": 8322,
+    "projected_at": 2825.87216961
+  },
+  {
+    "frame_id": 365,
+    "depth_consistent_points": 7966,
+    "projected_at": 2825.891306272
+  },
+  {
+    "frame_id": 370,
+    "depth_consistent_points": 7189,
+    "projected_at": 2825.9110427
+  },
+  {
+    "frame_id": 375,
+    "depth_consistent_points": 7240,
+    "projected_at": 2825.93091906
+  },
+  {
+    "frame_id": 380,
+    "depth_consistent_points": 6750,
+    "projected_at": 2825.949721909
+  },
+  {
+    "frame_id": 385,
+    "depth_consistent_points": 8113,
+    "projected_at": 2825.969026344
+  },
+  {
+    "frame_id": 390,
+    "depth_consistent_points": 8520,
+    "projected_at": 2825.989631481
+  },
+  {
+    "frame_id": 395,
+    "depth_consistent_points": 8384,
+    "projected_at": 2826.009783216
+  },
+  {
+    "frame_id": 400,
+    "depth_consistent_points": 8891,
+    "projected_at": 2826.030571058
+  },
+  {
+    "frame_id": 405,
+    "depth_consistent_points": 9251,
+    "projected_at": 2826.052994256
+  },
+  {
+    "frame_id": 410,
+    "depth_consistent_points": 9301,
+    "projected_at": 2826.074145536
+  },
+  {
+    "frame_id": 415,
+    "depth_consistent_points": 9438,
+    "projected_at": 2826.09559264
+  },
+  {
+    "frame_id": 420,
+    "depth_consistent_points": 9650,
+    "projected_at": 2826.116617143
+  },
+  {
+    "frame_id": 425,
+    "depth_consistent_points": 9930,
+    "projected_at": 2826.139158929
+  }
+]

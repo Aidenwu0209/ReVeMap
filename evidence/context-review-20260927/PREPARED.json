@@ -1,0 +1,58 @@
+[
+  {
+    "scene": "scene0030_00",
+    "frames": 25,
+    "crops": 135,
+    "first_frame": 1189,
+    "last_frame": 1308
+  },
+  {
+    "scene": "scene0050_00",
+    "frames": 25,
+    "crops": 33,
+    "first_frame": 2266,
+    "last_frame": 2385
+  },
+  {
+    "scene": "scene0011_00",
+    "frames": 25,
+    "crops": 134,
+    "first_frame": 1127,
+    "last_frame": 1246
+  },
+  {
+    "scene": "scene0000_00",
+    "frames": 25,
+    "crops": 199,
+    "first_frame": 2730,
+    "last_frame": 2850
+  },
+  {
+    "scene": "scene0062_00",
+    "frames": 25,
+    "crops": 69,
+    "first_frame": 305,
+    "last_frame": 425
+  },
+  {
+    "scene": "scene0070_00",
+    "frames": 25,
+    "crops": 109,
+    "first_frame": 600,
+    "last_frame": 720
+  },
+  {
+    "scene": "scene0097_00",
+    "frames": 25,
+    "crops": 48,
+    "first_frame": 315,
+    "last_frame": 435
+  },
+  {
+    "scene": "scene0200_00",
+    "frames": 25,
+    "crops": 79,
+    "first_frame": 495,
+    "last_frame": 615
+  }
+]

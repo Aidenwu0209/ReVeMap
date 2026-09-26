@@ -1,0 +1,222 @@
+[
+  {
+    "scene": "scene0030_00",
+    "repeat": 1,
+    "arm": "D",
+    "object_id": 6,
+    "B": "unknown",
+    "candidate": "trash can",
+    "GT_target": null,
+    "GT_eligible": false
+  },
+  {
+    "scene": "scene0030_00",
+    "repeat": 2,
+    "arm": "D",
+    "object_id": 6,
+    "B": "unknown",
+    "candidate": "trash can",
+    "GT_target": null,
+    "GT_eligible": false
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 1,
+    "arm": "D",
+    "object_id": 5,
+    "B": "gravestone",
+    "candidate": "trash can",
+    "GT_target": "table",
+    "GT_eligible": true
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 1,
+    "arm": "D",
+    "object_id": 7,
+    "B": "unknown",
+    "candidate": "leg",
+    "GT_target": null,
+    "GT_eligible": false
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 1,
+    "arm": "D",
+    "object_id": 9,
+    "B": "unknown",
+    "candidate": "table",
+    "GT_target": "table",
+    "GT_eligible": true
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 1,
+    "arm": "E",
+    "object_id": 9,
+    "B": "unknown",
+    "candidate": "table",
+    "GT_target": "table",
+    "GT_eligible": true
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 2,
+    "arm": "D",
+    "object_id": 5,
+    "B": "gravestone",
+    "candidate": "trash can",
+    "GT_target": "table",
+    "GT_eligible": true
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 2,
+    "arm": "D",
+    "object_id": 7,
+    "B": "unknown",
+    "candidate": "leg",
+    "GT_target": null,
+    "GT_eligible": false
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 2,
+    "arm": "D",
+    "object_id": 9,
+    "B": "unknown",
+    "candidate": "table",
+    "GT_target": "table",
+    "GT_eligible": true
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 2,
+    "arm": "E",
+    "object_id": 9,
+    "B": "unknown",
+    "candidate": "table",
+    "GT_target": "table",
+    "GT_eligible": true
+  },
+  {
+    "scene": "scene0000_00",
+    "repeat": 1,
+    "arm": "D",
+    "object_id": 5,
+    "B": "cabinet",
+    "candidate": "television",
+    "GT_target": null,
+    "GT_eligible": false
+  },
+  {
+    "scene": "scene0000_00",
+    "repeat": 2,
+    "arm": "D",
+    "object_id": 5,
+    "B": "cabinet",
+    "candidate": "television",
+    "GT_target": null,
+    "GT_eligible": false
+  },
+  {
+    "scene": "scene0200_00",
+    "repeat": 1,
+    "arm": "D",
+    "object_id": 1,
+    "B": "door",
+    "candidate": "mirror",
+    "GT_target": null,
+    "GT_eligible": false
+  },
+  {
+    "scene": "scene0200_00",
+    "repeat": 1,
+    "arm": "D",
+    "object_id": 8,
+    "B": "unknown",
+    "candidate": "door",
+    "GT_target": null,
+    "GT_eligible": false
+  },
+  {
+    "scene": "scene0200_00",
+    "repeat": 1,
+    "arm": "D",
+    "object_id": 9,
+    "B": "unknown",
+    "candidate": "door",
+    "GT_target": null,
+    "GT_eligible": false
+  },
+  {
+    "scene": "scene0200_00",
+    "repeat": 1,
+    "arm": "E",
+    "object_id": 8,
+    "B": "unknown",
+    "candidate": "door",
+    "GT_target": null,
+    "GT_eligible": false
+  },
+  {
+    "scene": "scene0200_00",
+    "repeat": 1,
+    "arm": "E",
+    "object_id": 9,
+    "B": "unknown",
+    "candidate": "door",
+    "GT_target": null,
+    "GT_eligible": false
+  },
+  {
+    "scene": "scene0200_00",
+    "repeat": 2,
+    "arm": "D",
+    "object_id": 1,
+    "B": "door",
+    "candidate": "mirror",
+    "GT_target": null,
+    "GT_eligible": false
+  },
+  {
+    "scene": "scene0200_00",
+    "repeat": 2,
+    "arm": "D",
+    "object_id": 8,
+    "B": "unknown",
+    "candidate": "door",
+    "GT_target": null,
+    "GT_eligible": false
+  },
+  {
+    "scene": "scene0200_00",
+    "repeat": 2,
+    "arm": "D",
+    "object_id": 9,
+    "B": "unknown",
+    "candidate": "door",
+    "GT_target": null,
+    "GT_eligible": false
+  },
+  {
+    "scene": "scene0200_00",
+    "repeat": 2,
+    "arm": "E",
+    "object_id": 8,
+    "B": "unknown",
+    "candidate": "door",
+    "GT_target": null,
+    "GT_eligible": false
+  },
+  {
+    "scene": "scene0200_00",
+    "repeat": 2,
+    "arm": "E",
+    "object_id": 9,
+    "B": "unknown",
+    "candidate": "door",
+    "GT_target": null,
+    "GT_eligible": false
+  }
+]

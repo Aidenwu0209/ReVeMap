@@ -1,0 +1,177 @@
+{
+  "2730": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2730.jpg",
+    "image_sha256": "cf0e1f3b326467c39cbcbb66386218c41b5a281e25235430e5f842ad3ae9daf2",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002730.npz",
+    "mask_sha256": "1e045444252f290ec33609b590bccc27a86b4c045674a333840cb80cf0591850"
+  },
+  "2735": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2735.jpg",
+    "image_sha256": "8eb11a6c3a849dd7cc33853b8b5c7565c076b3286a9a16d682b18a287e8961ec",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002735.npz",
+    "mask_sha256": "3e99a2861ff23285670c2dfa6819ddc0767d330e65dbe6a05be71a22e754d117"
+  },
+  "2740": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2740.jpg",
+    "image_sha256": "d87c17dea00f584a85ba0a610f543e21857978f70caff4ebe6774caf4ed0a3dc",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002740.npz",
+    "mask_sha256": "ed0eeaa032c369e412c4597b593fae5c7b50dc8d8ee66d81c041174c7e10f770"
+  },
+  "2745": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2745.jpg",
+    "image_sha256": "19f156ed8fb293cd12c58776993308487020e694690202bca46a83420dd26b26",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002745.npz",
+    "mask_sha256": "167a950aa3aa69093ba33bb964a230b40952c65428c99a6f79d07030f5a784bd"
+  },
+  "2750": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2750.jpg",
+    "image_sha256": "963d261d258966c6b9778c87537370082b0d17824a8fe4373a044cc24afe78b6",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002750.npz",
+    "mask_sha256": "a55876973bd065eb56fb9cc2a0613af5166cbc1d1db5425a37ab593494b3f7eb"
+  },
+  "2755": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2755.jpg",
+    "image_sha256": "41244240c024db27c8a4351c80a3e8da76a0988b561743262bb3d52524367e93",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002755.npz",
+    "mask_sha256": "a45339864163567adc828bdfd758abfb4ea34b2b2bc9267a9599acaca4637235"
+  },
+  "2760": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2760.jpg",
+    "image_sha256": "76a51207155f2ab953ad71a25d177e2269c88350bc7be8f5bd58446fcf7a12ea",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002760.npz",
+    "mask_sha256": "826042e3769dffba7dab45a4bb5cadce3018a4eee32717a69aa5b927c324aef8"
+  },
+  "2765": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2765.jpg",
+    "image_sha256": "4128dc46e459daf9df39343dffb52080a3e3d8f08fc20d24e120b52f7459e716",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002765.npz",
+    "mask_sha256": "f2f4c2b2ea75c593f15151d833b3ca135edbf45b62e02f4e27436eb22a2254a6"
+  },
+  "2770": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2770.jpg",
+    "image_sha256": "3caa03117543bba3dcb9ff093026005a77023452093c7b6beabd699ef922beb1",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002770.npz",
+    "mask_sha256": "a5a6874afbad0a0ac507bd4f162f4d12a58c7fdd8a45c07e269c9dffbc09a7a8"
+  },
+  "2775": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2775.jpg",
+    "image_sha256": "fb67b67d2fa0ad418b67f09dde6d25fe83838582a3a536abb2d61e981d960e38",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002775.npz",
+    "mask_sha256": "7a7a5b21982a9a6cc30ccdf284dd2929b54525e1c922dfe688a59d67f9fd6a36"
+  },
+  "2780": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2780.jpg",
+    "image_sha256": "570d85922ab9a408a4c1d5d04c417413d3ed24c0b559ebef937aed513b6187f8",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002780.npz",
+    "mask_sha256": "06b83b77fece69b50e1a0486d19f15e6c9617706c1a523089630a771ac3559d2"
+  },
+  "2785": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2785.jpg",
+    "image_sha256": "10a23afcc7033ceb4b59be17f9f7f1f8caf6c352cf625f1da7afa6e4daa516dc",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002785.npz",
+    "mask_sha256": "7883dfd8dae08d6b684b42168bd53f4b28bd6d6ff9672d33b939701c34c3ebb4"
+  },
+  "2790": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2790.jpg",
+    "image_sha256": "36b7fca97d39ab73bd99e428c4aa0cfd9ab9e5e20a068c90fd398b26772fe564",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002790.npz",
+    "mask_sha256": "e95874308d937f100e6b3192b18e3587abea07825f1d60f579c7b6621c74403c"
+  },
+  "2795": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2795.jpg",
+    "image_sha256": "edde4b7608188d944fd5ecb495b114d76d8e32a1e7dbb1f0fac757271a26a945",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002795.npz",
+    "mask_sha256": "abe6ae39d1b71cf1132efc70fd4d3e6c326f40603fad831980097b0f74255648"
+  },
+  "2800": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2800.jpg",
+    "image_sha256": "f66391b68f913d7caa6cfc70cd05dae5d49cbde7c077ebac51dd418e167605b2",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002800.npz",
+    "mask_sha256": "8bf08cff49cf359c76876d2de040a508002b8dcdf33b837cfc81dcabfb0b3fe3"
+  },
+  "2805": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2805.jpg",
+    "image_sha256": "bf5de2c3ea8f1f13947d19ad0d87386fccdf884dfba0d1a7c6cef419d66202a0",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002805.npz",
+    "mask_sha256": "c858002ac7a84bbbf746d768f310f9ac4a43c6e040bfe5847256e8e59ef72bb9"
+  },
+  "2810": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2810.jpg",
+    "image_sha256": "cbe36f7d8c95b0f9d04a1eb22f53c042a49a6e878381187c6939f4fff153e159",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002810.npz",
+    "mask_sha256": "8c0411abd4e150a7adbad90fb370ef97803df4a5510f2528f1e6418727420247"
+  },
+  "2815": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2815.jpg",
+    "image_sha256": "8a0cead6ad0022f5deb12c7c8105d65696d2f11b26d46fd6444d5f451d2df2e4",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002815.npz",
+    "mask_sha256": "896ccbbe59f6724920d23d1ea0591e558286d63051530955b7f22cc8b684e018"
+  },
+  "2820": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2820.jpg",
+    "image_sha256": "49ea5f938fe34990044b191663cd3d9926bc1f966d57f62ee1f3055ca33c509e",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002820.npz",
+    "mask_sha256": "e3edd06ecd2fdea882c494c1f41e56968ce750260a118de23707b6d1caf491bd"
+  },
+  "2825": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2825.jpg",
+    "image_sha256": "3b2b0ce27e69a1d6c4890f1c0e11e3d30c2691b891c986a07411b74dc85d90b9",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002825.npz",
+    "mask_sha256": "78bd58c285348ade15ef96e7e66250d123b8392905aa8ffabfe5b02f33267bec"
+  },
+  "2830": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2830.jpg",
+    "image_sha256": "97020e44ebaff6af00e981945fcbd086178a4b153cf97083bec927bfb69cc571",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002830.npz",
+    "mask_sha256": "afac57f4215c7e782abd19223fbcda878e2db611524489cf44d4ef56a0507449"
+  },
+  "2835": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2835.jpg",
+    "image_sha256": "def9bb1958ab45780125977b85ff337801b293c9eb2e02d3bdad1bd7b8b92625",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002835.npz",
+    "mask_sha256": "593e36d6067ab92a2ee02961152536f3a55de0b3c1f823d5bd8d2f42e37d0560"
+  },
+  "2840": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2840.jpg",
+    "image_sha256": "5680bc17210995c417311d45e54499836298375eefe368600779eb2ac1272bba",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002840.npz",
+    "mask_sha256": "2d9eabeeef3d3b4e8a8c2abdbaef562cf76ac492164a571a2c778087130cbcad"
+  },
+  "2845": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2845.jpg",
+    "image_sha256": "d1d8360f9124a10f7648059f37a853cfc0f8bc5f4f1e05ff0056f6bbd7e11556",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002845.npz",
+    "mask_sha256": "926c95a8e878063e95a8fbc152822583807b027fd29df27d2d8a8a72688cdfc9"
+  },
+  "2850": {
+    "image": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/color/2850.jpg",
+    "image_sha256": "c945848bf584cca5d9a13f7ba9f3ab9dd45498e9dd5bed577b225ba91d8fc0cb",
+    "rotate_ccw": false,
+    "mask": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/semantic/frames/002850.npz",
+    "mask_sha256": "85f2a0c52a329ba0d961fde4621d6b8e8193ff87d1576665063e9e98e34c4e18"
+  }
+}

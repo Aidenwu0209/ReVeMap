@@ -1,0 +1,7 @@
+{
+  "final_cloud": "/home/aidenwu/Documents/SGF-SGA-experiments/semantic_pipeline_round2_20260915_v1/adaptive/scannet/scene0011_00/frozen_geometry.ply",
+  "manifest": "/home/aidenwu/Documents/SGF-SGA-experiments/semantic_pipeline_round2_20260915_v1/inputs/scannet/scene0011_00/manifest.json",
+  "scope": "frozen full geometry, middle 120 raw frames, actual selected-frame SAM3, unchanged production fusion; no VLM/T1/P2",
+  "status": "completed",
+  "trajectory": "/home/aidenwu/Documents/SGF-SGA-experiments/semantic_pipeline_round2_20260915_v1/inputs/scannet/scene0011_00/trajectory.json"
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "object_id": 2,
+    "base_name": "book",
+    "sam_class": "chair",
+    "triggers": [
+      "sam_vlm_category_conflict"
+    ],
+    "view_choice": "existing_frames_wider_context",
+    "context_keys": [
+      "001189_0006",
+      "001199_0004",
+      "001194_0006"
+    ],
+    "context_name": "unknown",
+    "D_name": "book",
+    "E_name": "book",
+    "decision_reason": "no_context_consensus"
+  },
+  {
+    "object_id": 6,
+    "base_name": "unknown",
+    "sam_class": "trash bin",
+    "triggers": [
+      "unknown_name",
+      "cross_view_disagreement"
+    ],
+    "view_choice": "existing_frames_wider_context",
+    "context_keys": [
+      "001308_0014",
+      "001284_0013",
+      "001294_0015"
+    ],
+    "context_name": "trash can",
+    "D_name": "trash can",
+    "E_name": "unknown",
+    "decision_reason": "context_consensus_differs_from_sam"
+  },
+  {
+    "object_id": 7,
+    "base_name": "bin",
+    "sam_class": "trash bin",
+    "triggers": [
+      "sam_vlm_category_conflict",
+      "cross_view_disagreement"
+    ],
+    "view_choice": "existing_frames_wider_context",
+    "context_keys": [
+      "001304_0012",
+      "001274_0015",
+      "001229_0017"
+    ],
+    "context_name": "bin",
+    "D_name": "bin",
+    "E_name": "bin",
+    "decision_reason": "context_consensus_matches_sam"
+  }
+]

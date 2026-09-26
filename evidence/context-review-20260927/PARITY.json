@@ -1,0 +1,226 @@
+[
+  {
+    "scene": "scene0030_00",
+    "repeat": 1,
+    "arm": "B",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0030_00",
+    "repeat": 1,
+    "arm": "D",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0030_00",
+    "repeat": 2,
+    "arm": "B",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0030_00",
+    "repeat": 2,
+    "arm": "D",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0050_00",
+    "repeat": 1,
+    "arm": "B",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0050_00",
+    "repeat": 1,
+    "arm": "D",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0050_00",
+    "repeat": 2,
+    "arm": "B",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0050_00",
+    "repeat": 2,
+    "arm": "D",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 1,
+    "arm": "B",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 1,
+    "arm": "D",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 2,
+    "arm": "B",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 2,
+    "arm": "D",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0000_00",
+    "repeat": 1,
+    "arm": "B",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0000_00",
+    "repeat": 1,
+    "arm": "D",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0000_00",
+    "repeat": 2,
+    "arm": "B",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0000_00",
+    "repeat": 2,
+    "arm": "D",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0062_00",
+    "repeat": 1,
+    "arm": "B",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0062_00",
+    "repeat": 1,
+    "arm": "D",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0062_00",
+    "repeat": 2,
+    "arm": "B",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0062_00",
+    "repeat": 2,
+    "arm": "D",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0070_00",
+    "repeat": 1,
+    "arm": "B",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0070_00",
+    "repeat": 1,
+    "arm": "D",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0070_00",
+    "repeat": 2,
+    "arm": "B",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0070_00",
+    "repeat": 2,
+    "arm": "D",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0097_00",
+    "repeat": 1,
+    "arm": "B",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0097_00",
+    "repeat": 1,
+    "arm": "D",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0097_00",
+    "repeat": 2,
+    "arm": "B",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0097_00",
+    "repeat": 2,
+    "arm": "D",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0200_00",
+    "repeat": 1,
+    "arm": "B",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0200_00",
+    "repeat": 1,
+    "arm": "D",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0200_00",
+    "repeat": 2,
+    "arm": "B",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  },
+  {
+    "scene": "scene0200_00",
+    "repeat": 2,
+    "arm": "D",
+    "labels_xyz_equal": true,
+    "B_shadow_equal": true
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "status": "completed",
+  "model": "qwen3vl_2b_nf4",
+  "base_calls": 3,
+  "context_calls": 3,
+  "total_calls": 6,
+  "base_inference_seconds": 0.658410080000067,
+  "context_inference_seconds": 0.3857121340001868,
+  "context_stage_seconds": 0.5953966550000587,
+  "seconds_including_load": 6.282968022999739,
+  "groups": [
+    {
+      "object_id": 2,
+      "eligible_crops": 24,
+      "initial": [
+        "002381_0001",
+        "002336_0003",
+        "002366_0002"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "couch"
+    }
+  ],
+  "reviewed_objects": 1,
+  "peak_rss_mib": 5116.44140625,
+  "peak_reserved_mib": 1636.0,
+  "peak_allocated_mib": 1578.30517578125
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "object_id": 1,
+    "base_name": "door",
+    "sam_class": "door",
+    "triggers": [
+      "cross_view_disagreement"
+    ],
+    "view_choice": "previously_uninferred_frames",
+    "context_keys": [
+      "000505_0001",
+      "000530_0003",
+      "000515_0003"
+    ],
+    "context_name": "mirror",
+    "D_name": "mirror",
+    "E_name": "door",
+    "decision_reason": "context_consensus_differs_from_sam"
+  },
+  {
+    "object_id": 8,
+    "base_name": "unknown",
+    "sam_class": "door",
+    "triggers": [
+      "unknown_name"
+    ],
+    "view_choice": "existing_frames_wider_context",
+    "context_keys": [
+      "000530_0002",
+      "000585_0005",
+      "000560_0005"
+    ],
+    "context_name": "door",
+    "D_name": "door",
+    "E_name": "door",
+    "decision_reason": "context_consensus_matches_sam"
+  },
+  {
+    "object_id": 9,
+    "base_name": "unknown",
+    "sam_class": "door",
+    "triggers": [
+      "unknown_name"
+    ],
+    "view_choice": "existing_frames_wider_context",
+    "context_keys": [
+      "000565_0003",
+      "000585_0002",
+      "000550_0003"
+    ],
+    "context_name": "door",
+    "D_name": "door",
+    "E_name": "door",
+    "decision_reason": "context_consensus_matches_sam"
+  }
+]

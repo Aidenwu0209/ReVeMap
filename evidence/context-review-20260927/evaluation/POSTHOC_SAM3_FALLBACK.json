@@ -1,0 +1,58 @@
+[
+  {
+    "scene": "scene0030_00",
+    "GT_eligible": 3,
+    "GT_correct": 3,
+    "extra_VLM_calls": 0,
+    "scope": "post-hoc SAM3 display fallback attribution control; not a new VLM prediction or promoted policy"
+  },
+  {
+    "scene": "scene0050_00",
+    "GT_eligible": 0,
+    "GT_correct": 0,
+    "extra_VLM_calls": 0,
+    "scope": "post-hoc SAM3 display fallback attribution control; not a new VLM prediction or promoted policy"
+  },
+  {
+    "scene": "scene0011_00",
+    "GT_eligible": 4,
+    "GT_correct": 3,
+    "extra_VLM_calls": 0,
+    "scope": "post-hoc SAM3 display fallback attribution control; not a new VLM prediction or promoted policy"
+  },
+  {
+    "scene": "scene0000_00",
+    "GT_eligible": 0,
+    "GT_correct": 0,
+    "extra_VLM_calls": 0,
+    "scope": "post-hoc SAM3 display fallback attribution control; not a new VLM prediction or promoted policy"
+  },
+  {
+    "scene": "scene0062_00",
+    "GT_eligible": 1,
+    "GT_correct": 1,
+    "extra_VLM_calls": 0,
+    "scope": "post-hoc SAM3 display fallback attribution control; not a new VLM prediction or promoted policy"
+  },
+  {
+    "scene": "scene0070_00",
+    "GT_eligible": 0,
+    "GT_correct": 0,
+    "extra_VLM_calls": 0,
+    "scope": "post-hoc SAM3 display fallback attribution control; not a new VLM prediction or promoted policy"
+  },
+  {
+    "scene": "scene0097_00",
+    "GT_eligible": 1,
+    "GT_correct": 1,
+    "extra_VLM_calls": 0,
+    "scope": "post-hoc SAM3 display fallback attribution control; not a new VLM prediction or promoted policy"
+  },
+  {
+    "scene": "scene0200_00",
+    "GT_eligible": 1,
+    "GT_correct": 1,
+    "extra_VLM_calls": 0,
+    "scope": "post-hoc SAM3 display fallback attribution control; not a new VLM prediction or promoted policy"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "object_id": 1,
+    "GT_object_id": 3,
+    "GT_name": "floor",
+    "canonical_GT_name": "floor",
+    "owned_points": 3055,
+    "supported_points": 1794,
+    "dominant_GT_points": 1596,
+    "eligible": false
+  },
+  {
+    "object_id": 2,
+    "GT_object_id": 4,
+    "GT_name": "armchair",
+    "canonical_GT_name": "armchair",
+    "owned_points": 3981,
+    "supported_points": 3955,
+    "dominant_GT_points": 3948,
+    "eligible": false
+  }
+]

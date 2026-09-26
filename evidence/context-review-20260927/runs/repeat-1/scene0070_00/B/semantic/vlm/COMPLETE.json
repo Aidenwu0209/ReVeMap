@@ -1,0 +1,89 @@
+{
+  "status": "completed",
+  "model": "qwen3vl_2b_nf4",
+  "base_calls": 22,
+  "context_calls": 0,
+  "total_calls": 22,
+  "base_inference_seconds": 2.761816875999557,
+  "context_inference_seconds": 0,
+  "context_stage_seconds": 3.969998942920938e-07,
+  "seconds_including_load": 7.9644101290000435,
+  "groups": [
+    {
+      "object_id": 1,
+      "eligible_crops": 16,
+      "initial": [
+        "000600_0001",
+        "000665_0001",
+        "000625_0001"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "chair"
+    },
+    {
+      "object_id": 2,
+      "eligible_crops": 5,
+      "initial": [
+        "000610_0002",
+        "000600_0002",
+        "000620_0002"
+      ],
+      "fallback": true,
+      "calls": 5,
+      "name": "desk"
+    },
+    {
+      "object_id": 5,
+      "eligible_crops": 7,
+      "initial": [
+        "000720_0003",
+        "000670_0001",
+        "000710_0004"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "cabinet"
+    },
+    {
+      "object_id": 6,
+      "eligible_crops": 5,
+      "initial": [
+        "000700_0003",
+        "000710_0006",
+        "000705_0004"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "cabinet"
+    },
+    {
+      "object_id": 7,
+      "eligible_crops": 6,
+      "initial": [
+        "000700_0006",
+        "000690_0005",
+        "000705_0006"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "cabinet"
+    },
+    {
+      "object_id": 9,
+      "eligible_crops": 5,
+      "initial": [
+        "000705_0003",
+        "000715_0005",
+        "000710_0005"
+      ],
+      "fallback": true,
+      "calls": 5,
+      "name": "cabinet"
+    }
+  ],
+  "reviewed_objects": 0,
+  "peak_rss_mib": 5116.75390625,
+  "peak_reserved_mib": 1636.0,
+  "peak_allocated_mib": 1576.359375
+}
