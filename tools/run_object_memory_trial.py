@@ -36,6 +36,8 @@ def source(scene):
 
 
 def prepare():
+    import numpy as np
+    from PIL import Image
     from pose_pipeline.contracts import load_manifest, load_trajectory, bind_manifest_trajectory
     lock = {}
     for folder in ('src', 'tools'):
@@ -60,10 +62,35 @@ def prepare():
         bound = {f.frame_id:(f,p) for f,p in bind_manifest_trajectory(manifest,poses)}
         for row in rows:
             fid = row['frame_id']
-            if pool_rows[fid]['mask_sha256'] != row['mask_sha256']:
-                raise ValueError('crop pool mask differs from frozen SAM3')
-            selected.append(tasks[fid])
-            for crop in tasks[fid]['crops']:
+            if scene in plan()['development_scenes']:
+                # The older pool is another SAM3 run, so its mask IDs/crops
+                # cannot be borrowed. Reconstruct from the EXACT frozen masks
+                # and their hash-verified registered RGB instead.
+                png=Path('/home/aidenwu/Documents/SGF-SGA-experiments/semantic_pipeline_round2_20260915_v1/adaptive/scannet')/scene/'frames'/f'{fid:06}.png'
+                assert sha(png)==row['registered_image_sha256']
+                lock[str(png)]=row['registered_image_sha256']
+                image=Image.open(png).convert('RGB');candidates=[];crops=[]
+                with np.load(src/'semantic/frames'/f'{fid:06}.npz') as z:
+                    local=z['local_instance'];semantic=z['semantic']
+                assert image.size==(local.shape[1],local.shape[0])
+                for mid in np.unique(local[local>0]):
+                    mask=local==mid;cats=np.unique(semantic[mask]);assert len(cats)==1
+                    cid=int(cats[0]);y,x=np.nonzero(mask)
+                    if cid in (0,10,19) or len(x)<300:continue
+                    box=(int(x.min()),int(y.min()),int(x.max())+1,int(y.max())+1)
+                    if box[2]-box[0]>=10 and box[3]-box[1]>=10:candidates.append((len(x),int(mid),cid,box))
+                (out/'crops').mkdir(exist_ok=True)
+                for area,mid,cid,(x0,y0,x1,y1) in sorted(candidates,key=lambda x:(-x[0],x[1]))[:8]:
+                    dx,dy=max(2,round((x1-x0)*.15)),max(2,round((y1-y0)*.15))
+                    box=[max(0,x0-dx),max(0,y0-dy),min(image.width,x1+dx),min(image.height,y1+dy)]
+                    p=out/'crops'/f'{fid:06}_{mid:04}.png';image.crop(box).save(p)
+                    crops.append({'frame_id':fid,'mask_id':mid,'sam_class_id':cid,'file':str(p),'sha256':sha(p),'bbox_rgb':box,'mask_pixels':area})
+                task={'task_id':len(selected),'frame_id':fid,'crops':crops}
+            else:
+                if pool_rows[fid]['mask_sha256']!=row['mask_sha256']:raise ValueError('crop/mask mismatch')
+                task=tasks[fid]
+            selected.append(task)
+            for crop in task['crops']:
                 assert sha(crop['file']) == crop['sha256']
                 lock[crop['file']] = crop['sha256']
             frame, pose = bound[fid]

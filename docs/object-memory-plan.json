@@ -4,7 +4,7 @@
   "scenes": ["scene0030_00", "scene0050_00", "scene0011_00", "scene0000_00", "scene0062_00"],
   "development_scenes": ["scene0030_00", "scene0050_00", "scene0011_00"],
   "additional_validation_scenes": ["scene0000_00", "scene0062_00"],
-  "input_policy": "Old scenes retain exact prior 25 views; additional scenes use consecutive middle 25 cached SAM3 views, selected by frame ordinal before naming/GT. Full frozen geometry and estimated trajectory retained.",
+  "input_policy": "Old scenes retain exact prior 25 views and reconstruct top-8 VLM crops with the production area/bbox/padding rule on the exact frozen masks and their hash-verified registered RGB. The older crop pool has different SAM3 outputs and is not reused. Additional scenes use consecutive middle 25 cached SAM3 views and original production crops, selected by frame ordinal before naming/GT. Full frozen geometry and estimated trajectory retained.",
   "scope": "Fresh VLM and optional CLIP inference plus fresh CPU fusion/backfill, from cached SAM3 and frozen geometry. Not raw RGB-D end-to-end timing. Object naming association only, no point ownership/class changes.",
   "arms": {
     "A": "All original crops, Qwen naming in parallel with fresh CPU fusion, original backfill.",
