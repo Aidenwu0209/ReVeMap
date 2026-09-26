@@ -1,0 +1,208 @@
+{
+  "protocol": "revemap.reference_vertex_diagnostic.v1",
+  "official_benchmark": false,
+  "metric_scope": "Exact shared class names; bidirectional nearest-surface diagnostic, not official mIoU/AP",
+  "distance_threshold_m": 0.05,
+  "prediction_points": 513292,
+  "near_reference_points": 228960,
+  "supported_class_points": 162806,
+  "labeled_supported_points": 20232,
+  "semantic_accuracy_with_unknown_as_error": 0.1143385378917239,
+  "semantic_accuracy_labeled_only": 0.9200771055753262,
+  "reference_vertices": 237360,
+  "reference_covered_vertices": 157521,
+  "reference_geometry_coverage": 0.6636375126390294,
+  "reference_shared_class_vertices": 158775,
+  "reference_semantic_accuracy_unknown_or_uncovered_as_error": 0.08712328767123288,
+  "weighted_instance_purity_min20points": 0.9125611915425477,
+  "predicted_fragments_per_dominant_gt_object": {
+    "5": 1,
+    "6": 1,
+    "17": 2,
+    "18": 1,
+    "3": 2,
+    "16": 1
+  },
+  "instances": {
+    "iou_threshold": 0.5,
+    "matching": "class-aware maximum-cardinality one-to-one; IoU tie-break",
+    "support": "all GT vertices, nearest predicted vertex within distance threshold; no confidence-ranked AP",
+    "class_policy": "one positive label plus unknown uses that label; entirely unknown or conflicting positive labels cannot match class-aware; all predicted instances remain in the precision denominator",
+    "unknown_predicted_instances": [],
+    "ambiguous_semantic_instances": [],
+    "partially_named_instances": [],
+    "predicted_instances": 9,
+    "reference_instances": 22,
+    "matched_instances": 1,
+    "precision": 0.1111111111111111,
+    "recall": 0.045454545454545456,
+    "matches": [
+      {
+        "predicted_id": 4,
+        "reference_id": 17,
+        "iou": 0.5299772684220496
+      }
+    ],
+    "class_agnostic": {
+      "predicted_instances": 9,
+      "reference_instances": 33,
+      "matched_instances": 1,
+      "precision": 0.1111111111111111,
+      "recall": 0.030303030303030304,
+      "matches": [
+        {
+          "predicted_id": 4,
+          "reference_id": 17,
+          "iou": 0.5299772684220496
+        }
+      ]
+    },
+    "split_reference_objects": {},
+    "merged_predicted_objects": {
+      "4": [
+        17,
+        18
+      ]
+    },
+    "split_merge_min_fraction_of_reference_object": 0.1
+  },
+  "per_class": {
+    "4": {
+      "reference_vertices": 5701,
+      "covered_reference_vertices": 4196,
+      "correct_reference_vertices": 0,
+      "iou": 0.0
+    },
+    "5": {
+      "reference_vertices": 32926,
+      "covered_reference_vertices": 19866,
+      "correct_reference_vertices": 1064,
+      "iou": 0.032270783415728976
+    },
+    "10": {
+      "reference_vertices": 54068,
+      "covered_reference_vertices": 28905,
+      "correct_reference_vertices": 191,
+      "iou": 0.003486801270583081
+    },
+    "15": {
+      "reference_vertices": 1075,
+      "covered_reference_vertices": 384,
+      "correct_reference_vertices": 0,
+      "iou": 0.0
+    },
+    "17": {
+      "reference_vertices": 17249,
+      "covered_reference_vertices": 13627,
+      "correct_reference_vertices": 842,
+      "iou": 0.048611512037411236
+    },
+    "19": {
+      "reference_vertices": 36885,
+      "covered_reference_vertices": 28116,
+      "correct_reference_vertices": 11736,
+      "iou": 0.3061671710320359
+    },
+    "20": {
+      "reference_vertices": 10871,
+      "covered_reference_vertices": 9420,
+      "correct_reference_vertices": 0,
+      "iou": 0.0
+    }
+  },
+  "status": "completed",
+  "gt_role": "post_prediction_evaluation_only",
+  "provenance_bound": true,
+  "scene_id": "scene0011_00",
+  "legacy_completion_accepted": false,
+  "dataset": "scannet",
+  "alignment": "first finite paired pose; no ICP or scale fitting",
+  "alignment_frame": 0,
+  "T_dataset_estimated_world": [
+    [
+      0.6054515249349482,
+      0.35985387365367066,
+      -0.7098830890710006,
+      5.899493051113406
+    ],
+    [
+      0.7947320661650501,
+      -0.32130560381750944,
+      0.5149405571950411,
+      1.4657541288163014
+    ],
+    [
+      -0.0427858040009588,
+      -0.8759384836363228,
+      -0.48052256661123954,
+      1.3295834285857562
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "input_sha256": {
+    "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/runs/repeat-1/scene0011_00/A/fused/ARTIFACTS.json": "932970a84dc1536fbb77aec9ec396887a0be395758b47b545cea8c5a9301466c",
+    "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/runs/repeat-1/scene0011_00/A/fused/classes.json": "3716e36ab4688ed8d2e426c2f8835b0c79810cdc8c7021428efdd05a08aa4689",
+    "/home/aidenwu/Documents/SGF-SGA-experiments/semantic_pipeline_round2_20260915_v1/inputs/scannet/scene0011_00/manifest.json": "e4faaddb03387d0de2ea58a31a0d9cfe0b3e770fc4fea41753d7b8c7b6ead631",
+    "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/runs/repeat-1/scene0011_00/A/fused/export/map_labeled.ply": "230413c715ef8ce4e28062bef9406c5c41f7bc9dfabba6e931cacee8eb4514c7",
+    "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/runs/repeat-1/scene0011_00/A/fused/result.json": "2bf6de6e0c949d701d3fbbe3e6a5c642576c40ea267a84fcb57fc352350b2e1d",
+    "/home/aidenwu/Documents/SGF-SGA-experiments/semantic_pipeline_round2_20260915_v1/inputs/scannet/scene0011_00/trajectory.json": "cf199c466812c7c6cd419dca32cabd6c3ddc6e991749d70a99a334a8cba0a0a3"
+  },
+  "reference_sha256": {
+    "/home/aidenwu/Documents/Scannet/Original_files_from_scannet_dataset/scene0011_00/scene0011_00_vh_clean_2.ply": "2941664625d52110aefbfb2b5fd3c869c3f51b999a036a27ba3e0033e3bf21f5",
+    "/home/aidenwu/Documents/Scannet/Original_files_from_scannet_dataset/scene0011_00/scene0011_00_vh_clean_2.0.010000.segs.json": "00546eb1505379add58fb3792d03f8b8dddef1bd60d357b243e040c4db3404e2",
+    "/home/aidenwu/Documents/Scannet/Original_files_from_scannet_dataset/scene0011_00/scene0011_00.aggregation.json": "155e188c1bababbe5522931b1cf7c6c971cb4464e75ab389de752afeffe6b23b",
+    "/home/aidenwu/Documents/Scannet/rendered_2d_scannet_RGBD/scene0011_00/pose/0.txt": "9d90b5088573ceebfc236ff192e709d710e7ff60aff79f6597b56521cc3661b4"
+  },
+  "classes": {
+    "0": "unknown",
+    "1": "bathtub",
+    "2": "bed",
+    "3": "bookshelf",
+    "4": "cabinet",
+    "5": "chair",
+    "6": "counter",
+    "7": "curtain",
+    "8": "desk",
+    "9": "door",
+    "10": "floor",
+    "11": "otherfurniture",
+    "12": "picture",
+    "13": "refridgerator",
+    "14": "shower curtain",
+    "15": "sink",
+    "16": "sofa",
+    "17": "table",
+    "18": "toilet",
+    "19": "wall",
+    "20": "window",
+    "21": "monitor",
+    "22": "printer",
+    "23": "projector",
+    "24": "lamp",
+    "25": "robot",
+    "26": "toolbox",
+    "27": "trash bin",
+    "28": "fan",
+    "29": "computer",
+    "30": "whiteboard",
+    "31": "box",
+    "32": "tripod"
+  },
+  "out_of_vocabulary_reference_labels": [
+    "armchair",
+    "ceiling",
+    "doorframe",
+    "doors",
+    "kitchen cabinets",
+    "kitchen counter",
+    "refrigerator",
+    "trash can",
+    "tv"
+  ],
+  "prediction_unchanged": true
+}

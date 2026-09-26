@@ -1,0 +1,14 @@
+{
+  "status": "completed",
+  "GT_used_only_after_prediction_seal": true,
+  "naming_metric": "strict existing-alias canonical-name comparison on fixed GT-supported, pure, nameable foreground objects; unrecognized subtypes count as unmatched, so not a complete semantic correctness score",
+  "geometry_evaluation": "unchanged project diagnostic; not ScanNet benchmark AP",
+  "gt_target_gates": {
+    "min_points": 30,
+    "support_share": 0.5,
+    "instance_purity": 0.8,
+    "min_eligible_crop_frames": 2,
+    "distance_m": 0.05
+  },
+  "all_locks_passed": true
+}

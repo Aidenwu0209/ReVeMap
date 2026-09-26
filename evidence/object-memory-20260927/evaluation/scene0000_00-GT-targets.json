@@ -1,0 +1,242 @@
+[
+  {
+    "object_id": 1,
+    "gt_object_id": 9,
+    "gt_name": "cabinet",
+    "canonical_gt_name": "cabinet",
+    "owned_points": 354,
+    "supported_points": 245,
+    "dominant_gt_points": 185,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 2,
+    "gt_object_id": 57,
+    "gt_name": "shelf",
+    "canonical_gt_name": "shelf",
+    "owned_points": 1090,
+    "supported_points": 15,
+    "dominant_gt_points": 15,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 3,
+    "gt_object_id": 57,
+    "gt_name": "shelf",
+    "canonical_gt_name": "shelf",
+    "owned_points": 1302,
+    "supported_points": 54,
+    "dominant_gt_points": 54,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 4,
+    "gt_object_id": 57,
+    "gt_name": "shelf",
+    "canonical_gt_name": "shelf",
+    "owned_points": 1204,
+    "supported_points": 22,
+    "dominant_gt_points": 22,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 5,
+    "gt_object_id": 9,
+    "gt_name": "cabinet",
+    "canonical_gt_name": "cabinet",
+    "owned_points": 908,
+    "supported_points": 21,
+    "dominant_gt_points": 21,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 6,
+    "gt_object_id": 9,
+    "gt_name": "cabinet",
+    "canonical_gt_name": "cabinet",
+    "owned_points": 983,
+    "supported_points": 7,
+    "dominant_gt_points": 7,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 7,
+    "gt_object_id": 0,
+    "gt_name": "unknown",
+    "canonical_gt_name": "unknown",
+    "owned_points": 1320,
+    "supported_points": 0,
+    "dominant_gt_points": 0,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 8,
+    "gt_object_id": 57,
+    "gt_name": "shelf",
+    "canonical_gt_name": "shelf",
+    "owned_points": 1357,
+    "supported_points": 12,
+    "dominant_gt_points": 12,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 9,
+    "gt_object_id": 0,
+    "gt_name": "unknown",
+    "canonical_gt_name": "unknown",
+    "owned_points": 1103,
+    "supported_points": 0,
+    "dominant_gt_points": 0,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 10,
+    "gt_object_id": 57,
+    "gt_name": "shelf",
+    "canonical_gt_name": "shelf",
+    "owned_points": 1441,
+    "supported_points": 17,
+    "dominant_gt_points": 17,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 11,
+    "gt_object_id": 0,
+    "gt_name": "unknown",
+    "canonical_gt_name": "unknown",
+    "owned_points": 964,
+    "supported_points": 0,
+    "dominant_gt_points": 0,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 12,
+    "gt_object_id": 10,
+    "gt_name": "floor",
+    "canonical_gt_name": "floor",
+    "owned_points": 6444,
+    "supported_points": 5845,
+    "dominant_gt_points": 5454,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 13,
+    "gt_object_id": 33,
+    "gt_name": "couch",
+    "canonical_gt_name": "couch",
+    "owned_points": 2006,
+    "supported_points": 1009,
+    "dominant_gt_points": 1008,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 14,
+    "gt_object_id": 57,
+    "gt_name": "shelf",
+    "canonical_gt_name": "shelf",
+    "owned_points": 67,
+    "supported_points": 62,
+    "dominant_gt_points": 62,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 15,
+    "gt_object_id": 22,
+    "gt_name": "wall",
+    "canonical_gt_name": "wall",
+    "owned_points": 3592,
+    "supported_points": 53,
+    "dominant_gt_points": 33,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 16,
+    "gt_object_id": 0,
+    "gt_name": "unknown",
+    "canonical_gt_name": "unknown",
+    "owned_points": 1826,
+    "supported_points": 0,
+    "dominant_gt_points": 0,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 17,
+    "gt_object_id": 0,
+    "gt_name": "unknown",
+    "canonical_gt_name": "unknown",
+    "owned_points": 1115,
+    "supported_points": 0,
+    "dominant_gt_points": 0,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 18,
+    "gt_object_id": 57,
+    "gt_name": "shelf",
+    "canonical_gt_name": "shelf",
+    "owned_points": 936,
+    "supported_points": 57,
+    "dominant_gt_points": 57,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 19,
+    "gt_object_id": 0,
+    "gt_name": "unknown",
+    "canonical_gt_name": "unknown",
+    "owned_points": 1111,
+    "supported_points": 0,
+    "dominant_gt_points": 0,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 20,
+    "gt_object_id": 0,
+    "gt_name": "unknown",
+    "canonical_gt_name": "unknown",
+    "owned_points": 571,
+    "supported_points": 0,
+    "dominant_gt_points": 0,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 21,
+    "gt_object_id": 57,
+    "gt_name": "shelf",
+    "canonical_gt_name": "shelf",
+    "owned_points": 914,
+    "supported_points": 201,
+    "dominant_gt_points": 201,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 22,
+    "gt_object_id": 0,
+    "gt_name": "unknown",
+    "canonical_gt_name": "unknown",
+    "owned_points": 183,
+    "supported_points": 0,
+    "dominant_gt_points": 0,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 23,
+    "gt_object_id": 0,
+    "gt_name": "unknown",
+    "canonical_gt_name": "unknown",
+    "owned_points": 869,
+    "supported_points": 0,
+    "dominant_gt_points": 0,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 24,
+    "gt_object_id": 0,
+    "gt_name": "unknown",
+    "canonical_gt_name": "unknown",
+    "owned_points": 883,
+    "supported_points": 0,
+    "dominant_gt_points": 0,
+    "eligible_for_naming_metric": false
+  }
+]

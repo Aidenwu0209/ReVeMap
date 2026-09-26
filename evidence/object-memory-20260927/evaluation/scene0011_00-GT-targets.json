@@ -1,0 +1,92 @@
+[
+  {
+    "object_id": 1,
+    "gt_object_id": 5,
+    "gt_name": "chair",
+    "canonical_gt_name": "chair",
+    "owned_points": 806,
+    "supported_points": 448,
+    "dominant_gt_points": 429,
+    "eligible_for_naming_metric": true
+  },
+  {
+    "object_id": 2,
+    "gt_object_id": 6,
+    "gt_name": "chair",
+    "canonical_gt_name": "chair",
+    "owned_points": 928,
+    "supported_points": 587,
+    "dominant_gt_points": 557,
+    "eligible_for_naming_metric": true
+  },
+  {
+    "object_id": 3,
+    "gt_object_id": 17,
+    "gt_name": "wall",
+    "canonical_gt_name": "wall",
+    "owned_points": 7333,
+    "supported_points": 938,
+    "dominant_gt_points": 508,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 4,
+    "gt_object_id": 17,
+    "gt_name": "wall",
+    "canonical_gt_name": "wall",
+    "owned_points": 17469,
+    "supported_points": 14931,
+    "dominant_gt_points": 13819,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 5,
+    "gt_object_id": 18,
+    "gt_name": "table",
+    "canonical_gt_name": "table",
+    "owned_points": 386,
+    "supported_points": 230,
+    "dominant_gt_points": 199,
+    "eligible_for_naming_metric": true
+  },
+  {
+    "object_id": 6,
+    "gt_object_id": 15,
+    "gt_name": "wall",
+    "canonical_gt_name": "wall",
+    "owned_points": 2700,
+    "supported_points": 19,
+    "dominant_gt_points": 16,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 7,
+    "gt_object_id": 3,
+    "gt_name": "table",
+    "canonical_gt_name": "table",
+    "owned_points": 95,
+    "supported_points": 29,
+    "dominant_gt_points": 29,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 8,
+    "gt_object_id": 16,
+    "gt_name": "trash can",
+    "canonical_gt_name": "trash can",
+    "owned_points": 1082,
+    "supported_points": 94,
+    "dominant_gt_points": 47,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 9,
+    "gt_object_id": 3,
+    "gt_name": "table",
+    "canonical_gt_name": "table",
+    "owned_points": 2003,
+    "supported_points": 1945,
+    "dominant_gt_points": 1935,
+    "eligible_for_naming_metric": true
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "status": "completed",
+  "model": "qwen3vl_2b_nf4",
+  "crops": 3,
+  "crops_executed": 3,
+  "seconds_including_load": 5.686415126999918,
+  "inference_seconds": 0.6644832429997223,
+  "groups": [
+    {
+      "object_id": 2,
+      "eligible_crops": 24,
+      "initial": [
+        "002381_0001",
+        "002336_0003",
+        "002366_0002"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "couch"
+    }
+  ],
+  "peak_rss_mib": 5113.921875,
+  "peak_allocated_mib": 1576.359375,
+  "peak_reserved_mib": 1636.0
+}

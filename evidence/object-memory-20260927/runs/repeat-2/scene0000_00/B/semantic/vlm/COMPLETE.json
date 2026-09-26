@@ -1,0 +1,186 @@
+{
+  "status": "completed",
+  "model": "qwen3vl_2b_nf4",
+  "crops": 39,
+  "crops_executed": 39,
+  "seconds_including_load": 9.451795162000053,
+  "inference_seconds": 4.4077409849999185,
+  "groups": [
+    {
+      "object_id": 3,
+      "eligible_crops": 14,
+      "initial": [
+        "002850_0025",
+        "002805_0033",
+        "002830_0026"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "cabinet"
+    },
+    {
+      "object_id": 4,
+      "eligible_crops": 11,
+      "initial": [
+        "002850_0024",
+        "002805_0036",
+        "002825_0034"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "cabinet"
+    },
+    {
+      "object_id": 5,
+      "eligible_crops": 6,
+      "initial": [
+        "002755_0045",
+        "002730_0030",
+        "002745_0041"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "cabinet"
+    },
+    {
+      "object_id": 6,
+      "eligible_crops": 6,
+      "initial": [
+        "002840_0021",
+        "002745_0044",
+        "002830_0024"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "cabinet"
+    },
+    {
+      "object_id": 7,
+      "eligible_crops": 17,
+      "initial": [
+        "002815_0045",
+        "002730_0032",
+        "002765_0044"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "cabinet"
+    },
+    {
+      "object_id": 8,
+      "eligible_crops": 20,
+      "initial": [
+        "002820_0039",
+        "002735_0033",
+        "002765_0041"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "cabinet"
+    },
+    {
+      "object_id": 9,
+      "eligible_crops": 3,
+      "initial": [
+        "002820_0040",
+        "002845_0023",
+        "002840_0024"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "cabinet"
+    },
+    {
+      "object_id": 10,
+      "eligible_crops": 17,
+      "initial": [
+        "002815_0034",
+        "002850_0030",
+        "002760_0047"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "cabinet"
+    },
+    {
+      "object_id": 13,
+      "eligible_crops": 11,
+      "initial": [
+        "002815_0051",
+        "002850_0033",
+        "002800_0046"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "couch"
+    },
+    {
+      "object_id": 16,
+      "eligible_crops": 3,
+      "initial": [
+        "002795_0044",
+        "002790_0052",
+        "002780_0042"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "window"
+    },
+    {
+      "object_id": 17,
+      "eligible_crops": 2,
+      "initial": [
+        "002785_0029",
+        "002790_0046"
+      ],
+      "fallback": false,
+      "calls": 2,
+      "name": "cabinet"
+    },
+    {
+      "object_id": 19,
+      "eligible_crops": 6,
+      "initial": [
+        "002800_0041",
+        "002765_0055",
+        "002785_0043"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "cabinet"
+    },
+    {
+      "object_id": 20,
+      "eligible_crops": 2,
+      "initial": [
+        "002780_0030",
+        "002775_0043"
+      ],
+      "fallback": false,
+      "calls": 2,
+      "name": "cabinet"
+    },
+    {
+      "object_id": 22,
+      "skip": "fewer_than_2_distinct_frames"
+    },
+    {
+      "object_id": 23,
+      "skip": "fewer_than_2_distinct_frames"
+    },
+    {
+      "object_id": 24,
+      "eligible_crops": 2,
+      "initial": [
+        "002805_0035",
+        "002800_0039"
+      ],
+      "fallback": false,
+      "calls": 2,
+      "name": "cabinet"
+    }
+  ],
+  "peak_rss_mib": 5114.66796875,
+  "peak_allocated_mib": 1574.73828125,
+  "peak_reserved_mib": 1636.0
+}

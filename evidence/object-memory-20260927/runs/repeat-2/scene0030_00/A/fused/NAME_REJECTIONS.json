@@ -1,0 +1,1157 @@
+[
+  {
+    "frame_id": 1189,
+    "mask_id": 12,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001189_0012.png",
+    "sha256": "3bac0bb2b5a35615098bc31b43028512f62a518932dfaa5a6a1f98effb84e67f",
+    "bbox_rgb": [
+      483,
+      357,
+      571,
+      458
+    ],
+    "mask_pixels": 1949,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06621328500000345,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      88,
+      101
+    ],
+    "adapter_image_size": [
+      88,
+      101
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 6,
+    "projected_instance_share": 0.8602150537634409,
+    "visible_points": 93,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1194,
+    "mask_id": 14,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001194_0014.png",
+    "sha256": "2b973786f343edfed9945196ad8d144a0cb9370346264731f31024b652c3f7f0",
+    "bbox_rgb": [
+      485,
+      368,
+      574,
+      470
+    ],
+    "mask_pixels": 2092,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06597994600019774,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      89,
+      102
+    ],
+    "adapter_image_size": [
+      89,
+      102
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 6,
+    "projected_instance_share": 0.6868686868686869,
+    "visible_points": 99,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1199,
+    "mask_id": 4,
+    "sam_class_id": 5,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001199_0004.png",
+    "sha256": "18040294b6469452c42f60a1383cb1773af549f5a6e90cc859b02c8b0d520ede",
+    "bbox_rgb": [
+      0,
+      415,
+      177,
+      480
+    ],
+    "mask_pixels": 4051,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.0661878269997942,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      177,
+      65
+    ],
+    "adapter_image_size": [
+      177,
+      65
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 2,
+    "projected_instance_share": 0.8857142857142857,
+    "visible_points": 140,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1199,
+    "mask_id": 15,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001199_0015.png",
+    "sha256": "30a1578760f2b5b0016dfd11a7a144167a1443e1c63d8930d0ae04d5982a069a",
+    "bbox_rgb": [
+      450,
+      345,
+      537,
+      441
+    ],
+    "mask_pixels": 1838,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06484111600002507,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      87,
+      96
+    ],
+    "adapter_image_size": [
+      87,
+      96
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 6,
+    "projected_instance_share": 0.7098445595854922,
+    "visible_points": 193,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1204,
+    "mask_id": 13,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001204_0013.png",
+    "sha256": "8fc01325549cc88ea4685b955720ff23fb3454682d711689c81c622a2babb611",
+    "bbox_rgb": [
+      388,
+      303,
+      472,
+      392
+    ],
+    "mask_pixels": 1559,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06436331700001574,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      84,
+      89
+    ],
+    "adapter_image_size": [
+      84,
+      89
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 6,
+    "projected_instance_share": 0.6646706586826348,
+    "visible_points": 167,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1209,
+    "mask_id": 14,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001209_0014.png",
+    "sha256": "ad284e67574f0ae9cf3e80b01bdfdc548b9043cd621a7d765f1dd1c4ee22f28e",
+    "bbox_rgb": [
+      335,
+      262,
+      415,
+      349
+    ],
+    "mask_pixels": 1584,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06291687299994919,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      80,
+      87
+    ],
+    "adapter_image_size": [
+      80,
+      87
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 6,
+    "projected_instance_share": 0.8703703703703703,
+    "visible_points": 162,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1214,
+    "mask_id": 14,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001214_0014.png",
+    "sha256": "55f120e241138f2b821cf84591ff9cfd0320ebfb21fd0b260a978bb5c9988f80",
+    "bbox_rgb": [
+      297,
+      246,
+      377,
+      330
+    ],
+    "mask_pixels": 1491,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06272180900009516,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      80,
+      84
+    ],
+    "adapter_image_size": [
+      80,
+      84
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 6,
+    "projected_instance_share": 0.8943661971830986,
+    "visible_points": 142,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1214,
+    "mask_id": 1,
+    "sam_class_id": 3,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001214_0001.png",
+    "sha256": "346cbcf9bae26632e7e4ed27acbfbd83e6c828f0953443434d610096f2801bf4",
+    "bbox_rgb": [
+      92,
+      95,
+      314,
+      320
+    ],
+    "mask_pixels": 329,
+    "raw_response": "bookshelf",
+    "label": "bookshelf",
+    "valid": true,
+    "request_seconds": 0.1007688639999742,
+    "executed": true,
+    "output_tokens": 3,
+    "source_image_size": [
+      222,
+      225
+    ],
+    "adapter_image_size": [
+      222,
+      225
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 8,
+    "projected_instance_share": 0.6296296296296297,
+    "visible_points": 54,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1219,
+    "mask_id": 1,
+    "sam_class_id": 3,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001219_0001.png",
+    "sha256": "b52ecf1b2edfca8a684af5e85f2766797ff385a33cd3846b2049fd175eda29ad",
+    "bbox_rgb": [
+      94,
+      120,
+      270,
+      355
+    ],
+    "mask_pixels": 451,
+    "raw_response": "bookshelf",
+    "label": "bookshelf",
+    "valid": true,
+    "request_seconds": 0.0894271120000667,
+    "executed": true,
+    "output_tokens": 3,
+    "source_image_size": [
+      176,
+      235
+    ],
+    "adapter_image_size": [
+      176,
+      235
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 8,
+    "projected_instance_share": 0.5714285714285714,
+    "visible_points": 77,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1224,
+    "mask_id": 14,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001224_0014.png",
+    "sha256": "30b0f95f2ef4f258f2bb2510db762407e81d0cde2ddba4a22c2344a0a1d0268d",
+    "bbox_rgb": [
+      220,
+      280,
+      301,
+      341
+    ],
+    "mask_pixels": 1460,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06334161800009497,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      81,
+      61
+    ],
+    "adapter_image_size": [
+      81,
+      61
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 6,
+    "projected_instance_share": 0.9264705882352942,
+    "visible_points": 136,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1229,
+    "mask_id": 18,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001229_0018.png",
+    "sha256": "b38f4877e232b21bea41e66424846e519d2e3688f320b7ca74cd71a173158a19",
+    "bbox_rgb": [
+      184,
+      245,
+      268,
+      304
+    ],
+    "mask_pixels": 1502,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06301644599989231,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      84,
+      59
+    ],
+    "adapter_image_size": [
+      84,
+      59
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 6,
+    "projected_instance_share": 0.9503105590062112,
+    "visible_points": 161,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1229,
+    "mask_id": 5,
+    "sam_class_id": 5,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001229_0005.png",
+    "sha256": "c50a0842161424c5720333bfc197003be577c4acbd9d60913b8301a41e93955f",
+    "bbox_rgb": [
+      615,
+      313,
+      640,
+      480
+    ],
+    "mask_pixels": 1202,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06321638500003246,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      25,
+      167
+    ],
+    "adapter_image_size": [
+      25,
+      167
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 10,
+    "projected_instance_share": 0.029411764705882353,
+    "visible_points": 34,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1229,
+    "mask_id": 1,
+    "sam_class_id": 3,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001229_0001.png",
+    "sha256": "f3cbe1e5067d4a224f3cb6e76dc147e5b5380284aa638a3cdfde0be32835161a",
+    "bbox_rgb": [
+      0,
+      81,
+      191,
+      343
+    ],
+    "mask_pixels": 418,
+    "raw_response": "bookshelf",
+    "label": "bookshelf",
+    "valid": true,
+    "request_seconds": 0.09018407899998238,
+    "executed": true,
+    "output_tokens": 3,
+    "source_image_size": [
+      191,
+      262
+    ],
+    "adapter_image_size": [
+      191,
+      262
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 8,
+    "projected_instance_share": 0.6071428571428571,
+    "visible_points": 28,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1234,
+    "mask_id": 13,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001234_0013.png",
+    "sha256": "80a50f6ae6cd11096d8a947d9e591984e2aa1ee76f972c63a284ec0d4501f3fc",
+    "bbox_rgb": [
+      125,
+      210,
+      218,
+      286
+    ],
+    "mask_pixels": 2678,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06299367800011169,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      93,
+      76
+    ],
+    "adapter_image_size": [
+      93,
+      76
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 7,
+    "projected_instance_share": 0.9798387096774194,
+    "visible_points": 496,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1239,
+    "mask_id": 14,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001239_0014.png",
+    "sha256": "0f7d43954f3b3b41c9110218c9950bd9cb0af7b7c31ab7982299872f1a79e4e8",
+    "bbox_rgb": [
+      165,
+      208,
+      251,
+      259
+    ],
+    "mask_pixels": 1365,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06280514299987772,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      86,
+      51
+    ],
+    "adapter_image_size": [
+      86,
+      51
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 6,
+    "projected_instance_share": 0.9568345323741008,
+    "visible_points": 139,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1239,
+    "mask_id": 6,
+    "sam_class_id": 5,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001239_0006.png",
+    "sha256": "03b20434c09fab8a4cf35ef315eaef0d2daf78760512d74a53228f6401cee658",
+    "bbox_rgb": [
+      588,
+      246,
+      640,
+      384
+    ],
+    "mask_pixels": 411,
+    "raw_response": "chair",
+    "label": "chair",
+    "valid": true,
+    "request_seconds": 0.06438959000001887,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      52,
+      138
+    ],
+    "adapter_image_size": [
+      52,
+      138
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 10,
+    "projected_instance_share": 0.037037037037037035,
+    "visible_points": 27,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1244,
+    "mask_id": 17,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001244_0017.png",
+    "sha256": "67de7cd91229deb4f9cee1c36882e49a365ad348607e6e911aa21799bb5f3e59",
+    "bbox_rgb": [
+      171,
+      176,
+      256,
+      219
+    ],
+    "mask_pixels": 1201,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06300658400004977,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      85,
+      43
+    ],
+    "adapter_image_size": [
+      85,
+      43
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 6,
+    "projected_instance_share": 0.9634146341463414,
+    "visible_points": 164,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1249,
+    "mask_id": 4,
+    "sam_class_id": 5,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001249_0004.png",
+    "sha256": "6b30907587f0105a531739fd76183e8a14264c25ba139281bc20075dd671c0e5",
+    "bbox_rgb": [
+      599,
+      171,
+      640,
+      373
+    ],
+    "mask_pixels": 2253,
+    "raw_response": "chair",
+    "label": "chair",
+    "valid": true,
+    "request_seconds": 0.06279813900005138,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      41,
+      202
+    ],
+    "adapter_image_size": [
+      41,
+      202
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 10,
+    "projected_instance_share": 0.012195121951219513,
+    "visible_points": 82,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1249,
+    "mask_id": 16,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001249_0016.png",
+    "sha256": "2f5a58c699dd8c3b923bb728b8136619548165f17817dda2e9be7dc717e8eb6f",
+    "bbox_rgb": [
+      184,
+      158,
+      265,
+      195
+    ],
+    "mask_pixels": 1079,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06217445300012514,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      81,
+      37
+    ],
+    "adapter_image_size": [
+      81,
+      37
+    ],
+    "peak_allocated_mib": 1572.31591796875,
+    "candidate_instance_id": 6,
+    "projected_instance_share": 0.9626168224299065,
+    "visible_points": 107,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1249,
+    "mask_id": 10,
+    "sam_class_id": 17,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001249_0010.png",
+    "sha256": "8a8cee1d7b6ad39242f0be7195bc230b59aa2d0d45fe1184134af23b278aaa26",
+    "bbox_rgb": [
+      0,
+      144,
+      518,
+      480
+    ],
+    "mask_pixels": 309,
+    "raw_response": "table",
+    "label": "table",
+    "valid": true,
+    "request_seconds": 0.1077314959998148,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      518,
+      336
+    ],
+    "adapter_image_size": [
+      518,
+      336
+    ],
+    "peak_allocated_mib": 1574.73828125,
+    "candidate_instance_id": 10,
+    "projected_instance_share": 0.35714285714285715,
+    "visible_points": 14,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1254,
+    "mask_id": 9,
+    "sam_class_id": 12,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001254_0009.png",
+    "sha256": "63837b20c85608936658412797275ff9e43a4cbb16bc463ba3837db937c7e18d",
+    "bbox_rgb": [
+      16,
+      0,
+      52,
+      29
+    ],
+    "mask_pixels": 503,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06317438099995343,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      36,
+      29
+    ],
+    "adapter_image_size": [
+      36,
+      29
+    ],
+    "peak_allocated_mib": 1574.73828125,
+    "candidate_instance_id": 5,
+    "projected_instance_share": 0.047619047619047616,
+    "visible_points": 42,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1264,
+    "mask_id": 13,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001264_0013.png",
+    "sha256": "72a288d5b726425e30be8b97c3f97c02475889702e488c696d4ebbdb109dcf3d",
+    "bbox_rgb": [
+      231,
+      163,
+      311,
+      198
+    ],
+    "mask_pixels": 1042,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06296889600002942,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      80,
+      35
+    ],
+    "adapter_image_size": [
+      80,
+      35
+    ],
+    "peak_allocated_mib": 1574.73828125,
+    "candidate_instance_id": 6,
+    "projected_instance_share": 0.9555555555555556,
+    "visible_points": 90,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1269,
+    "mask_id": 15,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001269_0015.png",
+    "sha256": "5027084418a8a4cd1d934bba2848316bee616c2e603da93daf723b396025e4e0",
+    "bbox_rgb": [
+      247,
+      180,
+      328,
+      221
+    ],
+    "mask_pixels": 1191,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06275056000004042,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      81,
+      41
+    ],
+    "adapter_image_size": [
+      81,
+      41
+    ],
+    "peak_allocated_mib": 1574.73828125,
+    "candidate_instance_id": 6,
+    "projected_instance_share": 0.9571428571428572,
+    "visible_points": 70,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1269,
+    "mask_id": 8,
+    "sam_class_id": 12,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001269_0008.png",
+    "sha256": "3f38a765dffadbb8c2da3fb11ebcdc0a5ddcc0500cbc1346740e36ae44931f35",
+    "bbox_rgb": [
+      82,
+      17,
+      111,
+      52
+    ],
+    "mask_pixels": 513,
+    "raw_response": "box",
+    "label": "box",
+    "valid": true,
+    "request_seconds": 0.06250717500006431,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      29,
+      35
+    ],
+    "adapter_image_size": [
+      29,
+      35
+    ],
+    "peak_allocated_mib": 1574.73828125,
+    "candidate_instance_id": 5,
+    "projected_instance_share": 0.10344827586206896,
+    "visible_points": 58,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1274,
+    "mask_id": 16,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001274_0016.png",
+    "sha256": "a4424f9d1bbc6ea5e8905e4914e66c7a9f9ed98b2a17bfcd7b02096700f9b7ba",
+    "bbox_rgb": [
+      243,
+      201,
+      327,
+      251
+    ],
+    "mask_pixels": 1330,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06280486599985124,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      84,
+      50
+    ],
+    "adapter_image_size": [
+      84,
+      50
+    ],
+    "peak_allocated_mib": 1574.73828125,
+    "candidate_instance_id": 6,
+    "projected_instance_share": 0.9732142857142857,
+    "visible_points": 112,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1274,
+    "mask_id": 8,
+    "sam_class_id": 12,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001274_0008.png",
+    "sha256": "58c8e5c02def539057e701560c50c84cfaafd494deaee6e3da15c86c80ced4d7",
+    "bbox_rgb": [
+      39,
+      38,
+      72,
+      75
+    ],
+    "mask_pixels": 569,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06268115000011676,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      33,
+      37
+    ],
+    "adapter_image_size": [
+      33,
+      37
+    ],
+    "peak_allocated_mib": 1574.73828125,
+    "candidate_instance_id": 5,
+    "projected_instance_share": 0.34782608695652173,
+    "visible_points": 23,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1274,
+    "mask_id": 9,
+    "sam_class_id": 12,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001274_0009.png",
+    "sha256": "d12702f774bed0403ce856275ee1cc5e4d6ead690d6786486f19e9c7457f2bea",
+    "bbox_rgb": [
+      76,
+      36,
+      108,
+      71
+    ],
+    "mask_pixels": 538,
+    "raw_response": "box",
+    "label": "box",
+    "valid": true,
+    "request_seconds": 0.06312741700003244,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      32,
+      35
+    ],
+    "adapter_image_size": [
+      32,
+      35
+    ],
+    "peak_allocated_mib": 1574.73828125,
+    "candidate_instance_id": 5,
+    "projected_instance_share": 0.07272727272727272,
+    "visible_points": 55,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1279,
+    "mask_id": 14,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001279_0014.png",
+    "sha256": "e08a07b56ab93ed74166a678e712654f6dbdbdfb425acc939af5883dfe65b3ae",
+    "bbox_rgb": [
+      246,
+      202,
+      334,
+      263
+    ],
+    "mask_pixels": 1760,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06306964200007315,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      88,
+      61
+    ],
+    "adapter_image_size": [
+      88,
+      61
+    ],
+    "peak_allocated_mib": 1574.73828125,
+    "candidate_instance_id": 6,
+    "projected_instance_share": 0.9166666666666666,
+    "visible_points": 120,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1279,
+    "mask_id": 8,
+    "sam_class_id": 12,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001279_0008.png",
+    "sha256": "73fd88a2fc90dad8f21a35e1f051576dfa017eca5a687d601854fcce2d52e2b1",
+    "bbox_rgb": [
+      78,
+      29,
+      111,
+      65
+    ],
+    "mask_pixels": 580,
+    "raw_response": "box",
+    "label": "box",
+    "valid": true,
+    "request_seconds": 0.06250954600000114,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      33,
+      36
+    ],
+    "adapter_image_size": [
+      33,
+      36
+    ],
+    "peak_allocated_mib": 1574.73828125,
+    "candidate_instance_id": 5,
+    "projected_instance_share": 0.05263157894736842,
+    "visible_points": 57,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1284,
+    "mask_id": 13,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001284_0013.png",
+    "sha256": "43e657cfd17c35557f024bb3147a6c7bb38669d8de5da1a73075fa55e9809890",
+    "bbox_rgb": [
+      247,
+      217,
+      336,
+      289
+    ],
+    "mask_pixels": 2064,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06359948599993004,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      89,
+      72
+    ],
+    "adapter_image_size": [
+      89,
+      72
+    ],
+    "peak_allocated_mib": 1574.73828125,
+    "candidate_instance_id": 6,
+    "projected_instance_share": 0.9726027397260274,
+    "visible_points": 146,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1289,
+    "mask_id": 13,
+    "sam_class_id": 27,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001289_0013.png",
+    "sha256": "56773b53e1bad24672e095c080bf8c2287530aea1515729d5cc380a881b010bb",
+    "bbox_rgb": [
+      259,
+      230,
+      353,
+      324
+    ],
+    "mask_pixels": 2465,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06461577899995063,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      94,
+      94
+    ],
+    "adapter_image_size": [
+      94,
+      94
+    ],
+    "peak_allocated_mib": 1574.73828125,
+    "candidate_instance_id": 6,
+    "projected_instance_share": 0.9681528662420382,
+    "visible_points": 157,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1294,
+    "mask_id": 1,
+    "sam_class_id": 3,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001294_0001.png",
+    "sha256": "2a42bafbbf47b3676ef00150272546f8978c95261fe851251e5238408ec02400",
+    "bbox_rgb": [
+      42,
+      76,
+      308,
+      395
+    ],
+    "mask_pixels": 397,
+    "raw_response": "bookshelf",
+    "label": "bookshelf",
+    "valid": true,
+    "request_seconds": 0.10751608000009583,
+    "executed": true,
+    "output_tokens": 3,
+    "source_image_size": [
+      266,
+      319
+    ],
+    "adapter_image_size": [
+      266,
+      319
+    ],
+    "peak_allocated_mib": 1574.73828125,
+    "candidate_instance_id": 8,
+    "projected_instance_share": 0.5869565217391305,
+    "visible_points": 46,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1299,
+    "mask_id": 4,
+    "sam_class_id": 5,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001299_0004.png",
+    "sha256": "4d2dc94dac317995a4b118d6638d2e9bc8b07ae0fcedc6da4ac218d988b85c5a",
+    "bbox_rgb": [
+      613,
+      314,
+      640,
+      480
+    ],
+    "mask_pixels": 1745,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.06335608500012313,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      27,
+      166
+    ],
+    "adapter_image_size": [
+      27,
+      166
+    ],
+    "peak_allocated_mib": 1574.73828125,
+    "candidate_instance_id": 9,
+    "projected_instance_share": 0.875,
+    "visible_points": 72,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1304,
+    "mask_id": 8,
+    "sam_class_id": 17,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001304_0008.png",
+    "sha256": "96a2c2ed76c730575d089c79f31d3897894cd9e9975f97eaa571edd6c67eb1aa",
+    "bbox_rgb": [
+      522,
+      177,
+      640,
+      480
+    ],
+    "mask_pixels": 553,
+    "raw_response": "table",
+    "label": "table",
+    "valid": true,
+    "request_seconds": 0.0735962759999893,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      118,
+      303
+    ],
+    "adapter_image_size": [
+      118,
+      303
+    ],
+    "peak_allocated_mib": 1574.73828125,
+    "candidate_instance_id": 10,
+    "projected_instance_share": 0.26666666666666666,
+    "visible_points": 45,
+    "model_completed_at": 1233.173862505
+  },
+  {
+    "frame_id": 1308,
+    "mask_id": 10,
+    "sam_class_id": 17,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0030_00/crops/001308_0010.png",
+    "sha256": "9f0e07aac8f1aac0c785dac0d75e2fabf37ec4660e79d5cab21c0ff8d317efb7",
+    "bbox_rgb": [
+      526,
+      179,
+      640,
+      480
+    ],
+    "mask_pixels": 315,
+    "raw_response": "table",
+    "label": "table",
+    "valid": true,
+    "request_seconds": 0.0728718289999506,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      114,
+      301
+    ],
+    "adapter_image_size": [
+      114,
+      301
+    ],
+    "peak_allocated_mib": 1574.73828125,
+    "candidate_instance_id": 10,
+    "projected_instance_share": 0.2,
+    "visible_points": 25,
+    "model_completed_at": 1233.173862505
+  }
+]

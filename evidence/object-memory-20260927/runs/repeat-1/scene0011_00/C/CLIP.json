@@ -1,0 +1,40 @@
+{
+  "checked_crops": 2,
+  "feature_crops": 6,
+  "rejected": [],
+  "checks": [
+    {
+      "crop": "001157_0015",
+      "object_id": 5,
+      "own": [
+        0.8359237909317017,
+        0.8356258869171143
+      ],
+      "rivals": [],
+      "accept": true,
+      "reason": "appearance_supported"
+    },
+    {
+      "crop": "001227_0009",
+      "object_id": 9,
+      "own": [
+        0.8239539265632629,
+        0.8232448101043701
+      ],
+      "rivals": [],
+      "accept": true,
+      "reason": "appearance_supported"
+    }
+  ],
+  "model_loaded": true,
+  "load_seconds": 5.79975337299993,
+  "encode_seconds": 0.4557264990000931,
+  "precision": "fp32",
+  "batch_size": 1,
+  "model": "ViT-H-14",
+  "pretrained": "laion2b_s32b_b79k",
+  "text_encoder_called": false,
+  "peak_rss_mib": 8219.8359375,
+  "peak_allocated_mib": 3850.984375,
+  "peak_reserved_mib": 3930.0
+}

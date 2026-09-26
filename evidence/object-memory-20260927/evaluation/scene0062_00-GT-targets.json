@@ -1,0 +1,62 @@
+[
+  {
+    "object_id": 1,
+    "gt_object_id": 4,
+    "gt_name": "wall",
+    "canonical_gt_name": "wall",
+    "owned_points": 3006,
+    "supported_points": 443,
+    "dominant_gt_points": 162,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 2,
+    "gt_object_id": 22,
+    "gt_name": "sink",
+    "canonical_gt_name": "sink",
+    "owned_points": 431,
+    "supported_points": 212,
+    "dominant_gt_points": 130,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 3,
+    "gt_object_id": 1,
+    "gt_name": "wall",
+    "canonical_gt_name": "wall",
+    "owned_points": 3270,
+    "supported_points": 2600,
+    "dominant_gt_points": 2057,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 4,
+    "gt_object_id": 0,
+    "gt_name": "unknown",
+    "canonical_gt_name": "unknown",
+    "owned_points": 2862,
+    "supported_points": 0,
+    "dominant_gt_points": 0,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 5,
+    "gt_object_id": 1,
+    "gt_name": "wall",
+    "canonical_gt_name": "wall",
+    "owned_points": 747,
+    "supported_points": 596,
+    "dominant_gt_points": 531,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 6,
+    "gt_object_id": 21,
+    "gt_name": "door",
+    "canonical_gt_name": "door",
+    "owned_points": 2820,
+    "supported_points": 1450,
+    "dominant_gt_points": 1333,
+    "eligible_for_naming_metric": true
+  }
+]

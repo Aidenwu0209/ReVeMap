@@ -1,0 +1,29 @@
+{
+  "status": "completed",
+  "map_points": 661483,
+  "semantic_coverage": 0.07373885647854896,
+  "instance_coverage": 0.04919703151857266,
+  "instance_count": 24,
+  "selected_frames": 25,
+  "geometry_xyz_sha256": "82a02ce337c6e3eb3cc10cf650e9e982f98fca55c9e4cc0b86d32df5602dff97",
+  "semantic_conflict_policy": "consensus",
+  "semantic_confidence_policy": "legacy",
+  "object_score_scope": "legacy global per-point maxima; may include other categories",
+  "sga_inference_executed": false,
+  "sgf_prior_used": false,
+  "complete_full_sequence": false,
+  "raw_window_complete": false,
+  "GT_used": false,
+  "geometry_modified": false,
+  "pipeline_scope": "25 cached SAM3 views on fixed full geometry; fresh fusion and separately measured naming; no new SLAM/SAM3",
+  "provenance": {
+    "manifest": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/inputs/scene0000_00.json",
+    "trajectory": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runs/scene0000_00/pipeline/mapping/refill/trajectory.json",
+    "scene_id": "scene0000_00",
+    "dataset": "scannet"
+  },
+  "seconds": 4.04600928800005,
+  "completed_at": 1317.536324172,
+  "new_SLAM_inference": false,
+  "new_SAM3_inference": false
+}

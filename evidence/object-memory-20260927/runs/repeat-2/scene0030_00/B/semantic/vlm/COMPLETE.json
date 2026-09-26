@@ -1,0 +1,97 @@
+{
+  "status": "completed",
+  "model": "qwen3vl_2b_nf4",
+  "crops": 63,
+  "crops_executed": 63,
+  "seconds_including_load": 9.780843212000036,
+  "inference_seconds": 4.738812596999651,
+  "groups": [
+    {
+      "object_id": 1,
+      "eligible_crops": 25,
+      "initial": [
+        "001308_0003",
+        "001279_0004",
+        "001209_0005"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "chair"
+    },
+    {
+      "object_id": 2,
+      "eligible_crops": 4,
+      "initial": [
+        "001189_0006",
+        "001199_0004",
+        "001194_0006"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "book"
+    },
+    {
+      "object_id": 3,
+      "eligible_crops": 11,
+      "initial": [
+        "001204_0007",
+        "001194_0008",
+        "001209_0008"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "door"
+    },
+    {
+      "object_id": 6,
+      "eligible_crops": 23,
+      "initial": [
+        "001308_0014",
+        "001284_0013",
+        "001294_0015"
+      ],
+      "fallback": true,
+      "calls": 23,
+      "name": "unknown"
+    },
+    {
+      "object_id": 7,
+      "eligible_crops": 25,
+      "initial": [
+        "001304_0012",
+        "001274_0015",
+        "001229_0017"
+      ],
+      "fallback": true,
+      "calls": 25,
+      "name": "bin"
+    },
+    {
+      "object_id": 8,
+      "eligible_crops": 5,
+      "initial": [
+        "001254_0001",
+        "001199_0002",
+        "001244_0001"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "bookshelf"
+    },
+    {
+      "object_id": 9,
+      "eligible_crops": 19,
+      "initial": [
+        "001224_0003",
+        "001284_0003",
+        "001254_0002"
+      ],
+      "fallback": false,
+      "calls": 3,
+      "name": "chair"
+    }
+  ],
+  "peak_rss_mib": 5114.734375,
+  "peak_allocated_mib": 1572.31591796875,
+  "peak_reserved_mib": 1598.0
+}

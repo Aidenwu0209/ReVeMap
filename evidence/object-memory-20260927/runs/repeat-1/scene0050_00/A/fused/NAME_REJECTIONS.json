@@ -1,0 +1,35 @@
+[
+  {
+    "frame_id": 2366,
+    "mask_id": 4,
+    "sam_class_id": 29,
+    "file": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/inputs/scene0050_00/crops/002366_0004.png",
+    "sha256": "8c4591f0156405aebe7b3d78c53f421f75998cc67df1a25d4bd9db9d440280db",
+    "bbox_rgb": [
+      525,
+      0,
+      640,
+      419
+    ],
+    "mask_pixels": 21686,
+    "raw_response": "unknown",
+    "label": "unknown",
+    "valid": true,
+    "request_seconds": 0.08775245999993331,
+    "executed": true,
+    "output_tokens": 2,
+    "source_image_size": [
+      115,
+      419
+    ],
+    "adapter_image_size": [
+      115,
+      419
+    ],
+    "peak_allocated_mib": 1576.359375,
+    "candidate_instance_id": 1,
+    "projected_instance_share": 0.010014306151645207,
+    "visible_points": 699,
+    "model_completed_at": 1005.276295583
+  }
+]

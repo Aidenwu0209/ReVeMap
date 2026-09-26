@@ -1,0 +1,12 @@
+{
+  "status": "completed",
+  "model": "qwen3vl_2b_nf4",
+  "crops": 135,
+  "crops_executed": 135,
+  "seconds_including_load": 28.648794973999998,
+  "inference_seconds": 13.079714119001096,
+  "groups": [],
+  "peak_rss_mib": 5113.08984375,
+  "peak_allocated_mib": 1574.73828125,
+  "peak_reserved_mib": 1636.0
+}

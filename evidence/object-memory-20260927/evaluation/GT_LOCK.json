@@ -1,0 +1,22 @@
+{
+  "/home/aidenwu/Documents/Scannet/Original_files_from_scannet_dataset/scene0030_00/scene0030_00_vh_clean_2.ply": "1541b52e8037f212d1c060b8e89f0cc5ed31b5a1a7be48fb5f446d9ab14b5f69",
+  "/home/aidenwu/Documents/Scannet/Original_files_from_scannet_dataset/scene0030_00/scene0030_00_vh_clean_2.0.010000.segs.json": "80e3189c1a3440d43df56a775fa9dc54dc91c7c595e1eb0db545b69660f27242",
+  "/home/aidenwu/Documents/Scannet/Original_files_from_scannet_dataset/scene0030_00/scene0030_00.aggregation.json": "b2ce5891041bdf645955a92e7a3bb5efe55c07a1ba56d6d035c492982066c87e",
+  "/home/aidenwu/Documents/Scannet/rendered_2d_scannet_RGBD/scene0030_00/pose/0.txt": "6372695bb337a5e26b39bf2073dc9353bda012c8a881f9e613e19a4957cf6f80",
+  "/home/aidenwu/Documents/Scannet/Original_files_from_scannet_dataset/scene0050_00/scene0050_00_vh_clean_2.ply": "d2f06f5963bee12a83806ec318412f5832584c00effacc3003a2f2ee32b09c2e",
+  "/home/aidenwu/Documents/Scannet/Original_files_from_scannet_dataset/scene0050_00/scene0050_00_vh_clean_2.0.010000.segs.json": "6586d71f486807d6d5b6241dff8c8b2868fc5337b158ee62212b75ef9e1aa413",
+  "/home/aidenwu/Documents/Scannet/Original_files_from_scannet_dataset/scene0050_00/scene0050_00.aggregation.json": "3a30d5ab24b66d217e7d9bdeaa573fd8236dbd3f60db1af733ad505eebf54de2",
+  "/home/aidenwu/Documents/Scannet/rendered_2d_scannet_RGBD/scene0050_00/pose/0.txt": "3ffe0811906ea3e2bfad570859b98c96222ac189e9bc3eb0fcef2132de4e6409",
+  "/home/aidenwu/Documents/Scannet/Original_files_from_scannet_dataset/scene0011_00/scene0011_00_vh_clean_2.ply": "2941664625d52110aefbfb2b5fd3c869c3f51b999a036a27ba3e0033e3bf21f5",
+  "/home/aidenwu/Documents/Scannet/Original_files_from_scannet_dataset/scene0011_00/scene0011_00_vh_clean_2.0.010000.segs.json": "00546eb1505379add58fb3792d03f8b8dddef1bd60d357b243e040c4db3404e2",
+  "/home/aidenwu/Documents/Scannet/Original_files_from_scannet_dataset/scene0011_00/scene0011_00.aggregation.json": "155e188c1bababbe5522931b1cf7c6c971cb4464e75ab389de752afeffe6b23b",
+  "/home/aidenwu/Documents/Scannet/rendered_2d_scannet_RGBD/scene0011_00/pose/0.txt": "9d90b5088573ceebfc236ff192e709d710e7ff60aff79f6597b56521cc3661b4",
+  "/home/aidenwu/Desktop/Jojo_intern_10_scannet_scenes/scene0000_00/scene0000_00_vh_clean_2.ply": "222dbe3e7518f5e3260f0feef08c260b9c3e89cb7cecdf20c553368001f998c8",
+  "/home/aidenwu/Desktop/Jojo_intern_10_scannet_scenes/scene0000_00/scene0000_00_vh_clean_2.0.010000.segs.json": "f53f0ec1c1999d789f6a9275e0c673a55bf7aa8e7e19bc5ea35cdb4935f8cf55",
+  "/home/aidenwu/Desktop/Jojo_intern_10_scannet_scenes/scene0000_00/scene0000_00.aggregation.json": "0c622a6160b7b36c97a303192c6ff83c181d22b5233601399988b4a3d332c243",
+  "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0000_00/pose/0.txt": "64040bc74a0950d6eb41379bf3817f2505206e7f6017d335a986ad26e21c0b5f",
+  "/home/aidenwu/Desktop/Jojo_intern_10_scannet_scenes/scene0062_00/scene0062_00_vh_clean_2.ply": "33d87d4135009ff8899d34195f075c55e952d1f6e2351ff26eacfa4bd6f9319e",
+  "/home/aidenwu/Desktop/Jojo_intern_10_scannet_scenes/scene0062_00/scene0062_00_vh_clean_2.0.010000.segs.json": "e986ba1b0e6848586036b3cc5fc82c5986ea3e69209df52e54c753b6e64f6703",
+  "/home/aidenwu/Desktop/Jojo_intern_10_scannet_scenes/scene0062_00/scene0062_00.aggregation.json": "30c4ee14bfb77d7324e1b379bccc5c9acff3576bf147a8dcad5cc29f5cebd4a3",
+  "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/data/scene0062_00/pose/0.txt": "c380d3f94e292adf67df5fa0f76f1b5cc69256dd19bbc6208e1c44c49e655d06"
+}

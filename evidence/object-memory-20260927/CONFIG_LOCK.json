@@ -1,0 +1,5 @@
+{
+  "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/src/revemap/resources/vlm_models.json": "373dda5bac008403e5cb6d2e27c98314074ec9b6e1cec48fbbab24b583f97e66",
+  "/home/aidenwu/Documents/ReVeMap-object-memory-20260927/src/revemap/resources/sam3_indoor_v1.json": "66f843be39ba7d4d42d9bf48275f107745d971677583aab104078f4d16f8dd26",
+  "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runtime.json": "f35aba8a36f6b57fc72d27c10e1b1daa854ef9a4f2eb9b82fcad217668baf0eb"
+}

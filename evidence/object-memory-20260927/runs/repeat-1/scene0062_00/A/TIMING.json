@@ -1,0 +1,13 @@
+{
+  "scene": "scene0062_00",
+  "arm": "A",
+  "repeat": 1,
+  "tail_wall_seconds": 13.577261291000013,
+  "vlm_calls": 69,
+  "vlm_inference_seconds": 6.937134703999618,
+  "named_objects": 3,
+  "objects": 6,
+  "vlm_peak_reserved_mib": 1636.0,
+  "fusion_process_seconds": 2.277330179000046,
+  "naming_process_elapsed_until_join": 13.514175135999949
+}

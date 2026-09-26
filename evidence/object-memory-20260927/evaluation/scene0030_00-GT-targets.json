@@ -1,0 +1,112 @@
+[
+  {
+    "object_id": 1,
+    "gt_object_id": 4,
+    "gt_name": "chair",
+    "canonical_gt_name": "chair",
+    "owned_points": 3167,
+    "supported_points": 2869,
+    "dominant_gt_points": 2590,
+    "eligible_for_naming_metric": true
+  },
+  {
+    "object_id": 2,
+    "gt_object_id": 16,
+    "gt_name": "chair",
+    "canonical_gt_name": "chair",
+    "owned_points": 213,
+    "supported_points": 212,
+    "dominant_gt_points": 150,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 3,
+    "gt_object_id": 54,
+    "gt_name": "door",
+    "canonical_gt_name": "door",
+    "owned_points": 7250,
+    "supported_points": 6745,
+    "dominant_gt_points": 6482,
+    "eligible_for_naming_metric": true
+  },
+  {
+    "object_id": 4,
+    "gt_object_id": 31,
+    "gt_name": "wall",
+    "canonical_gt_name": "wall",
+    "owned_points": 6666,
+    "supported_points": 2580,
+    "dominant_gt_points": 1951,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 5,
+    "gt_object_id": 30,
+    "gt_name": "wall",
+    "canonical_gt_name": "wall",
+    "owned_points": 5867,
+    "supported_points": 4515,
+    "dominant_gt_points": 4303,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 6,
+    "gt_object_id": 58,
+    "gt_name": "trash can",
+    "canonical_gt_name": "trash can",
+    "owned_points": 411,
+    "supported_points": 137,
+    "dominant_gt_points": 104,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 7,
+    "gt_object_id": 58,
+    "gt_name": "trash can",
+    "canonical_gt_name": "trash can",
+    "owned_points": 788,
+    "supported_points": 594,
+    "dominant_gt_points": 580,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 8,
+    "gt_object_id": 21,
+    "gt_name": "bookshelf",
+    "canonical_gt_name": "bookshelf",
+    "owned_points": 1806,
+    "supported_points": 1791,
+    "dominant_gt_points": 1365,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 9,
+    "gt_object_id": 7,
+    "gt_name": "chair",
+    "canonical_gt_name": "chair",
+    "owned_points": 1373,
+    "supported_points": 1235,
+    "dominant_gt_points": 1093,
+    "eligible_for_naming_metric": true
+  },
+  {
+    "object_id": 10,
+    "gt_object_id": 17,
+    "gt_name": "floor",
+    "canonical_gt_name": "floor",
+    "owned_points": 4784,
+    "supported_points": 4414,
+    "dominant_gt_points": 4189,
+    "eligible_for_naming_metric": false
+  },
+  {
+    "object_id": 11,
+    "gt_object_id": 17,
+    "gt_name": "floor",
+    "canonical_gt_name": "floor",
+    "owned_points": 456,
+    "supported_points": 450,
+    "dominant_gt_points": 422,
+    "eligible_for_naming_metric": false
+  }
+]

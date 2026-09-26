@@ -1,0 +1,68 @@
+{
+  "checked_crops": 4,
+  "feature_crops": 10,
+  "rejected": [],
+  "checks": [
+    {
+      "crop": "001194_0014",
+      "object_id": 6,
+      "own": [
+        0.8241595029830933,
+        0.8213355541229248
+      ],
+      "rivals": [],
+      "accept": true,
+      "reason": "appearance_supported"
+    },
+    {
+      "crop": "001199_0015",
+      "object_id": 6,
+      "own": [
+        0.7553855180740356,
+        0.8234174251556396
+      ],
+      "rivals": [
+        0.7340311408042908,
+        0.7417700886726379
+      ],
+      "accept": true,
+      "reason": "appearance_supported"
+    },
+    {
+      "crop": "001204_0004",
+      "object_id": 2,
+      "own": [
+        0.75394606590271,
+        0.7876008749008179
+      ],
+      "rivals": [],
+      "accept": true,
+      "reason": "appearance_supported"
+    },
+    {
+      "crop": "001204_0013",
+      "object_id": 6,
+      "own": [
+        0.7103734612464905,
+        0.7792770862579346
+      ],
+      "rivals": [
+        0.6860532164573669,
+        0.6989181041717529
+      ],
+      "accept": true,
+      "reason": "appearance_supported"
+    }
+  ],
+  "model_loaded": true,
+  "load_seconds": 13.585614767000038,
+  "encode_seconds": 0.8713978250000309,
+  "precision": "fp32",
+  "batch_size": 1,
+  "model": "ViT-H-14",
+  "pretrained": "laion2b_s32b_b79k",
+  "text_encoder_called": false,
+  "peak_rss_mib": 8219.26171875,
+  "peak_allocated_mib": 3850.984375,
+  "peak_reserved_mib": 3930.0
+}

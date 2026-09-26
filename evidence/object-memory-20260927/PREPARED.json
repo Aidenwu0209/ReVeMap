@@ -1,0 +1,37 @@
+[
+  {
+    "scene": "scene0030_00",
+    "frames": 25,
+    "crops": 135,
+    "first_frame": 1189,
+    "last_frame": 1308
+  },
+  {
+    "scene": "scene0050_00",
+    "frames": 25,
+    "crops": 33,
+    "first_frame": 2266,
+    "last_frame": 2385
+  },
+  {
+    "scene": "scene0011_00",
+    "frames": 25,
+    "crops": 134,
+    "first_frame": 1127,
+    "last_frame": 1246
+  },
+  {
+    "scene": "scene0000_00",
+    "frames": 25,
+    "crops": 199,
+    "first_frame": 2730,
+    "last_frame": 2850
+  },
+  {
+    "scene": "scene0062_00",
+    "frames": 25,
+    "crops": 69,
+    "first_frame": 305,
+    "last_frame": 425
+  }
+]

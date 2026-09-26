@@ -1,0 +1,698 @@
+{
+  "method": "sparse-view consensus with component cannot-link veto",
+  "config": {
+    "min_mask_points": 30,
+    "min_output_points": 50,
+    "min_group_frames": 2,
+    "visibility_fraction": 0.3,
+    "containment_fraction": 0.8,
+    "split_piece_fraction": 0.2,
+    "split_frame_fraction": 0.2,
+    "min_split_frames": 2,
+    "min_support_frames": 3,
+    "consensus_fraction": 0.9,
+    "cannot_link_frames": 2,
+    "min_point_views": 1,
+    "ownership_share": 0.65,
+    "ownership_margin": 0.15,
+    "min_object_score": 0.8,
+    "object_score_mode": "max_point"
+  },
+  "frame_count": 25,
+  "mask_nodes": 497,
+  "semantic_labels_modified": false,
+  "gt_consumed": false,
+  "unknown_observations": "abstain; not counted as agreement or separation",
+  "point_support": "only cached depth-consistent mask interiors; no spatial expansion",
+  "candidate_edges": 3273,
+  "accepted_merges": 393,
+  "component_contradiction_vetoes": 362,
+  "filtered_masks": [
+    {
+      "frame_id": 2730,
+      "mask_id": 3,
+      "split_frames": 5,
+      "evaluable_frames": 20
+    },
+    {
+      "frame_id": 2735,
+      "mask_id": 3,
+      "split_frames": 4,
+      "evaluable_frames": 19
+    },
+    {
+      "frame_id": 2740,
+      "mask_id": 7,
+      "split_frames": 4,
+      "evaluable_frames": 10
+    },
+    {
+      "frame_id": 2745,
+      "mask_id": 2,
+      "split_frames": 8,
+      "evaluable_frames": 20
+    },
+    {
+      "frame_id": 2745,
+      "mask_id": 4,
+      "split_frames": 4,
+      "evaluable_frames": 19
+    },
+    {
+      "frame_id": 2750,
+      "mask_id": 1,
+      "split_frames": 4,
+      "evaluable_frames": 19
+    },
+    {
+      "frame_id": 2750,
+      "mask_id": 3,
+      "split_frames": 5,
+      "evaluable_frames": 20
+    },
+    {
+      "frame_id": 2755,
+      "mask_id": 3,
+      "split_frames": 7,
+      "evaluable_frames": 20
+    },
+    {
+      "frame_id": 2755,
+      "mask_id": 9,
+      "split_frames": 2,
+      "evaluable_frames": 8
+    },
+    {
+      "frame_id": 2765,
+      "mask_id": 4,
+      "split_frames": 4,
+      "evaluable_frames": 19
+    },
+    {
+      "frame_id": 2770,
+      "mask_id": 1,
+      "split_frames": 7,
+      "evaluable_frames": 12
+    },
+    {
+      "frame_id": 2770,
+      "mask_id": 4,
+      "split_frames": 4,
+      "evaluable_frames": 19
+    },
+    {
+      "frame_id": 2775,
+      "mask_id": 1,
+      "split_frames": 9,
+      "evaluable_frames": 12
+    },
+    {
+      "frame_id": 2780,
+      "mask_id": 1,
+      "split_frames": 8,
+      "evaluable_frames": 17
+    },
+    {
+      "frame_id": 2780,
+      "mask_id": 3,
+      "split_frames": 4,
+      "evaluable_frames": 19
+    },
+    {
+      "frame_id": 2785,
+      "mask_id": 1,
+      "split_frames": 14,
+      "evaluable_frames": 16
+    },
+    {
+      "frame_id": 2805,
+      "mask_id": 1,
+      "split_frames": 4,
+      "evaluable_frames": 19
+    },
+    {
+      "frame_id": 2810,
+      "mask_id": 2,
+      "split_frames": 4,
+      "evaluable_frames": 19
+    },
+    {
+      "frame_id": 2810,
+      "mask_id": 3,
+      "split_frames": 10,
+      "evaluable_frames": 20
+    },
+    {
+      "frame_id": 2810,
+      "mask_id": 4,
+      "split_frames": 7,
+      "evaluable_frames": 8
+    },
+    {
+      "frame_id": 2815,
+      "mask_id": 4,
+      "split_frames": 12,
+      "evaluable_frames": 17
+    },
+    {
+      "frame_id": 2825,
+      "mask_id": 3,
+      "split_frames": 8,
+      "evaluable_frames": 19
+    },
+    {
+      "frame_id": 2830,
+      "mask_id": 3,
+      "split_frames": 8,
+      "evaluable_frames": 9
+    }
+  ],
+  "groups_before_output": 81,
+  "eligible_groups": 23,
+  "group_rejections": {
+    "insufficient_frames": 43,
+    "low_score": 15
+  },
+  "retained_instances": 24,
+  "objects": [
+    {
+      "instance_id": 1,
+      "semantic_id": 9,
+      "point_count": 354,
+      "mask_nodes": 6,
+      "supporting_frames": [
+        2730,
+        2740,
+        2745,
+        2750,
+        2755,
+        2760
+      ]
+    },
+    {
+      "instance_id": 2,
+      "semantic_id": 9,
+      "point_count": 1089,
+      "mask_nodes": 17,
+      "supporting_frames": [
+        2730,
+        2735,
+        2740,
+        2745,
+        2750,
+        2755,
+        2760,
+        2765,
+        2770,
+        2800,
+        2815,
+        2820,
+        2825,
+        2830,
+        2835,
+        2840,
+        2845
+      ]
+    },
+    {
+      "instance_id": 3,
+      "semantic_id": 9,
+      "point_count": 1302,
+      "mask_nodes": 20,
+      "supporting_frames": [
+        2730,
+        2735,
+        2740,
+        2745,
+        2750,
+        2755,
+        2760,
+        2765,
+        2770,
+        2785,
+        2805,
+        2810,
+        2815,
+        2820,
+        2825,
+        2830,
+        2835,
+        2840,
+        2845,
+        2850
+      ]
+    },
+    {
+      "instance_id": 4,
+      "semantic_id": 9,
+      "point_count": 1204,
+      "mask_nodes": 20,
+      "supporting_frames": [
+        2730,
+        2735,
+        2740,
+        2745,
+        2750,
+        2755,
+        2760,
+        2765,
+        2770,
+        2785,
+        2805,
+        2810,
+        2815,
+        2820,
+        2825,
+        2830,
+        2835,
+        2840,
+        2845,
+        2850
+      ]
+    },
+    {
+      "instance_id": 5,
+      "semantic_id": 9,
+      "point_count": 908,
+      "mask_nodes": 7,
+      "supporting_frames": [
+        2730,
+        2735,
+        2740,
+        2745,
+        2755,
+        2760,
+        2765
+      ]
+    },
+    {
+      "instance_id": 6,
+      "semantic_id": 9,
+      "point_count": 983,
+      "mask_nodes": 12,
+      "supporting_frames": [
+        2730,
+        2735,
+        2740,
+        2745,
+        2750,
+        2755,
+        2760,
+        2765,
+        2770,
+        2830,
+        2840,
+        2850
+      ]
+    },
+    {
+      "instance_id": 7,
+      "semantic_id": 9,
+      "point_count": 1320,
+      "mask_nodes": 19,
+      "supporting_frames": [
+        2730,
+        2735,
+        2740,
+        2745,
+        2750,
+        2755,
+        2760,
+        2765,
+        2770,
+        2775,
+        2800,
+        2805,
+        2815,
+        2820,
+        2825,
+        2835,
+        2840,
+        2845,
+        2850
+      ]
+    },
+    {
+      "instance_id": 8,
+      "semantic_id": 9,
+      "point_count": 1357,
+      "mask_nodes": 20,
+      "supporting_frames": [
+        2730,
+        2735,
+        2740,
+        2745,
+        2750,
+        2755,
+        2760,
+        2765,
+        2770,
+        2775,
+        2800,
+        2805,
+        2810,
+        2815,
+        2820,
+        2825,
+        2830,
+        2835,
+        2845,
+        2850
+      ]
+    },
+    {
+      "instance_id": 9,
+      "semantic_id": 9,
+      "point_count": 1103,
+      "mask_nodes": 18,
+      "supporting_frames": [
+        2730,
+        2735,
+        2740,
+        2745,
+        2750,
+        2755,
+        2760,
+        2765,
+        2770,
+        2775,
+        2805,
+        2815,
+        2820,
+        2825,
+        2835,
+        2840,
+        2845,
+        2850
+      ]
+    },
+    {
+      "instance_id": 10,
+      "semantic_id": 9,
+      "point_count": 1441,
+      "mask_nodes": 18,
+      "supporting_frames": [
+        2730,
+        2735,
+        2740,
+        2745,
+        2750,
+        2755,
+        2760,
+        2765,
+        2770,
+        2775,
+        2800,
+        2805,
+        2810,
+        2815,
+        2825,
+        2830,
+        2835,
+        2850
+      ]
+    },
+    {
+      "instance_id": 11,
+      "semantic_id": 9,
+      "point_count": 964,
+      "mask_nodes": 20,
+      "supporting_frames": [
+        2730,
+        2735,
+        2740,
+        2745,
+        2750,
+        2760,
+        2765,
+        2770,
+        2775,
+        2780,
+        2790,
+        2800,
+        2815,
+        2820,
+        2825,
+        2830,
+        2835,
+        2840,
+        2845,
+        2850
+      ]
+    },
+    {
+      "instance_id": 12,
+      "semantic_id": 10,
+      "point_count": 6444,
+      "mask_nodes": 15,
+      "supporting_frames": [
+        2730,
+        2735,
+        2740,
+        2745,
+        2750,
+        2755,
+        2760,
+        2815,
+        2820,
+        2825,
+        2830,
+        2835,
+        2840,
+        2845,
+        2850
+      ]
+    },
+    {
+      "instance_id": 13,
+      "semantic_id": 16,
+      "point_count": 2006,
+      "mask_nodes": 17,
+      "supporting_frames": [
+        2730,
+        2735,
+        2740,
+        2785,
+        2790,
+        2795,
+        2800,
+        2805,
+        2810,
+        2815,
+        2820,
+        2825,
+        2830,
+        2835,
+        2840,
+        2845,
+        2850
+      ]
+    },
+    {
+      "instance_id": 14,
+      "semantic_id": 3,
+      "point_count": 67,
+      "mask_nodes": 18,
+      "supporting_frames": [
+        2730,
+        2735,
+        2740,
+        2780,
+        2785,
+        2790,
+        2795,
+        2800,
+        2805,
+        2810,
+        2815,
+        2820,
+        2825,
+        2830,
+        2835,
+        2840,
+        2845,
+        2850
+      ]
+    },
+    {
+      "instance_id": 15,
+      "semantic_id": 19,
+      "point_count": 3592,
+      "mask_nodes": 18,
+      "supporting_frames": [
+        2730,
+        2735,
+        2740,
+        2780,
+        2785,
+        2790,
+        2795,
+        2800,
+        2805,
+        2810,
+        2815,
+        2820,
+        2825,
+        2830,
+        2835,
+        2840,
+        2845,
+        2850
+      ]
+    },
+    {
+      "instance_id": 16,
+      "semantic_id": 20,
+      "point_count": 1825,
+      "mask_nodes": 12,
+      "supporting_frames": [
+        2735,
+        2780,
+        2785,
+        2790,
+        2795,
+        2800,
+        2805,
+        2810,
+        2815,
+        2820,
+        2825,
+        2830
+      ]
+    },
+    {
+      "instance_id": 17,
+      "semantic_id": 9,
+      "point_count": 1115,
+      "mask_nodes": 13,
+      "supporting_frames": [
+        2740,
+        2745,
+        2755,
+        2760,
+        2765,
+        2770,
+        2775,
+        2785,
+        2790,
+        2800,
+        2805,
+        2810,
+        2815
+      ]
+    },
+    {
+      "instance_id": 18,
+      "semantic_id": 9,
+      "point_count": 936,
+      "mask_nodes": 10,
+      "supporting_frames": [
+        2740,
+        2750,
+        2755,
+        2760,
+        2765,
+        2770,
+        2775,
+        2800,
+        2805,
+        2810
+      ]
+    },
+    {
+      "instance_id": 19,
+      "semantic_id": 9,
+      "point_count": 1111,
+      "mask_nodes": 14,
+      "supporting_frames": [
+        2740,
+        2745,
+        2750,
+        2755,
+        2760,
+        2765,
+        2770,
+        2775,
+        2785,
+        2790,
+        2800,
+        2805,
+        2810,
+        2815
+      ]
+    },
+    {
+      "instance_id": 20,
+      "semantic_id": 9,
+      "point_count": 571,
+      "mask_nodes": 7,
+      "supporting_frames": [
+        2750,
+        2755,
+        2760,
+        2765,
+        2770,
+        2775,
+        2780
+      ]
+    },
+    {
+      "instance_id": 21,
+      "semantic_id": 9,
+      "point_count": 914,
+      "mask_nodes": 7,
+      "supporting_frames": [
+        2755,
+        2760,
+        2765,
+        2770,
+        2800,
+        2805,
+        2810
+      ]
+    },
+    {
+      "instance_id": 22,
+      "semantic_id": 9,
+      "point_count": 183,
+      "mask_nodes": 5,
+      "supporting_frames": [
+        2755,
+        2760,
+        2765,
+        2770,
+        2775
+      ]
+    },
+    {
+      "instance_id": 23,
+      "semantic_id": 9,
+      "point_count": 869,
+      "mask_nodes": 4,
+      "supporting_frames": [
+        2800,
+        2805,
+        2810,
+        2815
+      ]
+    },
+    {
+      "instance_id": 24,
+      "semantic_id": 9,
+      "point_count": 883,
+      "mask_nodes": 4,
+      "supporting_frames": [
+        2800,
+        2805,
+        2810,
+        2815
+      ]
+    }
+  ],
+  "ambiguous_ownership_points": 66,
+  "points_in_eligible_groups": 32809,
+  "points_below_min_views": 0,
+  "owned_points_without_semantic": 45,
+  "owned_known_points_in_small_objects": 157,
+  "instance_coverage": 0.049194008009276126
+}

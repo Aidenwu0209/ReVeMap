@@ -1,0 +1,302 @@
+[
+  {
+    "scene": "scene0030_00",
+    "repeat": 1,
+    "arm": "A",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0030_00",
+    "repeat": 1,
+    "arm": "B",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0030_00",
+    "repeat": 1,
+    "arm": "C",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0030_00",
+    "repeat": 2,
+    "arm": "A",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0030_00",
+    "repeat": 2,
+    "arm": "B",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0030_00",
+    "repeat": 2,
+    "arm": "C",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0050_00",
+    "repeat": 1,
+    "arm": "A",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0050_00",
+    "repeat": 1,
+    "arm": "B",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0050_00",
+    "repeat": 1,
+    "arm": "C",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0050_00",
+    "repeat": 2,
+    "arm": "A",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0050_00",
+    "repeat": 2,
+    "arm": "B",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0050_00",
+    "repeat": 2,
+    "arm": "C",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 1,
+    "arm": "A",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 1,
+    "arm": "B",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 1,
+    "arm": "C",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 2,
+    "arm": "A",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 2,
+    "arm": "B",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0011_00",
+    "repeat": 2,
+    "arm": "C",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0000_00",
+    "repeat": 1,
+    "arm": "A",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0000_00",
+    "repeat": 1,
+    "arm": "B",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0000_00",
+    "repeat": 1,
+    "arm": "C",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0000_00",
+    "repeat": 2,
+    "arm": "A",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0000_00",
+    "repeat": 2,
+    "arm": "B",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0000_00",
+    "repeat": 2,
+    "arm": "C",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0062_00",
+    "repeat": 1,
+    "arm": "A",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0062_00",
+    "repeat": 1,
+    "arm": "B",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0062_00",
+    "repeat": 1,
+    "arm": "C",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0062_00",
+    "repeat": 2,
+    "arm": "A",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0062_00",
+    "repeat": 2,
+    "arm": "B",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  },
+  {
+    "scene": "scene0062_00",
+    "repeat": 2,
+    "arm": "C",
+    "parity": {
+      "semantic": true,
+      "instance": true,
+      "confidence": true
+    }
+  }
+]

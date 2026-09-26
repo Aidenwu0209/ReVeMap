@@ -1,0 +1,226 @@
+{
+  "method": "sparse-view consensus with component cannot-link veto",
+  "config": {
+    "min_mask_points": 30,
+    "min_output_points": 50,
+    "min_group_frames": 2,
+    "visibility_fraction": 0.3,
+    "containment_fraction": 0.8,
+    "split_piece_fraction": 0.2,
+    "split_frame_fraction": 0.2,
+    "min_split_frames": 2,
+    "min_support_frames": 3,
+    "consensus_fraction": 0.9,
+    "cannot_link_frames": 2,
+    "min_point_views": 1,
+    "ownership_share": 0.65,
+    "ownership_margin": 0.15,
+    "min_object_score": 0.8,
+    "object_score_mode": "max_point"
+  },
+  "frame_count": 25,
+  "mask_nodes": 144,
+  "semantic_labels_modified": false,
+  "gt_consumed": false,
+  "unknown_observations": "abstain; not counted as agreement or separation",
+  "point_support": "only cached depth-consistent mask interiors; no spatial expansion",
+  "candidate_edges": 1095,
+  "accepted_merges": 116,
+  "component_contradiction_vetoes": 0,
+  "filtered_masks": [
+    {
+      "frame_id": 1127,
+      "mask_id": 6,
+      "split_frames": 2,
+      "evaluable_frames": 4
+    },
+    {
+      "frame_id": 1157,
+      "mask_id": 15,
+      "split_frames": 6,
+      "evaluable_frames": 8
+    },
+    {
+      "frame_id": 1187,
+      "mask_id": 14,
+      "split_frames": 10,
+      "evaluable_frames": 11
+    },
+    {
+      "frame_id": 1227,
+      "mask_id": 13,
+      "split_frames": 21,
+      "evaluable_frames": 22
+    }
+  ],
+  "groups_before_output": 24,
+  "eligible_groups": 7,
+  "group_rejections": {
+    "insufficient_frames": 16,
+    "low_score": 1
+  },
+  "retained_instances": 7,
+  "objects": [
+    {
+      "instance_id": 1,
+      "semantic_id": 5,
+      "point_count": 806,
+      "mask_nodes": 24,
+      "supporting_frames": [
+        1127,
+        1132,
+        1137,
+        1142,
+        1147,
+        1152,
+        1157,
+        1162,
+        1167,
+        1172,
+        1177,
+        1182,
+        1192,
+        1197,
+        1202,
+        1207,
+        1212,
+        1217,
+        1222,
+        1227,
+        1232,
+        1237,
+        1242,
+        1246
+      ]
+    },
+    {
+      "instance_id": 2,
+      "semantic_id": 5,
+      "point_count": 928,
+      "mask_nodes": 10,
+      "supporting_frames": [
+        1127,
+        1132,
+        1137,
+        1142,
+        1147,
+        1152,
+        1157,
+        1162,
+        1167,
+        1172
+      ]
+    },
+    {
+      "instance_id": 3,
+      "semantic_id": 10,
+      "point_count": 7333,
+      "mask_nodes": 16,
+      "supporting_frames": [
+        1127,
+        1132,
+        1137,
+        1142,
+        1147,
+        1152,
+        1157,
+        1162,
+        1167,
+        1172,
+        1177,
+        1182,
+        1187,
+        1192,
+        1197,
+        1207
+      ]
+    },
+    {
+      "instance_id": 4,
+      "semantic_id": 19,
+      "point_count": 17469,
+      "mask_nodes": 24,
+      "supporting_frames": [
+        1127,
+        1132,
+        1137,
+        1142,
+        1147,
+        1152,
+        1157,
+        1162,
+        1167,
+        1172,
+        1177,
+        1182,
+        1187,
+        1192,
+        1197,
+        1202,
+        1207,
+        1212,
+        1217,
+        1222,
+        1232,
+        1237,
+        1242,
+        1246
+      ]
+    },
+    {
+      "instance_id": 5,
+      "semantic_id": 27,
+      "point_count": 386,
+      "mask_nodes": 16,
+      "supporting_frames": [
+        1147,
+        1152,
+        1172,
+        1177,
+        1192,
+        1197,
+        1202,
+        1207,
+        1212,
+        1217,
+        1222,
+        1227,
+        1232,
+        1237,
+        1242,
+        1246
+      ]
+    },
+    {
+      "instance_id": 6,
+      "semantic_id": 10,
+      "point_count": 2700,
+      "mask_nodes": 5,
+      "supporting_frames": [
+        1227,
+        1232,
+        1237,
+        1242,
+        1246
+      ]
+    },
+    {
+      "instance_id": 7,
+      "semantic_id": 5,
+      "point_count": 95,
+      "mask_nodes": 4,
+      "supporting_frames": [
+        1232,
+        1237,
+        1242,
+        1246
+      ]
+    }
+  ],
+  "ambiguous_ownership_points": 28,
+  "points_in_eligible_groups": 29839,
+  "points_below_min_views": 0,
+  "owned_points_without_semantic": 81,
+  "owned_known_points_in_small_objects": 13,
+  "instance_coverage": 0.05789492140925633
+}
