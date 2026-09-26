@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-27",
+  "base_commit": "931dfbac4d27a679a74cdd4ee67e6a107a09537a",
+  "scenes": ["scene0030_00", "scene0050_00", "scene0011_00", "scene0000_00", "scene0062_00"],
+  "development_scenes": ["scene0030_00", "scene0050_00", "scene0011_00"],
+  "additional_validation_scenes": ["scene0000_00", "scene0062_00"],
+  "input_policy": "Old scenes retain exact prior 25 views; additional scenes use consecutive middle 25 cached SAM3 views, selected by frame ordinal before naming/GT. Full frozen geometry and estimated trajectory retained.",
+  "scope": "Fresh VLM and optional CLIP inference plus fresh CPU fusion/backfill, from cached SAM3 and frozen geometry. Not raw RGB-D end-to-end timing. Object naming association only, no point ownership/class changes.",
+  "arms": {
+    "A": "All original crops, Qwen naming in parallel with fresh CPU fusion, original backfill.",
+    "B": "Fresh fusion then predicted-object crop grouping, at most 3 distinct representative views; if no 2-frame strict majority, infer all remaining eligible crops of that object. No calls for crops that cannot backfill or objects with fewer than 2 eligible frames.",
+    "C": "B plus on-demand CLIP visual check for eligible crop associations with share <0.8 or a second object >=30 points and >=0.15 share. Use up to 2 non-ambiguous distinct-frame prototypes per involved object. Reject association if own cosine <0.70 or own-rival margin <0.05; no prototype keeps geometry; no new associations or ownership edits."
+  },
+  "representatives": "Max mask_pixels*geometric_share first; then largest angular separation among crops at least half the best remaining quality. No GT/model labels used for selection.",
+  "vlm": "qwen3vl_2b_nf4",
+  "runtime_file": "/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926/runtime.json",
+  "clip": {"model":"ViT-H-14", "pretrained":"laion2b_s32b_b79k", "precision":"fp32", "batch_size":1, "crop":"same saved VLM crop, RGB preprocessing; visual encoder only, no text encoder", "weights_root":"/home/aidenwu/Documents/ReVeMap-conceptgraphs-20260926/weights"},
+  "repeat_orders": [["A","B","C"],["C","B","A"]],
+  "cache": "Cold per arm/run. No pre-existing VLM outputs or CLIP features used for measured inference. Preserve original source frame IDs and deduplicate votes. Cache namespace binds geometry, memberships, model, prompt and crop hashes.",
+  "evaluation": "Seal all predictions before GT. Report call counts, actual post-SAM3 tail wall time including model process startup and lost fusion/naming overlap, peak GPU/RAM, all-array map parity, exact naming agreement/coverage and independently projected GT naming diagnostic where available. Existing taxonomy aliases fixed from repository, unrecognized names abstain; no GT-tuned thresholds.",
+  "promotion": "Experimental only. No production pipeline change or claim of 3D instance accuracy gain."
+}
