@@ -21,7 +21,8 @@ def config():return read(ROOT/'docs/context-review-plan.json')
 
 def fusion_plan():
     p=read(ROOT/'docs/object-memory-plan.json');c=config()
-    return {**p,'scenes':c['scenes'],'development_scenes':c['legacy_fixed_input_scenes']}
+    return {**p,'scenes':c['scenes'],'development_scenes':c['legacy_fixed_input_scenes'],
+            'registered_root':'/home/aidenwu/Documents/SGF-SGA-experiments/semantic_pipeline_round2_20260915_v1/adaptive/scannet'}
 
 base.plan=fusion_plan
 
