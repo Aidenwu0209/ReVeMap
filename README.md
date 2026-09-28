@@ -30,6 +30,8 @@ revemap query-scene --graph outputs/synthetic-demo/scene_graph.json --label cup 
 
 复制 `configs/semantic_runtime.example.json` 为被 Git 忽略的 `configs/semantic_runtime.local.json`，填写本机的 CPU/GPU/SAM3/VLM 解释器、DROID-W 源码、模型权重路径。外部 provider、权重和相机 SDK 不包含在本仓库，也不会由普通安装自动下载。CPU 几何运行环境另需安装 `.[geometry]`；其他模型环境按对应模型/provider 的安装要求独立准备。
 
+图构建/位姿优化的 CPU 原生线程独立由 runtime 的 `"graph_threads": 2` 控制（旧配置缺省也为 2），或在 `revemap run-rgbd` 中使用 `--graph-threads 2`。该限制在图阶段内部对已加载的 BLAS/OpenMP 线程池生效，即使解释器启动脚本清除了线程环境变量也会应用；阶段结束后恢复原线程池设置。实际库线程数写入 `graph/result.json` 的 `native_thread_pools`，固定为单线程的库可能仍为 1。它不修改 DROID、SAM3 或 VLM 的 Torch 线程数。现有独立 CPU 环境也需安装 `threadpoolctl>=3.5,<4`。基于 [256 帧线程测试](docs/thread-benchmark-20260928.md)，默认保留 2，可按更大图的实测显式调整。
+
 输入格式为 `rgbd_sequence_manifest.v1`，轨迹使用米制 `T_world_camera_m`。相机采集会生成清单；已有数据需通过 `pose_pipeline.contracts` 构建和验证，不能把数据集 GT 轨迹传入推理路径。
 
 ```bash

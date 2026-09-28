@@ -107,10 +107,13 @@ def run_rgbd_mapping(
     *, manifest_path: Path, output_dir: Path, provider_root: Path,
     gpu_python: Path, cpu_python: Path,
     stage_timeout_s: float = 7200, device: str = "0", threads: int = 2,
+    graph_threads: int = 2,
 ) -> dict:
     """Run one sequence, preserving the failed stage if any operation fails."""
     if stage_timeout_s <= 0 or threads < 1:
         raise ValueError("Stage timeout and thread count must be positive")
+    if not isinstance(graph_threads, int) or isinstance(graph_threads, bool) or graph_threads < 1:
+        raise ValueError("Graph thread count must be a positive integer")
     manifest_path = Path(manifest_path).resolve(strict=True)
     manifest = load_manifest(manifest_path)
     output_dir = Path(output_dir).resolve()
@@ -134,7 +137,7 @@ def run_rgbd_mapping(
         "manifest_sha256": sha256_file(manifest_path),
         "raw_frame_count": len(manifest.frames), "stages": [],
         "provider_root": str(provider_root), "device": device,
-        "stage_timeout_s": stage_timeout_s,
+        "stage_timeout_s": stage_timeout_s, "graph_threads": graph_threads,
         "source_sha256": {
             str(p.relative_to(source_root)): sha256_file(p)
             for package in ("pose_pipeline", "reconstruction")
@@ -160,11 +163,17 @@ def run_rgbd_mapping(
                 "--manifest", str(manifest_path), "--output", str(output_dir),
                 "--provider-root", str(provider_root),
             ]
+            if stage == "graph":
+                command.extend(["--graph-threads", str(graph_threads)])
+            stage_env = dict(env)
+            if stage == "graph":
+                for key in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
+                    stage_env[key] = str(graph_threads)
             plan["current_stage"] = stage
             _write(output_dir / "run_status.json", plan)
             result = _run_stage(
                 command, log_dir / (stage + ".log"), stage_timeout_s,
-                {**env, "CUDA_VISIBLE_DEVICES": device if gpu else ""},
+                {**stage_env, "CUDA_VISIBLE_DEVICES": device if gpu else ""},
             )
             plan["stages"].append({"stage": stage, **result})
             _write(output_dir / "run_status.json", plan)
@@ -198,6 +207,7 @@ def _main() -> None:
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--provider-root", type=Path, required=True)
+    parser.add_argument("--graph-threads", type=int, default=2)
     args = parser.parse_args()
     guard_parent_process()
     root = args.output.resolve()
@@ -206,7 +216,7 @@ def _main() -> None:
         run_dense(args.manifest.resolve(), root / "dense", args.provider_root)
     elif args.stage == "graph":
         from .rgbd_measured import run_measured_graph
-        run_measured_graph(root / "dense", root / "graph")
+        run_measured_graph(root / "dense", root / "graph", threads=args.graph_threads)
     elif args.stage == "refill":
         from .rgbd_refill import run_visual_refill
         run_visual_refill(root / "dense", root / "graph", root / "refill", args.provider_root)

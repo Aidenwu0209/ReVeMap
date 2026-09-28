@@ -168,6 +168,7 @@ def main():
         run_rgbd_mapping(manifest_path=args.manifest, output_dir=args.output,
             provider_root=Path(config["provider_root"]), gpu_python=Path(config["gpu_python"]),
             cpu_python=Path(config["cpu_python"]), threads=config.get("threads", 2),
+            graph_threads=config.get("graph_threads", 2),
             stage_timeout_s=config.get("stage_timeout", 7200))
     elif args.stage == "fusion":
         from .fusion import main as fuse

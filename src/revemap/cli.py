@@ -40,6 +40,8 @@ def main():
     for name in ("manifest", "output", "provider-root", "gpu-python", "cpu-python"):
         mapping.add_argument(f"--{name}", type=Path, required=True)
     mapping.add_argument("--threads", type=int, default=2)
+    mapping.add_argument("--graph-threads", type=int, default=2,
+                         help="CPU graph native thread limit (independent of --threads)")
     mapping.add_argument("--stage-timeout", type=float, default=7200)
     mapping.add_argument("--device", default="0")
 
@@ -48,7 +50,7 @@ def main():
         result = run_rgbd_mapping(
             manifest_path=args.manifest, output_dir=args.output,
             provider_root=args.provider_root, gpu_python=args.gpu_python,
-            cpu_python=args.cpu_python, threads=args.threads,
+            cpu_python=args.cpu_python, threads=args.threads, graph_threads=args.graph_threads,
             stage_timeout_s=args.stage_timeout, device=args.device,
         )
         print(json.dumps(result, indent=2))

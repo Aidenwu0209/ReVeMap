@@ -86,3 +86,32 @@ def test_failed_stage_keeps_log_and_never_starts_later_stages(tmp_path, monkeypa
     status = json.loads((root / "run_status.json").read_text())
     assert status["status"] == "failed" and status["current_stage"] == "dense"
     assert (root / "logs" / "dense.log").read_text() == "CUDA initialization failed\n"
+
+
+@pytest.mark.parametrize("graph_threads", [None, 8])
+def test_graph_limit_is_independent_of_other_stages(tmp_path, monkeypatch, graph_threads):
+    manifest, _ = inputs(tmp_path)
+    calls = []
+
+    def stage(command, log, timeout_s, env):
+        calls.append((command, env))
+        log.write_text("fixture\n")
+        return {"returncode": 0, "seconds": 0.0}
+
+    monkeypatch.setattr("pose_pipeline.rgbd_mapping._run_stage", stage)
+    monkeypatch.setattr("pose_pipeline.rgbd_mapping._completed_result", lambda *_: {})
+    kwargs = {} if graph_threads is None else {"graph_threads": graph_threads}
+    run_rgbd_mapping(
+        manifest_path=manifest, output_dir=tmp_path / "out", provider_root=tmp_path,
+        gpu_python=Path(sys.executable), cpu_python=Path(sys.executable),
+        threads=16, **kwargs,
+    )
+    for command, env in calls:
+        graph = command[command.index("--stage") + 1] == "graph"
+        expected = (2 if graph_threads is None else graph_threads) if graph else 16
+        for key in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
+            assert env[key] == str(expected)
+        if graph:
+            assert command[command.index("--graph-threads") + 1] == str(expected)
+        else:
+            assert "--graph-threads" not in command

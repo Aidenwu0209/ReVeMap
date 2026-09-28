@@ -216,13 +216,26 @@ def _verified_result(directory: Path) -> dict:
     return receipt
 
 
-def run_measured_graph(dense_dir: Path, output_dir: Path) -> dict:
+def run_measured_graph(dense_dir: Path, output_dir: Path, *, threads: int = 2) -> dict:
     """Create a measured graph from a complete dense run, without using GT.
 
     Output must not exist. Failure leaves the partial directory for diagnosis and
     never substitutes an identity or a partial trajectory as a completed result.
     """
+    if not isinstance(threads, int) or isinstance(threads, bool) or threads < 1:
+        raise ValueError("Graph thread count must be a positive integer")
+    # Load Open3D before discovering its native pools. Runtime limits also work
+    # when a Python launcher has removed OMP/BLAS environment variables.
+    import open3d  # noqa: F401
+    from threadpoolctl import threadpool_limits
+
+    with threadpool_limits(limits=threads):
+        return _run_measured_graph(dense_dir, output_dir, threads)
+
+
+def _run_measured_graph(dense_dir: Path, output_dir: Path, threads: int) -> dict:
     import open3d as o3d
+    from threadpoolctl import threadpool_info
 
     source, out = Path(dense_dir).resolve(), Path(output_dir).resolve()
     receipt = _verified_result(source)
@@ -418,6 +431,8 @@ def run_measured_graph(dense_dir: Path, output_dir: Path) -> dict:
         "weak_original_dense_prior_count": n - 1,
         "source_receipt_sha256": source_result_sha,
         "wrapper_sha256": sha256_file(Path(__file__)),
+        "native_thread_limit": threads,
+        "native_thread_pools": threadpool_info(),
         "runtime_versions": {
             "numpy": np.__version__,
             "opencv": cv2.__version__,

@@ -8,6 +8,7 @@
   "sam3_sha256": "9999e2341ceef5e136daa386eecb55cb414446a00ac2b55eb2dfd2f7c3cf8c9e",
   "vlm_python": "/absolute/path/to/vlm-env/bin/python",
   "threads": 2,
+  "graph_threads": 2,
   "stage_timeout": 7200,
   "models": {
     "qwen3vl_2b_bf16": {
