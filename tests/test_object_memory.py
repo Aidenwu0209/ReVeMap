@@ -1,7 +1,7 @@
-from pose_pipeline.semantic_runtime.object_memory import association, representatives, voted_name, cache_identity, clip_accept
+from pose_pipeline.semantic_runtime.object_memory import association, representatives, voted_name, cache_identity
 
 
-def test_geometry_support_cannot_be_replaced_by_appearance():
+def test_geometry_support_requires_enough_points_and_share():
     assert not association([1]*29+[0]*2)['eligible']
     assert not association([1]*64+[2]*36)['eligible']
     assert association([1]*65+[2]*35)['eligible']
@@ -29,10 +29,3 @@ def test_cache_invalidates_for_changed_membership_or_evidence():
         changed=args.copy();changed[pos]+='x'
         assert cache_identity(*args) != cache_identity(*changed)
     assert cache_identity(*args) != cache_identity(*args[:-1],['a','c'])
-
-
-def test_visual_similarity_never_rescues_missing_geometry():
-    assert clip_accept([],[])[0]
-    assert clip_accept([.8],[.74])[0]
-    assert not clip_accept([.8],[.78])[0]
-    assert not clip_accept([.69],[])[0]

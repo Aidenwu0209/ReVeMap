@@ -1,0 +1,20 @@
+{
+  "kind": "Derived A/B-only subset of the 2026-09-27 measured experiment, not new inference",
+  "original_commit": "29f174d8cce9b36c82079df5eb916768019f5e69",
+  "original_recovery_path": "/Users/wu/.Trash/ReVeMap-retired-experiments-20260929-094358/object-memory-before-cleanup/evidence/object-memory-20260927",
+  "original_remote_root": "/home/aidenwu/Documents/ReVeMap-object-memory-20260927",
+  "arms": {
+    "A": "unchanged production reference only",
+    "B": "retained optimization"
+  },
+  "repeats": 2,
+  "scenes": 5,
+  "copied_files_identical": 526,
+  "copied_prediction_metadata_matched_original_seal": 490,
+  "removed_from_active_workspace": [
+    "C",
+    "D",
+    "E"
+  ],
+  "limits": "Local source snapshot contains JSON evidence, not all remote image/NPZ/PLY files. Filtered summary rows retain the original values. Original full locks and preregistration are in the recovery copy. No new GPU inference."
+}

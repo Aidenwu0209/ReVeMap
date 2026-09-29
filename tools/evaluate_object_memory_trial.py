@@ -81,7 +81,7 @@ def main():
         write(evaluation/(scene+'-GT-targets.json'),diagnostics)
         for repeat in (1,2):
             a_names={x['instance_id']:x['vlm_name'] for x in read(ROOT/'runs'/f'repeat-{repeat}'/scene/'A/fused/instance_names.json')}
-            for arm in ('A','B','C'):
+            for arm in ('A','B'):
                 path=ROOT/'runs'/f'repeat-{repeat}'/scene/arm
                 objects=read(path/'fused/instance_names.json')
                 names={x['instance_id']:x['vlm_name'] for x in objects}
@@ -104,12 +104,11 @@ def main():
                     record.update(geometrically_eligible_crops=sum(x['association']['eligible'] for x in crops),
                                   fallback_objects=sum(x.get('fallback',False) for x in groups),
                                   selection_seconds=read(path/'OBJECT_STORE.json')['seconds'])
-                if arm=='C':record['clip']=read(path/'CLIP.json')
                 output.append(record)
     # Compare actual predictions across the two independent inference runs.
     repeats=[]
     for scene in plan()['scenes']:
-        for arm in ('A','B','C'):
+        for arm in ('A','B'):
             a=read(ROOT/'runs/repeat-1'/scene/arm/'semantic/vlm/RECORDS.json')
             b=read(ROOT/'runs/repeat-2'/scene/arm/'semantic/vlm/RECORDS.json')
             keyed=lambda rows:{(c['frame_id'],c['mask_id']):c['label'] for c in rows}
@@ -121,7 +120,7 @@ def main():
     write(evaluation/'DETAILS.json',output);write(evaluation/'GT_LOCK.json',gtlock)
     totals=[]
     for repeat in (1,2):
-        for arm in ('A','B','C'):
+        for arm in ('A','B'):
             selected=[x for x in output if x['repeat']==repeat and x['arm']==arm]
             row={'repeat':repeat,'arm':arm}
             for key in ('tail_wall_seconds','vlm_calls','vlm_inference_seconds','named_objects','objects','naming_gt_eligible_objects',

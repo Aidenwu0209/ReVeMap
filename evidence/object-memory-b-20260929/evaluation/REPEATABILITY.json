@@ -1,0 +1,72 @@
+[
+  {
+    "scene": "scene0030_00",
+    "arm": "A",
+    "same_crop_keys": true,
+    "same_crop_labels": true,
+    "same_final_names": true
+  },
+  {
+    "scene": "scene0030_00",
+    "arm": "B",
+    "same_crop_keys": true,
+    "same_crop_labels": true,
+    "same_final_names": true
+  },
+  {
+    "scene": "scene0050_00",
+    "arm": "A",
+    "same_crop_keys": true,
+    "same_crop_labels": true,
+    "same_final_names": true
+  },
+  {
+    "scene": "scene0050_00",
+    "arm": "B",
+    "same_crop_keys": true,
+    "same_crop_labels": true,
+    "same_final_names": true
+  },
+  {
+    "scene": "scene0011_00",
+    "arm": "A",
+    "same_crop_keys": true,
+    "same_crop_labels": true,
+    "same_final_names": true
+  },
+  {
+    "scene": "scene0011_00",
+    "arm": "B",
+    "same_crop_keys": true,
+    "same_crop_labels": true,
+    "same_final_names": true
+  },
+  {
+    "scene": "scene0000_00",
+    "arm": "A",
+    "same_crop_keys": true,
+    "same_crop_labels": true,
+    "same_final_names": true
+  },
+  {
+    "scene": "scene0000_00",
+    "arm": "B",
+    "same_crop_keys": true,
+    "same_crop_labels": true,
+    "same_final_names": true
+  },
+  {
+    "scene": "scene0062_00",
+    "arm": "A",
+    "same_crop_keys": true,
+    "same_crop_labels": true,
+    "same_final_names": true
+  },
+  {
+    "scene": "scene0062_00",
+    "arm": "B",
+    "same_crop_keys": true,
+    "same_crop_labels": true,
+    "same_final_names": true
+  }
+]

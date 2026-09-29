@@ -4,7 +4,6 @@ All associations use predicted map point IDs. A reused name is metadata, not a
 new observation: only actually inferred, distinct source frames may vote.
 """
 from collections import Counter, defaultdict
-import math
 
 
 def crop_key(crop):
@@ -66,17 +65,3 @@ def cache_identity(scene, geometry_sha, instance_sha, model_revision, prompt_sha
     import hashlib, json
     fields = [scene, geometry_sha, instance_sha, model_revision, prompt_sha, sorted(crop_hashes)]
     return hashlib.sha256(json.dumps(fields, separators=(",", ":")).encode()).hexdigest()
-
-
-def clip_accept(own_similarities, rival_similarities, min_similarity=.70, margin=.05):
-    # No prototype means no evidence to alter the geometric association.
-    if not own_similarities:
-        return True, "no_independent_prototype_keep_geometry"
-    if not all(math.isfinite(x) and -1.001 <= x <= 1.001 for x in [*own_similarities, *rival_similarities]):
-        raise ValueError("invalid cosine similarity")
-    own = max(own_similarities)
-    if own < min_similarity:
-        return False, "appearance_disagreement"
-    if rival_similarities and own - max(rival_similarities) < margin:
-        return False, "appearance_ambiguous"
-    return True, "appearance_supported"

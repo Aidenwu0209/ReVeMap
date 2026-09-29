@@ -1,4 +1,4 @@
-"""Isolated, fixed-input object memory A/B/C trial on ssh33."""
+"""Object memory B with the original A reference for fixed-input validation."""
 import argparse
 from collections import defaultdict
 import hashlib
@@ -13,16 +13,18 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'src'))
 from pose_pipeline.semantic_runtime.common import read, write, sha, PROMPT, model_spec
-from pose_pipeline.semantic_runtime.object_memory import association, representatives, crop_key, voted_name, cache_identity, clip_accept
+from pose_pipeline.semantic_runtime.object_memory import association, representatives, crop_key, voted_name, cache_identity
 
-CG = Path('/home/aidenwu/Documents/ReVeMap-conceptgraphs-20260926')
 OLD = Path('/home/aidenwu/Documents/ReVeMap-comparison-20260922')
 NEW = Path('/home/aidenwu/Documents/ReVeMap-ScanNet10-20260926')
-CPU = CG/'env/bin/python'
 
 
 def plan():
-    return read(ROOT/'docs/object-memory-plan.json')
+    config = read(ROOT/'docs/object-memory-plan.json')
+    if set(config['arms']) != {'A', 'B'} or any(
+            len(order) != 2 or set(order) != {'A', 'B'} for order in config['repeat_orders']):
+        raise ValueError('Only object memory B and its original A reference are supported')
+    return config
 
 
 def verify(lock):
@@ -116,6 +118,8 @@ def prepare():
 
 
 def setup(scene, arm, repeat):
+    if arm not in ('A', 'B'):
+        raise ValueError('Unsupported arm: ' + arm)
     path=ROOT/'runs'/f'repeat-{repeat}'/scene/arm
     path.mkdir(parents=True,exist_ok=False)
     (path/'mapping').mkdir(); (path/'semantic').mkdir()
@@ -174,63 +178,12 @@ def store(path):
     return all_crops
 
 
-def clip(path):
-    import numpy as np
-    all_crops=read(path/'OBJECT_STORE.json')['crops']
-    prototypes=defaultdict(list)
-    for c in all_crops:
-        a=c['association']
-        if a['eligible'] and not a['ambiguous']:
-            prototypes[a['object_id']].append(c)
-    prototypes={oid:representatives(cs,2) for oid,cs in prototypes.items()}
-    checks=[]; needed={}
-    for c in all_crops:
-        a=c['association']
-        if not a['eligible'] or not a['ambiguous']: continue
-        own=[p for p in prototypes.get(a['object_id'],[]) if p['frame_id']!=c['frame_id']]
-        rivals=[p for x in a['candidates'][1:] if x['points']>=30 and x['share']>=.15
-                for p in prototypes.get(x['object_id'],[]) if p['frame_id']!=c['frame_id']]
-        if not own:continue
-        checks.append((c,own,rivals))
-        for x in [c,*own,*rivals]:needed[crop_key(x)]=x
-    if not checks:
-        write(path/'CLIP.json',{'checked_crops':0,'feature_crops':0,'rejected':[], 'checks':[], 'model_loaded':False})
-        return
-    import torch, open_clip
-    from PIL import Image
-    cfg=plan()['clip']; torch.manual_seed(0); torch.set_num_threads(2)
-    torch.cuda.reset_peak_memory_stats(); tick=time.monotonic()
-    model,_,preprocess=open_clip.create_model_and_transforms(cfg['model'],pretrained=cfg['pretrained'],cache_dir=cfg['weights_root'])
-    model=model.eval().cuda();torch.cuda.synchronize();load=time.monotonic()-tick
-    features={};tick=time.monotonic()
-    with torch.inference_mode():
-        for key,c in sorted(needed.items()):
-            assert sha(c['file'])==c['sha256']
-            with Image.open(c['file']) as im: tensor=preprocess(im.convert('RGB')).unsqueeze(0).cuda()
-            feat=model.encode_image(tensor);feat=feat/feat.norm(dim=-1,keepdim=True)
-            features[key]=feat[0].cpu().numpy()
-    torch.cuda.synchronize();infer=time.monotonic()-tick
-    records=[]; rejected=[]
-    for c,own,rivals in checks:
-        feature=features[crop_key(c)]
-        own_s=[float(feature@features[crop_key(x)]) for x in own]
-        rival_s=[float(feature@features[crop_key(x)]) for x in rivals]
-        accept,reason=clip_accept(own_s,rival_s)
-        records.append({'crop':crop_key(c),'object_id':c['association']['object_id'],
-                        'own':own_s,'rivals':rival_s,'accept':accept,'reason':reason})
-        if not accept:rejected.append(crop_key(c))
-    np.savez_compressed(path/'clip_features.npz',**features)
-    write(path/'CLIP.json',{'checked_crops':len(checks),'feature_crops':len(features),'rejected':rejected,'checks':records,
-        'model_loaded':True,'load_seconds':load,'encode_seconds':infer,'precision':'fp32','batch_size':1,
-        'model':cfg['model'],'pretrained':cfg['pretrained'],'text_encoder_called':False,
-        'peak_rss_mib':resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024,
-        'peak_allocated_mib':torch.cuda.max_memory_allocated()/1024**2,'peak_reserved_mib':torch.cuda.max_memory_reserved()/1024**2})
-
-
 def name(path):
     from pose_pipeline.semantic_runtime.vlm import create_namer
     import torch
     started=time.monotonic();arm=read(path/'CONTEXT.json')['arm'];out=path/'semantic/vlm'
+    if arm not in ('A', 'B'):
+        raise ValueError('Unsupported arm: ' + arm)
     out.mkdir(exist_ok=False)
     runtime=read(plan()['runtime_file']);model_id=plan()['vlm']
     all_crops=([c for t in read(path/'semantic/CROP_TASKS.json') for c in t['crops']] if arm=='A'
@@ -247,10 +200,9 @@ def name(path):
     if arm=='A':
         for c in all_crops:infer(c)
     else:
-        rejected=set(read(path/'CLIP.json')['rejected']) if arm=='C' else set()
         grouped=defaultdict(list)
         for c in all_crops:
-            if c['association']['eligible'] and crop_key(c) not in rejected:
+            if c['association']['eligible']:
                 grouped[c['association']['object_id']].append(c)
         for oid,crops in sorted(grouped.items()):
             if len({c['frame_id'] for c in crops})<2:
@@ -292,6 +244,7 @@ def run():
     import numpy as np
     runtime=read(plan()['runtime_file']);vlm_python=runtime['models'][plan()['vlm']].get('python',runtime['vlm_python'])
     verify(read(ROOT/'INPUT_LOCK.json'))
+    cpu_python = Path(plan().get('cpu_python', sys.executable))
     rows=[]
     for repeat,order in enumerate(plan()['repeat_orders'],1):
         for scene in plan()['scenes']:
@@ -299,12 +252,11 @@ def run():
                 path=setup(scene,arm,repeat);start=time.monotonic();times={}
                 if arm=='A':
                     naming=worker(vlm_python,'name',path)
-                    times['fusion_process_seconds']=wait(worker(CPU,'fuse',path))
+                    times['fusion_process_seconds']=wait(worker(cpu_python,'fuse',path))
                     times['naming_process_elapsed_until_join']=wait(naming)
                 else:
-                    times['fusion_process_seconds']=wait(worker(CPU,'fuse',path))
+                    times['fusion_process_seconds']=wait(worker(cpu_python,'fuse',path))
                     store(path)
-                    if arm=='C':times['clip_process_seconds']=wait(worker(CPU,'clip',path))
                     times['naming_process_seconds']=wait(worker(vlm_python,'name',path))
                 backfill.main(argparse.Namespace(arm_root=path))
                 tail=time.monotonic()-start
@@ -322,7 +274,7 @@ def run():
         with np.load(ROOT/'runs/repeat-1'/scene/'A/fused/map_labels.npz') as z:
             baseline={k:z[k] for k in z.files}
         for repeat in (1,2):
-            for arm in ('A','B','C'):
+            for arm in ('A','B'):
                 path=ROOT/'runs'/f'repeat-{repeat}'/scene/arm
                 with np.load(path/'fused/map_labels.npz') as z:
                     passed={k:bool(np.array_equal(v,z[k])) for k,v in baseline.items()}
@@ -333,15 +285,13 @@ def run():
                 assert all(np.array_equal(v,z[k]) for k,v in baseline.items())
     write(ROOT/'MAP_PARITY.json',parity)
     verify(read(ROOT/'INPUT_LOCK.json'))
-    weights=read(CG/'WEIGHTS_LOCK.json');verify(weights)
-    write(ROOT/'CLIP_WEIGHTS_LOCK.json',weights)
     outputs={str(p):sha(p) for p in (ROOT/'runs').rglob('*') if p.is_file() and p.suffix in ('.json','.npz','.ply')}
     write(ROOT/'PREDICTIONS_LOCK.json',outputs)
     write(ROOT/'PREDICTIONS_COMPLETE.json',{'status':'completed','prediction_files':len(outputs),'inputs_unchanged':True,'GT_used':False})
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('mode',choices=['prepare','run','fuse','name','clip']);parser.add_argument('--path',type=Path)
+    parser=argparse.ArgumentParser();parser.add_argument('mode',choices=['prepare','run','fuse','name']);parser.add_argument('--path',type=Path)
     args=parser.parse_args()
     if args.mode=='prepare':prepare()
     elif args.mode=='run':run()
