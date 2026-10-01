@@ -18,6 +18,8 @@ def validate_workspace(root):
             raise ValueError('scene escapes workspace')
         inp = root / 'inputs' / scene
         files.extend(inp / n for n in ['INPUT.json', 'manifest.json', 'trajectory.json', 'target.npz', 'base.npz', 'classes.json'])
+        if (inp / 'candidates.npz').exists():
+            files.append(inp / 'candidates.npz')
     return scenes, {str(p.relative_to(root)): sha(p) for p in files}
 
 

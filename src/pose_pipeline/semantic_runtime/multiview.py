@@ -171,7 +171,8 @@ def _cluster(positive, negative, origins, valid_nodes, cfg):
                     'component_contradiction_vetoes': vetoed}
 
 
-def fuse_instances(n_points, frames, baseline_semantic, config=None):
+def fuse_instances(n_points, frames, baseline_semantic, config=None, *, geometry_out=None,
+                   candidate_evidence_out=None):
     """Return unique point ownership and an audit; never mutate caller inputs."""
     cfg = _config(config)
     semantic = np.asarray(baseline_semantic)
@@ -179,8 +180,17 @@ def fuse_instances(n_points, frames, baseline_semantic, config=None):
             or n_points < 0 or semantic.shape != (n_points,)
             or not np.issubdtype(semantic.dtype, np.integer) or np.any(semantic < 0)):
         raise ValueError('one nonnegative baseline semantic ID per map point required')
+    if geometry_out is not None:
+        geometry_out.update(object_id=np.zeros(n_points, np.int32),
+                            support_views=np.zeros(n_points, np.int32))
     membership, visibility, weights, origins, identifiers = _observations(n_points, frames, cfg)
     n = membership.shape[0]
+    if candidate_evidence_out is not None:
+        # Reuse the existing sparse observations. These arrays are ephemeral
+        # candidate evidence, not an exported prediction or another grouping.
+        candidate_evidence_out.update(membership=membership, origins=origins,
+                                      valid_nodes=np.zeros(n, bool), eligible_nodes=np.empty(0, np.int32),
+                                      group_ids=np.zeros(n, np.int32))
     audit = {'method': 'sparse-view consensus with component cannot-link veto',
              'config': asdict(cfg), 'frame_count': len(frames), 'mask_nodes': n,
              'semantic_labels_modified': False, 'gt_consumed': False,
@@ -189,6 +199,8 @@ def fuse_instances(n_points, frames, baseline_semantic, config=None):
     if n == 0:
         return np.zeros(n_points, np.int32), {**audit, 'retained_instances': 0, 'filtered_masks': []}
     overlaps, visible, eligible, filtered, splits, evaluable = _view_statistics(membership, visibility, origins, cfg)
+    if candidate_evidence_out is not None:
+        candidate_evidence_out['valid_nodes'] = ~filtered
     # A filtered mask is neither an object node nor a supporting observer.
     dominant = np.full((n, visibility.shape[0]), -1, np.int32)
     for i in np.flatnonzero(~filtered):
@@ -236,6 +248,10 @@ def fuse_instances(n_points, frames, baseline_semantic, config=None):
                                 for i in np.flatnonzero(filtered)],
                  groups_before_output=len(groups), eligible_groups=len(usable_groups),
                  group_rejections=group_rejections)
+    if candidate_evidence_out is not None:
+        candidate_evidence_out['eligible_nodes'] = np.asarray(node_ids, np.int32)
+        for gid, group in enumerate(usable_groups, 1):
+            candidate_evidence_out['group_ids'][group] = gid
     if not usable_groups:
         return np.zeros(n_points, np.int32), {**audit, 'retained_instances': 0}
     grouping = sparse.csr_matrix((np.ones(len(node_ids), np.int32), (group_ids, node_ids)),
@@ -260,6 +276,9 @@ def fuse_instances(n_points, frames, baseline_semantic, config=None):
         if (counts.data[lo+k] >= cfg.min_point_views and best >= cfg.ownership_share * total
                 and best - second >= cfg.ownership_margin * total):
             owner[point] = scores.indices[lo+k]
+            if geometry_out is not None:
+                geometry_out['object_id'][point] = owner[point] + 1
+                geometry_out['support_views'][point] = counts.data[lo+k]
         elif len(values) > 1:
             ambiguous += 1
     output = np.zeros(n_points, np.int32)

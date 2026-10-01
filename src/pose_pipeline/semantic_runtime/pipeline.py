@@ -77,6 +77,9 @@ def run(args):
     effective_budget = selection_budget(manifest.frames, args.stride, view_budget, view_policy)
     confidence_policy = getattr(args, 'semantic_confidence_policy', 'legacy')
     conflict_policy = getattr(args, 'semantic_conflict_policy', 'consensus')
+    instance_policy = getattr(args, 'instance_policy', 'legacy')
+    if instance_policy not in ('legacy', 'verified'):
+        raise ValueError('invalid instance policy')
     if confidence_policy not in ('legacy', 'track') or conflict_policy not in ('consensus', 'abstain'):
         raise ValueError('invalid semantic evidence policy')
     output = args.output.resolve()
@@ -93,7 +96,8 @@ def run(args):
                                   "view_policy": view_policy, "view_budget": view_budget,
                                   "effective_view_budget": effective_budget,
                                   "semantic_confidence_policy": confidence_policy,
-                                  "semantic_conflict_policy": conflict_policy}
+                                  "semantic_conflict_policy": conflict_policy,
+                                  "instance_policy": instance_policy}
     write(output / "CONFIG.json", options)
     processes = Processes(output, config.get("stage_timeout", 7200))
     def command(stage, python, target, *extra):
@@ -169,7 +173,8 @@ def run(args):
         if args.schedule == "serial" and naming:
             processes.wait(naming)
         fusion = processes.launch("fusion", command("fusion", config["cpu_python"], output,
-            '--semantic-confidence-policy', confidence_policy, '--semantic-conflict-policy', conflict_policy))
+            '--semantic-confidence-policy', confidence_policy, '--semantic-conflict-policy', conflict_policy,
+            '--instance-policy', instance_policy))
         processes.wait(fusion)
         if naming:
             processes.wait(naming)

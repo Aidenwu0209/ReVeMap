@@ -11,13 +11,16 @@ from .observations import SETTINGS
 def erode(m):
  out=np.zeros_like(m);out[1:-1,1:-1]=m[1:-1,1:-1]&m[:-2,1:-1]&m[2:,1:-1]&m[1:-1,:-2]&m[1:-1,2:];return out
 
-def query_plan():
+def query_plan(decisions=None):
  tasks={}
- for ob in read(R/'DECISIONS.json'):
+ for ob in read(R/'DECISIONS.json') if decisions is None else decisions:
   old=canonicalize_name(ob['original_name']);frames={}
   for mode,vote in ob['votes'].items():
    name=canonicalize_name(vote['name'])
-   if name=='unknown' or normalize_name(vote['name'])['is_part'] or name==old:continue
+   if name=='unknown' or normalize_name(vote['name'])['is_part'] or (name==old and not ob.get('unknown_points',0)):continue
+   # Assignment preserves the established category. Do not run a query it
+   # would unconditionally reject, including its unused old-class query.
+   if ob.get('unknown_points',0) and old!='unknown' and name!=old:continue
    # Text uses the consensus category, with separate old-class counter-evidence.
    for fid in vote['frames']:
     frames.setdefault((fid,name,'fusion'),set()).add(mode)
@@ -29,11 +32,13 @@ def query_plan():
  return tasks
 
 def ground(witness=False):
+ tasks=query_plan();out=R/('witness/grounding' if witness else 'grounding');out.mkdir(parents=True,exist_ok=False)
+ if not tasks:
+  write(out/'RECORDS.json',[]);write(out/'COMPLETE.json',{'status':'skipped','reason':'no_grounding_queries','queries':0,'images':0,'GT_used':False});return
  from PIL import Image
  import torch
  cfg=read(R/'runtime.json');sys.path.insert(0,cfg['sam3_source'])
  from pose_pipeline.sam3_mapping import load_model
- tasks=query_plan();out=R/('witness/grounding' if witness else 'grounding');out.mkdir(parents=True,exist_ok=False)
  if witness:tasks=dict(list(sorted(tasks.items()))[:1])
  processor,audit=load_model(Path(cfg['sam3_checkpoint']),cfg['sam3_sha256']);write(out/'MODEL.json',audit)
  records=[];start=time.perf_counter();image_count=0

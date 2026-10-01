@@ -1,0 +1,38 @@
+{
+  "python_regression": {
+    "command": "/Users/wu/Desktop/wu/毕设/ReVeMap/.venv/bin/python -m pytest -q",
+    "passed": 498,
+    "skipped": 6,
+    "subtests_passed": 24,
+    "seconds": 22.69,
+    "exit_code": 0
+  },
+  "javascript_regression": {
+    "command": "node --test tests/js/*.test.cjs",
+    "passed": 5,
+    "exit_code": 0
+  },
+  "build": {
+    "command": "python -m build",
+    "sdist": "PASS",
+    "wheel": "PASS",
+    "selected_source_files_matched": 13,
+    "wheel_sha256": "1a0d4d1c34d90ef7576fbb92471cea7d761152890a9fd58410f28d39bf5f2059"
+  },
+  "scope_checks": {
+    "selected_production_files": 13,
+    "byte_identical_research_algorithm_files": 9,
+    "instance_only_entrypoints": 4,
+    "trajectory_and_mapping_unchanged": true,
+    "graph_guard_absent": true,
+    "default_instance_policy": "legacy",
+    "diff_check": "PASS"
+  },
+  "independent_review": {
+    "status": "no blockers",
+    "scope": "source selection, defaults, worker forwarding, candidate hashes and input locks, dependencies",
+    "boundary": "Shared refinement fixes can affect legacy+refine; legacy fusion ownership remains unchanged."
+  },
+  "new_gpu_or_geometry_experiment": false,
+  "services_deployed": false
+}

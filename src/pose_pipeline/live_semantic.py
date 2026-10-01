@@ -22,6 +22,14 @@ def prepare_refinement(output, manifest, runtime):
                          (output / 'fused/classes.json', 'classes.json')]:
         shutil.copyfile(source, inp / name)
     shutil.copyfile(runtime, root / 'runtime.json')
+    candidate_path = output / 'fused/candidates.npz'
+    if candidate_path.exists():
+        from .contracts import sha256_file
+        receipt = read_json(output / 'fused/CANDIDATES.json')
+        if (sha256_file(candidate_path) != receipt['candidates_sha256']
+                or sha256_file(inp / 'base.npz') != receipt['labels_sha256']):
+            raise ValueError('Candidate evidence does not match refinement base')
+        shutil.copyfile(candidate_path, inp / 'candidates.npz')
     atomic_json(inp / 'INPUT.json', {'rgb_registration': 'already_registered',
                                     'source': str(output), 'GT_used': False})
     atomic_json(root / 'INPUT_PLAN.json', {'scenes': ['capture']})
@@ -36,6 +44,7 @@ def main():
     p.add_argument('--schedule', choices=['serial', 'parallel'], default='serial')
     p.add_argument('--vlm', default='qwen3vl_2b_nf4')
     p.add_argument('--refine', action='store_true')
+    p.add_argument('--instance-policy', choices=('legacy', 'verified'), default='legacy')
     p.add_argument('--checkpoint-stages', action='store_true')
     p.add_argument('--resume-from', type=Path)
     args = p.parse_args()
@@ -93,9 +102,8 @@ def main():
     write_artifact_manifest(output, map_path=Path(final), classes_path=classes,
                             result_path=output / 'GUI_RESULT.json', manifest_path=args.manifest,
                             trajectory_path=Path(geom['trajectory']),
-                            # Refinement preserves instance IDs; retain the
-                            # same measured naming observations in the final
-                            # inventory, including conflicts with final labels.
+                            # Existing IDs remain stable; promoted candidates
+                            # have separate refinement naming evidence.
                             extra_files=extras)
     atomic_json(output / 'GUI_STAGE.json', {'stage': 'completed'})
 

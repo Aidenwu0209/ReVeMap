@@ -6,6 +6,7 @@ R = None  # Explicit workspace supplied by the CLI.
 import numpy as np
 from pose_pipeline.semantic_runtime.common import read, write, sha
 from .normalization import canonicalize_name, normalize_name
+from ..object_candidates import candidate_anchors, load_candidates
 
 SETTINGS = {'candidate_stride':20, 'min_object_points':50, 'min_visible_points':30,
  'min_visible_fraction':.15,'bbox_min_side':10,'context_fraction':.15,
@@ -28,6 +29,13 @@ def choose(candidates, quality):
   if len(selected)==SETTINGS['views']:break
  return selected
 
+def object_identity(semantic, classes):
+ """Keep an established category when unclassified candidate points dominate."""
+ known=np.unique(semantic[semantic>0])
+ if len(known)>1:return None
+ sid=int(known[0]) if len(known) else 0
+ return sid,classes[str(sid)]
+
 def prepare(scene):
  from pose_pipeline.contracts import load_manifest,load_trajectory,bind_manifest_trajectory
  from .registered_input import RegisteredInput
@@ -37,18 +45,30 @@ def prepare(scene):
  tick=time.perf_counter();out=R/'objects'/scene;out.mkdir(parents=True,exist_ok=False)
  inp=R/'inputs'/scene;spec=read(inp/'INPUT.json');m=load_manifest(inp/'manifest.json');ps,_=load_trajectory(inp/'trajectory.json');bound=bind_manifest_trajectory(m,ps)
  reader=RegisteredInput(scene, spec);read_frame=reader.read
- xyz=np.load(inp/'target.npz')['xyz'];base=np.load(inp/'base.npz');inst=base['instance'];sem=base['semantic'];classes=read(inp/'classes.json')
+ xyz=np.load(inp/'target.npz')['xyz']
+ with np.load(inp/'base.npz',allow_pickle=False) as archive:base={k:v.copy() for k,v in archive.items()}
+ anchors=candidate_anchors(base,load_candidates(inp));inst=anchors['instance'];sem=base['semantic'];classes=read(inp/'classes.json')
  assert len(xyz)==len(inst)
  objects=[]
  for oid in np.unique(inst):
   if oid<=0:continue
-  on=inst==oid;sid,c=np.unique(sem[on],return_counts=True);sid=int(sid[c.argmax()]);size=int(on.sum())
-  if size<SETTINGS['min_object_points'] or sid in (10,19):continue
-  objects.append({'instance_id':int(oid),'point_count':size,'semantic_id':sid,'original_name':classes[str(sid)],'candidates':[]})
+  on=inst==oid;identity=object_identity(sem[on],classes);size=int(on.sum())
+  if identity is None:continue
+  sid,name=identity
+  unknown_points=int(np.sum(on & (sem==0)))
+  if unknown_points<SETTINGS['min_object_points'] or canonicalize_name(name) in ('floor','wall'):continue
+  objects.append({'instance_id':int(oid),'point_count':size,'semantic_id':sid,'unknown_points':unknown_points,'original_name':name,'candidates':[]})
  ids_objects={x['instance_id']:x for x in objects};byframe={f.frame_id:(f,p) for f,p in bound}
  frames=bound[::SETTINGS['candidate_stride']]
  if frames[-1][0].frame_id!=bound[-1][0].frame_id:frames.append(bound[-1])
  inputs={str(inp/n):sha(inp/n) for n in ['INPUT.json','manifest.json','trajectory.json','target.npz','base.npz','classes.json']}
+ if (inp/'candidates.npz').exists():inputs[str(inp/'candidates.npz')]=sha(inp/'candidates.npz')
+ if not objects:
+  (out/'frames').mkdir();(out/'crops').mkdir()
+  write(out/'VIEW_PLAN.json',{'scene':scene,'settings':SETTINGS,'objects':[],'source':spec,'candidate_frame_count':0,'GT_used':False})
+  write(out/'CROP_INDEX.json',[]);write(out/'INPUTS.json',inputs);write(out/'RGB_REGISTRATION.json',reader.audit)
+  write(out/'PREPARED.json',{'objects':0,'ready':0,'unique_crops':0,'unique_images':0,'reason':'no_eligible_unknown_points','GT_used':False})
+  return
  frame_rows=[]
  for f,p in frames:
   image,depth,K=read_frame(f);h,w=depth.shape;ids,v,u=visible_map_pixels(xyz,p.t_world_camera,K,depth.astype(float)/m.depth_scale)
@@ -59,10 +79,15 @@ def prepare(scene):
    if int(oid) not in ids_objects:continue
    ob=ids_objects[int(oid)];fraction=count/ob['point_count']
    if count<SETTINGS['min_visible_points'] or fraction<SETTINGS['min_visible_fraction']:continue
+   unknown_visible=int(np.sum((inst[ids]==oid)&(sem[ids]==0)))
+   if unknown_visible<SETTINGS['min_visible_points']:continue
    on=inst[ids]==oid;xx=u[on];yy=v[on];bbox=[int(xx.min()),int(yy.min()),int(xx.max()+1),int(yy.max()+1)];bw=bbox[2]-bbox[0];bh=bbox[3]-bbox[1]
    if min(bw,bh)<SETTINGS['bbox_min_side'] or bw*bh/(h*w)>.8:continue
-   quality=float(fraction*np.sqrt(bw*bh/(h*w))*(.5+.5*sharp/(sharp+50)))
-   ob['candidates'].append({'frame_id':f.frame_id,'visible_points':int(count),'visible_fraction':float(fraction),'bbox_depth':bbox,'depth_shape':[h,w], 'sharpness':sharp,'quality':quality,'pose':p.t_world_camera.tolist()})
+   unknown_fraction=unknown_visible/ob['unknown_points']
+   quality=float(fraction*np.sqrt(bw*bh/(h*w))*(.5+.5*sharp/(sharp+50))*np.sqrt(unknown_fraction))
+   ob['candidates'].append({'frame_id':f.frame_id,'visible_points':int(count),'visible_fraction':float(fraction),
+       'unknown_visible_points':unknown_visible,'unknown_visible_fraction':unknown_fraction,
+       'bbox_depth':bbox,'depth_shape':[h,w], 'sharpness':sharp,'quality':quality,'pose':p.t_world_camera.tolist()})
   frame_rows.append({'frame_id':f.frame_id,'visible_points':len(ids),'sharpness':sharp})
   inputs[str(f.color_path)]=sha(f.color_path);inputs[str(f.depth_path)]=sha(f.depth_path)
   if len(frame_rows)%30==0:print('PREPARE',scene,len(frame_rows),len(frames),flush=True)
@@ -100,6 +125,8 @@ def name_all(scenes, witness=False):
  cfg=read(R/'runtime.json');output=R/('witness/naming' if witness else 'naming');output.mkdir(parents=True,exist_ok=False)
  rows=[x for s in scenes for x in read(R/'objects'/s/'CROP_INDEX.json')]
  if witness:rows=rows[:1]
+ if not rows:
+  write(output/'RECORDS.json',[]);write(output/'COMPLETE.json',{'status':'skipped','reason':'no_eligible_crops','rows':0,'actual_requests':0,'GT_used':False});return
  model=create_namer('qwen3vl_2b_nf4',cfg['models']['qwen3vl_2b_nf4']);write(output/'MODEL.json',model.audit)
  cache={};results=[];start=time.perf_counter()
  try:
