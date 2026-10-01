@@ -36,6 +36,7 @@ jobs:
           revemap gui --help
           revemap clean-pointcloud --help
           revemap evaluate-semantic --help
+          revemap export-scannet-evaluation --help
           revemap build-scene-graph --help
       - name: Build package
         run: python -m build
@@ -52,6 +53,7 @@ jobs:
           "$CLI" gui --help
           "$CLI" clean-pointcloud --help
           "$CLI" evaluate-semantic --help
+          "$CLI" export-scannet-evaluation --help
           "$CLI" demo --output "$RUNNER_TEMP/revemap-demo"
           "$CLI" query-scene --graph "$RUNNER_TEMP/revemap-demo/scene_graph.json" --label chair
           "$CLI" query-scene --graph "$RUNNER_TEMP/revemap-demo/scene_graph.json" --question '有几把椅子'
