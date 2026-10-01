@@ -10,6 +10,9 @@ from . import __version__
 
 
 def main():
+    if sys.argv[1:2] == ["export-scannet-evaluation"]:
+        from pose_pipeline.evaluation_export import main as export_main
+        return export_main(sys.argv[2:])
     if sys.argv[1:2] == ["clean-pointcloud"]:
         from pose_pipeline.pointcloud_cleanup import main as cleanup_main
         return cleanup_main(sys.argv[2:])
@@ -34,6 +37,7 @@ def main():
     from .demo import add_command as add_demo_command
     add_demo_command(commands)
     commands.add_parser("evaluate-semantic", help="evaluate a completed artifact; use evaluate-semantic --help")
+    commands.add_parser("export-scannet-evaluation", help="export inputs for external CD/PQ scripts; use export-scannet-evaluation --help")
     commands.add_parser("gui", help="capture/replay GUI; use revemap gui --help for options")
     commands.add_parser("clean-pointcloud", help="explicit radius cleanup; use clean-pointcloud --help")
     mapping = commands.add_parser("run-rgbd", help="build geometry and estimated poses from raw RGB-D")

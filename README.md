@@ -75,6 +75,22 @@ revemap run-sam3 --manifest /absolute/path/to/manifest.json \
 
 ## 结果与评价
 
+### 用户 CD/PQ 脚本的输入导出
+
+```bash
+revemap export-scannet-evaluation \
+  --result /absolute/path/to/completed/pipeline/ARTIFACTS.json \
+  --output outputs/scannet-evaluator-inputs
+```
+
+这是面向 `sgaligner_modified_CD_voxel_setto_0_1.py` 和 `compute_pq_test.py` 的显式导出命令，要求已完成、绑定输入与轨迹哈希的 ScanNet 结果，输出目录必须不存在。它用估计轨迹的 `inv(T_world_camera[0])` 将原地图转到第 0 帧相机坐标系；评测脚本随后应用 ScanNet 的 `pose/0.txt`。不能把该副本用于要求估计世界坐标的消费者，也不能重复应用首帧逆变换。缺少第 0 帧时直接报错。
+
+将脚本的预测点云路径指向 `frame0_prediction.ply`，PQ 的预测类别、实例路径分别指向 `semantic.npy`、`instance.npy`。数组与 PLY 顶点逐点同序：类别按名称转成脚本规定的 ScanNet20 编号（未知及词表外为 20），实例未分配值从 0 转为 -1，正实例编号保持不变。PLY 内原有 `semantic_id` / `instance_id` 字段仍为原生编号，PQ 应读取上述独立数组。实例编号必须小于 65535，以适配该脚本的 `id_offset=65536`。
+
+导出不读取 GT，不更改原地图、默认建图流程或用户评测脚本，不降采样、合并实例或补标签。`EXPORT.json` 最后写入，记录坐标约定、类别映射、适配代码及输入输出 SHA256；缺少该文件的导出不完整。CD 的 0.1 m 体素化仍由原评测脚本执行。修正输入约定带来的分数变化不代表模型能力提升，原脚本的指标也不应标为官方 ScanNet PQ。
+
+### 内置语义诊断
+
 `ARTIFACTS.json` 统一记录地图、类别表、结果、输入清单、轨迹等文件的位置和 SHA256。原始流程命名完成后的清单位于 `fused/ARTIFACTS.json`；GUI 的最终清单位于当前处理尝试的 `pipeline/ARTIFACTS.json`。消费者应读取清单，不要手动移动 PLY 或拼接不同运行的文件。
 
 ```bash
