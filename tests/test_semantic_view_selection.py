@@ -117,7 +117,8 @@ def test_invalid_budgets_fail_before_inference(sequence, budget):
 
 @pytest.mark.parametrize('schedule', ['serial', 'parallel'])
 @pytest.mark.parametrize('input_changed', [False, True])
-def test_pipeline_selects_after_refill_with_full_mapping_input(sequence, tmp_path, monkeypatch, schedule, input_changed):
+@pytest.mark.parametrize('instance_policy', [None, 'verified'])
+def test_pipeline_selects_after_refill_with_full_mapping_input(sequence, tmp_path, monkeypatch, schedule, input_changed, instance_policy):
     from pose_pipeline.semantic_runtime import pipeline, view_selection
     manifest, trajectory, frames = sequence
     output = tmp_path / 'run'
@@ -136,6 +137,7 @@ def test_pipeline_selects_after_refill_with_full_mapping_input(sequence, tmp_pat
             events.append(name)
             if name == 'mapping':
                 assert opts['--manifest'] == str(manifest)
+                assert '--graph-policy' not in opts
                 target = Path(opts['--output'])
                 (target / 'refill').mkdir(parents=True)
                 (target / 'refill/trajectory.json').write_bytes(trajectory.read_bytes())
@@ -151,6 +153,7 @@ def test_pipeline_selects_after_refill_with_full_mapping_input(sequence, tmp_pat
                 selected, _ = frames_from_plan(opts['--manifest'], opts['--view-plan'], opts['--view-plan-sha256'])
                 assert len(selected) == 3
             elif name == 'fusion':
+                assert opts['--instance-policy'] == (instance_policy or 'legacy')
                 fused = output / 'fused'
                 (fused / 'export').mkdir(parents=True)
                 (fused / 'export/map_labeled.ply').write_bytes(b'mock exported geometry')
@@ -171,6 +174,8 @@ def test_pipeline_selects_after_refill_with_full_mapping_input(sequence, tmp_pat
     monkeypatch.setattr(pipeline, 'Processes', FakeProcesses)
     args = argparse.Namespace(manifest=manifest, runtime=runtime, output=output,
         schedule=schedule, vlm='none', stride=5, view_policy='quality-diverse', view_budget=3)
+    if instance_policy is not None:
+        args.instance_policy = instance_policy
     if input_changed:
         with pytest.raises(RuntimeError, match='raw input changed'):
             pipeline.run(args)
@@ -183,5 +188,7 @@ def test_pipeline_selects_after_refill_with_full_mapping_input(sequence, tmp_pat
     assert result['raw_frames'] == len(frames) == 12
     assert result['selected_frames'] == result['view_budget'] == 3
     assert read(output / 'CONFIG.json')['view_policy'] == 'quality-diverse'
+    assert read(output / 'CONFIG.json')['instance_policy'] == (instance_policy or 'legacy')
+    assert 'graph_policy' not in read(output / 'CONFIG.json')
     inventory = read(result['artifacts'])
     assert inventory['files']['names']['sha256'] == sha(output / 'fused/instance_names.json')

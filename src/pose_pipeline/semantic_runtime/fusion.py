@@ -41,6 +41,9 @@ def apply_semantic_conflict_policy(votes, baseline, labels, policy='consensus'):
     return result, {**audit, 'policy': policy, 'enabled': policy == 'abstain'}
 
 def main(args):
+    instance_policy = getattr(args, 'instance_policy', 'legacy')
+    if instance_policy not in ('legacy', 'verified'):
+        raise ValueError('instance_policy must be legacy or verified')
     confidence_policy = getattr(args, 'semantic_confidence_policy', 'legacy')
     if confidence_policy not in ('legacy', 'track'):
         raise ValueError('semantic_confidence_policy must be legacy or track')
@@ -92,28 +95,48 @@ def main(args):
     cm['track_score_scope']=('accepted track-local observations only' if confidence_policy == 'track'
                              else 'legacy global per-point maxima; may include other categories')
     cfg={'min_mask_points':30,'min_output_points':50,'min_point_views':1,'min_group_frames':2,'object_score_mode':'max_point'}
-    current,audit=fuse_instances(n,frames,c['semantic'].copy(),config=cfg)
+    geometry = {}
+    candidate_evidence = {} if instance_policy == 'verified' else None
+    current,audit=fuse_instances(n,frames,c['semantic'].copy(),config=cfg,geometry_out=geometry,
+                                candidate_evidence_out=candidate_evidence)
     blocked=[(int(x['frame_id']),int(x['mask_id'])) for x in audit['filtered_masks']]
     inst,ga,provenance=recover_instances(n,frames,c['semantic'].copy(),c['instance'].copy(),current,blocked_masks=blocked)
     assert np.array_equal(inst[current>0],current[current>0]);assert np.all(provenance['distinct_support_frames']>=2)
+    if instance_policy == 'verified':
+        from .fragment_merge import merge_fragments
+        inst, merge_audit = merge_fragments(inst, c['semantic'], frames)
+        write(out/'FRAGMENT_MERGE.json', merge_audit)
     labels={**c,'instance':inst};np.savez_compressed(out/'map_labels.npz',**labels)
+    from .object_candidates import build_candidates
+    candidates, candidate_audit = build_candidates(labels, geometry)
+    classes = {'0':'unknown', **{str(c['id']):c['name'] for c in read(CONFIG_ROOT/'sam3_indoor_v1.json')['classes']}}
+    if instance_policy == 'verified':
+        from .object_candidates import extend_candidates_with_pure_masks
+        candidates, expansion = extend_candidates_with_pure_masks(labels, geometry, candidate_evidence, candidates, classes)
+        candidate_audit.update(candidate_points=expansion['candidate_points'], pure_mask_expansion=expansion,
+                               candidate_object_count=int(len(np.unique(candidates[candidates > 0]))))
+    np.savez_compressed(out/'object_geometry.npz', **geometry)
+    np.savez_compressed(out/'candidates.npz', candidate_instance=candidates)
+    write(out/'CANDIDATES.json', {**candidate_audit, 'labels_sha256':sha(out/'map_labels.npz'),
+          'candidates_sha256':sha(out/'candidates.npz'), 'instance_policy':instance_policy})
     np.savez_compressed(out/'target.npz',xyz=xyz)
     write(out/'PROJECTIONS.json',projections);write(out/'CONSENSUS.json',{'pairs':pairs,'metrics':cm});write(out/'MULTIVIEW.json',audit);write(out/'GUIDED.json',ga)
     result={'status':'completed','map_points':n,'semantic_coverage':float(np.mean(c['semantic']>0)),'instance_coverage':float(np.mean(inst>0)),
         'instance_count':len(np.unique(inst[inst>0])),'selected_frames':len(frames),'geometry_xyz_sha256':hashlib.sha256(np.ascontiguousarray(xyz).tobytes()).hexdigest(),
-        'semantic_conflict_policy':conflict_policy,
+        'semantic_conflict_policy':conflict_policy,'instance_policy':instance_policy,
         'semantic_confidence_policy':confidence_policy,'object_score_scope':cm['track_score_scope'],
         'sga_inference_executed':False,'sgf_prior_used':False,'complete_full_sequence':True,'raw_window_complete':True,'GT_used':False,'geometry_modified':False,
         'pipeline_scope':'fresh raw map + fixed SAM3 concepts + measured geometry association + multiview consensus + guided recovery; no frozen-map birth/completion or SGF subtype prior',
         'provenance':{'manifest':geom['manifest'],'trajectory':geom['trajectory'],'scene_id':m.sequence_id,'dataset':m.dataset},
         'seconds':time.monotonic()-started,'completed_at':time.monotonic()}
-    write(out/'classes.json', {'0':'unknown', **{str(c['id']):c['name'] for c in read(CONFIG_ROOT/'sam3_indoor_v1.json')['classes']}})
+    write(out/'classes.json', classes)
     write(out/'result.json',result);export(cloud,out/'map_labels.npz',out/'result.json',out/'export')
     write(out/'EXPORT_COMPLETE.json',{'completed_at':time.monotonic(),'seconds_including_export':time.monotonic()-started})
     event(arm,'projection_fusion_complete',points=n)
     print('FUSED',result,flush=True)
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--arm-root',required=True)
+    p.add_argument('--instance-policy', choices=('legacy','verified'), default='legacy')
     p.add_argument('--semantic-confidence-policy', choices=('legacy','track'), default='legacy')
     p.add_argument('--semantic-conflict-policy', choices=('consensus','abstain'), default='consensus')
     a=p.parse_args()

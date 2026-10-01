@@ -10,6 +10,8 @@ SAM3 worker 复用固定文本特征，并以 mmap/assign 降低权重加载的 
 
 [性能优化已发布](docs/performance-deployment-20260924.md)：PR #9 已合并并部署到 8765/8766 扫描服务。同一段 961 帧录制完整处理从 739.54 s 降至 709.41 s（本次重跑减少 4.1%），全部 SAM3 裁图、主 VLM 回答及补全前后最终地图保持一致。原始数据和旧 attempt 保留。
 
+[融合与补全优化](docs/quality-optimization.md)提供显式 `--instance-policy verified`：保守碎片合并、纯 mask 候选扩展及补全判定修复。十场固定输入的平均 PQ 从 25.7143% 到 26.2599%；合并步骤精确加速 57.10%，不代表全流程提速。默认仍为 `legacy`，轨迹与 TSDF 保持原实现。
+
 ## CPU 安装与最小示例
 
 需要 Python 3.11 或 3.12。以下示例不需要相机、GPU、模型权重或数据集。

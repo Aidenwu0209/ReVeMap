@@ -58,6 +58,7 @@ def add_commands(commands):
     run.add_argument("--schedule", choices=("serial", "parallel"), default="parallel")
     run.add_argument("--vlm", choices=[k for k, v in registry().items() if v["kind"] != "ocr"], default="qwen3vl_2b_bf16")
     run.add_argument("--stride", type=int, default=5)
+    run.add_argument('--instance-policy', choices=('legacy', 'verified'), default='legacy')
     run.add_argument("--view-policy", choices=('stride', 'quality', 'quality-diverse'), default='stride',
                      help='SAM3 only; quality policies are experimental (matched tests regressed); mapping uses all frames')
     run.add_argument("--view-budget", type=int,

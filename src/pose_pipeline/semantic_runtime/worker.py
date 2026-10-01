@@ -147,6 +147,7 @@ def main():
     parser.add_argument("--view-plan-sha256")
     parser.add_argument('--semantic-confidence-policy', choices=('legacy', 'track'), default='legacy')
     parser.add_argument('--semantic-conflict-policy', choices=('consensus', 'abstain'), default='consensus')
+    parser.add_argument('--instance-policy', choices=('legacy', 'verified'), default='legacy')
     args = parser.parse_args()
     from ..live_io import guard_parent_process
     guard_parent_process()
@@ -173,7 +174,7 @@ def main():
     elif args.stage == "fusion":
         from .fusion import main as fuse
         fuse(argparse.Namespace(arm_root=args.output, semantic_confidence_policy=args.semantic_confidence_policy,
-                                semantic_conflict_policy=args.semantic_conflict_policy))
+                                semantic_conflict_policy=args.semantic_conflict_policy, instance_policy=args.instance_policy))
     else:
         from .backfill import main as backfill
         backfill(argparse.Namespace(arm_root=args.output))

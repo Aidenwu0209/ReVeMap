@@ -13,7 +13,7 @@ import unicodedata
 from typing import Any
 
 
-RULESET_VERSION = "english_object_names_v1_20260915"
+RULESET_VERSION = "english_object_names_v2_20261001"
 
 # Source: general English lexical relations. No dataset label table was loaded
 # to construct these rules. Some example categories were already known from
@@ -43,6 +43,12 @@ _LEXICAL = {
     "backpacks": "backpack", "bags": "bag", "plants": "plant",
     "trashcan": "trash can", "trashbin": "trash bin",
 }
+
+# Exact vocabulary repair: sam3_indoor_v1.json class 13 retains the historical
+# name "refridgerator" but already prompts SAM3 with "refrigerator". The scene
+# graph and evaluation exporter have the same alias. Correct the comparison
+# token here as well, while retaining the supplied raw/fine spelling for audit.
+_SPELLING_CORRECTIONS = {"refridgerator": "refrigerator"}
 
 _SYNONYMS = {
     "chalkboard": "blackboard", "couch": "sofa", "settee": "sofa",
@@ -133,6 +139,10 @@ def normalize_name(label: str, *, project_subtypes: bool = True) -> dict[str, An
     if name != cleaned:
         transforms.append({"kind": "lexical", "from": cleaned, "to": name})
     fine = name
+    corrected = _SPELLING_CORRECTIONS.get(name, name)
+    if corrected != name:
+        transforms.append({"kind": "lexical", "from": name, "to": corrected})
+    name = corrected
     synonym = _SYNONYMS.get(name, name)
     if synonym != name:
         transforms.append({"kind": "synonym", "from": name, "to": synonym})
@@ -164,6 +174,7 @@ def export_rules() -> dict[str, Any]:
     return {
         "version": RULESET_VERSION, "unknown": sorted(_UNKNOWN),
         "lexical": dict(sorted(_LEXICAL.items())),
+        "spelling_corrections": dict(sorted(_SPELLING_CORRECTIONS.items())),
         "synonyms": dict(sorted(_SYNONYMS.items())),
         "subtype_projections": dict(sorted(_SUBTYPES.items())),
         "parts_never_projected": dict(sorted(_PARTS.items())),

@@ -1,0 +1,108 @@
+{
+  "main_base": "04ee3a49143edc417898542cd61f95e637e4b211",
+  "local_research_commit": "417e122e83c03e76f7cd083b68a0a2ffb983bef7",
+  "accepted_scope": [
+    "refinement correctness fixes",
+    "candidate bridge and pure-mask extension",
+    "conservative fragment merging",
+    "exact fragment merge acceleration"
+  ],
+  "default_instance_policy": "legacy",
+  "excluded": [
+    "trajectory guard and graph policy wiring",
+    "rejected quality probes",
+    "JoJo proposed Colored ICP"
+  ],
+  "source_files": {
+    "src/pose_pipeline/live_semantic.py": {
+      "selected_sha256": "3177045703fd06bc55dff3991bbe0e14605f90751cd00d9c6dcc3a44ad7fe432",
+      "research_sha256": "f84c1ea68d2b52df9d662a235b6733ac08c960e4b170924369a95022d9d20fde",
+      "equal_to_research": false
+    },
+    "src/pose_pipeline/semantic_runtime/__main__.py": {
+      "selected_sha256": "02bcc3f8ed8bccef3856c7c3215e9fd1e6b8ffe3e5c253a684c05c72f73e1752",
+      "research_sha256": "a9ae24110d5e63e93a3691737f276815e9290239763c7623f11802852502d654",
+      "equal_to_research": false
+    },
+    "src/pose_pipeline/semantic_runtime/fragment_merge.py": {
+      "selected_sha256": "1922579c0018af8d424d8b3c6b22f2d6560d8e34be18b8285c4ea92397aa6b7b",
+      "research_sha256": "1922579c0018af8d424d8b3c6b22f2d6560d8e34be18b8285c4ea92397aa6b7b",
+      "equal_to_research": true
+    },
+    "src/pose_pipeline/semantic_runtime/fusion.py": {
+      "selected_sha256": "2a40980940dd8bfb06339c550eeb70aef99702556ba78ea93e403956a22398de",
+      "research_sha256": "2a40980940dd8bfb06339c550eeb70aef99702556ba78ea93e403956a22398de",
+      "equal_to_research": true
+    },
+    "src/pose_pipeline/semantic_runtime/multiview.py": {
+      "selected_sha256": "0e5265883ee6b20f2924b23efb7a18327918303bdc1448ba61f2ae26eb5ccb01",
+      "research_sha256": "0e5265883ee6b20f2924b23efb7a18327918303bdc1448ba61f2ae26eb5ccb01",
+      "equal_to_research": true
+    },
+    "src/pose_pipeline/semantic_runtime/object_candidates.py": {
+      "selected_sha256": "2c775005c57a0ae28aa9bf85cae06bf3e064e51c6f025dde10a07deefa7d6069",
+      "research_sha256": "2c775005c57a0ae28aa9bf85cae06bf3e064e51c6f025dde10a07deefa7d6069",
+      "equal_to_research": true
+    },
+    "src/pose_pipeline/semantic_runtime/pipeline.py": {
+      "selected_sha256": "8e45a24aa957c02240d72c15a45a37e0674ec08fc0e20bc4711460eba48e17ad",
+      "research_sha256": "94cb37221e8baad6bff1795be90c4604b0c633d6005395cd532b2d7b55ba9fda",
+      "equal_to_research": false
+    },
+    "src/pose_pipeline/semantic_runtime/refinement/__main__.py": {
+      "selected_sha256": "116af19b9d1054aa093cf815f973f7c7b2442290199ca3b5ca8cb09b1d099475",
+      "research_sha256": "116af19b9d1054aa093cf815f973f7c7b2442290199ca3b5ca8cb09b1d099475",
+      "equal_to_research": true
+    },
+    "src/pose_pipeline/semantic_runtime/refinement/assignment.py": {
+      "selected_sha256": "c3be3580cef785d6cab85c86566d31f253cbb012e869a289fca071ee6022b6ea",
+      "research_sha256": "c3be3580cef785d6cab85c86566d31f253cbb012e869a289fca071ee6022b6ea",
+      "equal_to_research": true
+    },
+    "src/pose_pipeline/semantic_runtime/refinement/grounding.py": {
+      "selected_sha256": "236a3370e1c05723c8a017e49544f6599df9b8fa7275e0e8c83566d2ac4fa6c3",
+      "research_sha256": "236a3370e1c05723c8a017e49544f6599df9b8fa7275e0e8c83566d2ac4fa6c3",
+      "equal_to_research": true
+    },
+    "src/pose_pipeline/semantic_runtime/refinement/normalization.py": {
+      "selected_sha256": "54243b0f8be6412f4375bd3e525708123a7fe2c7a51daf8001190b1e7d3a434b",
+      "research_sha256": "54243b0f8be6412f4375bd3e525708123a7fe2c7a51daf8001190b1e7d3a434b",
+      "equal_to_research": true
+    },
+    "src/pose_pipeline/semantic_runtime/refinement/observations.py": {
+      "selected_sha256": "952cf8a3de271792d2bbd730dbe65f34fb68da5bb731a514e428e51e41641873",
+      "research_sha256": "952cf8a3de271792d2bbd730dbe65f34fb68da5bb731a514e428e51e41641873",
+      "equal_to_research": true
+    },
+    "src/pose_pipeline/semantic_runtime/worker.py": {
+      "selected_sha256": "5f40f1e34dd0514dbe9de942a7dd8b0a5b5e5083670818c7f5cd6cf8b336b974",
+      "research_sha256": "2d8994ff5ff22c592eb08b1c6d538e55a93684e4b64dc955d65af082dd205753",
+      "equal_to_research": false
+    }
+  },
+  "trajectory_and_mapping_unchanged": [
+    "src/pose_pipeline/rgbd_mapping.py",
+    "src/pose_pipeline/rgbd_measured.py",
+    "src/pose_pipeline/rgbd_refill.py",
+    "src/revemap/cli.py"
+  ],
+  "evidence_sources": {
+    "fusion": {
+      "path": "/Users/wu/Desktop/wu/毕设/ReVeMap-main优化_20261001/verification/quality-20261001/PQ_comparison.csv",
+      "sha256": "f149e1ea218b2c675f2fe3e82e7faf65a933e715d3681dd51f40528c653a5dec"
+    },
+    "speed": {
+      "path": "/Users/wu/Desktop/wu/毕设/ReVeMap-main优化_20261001/verification/quality-round2-20261001/fusion/comparison.csv",
+      "sha256": "3b1c52f6d1cef63ff36543523ea0b51a949fd325475d81d0126482607d4d1fe9"
+    },
+    "refinement": {
+      "path": "/Users/wu/Desktop/wu/毕设/ReVeMap-main优化_20261001/verification/quality-round3-20261001/refinement/live/LIVE_PER_SCENE.csv",
+      "sha256": "459cb383a59d6d0bbe02b498827761c61e7dc6f17b39a40cd1588290c79593a9"
+    }
+  },
+  "evaluation_entry_sha256": "d23ce25340b89e32a51911bcadaa2271753c35d9509db00907f8c041cf7cbb94",
+  "evaluation_backend_sha256": "9a91e7be272846835ac77a233140a0c608b3151c3cb123bd61ddc523ef3092f8",
+  "experiment_scope": "Ten reused scenes on fixed geometry; no new CD or independent holdout; original user evaluator and coordinate/instance conventions retained",
+  "historical_gpu_evidence_root": "/home/aidenwu/Documents/ReVeMap-main-quality-20261001",
+  "services_deployed": false
+}
