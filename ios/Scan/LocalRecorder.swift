@@ -29,6 +29,17 @@ struct UploadReceipt: Codable {
     let session: String
 }
 
+struct RecordingRecoveryIssue: Identifiable {
+    let directory: URL
+    let reason: String
+    var id: String { directory.path }
+}
+
+struct PendingRecordingRecovery {
+    var stores: [LocalPacketStore] = []
+    var issues: [RecordingRecoveryIssue] = []
+}
+
 /// Atomic packets survive app restarts. A frozen manifest defines one retryable upload.
 final class LocalPacketStore: @unchecked Sendable {
     let directory: URL
@@ -64,6 +75,32 @@ final class LocalPacketStore: @unchecked Sendable {
         return try FileManager.default.contentsOfDirectory(at: root, includingPropertiesForKeys: [.isDirectoryKey])
             .filter { (try? $0.resourceValues(forKeys: [.isDirectoryKey]).isDirectory) == true }
             .sorted { $0.lastPathComponent < $1.lastPathComponent }
+    }
+
+    /// A damaged directory must not hide valid recordings or block future captures.
+    static func recoverPending(root: URL = LocalPacketStore.root) throws -> PendingRecordingRecovery {
+        var result = PendingRecordingRecovery()
+        for directory in try pendingDirectories(root: root) {
+            do {
+                guard try FileManager.default.contentsOfDirectory(atPath: directory.path)
+                    .contains(where: { $0.hasSuffix(".bin") }) else { continue }
+                result.stores.append(try LocalPacketStore(recovering: directory))
+            } catch {
+                result.issues.append(RecordingRecoveryIssue(directory: directory, reason: error.localizedDescription))
+            }
+        }
+        return result
+    }
+
+    /// Explicit recovery action; move the entire directory without deleting or rewriting frames.
+    static func quarantine(_ issue: RecordingRecoveryIssue, root: URL = LocalPacketStore.root) throws {
+        guard issue.directory.deletingLastPathComponent().standardizedFileURL == root.standardizedFileURL else {
+            throw RecordingFailure(message: "Recording is outside the recordings directory")
+        }
+        let folder = root.deletingLastPathComponent().appendingPathComponent("recordings-recovery", isDirectory: true)
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        let destination = folder.appendingPathComponent(issue.directory.lastPathComponent + "-" + UUID().uuidString)
+        try FileManager.default.moveItem(at: issue.directory, to: destination)
     }
 
     private static func packetFiles(_ directory: URL) throws -> [URL] {

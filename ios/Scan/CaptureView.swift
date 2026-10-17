@@ -2,10 +2,6 @@ import SwiftUI
 import ARKit
 import SceneKit
 
-struct ModelsResponse: Codable {
-    let models: [String]
-}
-
 /// Full-bleed ARKit camera preview sharing the controller's capture session.
 struct CameraPreview: UIViewRepresentable {
     let session: ARSession
@@ -71,8 +67,9 @@ struct CaptureView: View {
     @AppStorage("receiverHost") private var receiverHost = ""
     @AppStorage("receiverPort") private var receiverPort = 7001
     @AppStorage("vlmModel") private var vlmModel = "qwen3vl_2b_nf4"
-    @State private var availableModels: [String] = []
-    @State private var modelPushFailed = false
+    @ObservedObject var settings: WorkstationSettings
+    @State private var portText = String(ScanEndpoint.restoredPort(UserDefaults.standard.integer(forKey: "receiverPort")))
+    @State private var startTask: Task<Void, Never>?
     @State private var confirmDiscard = false
     @FocusState private var hostFieldFocused: Bool
     @Environment(\.horizontalSizeClass) private var hSize
@@ -85,7 +82,7 @@ struct CaptureView: View {
     }
 
     private var validConfiguration: Bool {
-        !trimmedHost.isEmpty && (1...65535).contains(receiverPort)
+        !trimmedHost.isEmpty && ScanEndpoint.port(portText) != nil
     }
 
     var body: some View {
@@ -143,21 +140,15 @@ struct CaptureView: View {
                     uploadCard
                 }
 
+                if !capture.recoveryIssues.isEmpty || capture.recoveryError != nil { recoveryCard }
+
                 startButton
                 if let message = capture.uploadMessage {
                     Text(message).font(.footnote).foregroundStyle(.green)
                 }
 
-                if capture.receiverFinished {
-                    Text(L10n.t("本次采集已完成，工作站建图中 · 到「记录」页查看结果", "Capture done · mapping in progress — see Records"))
-                        .font(.footnote.weight(.medium))
-                        .foregroundStyle(.green)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                } else if let error = capture.lastError {
-                    Text(error)
-                        .font(.footnote)
-                        .foregroundStyle(.red)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                if let error = capture.lastError {
+                    Text(error).font(.footnote).foregroundStyle(.red)
                 }
 
                 Text(L10n.t("状态：\(capture.status) · \(capture.receiverEndpoint)", "Status: \(capture.status) · \(capture.receiverEndpoint)"))
@@ -174,11 +165,11 @@ struct CaptureView: View {
         .background(Color(uiColor: .systemGroupedBackground).ignoresSafeArea())
         .navigationTitle("Scan")
         .navigationBarTitleDisplayMode(.inline)
-        .task(id: "\(trimmedHost):\(receiverPort)") {
-            guard !trimmedHost.isEmpty else { return }
-            await capture.checkReceiver(host: trimmedHost, port: UInt16(receiverPort))
-            await loadModels()
+        .onAppear { receiverPort = ScanEndpoint.restoredPort(receiverPort) }
+        .onChange(of: portText) { _, value in
+            if let port = ScanEndpoint.port(value) { receiverPort = Int(port) }
         }
+        .task(id: "\(trimmedHost):\(portText)") { await refreshConnection() }
     }
 
     private var configCard: some View {
@@ -207,15 +198,20 @@ struct CaptureView: View {
                     .font(.caption2)
                     .foregroundStyle(.white.opacity(0.5))
                 Spacer()
-                TextField("7001", value: $receiverPort, format: .number)
+                TextField("7001", text: $portText)
                     .keyboardType(.numberPad)
                     .multilineTextAlignment(.trailing)
                     .frame(width: 110)
                     .font(.body.monospacedDigit())
             }
+            if ScanEndpoint.port(portText) == nil {
+                Text(L10n.t("端口必须为 1–65535", "Port must be from 1 to 65535"))
+                    .font(.caption).foregroundStyle(.orange)
+            }
             Button {
                 receiverHost = Self.defaultHost
                 receiverPort = 7001
+                portText = "7001"
             } label: {
                 Text(L10n.t("使用默认工作站 \(Self.defaultHost):7001", "Use default workstation \(Self.defaultHost):7001"))
                     .font(.footnote.weight(.medium))
@@ -243,10 +239,9 @@ struct CaptureView: View {
                     .foregroundStyle(.white.opacity(0.5))
                 Spacer()
                 Menu {
-                    ForEach(availableModels.isEmpty ? [vlmModel] : availableModels, id: \.self) { model in
+                    ForEach(settings.models.isEmpty ? [vlmModel] : settings.models, id: \.self) { model in
                         Button {
                             vlmModel = model
-                            Task { await pushModelChoice() }
                         } label: {
                             if model == vlmModel {
                                 Label(model, systemImage: "checkmark")
@@ -266,12 +261,15 @@ struct CaptureView: View {
                             .foregroundStyle(.white.opacity(0.5))
                     }
                 }
+                .disabled(settings.isRefreshing || settings.isStarting)
                 .accessibilityIdentifier("vlmModelMenu")
             }
-            if modelPushFailed {
-                Text(L10n.t("模型选择未同步到工作站（将在开始扫描时重试）", "Model choice not synced (will retry on start)"))
-                    .font(.caption2)
-                    .foregroundStyle(.orange)
+            if settings.isRefreshing { ProgressView(L10n.t("加载模型…", "Loading models…")) }
+            if let error = settings.modelsError {
+                Text(error).font(.caption2).foregroundStyle(.orange)
+            }
+            if let error = settings.startError {
+                Text(error).font(.caption2).foregroundStyle(.red)
             }
             if !trimmedHost.isEmpty && trimmedHost != Self.defaultHost {
                 Text(L10n.t("非默认工作站：iOS 26 可能拦截其 http 访问，记录页若加载失败请改回 \(Self.defaultHost)", "Non-default host: iOS 26 may block its http; revert to \(Self.defaultHost) if Records fails"))
@@ -289,38 +287,16 @@ struct CaptureView: View {
         }
     }
 
-    private func loadModels() async {
-        guard let url = URL(string: "http://\(trimmedHost):8765/api/models") else { return }
-        guard let (data, _) = try? await URLSession.shared.data(from: url),
-              let decoded = try? JSONDecoder().decode(ModelsResponse.self, from: data) else { return }
-        availableModels = decoded.models
-    }
-
-    private func pushModelChoice() async {
-        modelPushFailed = !(await pushOptions())
-    }
-
-    private func pushOptions() async -> Bool {
+    private func refreshConnection() async {
         let host = trimmedHost
-        guard !host.isEmpty else { return false }
-        guard let token = await fetchWorkstationToken(host: host) else { return false }
-        guard let url = URL(string: "http://\(host):8765/api/options") else { return false }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue(token, forHTTPHeaderField: "X-Scan-Token")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try? JSONEncoder().encode(["vlm": vlmModel])
-        guard let (_, response) = try? await URLSession.shared.data(for: request) else { return false }
-        return (response as? HTTPURLResponse)?.statusCode == 200
-    }
-
-    private func fetchWorkstationToken(host: String) async -> String? {
-        guard let url = URL(string: "http://\(host):8765/") else { return nil }
-        guard let (data, _) = try? await URLSession.shared.data(from: url),
-              let html = String(data: data, encoding: .utf8),
-              let range = html.range(of: "token='[0-9a-f]{48}'", options: .regularExpression)
-        else { return nil }
-        return String(html[range].dropFirst(7).dropLast())
+        guard let port = ScanEndpoint.port(portText), !host.isEmpty else {
+            capture.invalidateReceiverCheck()
+            await settings.refreshModels(host: host)
+            return
+        }
+        async let models: Void = settings.refreshModels(host: host)
+        await capture.checkReceiver(host: host, port: port)
+        await models
     }
 
     private var modePicker: some View {
@@ -374,10 +350,16 @@ struct CaptureView: View {
                 }
                 Button(L10n.t("暂停上传", "Pause upload")) { capture.cancelUpload() }
                     .font(.footnote)
+            } else if settings.isStarting {
+                ProgressView(L10n.t("正在确认工作站模型…", "Confirming workstation model…"))
             } else {
                 HStack(spacing: 10) {
                     Button {
-                        Task { await capture.uploadRecording(host: trimmedHost) }
+                        Task {
+                            await settings.beginUpload(host: trimmedHost, model: vlmModel) { host in
+                                await capture.uploadRecording(host: host)
+                            }
+                        }
                     } label: {
                         Label(L10n.t("上传到工作站", "Upload"), systemImage: "icloud.and.arrow.up")
                             .font(.footnote.weight(.semibold))
@@ -411,10 +393,29 @@ struct CaptureView: View {
         }
     }
 
+    private var recoveryCard: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(L10n.t("需要检查的录制", "Recordings needing attention")).font(.headline)
+            Text(L10n.t("原文件已保留，不影响新的扫描。可在文件 App 的 Scan 文件夹中导出。", "Original files are retained and do not block new scans. Export them from the Scan folder in Files."))
+                .font(.caption).foregroundStyle(.secondary)
+            if let error = capture.recoveryError { Text(error).font(.caption).foregroundStyle(.orange) }
+            ForEach(capture.recoveryIssues) { issue in
+                Text(issue.directory.lastPathComponent).font(.caption.monospaced()).lineLimit(1)
+                Text(issue.reason).font(.caption).foregroundStyle(.orange)
+                Button(L10n.t("保留并隔离此录制", "Keep files and move aside")) {
+                    capture.quarantineRecording(issue)
+                }
+                .disabled(capture.isSavingRecording || capture.isUploading)
+            }
+        }
+        .padding(14)
+        .background(Color(uiColor: .secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 18))
+    }
+
     private var checkButton: some View {
         Button {
             hostFieldFocused = false
-            Task { await capture.checkReceiver(host: trimmedHost, port: UInt16(receiverPort)) }
+            Task { await refreshConnection() }
         } label: {
             HStack {
                 if capture.checking {
@@ -440,12 +441,12 @@ struct CaptureView: View {
                     .strokeBorder(checkTint.opacity(0.3), lineWidth: 0.5)
             )
         }
-        .disabled(capture.checking || trimmedHost.isEmpty)
+        .disabled(capture.checking || settings.isRefreshing || !validConfiguration)
         .accessibilityIdentifier("checkButton")
     }
 
     private var checkLabel: String {
-        if capture.checkPassed == true { return L10n.t("接收端就绪 · 点开始即自动建会话", "Receiver ready · auto-starts on connect") }
+        if capture.checkPassed == true { return L10n.t("串流端口可达 · 开始时确认模型", "Stream port reachable · model checked on start") }
         if capture.checkPassed == false { return L10n.t("无法连接工作站（检查网络或服务是否运行）", "Workstation unreachable (check network/service)") }
         return L10n.t("检查工作站连接", "Check workstation")
     }
@@ -469,7 +470,7 @@ struct CaptureView: View {
         .buttonStyle(.glassProminent)
         .controlSize(.large)
         .tint(.green)
-        .disabled(!validConfiguration || !capture.canStartCapture)
+        .disabled((!capture.isLocalMode && !validConfiguration) || !capture.canStartCapture)
         .accessibilityIdentifier("streamButton")
     }
 
@@ -571,6 +572,11 @@ struct CaptureView: View {
                     Spacer()
                 }
 
+                if let error = settings.startError {
+                    Text(error).font(.footnote).foregroundStyle(.white)
+                        .padding(10).background(Color.red.opacity(0.85), in: RoundedRectangle(cornerRadius: 10))
+                }
+                if settings.isStarting { ProgressView(L10n.t("确认模型…", "Confirming model…")) }
                 Text(L10n.t("预览模式 · 未推流", "Preview · not streaming"))
                     .font(.caption.weight(.medium))
                     .foregroundStyle(.white.opacity(0.9))
@@ -590,9 +596,12 @@ struct CaptureView: View {
                     }
 
                     Button {
-                        Task {
-                            _ = await pushOptions()
-                            capture.start(host: trimmedHost, port: UInt16(receiverPort), local: capture.isLocalMode)
+                        startTask = Task {
+                            await settings.beginCapture(local: capture.isLocalMode, host: trimmedHost,
+                                                        port: ScanEndpoint.port(portText), model: vlmModel) { host, port, local in
+                                guard capture.isPreviewing else { return }
+                                capture.start(host: host, port: port, local: local)
+                            }
                         }
                     } label: {
                         Label(L10n.t("开始扫描", "Start scan"), systemImage: "record.circle")
@@ -602,14 +611,16 @@ struct CaptureView: View {
                             .padding(.vertical, 12)
                             .background(Capsule().fill(Color.green))
                     }
+                    .disabled(settings.isStarting)
                     .accessibilityIdentifier("confirmStart")
                 }
                 .padding(.bottom, 26)
             }
         }
-        .task(id: "\(trimmedHost):\(receiverPort)") {
-            guard !trimmedHost.isEmpty else { return }
-            await capture.checkReceiver(host: trimmedHost, port: UInt16(receiverPort))
+        .onDisappear { startTask?.cancel(); startTask = nil }
+        .task(id: "\(trimmedHost):\(portText)") {
+            guard !capture.isLocalMode, let port = ScanEndpoint.port(portText), !trimmedHost.isEmpty else { return }
+            await capture.checkReceiver(host: trimmedHost, port: port)
         }
     }
 
@@ -815,7 +826,7 @@ struct CaptureView: View {
             Circle()
                 .fill(state.color)
                 .frame(width: 10, height: 10)
-            Text(state.label)
+            Text(capture.isLocalMode ? L10n.t("本地录制", "Local recording") : state.label)
                 .font(.subheadline.weight(.medium))
                 .foregroundStyle(.white)
         }
@@ -827,7 +838,7 @@ struct CaptureView: View {
 
 #Preview {
     NavigationStack {
-        CaptureView(capture: CaptureController())
+        CaptureView(capture: CaptureController(), settings: WorkstationSettings())
     }
 }
 

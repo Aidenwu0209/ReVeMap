@@ -24,7 +24,6 @@ final class CaptureController: ObservableObject {
     @Published private(set) var streamStartedAt: Date?
     @Published private(set) var checking = false
     @Published private(set) var checkPassed: Bool?
-    @Published private(set) var receiverFinished = false
     @Published private(set) var isPreviewing = false
     @Published private(set) var isLocalMode = UserDefaults.standard.bool(forKey: "scanLocalMode")
     @Published private(set) var recordedPackets = 0
@@ -34,6 +33,8 @@ final class CaptureController: ObservableObject {
     @Published private(set) var isSavingRecording = false
     @Published private(set) var isUploading = false
     @Published private(set) var pendingRecordings = 0
+    @Published private(set) var recoveryIssues: [RecordingRecoveryIssue] = []
+    @Published private(set) var recoveryError: String?
     @Published private(set) var uploadMessage: String?
     private var uploadTask: Task<UploadReceipt, Error>?
     private var localStore: LocalPacketStore?
@@ -45,18 +46,31 @@ final class CaptureController: ObservableObject {
     init() { recoverPendingRecording() }
 
     private func recoverPendingRecording() {
+        localStore = nil
+        pendingRecordings = 0
+        recordedPackets = 0
+        recordedMB = 0
+        recoveryIssues = []
+        recoveryError = nil
         do {
-            let directories = try LocalPacketStore.pendingDirectories().filter {
-                try FileManager.default.contentsOfDirectory(atPath: $0.path).contains { $0.hasSuffix(".bin") }
-            }
-            pendingRecordings = directories.count
-            localStore = try directories.first.map { try LocalPacketStore(recovering: $0) }
+            let recovered = try LocalPacketStore.recoverPending()
+            pendingRecordings = recovered.stores.count
+            localStore = recovered.stores.first
+            recoveryIssues = recovered.issues
             recordedPackets = localStore?.packetCount ?? 0
             recordedMB = Double(localStore?.totalBytes ?? 0) / 1048576.0
         } catch {
-            pendingRecordings = max(1, pendingRecordings)
-            uploadError = L10n.t("无法恢复录制，原始文件已保留：", "Cannot recover recording; files retained: ") + error.localizedDescription
+            recoveryError = L10n.t("无法读取录制目录，文件已保留：", "Cannot read recordings; files retained: ") + error.localizedDescription
         }
+    }
+
+    func quarantineRecording(_ issue: RecordingRecoveryIssue) {
+        guard !isStreaming, !isSavingRecording, !isUploading else { return }
+        do {
+            try LocalPacketStore.quarantine(issue)
+            recoverPendingRecording()
+            uploadMessage = L10n.t("原文件已保存在 recordings-recovery，可通过文件 App 导出", "Original files are kept in recordings-recovery. Export them using Files.")
+        } catch { recoveryError = error.localizedDescription }
     }
 
     @Published private(set) var depthImage: UIImage?
@@ -66,6 +80,7 @@ final class CaptureController: ObservableObject {
 
     private var streamer: ARKitFrameStreamer?
     private var watchdogTask: Task<Void, Never>?
+    private var checkRevision = 0
     private let localPreviewSession = ARSession()
     private var previewSampler: PreviewStatsSampler?
 
@@ -119,19 +134,24 @@ final class CaptureController: ObservableObject {
         UIApplication.shared.isIdleTimerDisabled = false
     }
 
-    /// Pre-flight check: can we reach the workstation's stream port right now?
-    /// The GUI only listens on the stream port after "开始扫描" is pressed on
-    /// the web page, so failure usually means the receiver is not armed yet.
+    func invalidateReceiverCheck() {
+        checkRevision += 1
+        checking = false
+        checkPassed = nil
+    }
+
+    /// This checks TCP reachability, not model/runtime readiness.
     func checkReceiver(host: String, port: UInt16) async {
-        guard !host.isEmpty, !checking else { return }
+        guard !host.isEmpty, port > 0 else { invalidateReceiverCheck(); return }
+        checkRevision += 1
+        let revision = checkRevision
         checking = true
         checkPassed = nil
-        defer { checking = false }
+        defer { if revision == checkRevision { checking = false } }
 
         // The stream port only accepts a connection while the GUI is armed;
         // a refused/refused-timeout connection tells us the receiver state.
-        var streamReachable = false
-        await withCheckedContinuation { (continuation: CheckedContinuation<Void, Never>) in
+        let streamReachable = await withCheckedContinuation { (continuation: CheckedContinuation<Bool, Never>) in
             let connection = NWConnection(
                 host: NWEndpoint.Host(host),
                 port: NWEndpoint.Port(rawValue: port) ?? 7001,
@@ -142,12 +162,11 @@ final class CaptureController: ObservableObject {
                 switch state {
                 case .ready:
                     guard box.hit() else { return }
-                    streamReachable = true
                     connection.cancel()
-                    continuation.resume()
+                    continuation.resume(returning: true)
                 case .failed, .cancelled:
                     guard box.hit() else { return }
-                    continuation.resume()
+                    continuation.resume(returning: false)
                 default:
                     break
                 }
@@ -156,14 +175,16 @@ final class CaptureController: ObservableObject {
             DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
                 guard box.hit() else { return }
                 connection.cancel()
-                continuation.resume()
+                continuation.resume(returning: false)
             }
         }
+        guard !Task.isCancelled, revision == checkRevision else { return }
         checkPassed = streamReachable
     }
 
     func start(host: String, port: UInt16, local: Bool = false) {
         guard !isStreaming, canStartCapture else { return }
+        guard local || (!host.isEmpty && port > 0) else { return }
         if isPreviewing { stopPreview() }
         isLocalMode = local
         recordedPackets = 0
@@ -182,7 +203,7 @@ final class CaptureController: ObservableObject {
             localStore = nil
         }
         lastError = nil
-        receiverEndpoint = "\(host):\(port)"
+        receiverEndpoint = local ? L10n.t("本地录制", "Local recording") : "\(host):\(port)"
         encodedFrames = 0
         skippedFrames = 0
         depthImage = nil
@@ -231,7 +252,6 @@ final class CaptureController: ObservableObject {
             streamer = candidate
             isStreaming = true
             streamStartedAt = Date()
-            receiverFinished = false
             if !local { startWatchdog() }
             UIApplication.shared.isIdleTimerDisabled = true
         } catch {
@@ -240,25 +260,17 @@ final class CaptureController: ObservableObject {
         }
     }
 
-    /// Auto-finish: once frames have flowed, a receiver that stays
-    /// unreachable for 12 s has sealed and moved on to mapping — stop
-    /// streaming and hand the user back to the setup screen.
+    /// A prolonged disconnect is an unconfirmed interruption, never a completion receipt.
     private func startWatchdog() {
         watchdogTask?.cancel()
         watchdogTask = Task { [weak self] in
-            var lastCount: UInt64 = 0
-            var lastChange = Date()
+            var health = StreamStallWatchdog()
             while !Task.isCancelled {
                 try? await Task.sleep(nanoseconds: 2_000_000_000)
-                guard let self, self.isStreaming else { break }
-                if self.encodedFrames != lastCount {
-                    lastCount = self.encodedFrames
-                    lastChange = Date()
-                    continue
-                }
-                let stalled = self.status == "Waiting for workstation" || self.status == "Reconnecting"
-                if stalled && self.encodedFrames > 0 && Date().timeIntervalSince(lastChange) > 12 {
-                    self.receiverFinished = true
+                guard !Task.isCancelled, let self, self.isStreaming else { break }
+                if health.connectionLost(frames: self.encodedFrames, status: self.status,
+                                         now: ProcessInfo.processInfo.systemUptime) {
+                    self.lastError = L10n.t("连接中断，已停止串流；尚未确认工作站收齐或开始建图，请在记录页核对", "Connection lost; streaming stopped. Receipt and mapping are unconfirmed. Check Records.")
                     self.stop()
                     break
                 }
@@ -699,7 +711,7 @@ private enum FrameEncodingResult {
 
 private final class ARKitFrameStreamer: NSObject, ARSessionDelegate {
     let session = ARSession()
-    private let sender: TCPFrameSender
+    private let sender: TCPFrameSender?
     private let localStore: LocalPacketStore?
     private let callbacks: StreamCallbacks
     private let ciContext = CIContext(options: [.cacheIntermediates: false])
@@ -856,7 +868,7 @@ private final class ARKitFrameStreamer: NSObject, ARSessionDelegate {
          localStore: LocalPacketStore? = nil) {
         self.callbacks = callbacks
         self.localStore = localStore
-        sender = TCPFrameSender(host: serverHost, port: serverPort, callbacks: callbacks)
+        sender = localStore == nil ? TCPFrameSender(host: serverHost, port: serverPort, callbacks: callbacks) : nil
         super.init()
         session.delegate = self
     }
@@ -886,7 +898,7 @@ private final class ARKitFrameStreamer: NSObject, ARSessionDelegate {
         encodeQueue.async { [self] in
             localStore?.seal()
             motionSampler.stop()
-            sender.stop()
+            sender?.stop()
             Task { @MainActor in completion() }
         }
         encodingLock.unlock()
@@ -947,7 +959,7 @@ private final class ARKitFrameStreamer: NSObject, ARSessionDelegate {
                     }
                     return
                 }
-                if self.sender.sendLatest(packet) {
+                if self.sender?.sendLatest(packet) == true {
                     self.motionSampler.commit(upTo: motionTimestampNS)
                     self.encodedFrames += 1
                     let current = self.encodedFrames

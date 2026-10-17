@@ -1,0 +1,19 @@
+name: iOS core regression tests
+
+on:
+  push:
+    paths: ['ios/**', '.github/workflows/ios-tests.yml']
+  pull_request:
+    paths: ['ios/**', '.github/workflows/ios-tests.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  scan-core:
+    runs-on: macos-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test production networking and recording recovery
+        run: swift test --package-path ios

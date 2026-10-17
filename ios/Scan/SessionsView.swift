@@ -476,96 +476,6 @@ struct SessionsView: View {
 
 // MARK: - Session detail (native)
 
-struct StageTiming: Codable, Identifiable {
-    let stage: String
-    let seconds: Double
-    var id: String { stage }
-}
-
-struct DetailCapture: Codable {
-    let frames: Int?
-    let elapsed_s: Double?
-    let valid_depth_fraction: Double?
-    let fps: Double?
-    let rejected_pairs: Int?
-}
-
-struct DetailMapping: Codable {
-    let stages: [StageTiming]?
-    let status: String?
-}
-
-struct DetailCloud: Codable {
-    let points: Int?
-}
-
-enum FuzzyValue: Codable {
-    case string(String)
-    case bool(Bool)
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if let value = try? container.decode(Bool.self) {
-            self = .bool(value)
-        } else {
-            self = .string(try container.decode(String.self))
-        }
-    }
-    var stringValue: String? {
-        if case .string(let value) = self { return value }
-        return nil
-    }
-}
-
-struct TimelineEntry: Codable, Identifiable {
-    let stage: String
-    let seconds: Double
-    var id: String { stage }
-}
-
-struct DetailStatus: Codable {
-    let status: String
-    let mode: String?
-    let options: [String: FuzzyValue]?
-    let capture: DetailCapture?
-    let mapping: DetailMapping?
-    let cloud: DetailCloud?
-    let view: String?
-    let timeline: [TimelineEntry]?
-}
-
-struct InstanceRow: Codable, Identifiable {
-    let instance_id: Int
-    let semantic_name: String
-    let vlm_name: String?
-    let point_count: Int
-    var id: Int { instance_id }
-}
-
-struct CloudObject: Codable, Identifiable, Equatable {
-    let kind: String
-    let label_id: Int
-    let semantic_id: Int
-    let semantic_name: String
-    let vlm_name: String?
-    let point_count: Int
-    let size_m: [Double]
-    var id: String { "\(kind)-\(label_id)" }
-    var title: String {
-        let name = (vlm_name?.isEmpty == false && vlm_name != "unknown") ? vlm_name! : semantic_name
-        let localized = L10n.semanticName(name)
-        return kind == "instance" ? "\(localized) · #\(label_id)" : localized
-    }
-    var dimensions: String { size_m.map { String(format: "%.2f", $0) }.joined(separator: " × ") + " m" }
-}
-
-struct ObjectCatalog: Codable {
-    let revision: String
-    let points: Int
-    let rgb_available: Bool
-    let classes: [CloudObject]
-    let instances: [CloudObject]
-}
-
 private struct ObjectShareFile: Identifiable {
     let url: URL
     var id: URL { url }
@@ -577,76 +487,6 @@ private struct ObjectShareSheet: UIViewControllerRepresentable {
         UIActivityViewController(activityItems: [url], applicationActivities: nil)
     }
     func updateUIViewController(_ controller: UIActivityViewController, context: Context) {}
-}
-
-@MainActor
-final class SessionDetailStore: ObservableObject {
-    @Published var status: DetailStatus?
-    @Published var instances: [InstanceRow] = []
-    @Published var objects: ObjectCatalog?
-    @Published var objectError: String?
-    @Published var viewMode = "semantic_id"
-    @Published var busy = false
-    @Published var errorText: String?
-    var host = ""
-    var recordID = ""
-    private var token: String?
-
-    func load() async {
-        guard let url = URL(string: "http://\(host):8765/s/\(recordID)/api/status") else { return }
-        guard let (data, _) = try? await URLSession.shared.data(from: url),
-              let decoded = try? JSONDecoder().decode(DetailStatus.self, from: data) else {
-            errorText = L10n.t("无法加载会话数据", "Failed to load session")
-            return
-        }
-        status = decoded
-        errorText = nil
-        viewMode = decoded.view ?? "semantic_id"
-        if let iurl = URL(string: "http://\(host):8765/s/\(recordID)/api/instances"),
-           let (idata, _) = try? await URLSession.shared.data(from: iurl),
-           let list = try? JSONDecoder().decode([InstanceRow].self, from: idata) {
-            instances = list
-        }
-        await loadObjects()
-    }
-
-    func loadObjects() async {
-        guard let url = URL(string: "http://\(host):8765/s/\(recordID)/api/objects") else { return }
-        do {
-            let (data, response) = try await URLSession.shared.data(for: URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData))
-            guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw URLError(.badServerResponse) }
-            objects = try JSONDecoder().decode(ObjectCatalog.self, from: data)
-            objectError = nil
-        } catch {
-            objectError = L10n.t("暂时无法加载可选取物体", "Selectable objects are unavailable")
-        }
-    }
-
-    func setView(_ mode: String) async {
-        if objects != nil { viewMode = mode; return }
-        busy = true
-        defer { busy = false }
-        guard let token = await fetchToken() else { return }
-        guard let url = URL(string: "http://\(host):8765/s/\(recordID)/api/view") else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue(token, forHTTPHeaderField: "X-Scan-Token")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try? JSONEncoder().encode(["mode": mode])
-        _ = try? await URLSession.shared.data(for: request)
-        viewMode = mode
-    }
-
-    private func fetchToken() async -> String? {
-        if let token { return token }
-        guard let url = URL(string: "http://\(host):8765/") else { return nil }
-        guard let (data, _) = try? await URLSession.shared.data(from: url),
-              let html = String(data: data, encoding: .utf8),
-              let range = html.range(of: "token='[0-9a-f]{48}'", options: .regularExpression)
-        else { return nil }
-        token = String(html[range].dropFirst(7).dropLast())
-        return token
-    }
 }
 
 struct SessionDetailView: View {
@@ -669,6 +509,7 @@ struct SessionDetailView: View {
     @State private var exportingObject = false
     @State private var shareFile: ObjectShareFile?
     @State private var exportError: String?
+    @State private var refreshRevision = 0
 
     var body: some View {
         Group {
@@ -741,10 +582,11 @@ struct SessionDetailView: View {
         )) {
             Button(L10n.t("知道了", "OK"), role: .cancel) { exportError = nil }
         } message: { Text(exportError ?? "") }
-        .task {
+        .task(id: "\(host):\(record.id):\(refreshRevision):\(recordsVisible)") {
+            guard recordsVisible else { return }
             store.host = host
             store.recordID = record.id
-            await store.load()
+            await store.refreshUntilSettled()
         }
     }
 
@@ -778,9 +620,16 @@ struct SessionDetailView: View {
     private var detailPanel: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
-                Text(record.displayDate)
-                    .font(.caption.monospacedDigit())
-                    .foregroundStyle(.white.opacity(0.55))
+                HStack {
+                    Text(record.displayDate)
+                        .font(.caption.monospacedDigit())
+                        .foregroundStyle(.white.opacity(0.55))
+                    Spacer()
+                    Button { refreshRevision += 1 } label: {
+                        Label(L10n.t("刷新", "Refresh"), systemImage: "arrow.clockwise")
+                    }.font(.caption)
+                }
+                if let error = store.errorText { Text(error).font(.footnote).foregroundStyle(.red) }
                 if let status = store.status {
                     if record.mode == "demo" {
                         Label(L10n.t("ScanNet 数据集 · SAM3 预测结果", "ScanNet dataset · SAM3 predictions"), systemImage: "testtube.2")
@@ -802,14 +651,13 @@ struct SessionDetailView: View {
                         }
                         instanceSection
                     }
-                } else if let error = store.errorText {
-                    Text(error).font(.footnote).foregroundStyle(.red)
-                } else {
+                } else if store.errorText == nil {
                     ProgressView().frame(maxWidth: .infinity)
                 }
             }
             .padding(18)
         }
+        .refreshable { refreshRevision += 1 }
         .background(Color(white: 0.07))
     }
 

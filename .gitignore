@@ -54,3 +54,7 @@ xcuserdata/
 *.mobileprovision
 *.p12
 *.cer
+
+# Swift package regression-test products
+ios/.build/
+ios/.swiftpm/
