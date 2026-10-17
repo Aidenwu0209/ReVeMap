@@ -9,9 +9,12 @@
 /* Begin PBXBuildFile section */
 		0FA3F48CA6F9BFB46803E89C /* SessionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E7DC35814D42FAB4F562AA /* SessionsView.swift */; };
 		18650FF7CE0898EAC88A74B7 /* AirGrabGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9380DE419D2FCDB89CD41A4 /* AirGrabGesture.swift */; };
+		2F2B00C7DA2B30F703893678 /* ScanLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67889E94402F46D5564DDABA /* ScanLocalization.swift */; };
+		40732156B9830BBA114A1D91 /* SessionDetailStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A170E30FB32DF53F8635FC53 /* SessionDetailStore.swift */; };
 		5E5359DD7E9EF901C3C0E27A /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AA1DF98C84F2AC4D3DB26 /* L10n.swift */; };
 		628E5CAC068E069A3818B2AD /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF54F8FD30604F119B4D60B9 /* CaptureView.swift */; };
 		7D356EAB9F7A0A779430FF4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A93A262D96ECF865FD53F2B /* Assets.xcassets */; };
+		A84AD30C02AE6966DCD3AA14 /* WorkstationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D44BBD3C98AA98B2DA24E9 /* WorkstationSettings.swift */; };
 		BF026E3F4EB3A628019C4607 /* ScanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AA463BBE145A5B670C9E84 /* ScanApp.swift */; };
 		CECBD71EFF02351FBB0A0F07 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 053A20BAE6DBEE590EB4EF70 /* Contents.json */; };
 		DEBA0CA8ACB27493AE3A20CC /* CaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C85924D5C91B3E73CEE7BA /* CaptureController.swift */; };
@@ -22,8 +25,11 @@
 /* Begin PBXFileReference section */
 		053A20BAE6DBEE590EB4EF70 /* Contents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		0D6AA1DF98C84F2AC4D3DB26 /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
+		67889E94402F46D5564DDABA /* ScanLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanLocalization.swift; sourceTree = "<group>"; };
+		70D44BBD3C98AA98B2DA24E9 /* WorkstationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkstationSettings.swift; sourceTree = "<group>"; };
 		8D1E71B2CD3C5D7471AD4CB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9A93A262D96ECF865FD53F2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A170E30FB32DF53F8635FC53 /* SessionDetailStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailStore.swift; sourceTree = "<group>"; };
 		C2AA463BBE145A5B670C9E84 /* ScanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanApp.swift; sourceTree = "<group>"; };
 		CD443A1B72E6BF29A4C2C16B /* LocalRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRecorder.swift; sourceTree = "<group>"; };
 		CF54F8FD30604F119B4D60B9 /* CaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
@@ -48,7 +54,10 @@
 				0D6AA1DF98C84F2AC4D3DB26 /* L10n.swift */,
 				CD443A1B72E6BF29A4C2C16B /* LocalRecorder.swift */,
 				C2AA463BBE145A5B670C9E84 /* ScanApp.swift */,
+				67889E94402F46D5564DDABA /* ScanLocalization.swift */,
+				A170E30FB32DF53F8635FC53 /* SessionDetailStore.swift */,
 				F2E7DC35814D42FAB4F562AA /* SessionsView.swift */,
+				70D44BBD3C98AA98B2DA24E9 /* WorkstationSettings.swift */,
 			);
 			path = Scan;
 			sourceTree = "<group>";
@@ -148,7 +157,10 @@
 				5E5359DD7E9EF901C3C0E27A /* L10n.swift in Sources */,
 				F8550E2FFB6B532E4CDB5035 /* LocalRecorder.swift in Sources */,
 				BF026E3F4EB3A628019C4607 /* ScanApp.swift in Sources */,
+				2F2B00C7DA2B30F703893678 /* ScanLocalization.swift in Sources */,
+				40732156B9830BBA114A1D91 /* SessionDetailStore.swift in Sources */,
 				0FA3F48CA6F9BFB46803E89C /* SessionsView.swift in Sources */,
+				A84AD30C02AE6966DCD3AA14 /* WorkstationSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,10 +8,12 @@ enum AppTab: Hashable {
 @main
 struct ScanApp: App {
     @StateObject private var capture = CaptureController()
+    @StateObject private var settings = WorkstationSettings()
     @StateObject private var airGrab = AirGrabController()
     @Environment(\.scenePhase) private var scenePhase
     @AppStorage("receiverHost") private var receiverHost = ""
     @AppStorage("receiverPort") private var receiverPort = 7001
+    @AppStorage("vlmModel") private var vlmModel = "qwen3vl_2b_nf4"
     @State private var handledLaunchArguments = false
     @State private var tab: AppTab = .capture
     @AppStorage("appLang") private var lang = "zh"
@@ -20,7 +22,7 @@ struct ScanApp: App {
         WindowGroup {
             TabView(selection: $tab) {
                 NavigationStack {
-                    CaptureView(capture: capture)
+                    CaptureView(capture: capture, settings: settings)
                 }
                 .tabItem { Label(L10n.t("扫描", "Scan"), systemImage: "record.circle") }
                 .tag(AppTab.capture)
@@ -45,10 +47,10 @@ struct ScanApp: App {
                 }
                 guard arguments.contains("--autostart") else { return }
                 let host = receiverHost.trimmingCharacters(in: .whitespacesAndNewlines)
-                guard !host.isEmpty, let port = UInt16(exactly: receiverPort) else {
-                    return
+                await settings.beginCapture(local: capture.isLocalMode, host: host,
+                                            port: ScanEndpoint.port(String(receiverPort)), model: vlmModel) { host, port, local in
+                    capture.start(host: host, port: port, local: local)
                 }
-                capture.start(host: host, port: port)
             }
         }
     }
