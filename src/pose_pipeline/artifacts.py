@@ -218,6 +218,14 @@ and ``provenance_bound``. Explicit input paths must match the bound digests.
                             and _legacy_refinement_complete(receipt, paths["result"]))
         if not legacy_completed:
             raise ValueError("prediction must be completed; recognized old refinement receipts require explicit legacy opt-in")
+    if receipt.get('geometry_readout', 'off') != 'off' or any(k.startswith('geometry_') for k in paths):
+        from plyfile import PlyData
+        import numpy as np
+        from .semantic_runtime.geometry_contract import from_artifacts
+        vertices = PlyData.read(paths['map'])['vertex'].data
+        from_artifacts(paths, np.column_stack([vertices[k] for k in ('x', 'y', 'z')]),
+            {'semantic': vertices['semantic_id'], 'instance': vertices['instance_id'],
+             'confidence': vertices['semantic_confidence']})
     for path, digest in snapshot.items():
         if sha256_file(Path(path)) != digest:
             raise RuntimeError("artifact changed while loading: " + path)

@@ -8,11 +8,21 @@ def main(args):
     import numpy as np
     arm=Path(args.arm_root);start=time.monotonic();event(arm,'name_backfill_start')
     labels=np.load(arm/'fused/map_labels.npz');inst=labels['instance'];sem=labels['semantic'];evidence=defaultdict(list);rejected=[]
+    evidence_inst = inst
+    geometry_checked = None
+    report = read(arm/'fused/result.json')
+    if report.get('geometry_readout', 'off') != 'off':
+        from .geometry_contract import validate_contract, artifact_files
+        with np.load(arm/'fused/target.npz', allow_pickle=False) as target:
+            geometry_checked = validate_contract(artifact_files(arm/'fused')['geometry_contract'],
+                target['xyz'], {k: labels[k].copy() for k in labels.files},
+                provenance=report.get('provenance'))
+        evidence_inst = geometry_checked['base']['instance']
     for p in sorted((arm/'semantic/vlm').glob('response_*.json')):
         response=read(p)
         for crop in response['crops']:
             f=np.load(arm/'fused'/f'projection_{crop["frame_id"]:06}.npz');points=f['point_ids'][f['mask_ids']==crop['mask_id']]
-            counts=Counter(int(x) for x in inst[points] if x>0)
+            counts=Counter(int(x) for x in evidence_inst[points] if x>0)
             if not counts:continue
             oid,count=counts.most_common(1)[0];purity=count/max(1,len(points))
             rec={**crop,'candidate_instance_id':oid,'projected_instance_share':purity,'visible_points':len(points),'model_completed_at':response['completed_at']}
@@ -24,7 +34,7 @@ def main(args):
         for x in ev:bylabel[x['label']].add(x['frame_id'])
         ranked=sorted(bylabel,key=lambda k:(-len(bylabel[k]),k));name='unknown'
         if ranked and len(bylabel[ranked[0]])>=2 and (len(ranked)==1 or len(bylabel[ranked[0]])>len(bylabel[ranked[1]])):name=ranked[0]
-        classes,n=np.unique(sem[inst==oid],return_counts=True)
+        classes,n=np.unique(sem[evidence_inst==oid],return_counts=True)
         objects.append({'instance_id':oid,'semantic_id':int(classes[n.argmax()]),'point_count':int(np.sum(inst==oid)),
             'vlm_name':name,'support_frames':sorted(bylabel.get(name,[])),'evidence':ev,
             'assignment_scope':'multiview naming metadata; original semantic_id retained, no new SAM3 text grounding or geometry change'})

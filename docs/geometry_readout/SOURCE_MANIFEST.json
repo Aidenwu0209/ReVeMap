@@ -1,0 +1,129 @@
+{
+  "schema": "revemap.developup.source.v1",
+  "base_commit": "51076f68bdf5d0768242f7cbb3159398257ecbf4",
+  "source_snapshot": "production_integration_candidate_v1/candidate_source_uncapped",
+  "policy": "owner-lineage-v1",
+  "default": "off",
+  "files": [
+    {
+      "path": "src/pose_pipeline/artifacts.py",
+      "before_sha256": "8dbd0e96a6ef3263a6279990782c1452a5fa8bedcf89a4c1bf10e4040602035f",
+      "after_sha256": "19fde9e35577be807baa8a6284a79eacaa32188611d12fcb1915adc8c93559ee",
+      "before_lines": 237,
+      "after_lines": 245,
+      "packaged_sha256": "19fde9e35577be807baa8a6284a79eacaa32188611d12fcb1915adc8c93559ee"
+    },
+    {
+      "path": "src/pose_pipeline/live_gui.py",
+      "before_sha256": "482fbb1f3b59ebd6d81be380166cfa12c3a890d6c368263ede63bde7c148ecfd",
+      "after_sha256": "f3abb75a4423404c98a04889399a0ff18f388e926695974f2a12931303364078",
+      "before_lines": 813,
+      "after_lines": 820,
+      "packaged_sha256": "f3abb75a4423404c98a04889399a0ff18f388e926695974f2a12931303364078"
+    },
+    {
+      "path": "src/pose_pipeline/live_semantic.py",
+      "before_sha256": "95176a4d5d5232ab488cce063f531f795c1e1a78a63054788b5be71203b300b8",
+      "after_sha256": "3deda3f858f2d2ccf369896a99614594e3fa13baf1ee348042f6cb7f339d1614",
+      "before_lines": 94,
+      "after_lines": 103,
+      "packaged_sha256": "3deda3f858f2d2ccf369896a99614594e3fa13baf1ee348042f6cb7f339d1614"
+    },
+    {
+      "path": "src/pose_pipeline/sam3_export.py",
+      "before_sha256": "02799dab4851bfd2d7d1b5a75543fe5b657039e14d23e440b4b947e6d4c7215d",
+      "after_sha256": "24e6cefb25b0de7c3aea039aa99943be02c5dea57b8a4002a56f2904758ed42f",
+      "before_lines": 89,
+      "after_lines": 104,
+      "packaged_sha256": "24e6cefb25b0de7c3aea039aa99943be02c5dea57b8a4002a56f2904758ed42f"
+    },
+    {
+      "path": "src/pose_pipeline/scene_graph.py",
+      "before_sha256": "789a3e99c917b6e88fad604aef680277dd73e00d007d339bea42498edc43ccd3",
+      "after_sha256": "837d7a1fafb74ffa748798cf4c24f4a425151b4982799c6f3062d11b501b3cf1",
+      "before_lines": 339,
+      "after_lines": 365,
+      "packaged_sha256": "837d7a1fafb74ffa748798cf4c24f4a425151b4982799c6f3062d11b501b3cf1"
+    },
+    {
+      "path": "src/pose_pipeline/semantic_runtime/__main__.py",
+      "before_sha256": "e1e98713351984f6fc18fb532345154b32c64cd102928eb68c4665f6a1c84caf",
+      "after_sha256": "6476af90c39ea5c4d166b546e9f1888289f4c1f823edac2db74a2189aad99012",
+      "before_lines": 104,
+      "after_lines": 106,
+      "packaged_sha256": "6476af90c39ea5c4d166b546e9f1888289f4c1f823edac2db74a2189aad99012"
+    },
+    {
+      "path": "src/pose_pipeline/semantic_runtime/backfill.py",
+      "before_sha256": "ba7876562884ab9f25ae314a0716b38b32147a01d0606b5a4ac24219cbe92b20",
+      "after_sha256": "c28894ef92dac3797a8d380910ba1c01de683030e1a982a2cf0441849e1fbca7",
+      "before_lines": 35,
+      "after_lines": 45,
+      "packaged_sha256": "c28894ef92dac3797a8d380910ba1c01de683030e1a982a2cf0441849e1fbca7"
+    },
+    {
+      "path": "src/pose_pipeline/semantic_runtime/fusion.py",
+      "before_sha256": "69eedd407ef819f0a7f0ace00ad99ca6df81eced005fd9d92daf4dc640c12f53",
+      "after_sha256": "1a213b904febb0d1a98d2a7173ef02821811f68032f250ae208b90858ea0d2f5",
+      "before_lines": 121,
+      "after_lines": 150,
+      "packaged_sha256": "f0dac23fb7834c5d1bb81c505bacf500fa472307a040ae6184f0f1f6a011d951"
+    },
+    {
+      "path": "src/pose_pipeline/semantic_runtime/geometry_contract.py",
+      "before_sha256": null,
+      "after_sha256": "b52c4e49a2ff67455e75c8cd037adcb2fb73486abd11dbf46e4d0607d7ed1a74",
+      "before_lines": 0,
+      "after_lines": 163,
+      "packaged_sha256": "b52c4e49a2ff67455e75c8cd037adcb2fb73486abd11dbf46e4d0607d7ed1a74"
+    },
+    {
+      "path": "src/pose_pipeline/semantic_runtime/geometry_readout.py",
+      "before_sha256": null,
+      "after_sha256": "db5224d0023e2d0552d73536efd16aa94252957996dd29ee05061f2fd97dbf7b",
+      "before_lines": 0,
+      "after_lines": 127,
+      "packaged_sha256": "db5224d0023e2d0552d73536efd16aa94252957996dd29ee05061f2fd97dbf7b"
+    },
+    {
+      "path": "src/pose_pipeline/semantic_runtime/multiview.py",
+      "before_sha256": "ec9277463c3aa0c5da3726e37d56f3677c983b9833525c371d496f73078ebc76",
+      "after_sha256": "da089de04780ec1559a583d746f8913ae041ac130486aaa00466445da6a70a7a",
+      "before_lines": 289,
+      "after_lines": 299,
+      "packaged_sha256": "da089de04780ec1559a583d746f8913ae041ac130486aaa00466445da6a70a7a"
+    },
+    {
+      "path": "src/pose_pipeline/semantic_runtime/pipeline.py",
+      "before_sha256": "c83c800a3d8977df13c71ffd89b9863c768caf133a965fa45241dda02845d13d",
+      "after_sha256": "5ad0381c40e4667badfeb2b9fe289da88349b7cdfb5e285f56d7db55d4b31bc6",
+      "before_lines": 222,
+      "after_lines": 234,
+      "packaged_sha256": "5ad0381c40e4667badfeb2b9fe289da88349b7cdfb5e285f56d7db55d4b31bc6"
+    },
+    {
+      "path": "src/pose_pipeline/semantic_runtime/worker.py",
+      "before_sha256": "4fe0b8168022f3f4fc6d29da0beee218890be2422331667985d81d32e6dedf73",
+      "after_sha256": "0cd33b0f2b8c9b3af93de158d5aa8f8b6f84e78b44368391fa394266ea3afdec",
+      "before_lines": 179,
+      "after_lines": 181,
+      "packaged_sha256": "0cd33b0f2b8c9b3af93de158d5aa8f8b6f84e78b44368391fa394266ea3afdec"
+    },
+    {
+      "path": "tests/fixtures/geometry_readout_native_scene0062_64.json",
+      "before_sha256": null,
+      "after_sha256": "b9502dd85f3a3718d54fab05f78445430772f934ad4c6b734034c15dd86f8190",
+      "before_lines": 0,
+      "after_lines": 277,
+      "packaged_sha256": "b9502dd85f3a3718d54fab05f78445430772f934ad4c6b734034c15dd86f8190"
+    },
+    {
+      "path": "tests/test_geometry_readout_runtime.py",
+      "before_sha256": null,
+      "after_sha256": "19a479142cfd3541106f53574a1de9476f5fc7b12eca667bb493870822ee875c",
+      "before_lines": 0,
+      "after_lines": 221,
+      "packaged_sha256": "19a479142cfd3541106f53574a1de9476f5fc7b12eca667bb493870822ee875c"
+    }
+  ]
+}

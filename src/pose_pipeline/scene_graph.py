@@ -69,8 +69,17 @@ def _candidate_pairs(lows, highs, margin, limit):
 
 def build_graph(xyz, semantic, instance, classes, *, confidence=None, names=None,
                 world_up=None, near_m=.5, support_gap_m=.05, footprint_overlap=.25,
-                min_points=1, max_relation_candidates=1_000_000):
+                min_points=1, max_relation_candidates=1_000_000, geometry_contract=None):
     """Build one node per positive instance without changing point labels."""
+    evidence_instance = None
+    if geometry_contract is not None:
+        if confidence is None:
+            raise ValueError('geometry readout requires original confidence arrays')
+        from .semantic_runtime.geometry_contract import validate_contract
+        checked = validate_contract(geometry_contract, np.asarray(xyz),
+            {'semantic': np.asarray(semantic), 'instance': np.asarray(instance),
+             'confidence': np.asarray(confidence)})
+        evidence_instance = checked['base']['instance']
     xyz = np.asarray(xyz, dtype=float)
     semantic, instance = np.asarray(semantic), np.asarray(instance)
     if xyz.ndim != 2 or xyz.shape[1] != 3 or not np.isfinite(xyz).all():
@@ -109,7 +118,8 @@ def build_graph(xyz, semantic, instance, classes, *, confidence=None, names=None
         if len(points) < min_points:
             omitted.append(int(oid))
             continue
-        labels, counts = np.unique(semantic[indices], return_counts=True)
+        evidence_indices = indices if evidence_instance is None else np.flatnonzero(evidence_instance == oid)
+        labels, counts = np.unique(semantic[evidence_indices], return_counts=True)
         winners = labels[counts == counts.max()]
         sid = int(winners[0]) if len(winners) == 1 else 0
         record = records.get(int(oid), {})
@@ -127,10 +137,17 @@ def build_graph(xyz, semantic, instance, classes, *, confidence=None, names=None
             "semantic_class_tie": len(winners) > 1,
             "point_count": len(points), "centroid_m": points.mean(axis=0).tolist(),
             "aabb_min_m": points.min(axis=0).tolist(), "aabb_max_m": points.max(axis=0).tolist(),
-            "class_share": float(counts.max() / len(points)),
-            "mean_observation_score": float(confidence[indices].mean()) if confidence is not None else None,
+            "class_share": float(counts.max() / len(evidence_indices)),
+            "mean_observation_score": float(confidence[evidence_indices].mean()) if confidence is not None else None,
             "evidence_frames": frames, "evidence": record.get("evidence", []),
         }
+        if evidence_instance is not None:
+            all_labels, all_counts = np.unique(semantic[indices], return_counts=True)
+            node.update(semantic_evidence_scope='pre_geometry_readout_support',
+                        evidence_point_count=len(evidence_indices),
+                        unknown_geometry_points=int(np.sum(semantic[indices] == 0)),
+                        full_support_semantic_class_counts={str(int(k)): int(v) for k, v in zip(all_labels, all_counts)},
+                        full_support_mean_observation_score=float(confidence[indices].mean()))
         nodes.append(node)
         if basis is not None:
             aligned = points @ basis
@@ -191,11 +208,20 @@ def build_from_artifacts(source, **options):
         raise ValueError("labeled PLY lacks coordinates or instance/semantic IDs")
     classes = json.loads(paths["classes"].read_text())
     names = json.loads(paths["names"].read_text()) if "names" in paths else None
+    from .semantic_runtime.geometry_contract import from_artifacts
+    raw_xyz = np.column_stack([vertices[k] for k in ('x', 'y', 'z')])
+    final = {'semantic': vertices['semantic_id'], 'instance': vertices['instance_id'],
+             'confidence': vertices['semantic_confidence'] if 'semantic_confidence' in vertices.dtype.names else None}
+    report = json.loads(paths['result'].read_text())
+    geometry_path = None
+    if report.get('geometry_readout', 'off') != 'off' or 'geometry_contract' in paths:
+        from_artifacts(paths, raw_xyz, final)
+        geometry_path = paths['geometry_contract']
     graph = build_graph(
         np.column_stack([vertices[k] for k in ("x", "y", "z")]),
         vertices["semantic_id"], vertices["instance_id"], classes,
         confidence=vertices["semantic_confidence"] if "semantic_confidence" in vertices.dtype.names else None,
-        names=names, **options,
+        names=names, geometry_contract=geometry_path, **options,
     )
     graph["provenance"] = {"bound": bundle["provenance_bound"],
                            "map_sha256": sha256_file(paths["map"]),

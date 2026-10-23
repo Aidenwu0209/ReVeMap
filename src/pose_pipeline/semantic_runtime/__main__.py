@@ -66,6 +66,8 @@ def add_commands(commands):
                      help='track is experimental; matched quality tests do not justify promotion')
     run.add_argument('--semantic-conflict-policy', choices=('consensus', 'abstain'), default='consensus',
                      help='abstain is experimental; may turn correct labels into unknown')
+    run.add_argument('--geometry-readout', choices=('off', 'owner-lineage-v1'), default='off',
+                     help='experimental terminal geometry ownership; semantic labels remain unchanged')
     run.add_argument('--checkpoint-stages', action='store_true',
                      help='seal completed mapping/SAM3 stages for verified reuse')
     run.add_argument('--resume-from', type=Path,

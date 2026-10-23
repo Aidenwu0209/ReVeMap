@@ -454,6 +454,11 @@ class Controller:
         for name in ("x", "y", "z"):
             if not np.isfinite(final_vertex[name]).all() or not np.array_equal(final_vertex[name], raw_vertex[name]):
                 raise ValueError("GUI 最终地图与原始地图坐标不匹配")
+        if result.get('geometry_readout', 'off') != 'off':
+            from .semantic_runtime.geometry_contract import from_artifacts
+            from_artifacts(paths, np.column_stack([final_vertex[k] for k in ('x','y','z')]),
+                {'semantic': final_vertex['semantic_id'], 'instance': final_vertex['instance_id'],
+                 'confidence': final_vertex['semantic_confidence']})
         return result
 
     def cleanup_children(self):
@@ -559,6 +564,8 @@ class Controller:
             else:
                 # Old sessions remain inspectable, with no invented input binding.
                 vertices = PlyData.read(files[0])["vertex"].data
+                if result.get('geometry_readout', 'off') != 'off':
+                    raise ValueError('geometry ownership requires a sealed artifact inventory')
                 graph = build_graph(np.column_stack([vertices[k] for k in ("x", "y", "z")]),
                     vertices["semantic_id"], vertices["instance_id"], read_json(files[1]), world_up=world_up)
                 graph["provenance"] = {"bound": False, "source": "legacy_gui_result"}

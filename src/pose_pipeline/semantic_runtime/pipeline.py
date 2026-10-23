@@ -79,6 +79,9 @@ def run(args):
     conflict_policy = getattr(args, 'semantic_conflict_policy', 'consensus')
     if confidence_policy not in ('legacy', 'track') or conflict_policy not in ('consensus', 'abstain'):
         raise ValueError('invalid semantic evidence policy')
+    geometry_readout = getattr(args, 'geometry_readout', 'off')
+    if geometry_readout not in ('off', 'owner-lineage-v1'):
+        raise ValueError('invalid geometry readout policy')
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
     # Resolve all runtime paths before workers switch interpreters; no machine
@@ -94,6 +97,8 @@ def run(args):
                                   "effective_view_budget": effective_budget,
                                   "semantic_confidence_policy": confidence_policy,
                                   "semantic_conflict_policy": conflict_policy}
+    if geometry_readout != 'off':
+        options['geometry_readout'] = geometry_readout
     write(output / "CONFIG.json", options)
     processes = Processes(output, config.get("stage_timeout", 7200))
     def command(stage, python, target, *extra):
@@ -169,7 +174,8 @@ def run(args):
         if args.schedule == "serial" and naming:
             processes.wait(naming)
         fusion = processes.launch("fusion", command("fusion", config["cpu_python"], output,
-            '--semantic-confidence-policy', confidence_policy, '--semantic-conflict-policy', conflict_policy))
+            '--semantic-confidence-policy', confidence_policy, '--semantic-conflict-policy', conflict_policy,
+            '--geometry-readout', geometry_readout))
         processes.wait(fusion)
         if naming:
             processes.wait(naming)
@@ -187,10 +193,14 @@ def run(args):
             checkpoints.verify_context()
         from ..artifacts import write_artifact_manifest
         fused = output / 'fused'
+        extra_files = {'names': fused / 'instance_names.json'}
+        if geometry_readout != 'off':
+            from .geometry_contract import artifact_files
+            extra_files.update(artifact_files(fused))
         write_artifact_manifest(fused, map_path=fused / 'export/map_labeled.ply',
             classes_path=fused / 'classes.json', result_path=fused / 'result.json',
             manifest_path=args.manifest, trajectory_path=output / 'mapping/refill/trajectory.json',
-            extra_files={'names': fused / 'instance_names.json'})
+            extra_files=extra_files)
         summary = {"status": "completed", "schedule": args.schedule, "vlm": args.vlm,
                    "raw_frames": len(manifest.frames), "seconds": end-start,
                    "raw_fps": None if mapping_reused or sam3_reused else len(manifest.frames)/(end-start),
@@ -210,6 +220,8 @@ def run(args):
                    "map": str(output / "fused/export/map_labeled.ply"),
                    "artifacts": str(output / "fused/ARTIFACTS.json"),
                    "names": str(output / "fused/instance_names.json")}
+        if geometry_readout != 'off':
+            summary['geometry_readout'] = geometry_readout
         write(output / "COMPLETE.json", summary)
         return summary
     except BaseException as error:

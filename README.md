@@ -1,5 +1,7 @@
 # ReVeMap
 
+> **`developup` 研究分支**：保存 complete-owner terminal readout 候选实现，基于已验证的 `51076f6`，未合入 `main`。功能默认关闭。使用方法、源码来源与验证边界见 [geometry readout 说明](docs/geometry_readout/README.md)。
+
 RGB-D 多视角语义建图、实例恢复与可解释对象查询。原始 RGB-D 用于轨迹估计和几何重建，SAM3 观察经过深度检查、多视角融合及实例关联后写入地图。VLM 名称默认作为观察元数据；可选 refinement 和离线 P2 有独立入口。
 
 ## CPU 安装与最小示例

@@ -171,7 +171,7 @@ def _cluster(positive, negative, origins, valid_nodes, cfg):
                     'component_contradiction_vetoes': vetoed}
 
 
-def fuse_instances(n_points, frames, baseline_semantic, config=None):
+def fuse_instances(n_points, frames, baseline_semantic, config=None, *, geometry_out=None):
     """Return unique point ownership and an audit; never mutate caller inputs."""
     cfg = _config(config)
     semantic = np.asarray(baseline_semantic)
@@ -186,6 +186,12 @@ def fuse_instances(n_points, frames, baseline_semantic, config=None):
              'semantic_labels_modified': False, 'gt_consumed': False,
              'unknown_observations': 'abstain; not counted as agreement or separation',
              'point_support': 'only cached depth-consistent mask interiors; no spatial expansion'}
+    if geometry_out is not None:
+        if not isinstance(geometry_out, dict) or geometry_out:
+            raise ValueError('geometry_out must be an empty output dictionary')
+        geometry_out.update(object_id=np.zeros(n_points, np.int32),
+                            safe_current=np.zeros(n_points, np.int32),
+                            eligible_group_ids=np.empty(0, np.int32))
     if n == 0:
         return np.zeros(n_points, np.int32), {**audit, 'retained_instances': 0, 'filtered_masks': []}
     overlaps, visible, eligible, filtered, splits, evaluable = _view_statistics(membership, visibility, origins, cfg)
@@ -286,4 +292,8 @@ def fuse_instances(n_points, frames, baseline_semantic, config=None):
                  owned_points_without_semantic=int(np.sum((owner >= 0) & (semantic == 0))),
                  owned_known_points_in_small_objects=int(np.sum((owner >= 0) & (semantic > 0) & (output == 0))),
                  instance_coverage=float(np.mean(output > 0)) if n_points else 0.)
+    if geometry_out is not None:
+        geometry_out.update(object_id=np.where(owner >= 0, owner + 1, 0).astype(np.int32),
+                            safe_current=output.copy(),
+                            eligible_group_ids=np.arange(1, len(usable_groups) + 1, dtype=np.int32))
     return output, audit

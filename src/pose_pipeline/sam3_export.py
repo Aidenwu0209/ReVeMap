@@ -9,7 +9,7 @@ import numpy as np
 from .contracts import sha256_file
 
 
-def export(baseline, labels, result, output):
+def export(baseline, labels, result, output, *, geometry_contract=None):
     from plyfile import PlyData, PlyElement
     source = PlyData.read(baseline)
     v = source['vertex'].data
@@ -24,8 +24,17 @@ def export(baseline, labels, result, output):
         raise ValueError('label count mismatch')
     if np.any(sem < 0) or np.any(inst < 0) or not np.isfinite(conf).all():
         raise ValueError('invalid labels')
-    if np.any((inst > 0) & (sem == 0)):
-        raise ValueError('instance cannot have unknown category')
+    geometry_files = {}
+    if geometry_contract is not None:
+        from .semantic_runtime.geometry_contract import POLICY, validate_contract, artifact_files
+        if report.get('geometry_readout') != POLICY:
+            raise ValueError('explicit geometry contract needs matching result policy')
+        checked = validate_contract(geometry_contract, xyz,
+                                    {'semantic': sem, 'instance': inst, 'confidence': conf},
+                                    provenance=report.get('provenance'))
+        geometry_files = artifact_files(Path(geometry_contract).parent)
+    elif report.get('geometry_readout', 'off') != 'off' or np.any((inst > 0) & (sem == 0)):
+        raise ValueError('instance cannot have unknown category without explicit geometry contract')
     fields = [('semantic_id', '<i4'), ('instance_id', '<i4'), ('semantic_confidence', '<f4')]
     if any(k in v.dtype.names for k, _ in fields):
         raise ValueError('baseline already contains semantic fields; use original geometry')
@@ -57,6 +66,9 @@ def export(baseline, labels, result, output):
                'inference_result': str(result), 'label_sha256': sha256_file(labels),
                'sga_inference_executed': report['sga_inference_executed'],
                'quality_accepted': False, 'complete_full_sequence': report['complete_full_sequence']}
+    if geometry_files:
+        receipt['geometry_readout'] = report['geometry_readout']
+        receipt['geometry_contract_sha256'] = sha256_file(Path(geometry_contract))
     classes = Path(result).parent / 'classes.json'
     if classes.is_file():
         from .artifacts import write_artifact_manifest
@@ -71,7 +83,8 @@ def export(baseline, labels, result, output):
             output, map_path=output/'map_labeled.ply', classes_path=classes,
             result_path=result, manifest_path=source_path('manifest'),
             trajectory_path=source_path('trajectory'),
-            scene_id=provenance.get('scene_id'), dataset=provenance.get('dataset'))
+            scene_id=provenance.get('scene_id'), dataset=provenance.get('dataset'),
+            extra_files=geometry_files)
         receipt['artifact_manifest'] = str(inventory)
     (output/'MAP_CONTRACT.json').write_text(json.dumps(receipt, indent=2))
     return receipt
@@ -81,8 +94,10 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     for name in ('baseline', 'labels', 'result', 'output'):
         p.add_argument('--'+name, type=Path, required=True)
+    p.add_argument('--geometry-contract', type=Path)
     args = p.parse_args()
-    print(json.dumps(export(args.baseline, args.labels, args.result, args.output), indent=2))
+    print(json.dumps(export(args.baseline, args.labels, args.result, args.output,
+                            geometry_contract=args.geometry_contract), indent=2))
 
 
 if __name__ == '__main__':

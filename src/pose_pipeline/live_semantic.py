@@ -38,7 +38,10 @@ def main():
     p.add_argument('--refine', action='store_true')
     p.add_argument('--checkpoint-stages', action='store_true')
     p.add_argument('--resume-from', type=Path)
+    p.add_argument('--geometry-readout', choices=['off', 'owner-lineage-v1'], default='off')
     args = p.parse_args()
+    if args.refine and args.geometry_readout != 'off':
+        raise ValueError('geometry readout after optional refinement is not yet a validated contract')
     args.stride = 5
     def terminate(*_):
         raise KeyboardInterrupt('GUI cancelled')
@@ -78,15 +81,21 @@ def main():
     if not Path(final).is_file():
         raise RuntimeError('Missing final labeled PLY')
     atomic_json(output / 'GUI_STAGE.json', {'stage': 'export'})
+    geometry_files = {}
+    geometry_metadata = {}
+    if args.geometry_readout != 'off':
+        from .semantic_runtime.geometry_contract import artifact_files
+        geometry_files = artifact_files(output / 'fused')
+        geometry_metadata = {'geometry_readout': args.geometry_readout}
     atomic_json(output / 'GUI_RESULT.json', {'status': 'completed', 'final_cloud': final, 'trajectory': geom['trajectory'],
                 'classes': str(classes), 'raw_map': result['map'], 'names': result['names'], 'refinement': args.refine,
                 'artifacts': str(output / 'ARTIFACTS.json'),
-                'scope': 'run-sam3 plus optional direct unknown-point refinement; no offline P2'})
+                'scope': 'run-sam3 plus optional direct unknown-point refinement; no offline P2', **geometry_metadata})
     from .artifacts import write_artifact_manifest
     write_artifact_manifest(output, map_path=Path(final), classes_path=classes,
                             result_path=output / 'GUI_RESULT.json', manifest_path=args.manifest,
                             trajectory_path=Path(geom['trajectory']),
-                            extra_files={'names': result['names']} if not args.refine else None)
+                            extra_files={**{'names': result['names']}, **geometry_files} if not args.refine else None)
     atomic_json(output / 'GUI_STAGE.json', {'stage': 'completed'})
 
 
