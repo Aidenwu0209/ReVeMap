@@ -47,6 +47,8 @@ def main():
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--schedule', choices=['serial', 'parallel'], default='serial')
     p.add_argument('--vlm', default='qwen3vl_2b_nf4')
+    p.add_argument("--map-completion", choices=("anchored", "off"), default="anchored",
+                      help="extend existing instances onto multi-view depth surfaces (default: anchored)")
     p.add_argument('--refine', action='store_true')
     p.add_argument('--instance-policy', choices=('legacy', 'verified'), default='legacy')
     p.add_argument('--checkpoint-stages', action='store_true')
@@ -59,6 +61,7 @@ def main():
     signal.signal(signal.SIGINT, terminate)
     guard_gui_parent()
     from .semantic_runtime.pipeline import run
+    args.gui_finalizes = True  # Complete once, after optional refinement.
     result = run(args)
     output = args.output.resolve()
     geom = read_json(output / 'mapping/mapping_result.json')
@@ -90,13 +93,24 @@ def main():
         classes = root / 'refined/capture/classes.json'
     if not Path(final).is_file():
         raise RuntimeError('Missing final labeled PLY')
+    raw_map = result['map']
+    completion_receipt = None
+    if args.map_completion == 'anchored':
+        from .semantic_runtime.completion import publish
+        atomic_json(output / 'GUI_STAGE.json', {'stage': 'completion'})
+        final, completion_receipt = publish(output, args.manifest, final, output / 'completion')
+        # The completed PLY carries labels and aligned RGB for the viewer.
+        raw_map = final = str(final)
     atomic_json(output / 'GUI_STAGE.json', {'stage': 'export'})
     atomic_json(output / 'GUI_RESULT.json', {'status': 'completed', 'final_cloud': final, 'trajectory': geom['trajectory'],
-                'classes': str(classes), 'raw_map': result['map'], 'names': result['names'], 'refinement': args.refine,
+                'classes': str(classes), 'raw_map': raw_map, 'base_map': result['map'],
+                'map_completion': args.map_completion, 'names': result['names'], 'refinement': args.refine,
                 'artifacts': str(output / 'ARTIFACTS.json'),
-                'scope': 'run-sam3 plus optional direct unknown-point refinement; no offline P2'})
+                'scope': 'run-sam3, optional unknown-point refinement, then selected map completion'})
     from .artifacts import write_artifact_manifest
     extras = {'names': result['names']}
+    if completion_receipt:
+        extras['completion'] = completion_receipt
     if geom.get('mesh'):
         from .surface import publish_surface
         surface = publish_surface(output, map_path=final, manifest=args.manifest,
