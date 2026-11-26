@@ -172,7 +172,7 @@ def test_pipeline_selects_after_refill_with_full_mapping_input(sequence, tmp_pat
         def close(self):
             pass
     monkeypatch.setattr(pipeline, 'Processes', FakeProcesses)
-    args = argparse.Namespace(manifest=manifest, runtime=runtime, output=output,
+    args = argparse.Namespace(manifest=manifest, runtime=runtime, output=output, map_completion='off',
         schedule=schedule, vlm='none', stride=5, view_policy='quality-diverse', view_budget=3)
     if instance_policy is not None:
         args.instance_policy = instance_policy

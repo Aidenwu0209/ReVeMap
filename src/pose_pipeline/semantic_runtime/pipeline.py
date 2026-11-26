@@ -75,6 +75,8 @@ def run(args):
     view_policy = getattr(args, 'view_policy', 'stride')
     view_budget = getattr(args, 'view_budget', None)
     effective_budget = selection_budget(manifest.frames, args.stride, view_budget, view_policy)
+    completion = getattr(args, "map_completion", "anchored")
+    gui_finalizes = getattr(args, "gui_finalizes", False)
     confidence_policy = getattr(args, 'semantic_confidence_policy', 'legacy')
     conflict_policy = getattr(args, 'semantic_conflict_policy', 'consensus')
     instance_policy = getattr(args, 'instance_policy', 'legacy')
@@ -93,6 +95,7 @@ def run(args):
     write(output / "INPUTS.json", inputs)
     options = {"schedule": args.schedule, "vlm": args.vlm, "stride": args.stride,
                                   "raw_frames": len(manifest.frames), "profile": "sam3_stage_v2",
+                                  "map_completion": completion,
                                   "view_policy": view_policy, "view_budget": view_budget,
                                   "effective_view_budget": effective_budget,
                                   "semantic_confidence_policy": confidence_policy,
@@ -180,6 +183,12 @@ def run(args):
             processes.wait(naming)
         backfill = processes.launch("backfill", command("backfill", config["cpu_python"], output))
         processes.wait(backfill)
+        fused = output / "fused"
+        final = fused / "export/map_labeled.ply"
+        final_result = fused / "result.json"
+        if completion == "anchored" and not gui_finalizes:
+            from .completion import publish
+            final, final_result = publish(output, args.manifest, final, output / "completion")
         end = time.monotonic()
         # Final inventory/COMPLETE are success seals, so input verification must
         # finish first. A failed run must not leave a newly sealed inventory.
@@ -191,11 +200,15 @@ def run(args):
         if checkpoints:
             checkpoints.verify_context()
         from ..artifacts import write_artifact_manifest
-        fused = output / 'fused'
         write_artifact_manifest(fused, map_path=fused / 'export/map_labeled.ply',
             classes_path=fused / 'classes.json', result_path=fused / 'result.json',
             manifest_path=args.manifest, trajectory_path=output / 'mapping/refill/trajectory.json',
             extra_files={'names': fused / 'instance_names.json'})
+        inventory = fused / "ARTIFACTS.json"
+        if final_result.parent != fused:
+            inventory = write_artifact_manifest(output, map_path=final, classes_path=fused / "classes.json",
+                result_path=final_result, manifest_path=args.manifest, trajectory_path=output / "mapping/refill/trajectory.json",
+                extra_files={"names": fused / "instance_names.json"})
         summary = {"status": "completed", "schedule": args.schedule, "vlm": args.vlm,
                    "raw_frames": len(manifest.frames), "seconds": end-start,
                    "raw_fps": None if mapping_reused or sam3_reused else len(manifest.frames)/(end-start),
@@ -212,8 +225,9 @@ def run(args):
                    "includes_offline_P2_enhancement": False, "VLM_changes_semantic_id": False,
                    "timing": "all worker startup/load/inference/fusion/export; excludes pre/post input hashing and final inventory sealing; includes checkpoint verification/copy when enabled",
                    "GT_used": False, "local_models_resident_together": False,
-                   "map": str(output / "fused/export/map_labeled.ply"),
-                   "artifacts": str(output / "fused/ARTIFACTS.json"),
+                   "map_completion": "off" if gui_finalizes else completion,
+                   "map": str(final),
+                   "artifacts": str(inventory),
                    "names": str(output / "fused/instance_names.json")}
         if naming:
             report = read(output / "semantic/vlm/COMPLETE.json")
