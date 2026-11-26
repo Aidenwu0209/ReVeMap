@@ -61,6 +61,18 @@ def registry(path=None):
     return read(path or CONFIG_ROOT / "vlm_models.json")
 
 
+LIVE_NAMERS = {"qwen3vl_2b_nf4": "Qwen3-VL-2B NF4", "qwen38d_4b_q8_gpu34": "Empero Qwen3.8-Distill 4B Q8 · 34 GPU"}
+
+
+def gui_models(config):
+    models = [k for k, spec in registry().items() if spec["kind"] != "ocr"
+              and (k == "none" or k in config.get("models", {}))]
+    if "gui_vlm_models" in config:
+        models = [k for k in config["gui_vlm_models"] if k in models]
+    return {"models": models, "labels": LIVE_NAMERS,
+            "switchable": [k for k in models if k in LIVE_NAMERS]}
+
+
 def model_spec(model_id, path=None):
     entries = registry(path)
     if model_id not in entries:
@@ -107,6 +119,10 @@ def validate_runtime(config, model_id, *, raw_mapping=True):
         weights = config.get("models", {}).get(model_id, {}).get("weights")
         if not weights or not Path(weights).is_dir():
             raise ValueError(f"runtime.models.{model_id}.weights is required")
+    if spec.get("required_gpu_layers"):
+        server = Path(config["models"][model_id].get("llama_server", ""))
+        if not server.is_absolute() or not server.is_file() or not os.access(server, os.X_OK):
+            raise ValueError(f"runtime.models.{model_id}.llama_server must be an executable absolute path")
     if spec["kind"] == "ocr":
         raise ValueError("PaddleOCR is an OCR evidence interface; use test-vlm, not an object namer")
     return config

@@ -36,7 +36,7 @@ def run(root, stage, fragments=False):
         write(lock, inputs)
     if stage == 'all':
         cfg = read(root / 'runtime.json')
-        validate_runtime(cfg, 'qwen3vl_2b_nf4', raw_mapping=False)
+        validate_runtime(cfg, cfg.get('refinement_namer', 'qwen3vl_2b_nf4'), raw_mapping=False)
         env = dict(os.environ, REVEMAP_SUPERVISOR_PID=str(os.getpid()))
         src = str(Path(__file__).resolve().parents[3])
         env['PYTHONPATH'] = src + os.pathsep + env.get('PYTHONPATH', '')

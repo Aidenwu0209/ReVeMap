@@ -366,10 +366,29 @@ function resetSession(id){
  $('downloads').hidden=true;$('selectedBar').hidden=true;$('objectList').replaceChildren();
  draw();
 }
+const switchableNamers = new Set();
+$('vlm').title = '切换后从下一张待命名裁图生效';
+$('vlm').onchange = async () => {
+ if (busy) return;
+ busy = true;
+ $('vlm').disabled = true;
+ try {
+  const response = await fetch('/api/options', {method:'POST',
+   headers:{'X-Scan-Token':token,'Content-Type':'application/json'},
+   body:JSON.stringify({vlm:$('vlm').value})});
+  const result = await response.json();
+  if (!response.ok) throw Error(result.error || '模型切换失败');
+ } catch (error) {
+  $('notice').textContent = error.message;
+  $('notice').style.display = 'block';
+ } finally {busy = false; $('vlm').disabled = false}
+};
 function syncActions(state){
  const active=['starting','recording','stopping','mapping','cancelling'].includes(state?.status);
  $('start').disabled=busy||active||READONLY;$('stop').disabled=busy||READONLY||!['starting','recording'].includes(state?.status);$('cancel').disabled=busy||READONLY||!active||state?.status==='cancelling';
- for(const key of ['vlm','schedule','refine'])$(key).disabled=busy||active||READONLY;
+ for(const key of ['schedule','refine'])$(key).disabled=busy||active||READONLY;
+ $('vlm').disabled=busy||READONLY||state?.status==='cancelling'||(active&&!switchableNamers.has(state.options?.vlm));
+ for(const option of $('vlm').options)option.disabled=active&&!switchableNamers.has(option.value);
 }
 async function action(name){
  if(READONLY||busy)return;busy=true;syncActions(lastState);
@@ -575,7 +594,7 @@ async function poll(){
  if(page==='records'&&Date.now()-recordsLoadedAt>3000)loadSessions();
  setTimeout(poll,1000);
 }
-fetch('/api/models').then(response=>response.json()).then(result=>{const current=$('vlm').value;$('vlm').replaceChildren(...result.models.map(model=>{const option=document.createElement('option');option.value=option.textContent=model;return option}));if(result.models.includes(current))$('vlm').value=current;}).catch(()=>{});
+fetch('/api/models').then(response=>response.json()).then(result=>{for(const id of result.switchable||[])switchableNamers.add(id);const current=$('vlm').value;$('vlm').replaceChildren(...result.models.map(model=>{const option=document.createElement('option');option.value=model;option.textContent=result.labels?.[model]||model;return option}));if(result.models.includes(current))$('vlm').value=current;}).catch(()=>{});
 if(READONLY){$('scanActions').hidden=true;$('backToRecords').hidden=false}
 applyLanguage();setPage(!EMBED&&query.get('page')==='records'?'records':'scan');draw();poll();if(!READONLY&&!EMBED)pollCamera();
 </script><script>

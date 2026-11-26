@@ -48,6 +48,10 @@
     },
     "deepseek_v41_flash_api": {
       "token_env": "DEEPSEEK_API_KEY"
+    },
+    "qwen38d_4b_q8_gpu34": {
+      "weights": "/absolute/path/to/models/qwen38d_4b",
+      "llama_server": "/absolute/path/to/llama-b12676/llama-server"
     }
   }
 }

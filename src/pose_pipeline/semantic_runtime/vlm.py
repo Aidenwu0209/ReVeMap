@@ -11,6 +11,7 @@ import json
 import math
 import mimetypes
 import os
+import re
 from pathlib import Path
 import socket
 import subprocess
@@ -30,6 +31,9 @@ def verify_weights(weights, spec):
     files = receipt.get("files", [])
     if not files:
         raise ValueError("empty checkpoint receipt")
+    expected = spec.get("weight_sha256")
+    if expected and {r["file"]: r["sha256"] for r in files} != expected:
+        raise ValueError("model and vision projector do not match the registered profile")
     for row in files:
         path = (weights / row["file"]).resolve(strict=True)
         if not path.is_relative_to(weights) or sha(path) != row["sha256"]:
@@ -329,11 +333,20 @@ class LlamaNamer(Namer):
                "--reasoning", "off", "--seed", "42"]
         if "image_min_tokens" in spec:
             cmd += ["--image-min-tokens", str(spec["image_min_tokens"])]
+        env = os.environ.copy()
+        layers = spec.get("required_gpu_layers")
+        if layers:
+            cmd += ["--device", "CUDA0", "--override-tensor", "token_embd[.]weight=CUDA0"]
+            env.update(MTMD_BACKEND_DEVICE="CUDA0", LLAMA_ARG_LOG_VERBOSITY="4", LLAMA_ARG_LOG_COLORS="off")
+            libraries = [str(binary.parent), *config.get("library_dirs", [])]
+            if env.get("LD_LIBRARY_PATH"):
+                libraries.append(env["LD_LIBRARY_PATH"])
+            env["LD_LIBRARY_PATH"] = os.pathsep.join(libraries)
         log_path = Path(config["log_dir"]) / "llama-server.log"
         self.log = log_path.open("x")
         try:
             tick = time.monotonic()
-            self.child = subprocess.Popen(cmd, stdout=self.log, stderr=subprocess.STDOUT)
+            self.child = subprocess.Popen(cmd, stdout=self.log, stderr=subprocess.STDOUT, env=env)
             while time.monotonic() - tick < 180:
                 if self.child.poll() is not None:
                     raise RuntimeError("llama-server exited; inspect its log")
@@ -347,6 +360,12 @@ class LlamaNamer(Namer):
                 raise TimeoutError("llama-server readiness timeout")
             self.audit = {**receipt, "id": spec["id"], "backend": "llama.cpp CUDA", "command": cmd,
                           "binary_sha256": sha(binary), "load_seconds": time.monotonic() - tick}
+            if layers:
+                startup = log_path.read_text(errors="replace")
+                if not re.search(rf"offloaded {layers}/{layers} layers to GPU", startup) or not re.search(
+                        r"using CUDA0 backend", startup):
+                    raise RuntimeError(f"Expected {layers} GPU layers and CUDA vision; see {log_path}")
+                self.audit.update(gpu_layers=layers, vision_device="CUDA0")
         except BaseException:
             self.close()
             raise

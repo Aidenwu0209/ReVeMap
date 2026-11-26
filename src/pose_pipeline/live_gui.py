@@ -127,6 +127,22 @@ class Controller:
         identity = [str(self.session), self.state.get("attempt"), files]
         return hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()
 
+    def select_namer(self, model):
+        from .semantic_runtime.common import LIVE_NAMERS, gui_models
+        with self.lock:
+            if model not in gui_models(read_json(self.args.runtime))["models"]:
+                raise ValueError("Unavailable naming model")
+            active = self.state.get("status") in ACTIVE
+            options = dict(getattr(self, "options", None) or {})
+            if active and (self.state["status"] == "cancelling" or
+                           options.get("vlm") not in LIVE_NAMERS or model not in LIVE_NAMERS):
+                raise ValueError("This scan cannot switch to that model")
+            selected = self.validate_options({**options, "vlm": model})
+            if active:
+                self.update(options=selected)
+            self.options = selected
+            return selected
+
     def validate_options(self, options=None):
         options = options or {}
         model = options.get("vlm", "qwen3vl_2b_nf4")
@@ -138,7 +154,7 @@ class Controller:
         if type(refine) is not bool:
             raise ValueError("refine must be boolean")
         validate_runtime(read_json(self.args.runtime), model)
-        if refine:
+        if refine and model != "qwen38d_4b_q8_gpu34":
             validate_runtime(read_json(self.args.runtime), "qwen3vl_2b_nf4", raw_mapping=False)
         return {"vlm": model, "schedule": schedule, "refine": refine}
 
@@ -348,9 +364,14 @@ class Controller:
                 raise InterruptedError("已取消，原始数据保留")
             command = [str(python), "-u", "-m", module, *map(str, arguments)]
             output = output or self.session
+            env = {**self.env, "REVEMAP_SUPERVISOR_PID": str(os.getpid())}
+            if name == "mapping":
+                from .semantic_runtime.common import LIVE_NAMERS
+                if self.options["vlm"] in LIVE_NAMERS:
+                    env["REVEMAP_NAMING_SESSION"] = str(self.session / "session.json")
             with (output / (name+".log")).open("xb") as log:
                 child = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT,
-                                         env={**self.env, "REVEMAP_SUPERVISOR_PID": str(os.getpid())},
+                                         env=env,
                                          start_new_session=True)
             self.children.append(child)
             identity = self.process_identity(child.pid)
@@ -692,10 +713,8 @@ def handler(controller, token, port):
                     return self.respond(200, {})
                 return self.respond(200, read_json(state["result"]["classes"]))
             if path == "/api/models":
-                from .semantic_runtime.common import registry
-                cfg = read_json(controller.args.runtime)
-                models = [k for k, v in registry().items() if v["kind"] != "ocr" and (k == "none" or k in cfg.get("models", {}))]
-                return self.respond(200, {"models": models})
+                from .semantic_runtime.common import gui_models
+                return self.respond(200, gui_models(read_json(controller.args.runtime)))
             if path == "/api/status":
                 return self.respond(200, controller.snapshot())
             if path == "/api/sessions":
@@ -731,13 +750,15 @@ def handler(controller, token, port):
                 return self.respond(403, {"error": "invalid session token"})
             path = urlparse(self.path).path
             try:
-                if path in {"/api/view", "/api/query"}:
+                if path in {"/api/view", "/api/query", "/api/options"}:
                     size = int(self.headers.get("Content-Length", "0"))
                     if not 0 < size <= 4096:
                         raise ValueError("Invalid request size")
                     options = json.loads(self.rfile.read(size))
                     if not isinstance(options, dict):
                         raise ValueError("Expected options object")
+                    if path == "/api/options":
+                        return self.respond(200, {"options": controller.select_namer(options["vlm"])})
                     if path == "/api/query":
                         return self.respond(200, controller.query_scene(options))
                     controller.show_cloud(options["mode"], options.get("highlight"), options.get("context"))

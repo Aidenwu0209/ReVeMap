@@ -121,20 +121,21 @@ def prepare(scene):
  print('PREPARED',scene,read(out/'PREPARED.json'),flush=True)
 
 def name_all(scenes, witness=False):
- from pose_pipeline.semantic_runtime.vlm import create_namer
+ from pose_pipeline.semantic_runtime.naming_session import NamingSession
  cfg=read(R/'runtime.json');output=R/('witness/naming' if witness else 'naming');output.mkdir(parents=True,exist_ok=False)
  rows=[x for s in scenes for x in read(R/'objects'/s/'CROP_INDEX.json')]
  if witness:rows=rows[:1]
  if not rows:
   write(output/'RECORDS.json',[]);write(output/'COMPLETE.json',{'status':'skipped','reason':'no_eligible_crops','rows':0,'actual_requests':0,'GT_used':False});return
- model=create_namer('qwen3vl_2b_nf4',cfg['models']['qwen3vl_2b_nf4']);write(output/'MODEL.json',model.audit)
+ model=NamingSession(cfg.get('refinement_namer','qwen3vl_2b_nf4'),cfg,output)
  cache={};results=[];start=time.perf_counter()
  try:
   for i,row in enumerate(rows):
    path=R/row['file'];assert sha(path)==row['sha256']
-   reused=row['sha256'] in cache
-   if not reused:cache[row['sha256']]=model.infer(path)
-   answer=cache[row['sha256']];rec={**row,**answer,'canonical':normalize_name(answer['label']),'request_reused':reused};results.append(rec)
+   key=(model.select(),row['sha256'])
+   reused=key in cache
+   if not reused:cache[key]=model.infer(path)
+   answer=cache[key];rec={**row,**answer,'canonical':normalize_name(answer['label']),'request_reused':reused};results.append(rec)
    write(output/f'{i:05}.json',rec)
    if i%50==0:print('NAME',i,len(rows),rec['label'],flush=True)
  finally:model.close()
