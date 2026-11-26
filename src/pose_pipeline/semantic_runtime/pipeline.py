@@ -215,6 +215,9 @@ def run(args):
                    "map": str(output / "fused/export/map_labeled.ply"),
                    "artifacts": str(output / "fused/ARTIFACTS.json"),
                    "names": str(output / "fused/instance_names.json")}
+        if naming:
+            report = read(output / "semantic/vlm/COMPLETE.json")
+            summary["naming_models_used"] = report.get("models_used", [args.vlm])
         write(output / "COMPLETE.json", summary)
         return summary
     except BaseException as error:

@@ -345,5 +345,22 @@
     "reasoning_effort": null,
     "image_detail": "original",
     "runtime_note": "2026-09-15 verified request contract; service alias is not an immutable model revision"
+  },
+  "qwen38d_4b_q8_gpu34": {
+    "model": "Empero Qwen3.8-Distill 4B",
+    "kind": "llama",
+    "role": "object_naming",
+    "quant": "Q8_0",
+    "repo": "empero-ai/Qwen3.8-4B-Distill-GGUF",
+    "revision": "391fc7d103e3942a408def3e4f51c2f85d464417",
+    "gguf": "Qwen3.8-4B-Q8_0.gguf",
+    "mmproj": "mmproj-F16.gguf",
+    "max_new_tokens": 24,
+    "image_tokens": 1024,
+    "required_gpu_layers": 34,
+    "weight_sha256": {
+      "Qwen3.8-4B-Q8_0.gguf": "770b780d6754a4954d1caf395c9239eaeb394f15c7a7ea34039883377c93c9c3",
+      "mmproj-F16.gguf": "521f49315fcef80c9d412c210393d23261e1f49bbb91dc1a19173a8cccaae9b7"
+    }
   }
 }

@@ -2,6 +2,8 @@
 
 RGB-D 多视角语义建图、实例恢复与可解释对象查询。原始 RGB-D 用于轨迹估计和几何重建，SAM3 观察经过深度检查、多视角融合及实例关联后写入地图。VLM 名称默认作为观察元数据；可选 refinement 和离线 P2 有独立入口。
 
+扫描设置支持在原版 Qwen3-VL-2B NF4 与全 34 层 GPU 的 Empero 4B Q8 之间切换。配置步骤和接口见[运行中切换对象命名模型](docs/live-naming-models.md)。
+
 ## 性能验证
 
 SAM3 worker 复用固定文本特征，并以 mmap/assign 降低权重加载的 CPU 内存。[首轮 352 帧对照](docs/performance-20260924.md)后，新增 3 个 ScanNet 的 120 帧窗口和一段完整 1005 帧录制：SAM3 阶段耗时减少 6.28%–6.89%、进程峰值 RSS 降低约 41%，掩码、裁图和固定几何上的融合地图一致。VLM 批处理离线试验虽有提速，但出现名称变化，未启用。验证范围和瓶颈分析见 [多场景与 VLM 报告](docs/performance-multiscene-20260924.md)。

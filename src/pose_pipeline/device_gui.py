@@ -86,18 +86,7 @@ class Controller(CoreController):
 
 
     def start(self, options=None, upload_dir=None):
-        options = options or {}
-        model = options.get("vlm", "qwen3vl_2b_nf4")
-        schedule = options.get("schedule", "serial")
-        from .semantic_runtime.common import registry, validate_runtime
-        if model not in registry() or registry()[model]["kind"] == "ocr" or schedule not in ("serial", "parallel"):
-            raise ValueError("Invalid model or schedule")
-        refine = options.get("refine", True)
-        if type(refine) is not bool:
-            raise ValueError("refine must be boolean")
-        validate_runtime(read_json(self.args.runtime), model)
-        if refine:
-            validate_runtime(read_json(self.args.runtime), "qwen3vl_2b_nf4", raw_mapping=False)
+        selected = self.validate_options(options)
         with self.camera_lock:
             if self.thread and self.thread.is_alive():
                 raise ValueError("当前扫描仍在进行")
@@ -105,7 +94,7 @@ class Controller(CoreController):
                 self.live_camera.stop()
             with self.lock:
                 self.upload_dir = upload_dir
-                self.options = {"vlm": model, "schedule": schedule, "refine": refine}
+                self.options = selected
                 self.cancelled.clear()
                 stamp = datetime.now().strftime("scan_%Y%m%d_%H%M%S_")+secrets.token_hex(3)
                 self.session = (self.args.output / stamp).resolve()
@@ -488,10 +477,8 @@ def handler(controller, token, port):
                     active = controller.session
                 return self.respond(200, _present_classes(active) if active else {})
             if path == "/api/models":
-                from .semantic_runtime.common import registry
-                cfg = read_json(controller.args.runtime)
-                models = [k for k, v in registry().items() if v["kind"] != "ocr" and (k == "none" or k in cfg.get("models", {}))]
-                return self.respond(200, {"models": models})
+                from .semantic_runtime.common import gui_models
+                return self.respond(200, gui_models(read_json(controller.args.runtime)))
             if path == "/api/status":
                 return self.respond(200, controller.snapshot())
             if path in ("/camera-preview/color.jpg", "/camera-preview/depth.jpg"):
@@ -664,27 +651,14 @@ def handler(controller, token, port):
                 atomic_json(root / "view.json", {"view": mode})
                 return self.respond(200, {"view": mode})
             if path == "/api/options":
-                length = int(self.headers.get("Content-Length", 0) or 0)
                 try:
-                    payload = json.loads(self.rfile.read(length) or b"{}")
-                except ValueError:
-                    payload = {}
-                model = str(payload.get("vlm", ""))
-                if not model:
-                    return self.respond(400, {"error": "vlm is required"})
-                merged = dict(getattr(controller, "options", None) or {})
-                merged["vlm"] = model
-                merged.setdefault("schedule", "serial")
-                merged.setdefault("refine", True)
-                # Validate exactly like start() so bad models fail here, not mid-scan.
-                from .semantic_runtime.common import registry, validate_runtime
-                if model not in registry() or registry()[model]["kind"] == "ocr"                         or merged["schedule"] not in ("serial", "parallel"):
-                    return self.respond(400, {"error": "Invalid model or schedule"})
-                validate_runtime(read_json(controller.args.runtime), model)
-                if merged["refine"]:
-                    validate_runtime(read_json(controller.args.runtime), "qwen3vl_2b_nf4", raw_mapping=False)
-                controller.options = merged
-                return self.respond(200, {"options": merged})
+                    length = int(self.headers.get("Content-Length", 0))
+                    if not 0 < length <= 4096:
+                        raise ValueError("Invalid request size")
+                    payload = json.loads(self.rfile.read(length))
+                    return self.respond(200, {"options": controller.select_namer(payload["vlm"])})
+                except (ValueError, OSError, KeyError, TypeError) as error:
+                    return self.respond(400, {"error": str(error)})
             if path == "/api/session/delete":
                 length = int(self.headers.get("Content-Length", 0) or 0)
                 try:

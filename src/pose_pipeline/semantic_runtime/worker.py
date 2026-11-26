@@ -11,11 +11,10 @@ from .common import CONFIG_ROOT, PROMPT, event, read, selected_frames, sha, writ
 
 
 def name_tasks(tasks, model_id, config, output):
-    from .vlm import create_namer
+    from .naming_session import NamingSession
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
-    model_config = {**config.get("models", {}).get(model_id, {}), "log_dir": str(output)}
-    model = None
+    model = NamingSession(model_id, config, output)
     start = time.monotonic()
     try:
         for task in tasks:
@@ -24,19 +23,22 @@ def name_tasks(tasks, model_id, config, output):
                     raise ValueError("crop changed before inference")
         write(output / "INPUTS.json", {"model": model_id, "tasks": tasks,
                                       "prompt": PROMPT, "GT_in_requests": False})
-        model = create_namer(model_id, model_config)
-        write(output / "MODEL.json", model.audit)
+        model.select()
         records = []
         for task in tasks:
             tick = time.monotonic()
-            crops = [{**crop, **model.infer(crop["file"])} for crop in task["crops"]]
+            crops = []
+            for crop in task["crops"]:
+                model.select()
+                crops.append({**crop, **model.infer(crop["file"])})
             result = {"task_id": task["task_id"], "started_at": tick,
                       "completed_at": time.monotonic(), "crops": crops}
             write(output / f'response_{task["task_id"]:06}.json', result)
             records.extend(crops)
         write(output / "RECORDS.json", records)
         write(output / "COMPLETE.json", {
-            "status": "completed", "model": model_id, "requests": len(tasks),
+            "status": "completed", "model": model_id, "models_used": sorted({r["model_id"] for r in records}),
+            "requests": len(tasks),
             "crops": len(records), "crops_executed": sum(bool(x.get("executed")) for x in records),
             "seconds_including_load": time.monotonic() - start,
             "mean_request_seconds": sum(x["request_seconds"] for x in records) / max(1, len(records)),

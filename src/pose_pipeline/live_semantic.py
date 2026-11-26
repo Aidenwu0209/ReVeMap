@@ -10,7 +10,7 @@ import sys
 from .live_io import atomic_json, read_json, guard_gui_parent
 
 
-def prepare_refinement(output, manifest, runtime):
+def prepare_refinement(output, manifest, runtime, model="qwen3vl_2b_nf4"):
     """Bridge this run's exact point ordering into the validated refinement contract."""
     root = output / 'refinement'
     inp = root / 'inputs' / 'capture'
@@ -21,7 +21,11 @@ def prepare_refinement(output, manifest, runtime):
                          (output / 'fused/map_labels.npz', 'base.npz'),
                          (output / 'fused/classes.json', 'classes.json')]:
         shutil.copyfile(source, inp / name)
-    shutil.copyfile(runtime, root / 'runtime.json')
+    from .semantic_runtime.common import LIVE_NAMERS
+    cfg = read_json(runtime)
+    if model in LIVE_NAMERS:
+        cfg['refinement_namer'] = model
+    atomic_json(root / 'runtime.json', cfg)
     candidate_path = output / 'fused/candidates.npz'
     if candidate_path.exists():
         from .contracts import sha256_file
@@ -61,7 +65,7 @@ def main():
     final = result['map']
     classes = output / "fused/classes.json"
     if args.refine:
-        root = prepare_refinement(output, args.manifest, args.runtime)
+        root = prepare_refinement(output, args.manifest, args.runtime, args.vlm)
         cfg = read_json(args.runtime)
         # Same process group as bridge: GUI cancellation reaches active refinement.
         for stage, python in [('prepare', cfg['cpu_python']), ('name', cfg['vlm_python']),
