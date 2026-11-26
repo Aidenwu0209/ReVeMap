@@ -118,7 +118,8 @@ def test_invalid_budgets_fail_before_inference(sequence, budget):
 @pytest.mark.parametrize('schedule', ['serial', 'parallel'])
 @pytest.mark.parametrize('input_changed', [False, True])
 @pytest.mark.parametrize('instance_policy', [None, 'verified'])
-def test_pipeline_selects_after_refill_with_full_mapping_input(sequence, tmp_path, monkeypatch, schedule, input_changed, instance_policy):
+@pytest.mark.parametrize('completion', [None, 'off'])
+def test_pipeline_selects_after_refill_with_full_mapping_input(sequence, tmp_path, monkeypatch, schedule, input_changed, instance_policy, completion):
     from pose_pipeline.semantic_runtime import pipeline, view_selection
     manifest, trajectory, frames = sequence
     output = tmp_path / 'run'
@@ -172,8 +173,20 @@ def test_pipeline_selects_after_refill_with_full_mapping_input(sequence, tmp_pat
         def close(self):
             pass
     monkeypatch.setattr(pipeline, 'Processes', FakeProcesses)
-    args = argparse.Namespace(manifest=manifest, runtime=runtime, output=output, map_completion='off',
+    def publish(root, input_manifest, base_map, destination):
+        assert root == output and input_manifest == manifest
+        assert base_map == root / 'fused/export/map_labeled.ply'
+        events.append('completion')
+        destination.mkdir()
+        final, receipt = destination / 'map_labeled.ply', destination / 'result.json'
+        final.write_bytes(b'mock completed geometry')
+        write(receipt, {'status': 'completed'})
+        return final, receipt
+    monkeypatch.setattr('pose_pipeline.semantic_runtime.completion.publish', publish)
+    args = argparse.Namespace(manifest=manifest, runtime=runtime, output=output,
         schedule=schedule, vlm='none', stride=5, view_policy='quality-diverse', view_budget=3)
+    if completion:
+        args.map_completion = completion
     if instance_policy is not None:
         args.instance_policy = instance_policy
     if input_changed:
@@ -184,7 +197,10 @@ def test_pipeline_selects_after_refill_with_full_mapping_input(sequence, tmp_pat
         assert read(output / 'FAILURE.json')['error_type'] == 'RuntimeError'
         return
     result = pipeline.run(args)
-    assert events == ['mapping', 'view_selection', 'sam3', 'fusion', 'backfill']
+    stages = ['mapping', 'view_selection', 'sam3', 'fusion', 'backfill']
+    assert events == (stages + ['completion'] if completion is None else stages)
+    assert Path(result['artifacts']).parent == (output if completion is None else output / 'fused')
+    assert Path(result['map']).parent == (output / 'completion' if completion is None else output / 'fused/export')
     assert result['raw_frames'] == len(frames) == 12
     assert result['selected_frames'] == result['view_budget'] == 3
     assert read(output / 'CONFIG.json')['view_policy'] == 'quality-diverse'

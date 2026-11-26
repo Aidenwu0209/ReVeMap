@@ -48,10 +48,12 @@ def pipeline_progress(pipeline, state):
         names = {"prepare": "整理视图", "name": "多视角命名", "decide": "证据核对",
                  "ground": "候选定位", "apply": "补全写回"}
         stages["refine"].update(status="running", detail=names.get(detail, detail))
-    elif gui_stage == "export":
+    elif gui_stage in {"completion", "export"}:
         if "refine" in stages:
             stages["refine"]["status"] = "completed"
         stages["export"]["status"] = "running"
+        if gui_stage == "completion":
+            stages["export"]["detail"] = "多视角几何补全"
     if status == "completed":
         for row in stages.values():
             row["status"] = "completed"
