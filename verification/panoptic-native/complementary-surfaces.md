@@ -31,6 +31,8 @@ python tools/fuse_complementary_surfaces.py \
 
 ## 验证范围
 
+要给导出的地图重新评分，按示例将 `--prediction` 指向 `$FINAL_OUTPUT/map_labeled.ply`、`--classes` 指向 `$FINAL_OUTPUT/classes.json`，轨迹使用原生估计轨迹。在 SSH33 上用发布的两条命令导出并评分 `scene0063_00` 的 592,615 个地图点，得到 PQ 56.9203%、mIoU 66.0441%、9 个命中和 9 个误检，与该场封存记录一致。[可复制的评分命令](full-domain-scoring.md) · [导出文件哈希](complementary-scene0063-export.json) · [单场独立评分](complementary-scene0063-score.json)
+
 在 9 条与验证扫描房间家族互斥的官方训练扫描上比较了补点方案。保留辅助表面测量坐标的方案将该组 PQ 从 60.35% 提高到 62.14%，随后固定该方案与 4.5 cm 参数。[开发组逐扫描对照](complementary-development9.csv) · [验证前冻结的规则](complementary-rule.json)
 
 验证使用官方 312 条验证扫描中项目既定的 142 条，涵盖 134 个房间家族。预测使用传感器数据和估计轨迹，全批预测封存后才读取评测真值。原主线、精修主图和补点输出对每场使用相同的首对相机对齐、完整标注真值顶点和 5 cm 最近邻投影。未覆盖的真值仍参与评分。按类别以严格大于 0.5 的 IoU 匹配实例，先在扫描内求 PQ，再对扫描等权平均。

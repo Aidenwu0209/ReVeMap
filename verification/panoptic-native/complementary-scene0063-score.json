@@ -1,0 +1,167 @@
+{
+  "pq_pct": 56.92027179801419,
+  "miou_pct": 66.0441060975062,
+  "thing_tp": 9,
+  "thing_fp": 9,
+  "thing_fn": 2,
+  "matched_gt_thing_ids": [
+    5,
+    6,
+    7,
+    8,
+    10,
+    11,
+    14,
+    15,
+    17
+  ],
+  "per_class": {
+    "wall": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "pq_pct": 69.54098533045901,
+      "miou_pct": 69.54098533045901
+    },
+    "floor": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "pq_pct": 89.36508552146763,
+      "miou_pct": 89.36508552146763
+    },
+    "cabinet": {
+      "tp": 3,
+      "fp": 1,
+      "fn": 0,
+      "pq_pct": 67.28392690527093,
+      "miou_pct": 72.18383899068789
+    },
+    "bed": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "pq_pct": 0.0,
+      "miou_pct": 0.0
+    },
+    "chair": {
+      "tp": 4,
+      "fp": 1,
+      "fn": 0,
+      "pq_pct": 82.55725897751554,
+      "miou_pct": 95.05269320843091
+    },
+    "sofa": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "pq_pct": 0.0,
+      "miou_pct": 0.0
+    },
+    "table": {
+      "tp": 1,
+      "fp": 1,
+      "fn": 0,
+      "pq_pct": 50.21645021645022,
+      "miou_pct": 73.74083129584352
+    },
+    "door": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 1,
+      "pq_pct": 0.0,
+      "miou_pct": 4.579710144927536
+    },
+    "window": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 0,
+      "pq_pct": 0.0,
+      "miou_pct": 0.0
+    },
+    "bookshelf": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "pq_pct": 0.0,
+      "miou_pct": 0.0
+    },
+    "picture": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "pq_pct": 0.0,
+      "miou_pct": 0.0
+    },
+    "counter": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 1,
+      "pq_pct": 0.0,
+      "miou_pct": 27.491236855282924
+    },
+    "desk": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "pq_pct": 0.0,
+      "miou_pct": 0.0
+    },
+    "curtain": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "pq_pct": 0.0,
+      "miou_pct": 0.0
+    },
+    "refrigerator": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "pq_pct": 96.3984674329502,
+      "miou_pct": 96.3984674329502
+    },
+    "showercurtain": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "pq_pct": 0.0,
+      "miou_pct": 0.0
+    },
+    "toilet": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "pq_pct": 0.0,
+      "miou_pct": 0.0
+    },
+    "sink": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 0,
+      "pq_pct": 0.0,
+      "miou_pct": 0.0
+    },
+    "bathtub": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "pq_pct": 0.0,
+      "miou_pct": 0.0
+    },
+    "otherfurniture": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 0,
+      "pq_pct": 0.0,
+      "miou_pct": 0.0
+    }
+  },
+  "scene": "scene0063_00",
+  "points": 592615,
+  "ref_vertices": 76966,
+  "alignment_frame": 0,
+  "coverage_pct": 93.27623734267057,
+  "precision_pct": 18.46510803810231,
+  "mean_symmetric_nn_m": 0.3422115233332904
+}

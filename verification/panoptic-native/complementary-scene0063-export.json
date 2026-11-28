@@ -1,0 +1,19 @@
+{
+  "inputs": {
+    "primary": "9c70ece294d92aa26a351c1b66067c4a58d858aaaaa5504c09dfca7ec228e639",
+    "secondary": "072319f5d6f3a920280b5789e997beb82eca759c7759bb027e3a523cde388122",
+    "primary_in_secondary": "500fad7106dc503f24d68e4d5cd74619fbd66688544fffe6178117dc665e76b1"
+  },
+  "GT_used": false,
+  "label_space": "ScanNet20",
+  "primary_vertices": 367461,
+  "measured_secondary_vertices": 346848,
+  "appended_measured_vertices": 225154,
+  "linked_secondary_instances": 20,
+  "minimum_extra_distance_m": 0.045,
+  "outputs": {
+    "map_labeled.ply": "b0611cb6f04e686eb36c7bd23d43e0c571a6f08983f63b40097d1ce423609cb3",
+    "classes.json": "b89a9a6952825b346ba32c97cb02dd2635beeb0343a0dbdb61abaeb8add3c7c4",
+    "panoptic.npz": "ad48fe65ddad35b757344a6344a047c6d4214d882c7828ddc4b32fc079263d4e"
+  }
+}
