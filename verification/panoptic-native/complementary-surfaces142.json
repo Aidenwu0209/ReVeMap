@@ -1,0 +1,77 @@
+{
+  "experiment": "complementary measured surfaces",
+  "scans": 142,
+  "official_split": "ScanNet v2 validation subset",
+  "families": 134,
+  "macro": "unweighted mean over scans; complete labeled GT domain",
+  "evaluation_projection_m": 0.05,
+  "matching": "strict instance IoU > 0.5",
+  "minimum_secondary_separation_m": 0.045,
+  "baseline": {
+    "pq_pct": 24.780911072275664,
+    "delta_pq_pp": 0.0,
+    "miou_pct": 39.1377179067643,
+    "hits": 574,
+    "fp": 2307,
+    "recovered": 0,
+    "lost": 0,
+    "up": 0,
+    "tie": 142,
+    "down": 0
+  },
+  "primary": {
+    "pq_pct": 47.59470923310375,
+    "delta_pq_pp": 22.81379816082808,
+    "miou_pct": 57.66864265108084,
+    "hits": 1094,
+    "fp": 1136,
+    "recovered": 594,
+    "lost": 74,
+    "up": 134,
+    "tie": 1,
+    "down": 7
+  },
+  "combined": {
+    "pq_pct": 50.54738624008801,
+    "delta_pq_pp": 25.766475167812345,
+    "miou_pct": 60.51077767319538,
+    "hits": 1176,
+    "fp": 1330,
+    "recovered": 667,
+    "lost": 65,
+    "up": 138,
+    "tie": 1,
+    "down": 3
+  },
+  "paired": {
+    "delta_pq_pp": 2.9526770069842683,
+    "gained_matches": 90,
+    "lost_matches": 8,
+    "improved": 104,
+    "tied": 4,
+    "declined": 34,
+    "fp_increase": 194,
+    "coverage_before_pct": 80.60623836317262,
+    "coverage_after_pct": 86.82040836266877
+  },
+  "bootstrap": {
+    "unit": "physical scene family, all scans in each resampled family",
+    "replicates": 10000,
+    "seed": 61128,
+    "paired_pq_gain_95_percentile": [
+      1.8733271480063898,
+      4.075985299423147
+    ],
+    "absolute_pq_95_percentile": [
+      46.99032831162251,
+      54.055237862551834
+    ]
+  },
+  "receipts": {
+    "union_exchange_frozen.json": "361ea2ba59f09cbcf3a0acb47cdb20f8c59ca8fc1d00bec4462e8509b006815f",
+    "union_exchange_cohort_sealed.json": "41419a01077335e9c1392ad34bd0f45910d76aa7bffe288c00b61f81a8477b80",
+    "ALL_SEALED.json": "6349522c9e89d0681b3393c229d3873f35ce483ecfbacf3e0e904819dd767a1e",
+    "evaluation_summary": "8ec1ebdc68f1b0496fd7708be685f10b96d945a7d059c0dff93d66e993371f29",
+    "development_summary": "ea222ea1dad89fdde18b4815132d2e4f6d5f0f27cd959db8a912800ba5a68858"
+  }
+}
