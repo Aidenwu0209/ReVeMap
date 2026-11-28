@@ -9,7 +9,7 @@ def test_requires_depth_support_on_both_sides_and_never_changes_anchors(monkeypa
     frames = [SimpleNamespace(frame_id=i, timestamp_us=i*100_000) for i in range(9)]
     manifest = SimpleNamespace(frames=frames, depth_scale=1000)
     graph = np.repeat(np.eye(4)[None, :, :], len(frames), axis=0)
-    refill = graph.copy()
+    refill = graph.astype(np.float32)
     refill[4, 2, 3] = 0.4
     depth = np.full((100, 128), 2.0, dtype=np.float32)
     def read(frame, scale):
@@ -17,8 +17,9 @@ def test_requires_depth_support_on_both_sides_and_never_changes_anchors(monkeypa
     monkeypatch.setattr(gate, "_read_depth", read)
     corrected, audit = gate.verify_refill(manifest, graph, refill, [0,8])
     assert audit["restored_ordinals"] == [4]
+    assert corrected.dtype == graph.dtype
     np.testing.assert_array_equal(corrected, graph)
-    assert refill[4, 2, 3] == 0.4
+    assert refill[4, 2, 3] == np.float32(0.4)
 
     # Foreground occlusion in the next view removes graph support there.
     monkeypatch.setattr(gate, "_read_depth",

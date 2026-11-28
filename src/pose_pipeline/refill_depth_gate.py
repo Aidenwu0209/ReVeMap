@@ -10,6 +10,9 @@ from .rgbd_measured import _read_depth, depth_check
 
 def verify_refill(manifest, graph, refill, anchors):
     """Return a complete trajectory; replace only nonanchors verified on both sides."""
+    # Keep graph restorations and the projection comparisons at graph precision.
+    graph = np.asarray(graph, dtype=np.float64)
+    refill = np.asarray(refill, dtype=np.float64)
     n = len(manifest.frames)
     if graph.shape != (n, 4, 4) or refill.shape != graph.shape:
         raise ValueError("Graph and refill must cover the complete manifest")
