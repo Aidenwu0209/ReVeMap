@@ -162,5 +162,7 @@
       "symmetric_mean_m": 0.1423220098548413
     }
   },
-  "paired_csv_sha256": "9f91ad641828baa51288f9c4196b9181d8670a4c78ec6aa5a58c14c9105ce48e"
+  "paired_csv_sha256": "906406bac40211abf889249a09b9775e78f915de0a6fde236639a0752fc030ee",
+  "training_receipt_csv_encoding": "UTF-8, CRLF rows as emitted by the development script before Git normalization",
+  "public_training_csv_lf_sha256": "1a19da91c1a78c36f2b602138cebb8815364becac90e834819ef2683332992b3"
 }
