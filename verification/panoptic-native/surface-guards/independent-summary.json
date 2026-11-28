@@ -1,0 +1,169 @@
+{
+  "rooms": 142,
+  "families": 134,
+  "frozen_sha": "505bc80c4e19102a326d5f167f23e00859f6182b9498bfec2ee9a5f2c012a5ab",
+  "sealed_inputs_sha": "fbaa522ff187a2be54bc69a3dee6753a16f7adb80d9a6817944d8a84562b0a90",
+  "csv_sha": "1ba19f48b3b2f4387cdf77eeca357577a9ea829a54dc44982304f1f121070b82",
+  "independent_sha": "7ca08ddc0046eca27ff7df2bbf8a2656a1ae3c4c1d92664971b2071c50a4413e",
+  "timing": {
+    "frozen_mtime": 1795859320.834704,
+    "cohort_sealed_at": "2026-11-28T09:50:55.485049+00:00",
+    "first_scene_score_mtime": 1795859455.8722112
+  },
+  "cohorts": 142,
+  "max_metric_error_pp": 2.842170943040401e-14,
+  "max_distance_error_m": 0.0,
+  "counts": {
+    "thing_tp": [
+      1176,
+      1178
+    ],
+    "thing_fp": [
+      1330,
+      1082
+    ],
+    "thing_fn": [
+      940,
+      938
+    ],
+    "new_id_tp": [
+      2,
+      0
+    ],
+    "new_id_fp": [
+      245,
+      0
+    ],
+    "points": [
+      79043367,
+      66024626
+    ],
+    "covered_valid_gt": [
+      14410083,
+      13937475
+    ],
+    "points_within_5cm": [
+      28307338,
+      26850934
+    ]
+  },
+  "paired": {
+    "pq_pct": {
+      "before": 50.54738624008801,
+      "after": 50.399142739102594,
+      "change": -0.1482435009854246,
+      "improved_numeric": 58,
+      "tied": 11,
+      "declined_numeric": 73,
+      "paired_cluster95": [
+        -0.5682656122117964,
+        0.25689587264560476
+      ]
+    },
+    "miou_pct": {
+      "before": 60.51077767319538,
+      "after": 59.835706984138724,
+      "change": -0.6750706890566547,
+      "improved_numeric": 29,
+      "tied": 10,
+      "declined_numeric": 103,
+      "paired_cluster95": [
+        -0.9169404105174479,
+        -0.45572890755306283
+      ]
+    },
+    "coverage_pct": {
+      "before": 86.82040836266877,
+      "after": 84.71574906823473,
+      "change": -2.104659294434029,
+      "improved_numeric": 0,
+      "tied": 13,
+      "declined_numeric": 129,
+      "paired_cluster95": [
+        -2.6724002889668634,
+        -1.5777483034998996
+      ]
+    },
+    "precision_pct": {
+      "before": 47.83719964239482,
+      "after": 50.88732085618441,
+      "change": 3.050121213789585,
+      "improved_numeric": 139,
+      "tied": 0,
+      "declined_numeric": 3,
+      "paired_cluster95": [
+        2.583405003404856,
+        3.5529523579793794
+      ]
+    },
+    "added_precision_pct": {
+      "before": 18.843801471645293,
+      "after": 24.397139436100243,
+      "change": 5.5533379644549505,
+      "improved_numeric": 132,
+      "tied": 0,
+      "declined_numeric": 10,
+      "paired_cluster95": [
+        4.6313310922519735,
+        6.553039440196033
+      ]
+    },
+    "mean_symmetric_nn_m": {
+      "before": 0.15667331689384056,
+      "after": 0.14603891886416306,
+      "change": -0.010634398029677512,
+      "improved_numeric": 16,
+      "tied": 0,
+      "declined_numeric": 126,
+      "paired_cluster95": [
+        -0.01364069362656629,
+        -0.007945490869215598
+      ]
+    },
+    "mean_p2g_m": {
+      "before": 0.28264510753056593,
+      "after": 0.2579477556220369,
+      "change": -0.02469735190852904,
+      "improved_numeric": 8,
+      "tied": 0,
+      "declined_numeric": 134,
+      "paired_cluster95": [
+        -0.03061068167257114,
+        -0.01949223846939946
+      ]
+    },
+    "mean_g2p_m": {
+      "before": 0.03070152625711519,
+      "after": 0.03413008210628919,
+      "change": 0.0034285558491740135,
+      "improved_numeric": 137,
+      "tied": 5,
+      "declined_numeric": 0,
+      "paired_cluster95": [
+        0.002141679533284014,
+        0.005023129895904306
+      ]
+    }
+  },
+  "selectivity": {
+    "original": 19324053,
+    "original_close": 2766237,
+    "retained": 6305312,
+    "retained_close": 1309833,
+    "rejected": 13018741,
+    "rejected_close": 1456404,
+    "retained_P5": 20.77348432559721,
+    "rejected_P5": 11.186980369299919,
+    "retained_share": 32.629345406990964,
+    "true_close_retained_share": 47.35071506888239
+  },
+  "raw_transition": {
+    "pq_delta_pp": -0.148243500985425,
+    "up": 58,
+    "tie": 11,
+    "down": 73,
+    "recovered": 5,
+    "lost": 3,
+    "fp_delta": -248
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "inputs": {
+    "complementary_surface_receipt": "8ef202ebd7f64e785ca95aa5a4f2b254f5b0e0efead9a2078310c36e13475ee5",
+    "sensor": "cd52790e043399c105c3efaf78b063e0264bed9d1734def0f6169ac09f9b6710",
+    "primary_trajectory": "ce0fcb1102313f0d4b4134260c453a444694495ddf643174a83bc97b6a6612cc",
+    "secondary_trajectory": "95f7944f89219d9af96e4a536dcdab1f43ab970d6e6611a02461b4abaf6acf52"
+  },
+  "GT_used": false,
+  "label_space": "ScanNet20",
+  "primary_vertices": 367461,
+  "input_appended_vertices": 225154,
+  "appended_measured_vertices": 58937,
+  "removed_appended_vertices": 166217,
+  "newly_unknown_points": 1873,
+  "surface_policy": "tight",
+  "outputs": {
+    "map_labeled.ply": "0f0bb4a41c988fa37f2041bdb0a9105f1b819036ef44430d8d717ea04b1e72ad",
+    "classes.json": "b89a9a6952825b346ba32c97cb02dd2635beeb0343a0dbdb61abaeb8add3c7c4",
+    "panoptic.npz": "e0f7cd453bd5fcee80416c225ffb1d9122cf9c4966b943a5346242d02b356586"
+  }
+}

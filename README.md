@@ -165,6 +165,8 @@ GUI 自动记录已完成阶段的检查点，“重新处理”创建新 attemp
 
 在彩色 TSDF 网格上运行 ScanNet20 三维模型，用 ReVeMap 已跟踪的物体补全实例边界。开发分支可进一步加入同次 RGB-D 的第二张重融地图。在既定 142 条 ScanNet 验证扫描上，平均 PQ 从精修主图的 47.59% 提高到 50.55%，物体命中从 1,094 增至 1,176，误检从 1,136 增至 1,330。[完整命令、逐场评分与几何精度](verification/panoptic-native/complementary-surfaces.md)
 
+补点后可继续复核新实例与表面几何。在同样的 142 场上，误检从 1,330 降至 1,082，地图点 5 cm 几何精确率从 47.84% 提高至 50.89%，平均 PQ 为 50.40%。[运行方法与宽松阈值对照](verification/panoptic-native/surface-guards/README.md)
+
 ## 验证与下一步实验
 
 ```bash

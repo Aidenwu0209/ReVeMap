@@ -1,0 +1,1151 @@
+{
+  "rooms": 142,
+  "rows": [
+    {
+      "scene": "scene0645_00",
+      "input_points": 672755,
+      "primary_points": 638687,
+      "extra_points": 34068,
+      "tight_retained": 18480,
+      "relaxed_retained": 27643
+    },
+    {
+      "scene": "scene0011_00",
+      "input_points": 951074,
+      "primary_points": 661855,
+      "extra_points": 289219,
+      "tight_retained": 90271,
+      "relaxed_retained": 121244
+    },
+    {
+      "scene": "scene0011_01",
+      "input_points": 848067,
+      "primary_points": 653910,
+      "extra_points": 194157,
+      "tight_retained": 67881,
+      "relaxed_retained": 107526
+    },
+    {
+      "scene": "scene0015_00",
+      "input_points": 1138554,
+      "primary_points": 842100,
+      "extra_points": 296454,
+      "tight_retained": 99078,
+      "relaxed_retained": 142124
+    },
+    {
+      "scene": "scene0019_00",
+      "input_points": 614078,
+      "primary_points": 360972,
+      "extra_points": 253106,
+      "tight_retained": 38064,
+      "relaxed_retained": 63841
+    },
+    {
+      "scene": "scene0019_01",
+      "input_points": 845056,
+      "primary_points": 504923,
+      "extra_points": 340133,
+      "tight_retained": 56678,
+      "relaxed_retained": 100728
+    },
+    {
+      "scene": "scene0025_00",
+      "input_points": 319380,
+      "primary_points": 309297,
+      "extra_points": 10083,
+      "tight_retained": 7830,
+      "relaxed_retained": 9143
+    },
+    {
+      "scene": "scene0025_01",
+      "input_points": 466139,
+      "primary_points": 350771,
+      "extra_points": 115368,
+      "tight_retained": 43251,
+      "relaxed_retained": 67330
+    },
+    {
+      "scene": "scene0025_02",
+      "input_points": 558354,
+      "primary_points": 421810,
+      "extra_points": 136544,
+      "tight_retained": 54667,
+      "relaxed_retained": 79195
+    },
+    {
+      "scene": "scene0030_00",
+      "input_points": 681487,
+      "primary_points": 582628,
+      "extra_points": 98859,
+      "tight_retained": 60454,
+      "relaxed_retained": 76938
+    },
+    {
+      "scene": "scene0030_01",
+      "input_points": 617688,
+      "primary_points": 545740,
+      "extra_points": 71948,
+      "tight_retained": 47980,
+      "relaxed_retained": 62934
+    },
+    {
+      "scene": "scene0030_02",
+      "input_points": 573375,
+      "primary_points": 549665,
+      "extra_points": 23710,
+      "tight_retained": 18456,
+      "relaxed_retained": 21763
+    },
+    {
+      "scene": "scene0046_00",
+      "input_points": 486381,
+      "primary_points": 345199,
+      "extra_points": 141182,
+      "tight_retained": 48933,
+      "relaxed_retained": 67056
+    },
+    {
+      "scene": "scene0046_01",
+      "input_points": 442585,
+      "primary_points": 397799,
+      "extra_points": 44786,
+      "tight_retained": 24768,
+      "relaxed_retained": 38727
+    },
+    {
+      "scene": "scene0046_02",
+      "input_points": 407837,
+      "primary_points": 338743,
+      "extra_points": 69094,
+      "tight_retained": 30760,
+      "relaxed_retained": 45702
+    },
+    {
+      "scene": "scene0050_00",
+      "input_points": 478165,
+      "primary_points": 442819,
+      "extra_points": 35346,
+      "tight_retained": 16100,
+      "relaxed_retained": 25973
+    },
+    {
+      "scene": "scene0063_00",
+      "input_points": 592615,
+      "primary_points": 367461,
+      "extra_points": 225154,
+      "tight_retained": 58937,
+      "relaxed_retained": 82056
+    },
+    {
+      "scene": "scene0064_00",
+      "input_points": 816531,
+      "primary_points": 612285,
+      "extra_points": 204246,
+      "tight_retained": 83815,
+      "relaxed_retained": 114859
+    },
+    {
+      "scene": "scene0077_00",
+      "input_points": 233197,
+      "primary_points": 180154,
+      "extra_points": 53043,
+      "tight_retained": 22862,
+      "relaxed_retained": 33510
+    },
+    {
+      "scene": "scene0081_00",
+      "input_points": 116363,
+      "primary_points": 90069,
+      "extra_points": 26294,
+      "tight_retained": 14497,
+      "relaxed_retained": 17110
+    },
+    {
+      "scene": "scene0086_00",
+      "input_points": 247057,
+      "primary_points": 214240,
+      "extra_points": 32817,
+      "tight_retained": 15737,
+      "relaxed_retained": 25856
+    },
+    {
+      "scene": "scene0088_00",
+      "input_points": 987484,
+      "primary_points": 630695,
+      "extra_points": 356789,
+      "tight_retained": 121934,
+      "relaxed_retained": 165035
+    },
+    {
+      "scene": "scene0095_00",
+      "input_points": 714885,
+      "primary_points": 585343,
+      "extra_points": 129542,
+      "tight_retained": 56777,
+      "relaxed_retained": 89843
+    },
+    {
+      "scene": "scene0100_00",
+      "input_points": 97059,
+      "primary_points": 94395,
+      "extra_points": 2664,
+      "tight_retained": 1398,
+      "relaxed_retained": 2273
+    },
+    {
+      "scene": "scene0131_00",
+      "input_points": 370676,
+      "primary_points": 340288,
+      "extra_points": 30388,
+      "tight_retained": 15730,
+      "relaxed_retained": 24079
+    },
+    {
+      "scene": "scene0139_00",
+      "input_points": 181384,
+      "primary_points": 131087,
+      "extra_points": 50297,
+      "tight_retained": 21703,
+      "relaxed_retained": 33637
+    },
+    {
+      "scene": "scene0144_00",
+      "input_points": 285281,
+      "primary_points": 240104,
+      "extra_points": 45177,
+      "tight_retained": 20374,
+      "relaxed_retained": 26279
+    },
+    {
+      "scene": "scene0146_00",
+      "input_points": 141112,
+      "primary_points": 119232,
+      "extra_points": 21880,
+      "tight_retained": 8458,
+      "relaxed_retained": 18080
+    },
+    {
+      "scene": "scene0149_00",
+      "input_points": 359434,
+      "primary_points": 277130,
+      "extra_points": 82304,
+      "tight_retained": 42609,
+      "relaxed_retained": 57542
+    },
+    {
+      "scene": "scene0153_00",
+      "input_points": 75564,
+      "primary_points": 69163,
+      "extra_points": 6401,
+      "tight_retained": 3810,
+      "relaxed_retained": 4891
+    },
+    {
+      "scene": "scene0164_00",
+      "input_points": 159411,
+      "primary_points": 155048,
+      "extra_points": 4363,
+      "tight_retained": 3296,
+      "relaxed_retained": 4139
+    },
+    {
+      "scene": "scene0169_00",
+      "input_points": 703433,
+      "primary_points": 491803,
+      "extra_points": 211630,
+      "tight_retained": 91109,
+      "relaxed_retained": 132261
+    },
+    {
+      "scene": "scene0187_00",
+      "input_points": 1006533,
+      "primary_points": 762294,
+      "extra_points": 244239,
+      "tight_retained": 83117,
+      "relaxed_retained": 126294
+    },
+    {
+      "scene": "scene0193_00",
+      "input_points": 242363,
+      "primary_points": 183714,
+      "extra_points": 58649,
+      "tight_retained": 22600,
+      "relaxed_retained": 29434
+    },
+    {
+      "scene": "scene0196_00",
+      "input_points": 1476099,
+      "primary_points": 1000345,
+      "extra_points": 475754,
+      "tight_retained": 133934,
+      "relaxed_retained": 192981
+    },
+    {
+      "scene": "scene0203_00",
+      "input_points": 1000618,
+      "primary_points": 767799,
+      "extra_points": 232819,
+      "tight_retained": 95139,
+      "relaxed_retained": 132168
+    },
+    {
+      "scene": "scene0207_00",
+      "input_points": 759211,
+      "primary_points": 658916,
+      "extra_points": 100295,
+      "tight_retained": 54068,
+      "relaxed_retained": 75571
+    },
+    {
+      "scene": "scene0208_00",
+      "input_points": 1829432,
+      "primary_points": 1350212,
+      "extra_points": 479220,
+      "tight_retained": 147032,
+      "relaxed_retained": 218985
+    },
+    {
+      "scene": "scene0217_00",
+      "input_points": 205527,
+      "primary_points": 201578,
+      "extra_points": 3949,
+      "tight_retained": 2690,
+      "relaxed_retained": 3610
+    },
+    {
+      "scene": "scene0221_00",
+      "input_points": 527775,
+      "primary_points": 397010,
+      "extra_points": 130765,
+      "tight_retained": 75751,
+      "relaxed_retained": 93346
+    },
+    {
+      "scene": "scene0222_00",
+      "input_points": 521287,
+      "primary_points": 437045,
+      "extra_points": 84242,
+      "tight_retained": 38917,
+      "relaxed_retained": 55623
+    },
+    {
+      "scene": "scene0231_00",
+      "input_points": 2102908,
+      "primary_points": 1562413,
+      "extra_points": 540495,
+      "tight_retained": 161434,
+      "relaxed_retained": 239886
+    },
+    {
+      "scene": "scene0246_00",
+      "input_points": 685957,
+      "primary_points": 550102,
+      "extra_points": 135855,
+      "tight_retained": 51847,
+      "relaxed_retained": 77941
+    },
+    {
+      "scene": "scene0249_00",
+      "input_points": 2055290,
+      "primary_points": 1266535,
+      "extra_points": 788755,
+      "tight_retained": 221959,
+      "relaxed_retained": 292451
+    },
+    {
+      "scene": "scene0251_00",
+      "input_points": 934221,
+      "primary_points": 586827,
+      "extra_points": 347394,
+      "tight_retained": 95178,
+      "relaxed_retained": 127771
+    },
+    {
+      "scene": "scene0257_00",
+      "input_points": 1196070,
+      "primary_points": 841886,
+      "extra_points": 354184,
+      "tight_retained": 74195,
+      "relaxed_retained": 125800
+    },
+    {
+      "scene": "scene0277_00",
+      "input_points": 149222,
+      "primary_points": 142309,
+      "extra_points": 6913,
+      "tight_retained": 3280,
+      "relaxed_retained": 5374
+    },
+    {
+      "scene": "scene0278_00",
+      "input_points": 191546,
+      "primary_points": 158716,
+      "extra_points": 32830,
+      "tight_retained": 12286,
+      "relaxed_retained": 19412
+    },
+    {
+      "scene": "scene0300_00",
+      "input_points": 851124,
+      "primary_points": 547018,
+      "extra_points": 304106,
+      "tight_retained": 118008,
+      "relaxed_retained": 148950
+    },
+    {
+      "scene": "scene0304_00",
+      "input_points": 812870,
+      "primary_points": 686370,
+      "extra_points": 126500,
+      "tight_retained": 37556,
+      "relaxed_retained": 53572
+    },
+    {
+      "scene": "scene0307_00",
+      "input_points": 806193,
+      "primary_points": 626653,
+      "extra_points": 179540,
+      "tight_retained": 78512,
+      "relaxed_retained": 114089
+    },
+    {
+      "scene": "scene0314_00",
+      "input_points": 355640,
+      "primary_points": 331650,
+      "extra_points": 23990,
+      "tight_retained": 14087,
+      "relaxed_retained": 19382
+    },
+    {
+      "scene": "scene0316_00",
+      "input_points": 120280,
+      "primary_points": 119637,
+      "extra_points": 643,
+      "tight_retained": 517,
+      "relaxed_retained": 604
+    },
+    {
+      "scene": "scene0328_00",
+      "input_points": 345280,
+      "primary_points": 297341,
+      "extra_points": 47939,
+      "tight_retained": 14002,
+      "relaxed_retained": 21748
+    },
+    {
+      "scene": "scene0329_00",
+      "input_points": 1678347,
+      "primary_points": 974177,
+      "extra_points": 704170,
+      "tight_retained": 122634,
+      "relaxed_retained": 179327
+    },
+    {
+      "scene": "scene0334_00",
+      "input_points": 871602,
+      "primary_points": 702529,
+      "extra_points": 169073,
+      "tight_retained": 72142,
+      "relaxed_retained": 109691
+    },
+    {
+      "scene": "scene0338_00",
+      "input_points": 238274,
+      "primary_points": 176913,
+      "extra_points": 61361,
+      "tight_retained": 28648,
+      "relaxed_retained": 37286
+    },
+    {
+      "scene": "scene0342_00",
+      "input_points": 1422174,
+      "primary_points": 844631,
+      "extra_points": 577543,
+      "tight_retained": 159220,
+      "relaxed_retained": 203491
+    },
+    {
+      "scene": "scene0343_00",
+      "input_points": 625814,
+      "primary_points": 540055,
+      "extra_points": 85759,
+      "tight_retained": 35316,
+      "relaxed_retained": 60592
+    },
+    {
+      "scene": "scene0351_00",
+      "input_points": 393209,
+      "primary_points": 352344,
+      "extra_points": 40865,
+      "tight_retained": 27340,
+      "relaxed_retained": 34598
+    },
+    {
+      "scene": "scene0353_00",
+      "input_points": 434673,
+      "primary_points": 381920,
+      "extra_points": 52753,
+      "tight_retained": 33130,
+      "relaxed_retained": 45658
+    },
+    {
+      "scene": "scene0354_00",
+      "input_points": 472021,
+      "primary_points": 363623,
+      "extra_points": 108398,
+      "tight_retained": 41676,
+      "relaxed_retained": 58483
+    },
+    {
+      "scene": "scene0355_00",
+      "input_points": 1312663,
+      "primary_points": 850390,
+      "extra_points": 462273,
+      "tight_retained": 92067,
+      "relaxed_retained": 137470
+    },
+    {
+      "scene": "scene0356_00",
+      "input_points": 174512,
+      "primary_points": 166537,
+      "extra_points": 7975,
+      "tight_retained": 4011,
+      "relaxed_retained": 7026
+    },
+    {
+      "scene": "scene0357_00",
+      "input_points": 306095,
+      "primary_points": 262214,
+      "extra_points": 43881,
+      "tight_retained": 16705,
+      "relaxed_retained": 26255
+    },
+    {
+      "scene": "scene0377_00",
+      "input_points": 157982,
+      "primary_points": 155421,
+      "extra_points": 2561,
+      "tight_retained": 1854,
+      "relaxed_retained": 2348
+    },
+    {
+      "scene": "scene0378_00",
+      "input_points": 249419,
+      "primary_points": 237263,
+      "extra_points": 12156,
+      "tight_retained": 8215,
+      "relaxed_retained": 10248
+    },
+    {
+      "scene": "scene0382_00",
+      "input_points": 234140,
+      "primary_points": 191866,
+      "extra_points": 42274,
+      "tight_retained": 10983,
+      "relaxed_retained": 15817
+    },
+    {
+      "scene": "scene0389_00",
+      "input_points": 601041,
+      "primary_points": 360084,
+      "extra_points": 240957,
+      "tight_retained": 79247,
+      "relaxed_retained": 91905
+    },
+    {
+      "scene": "scene0406_00",
+      "input_points": 67108,
+      "primary_points": 66992,
+      "extra_points": 116,
+      "tight_retained": 79,
+      "relaxed_retained": 93
+    },
+    {
+      "scene": "scene0412_00",
+      "input_points": 531704,
+      "primary_points": 373816,
+      "extra_points": 157888,
+      "tight_retained": 55741,
+      "relaxed_retained": 71565
+    },
+    {
+      "scene": "scene0414_00",
+      "input_points": 701545,
+      "primary_points": 524254,
+      "extra_points": 177291,
+      "tight_retained": 70422,
+      "relaxed_retained": 95550
+    },
+    {
+      "scene": "scene0423_00",
+      "input_points": 365341,
+      "primary_points": 354891,
+      "extra_points": 10450,
+      "tight_retained": 5624,
+      "relaxed_retained": 8392
+    },
+    {
+      "scene": "scene0426_00",
+      "input_points": 225129,
+      "primary_points": 212564,
+      "extra_points": 12565,
+      "tight_retained": 9289,
+      "relaxed_retained": 11837
+    },
+    {
+      "scene": "scene0427_00",
+      "input_points": 117853,
+      "primary_points": 108756,
+      "extra_points": 9097,
+      "tight_retained": 7438,
+      "relaxed_retained": 8891
+    },
+    {
+      "scene": "scene0430_00",
+      "input_points": 835212,
+      "primary_points": 748329,
+      "extra_points": 86883,
+      "tight_retained": 43169,
+      "relaxed_retained": 60572
+    },
+    {
+      "scene": "scene0435_00",
+      "input_points": 790250,
+      "primary_points": 571632,
+      "extra_points": 218618,
+      "tight_retained": 83226,
+      "relaxed_retained": 101811
+    },
+    {
+      "scene": "scene0441_00",
+      "input_points": 159962,
+      "primary_points": 139571,
+      "extra_points": 20391,
+      "tight_retained": 8473,
+      "relaxed_retained": 13989
+    },
+    {
+      "scene": "scene0458_00",
+      "input_points": 98928,
+      "primary_points": 97518,
+      "extra_points": 1410,
+      "tight_retained": 1075,
+      "relaxed_retained": 1265
+    },
+    {
+      "scene": "scene0461_00",
+      "input_points": 102706,
+      "primary_points": 99882,
+      "extra_points": 2824,
+      "tight_retained": 2367,
+      "relaxed_retained": 2789
+    },
+    {
+      "scene": "scene0462_00",
+      "input_points": 364025,
+      "primary_points": 314769,
+      "extra_points": 49256,
+      "tight_retained": 18688,
+      "relaxed_retained": 30940
+    },
+    {
+      "scene": "scene0474_00",
+      "input_points": 320867,
+      "primary_points": 306190,
+      "extra_points": 14677,
+      "tight_retained": 11400,
+      "relaxed_retained": 13210
+    },
+    {
+      "scene": "scene0488_00",
+      "input_points": 232600,
+      "primary_points": 209104,
+      "extra_points": 23496,
+      "tight_retained": 19932,
+      "relaxed_retained": 22872
+    },
+    {
+      "scene": "scene0490_00",
+      "input_points": 1079839,
+      "primary_points": 666683,
+      "extra_points": 413156,
+      "tight_retained": 159991,
+      "relaxed_retained": 193670
+    },
+    {
+      "scene": "scene0494_00",
+      "input_points": 141349,
+      "primary_points": 125021,
+      "extra_points": 16328,
+      "tight_retained": 5969,
+      "relaxed_retained": 10409
+    },
+    {
+      "scene": "scene0496_00",
+      "input_points": 785249,
+      "primary_points": 623820,
+      "extra_points": 161429,
+      "tight_retained": 63188,
+      "relaxed_retained": 92933
+    },
+    {
+      "scene": "scene0500_00",
+      "input_points": 1269299,
+      "primary_points": 845039,
+      "extra_points": 424260,
+      "tight_retained": 130291,
+      "relaxed_retained": 187357
+    },
+    {
+      "scene": "scene0518_00",
+      "input_points": 388383,
+      "primary_points": 313647,
+      "extra_points": 74736,
+      "tight_retained": 32741,
+      "relaxed_retained": 47645
+    },
+    {
+      "scene": "scene0527_00",
+      "input_points": 244105,
+      "primary_points": 165497,
+      "extra_points": 78608,
+      "tight_retained": 26063,
+      "relaxed_retained": 39551
+    },
+    {
+      "scene": "scene0549_00",
+      "input_points": 644162,
+      "primary_points": 480306,
+      "extra_points": 163856,
+      "tight_retained": 47854,
+      "relaxed_retained": 71438
+    },
+    {
+      "scene": "scene0550_00",
+      "input_points": 209738,
+      "primary_points": 196947,
+      "extra_points": 12791,
+      "tight_retained": 6414,
+      "relaxed_retained": 9295
+    },
+    {
+      "scene": "scene0552_00",
+      "input_points": 419648,
+      "primary_points": 328763,
+      "extra_points": 90885,
+      "tight_retained": 38242,
+      "relaxed_retained": 54284
+    },
+    {
+      "scene": "scene0553_00",
+      "input_points": 126001,
+      "primary_points": 125495,
+      "extra_points": 506,
+      "tight_retained": 337,
+      "relaxed_retained": 433
+    },
+    {
+      "scene": "scene0558_00",
+      "input_points": 328908,
+      "primary_points": 239780,
+      "extra_points": 89128,
+      "tight_retained": 39782,
+      "relaxed_retained": 55324
+    },
+    {
+      "scene": "scene0559_00",
+      "input_points": 297223,
+      "primary_points": 219109,
+      "extra_points": 78114,
+      "tight_retained": 21247,
+      "relaxed_retained": 37453
+    },
+    {
+      "scene": "scene0565_00",
+      "input_points": 429962,
+      "primary_points": 369048,
+      "extra_points": 60914,
+      "tight_retained": 29430,
+      "relaxed_retained": 44198
+    },
+    {
+      "scene": "scene0568_00",
+      "input_points": 801300,
+      "primary_points": 518833,
+      "extra_points": 282467,
+      "tight_retained": 74799,
+      "relaxed_retained": 121278
+    },
+    {
+      "scene": "scene0574_00",
+      "input_points": 105380,
+      "primary_points": 84241,
+      "extra_points": 21139,
+      "tight_retained": 6813,
+      "relaxed_retained": 12658
+    },
+    {
+      "scene": "scene0575_00",
+      "input_points": 611983,
+      "primary_points": 532793,
+      "extra_points": 79190,
+      "tight_retained": 38101,
+      "relaxed_retained": 58593
+    },
+    {
+      "scene": "scene0578_00",
+      "input_points": 559216,
+      "primary_points": 483055,
+      "extra_points": 76161,
+      "tight_retained": 24710,
+      "relaxed_retained": 40598
+    },
+    {
+      "scene": "scene0580_00",
+      "input_points": 285106,
+      "primary_points": 244540,
+      "extra_points": 40566,
+      "tight_retained": 19685,
+      "relaxed_retained": 30944
+    },
+    {
+      "scene": "scene0583_00",
+      "input_points": 402501,
+      "primary_points": 329057,
+      "extra_points": 73444,
+      "tight_retained": 19015,
+      "relaxed_retained": 36127
+    },
+    {
+      "scene": "scene0591_00",
+      "input_points": 376736,
+      "primary_points": 316911,
+      "extra_points": 59825,
+      "tight_retained": 30936,
+      "relaxed_retained": 39530
+    },
+    {
+      "scene": "scene0593_00",
+      "input_points": 540945,
+      "primary_points": 482740,
+      "extra_points": 58205,
+      "tight_retained": 34630,
+      "relaxed_retained": 48964
+    },
+    {
+      "scene": "scene0595_00",
+      "input_points": 620369,
+      "primary_points": 384835,
+      "extra_points": 235534,
+      "tight_retained": 49324,
+      "relaxed_retained": 86838
+    },
+    {
+      "scene": "scene0599_00",
+      "input_points": 429986,
+      "primary_points": 416969,
+      "extra_points": 13017,
+      "tight_retained": 7281,
+      "relaxed_retained": 10922
+    },
+    {
+      "scene": "scene0606_00",
+      "input_points": 704085,
+      "primary_points": 540235,
+      "extra_points": 163850,
+      "tight_retained": 52759,
+      "relaxed_retained": 86609
+    },
+    {
+      "scene": "scene0607_00",
+      "input_points": 725037,
+      "primary_points": 522507,
+      "extra_points": 202530,
+      "tight_retained": 50926,
+      "relaxed_retained": 76898
+    },
+    {
+      "scene": "scene0609_00",
+      "input_points": 351047,
+      "primary_points": 273501,
+      "extra_points": 77546,
+      "tight_retained": 28634,
+      "relaxed_retained": 47188
+    },
+    {
+      "scene": "scene0616_00",
+      "input_points": 849446,
+      "primary_points": 665994,
+      "extra_points": 183452,
+      "tight_retained": 68925,
+      "relaxed_retained": 97513
+    },
+    {
+      "scene": "scene0618_00",
+      "input_points": 586729,
+      "primary_points": 490989,
+      "extra_points": 95740,
+      "tight_retained": 45974,
+      "relaxed_retained": 68114
+    },
+    {
+      "scene": "scene0621_00",
+      "input_points": 1565457,
+      "primary_points": 897805,
+      "extra_points": 667652,
+      "tight_retained": 122369,
+      "relaxed_retained": 178068
+    },
+    {
+      "scene": "scene0629_00",
+      "input_points": 907104,
+      "primary_points": 668261,
+      "extra_points": 238843,
+      "tight_retained": 74569,
+      "relaxed_retained": 103234
+    },
+    {
+      "scene": "scene0633_00",
+      "input_points": 297564,
+      "primary_points": 220174,
+      "extra_points": 77390,
+      "tight_retained": 25480,
+      "relaxed_retained": 34403
+    },
+    {
+      "scene": "scene0643_00",
+      "input_points": 303941,
+      "primary_points": 284676,
+      "extra_points": 19265,
+      "tight_retained": 13931,
+      "relaxed_retained": 17179
+    },
+    {
+      "scene": "scene0644_00",
+      "input_points": 1272081,
+      "primary_points": 947689,
+      "extra_points": 324392,
+      "tight_retained": 110948,
+      "relaxed_retained": 160863
+    },
+    {
+      "scene": "scene0647_00",
+      "input_points": 957569,
+      "primary_points": 636249,
+      "extra_points": 321320,
+      "tight_retained": 77777,
+      "relaxed_retained": 109888
+    },
+    {
+      "scene": "scene0648_00",
+      "input_points": 241706,
+      "primary_points": 240905,
+      "extra_points": 801,
+      "tight_retained": 561,
+      "relaxed_retained": 681
+    },
+    {
+      "scene": "scene0651_00",
+      "input_points": 173070,
+      "primary_points": 171536,
+      "extra_points": 1534,
+      "tight_retained": 1038,
+      "relaxed_retained": 1395
+    },
+    {
+      "scene": "scene0653_00",
+      "input_points": 811588,
+      "primary_points": 559060,
+      "extra_points": 252528,
+      "tight_retained": 103180,
+      "relaxed_retained": 130283
+    },
+    {
+      "scene": "scene0655_00",
+      "input_points": 852938,
+      "primary_points": 719852,
+      "extra_points": 133086,
+      "tight_retained": 56029,
+      "relaxed_retained": 81449
+    },
+    {
+      "scene": "scene0658_00",
+      "input_points": 327269,
+      "primary_points": 231329,
+      "extra_points": 95940,
+      "tight_retained": 26109,
+      "relaxed_retained": 38045
+    },
+    {
+      "scene": "scene0660_00",
+      "input_points": 343484,
+      "primary_points": 271774,
+      "extra_points": 71710,
+      "tight_retained": 22472,
+      "relaxed_retained": 36774
+    },
+    {
+      "scene": "scene0663_00",
+      "input_points": 327152,
+      "primary_points": 312460,
+      "extra_points": 14692,
+      "tight_retained": 9893,
+      "relaxed_retained": 13121
+    },
+    {
+      "scene": "scene0664_00",
+      "input_points": 70671,
+      "primary_points": 70401,
+      "extra_points": 270,
+      "tight_retained": 83,
+      "relaxed_retained": 133
+    },
+    {
+      "scene": "scene0665_00",
+      "input_points": 780437,
+      "primary_points": 527976,
+      "extra_points": 252461,
+      "tight_retained": 101420,
+      "relaxed_retained": 140747
+    },
+    {
+      "scene": "scene0670_00",
+      "input_points": 478092,
+      "primary_points": 455257,
+      "extra_points": 22835,
+      "tight_retained": 12968,
+      "relaxed_retained": 18862
+    },
+    {
+      "scene": "scene0671_00",
+      "input_points": 357481,
+      "primary_points": 345853,
+      "extra_points": 11628,
+      "tight_retained": 6994,
+      "relaxed_retained": 10347
+    },
+    {
+      "scene": "scene0678_00",
+      "input_points": 1817540,
+      "primary_points": 780465,
+      "extra_points": 1037075,
+      "tight_retained": 204146,
+      "relaxed_retained": 283827
+    },
+    {
+      "scene": "scene0684_00",
+      "input_points": 94677,
+      "primary_points": 83006,
+      "extra_points": 11671,
+      "tight_retained": 3832,
+      "relaxed_retained": 7928
+    },
+    {
+      "scene": "scene0685_00",
+      "input_points": 291981,
+      "primary_points": 240874,
+      "extra_points": 51107,
+      "tight_retained": 18262,
+      "relaxed_retained": 34177
+    },
+    {
+      "scene": "scene0686_00",
+      "input_points": 138377,
+      "primary_points": 137768,
+      "extra_points": 609,
+      "tight_retained": 392,
+      "relaxed_retained": 520
+    },
+    {
+      "scene": "scene0689_00",
+      "input_points": 486367,
+      "primary_points": 449032,
+      "extra_points": 37335,
+      "tight_retained": 15136,
+      "relaxed_retained": 24984
+    },
+    {
+      "scene": "scene0690_00",
+      "input_points": 500915,
+      "primary_points": 432945,
+      "extra_points": 67970,
+      "tight_retained": 32662,
+      "relaxed_retained": 46582
+    },
+    {
+      "scene": "scene0693_00",
+      "input_points": 75404,
+      "primary_points": 74188,
+      "extra_points": 1216,
+      "tight_retained": 1027,
+      "relaxed_retained": 1183
+    },
+    {
+      "scene": "scene0695_00",
+      "input_points": 406098,
+      "primary_points": 252050,
+      "extra_points": 154048,
+      "tight_retained": 53126,
+      "relaxed_retained": 71475
+    },
+    {
+      "scene": "scene0696_00",
+      "input_points": 630658,
+      "primary_points": 615078,
+      "extra_points": 15580,
+      "tight_retained": 11923,
+      "relaxed_retained": 14463
+    },
+    {
+      "scene": "scene0697_00",
+      "input_points": 466937,
+      "primary_points": 308358,
+      "extra_points": 158579,
+      "tight_retained": 48250,
+      "relaxed_retained": 64842
+    },
+    {
+      "scene": "scene0700_00",
+      "input_points": 304888,
+      "primary_points": 282284,
+      "extra_points": 22604,
+      "tight_retained": 9450,
+      "relaxed_retained": 15029
+    },
+    {
+      "scene": "scene0701_00",
+      "input_points": 316740,
+      "primary_points": 298425,
+      "extra_points": 18315,
+      "tight_retained": 9823,
+      "relaxed_retained": 13864
+    },
+    {
+      "scene": "scene0702_00",
+      "input_points": 73049,
+      "primary_points": 68768,
+      "extra_points": 4281,
+      "tight_retained": 3281,
+      "relaxed_retained": 4137
+    },
+    {
+      "scene": "scene0704_00",
+      "input_points": 615297,
+      "primary_points": 438441,
+      "extra_points": 176856,
+      "tight_retained": 61203,
+      "relaxed_retained": 80988
+    }
+  ],
+  "hashes": {
+    "guard_added_instances.py": "b37b1f435ea08f8d348a533386b7b33637c1ae9ef26bbf9fb2676e24086cab71",
+    "surface_continuation.py": "2ba5ec12a61e593eb16b7c5db0070e8c9582cb86c8aa95c24da4f229a71d1af3",
+    "panoptic_observations.py": "7802129be8e35fc051624bdb4c15a4189a2fdb26afff76d80a8ad12c312439cb",
+    "refine_native_panoptic.py": "c2a8f66c4a7a9ec7badae28c84fee161036d1c0d16028f30af8ee7f363b942e6",
+    "native_gravity.py": "b3b8a2bab25411a7391d0de8aad0420a8ec7129cd13488366018f6860c137c01"
+  },
+  "keep_differences": 0,
+  "semantic_differences": 0,
+  "instance_differences": 0
+}

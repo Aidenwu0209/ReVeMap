@@ -1,0 +1,25 @@
+{
+  "winner": "void-local_tangent-depth-protect_existing",
+  "split": "val142",
+  "training_candidates": "1836978d55ee505c4ea43243c4f5551c2432aaf7b52b040f7b62dabff841efbe",
+  "reference": "raw complementary surface 50.54738624008801 PQ",
+  "design": "f4b6c3b151bb896e2d3d048fae52e7a4e4d57cf01d37f67fbe074d4e8f3cbd62",
+  "arms": [
+    "previous raw",
+    "primary before augmentation",
+    "identity only",
+    "selected geometry only",
+    "identity and selected geometry (primary endpoint)",
+    "identity and adjacent tangent threshold (sensitivity)",
+    "double-free only"
+  ],
+  "double_free": "e62a5344dd58af66ba56b2592ee7e234643be6fe452056ce1ce797b95fcba8fc",
+  "new_id": "3413e82b6a01564c3e1d5d041adfc7a9110b510883ca9cb2f7a15a20405c1ac8",
+  "code": {
+    "masks.py": "8432c34c2274cc431205f562cd0c0e837bd1e8900f53257d7dccb951001f62a4",
+    "combine.py": "60febad2c0d120fbba74e72565bb794d4c79b1397d49f6b11e2add9c54317e83",
+    "tangent.py": "8b2ea34831bdcc2220f359ee8354334a17f4930400755de1c0e63569756b148b",
+    "score_jobs.py": "376010b94f1784ea27df8e381c77546bcfa4a4dc61eb8dce0ae25b03c2b15c1f",
+    "voxel_audit.py": "9df0430d1e4cff63c5db8b206fbf1ec521f8b66926a6f82d9391b83decc7f4d1"
+  }
+}
