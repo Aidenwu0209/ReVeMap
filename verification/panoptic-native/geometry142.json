@@ -1,0 +1,101 @@
+{
+  "scans": 142,
+  "arms": {
+    "native": {
+      "pq_pct": 24.780911072275664,
+      "delta_pq_pp": 0.0,
+      "miou_pct": 39.1377179067643,
+      "hits": 574,
+      "fp": 2307,
+      "recovered": 0,
+      "lost": 0,
+      "up": 0,
+      "tie": 142,
+      "down": 0
+    },
+    "tracked": {
+      "pq_pct": 39.47917074113941,
+      "delta_pq_pp": 14.698259668863756,
+      "miou_pct": 50.38359887341801,
+      "hits": 931,
+      "fp": 1363,
+      "recovered": 433,
+      "lost": 76,
+      "up": 133,
+      "tie": 2,
+      "down": 7
+    },
+    "tracked_projective": {
+      "pq_pct": 42.94878311599348,
+      "delta_pq_pp": 18.16787204371781,
+      "miou_pct": 53.1902172502011,
+      "hits": 1001,
+      "fp": 1326,
+      "recovered": 510,
+      "lost": 83,
+      "up": 129,
+      "tie": 1,
+      "down": 12
+    },
+    "tracked_joint": {
+      "pq_pct": 43.232394900857805,
+      "delta_pq_pp": 18.45148382858215,
+      "miou_pct": 53.433778363704015,
+      "hits": 1007,
+      "fp": 1318,
+      "recovered": 517,
+      "lost": 84,
+      "up": 129,
+      "tie": 1,
+      "down": 12
+    },
+    "tracked_joint_smooth": {
+      "pq_pct": 43.42676018053811,
+      "delta_pq_pp": 18.645849108262446,
+      "miou_pct": 53.52664173128545,
+      "hits": 1005,
+      "fp": 1312,
+      "recovered": 518,
+      "lost": 87,
+      "up": 129,
+      "tie": 1,
+      "down": 12
+    },
+    "vote": {
+      "pq_pct": 40.19217450226598,
+      "delta_pq_pp": 15.41126342999031,
+      "miou_pct": 50.90320987414741,
+      "hits": 948,
+      "fp": 1255,
+      "recovered": 453,
+      "lost": 79,
+      "up": 133,
+      "tie": 2,
+      "down": 7
+    },
+    "vote_projective": {
+      "pq_pct": 43.749770294772034,
+      "delta_pq_pp": 18.96885922249637,
+      "miou_pct": 53.73528921068562,
+      "hits": 1019,
+      "fp": 1215,
+      "recovered": 531,
+      "lost": 86,
+      "up": 132,
+      "tie": 1,
+      "down": 9
+    },
+    "vote_joint_smooth": {
+      "pq_pct": 44.26669296665271,
+      "delta_pq_pp": 19.485781894377055,
+      "miou_pct": 54.07764918303662,
+      "hits": 1021,
+      "fp": 1207,
+      "recovered": 535,
+      "lost": 88,
+      "up": 131,
+      "tie": 1,
+      "down": 10
+    }
+  }
+}

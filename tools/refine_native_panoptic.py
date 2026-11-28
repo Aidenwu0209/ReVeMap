@@ -24,7 +24,7 @@ def digest(path):
     return result.hexdigest()
 
 
-def infer(mesh, poses, model):
+def infer(mesh, rotation, model):
     import segmentator
     import spconv.pytorch as spconv
     import torch
@@ -33,7 +33,6 @@ def infer(mesh, poses, model):
     triangles = np.asarray(mesh.triangles)
     if not mesh.has_vertex_colors() or not mesh.has_triangles():
         raise ValueError("The native TSDF mesh must contain measured RGB and triangle faces")
-    rotation, orientation = axis_frame(poses, vertices, triangles)
     xyz = vertices.astype(np.float32)
     faces = triangles.astype(np.int64)
     groups = segmentator.segment_mesh(torch.from_numpy(xyz), torch.from_numpy(faces)).numpy()
@@ -58,7 +57,25 @@ def infer(mesh, poses, model):
         instance = np.where(semantic >= 2, instance.cpu().numpy(), 0).astype(np.int32)
     if np.any(semantic >= len(CLASSES)) or np.any(instance[semantic >= 2] <= 0):
         raise ValueError("Unexpected model output for ScanNet20")
-    return xyz, semantic, instance, head, confidence, rotation, orientation
+    return xyz, semantic, instance, head, confidence
+
+
+def voted_labels(mesh, map_xyz, rotation, model, semantic, instance):
+    from panoptic_vote import majority_vote
+
+    results = [dict(semantic=semantic, instance=instance)]
+    for degrees, simplify in ((90, False), (45, False), (0, True)):
+        angle = np.deg2rad(degrees)
+        yaw = np.array([[np.cos(angle), -np.sin(angle), 0.],
+                        [np.sin(angle), np.cos(angle), 0.], [0., 0., 1.]])
+        candidate = mesh
+        if simplify:
+            candidate = mesh.simplify_vertex_clustering(voxel_size=0.035)
+            candidate.remove_degenerate_triangles().remove_duplicated_triangles().remove_unreferenced_vertices()
+        xyz, sem, ids, _, _ = infer(candidate, yaw @ rotation, model)
+        nearest = cKDTree(xyz).query(map_xyz, workers=2)[1]
+        results.append(dict(semantic=sem[nearest], instance=ids[nearest]))
+    return majority_vote(results)
 
 
 def run(args):
@@ -90,12 +107,15 @@ def run(args):
     del state
     network.eval().cuda()
     mesh = o3d.io.read_triangle_mesh(str(args.mesh))
-    xyz, semantic, instance, head, confidence, rotation, orientation = infer(mesh, poses, network)
+    rotation, orientation = axis_frame(poses, np.asarray(mesh.vertices), np.asarray(mesh.triangles))
+    xyz, semantic, instance, head, confidence = infer(mesh, rotation, network)
     cloud = PlyData.read(args.map, mmap=False)
     vertex = cloud["vertex"].data
     map_xyz = np.column_stack([vertex[k] for k in "xyz"])
     distance, nearest = cKDTree(xyz).query(map_xyz, workers=2)
     semantic, instance = semantic[nearest], instance[nearest]
+    if args.vote_views:
+        semantic, instance = voted_labels(mesh, map_xyz, rotation, network, semantic, instance)
     if args.native_classes:
         semantic, instance = reconcile(vertex, json.loads(args.native_classes.read_text()), semantic, instance,
                                        head[nearest], confidence[nearest], distance.astype(np.float32))
@@ -110,7 +130,7 @@ def run(args):
         (result / "classes.json").write_text(json.dumps(classes, indent=2))
         np.savez_compressed(result / "panoptic.npz", semantic=semantic, instance=instance)
         receipt = dict(inputs=inputs, vertex_count=len(vertex), rotation=rotation.tolist(), orientation=orientation,
-                       label_space="ScanNet20", same_native_vertex_order=True,
+                       label_space="ScanNet20", same_native_vertex_order=True, vote_views=args.vote_views,
                        outputs={f.name:digest(f) for f in result.iterdir()})
         (result / "result.json").write_text(json.dumps(receipt, indent=2))
         result.rename(args.output)
@@ -118,7 +138,9 @@ def run(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--native-classes", type=Path, help="Use the input map's tracked objects to refine the expert masks")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--native-classes", type=Path, help="Use the input map's tracked objects to refine the expert masks")
+    mode.add_argument("--vote-views", action="store_true", help="Vote across four independent mesh predictions")
     for field in ("mesh", "map", "trajectory", "config", "checkpoint", "output"):
         parser.add_argument("--" + field, type=Path, required=True)
     run(parser.parse_args())
