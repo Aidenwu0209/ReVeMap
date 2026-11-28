@@ -1,0 +1,26 @@
+[
+  {
+    "box_masks_changed": 0,
+    "class_changes": 0,
+    "score_max_abs": 0.0,
+    "query_count": 100,
+    "points": 94618,
+    "semantic_changes": 0,
+    "instance_changes": 0,
+    "scene": "scene0062_00",
+    "source": "6a660707f0be971e2e05443cca194f14beb85a682b44ccf2cf81c17eff963912",
+    "public_result": "6a660707f0be971e2e05443cca194f14beb85a682b44ccf2cf81c17eff963912"
+  },
+  {
+    "box_masks_changed": 90102,
+    "class_changes": 2,
+    "score_max_abs": 0.09816300868988037,
+    "query_count": 100,
+    "points": 338213,
+    "semantic_changes": 0,
+    "instance_changes": 0,
+    "scene": "scene0070_00",
+    "source": "c8771e21039b6d8d0b34be517cde0cd7d59c52f18a27d0eadb6d7434f1392297",
+    "public_result": "c8771e21039b6d8d0b34be517cde0cd7d59c52f18a27d0eadb6d7434f1392297"
+  }
+]

@@ -24,9 +24,8 @@ def digest(path):
     return result.hexdigest()
 
 
-def infer_mesh(mesh, rotation, model):
+def geometric_superpoints(mesh):
     import segmentator
-    import spconv.pytorch as spconv
     import torch
 
     vertices = np.asarray(mesh.vertices)
@@ -41,7 +40,15 @@ def infer_mesh(mesh, rotation, model):
         nearest = cKDTree(xyz[keep]).query(xyz[~keep], workers=2)[1]
         groups[~keep] = groups[keep][nearest]
     _, groups = np.unique(groups, return_inverse=True)
-    groups = torch.from_numpy(groups.reshape(-1).astype(np.int64)).cuda()
+    return xyz, groups.reshape(-1).astype(np.int64)
+
+
+def infer_mesh(mesh, rotation, model):
+    import spconv.pytorch as spconv
+    import torch
+
+    xyz, groups = geometric_superpoints(mesh)
+    groups = torch.from_numpy(groups).cuda()
     colors = np.asarray(mesh.vertex_colors).astype(np.float32) * 255
     values = np.column_stack((xyz @ rotation.T, (colors - 127.5) / 127.5)).astype(np.float32)
     with torch.inference_mode():

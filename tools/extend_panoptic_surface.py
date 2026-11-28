@@ -143,6 +143,9 @@ def run(args):
         result = Path(temp) / "result"
         result.mkdir()
         np.savez_compressed(result / "panoptic.npz", semantic=semantic, instance=instance)
+        if getattr(args, "save_point_evidence", False):
+            np.savez_compressed(result / "mesh.npz", proba=probability, nearest=nearest.astype("i4"),
+                                distance=distance.astype("f4"))
         cloud.write(result / "map_labeled.ply")
         (result / "classes.json").write_bytes(classes_file.read_bytes())
         audit = dict(inputs=inputs, vertex_count=len(vertex), mesh_vertices=len(points),
@@ -157,4 +160,6 @@ if __name__ == "__main__":
     for name in ("mesh","map","anchor","checkpoint","output"):
         parser.add_argument("--"+name, type=Path, required=True)
     parser.add_argument("--device", choices=("cuda","cpu"), default="cuda")
+    parser.add_argument("--save-point-evidence", action="store_true",
+                        help="Save per-mesh-vertex PTv3 probabilities and native point correspondences")
     run(parser.parse_args())
