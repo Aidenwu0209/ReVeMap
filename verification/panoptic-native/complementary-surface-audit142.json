@@ -1,0 +1,114 @@
+{
+  "arms": {
+    "baseline": {
+      "pq": 24.780911072275664,
+      "miou": 39.1377179067643,
+      "coverage_pct": 75.40438726812246,
+      "precision_pct": 46.32503304973071,
+      "mean_nn_p2g_m": 0.26904055268883276,
+      "mean_nn_g2p_m": 0.04622199581422161,
+      "mean_symmetric_nn_m": 0.15763127425152718,
+      "tp": 574,
+      "fp": 2307,
+      "fn": 1542,
+      "points": 59719314,
+      "valid_gt": 17033500,
+      "covered_valid_gt": 12350916,
+      "within_5cm": 22415579
+    },
+    "base": {
+      "pq": 47.59470923310375,
+      "miou": 57.66864265108084,
+      "coverage_pct": 80.60623836317261,
+      "precision_pct": 52.748814203212575,
+      "mean_nn_p2g_m": 0.2551370565174432,
+      "mean_nn_g2p_m": 0.038710074816259744,
+      "mean_symmetric_nn_m": 0.1469235656668515,
+      "tp": 1094,
+      "fp": 1136,
+      "fn": 1022,
+      "points": 59719314,
+      "valid_gt": 17033500,
+      "covered_valid_gt": 13064462,
+      "within_5cm": 25541101
+    },
+    "raw": {
+      "pq": 50.54738624008801,
+      "miou": 60.51077767319538,
+      "coverage_pct": 86.82040836266877,
+      "precision_pct": 47.83719964239482,
+      "mean_nn_p2g_m": 0.282645107530566,
+      "mean_nn_g2p_m": 0.03070152625711519,
+      "mean_symmetric_nn_m": 0.15667331689384056,
+      "tp": 1176,
+      "fp": 1330,
+      "fn": 940,
+      "points": 79043367,
+      "valid_gt": 17033500,
+      "covered_valid_gt": 14410083,
+      "within_5cm": 28307338
+    }
+  },
+  "paired": {
+    "N": 142,
+    "official_val_total": 312,
+    "physical_families": 134,
+    "gt_objects": 2116,
+    "delta_pp": 2.952677006984269,
+    "delta_median": 0.41911920316755413,
+    "delta_cluster_bootstrap95": [
+      1.8979722654925695,
+      4.110882533149131
+    ],
+    "raw_cluster_bootstrap95": [
+      47.00866764783021,
+      54.070691189676104
+    ],
+    "improved": 104,
+    "tied": 4,
+    "declined": 34,
+    "raw_vs_base_recovered": 90,
+    "raw_vs_base_lost": 8,
+    "added_points": 19324053,
+    "added_within_5cm": 2766237,
+    "macro_added_precision_pct": 18.843801471645293,
+    "max_alignment_abs": 0.0,
+    "added_point_pooled_precision_pct": 14.314993857655017,
+    "surface_precision_improved_scenes": 5,
+    "coverage_improved_scenes": 138
+  },
+  "original_split_sha": "d75d4971c3fa7128c643695840e279042c212ef904fe933bd00cf9918c61b083",
+  "method": "Frozen 4.5 cm complementary measured DROID/ORB surface addition to the mixed-graph 0.6 exchange-labelled primary map",
+  "unit": "PQ, mIoU, coverage and surface precision in percent; distances in metres",
+  "column_prefixes": {
+    "native": "original ReVeMap A",
+    "fixed": "same primary estimated surface and labels, before augmentation",
+    "union": "both actual measured surfaces"
+  },
+  "geometry": "Coverage: fraction of valid semantic GT vertices within 5 cm of a prediction. Surface precision: fraction of map points within 5 cm of any official GT mesh vertex. Average rooms equally; directional mean NN metrics use all geometry vertices.",
+  "evaluation": "Nearest predicted point for every GT vertex, radius 5 cm. Unknown outside radius. PQ/mIoU average over GT-present classes per scan, then equally over the 142 scans. Thing instances match if same class and IoU > 0.5.",
+  "method_selection": "Five variants on nine official training scans; raw measured surface had highest training PQ (62.1356%). Other configurations had previously been evaluated on the same 142-scene validation cohort.",
+  "integrity": {
+    "accepted": "independent numerical replay of all 426 arm-scans; same-family semantic review",
+    "ground_truth": "real ScanNet annotations, scoring only",
+    "source_sha256": {
+      "method": "afb186a17709feae51edbb48d3fea6e9873c6d532dafe3bd2b2f4e389654edb0",
+      "evaluator": "cabf6aedb04343d908de896f13e4e22ce33afeae15b33f490869d63ce2d816fb",
+      "train_result": "ea222ea1dad89fdde18b4815132d2e4f6d5f0f27cd959db8a912800ba5a68858",
+      "frozen_rule": "361ea2ba59f09cbcf3a0acb47cdb20f8c59ca8fc1d00bec4462e8509b006815f",
+      "all_validation_predictions": "41419a01077335e9c1392ad34bd0f45910d76aa7bffe288c00b61f81a8477b80",
+      "independent_scoring_script": "0d122d9133ec6d8f7fab93ff5d800de582a77cddd5096c041fcdfd193d305934",
+      "independent_instance_replay_script": "ff4a98b388b7f61b247ee41ef564dac938260cc52fdde62a5a242e2126073cb7"
+    },
+    "anchor": "Every first common valid original estimated and reference camera pose was independently recomposed; zero max absolute matrix discrepancy across 142 scans.",
+    "new_geometry_replay": {
+      "checked": 19324053,
+      "different": 0,
+      "secondary_instances_matched": 2084,
+      "secondary_new_ids": 474,
+      "rooms": 142
+    }
+  },
+  "uncertainty": "10,000 paired bootstrap replicates by physical ScanNet room, retaining repeated scan suffixes; seed 20261128. Final sample mean exceeds 50%; its population uncertainty interval includes 50%.",
+  "compact_csv_sha256": "2325c0f975e299c6fee2d0d6d173c4950481ebc7022ea82cc2d4fb6bbf4f957a"
+}
