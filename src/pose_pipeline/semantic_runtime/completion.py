@@ -220,8 +220,13 @@ def tracks(n, vid, node, meta, xyz, tree, base_sem, base_ins, features):
     return lookup
 
 
-def complete_labels(original_xyz, base_semantic, base_instance, obs, features, meta):
+def complete_labels(original_xyz, base_semantic, base_instance, obs, features, meta,
+                    *, association="latest", association_info=None):
     """Return additional XYZ, nearest source indices and final point labels."""
+    if association not in ("latest", "history", "history-verified"):
+        raise ValueError(f"Unknown association mode: {association}")
+    if association_info is not None:
+        association_info.update(mode=association, changed_cells=0)
     if not obs or not len(original_xyz) or not len(obs[0]):
         return (
             np.empty((0, 3)),
@@ -316,6 +321,16 @@ def complete_labels(original_xyz, base_semantic, base_instance, obs, features, m
         geometric_instance[unanchored],
         0,
     )
+    if association != "latest":
+        from .ownership_history import review_ownership
+
+        revised, audit = review_ownership(
+            voxel_ids, nodes, meta, features, dist, near, base_semantic, base_instance,
+            append, added_semantic, instance[len(original_xyz):], association == "history-verified",
+        )
+        instance[len(original_xyz):] = revised
+        if association_info is not None:
+            association_info.update(audit)
     return add, near[append], semantic, instance
 
 
