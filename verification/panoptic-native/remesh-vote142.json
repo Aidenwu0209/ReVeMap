@@ -1,0 +1,177 @@
+{
+  "rooms": 142,
+  "families": 134,
+  "preselection_sha256": "bc80ac489331941b04c70bc664452a588938ee007c5cd07d83f1253627ab36dd",
+  "global_prediction_seal_sha256": "6d0d428ce8f4c4d088f3cb1eb08cafd6b98c156ee16633798a6e81dd910ab3b4",
+  "protocol": "Full GT vertices, first valid pose alignment, 5 cm, strict >0.5 instance IoU, equal scan weights.",
+  "geometry": {
+    "dense_pose": {
+      "coefficient": 0.5,
+      "score_summary_sha256": "8468d965fcce749b98de88b0db49ab3dffaccf1ec67e17b81499bc3800b50f58",
+      "evaluator_seal_sha256": "66f43fe0ed7fd23df99eccfae9727125d07962824659e08575e44abfb46b963e",
+      "raw_per_scene_sha256": "438519e130a5791d058a95720a20dd3d342424bff448c7db32cf8c80902af85a",
+      "arms": {
+        "baseline": {
+          "pq_pct": 24.780911072275664,
+          "delta_pq_pp": 0.0,
+          "miou_pct": 39.1377179067643,
+          "hits": 574,
+          "fp": 2307,
+          "recovered": 0,
+          "lost": 0,
+          "up": 0,
+          "tie": 142,
+          "down": 0
+        },
+        "single_pose": {
+          "pq_pct": 44.71510547797629,
+          "delta_pq_pp": 19.934194405700623,
+          "miou_pct": 54.66676053846664,
+          "hits": 1026,
+          "fp": 1165,
+          "recovered": 530,
+          "lost": 78,
+          "up": 135,
+          "tie": 1,
+          "down": 6
+        },
+        "anchored_pose": {
+          "pq_pct": 45.53029516550852,
+          "delta_pq_pp": 20.749384093232855,
+          "miou_pct": 55.65684437139119,
+          "hits": 1059,
+          "fp": 1265,
+          "recovered": 557,
+          "lost": 72,
+          "up": 134,
+          "tie": 1,
+          "down": 7
+        },
+        "majority_pose": {
+          "pq_pct": 45.83451326225376,
+          "delta_pq_pp": 21.053602189978093,
+          "miou_pct": 55.42362682747094,
+          "hits": 1056,
+          "fp": 1145,
+          "recovered": 555,
+          "lost": 73,
+          "up": 134,
+          "tie": 1,
+          "down": 7
+        }
+      },
+      "paired": {
+        "pq_pct": {
+          "mean_delta_pp": 1.1194077842774734,
+          "family_percentile_95": [
+            0.4582868437371876,
+            1.761785677411614
+          ]
+        },
+        "miou_pct": {
+          "mean_delta_pp": 0.7568662890042822,
+          "family_percentile_95": [
+            0.3261623363812291,
+            1.2247085810559262
+          ]
+        },
+        "up": 97,
+        "tie": 3,
+        "down": 42,
+        "delta_hits": 30,
+        "delta_fp": -20,
+        "rooms": 142,
+        "families": 134,
+        "control": "single_pose",
+        "treatment": "majority_pose",
+        "seed": 942,
+        "bootstrap_replicates": 4000
+      }
+    },
+    "mixed_graph": {
+      "coefficient": 0.6,
+      "score_summary_sha256": "7bef84839ee87cffb15c9234f72b6a701b316e72565171d50556d67782caa021",
+      "evaluator_seal_sha256": "a7594e78faa873b35035aa19dc8c333a474cd98fa132f714eab8921d81cf3a34",
+      "raw_per_scene_sha256": "db8ab491ba31eac61a6725d33f822383324bbf0071c1fdc71c9cf4dd186542b7",
+      "arms": {
+        "baseline": {
+          "pq_pct": 24.780911072275664,
+          "delta_pq_pp": 0.0,
+          "miou_pct": 39.1377179067643,
+          "hits": 574,
+          "fp": 2307,
+          "recovered": 0,
+          "lost": 0,
+          "up": 0,
+          "tie": 142,
+          "down": 0
+        },
+        "single_pose": {
+          "pq_pct": 45.20827970834076,
+          "delta_pq_pp": 20.427368636065104,
+          "miou_pct": 55.46494983735592,
+          "hits": 1037,
+          "fp": 1188,
+          "recovered": 544,
+          "lost": 81,
+          "up": 132,
+          "tie": 2,
+          "down": 8
+        },
+        "anchored_pose": {
+          "pq_pct": 46.158705481841004,
+          "delta_pq_pp": 21.37779440956534,
+          "miou_pct": 56.4729388573718,
+          "hits": 1069,
+          "fp": 1292,
+          "recovered": 570,
+          "lost": 75,
+          "up": 134,
+          "tie": 1,
+          "down": 7
+        },
+        "majority_pose": {
+          "pq_pct": 46.372750242530174,
+          "delta_pq_pp": 21.591839170254502,
+          "miou_pct": 56.20890391257231,
+          "hits": 1065,
+          "fp": 1170,
+          "recovered": 568,
+          "lost": 77,
+          "up": 134,
+          "tie": 1,
+          "down": 7
+        }
+      },
+      "paired": {
+        "pq_pct": {
+          "mean_delta_pp": 1.1644705341893982,
+          "family_percentile_95": [
+            0.539495528372063,
+            1.8125702820004248
+          ]
+        },
+        "miou_pct": {
+          "mean_delta_pp": 0.7439540752163976,
+          "family_percentile_95": [
+            0.30310033078292975,
+            1.2081810896814769
+          ]
+        },
+        "up": 95,
+        "tie": 2,
+        "down": 45,
+        "delta_hits": 28,
+        "delta_fp": -18,
+        "rooms": 142,
+        "families": 134,
+        "control": "single_pose",
+        "treatment": "majority_pose",
+        "seed": 942,
+        "bootstrap_replicates": 4000
+      }
+    }
+  },
+  "control": "single_pose",
+  "selected": "majority_pose"
+}
