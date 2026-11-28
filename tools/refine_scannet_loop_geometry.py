@@ -1,6 +1,7 @@
 """Measure RGB-D revisits and apply their 0.6-strength pose correction to a native map."""
 
 import argparse
+import hashlib
 import json
 import struct
 from pathlib import Path
@@ -21,8 +22,6 @@ def sensor_intrinsics(path):
 
 
 def digest(path):
-    import hashlib
-
     h = hashlib.sha256()
     with path.open("rb") as stream:
         for block in iter(lambda: stream.read(1048576), b""):
@@ -54,11 +53,11 @@ def run(args):
             "Expected unique native frame IDs, finite poses and a first camera"
         )
     args.output.parent.mkdir(exist_ok=True, parents=True)
-    common = dict(
-        sensor_sha256=digest(args.sensor),
-        trajectory_sha256=digest(args.trajectory),
-        GT_used=False,
-    )
+    common = {
+        "sensor_sha256": digest(args.sensor),
+        "trajectory_sha256": digest(args.trajectory),
+        "GT_used": False,
+    }
     with TemporaryDirectory(dir=args.output.parent) as directory:
         tmp = Path(directory)
         result = tmp / "result"
@@ -77,9 +76,9 @@ def run(args):
             )
         else:
             import cv2
-            from plyfile import PlyData
-            from native_geometry.joint import joint_geometry
+            from native_geometry.joint import full_frame_poses, joint_solution
             from native_geometry.measurements import read_scan
+            from plyfile import PlyData
 
             cv2.setNumThreads(1)
             external = json.loads(args.edges.read_text())
@@ -108,7 +107,9 @@ def run(args):
                 raise ValueError(
                     "The labeled input must retain the native vertex order and colors"
                 )
-            warped, counts = joint_geometry(tmp, frames, poses, xyz, external["edges"])
+            warped, counts, node_ids, solved = joint_solution(
+                tmp, frames, poses, xyz, external["edges"]
+            )
             changed = xyz + 0.6 * (warped - xyz)
             if not np.isfinite(changed).all():
                 raise ValueError("Nonfinite coordinates after graph optimization")
@@ -126,6 +127,22 @@ def run(args):
                 points=len(xyz),
                 prediction_sha256=digest(output),
             )
+            if getattr(args, "save_trajectory", False):
+                full = full_frame_poses(poses, node_ids, solved, 0.6)
+                for row in valid:
+                    row["T_world_camera_m"] = full[row["frame_id"]].ravel().tolist()
+                data.pop("payload_sha256", None)
+                data.setdefault("metadata", {}).update(
+                    estimated_loop_fraction=0.6, gt_consumed=False
+                )
+                data["payload_sha256"] = hashlib.sha256(
+                    json.dumps(
+                        data, sort_keys=True, separators=(",", ":"), allow_nan=False
+                    ).encode()
+                ).hexdigest()
+                trajectory = result / "trajectory.json"
+                trajectory.write_text(json.dumps(data, allow_nan=False))
+                info["corrected_trajectory_sha256"] = digest(trajectory)
             (result / "result.json").write_text(json.dumps(info, indent=2))
         result.rename(args.output)
 
@@ -155,4 +172,9 @@ if __name__ == "__main__":
         help="Optional voted map with the same vertex order and colors",
     )
     apply.add_argument("--edges", type=Path, required=True)
+    apply.add_argument(
+        "--save-trajectory",
+        action="store_true",
+        help="Write full-frame 0.6-strength camera poses to trajectory.json alongside the map",
+    )
     run(parser.parse_args())

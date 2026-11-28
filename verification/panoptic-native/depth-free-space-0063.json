@@ -1,0 +1,36 @@
+{
+  "scene": "scene0063_00",
+  "track_frame_count": 831,
+  "raw_width": 640,
+  "raw_height": 480,
+  "depth_units_per_m": 1000.0,
+  "depth_intrinsics": [
+    577.87060546875,
+    577.87060546875,
+    319.5,
+    239.5
+  ],
+  "raw_depth_K_equals_archived_projection": true,
+  "depth_frames_used": 29,
+  "four_cm_cells": 59195,
+  "primary_points": 367461,
+  "additions": 225154,
+  "retained": 223707,
+  "reject": 1447,
+  "mask_disagreement": 0,
+  "source_order_equals_raw_union_tail": true,
+  "primary_source": "native DROID and frozen RGB-D plus MASt3R pose graph at fraction 0.6",
+  "secondary_source": "native DROID and same-session ORB-SLAM3 poses at fraction 0.5",
+  "gt_used_at_inference": false,
+  "input_sha256": {
+    "sens": "cd52790e043399c105c3efaf78b063e0264bed9d1734def0f6169ac09f9b6710",
+    "native_trajectory": "fc0b08d1160cd17683e1c64502ebec9a1b3c03179855498f1bb89a995b8fb736",
+    "joint_graph": "62b29661a6c302ace26d93fbd4fd5514275607f7b2b685b67b13932d86d21796",
+    "strong_trajectory": "ce0fcb1102313f0d4b4134260c453a444694495ddf643174a83bc97b6a6612cc",
+    "half_trajectory": "95f7944f89219d9af96e4a536dcdab1f43ab970d6e6611a02461b4abaf6acf52",
+    "additions_npz": "905cad7f865a706692d33fa5961ef36ae5a769c8e95c0d75f0111052050e6d62",
+    "raw_union_npz": "4802b7ca984e0a418af46bae4d7b370fe7b85f3928c13f8b878cd7b50964cd6e"
+  },
+  "frozen_keep_sha256": "5b3aa030f9549cb89f6a07ff308b20e2ee7c66b7b39d8106ceaf419b90ef49dc",
+  "replay_keep_sha256": "5b3aa030f9549cb89f6a07ff308b20e2ee7c66b7b39d8106ceaf419b90ef49dc"
+}

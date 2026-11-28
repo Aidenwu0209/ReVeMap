@@ -3,7 +3,8 @@
 import cv2
 import numpy as np
 import open3d as o3d
-from scipy.spatial.transform import Rotation
+from scipy.spatial.transform import Rotation, Slerp
+
 from .measurements import transfer_motion
 
 ODO = o3d.pipelines.odometry
@@ -20,7 +21,7 @@ def size(transform):
     ).magnitude()
 
 
-def joint_geometry(samples, meta, pose, xyz, measured):
+def joint_solution(samples, meta, pose, xyz, measured):
     fx, fy, cx, cy = meta["intrinsics"]
     long_edges = [
         e
@@ -143,6 +144,40 @@ def joint_geometry(samples, meta, pose, xyz, measured):
         sol = solved[node[k]]
         corrected.append(src_points @ sol[:3, :3].T + sol[:3, 3])
     coordinates = transfer_motion(xyz, np.vstack(original), np.vstack(corrected))
-    return coordinates, dict(
-        nodes=len(node_ids), dense_edges=accepted, long_edges=len(long_edges)
+    counts = {
+        "nodes": len(node_ids),
+        "dense_edges": accepted,
+        "long_edges": len(long_edges),
+    }
+    return coordinates, counts, np.asarray(node_ids), solved
+
+
+def joint_geometry(samples, meta, pose, xyz, measured):
+    coordinates, counts, _, _ = joint_solution(samples, meta, pose, xyz, measured)
+    return coordinates, counts
+
+
+def full_frame_poses(native, keys, solved, fraction):
+    """Interpolate joint corrections in the native world basis, then blend each camera."""
+    frame_ids = np.array(sorted(native))
+    base = np.stack([native[i] for i in frame_ids])
+    before = np.stack([native[k] for k in keys])
+    rotations = Rotation.from_matrix(
+        solved[:, :3, :3] @ before[:, :3, :3].transpose(0, 2, 1)
     )
+    query = np.clip(frame_ids, keys[0], keys[-1])
+    full = base.copy()
+    full[:, :3, :3] = Slerp(keys, rotations)(query).as_matrix() @ base[:, :3, :3]
+    for axis in range(3):
+        delta = solved[:, axis, 3] - before[:, axis, 3]
+        full[:, axis, 3] += np.interp(query, keys, delta)
+    correction = Rotation.from_matrix(
+        full[:, :3, :3] @ base[:, :3, :3].transpose(0, 2, 1)
+    )
+    output = base.copy()
+    output[:, :3, :3] = (
+        Rotation.from_rotvec(fraction * correction.as_rotvec()).as_matrix()
+        @ base[:, :3, :3]
+    )
+    output[:, :3, 3] += fraction * (full[:, :3, 3] - base[:, :3, 3])
+    return dict(zip(frame_ids.tolist(), output))

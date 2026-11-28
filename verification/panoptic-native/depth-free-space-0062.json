@@ -1,0 +1,53 @@
+{
+  "scene": "scene0062_00",
+  "track_frame_count": 730,
+  "raw_width": 640,
+  "raw_height": 480,
+  "depth_units_per_m": 1000.0,
+  "depth_intrinsics": [
+    577.5906982421875,
+    578.7297973632812,
+    318.9054260253906,
+    242.68360900878906
+  ],
+  "raw_depth_K_equals_archived_projection": true,
+  "depth_frames_used": 26,
+  "four_cm_cells": 3575,
+  "primary_points": 94618,
+  "additions": 13608,
+  "retained": 13596,
+  "reject": 12,
+  "mask_disagreement": 0,
+  "source_order_equals_raw_union_tail": true,
+  "primary_source": "native DROID and frozen RGB-D plus MASt3R pose graph at fraction 0.6",
+  "secondary_source": "native DROID and same-session ORB-SLAM3 poses at fraction 0.5",
+  "gt_used_at_inference": false,
+  "input_sha256": {
+    "sens": "6cfb0ffdce2b8bdb2b54a24fcf800edb04c4afdb2893c6f00d78ff30e4aab973",
+    "native_trajectory": "0f40d80d3f245d66b5908f6cde4a308cab08fb35f47c409829d992adcb20f5f2",
+    "joint_graph": "db3a12e616e98171f6740d345570b751fb9299e9a0d86539f75868e22f0db2fa",
+    "strong_trajectory": "f2900610fff91072b803bf8f3a9f044b869d80d0cc51e4226010c3cf0eae86c5",
+    "half_trajectory": "a46d55328d501c98d5a7b66cfbeb1dd2cc0ae9b53a9b0213598ed2d5d1f11b6e",
+    "additions_npz": "5cac2ab66e26c791ebc13a9f11cfdebc0b232a44150ff2cceda1955bf7a707c2",
+    "raw_union_npz": "af786b27b2e3da27ec83bf1cfe5bdf3fd52d2d6b87e82991307640d1894456e1"
+  },
+  "frozen_keep_sha256": "c0f91e6100cb2899dc13f094dc8cbeed44ba2c73d46b82547bfec428f816b018",
+  "replay_keep_sha256": "c0f91e6100cb2899dc13f094dc8cbeed44ba2c73d46b82547bfec428f816b018",
+  "public_apply": {
+    "graph_nodes": 125,
+    "dense_edges": 523,
+    "long_edges": 4,
+    "full_frames": 730,
+    "max_abs_pose_element_difference": 1.745939686459419e-05,
+    "max_translation_difference_m": 1.790208394533959e-05,
+    "max_rotation_difference_deg": 0.0005188872013422739,
+    "max_first_camera_difference": 2.1684043449710089e-16,
+    "bitwise_full_poses_equal": false,
+    "public_map_xyz_equals_frozen_primary": false,
+    "max_map_delta_m": 1.9564757687050187e-05,
+    "final_mask_disagreement": 0,
+    "public_trajectory_sha256": "e7384b74b689d892e67a22c1395e9b60271190c3062d2f7ebb2d1c37c776a8f1",
+    "public_keep_sha256": "c0f91e6100cb2899dc13f094dc8cbeed44ba2c73d46b82547bfec428f816b018",
+    "loop_edges_sha256": "9f7c6587b15e4999dccc255726b6b04b057254f12368abc979a2e2aa7612e341"
+  }
+}
