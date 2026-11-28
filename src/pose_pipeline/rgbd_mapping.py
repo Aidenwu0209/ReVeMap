@@ -107,7 +107,7 @@ def run_rgbd_mapping(
     *, manifest_path: Path, output_dir: Path, provider_root: Path,
     gpu_python: Path, cpu_python: Path,
     stage_timeout_s: float = 7200, device: str = "0", threads: int = 2,
-    graph_threads: int = 2,
+    graph_threads: int = 2, refill_depth_gate: bool = False,
 ) -> dict:
     """Run one sequence, preserving the failed stage if any operation fails."""
     if stage_timeout_s <= 0 or threads < 1:
@@ -144,6 +144,8 @@ def run_rgbd_mapping(
             for p in sorted((source_root / package).glob("*.py"))
         },
     }
+    if refill_depth_gate:
+        plan["refill_depth_gate"] = True
     _write(output_dir / "run_status.json", plan)
     previous_sigterm = None
     if (threading.current_thread() is threading.main_thread()
@@ -165,6 +167,8 @@ def run_rgbd_mapping(
             ]
             if stage == "graph":
                 command.extend(["--graph-threads", str(graph_threads)])
+            if stage == "refill" and refill_depth_gate:
+                command.append("--refill-depth-gate")
             stage_env = dict(env)
             if stage == "graph":
                 for key in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
@@ -208,6 +212,7 @@ def _main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--provider-root", type=Path, required=True)
     parser.add_argument("--graph-threads", type=int, default=2)
+    parser.add_argument("--refill-depth-gate", action="store_true")
     args = parser.parse_args()
     guard_parent_process()
     root = args.output.resolve()
@@ -219,7 +224,8 @@ def _main() -> None:
         run_measured_graph(root / "dense", root / "graph", threads=args.graph_threads)
     elif args.stage == "refill":
         from .rgbd_refill import run_visual_refill
-        run_visual_refill(root / "dense", root / "graph", root / "refill", args.provider_root)
+        run_visual_refill(root / "dense", root / "graph", root / "refill", args.provider_root,
+                          refill_depth_gate=args.refill_depth_gate)
     else:
         from reconstruction.rgbd_refusion import FullRefusionRequest, run_full_rgbd_refusion
         manifest = load_manifest(args.manifest)

@@ -32,6 +32,7 @@ def run_visual_refill(
     graph_dir: Path,
     output_dir: Path,
     provider_root: Path,
+    *, refill_depth_gate: bool = False,
 ) -> dict:
     """Create a full raw trajectory with fixed graph anchors and actual BA support.
 
@@ -248,6 +249,13 @@ def run_visual_refill(
             raise RuntimeError(
                 "Refilled anchor matrices differ from the measured graph"
             )
+        restored = set()
+        if refill_depth_gate:
+            from .refill_depth_gate import verify_refill
+            graph_poses = np.load(source / "final_raw_poses.npy", allow_pickle=False)
+            full, audit = verify_refill(manifest, graph_poses, full, ids)
+            restored.update(audit["restored_ordinals"])
+            (out / "refill_depth_gate.json").write_text(json.dumps(audit, indent=2, allow_nan=False))
         np.save(out / "final_raw_poses.npy", full)
         np.savez_compressed(
             out / "final_keyframes.npz", timestamps=ids, poses=fixed.cpu().numpy()
@@ -258,9 +266,10 @@ def run_visual_refill(
                 f.timestamp_us,
                 transform,
                 True,
-                "measured_graph_with_sensor_visual_refill",
+                ("depth_verified_graph_pose" if ordinal in restored
+                 else "measured_graph_with_sensor_visual_refill"),
             )
-            for f, transform in zip(manifest.frames, full)
+            for ordinal, (f, transform) in enumerate(zip(manifest.frames, full))
         ]
         write_trajectory(
             out / "trajectory.json",
@@ -271,6 +280,8 @@ def run_visual_refill(
                 "gt_consumed": False,
                 "nonkeyframes_visually_optimized": True,
                 "fixed_graph_anchors_preserved": True,
+                **({"refill_depth_gate": "bidirectional-depth-v1",
+                    "restored_graph_pose_count": len(restored)} if refill_depth_gate else {}),
                 "empty_depth_policy": "only_anchors_unused_by_all_original_filler_sources",
             },
         )

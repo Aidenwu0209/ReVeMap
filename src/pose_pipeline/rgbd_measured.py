@@ -156,7 +156,7 @@ def measured_pair(a, b):
     )
 
 
-def depth_check(a, b, k, transform):
+def depth_check(a, b, k, transform, *, target_intrinsics=None):
     """Original bidirectional depth support check; this is not a GT metric."""
     fx, fy, cx, cy = k
     y, x = np.mgrid[1 : a.shape[0] : 4, 1 : a.shape[1] : 4]
@@ -167,6 +167,8 @@ def depth_check(a, b, k, transform):
     ]
     pts = xyz @ transform[:3, :3].T + transform[:3, 3]
     zz = pts[:, 2]
+    if target_intrinsics is not None:
+        fx, fy, cx, cy = target_intrinsics
     u = np.rint(fx * pts[:, 0] / np.maximum(zz, 1e-6) + cx).astype(int)
     v = np.rint(fy * pts[:, 1] / np.maximum(zz, 1e-6) + cy).astype(int)
     keep = (zz > 0.2) & (u >= 0) & (u < b.shape[1]) & (v >= 0) & (v < b.shape[0])
