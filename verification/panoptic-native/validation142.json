@@ -1,0 +1,54 @@
+{
+  "complete": 142,
+  "requested": 142,
+  "arms": {
+    "baseline": {
+      "pq_pct": 24.780911072275664,
+      "delta_pq_pp": 0.0,
+      "miou_pct": 39.1377179067643,
+      "hits": 574,
+      "fp": 2307,
+      "recovered": 0,
+      "lost": 0,
+      "up": 0,
+      "tie": 142,
+      "down": 0
+    },
+    "extend": {
+      "pq_pct": 39.47917074113941,
+      "delta_pq_pp": 14.698259668863756,
+      "miou_pct": 50.38359887341801,
+      "hits": 931,
+      "fp": 1363,
+      "recovered": 433,
+      "lost": 76,
+      "up": 133,
+      "tie": 2,
+      "down": 7
+    },
+    "official": {
+      "pq_pct": 38.996291806606884,
+      "delta_pq_pp": 14.215380734331218,
+      "miou_pct": 49.742890200706704,
+      "hits": 915,
+      "fp": 1305,
+      "recovered": 426,
+      "lost": 85,
+      "up": 132,
+      "tie": 2,
+      "down": 8
+    },
+    "recover": {
+      "pq_pct": 38.95224226363768,
+      "delta_pq_pp": 14.171331191362011,
+      "miou_pct": 49.95956472059455,
+      "hits": 919,
+      "fp": 1374,
+      "recovered": 426,
+      "lost": 81,
+      "up": 132,
+      "tie": 2,
+      "down": 8
+    }
+  }
+}

@@ -1,0 +1,124 @@
+"""Run the ScanNet20 OneFormer3D checkpoint on a ReVeMap reconstruction."""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+from tempfile import TemporaryDirectory
+
+import numpy as np
+from plyfile import PlyData
+from scipy.spatial import cKDTree
+
+from native_gravity import axis_frame
+from panoptic_observations import CLASSES, reconcile
+
+
+CHECKPOINT = "9ba46231ff62d831c24d1e42e99e0e8c61978857d7f0475e39e002cce34cb7b6"
+
+
+def digest(path):
+    result = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(4 * 1024**2), b""):
+            result.update(block)
+    return result.hexdigest()
+
+
+def infer(mesh, poses, model):
+    import segmentator
+    import spconv.pytorch as spconv
+    import torch
+
+    vertices = np.asarray(mesh.vertices)
+    triangles = np.asarray(mesh.triangles)
+    if not mesh.has_vertex_colors() or not mesh.has_triangles():
+        raise ValueError("The native TSDF mesh must contain measured RGB and triangle faces")
+    rotation, orientation = axis_frame(poses, vertices, triangles)
+    xyz = vertices.astype(np.float32)
+    faces = triangles.astype(np.int64)
+    groups = segmentator.segment_mesh(torch.from_numpy(xyz), torch.from_numpy(faces)).numpy()
+    keep = np.bincount(groups)[groups] >= 20
+    if keep.any() and not keep.all():
+        nearest = cKDTree(xyz[keep]).query(xyz[~keep], workers=2)[1]
+        groups[~keep] = groups[keep][nearest]
+    _, groups = np.unique(groups, return_inverse=True)
+    groups = torch.from_numpy(groups.reshape(-1).astype(np.int64)).cuda()
+    colors = np.asarray(mesh.vertex_colors).astype(np.float32) * 255
+    values = np.column_stack((xyz @ rotation.T, (colors - 127.5) / 127.5)).astype(np.float32)
+    with torch.inference_mode():
+        coords, features, inverse, shape = model.collate([torch.from_numpy(values).cuda()])
+        sparse = spconv.SparseConvTensor(features, coords, shape, 1)
+        features = model.extract_feat(sparse, groups, inverse, [0, int(groups.max()) + 1])
+        output = model.decoder(features, features)
+        semantic, instance = model.predict_by_feat_panoptic(output, groups)
+        logits = output["sem_preds"][0]
+        head = logits.argmax(1)[groups].cpu().numpy().astype(np.uint8)
+        confidence = logits.softmax(1).amax(1)[groups].cpu().numpy().astype(np.float16)
+        semantic = semantic.cpu().numpy().astype(np.uint8)
+        instance = np.where(semantic >= 2, instance.cpu().numpy(), 0).astype(np.int32)
+    if np.any(semantic >= len(CLASSES)) or np.any(instance[semantic >= 2] <= 0):
+        raise ValueError("Unexpected model output for ScanNet20")
+    return xyz, semantic, instance, head, confidence, rotation, orientation
+
+
+def run(args):
+    import open3d as o3d
+    import torch
+    from mmdet3d.registry import MODELS
+    from mmengine import init_default_scope
+    from mmengine.config import Config
+
+    if args.output.exists():
+        raise FileExistsError(args.output)
+    inputs = {k:digest(getattr(args, k)) for k in ("mesh", "map", "trajectory", "config", "checkpoint")}
+    if args.native_classes:
+        inputs["native_classes"] = digest(args.native_classes)
+    if inputs["checkpoint"] != CHECKPOINT:
+        raise ValueError("Use the released OneFormer3D ScanNet20 v1.0 checkpoint")
+    trajectory = json.loads(args.trajectory.read_text())
+    if trajectory.get("gt_at_inference") is True or trajectory.get("matrix_convention") != "T_world_camera_m":
+        raise ValueError("Expected a native metric world-from-camera trajectory")
+    poses = np.stack([np.asarray(p["T_world_camera_m"]).reshape(4,4) for p in trajectory["poses"] if p.get("valid", True)])
+    if not np.isfinite(poses).all():
+        raise ValueError("Valid camera poses must be finite")
+    torch.manual_seed(942)
+    init_default_scope("mmdet3d")
+    cfg = Config.fromfile(str(args.config))
+    network = MODELS.build(cfg.model)
+    state = torch.load(str(args.checkpoint), map_location="cpu", weights_only=False)
+    network.load_state_dict(state["state_dict"], strict=True)
+    del state
+    network.eval().cuda()
+    mesh = o3d.io.read_triangle_mesh(str(args.mesh))
+    xyz, semantic, instance, head, confidence, rotation, orientation = infer(mesh, poses, network)
+    cloud = PlyData.read(args.map, mmap=False)
+    vertex = cloud["vertex"].data
+    map_xyz = np.column_stack([vertex[k] for k in "xyz"])
+    distance, nearest = cKDTree(xyz).query(map_xyz, workers=2)
+    semantic, instance = semantic[nearest], instance[nearest]
+    if args.native_classes:
+        semantic, instance = reconcile(vertex, json.loads(args.native_classes.read_text()), semantic, instance,
+                                       head[nearest], confidence[nearest], distance.astype(np.float32))
+    vertex["semantic_id"] = semantic.astype(np.int32) + 1
+    vertex["instance_id"] = instance
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    with TemporaryDirectory(dir=args.output.parent) as temp:
+        result = Path(temp) / "result"
+        result.mkdir()
+        cloud.write(result / "map_labeled.ply")
+        classes = {0:"unknown", **{i+1:c for i,c in enumerate(CLASSES)}}
+        (result / "classes.json").write_text(json.dumps(classes, indent=2))
+        np.savez_compressed(result / "panoptic.npz", semantic=semantic, instance=instance)
+        receipt = dict(inputs=inputs, vertex_count=len(vertex), rotation=rotation.tolist(), orientation=orientation,
+                       label_space="ScanNet20", same_native_vertex_order=True,
+                       outputs={f.name:digest(f) for f in result.iterdir()})
+        (result / "result.json").write_text(json.dumps(receipt, indent=2))
+        result.rename(args.output)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--native-classes", type=Path, help="Use the input map's tracked objects to refine the expert masks")
+    for field in ("mesh", "map", "trajectory", "config", "checkpoint", "output"):
+        parser.add_argument("--" + field, type=Path, required=True)
+    run(parser.parse_args())

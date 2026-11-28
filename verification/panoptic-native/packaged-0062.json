@@ -1,0 +1,18 @@
+{
+  "packaged_scene0062": {
+    "points": 94618,
+    "xyz_rgb_equal": true,
+    "differences": {
+      "semantic": 0,
+      "instance": 0
+    }
+  },
+  "packaged_hybrid0062": {
+    "points": 94618,
+    "xyz_rgb_equal": true,
+    "differences": {
+      "semantic": 0,
+      "instance": 0
+    }
+  }
+}
