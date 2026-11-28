@@ -1,0 +1,77 @@
+{
+  "scene": "scene0070_00",
+  "split": "official ScanNet train",
+  "GT_used_at_inference": false,
+  "geometry": {
+    "groups_equal": true,
+    "mesh_vertices": 244830,
+    "superpoints": 2093,
+    "max_upright_difference": 0.0,
+    "receipt_sha": "cc7d0f0b1d4f568db2793bb60033f765657212f4808c91fe9d3888454ad13c2c"
+  },
+  "sources": {
+    "map": "2f4897774607930c93d731592fc311a16035240de62f1a41d17037b914855cbd",
+    "base": "2872f3c5fd414bdedd54401526d0683bb99f7111491b40ebc1ad4e430c87766f",
+    "point_evidence": "b4780dd793d2dfc4d4860de14722ed4ac1370a95856f216718510356f434b62e",
+    "view19": "edf7ea8e144e8b891e4503565b67b6c1c27d854f97e774bcd66123e6d716a9bb",
+    "cap64": "dc54c6f0b609f964446a2610831e9785975609812f38237e44d7690f796a066f"
+  },
+  "views": {
+    "view19": {
+      "frame_count": 19,
+      "frame_ids_equal": true,
+      "differing_hard_array_elements": {
+        "semantic": 0,
+        "classes": 0,
+        "masks": 0,
+        "map_to_mesh": 0,
+        "mesh_count": 0
+      },
+      "max_abs_score_difference": 3.7789344787597656e-05,
+      "query_sha": "edf7ea8e144e8b891e4503565b67b6c1c27d854f97e774bcd66123e6d716a9bb",
+      "release_reference_sha": "ec0a85d84f5533d5a2b17d5c87621b8ea1ea22f3d179dc7862c00ee2ec26c9d6",
+      "strict_loaded_state_keys": 899,
+      "checkpoint_sha": "fab498c19378a4ea97c1aab320451ce5112bb15bbccba0cd200c7df74d3202d1"
+    },
+    "cap64": {
+      "frame_count": 64,
+      "frame_ids_equal": true,
+      "differing_hard_array_elements": {
+        "semantic": 0,
+        "classes": 0,
+        "masks": 0,
+        "map_to_mesh": 0,
+        "mesh_count": 0
+      },
+      "max_abs_score_difference": 3.936886787414551e-05,
+      "query_sha": "dc54c6f0b609f964446a2610831e9785975609812f38237e44d7690f796a066f",
+      "release_reference_sha": "4324b4073da6a28d0fcbb6daaa7c0b8517184f595092d415edd5264d815ee9db",
+      "strict_loaded_state_keys": 899,
+      "checkpoint_sha": "fab498c19378a4ea97c1aab320451ce5112bb15bbccba0cd200c7df74d3202d1"
+    }
+  },
+  "combined": {
+    "map_points": 338213,
+    "semantic_differences": 0,
+    "instance_differences": 0,
+    "sha256": "fec12a31f0515cc6b7b5c24f63d08f872a25e69a65b8fde29a27cc4a1d6b35d8",
+    "comparison_sha": "fec12a31f0515cc6b7b5c24f63d08f872a25e69a65b8fde29a27cc4a1d6b35d8",
+    "changes": {
+      "splits": 2,
+      "joins": 1,
+      "extended_vertices": 25
+    }
+  },
+  "code": {
+    "associate_odin_instances.py": "d0716db9491f4cd6140ac09695026e103f85cf3d69421795725d2c6deee97806",
+    "export_odin_queries.py": "7d5f226d7a96dc4c8acb5b37241f07282b508a6e48c72ef6cfc9420abe8f39d5",
+    "native_gravity.py": "d63be41a7b41deb614fa7e47414161da0d8704aa5aa8b3323811a0d9404e4dbe",
+    "odin_runtime.py": "e2006ab2f6fdc6962d392440bc4ea41a567e9335b93a65f4d4e33c32019face2",
+    "prepare_odin_geometry.py": "961f86df557f156117431d98cabd913f1dbd3f432f770097b2616a28f002449d"
+  },
+  "same_mixed_graph_pair": 0.49852922922906323,
+  "matched_new_gt_object_relative_to_ptv3": {
+    "object_id_in_project_evaluator": 15,
+    "raw_label": "curtain"
+  }
+}
