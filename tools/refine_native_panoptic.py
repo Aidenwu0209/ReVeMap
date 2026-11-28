@@ -72,7 +72,8 @@ def infer(mesh, poses, model):
     return (*infer_mesh(mesh, rotation, model), rotation, orientation)
 
 
-def voted_labels(mesh, map_xyz, rotation, model, semantic, instance, *, vertex=None, classes=None):
+def voted_labels(mesh, map_xyz, rotation, model, semantic, instance, *, vertex=None, classes=None,
+                 view_semantics=None):
     from panoptic_vote import majority_vote
 
     results = [dict(semantic=semantic, instance=instance)]
@@ -92,10 +93,15 @@ def voted_labels(mesh, map_xyz, rotation, model, semantic, instance, *, vertex=N
             sem, ids = reconcile(vertex, classes, sem, ids, head[nearest], confidence[nearest],
                                  distance.astype(np.float32))
         results.append(dict(semantic=sem, instance=ids))
+    if view_semantics is not None:
+        view_semantics.extend(result["semantic"] for result in results)
     return majority_vote(results)
 
 
 def run(args):
+    save_views = getattr(args, "save_view_evidence", False)
+    if save_views and not getattr(args, "vote_views", False):
+        raise ValueError("--save-view-evidence requires --vote-views")
     import open3d as o3d
     import torch
     from mmdet3d.registry import MODELS
@@ -136,9 +142,10 @@ def run(args):
         classes = json.loads(args.native_classes.read_text())
         semantic, instance = reconcile(vertex, classes, semantic, instance,
                                        head[nearest], confidence[nearest], distance.astype(np.float32))
+    view_semantics = [] if save_views else None
     if vote_views:
         semantic, instance = voted_labels(mesh, map_xyz, rotation, network, semantic, instance,
-                                          vertex=vertex, classes=classes)
+                                          vertex=vertex, classes=classes, view_semantics=view_semantics)
     vertex["semantic_id"] = semantic.astype(np.int32) + 1
     vertex["instance_id"] = instance
     args.output.parent.mkdir(parents=True, exist_ok=True)
@@ -149,6 +156,8 @@ def run(args):
         classes = {0:"unknown", **{i+1:c for i,c in enumerate(CLASSES)}}
         (result / "classes.json").write_text(json.dumps(classes, indent=2))
         np.savez_compressed(result / "panoptic.npz", semantic=semantic, instance=instance)
+        if save_views:
+            np.savez_compressed(result / "views.npz", semantic=np.stack(view_semantics))
         receipt = dict(inputs=inputs, vertex_count=len(vertex), rotation=rotation.tolist(), orientation=orientation,
                        label_space="ScanNet20", same_native_vertex_order=True, vote_views=vote_views,
                        outputs={f.name:digest(f) for f in result.iterdir()})
@@ -160,6 +169,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--native-classes", type=Path, help="Use the input map's tracked objects to refine each expert mask")
     parser.add_argument("--vote-views", action="store_true", help="Vote across four mesh predictions")
+    parser.add_argument("--save-view-evidence", action="store_true",
+                        help="Keep the four semantic predictions on native map points in views.npz")
     for field in ("mesh", "map", "trajectory", "config", "checkpoint", "output"):
         parser.add_argument("--" + field, type=Path, required=True)
     run(parser.parse_args())

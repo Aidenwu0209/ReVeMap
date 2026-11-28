@@ -1,0 +1,49 @@
+{
+  "scene": "scene0062_00",
+  "device": "CPU; native SparseConv kernels, two real four-augmentation passes",
+  "points": 94618,
+  "checks": {
+    "False": {
+      "semantic": 0,
+      "instance": 0,
+      "hash": "7824a151719443e6a7b3e17b512ce4f83479712fe95e92a41a6a90014a99a486"
+    },
+    "True": {
+      "semantic": 0,
+      "instance": 0,
+      "hash": "7824a151719443e6a7b3e17b512ce4f83479712fe95e92a41a6a90014a99a486"
+    },
+    "view_semantic_differences": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "test_surface": {
+    "differences": {
+      "semantic": 0,
+      "instance": 0,
+      "xyz": 0,
+      "rgb": 0,
+      "ply_labels": 0
+    },
+    "output": "5f31f171b150374a130014bc79d33ab53b116e0c6c30ef5de118b0c0c595835b",
+    "reference": "5f31f171b150374a130014bc79d33ab53b116e0c6c30ef5de118b0c0c595835b",
+    "receipt": "9fae6a0eccd2f407124cf643d3cb1beb5fd6721506b507f721bf23ded43e4608"
+  },
+  "test_exchange": {
+    "differences": {
+      "semantic": 0,
+      "instance": 0,
+      "xyz": 0,
+      "rgb": 0,
+      "ply_labels": 0
+    },
+    "output": "b0ead4fd8c5c39e1b899e86b8c5b957d27f0673940ba5a69f1fd7dde9e340283",
+    "reference": "b0ead4fd8c5c39e1b899e86b8c5b957d27f0673940ba5a69f1fd7dde9e340283",
+    "receipt": "d1fdf8d375c46638dde4f68d8b23a57cd18ae836ff12502ed2e45bd44d522f04"
+  },
+  "point_evidence": "c25cbe79f96676dfa1f54c26af22a076de600177beca34332f1f66657e1883d5",
+  "selected_transfer_points": 11
+}

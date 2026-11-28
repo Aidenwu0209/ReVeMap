@@ -1,0 +1,361 @@
+{
+  "rooms": 142,
+  "families": 134,
+  "preselection_sha256": "c8deaf34f32105655ca43b8df68cf91a98c30932ebcfc21cbdcb6d6644efd051",
+  "global_prediction_seal_sha256": "6f1075231694fd16f50793b971eccb40e9a3b38bd8293e2677c4f9aedbe2683f",
+  "protocol": "Full GT vertices, first valid pose alignment, 5 cm, strict >0.5 instance IoU, equal scan weights.",
+  "geometry": {
+    "dense_pose": {
+      "coefficient": 0.5,
+      "score_summary_sha256": "2bf8fe25f96757270e2704c277b3a80ce8b884de488ddd1e5d7b2332ef5cc634",
+      "evaluator_seal_sha256": "02cf04cb27513ea72006817b73b72ec9301b090a37afca34859dd05ad30a6879",
+      "raw_per_scene_sha256": "b3436f25fede6ee3661eaaedc3386830cf3f77ac9d5b6c23909aa62ee02a5f56",
+      "arms": {
+        "baseline": {
+          "pq_pct": 24.780911072275664,
+          "delta_pq_pp": 0.0,
+          "miou_pct": 39.1377179067643,
+          "hits": 574,
+          "fp": 2307,
+          "recovered": 0,
+          "lost": 0,
+          "up": 0,
+          "tie": 142,
+          "down": 0
+        },
+        "majority_pose": {
+          "pq_pct": 45.83451326225376,
+          "delta_pq_pp": 21.053602189978093,
+          "miou_pct": 55.42362682747094,
+          "hits": 1056,
+          "fp": 1145,
+          "recovered": 555,
+          "lost": 73,
+          "up": 134,
+          "tie": 1,
+          "down": 7
+        },
+        "extend_pose": {
+          "pq_pct": 46.62688118726564,
+          "delta_pq_pp": 21.845970114989964,
+          "miou_pct": 56.64755438789174,
+          "hits": 1077,
+          "fp": 1133,
+          "recovered": 574,
+          "lost": 71,
+          "up": 135,
+          "tie": 1,
+          "down": 6
+        }
+      },
+      "paired": {
+        "pq_pct": {
+          "mean_delta_pp": 0.7923679250118734,
+          "family_percentile_95": [
+            0.046619031978636837,
+            1.5813428004754042
+          ]
+        },
+        "miou_pct": {
+          "mean_delta_pp": 1.2239275604208126,
+          "family_percentile_95": [
+            0.45817973429330977,
+            2.0270080774883406
+          ]
+        },
+        "up": 99,
+        "tie": 4,
+        "down": 39,
+        "delta_hits": 21,
+        "delta_fp": -12,
+        "rooms": 142,
+        "families": 134,
+        "control": "majority_pose",
+        "treatment": "extend_pose",
+        "seed": 942,
+        "bootstrap_replicates": 4000,
+        "newly_matched": 40,
+        "no_longer_matched": 19
+      },
+      "per_class_count_deltas": {
+        "bathtub": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "bed": {
+          "TP": 0,
+          "FP": 1,
+          "FN": 0
+        },
+        "bookshelf": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "cabinet": {
+          "TP": 2,
+          "FP": 9,
+          "FN": -2
+        },
+        "chair": {
+          "TP": 7,
+          "FP": -7,
+          "FN": -7
+        },
+        "counter": {
+          "TP": 2,
+          "FP": -3,
+          "FN": -2
+        },
+        "curtain": {
+          "TP": 1,
+          "FP": 4,
+          "FN": -1
+        },
+        "desk": {
+          "TP": 9,
+          "FP": 8,
+          "FN": -9
+        },
+        "door": {
+          "TP": 2,
+          "FP": -5,
+          "FN": -2
+        },
+        "floor": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "otherfurniture": {
+          "TP": 1,
+          "FP": -15,
+          "FN": -1
+        },
+        "picture": {
+          "TP": -3,
+          "FP": 1,
+          "FN": 3
+        },
+        "refrigerator": {
+          "TP": -1,
+          "FP": -3,
+          "FN": 1
+        },
+        "showercurtain": {
+          "TP": 0,
+          "FP": -2,
+          "FN": 0
+        },
+        "sink": {
+          "TP": 0,
+          "FP": -2,
+          "FN": 0
+        },
+        "sofa": {
+          "TP": 0,
+          "FP": 8,
+          "FN": 0
+        },
+        "table": {
+          "TP": -1,
+          "FP": -6,
+          "FN": 1
+        },
+        "toilet": {
+          "TP": 0,
+          "FP": 1,
+          "FN": 0
+        },
+        "wall": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "window": {
+          "TP": 2,
+          "FP": -1,
+          "FN": -2
+        }
+      }
+    },
+    "mixed_graph": {
+      "coefficient": 0.6,
+      "score_summary_sha256": "5dd2f85051f69a9a73653f76bd9fdf31c45037d8f47438d836d70c05c7ac2c80",
+      "evaluator_seal_sha256": "0f2a393316d9d9494050bdbeb84a3871e3fcd16ecaf927c03a029d46c495a84a",
+      "raw_per_scene_sha256": "4f988c494aacd0e9f6987250f5931b071e395b5b0460c9a418972029a4d016cb",
+      "arms": {
+        "baseline": {
+          "pq_pct": 24.780911072275664,
+          "delta_pq_pp": 0.0,
+          "miou_pct": 39.1377179067643,
+          "hits": 574,
+          "fp": 2307,
+          "recovered": 0,
+          "lost": 0,
+          "up": 0,
+          "tie": 142,
+          "down": 0
+        },
+        "majority_pose": {
+          "pq_pct": 46.372750242530174,
+          "delta_pq_pp": 21.591839170254502,
+          "miou_pct": 56.20890391257231,
+          "hits": 1065,
+          "fp": 1170,
+          "recovered": 568,
+          "lost": 77,
+          "up": 134,
+          "tie": 1,
+          "down": 7
+        },
+        "extend_pose": {
+          "pq_pct": 47.324770496545426,
+          "delta_pq_pp": 22.54385942426976,
+          "miou_pct": 57.49369527758074,
+          "hits": 1090,
+          "fp": 1149,
+          "recovered": 591,
+          "lost": 75,
+          "up": 134,
+          "tie": 1,
+          "down": 7
+        }
+      },
+      "paired": {
+        "pq_pct": {
+          "mean_delta_pp": 0.952020254015256,
+          "family_percentile_95": [
+            0.18632487109153498,
+            1.7245558255475157
+          ]
+        },
+        "miou_pct": {
+          "mean_delta_pp": 1.2847913650084166,
+          "family_percentile_95": [
+            0.5093367790724157,
+            2.0979498363708236
+          ]
+        },
+        "up": 105,
+        "tie": 4,
+        "down": 33,
+        "delta_hits": 25,
+        "delta_fp": -21,
+        "rooms": 142,
+        "families": 134,
+        "control": "majority_pose",
+        "treatment": "extend_pose",
+        "seed": 942,
+        "bootstrap_replicates": 4000,
+        "newly_matched": 43,
+        "no_longer_matched": 18
+      },
+      "per_class_count_deltas": {
+        "bathtub": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "bed": {
+          "TP": 1,
+          "FP": 0,
+          "FN": -1
+        },
+        "bookshelf": {
+          "TP": 2,
+          "FP": -2,
+          "FN": -2
+        },
+        "cabinet": {
+          "TP": 3,
+          "FP": 7,
+          "FN": -3
+        },
+        "chair": {
+          "TP": 7,
+          "FP": -9,
+          "FN": -7
+        },
+        "counter": {
+          "TP": 2,
+          "FP": -4,
+          "FN": -2
+        },
+        "curtain": {
+          "TP": 0,
+          "FP": 5,
+          "FN": 0
+        },
+        "desk": {
+          "TP": 7,
+          "FP": 10,
+          "FN": -7
+        },
+        "door": {
+          "TP": 1,
+          "FP": -5,
+          "FN": -1
+        },
+        "floor": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "otherfurniture": {
+          "TP": 2,
+          "FP": -15,
+          "FN": -2
+        },
+        "picture": {
+          "TP": -2,
+          "FP": 1,
+          "FN": 2
+        },
+        "refrigerator": {
+          "TP": -1,
+          "FP": -3,
+          "FN": 1
+        },
+        "showercurtain": {
+          "TP": 1,
+          "FP": -4,
+          "FN": -1
+        },
+        "sink": {
+          "TP": 1,
+          "FP": -3,
+          "FN": -1
+        },
+        "sofa": {
+          "TP": 0,
+          "FP": 8,
+          "FN": 0
+        },
+        "table": {
+          "TP": 0,
+          "FP": -8,
+          "FN": 0
+        },
+        "toilet": {
+          "TP": 0,
+          "FP": 1,
+          "FN": 0
+        },
+        "wall": {
+          "TP": 1,
+          "FP": -1,
+          "FN": -1
+        },
+        "window": {
+          "TP": 1,
+          "FP": 0,
+          "FN": -1
+        }
+      }
+    }
+  },
+  "control": "majority_pose",
+  "selected": "extend_pose"
+}

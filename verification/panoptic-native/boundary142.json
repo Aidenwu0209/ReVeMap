@@ -1,0 +1,346 @@
+{
+  "rooms": 142,
+  "room_families": 134,
+  "carrier": "mixed_graph",
+  "coefficient": 0.6,
+  "geometry": "half-corrected native TSDF; frame stride 6",
+  "protocol": "Full GT, first native pose alignment, 5 cm, strict >0.5 instance IoU, equal scan weights.",
+  "arms": {
+    "exchange": {
+      "control": {
+        "pq_pct": 47.324770496545426,
+        "delta_pq_pp": 22.54385942426976,
+        "miou_pct": 57.49369527758074,
+        "hits": 1090,
+        "fp": 1149,
+        "recovered": 591,
+        "lost": 75,
+        "up": 134,
+        "tie": 1,
+        "down": 7
+      },
+      "treatment": {
+        "pq_pct": 47.59466702196595,
+        "delta_pq_pp": 22.813755949690275,
+        "miou_pct": 57.66860351204628,
+        "hits": 1094,
+        "fp": 1136,
+        "recovered": 594,
+        "lost": 74,
+        "up": 134,
+        "tie": 1,
+        "down": 7
+      },
+      "paired": {
+        "pq_pct": {
+          "mean_delta_pp": 0.2698965254205159,
+          "family_percentile_95": [
+            0.06648146717087508,
+            0.5117463552718486
+          ]
+        },
+        "miou_pct": {
+          "mean_delta_pp": 0.17490823446555095,
+          "family_percentile_95": [
+            0.05787009554346083,
+            0.308401434462715
+          ]
+        },
+        "up": 87,
+        "tie": 11,
+        "down": 44,
+        "delta_hits": 4,
+        "delta_fp": -13,
+        "rooms": 142,
+        "families": 134,
+        "control": "extend_pose",
+        "treatment": "exchange_pose",
+        "seed": 942,
+        "bootstrap_replicates": 4000
+      },
+      "newly_matched": 7,
+      "no_longer_matched": 3,
+      "per_class": {
+        "door": {
+          "TP": 2,
+          "FP": -3,
+          "FN": -2
+        },
+        "picture": {
+          "TP": -1,
+          "FP": 0,
+          "FN": 1
+        },
+        "counter": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "desk": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "chair": {
+          "TP": 4,
+          "FP": -5,
+          "FN": -4
+        },
+        "curtain": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "refrigerator": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "bookshelf": {
+          "TP": 1,
+          "FP": -1,
+          "FN": -1
+        },
+        "otherfurniture": {
+          "TP": -1,
+          "FP": -2,
+          "FN": 1
+        },
+        "sink": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "toilet": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "bed": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "table": {
+          "TP": -1,
+          "FP": 0,
+          "FN": 1
+        },
+        "cabinet": {
+          "TP": 0,
+          "FP": -1,
+          "FN": 0
+        },
+        "showercurtain": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "sofa": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "wall": {
+          "TP": 2,
+          "FP": -2,
+          "FN": -2
+        },
+        "bathtub": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "floor": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "window": {
+          "TP": 0,
+          "FP": -1,
+          "FN": 0
+        }
+      },
+      "hashes": {
+        "val_boundary_FROZEN.json": "267b920769762fe08f25dfc135b9dea804bf67160dfcd2125728b2af3dbc2041",
+        "val_boundary_SEALED.json": "2591b2105b6bc688971898f966babfc8ecc4169826e6d68ef036c782b65b82c3",
+        "val_boundary\\ALL_SEALED.json": "cc02d75fc1992a844b80bff9dc0840cb1ee9ab041aef0134892952a163ac3941",
+        "val_boundary\\per_scene.csv": "f99763bad493f8dc3107c0f6dacdae6f8043a44397fd82a1c67c65ed88e8c07a",
+        "val_boundary\\summary.json": "6c9f20a403501bed9a0a9eccea1bf87f72a716ffab95c3dc54a20f617f39fc70"
+      }
+    },
+    "hard_3d": {
+      "control": {
+        "pq_pct": 47.324770496545426,
+        "delta_pq_pp": 22.54385942426976,
+        "miou_pct": 57.49369527758074,
+        "hits": 1090,
+        "fp": 1149,
+        "recovered": 591,
+        "lost": 75,
+        "up": 134,
+        "tie": 1,
+        "down": 7
+      },
+      "treatment": {
+        "pq_pct": 47.169212970483855,
+        "delta_pq_pp": 22.38830189820819,
+        "miou_pct": 57.13689177136899,
+        "hits": 1081,
+        "fp": 1079,
+        "recovered": 587,
+        "lost": 80,
+        "up": 134,
+        "tie": 1,
+        "down": 7
+      },
+      "paired": {
+        "pq_pct": {
+          "mean_delta_pp": -0.1555575260615692,
+          "family_percentile_95": [
+            -0.540447437203729,
+            0.23227615842706337
+          ]
+        },
+        "miou_pct": {
+          "mean_delta_pp": -0.3568035062117523,
+          "family_percentile_95": [
+            -0.6968545013842276,
+            -0.05737524860906529
+          ]
+        },
+        "up": 30,
+        "tie": 98,
+        "down": 14,
+        "delta_hits": -9,
+        "delta_fp": -70,
+        "rooms": 142,
+        "families": 134,
+        "control": "extend_pose",
+        "treatment": "hard3d_pose",
+        "seed": 942,
+        "bootstrap_replicates": 4000
+      },
+      "newly_matched": 0,
+      "no_longer_matched": 9,
+      "per_class": {
+        "door": {
+          "TP": -5,
+          "FP": -23,
+          "FN": 5
+        },
+        "picture": {
+          "TP": -3,
+          "FP": -16,
+          "FN": 3
+        },
+        "counter": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "desk": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "chair": {
+          "TP": 0,
+          "FP": -4,
+          "FN": 0
+        },
+        "curtain": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "refrigerator": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "bookshelf": {
+          "TP": 0,
+          "FP": -1,
+          "FN": 0
+        },
+        "otherfurniture": {
+          "TP": 0,
+          "FP": -10,
+          "FN": 0
+        },
+        "sink": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "toilet": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "bed": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "table": {
+          "TP": -1,
+          "FP": -2,
+          "FN": 1
+        },
+        "cabinet": {
+          "TP": 0,
+          "FP": -8,
+          "FN": 0
+        },
+        "showercurtain": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "sofa": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "wall": {
+          "TP": 2,
+          "FP": -2,
+          "FN": -2
+        },
+        "bathtub": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "floor": {
+          "TP": -1,
+          "FP": 1,
+          "FN": 1
+        },
+        "window": {
+          "TP": 0,
+          "FP": -6,
+          "FN": 0
+        }
+      },
+      "hashes": {
+        "hard3d_val_FROZEN.json": "7b68013cd9cc5ca40b5fe948fdfb97b9bc0abe4c5593a2a8e2cb3e80c0222162",
+        "hard3d_val_SEALED.json": "6305540f4f0ffc558c2f89d4b21969fd7c6284e19cb8a05f4edf7e2a15363fc4",
+        "val_hard3d\\ALL_SEALED.json": "7a9ec088383315c5eabc549759801b6e0f5bbad4b5f1c6f1f3197ebb6fc533cc",
+        "val_hard3d\\per_scene.csv": "eb76acb932c390ed10fa2d165c6738fbc00bf79b2db1f04334f2d2ab1a745985",
+        "val_hard3d\\summary.json": "6c7731fabc5614331c49eb3e91e07b94681f58f676f1df0eeeff988adeb924b2"
+      }
+    }
+  },
+  "equality": {
+    "rooms": 151,
+    "points": 63336701,
+    "semantic_differences": 0,
+    "instance_differences": 0,
+    "source": "6537b51aff92f0894fdc97823a340341dfbac0b3d8dae7c3c52d0b35727b6798"
+  },
+  "source_archive_sha256": "24e428174f75a849e99431bffa7e1ce98ef9a1a1650e95412625816f98b4fe9e"
+}

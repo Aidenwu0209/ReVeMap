@@ -85,7 +85,111 @@
         "control": "single_pose",
         "treatment": "majority_pose",
         "seed": 942,
-        "bootstrap_replicates": 4000
+        "bootstrap_replicates": 4000,
+        "newly_matched": 51,
+        "no_longer_matched": 21
+      },
+      "per_class_count_deltas": {
+        "bathtub": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "bed": {
+          "TP": -1,
+          "FP": 2,
+          "FN": 1
+        },
+        "bookshelf": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "cabinet": {
+          "TP": 3,
+          "FP": -9,
+          "FN": -3
+        },
+        "chair": {
+          "TP": 9,
+          "FP": 0,
+          "FN": -9
+        },
+        "counter": {
+          "TP": 0,
+          "FP": -1,
+          "FN": 0
+        },
+        "curtain": {
+          "TP": 1,
+          "FP": -4,
+          "FN": -1
+        },
+        "desk": {
+          "TP": 1,
+          "FP": -4,
+          "FN": -1
+        },
+        "door": {
+          "TP": 2,
+          "FP": 11,
+          "FN": -2
+        },
+        "floor": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "otherfurniture": {
+          "TP": 5,
+          "FP": -6,
+          "FN": -5
+        },
+        "picture": {
+          "TP": 0,
+          "FP": -6,
+          "FN": 0
+        },
+        "refrigerator": {
+          "TP": 2,
+          "FP": 0,
+          "FN": -2
+        },
+        "showercurtain": {
+          "TP": 0,
+          "FP": 2,
+          "FN": 0
+        },
+        "sink": {
+          "TP": 3,
+          "FP": -4,
+          "FN": -3
+        },
+        "sofa": {
+          "TP": 0,
+          "FP": -3,
+          "FN": 0
+        },
+        "table": {
+          "TP": 7,
+          "FP": -2,
+          "FN": -7
+        },
+        "toilet": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "wall": {
+          "TP": 1,
+          "FP": -1,
+          "FN": -1
+        },
+        "window": {
+          "TP": -2,
+          "FP": 4,
+          "FN": 2
+        }
       }
     },
     "mixed_graph": {
@@ -168,7 +272,111 @@
         "control": "single_pose",
         "treatment": "majority_pose",
         "seed": 942,
-        "bootstrap_replicates": 4000
+        "bootstrap_replicates": 4000,
+        "newly_matched": 49,
+        "no_longer_matched": 21
+      },
+      "per_class_count_deltas": {
+        "bathtub": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "bed": {
+          "TP": 0,
+          "FP": 1,
+          "FN": 0
+        },
+        "bookshelf": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "cabinet": {
+          "TP": 3,
+          "FP": -6,
+          "FN": -3
+        },
+        "chair": {
+          "TP": 5,
+          "FP": 6,
+          "FN": -5
+        },
+        "counter": {
+          "TP": 0,
+          "FP": -1,
+          "FN": 0
+        },
+        "curtain": {
+          "TP": 1,
+          "FP": -4,
+          "FN": -1
+        },
+        "desk": {
+          "TP": 1,
+          "FP": -4,
+          "FN": -1
+        },
+        "door": {
+          "TP": 2,
+          "FP": 9,
+          "FN": -2
+        },
+        "floor": {
+          "TP": 1,
+          "FP": -1,
+          "FN": -1
+        },
+        "otherfurniture": {
+          "TP": 5,
+          "FP": -6,
+          "FN": -5
+        },
+        "picture": {
+          "TP": 0,
+          "FP": -7,
+          "FN": 0
+        },
+        "refrigerator": {
+          "TP": 2,
+          "FP": 0,
+          "FN": -2
+        },
+        "showercurtain": {
+          "TP": 0,
+          "FP": 2,
+          "FN": 0
+        },
+        "sink": {
+          "TP": 3,
+          "FP": -4,
+          "FN": -3
+        },
+        "sofa": {
+          "TP": 0,
+          "FP": -3,
+          "FN": 0
+        },
+        "table": {
+          "TP": 7,
+          "FP": -3,
+          "FN": -7
+        },
+        "toilet": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "wall": {
+          "TP": 1,
+          "FP": -1,
+          "FN": -1
+        },
+        "window": {
+          "TP": -1,
+          "FP": 2,
+          "FN": 1
+        }
       }
     }
   },
