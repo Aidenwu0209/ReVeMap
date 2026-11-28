@@ -24,7 +24,7 @@ def digest(path):
     return result.hexdigest()
 
 
-def infer(mesh, rotation, model):
+def infer_mesh(mesh, rotation, model):
     import segmentator
     import spconv.pytorch as spconv
     import torch
@@ -60,6 +60,11 @@ def infer(mesh, rotation, model):
     return xyz, semantic, instance, head, confidence
 
 
+def infer(mesh, poses, model):
+    rotation, orientation = axis_frame(poses, np.asarray(mesh.vertices), np.asarray(mesh.triangles))
+    return (*infer_mesh(mesh, rotation, model), rotation, orientation)
+
+
 def voted_labels(mesh, map_xyz, rotation, model, semantic, instance):
     from panoptic_vote import majority_vote
 
@@ -72,7 +77,7 @@ def voted_labels(mesh, map_xyz, rotation, model, semantic, instance):
         if simplify:
             candidate = mesh.simplify_vertex_clustering(voxel_size=0.035)
             candidate.remove_degenerate_triangles().remove_duplicated_triangles().remove_unreferenced_vertices()
-        xyz, sem, ids, _, _ = infer(candidate, yaw @ rotation, model)
+        xyz, sem, ids, _, _ = infer_mesh(candidate, yaw @ rotation, model)
         nearest = cKDTree(xyz).query(map_xyz, workers=2)[1]
         results.append(dict(semantic=sem[nearest], instance=ids[nearest]))
     return majority_vote(results)
@@ -107,14 +112,14 @@ def run(args):
     del state
     network.eval().cuda()
     mesh = o3d.io.read_triangle_mesh(str(args.mesh))
-    rotation, orientation = axis_frame(poses, np.asarray(mesh.vertices), np.asarray(mesh.triangles))
-    xyz, semantic, instance, head, confidence = infer(mesh, rotation, network)
+    xyz, semantic, instance, head, confidence, rotation, orientation = infer(mesh, poses, network)
     cloud = PlyData.read(args.map, mmap=False)
     vertex = cloud["vertex"].data
     map_xyz = np.column_stack([vertex[k] for k in "xyz"])
     distance, nearest = cKDTree(xyz).query(map_xyz, workers=2)
     semantic, instance = semantic[nearest], instance[nearest]
-    if args.vote_views:
+    vote_views = getattr(args, "vote_views", False)
+    if vote_views:
         semantic, instance = voted_labels(mesh, map_xyz, rotation, network, semantic, instance)
     if args.native_classes:
         semantic, instance = reconcile(vertex, json.loads(args.native_classes.read_text()), semantic, instance,
@@ -130,7 +135,7 @@ def run(args):
         (result / "classes.json").write_text(json.dumps(classes, indent=2))
         np.savez_compressed(result / "panoptic.npz", semantic=semantic, instance=instance)
         receipt = dict(inputs=inputs, vertex_count=len(vertex), rotation=rotation.tolist(), orientation=orientation,
-                       label_space="ScanNet20", same_native_vertex_order=True, vote_views=args.vote_views,
+                       label_space="ScanNet20", same_native_vertex_order=True, vote_views=vote_views,
                        outputs={f.name:digest(f) for f in result.iterdir()})
         (result / "result.json").write_text(json.dumps(receipt, indent=2))
         result.rename(args.output)

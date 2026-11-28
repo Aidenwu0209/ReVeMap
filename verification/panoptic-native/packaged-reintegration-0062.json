@@ -1,0 +1,19 @@
+{
+  "projective": {
+    "keyframes": 61,
+    "candidates": 326,
+    "accepted": 261
+  },
+  "integrated_frames": 122,
+  "points": 94618,
+  "mesh_vertices": 79868,
+  "mesh_triangles": 154275,
+  "scene": "scene0062_00",
+  "matched_poses": 730,
+  "max_pose_matrix_difference": 0.0,
+  "identical_geometry_and_inputs": {
+    "mesh.ply": "f32023050150381cbfb83f65d8d341597f5fc05bd6c41a5e15ad3e15f2588b0f",
+    "map.ply": "548e5b0e5da846b6d60197d1cc6dbb1c4fef3c9a3d3ba049d2e46afdfb7b5e19"
+  },
+  "identical_semantic_and_instance_file": "29d545bdafa0ef1a30c6405a687dee97f88121b108a01479d9a78d94065c0000"
+}

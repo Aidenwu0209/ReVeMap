@@ -51,3 +51,21 @@ OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1 python tools/refine_scannet_rgbd_geomet
 | 四视图三维投票 | 双向 RGB-D、特征约束和局部平滑 | **44.27** | **54.08** | **1,021** | **1,207** |
 
 最后一组比原主线提高 19.49 个 PQ 百分点。2,116 个真值物体中，相对主线找回 535 个、丢失 88 个，131 条扫描提高、1 条持平、10 条下降。逐场先封存全部预测，再评分。独立命令在开发扫描 `scene0062_00` 的 94,618 个顶点逐点复现封存的坐标、类别和实例编号。[配对分数](geometry142.csv) · [汇总](geometry142.json) · [命令复现](packaged-vote-geometry-0062.json)
+
+### 用修正后的相机轨迹重新融合表面
+
+每隔 6 帧，将真实深度和颜色重新融合进 2 cm TSDF 网格。相机轨迹使用双向 RGB-D 估计的半幅修正，原地图点按同一幅度移动。随后让三维专家在新的彩色网格上重新划分实例，并用原有观测复核边界。两条命令分别输出重建和分割结果。
+
+```bash
+OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1 python tools/reintegrate_scannet_rgbd.py \
+  --sensor "$SCENE_SENS" --trajectory "$ESTIMATED_TRAJECTORY" \
+  --map "$COMPLETED_MAP" --output "$NEW_MESH_DIR"
+
+python tools/refine_native_panoptic.py \
+  --mesh "$NEW_MESH_DIR/mesh.ply" --map "$NEW_MESH_DIR/map.ply" \
+  --trajectory "$NEW_MESH_DIR/trajectory.json" --native-classes "$MAP_CLASSES" \
+  --config "$ONEFORMER_SCAN20_CONFIG" --checkpoint "$ONEFORMER_SCAN20_CHECKPOINT" \
+  --output "$NEW_PANOPTIC_DIR"
+```
+
+142 条验证扫描上，重新融合并重新推理得到 **PQ 44.72%、mIoU 54.67%**。与使用相同半幅坐标的原网格实例扩边相比，PQ 从 42.95% 升至 44.72%，物体命中从 1,001 到 1,026，误检从 1,326 降至 1,165。相对原主线，新增命中 530 个、失去 78 个，135 条扫描提高、1 条持平、6 条下降。独立命令在训练扫描 `scene0062_00` 上重现全部 730 个估计位姿，重融网格、同序地图和逐点全景预测分别与封存文件的 SHA-256 一致。[逐扫描结果](reintegration142.csv) · [汇总](reintegration142.json) · [命令复现](packaged-reintegration-0062.json)

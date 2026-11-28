@@ -1,0 +1,41 @@
+{
+  "scans": 142,
+  "arms": {
+    "baseline": {
+      "pq_pct": 24.780911072275664,
+      "delta_pq_pp": 0.0,
+      "miou_pct": 39.1377179067643,
+      "hits": 574,
+      "fp": 2307,
+      "recovered": 0,
+      "lost": 0,
+      "up": 0,
+      "tie": 142,
+      "down": 0
+    },
+    "remesh50": {
+      "pq_pct": 40.52814344594464,
+      "delta_pq_pp": 15.747232373668973,
+      "miou_pct": 51.588197321396045,
+      "hits": 932,
+      "fp": 1270,
+      "recovered": 431,
+      "lost": 73,
+      "up": 135,
+      "tie": 2,
+      "down": 5
+    },
+    "remesh50_pose": {
+      "pq_pct": 44.71510547797629,
+      "delta_pq_pp": 19.934194405700623,
+      "miou_pct": 54.66676053846664,
+      "hits": 1026,
+      "fp": 1165,
+      "recovered": 530,
+      "lost": 78,
+      "up": 135,
+      "tie": 1,
+      "down": 6
+    }
+  }
+}

@@ -19,7 +19,7 @@ def size(T):
     return np.linalg.norm(T[:3, 3]), Rotation.from_matrix(T[:3, :3]).magnitude()
 
 
-def projective(frames, data, pose, xyz):
+def projective_solution(frames, data, pose, xyz):
     cv2.setNumThreads(1)
     fids = data["raw_indices"][::2]
     fids = [i for i in fids if i in pose]
@@ -116,8 +116,15 @@ def projective(frames, data, pose, xyz):
     assert np.allclose(poses[0], T[0], atol=1e-6)
     raw = np.vstack([z @ p[:3, :3].T + p[:3, 3] for z, p in zip(targets, T)])
     updated = np.vstack([z @ p[:3, :3].T + p[:3, 3] for z, p in zip(targets, poses)])
-    return transfer_motion(xyz, raw, updated), {
+    warped = transfer_motion(xyz, raw, updated)
+    info = {
         "keyframes": len(T),
         "candidates": len(pairs),
         "accepted": len(edges),
     }
+    return warped, info, np.asarray(fids), poses
+
+
+def projective(frames, data, pose, xyz):
+    warped, info, _, _ = projective_solution(frames, data, pose, xyz)
+    return warped, info
