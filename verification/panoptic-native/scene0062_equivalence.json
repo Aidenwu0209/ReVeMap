@@ -1,0 +1,27 @@
+{
+  "scene": "scene0062_00",
+  "map": "548e5b0e5da846b6d60197d1cc6dbb1c4fef3c9a3d3ba049d2e46afdfb7b5e19",
+  "points": 94618,
+  "checks": {
+    "four_view": {
+      "source_prediction": "7824a151719443e6a7b3e17b512ce4f83479712fe95e92a41a6a90014a99a486",
+      "deployment_prediction": "7824a151719443e6a7b3e17b512ce4f83479712fe95e92a41a6a90014a99a486",
+      "deployment_receipt": "6f71894f12058c99b920ef4531167356fb33fef1f44309f0bf87653d3e41ffa8",
+      "semantic_diff": 0,
+      "instance_diff": 0,
+      "xyz_diff": 0,
+      "rgb_diff": 0,
+      "ply_label_diff": 0
+    },
+    "ptv3_extension": {
+      "source_prediction": "5f31f171b150374a130014bc79d33ab53b116e0c6c30ef5de118b0c0c595835b",
+      "deployment_prediction": "5f31f171b150374a130014bc79d33ab53b116e0c6c30ef5de118b0c0c595835b",
+      "deployment_receipt": "b27b6033d94eafdf38870b547aedc7f5a7f46a474e72e096c200aa6143a991e8",
+      "semantic_diff": 0,
+      "instance_diff": 0,
+      "xyz_diff": 0,
+      "rgb_diff": 0,
+      "ply_label_diff": 0
+    }
+  }
+}

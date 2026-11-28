@@ -65,21 +65,26 @@ def infer(mesh, poses, model):
     return (*infer_mesh(mesh, rotation, model), rotation, orientation)
 
 
-def voted_labels(mesh, map_xyz, rotation, model, semantic, instance):
+def voted_labels(mesh, map_xyz, rotation, model, semantic, instance, *, vertex=None, classes=None):
     from panoptic_vote import majority_vote
 
     results = [dict(semantic=semantic, instance=instance)]
-    for degrees, simplify in ((90, False), (45, False), (0, True)):
+    angles = (90, 45, 0) if classes is None else (45, 90, 0)
+    for degrees in angles:
         angle = np.deg2rad(degrees)
         yaw = np.array([[np.cos(angle), -np.sin(angle), 0.],
                         [np.sin(angle), np.cos(angle), 0.], [0., 0., 1.]])
         candidate = mesh
-        if simplify:
+        if degrees == 0:
             candidate = mesh.simplify_vertex_clustering(voxel_size=0.035)
             candidate.remove_degenerate_triangles().remove_duplicated_triangles().remove_unreferenced_vertices()
-        xyz, sem, ids, _, _ = infer_mesh(candidate, yaw @ rotation, model)
-        nearest = cKDTree(xyz).query(map_xyz, workers=2)[1]
-        results.append(dict(semantic=sem[nearest], instance=ids[nearest]))
+        xyz, sem, ids, head, confidence = infer_mesh(candidate, yaw @ rotation, model)
+        distance, nearest = cKDTree(xyz).query(map_xyz, workers=2)
+        sem, ids = sem[nearest], ids[nearest]
+        if classes is not None:
+            sem, ids = reconcile(vertex, classes, sem, ids, head[nearest], confidence[nearest],
+                                 distance.astype(np.float32))
+        results.append(dict(semantic=sem, instance=ids))
     return majority_vote(results)
 
 
@@ -119,11 +124,14 @@ def run(args):
     distance, nearest = cKDTree(xyz).query(map_xyz, workers=2)
     semantic, instance = semantic[nearest], instance[nearest]
     vote_views = getattr(args, "vote_views", False)
-    if vote_views:
-        semantic, instance = voted_labels(mesh, map_xyz, rotation, network, semantic, instance)
+    classes = None
     if args.native_classes:
-        semantic, instance = reconcile(vertex, json.loads(args.native_classes.read_text()), semantic, instance,
+        classes = json.loads(args.native_classes.read_text())
+        semantic, instance = reconcile(vertex, classes, semantic, instance,
                                        head[nearest], confidence[nearest], distance.astype(np.float32))
+    if vote_views:
+        semantic, instance = voted_labels(mesh, map_xyz, rotation, network, semantic, instance,
+                                          vertex=vertex, classes=classes)
     vertex["semantic_id"] = semantic.astype(np.int32) + 1
     vertex["instance_id"] = instance
     args.output.parent.mkdir(parents=True, exist_ok=True)
@@ -143,9 +151,8 @@ def run(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    mode = parser.add_mutually_exclusive_group()
-    mode.add_argument("--native-classes", type=Path, help="Use the input map's tracked objects to refine the expert masks")
-    mode.add_argument("--vote-views", action="store_true", help="Vote across four independent mesh predictions")
+    parser.add_argument("--native-classes", type=Path, help="Use the input map's tracked objects to refine each expert mask")
+    parser.add_argument("--vote-views", action="store_true", help="Vote across four mesh predictions")
     for field in ("mesh", "map", "trajectory", "config", "checkpoint", "output"):
         parser.add_argument("--" + field, type=Path, required=True)
     run(parser.parse_args())

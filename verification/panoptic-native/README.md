@@ -1,5 +1,7 @@
 # 原生地图上的 ScanNet20 全景精修
 
+如需在重融表面上联合四个视角并补全实例边界，可接入 Point Transformer V3。[运行命令和逐点复核](ptv3-surface.md)
+
 在 RGB-D 建图和 SAM3 实例精修结束后，可对同次采集的彩色 TSDF 网格运行 OneFormer3D。模型在网格上生成超点和新的实例边界，再将标签投回原有地图点。传入类别表后，ReVeMap 的多视角实例还可恢复漏掉的物体，并扩展两种预测共同支持的表面。
 
 使用作者的 OneFormer3D、segmentator 和匹配版本的 CUDA、PyTorch、spconv、MMDetection3D 环境。安装参考[作者仓库](https://github.com/filaPro/oneformer3d)。脚本校验 ScanNet20 发布版权重的 SHA-256。[权重记录](checkpoint.json)
