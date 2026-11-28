@@ -1,0 +1,79 @@
+{
+  "rooms": 142,
+  "paired": {
+    "pq_pct": {
+      "mean_delta_pp": 2.9526770069842687,
+      "family_percentile_95": [
+        1.9022183773615204,
+        4.107100306001511
+      ]
+    },
+    "miou_pct": {
+      "mean_delta_pp": 2.8421350221145327,
+      "family_percentile_95": [
+        2.166366695390581,
+        3.588770574017785
+      ]
+    },
+    "up": 104,
+    "tie": 4,
+    "down": 34,
+    "delta_hits": 82,
+    "delta_fp": 194,
+    "rooms": 142,
+    "families": 134,
+    "control": "base",
+    "treatment": "raw",
+    "seed": 942,
+    "bootstrap_replicates": 4000
+  },
+  "counts": {
+    "base_TP": 1094,
+    "base_FP": 1136,
+    "base_FN": 1022,
+    "raw_TP": 1176,
+    "raw_FP": 1330,
+    "raw_FN": 940,
+    "new_FP_ids": 286,
+    "cleared_FP_ids": 92,
+    "new_FP_new_native_ids": 245,
+    "new_FP_prior_native_ids": 41,
+    "new_matches": 90,
+    "new_matches_previously_undercovered": 43,
+    "lost_matches": 8,
+    "new_matches_new_native_ids": 2
+  },
+  "directions": {
+    "delta_tp": {
+      "up": 42,
+      "tie": 96,
+      "down": 4,
+      "mean": 0.5774647887323944
+    },
+    "delta_fp": {
+      "up": 83,
+      "tie": 45,
+      "down": 14,
+      "mean": 1.3661971830985915
+    },
+    "delta_coverage_pp": {
+      "up": 138,
+      "tie": 4,
+      "down": 0,
+      "mean": 6.214169999496156
+    }
+  },
+  "avg_base_coverage_pct": 80.60623836317261,
+  "avg_raw_coverage_pct": 86.82040836266877,
+  "added_measured_points": 19324053,
+  "hashes": {
+    "val_added_exchange/summary.json": "8ec1ebdc68f1b0496fd7708be685f10b96d945a7d059c0dff93d66e993371f29",
+    "val_added_exchange/per_scene.csv": "4ecfd5e2af84eb487b27477945389cacda78f3c465c13ce2d9bc27a61b7e7c8f",
+    "val_added_exchange/ALL_SEALED.json": "6349522c9e89d0681b3393c229d3873f35ce483ecfbacf3e0e904819dd767a1e",
+    "union_errors/per_class.csv": "9802d841a5a5a75909736b1fe2f7b510ffa2791a0ec763829c705683dca1071e",
+    "union_errors/per_scene.csv": "01a96b980a783d2ce5f62dbc3fe61c05e0cca91db531126bb9bd00f177073a55"
+  },
+  "source_sha256": "f2e1ed670f4748c9e4be57843d47c95cbb5848148191dae8068b580521ec80b8",
+  "fp_identity": "Class and positive instance identifier at labelled full GT vertices; exact identity reconciliation with all 18 class FP counts.",
+  "post_hoc": true
+}

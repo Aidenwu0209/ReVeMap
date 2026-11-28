@@ -1,0 +1,475 @@
+{
+  "rooms": 142,
+  "families": 134,
+  "geometry": "retrieved_mixed",
+  "fraction": 0.6,
+  "frustum_integration_stride": 6,
+  "control": "joint_vote_pose",
+  "selected": "joint_extend_pose",
+  "protocol": "Full GT vertices, first valid pose alignment, 5 cm, strict >0.5 instance IoU, equal scan weights.",
+  "arms": {
+    "baseline": {
+      "pq_pct": 24.780911072275664,
+      "delta_pq_pp": 0.0,
+      "miou_pct": 39.1377179067643,
+      "hits": 574,
+      "fp": 2307,
+      "recovered": 0,
+      "lost": 0,
+      "up": 0,
+      "tie": 142,
+      "down": 0
+    },
+    "half_vote_pose": {
+      "pq_pct": 45.94462231268637,
+      "delta_pq_pp": 21.163711240410706,
+      "miou_pct": 56.00712402981685,
+      "hits": 1044,
+      "fp": 1189,
+      "recovered": 558,
+      "lost": 88,
+      "up": 130,
+      "tie": 1,
+      "down": 11
+    },
+    "half_extend_pose": {
+      "pq_pct": 47.011302137412564,
+      "delta_pq_pp": 22.230391065136907,
+      "miou_pct": 57.284778127984964,
+      "hits": 1069,
+      "fp": 1171,
+      "recovered": 580,
+      "lost": 85,
+      "up": 131,
+      "tie": 1,
+      "down": 10
+    },
+    "joint_vote_pose": {
+      "pq_pct": 46.287316621353185,
+      "delta_pq_pp": 21.506405549077517,
+      "miou_pct": 55.72548775115618,
+      "hits": 1060,
+      "fp": 1107,
+      "recovered": 573,
+      "lost": 87,
+      "up": 130,
+      "tie": 1,
+      "down": 11
+    },
+    "joint_extend_pose": {
+      "pq_pct": 47.62717305024357,
+      "delta_pq_pp": 22.846261977967917,
+      "miou_pct": 57.43464668175521,
+      "hits": 1079,
+      "fp": 1094,
+      "recovered": 588,
+      "lost": 83,
+      "up": 130,
+      "tie": 1,
+      "down": 11
+    }
+  },
+  "paired": {
+    "joint_vote_pose__joint_extend_pose": {
+      "pq_pct": {
+        "mean_delta_pp": 1.3398564288903982,
+        "family_percentile_95": [
+          0.5975711061838045,
+          2.1352239396871484
+        ]
+      },
+      "miou_pct": {
+        "mean_delta_pp": 1.709158930599041,
+        "family_percentile_95": [
+          0.9744873452102025,
+          2.518455628745559
+        ]
+      },
+      "up": 90,
+      "tie": 8,
+      "down": 44,
+      "delta_hits": 19,
+      "delta_fp": -13,
+      "rooms": 142,
+      "families": 134,
+      "control": "joint_vote_pose",
+      "treatment": "joint_extend_pose",
+      "seed": 942,
+      "bootstrap_replicates": 4000,
+      "newly_matched": 35,
+      "no_longer_matched": 16,
+      "per_class_count_deltas": {
+        "bookshelf": {
+          "TP": 2,
+          "FP": 1,
+          "FN": -2
+        },
+        "curtain": {
+          "TP": 0,
+          "FP": 1,
+          "FN": 0
+        },
+        "table": {
+          "TP": 1,
+          "FP": -6,
+          "FN": -1
+        },
+        "bathtub": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "desk": {
+          "TP": 5,
+          "FP": 9,
+          "FN": -5
+        },
+        "counter": {
+          "TP": 1,
+          "FP": -2,
+          "FN": -1
+        },
+        "cabinet": {
+          "TP": 4,
+          "FP": 1,
+          "FN": -4
+        },
+        "showercurtain": {
+          "TP": 1,
+          "FP": -5,
+          "FN": -1
+        },
+        "floor": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "sink": {
+          "TP": 0,
+          "FP": 1,
+          "FN": 0
+        },
+        "bed": {
+          "TP": 1,
+          "FP": 0,
+          "FN": -1
+        },
+        "picture": {
+          "TP": -2,
+          "FP": 0,
+          "FN": 2
+        },
+        "window": {
+          "TP": -1,
+          "FP": 3,
+          "FN": 1
+        },
+        "door": {
+          "TP": 3,
+          "FP": -1,
+          "FN": -3
+        },
+        "otherfurniture": {
+          "TP": 0,
+          "FP": -13,
+          "FN": 0
+        },
+        "sofa": {
+          "TP": 0,
+          "FP": 8,
+          "FN": 0
+        },
+        "chair": {
+          "TP": 3,
+          "FP": -7,
+          "FN": -3
+        },
+        "toilet": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "refrigerator": {
+          "TP": 1,
+          "FP": -3,
+          "FN": -1
+        },
+        "wall": {
+          "TP": 2,
+          "FP": -2,
+          "FN": -2
+        }
+      }
+    },
+    "half_extend_pose__joint_extend_pose": {
+      "pq_pct": {
+        "mean_delta_pp": 0.6158709128310088,
+        "family_percentile_95": [
+          -0.37448841767017355,
+          1.6457299249729758
+        ]
+      },
+      "miou_pct": {
+        "mean_delta_pp": 0.14986855377024624,
+        "family_percentile_95": [
+          -0.6417011039313067,
+          0.928736262622463
+        ]
+      },
+      "up": 75,
+      "tie": 2,
+      "down": 65,
+      "delta_hits": 10,
+      "delta_fp": -77,
+      "rooms": 142,
+      "families": 134,
+      "control": "half_extend_pose",
+      "treatment": "joint_extend_pose",
+      "seed": 942,
+      "bootstrap_replicates": 4000,
+      "newly_matched": 58,
+      "no_longer_matched": 48,
+      "per_class_count_deltas": {
+        "bookshelf": {
+          "TP": 2,
+          "FP": 4,
+          "FN": -2
+        },
+        "curtain": {
+          "TP": -1,
+          "FP": -4,
+          "FN": 1
+        },
+        "table": {
+          "TP": -1,
+          "FP": -8,
+          "FN": 1
+        },
+        "bathtub": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "desk": {
+          "TP": 0,
+          "FP": 2,
+          "FN": 0
+        },
+        "counter": {
+          "TP": -1,
+          "FP": -3,
+          "FN": 1
+        },
+        "cabinet": {
+          "TP": 0,
+          "FP": -5,
+          "FN": 0
+        },
+        "showercurtain": {
+          "TP": 1,
+          "FP": 0,
+          "FN": -1
+        },
+        "floor": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "sink": {
+          "TP": -3,
+          "FP": 5,
+          "FN": 3
+        },
+        "bed": {
+          "TP": 1,
+          "FP": -1,
+          "FN": -1
+        },
+        "picture": {
+          "TP": -1,
+          "FP": -4,
+          "FN": 1
+        },
+        "window": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "door": {
+          "TP": 2,
+          "FP": -9,
+          "FN": -2
+        },
+        "otherfurniture": {
+          "TP": 1,
+          "FP": -6,
+          "FN": -1
+        },
+        "sofa": {
+          "TP": 2,
+          "FP": 0,
+          "FN": -2
+        },
+        "chair": {
+          "TP": 9,
+          "FP": -47,
+          "FN": -9
+        },
+        "toilet": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "refrigerator": {
+          "TP": -1,
+          "FP": -1,
+          "FN": 1
+        },
+        "wall": {
+          "TP": 1,
+          "FP": -1,
+          "FN": -1
+        }
+      }
+    },
+    "half_vote_pose__joint_vote_pose": {
+      "pq_pct": {
+        "mean_delta_pp": 0.3426943086668117,
+        "family_percentile_95": [
+          -0.5454105142730449,
+          1.1907580471884707
+        ]
+      },
+      "miou_pct": {
+        "mean_delta_pp": -0.281636278660689,
+        "family_percentile_95": [
+          -1.046885942662886,
+          0.4808352394599179
+        ]
+      },
+      "up": 81,
+      "tie": 1,
+      "down": 60,
+      "delta_hits": 16,
+      "delta_fp": -82,
+      "rooms": 142,
+      "families": 134,
+      "control": "half_vote_pose",
+      "treatment": "joint_vote_pose",
+      "seed": 942,
+      "bootstrap_replicates": 4000,
+      "newly_matched": 68,
+      "no_longer_matched": 52,
+      "per_class_count_deltas": {
+        "bookshelf": {
+          "TP": 1,
+          "FP": 2,
+          "FN": -1
+        },
+        "curtain": {
+          "TP": -1,
+          "FP": 0,
+          "FN": 1
+        },
+        "table": {
+          "TP": -1,
+          "FP": -11,
+          "FN": 1
+        },
+        "bathtub": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "desk": {
+          "TP": 2,
+          "FP": 3,
+          "FN": -2
+        },
+        "counter": {
+          "TP": 1,
+          "FP": -6,
+          "FN": -1
+        },
+        "cabinet": {
+          "TP": -2,
+          "FP": 3,
+          "FN": 2
+        },
+        "showercurtain": {
+          "TP": 0,
+          "FP": 3,
+          "FN": 0
+        },
+        "floor": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "sink": {
+          "TP": -2,
+          "FP": 1,
+          "FN": 2
+        },
+        "bed": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        },
+        "picture": {
+          "TP": -1,
+          "FP": -3,
+          "FN": 1
+        },
+        "window": {
+          "TP": 2,
+          "FP": -2,
+          "FN": -2
+        },
+        "door": {
+          "TP": -1,
+          "FP": -12,
+          "FN": 1
+        },
+        "otherfurniture": {
+          "TP": 3,
+          "FP": -9,
+          "FN": -3
+        },
+        "sofa": {
+          "TP": 2,
+          "FP": 0,
+          "FN": -2
+        },
+        "chair": {
+          "TP": 16,
+          "FP": -51,
+          "FN": -16
+        },
+        "toilet": {
+          "TP": 0,
+          "FP": 1,
+          "FN": 0
+        },
+        "refrigerator": {
+          "TP": -3,
+          "FP": -1,
+          "FN": 3
+        },
+        "wall": {
+          "TP": 0,
+          "FP": 0,
+          "FN": 0
+        }
+      }
+    }
+  },
+  "hashes": {
+    "val_FROZEN.json": "c1867e5e1973fc9b5a2a6a69401161b2c7a7e51f9210e3c0969e3668f3bd1940",
+    "val_SEALED.json": "06132c7fb8c28cac5b0eddaa7acc27fa24de1fffc1ad51c24377d6aa3885b456",
+    "development_decision.json": "a17a2adc0d0024e2fe3194227f36d5b42169f607029489c5f2ec1ac9a67c090c",
+    "val_scores\\summary.json": "e25448643d85be77de0444bd8e3df9c40cc0856b5badc34bc8abaa0e112d3e0c",
+    "val_scores\\ALL_SEALED.json": "76c9d1f9881202fb6d4761dc878d35b0a86e075a9a796a98d0a6395297613d4e",
+    "val_scores\\per_scene.csv": "2383e2cee299764a648ff6740f7a689ce3ad8572093b75a50a572987c8c345db"
+  }
+}
