@@ -9,6 +9,7 @@ from plyfile import PlyData, PlyElement
 from scipy.spatial import cKDTree
 
 from .common import read, sha, write
+from .completion_frames import select_depth_frames
 
 
 def diverse(group, frames, pose_features, size):
@@ -47,7 +48,9 @@ def votes(cells, categories, n, base, frames=None, poses=None):
     return selected, count, total
 
 
-def observations(front, original, frames, trajectory, checks, depth_scale):
+def observations(
+    front, original, frames, trajectory, checks, depth_scale, *, frame_policy="offset2", selection_info=None
+):
     by_id = {x["frame_id"]: x for x in frames}
     poses = {
         x["frame_id"]: np.asarray(x["T_world_camera_m"]).reshape(4, 4)
@@ -55,9 +58,9 @@ def observations(front, original, frames, trajectory, checks, depth_scale):
         if x["valid"]
     }
     semantic_ids = {int(k) for k in checks}
-    used = sorted(
-        (semantic_ids | {i + 2 for i in semantic_ids}) & poses.keys() & by_id.keys()
-    )
+    used = select_depth_frames(semantic_ids, poses, by_id, original, frame_policy)
+    if selection_info is not None:
+        selection_info.update(frame_policy=frame_policy, depth_frame_ids=used)
     features = np.array(
         [np.r_[poses[t][:3, 3], poses[t][:3, 2]] for t in used], dtype=np.float32
     )
