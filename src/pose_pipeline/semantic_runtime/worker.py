@@ -143,6 +143,7 @@ def main():
     parser.add_argument("--model", default="qwen3vl_2b_bf16")
     parser.add_argument("--stride", type=int, default=5)
     parser.add_argument("--trajectory", type=Path)
+    parser.add_argument("--refill-depth-gate", action="store_true")
     parser.add_argument("--view-policy", choices=('stride', 'quality', 'quality-diverse'), default='stride')
     parser.add_argument("--view-budget", type=int)
     parser.add_argument("--view-plan", type=Path)
@@ -172,6 +173,7 @@ def main():
             provider_root=Path(config["provider_root"]), gpu_python=Path(config["gpu_python"]),
             cpu_python=Path(config["cpu_python"]), threads=config.get("threads", 2),
             graph_threads=config.get("graph_threads", 2),
+            refill_depth_gate=args.refill_depth_gate,
             stage_timeout_s=config.get("stage_timeout", 7200))
     elif args.stage == "fusion":
         from .fusion import main as fuse

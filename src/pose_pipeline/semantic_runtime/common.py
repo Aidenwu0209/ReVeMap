@@ -20,6 +20,15 @@ PROMPT = (
 )
 
 
+def add_mapping_trial_options(parser):
+    parser.add_argument("--completion-association", choices=("latest", "history", "history-verified"),
+                        default="latest", help="mask history used to assign completed surfaces")
+    parser.add_argument("--completion-depth-frames", choices=("offset2", "complementary"),
+                        default="offset2", help="selection of supplemental depth views at the same frame budget")
+    parser.add_argument("--refill-depth-gate", action="store_true",
+                        help="check non-keyframe refill poses against neighboring depth before fusion")
+
+
 def read(path):
     return json.loads(Path(path).read_text())
 

@@ -76,6 +76,11 @@ def run(args):
     view_budget = getattr(args, 'view_budget', None)
     effective_budget = selection_budget(manifest.frames, args.stride, view_budget, view_policy)
     completion = getattr(args, "map_completion", "anchored")
+    association = getattr(args, "completion_association", "latest")
+    frame_policy = getattr(args, "completion_depth_frames", "offset2")
+    refill_gate = getattr(args, "refill_depth_gate", False)
+    if completion == "off" and (association != "latest" or frame_policy != "offset2"):
+        raise ValueError("completion policies require --map-completion anchored")
     gui_finalizes = getattr(args, "gui_finalizes", False)
     confidence_policy = getattr(args, 'semantic_confidence_policy', 'legacy')
     conflict_policy = getattr(args, 'semantic_conflict_policy', 'consensus')
@@ -96,6 +101,9 @@ def run(args):
     options = {"schedule": args.schedule, "vlm": args.vlm, "stride": args.stride,
                                   "raw_frames": len(manifest.frames), "profile": "sam3_stage_v2",
                                   "map_completion": completion,
+                                  "completion_association": association,
+                                  "completion_depth_frames": frame_policy,
+                                  "refill_depth_gate": refill_gate,
                                   "view_policy": view_policy, "view_budget": view_budget,
                                   "effective_view_budget": effective_budget,
                                   "semantic_confidence_policy": confidence_policy,
@@ -124,7 +132,7 @@ def run(args):
         mapping_reused = bool(checkpoints and checkpoints.restore('mapping'))
         sam3_reused = False
         mapping = None if mapping_reused else processes.launch("mapping", command("mapping", config["cpu_python"], output / "mapping",
-                                   "--manifest", args.manifest.resolve()))
+                                   "--manifest", args.manifest.resolve(), *(["--refill-depth-gate"] if refill_gate else [])))
         if mapping and args.schedule == "serial":
             processes.wait(mapping)
             if checkpoints:
@@ -188,7 +196,8 @@ def run(args):
         final_result = fused / "result.json"
         if completion == "anchored" and not gui_finalizes:
             from .completion import publish
-            final, final_result = publish(output, args.manifest, final, output / "completion")
+            final, final_result = publish(output, args.manifest, final, output / "completion",
+                                          association=association, frame_policy=frame_policy)
         end = time.monotonic()
         # Final inventory/COMPLETE are success seals, so input verification must
         # finish first. A failed run must not leave a newly sealed inventory.
@@ -226,6 +235,7 @@ def run(args):
                    "timing": "all worker startup/load/inference/fusion/export; excludes pre/post input hashing and final inventory sealing; includes checkpoint verification/copy when enabled",
                    "GT_used": False, "local_models_resident_together": False,
                    "map_completion": "off" if gui_finalizes else completion,
+                   "refill_depth_gate": refill_gate,
                    "map": str(final),
                    "artifacts": str(inventory),
                    "names": str(output / "fused/instance_names.json")}

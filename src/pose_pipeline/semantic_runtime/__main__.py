@@ -5,7 +5,7 @@ import argparse
 import json
 from pathlib import Path
 
-from .common import PROMPT, model_spec, read, registry, sha
+from .common import PROMPT, add_mapping_trial_options, model_spec, read, registry, sha
 
 
 def test_model(args):
@@ -58,6 +58,7 @@ def add_commands(commands):
     run.add_argument("--schedule", choices=("serial", "parallel"), default="parallel")
     run.add_argument("--vlm", choices=[k for k, v in registry().items() if v["kind"] != "ocr"], default="qwen3vl_2b_bf16")
     run.add_argument("--stride", type=int, default=5)
+    add_mapping_trial_options(run)
     run.add_argument("--map-completion", choices=("anchored", "off"), default="anchored",
                       help="extend existing instances onto multi-view depth surfaces (default: anchored)")
     run.add_argument('--instance-policy', choices=('legacy', 'verified'), default='legacy')

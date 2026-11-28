@@ -42,6 +42,8 @@ def prepare_refinement(output, manifest, runtime, model="qwen3vl_2b_nf4"):
 
 def main():
     p = argparse.ArgumentParser()
+    from .semantic_runtime.common import add_mapping_trial_options
+    add_mapping_trial_options(p)
     p.add_argument('--manifest', type=Path, required=True)
     p.add_argument('--runtime', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True)
@@ -98,13 +100,16 @@ def main():
     if args.map_completion == 'anchored':
         from .semantic_runtime.completion import publish
         atomic_json(output / 'GUI_STAGE.json', {'stage': 'completion'})
-        final, completion_receipt = publish(output, args.manifest, final, output / 'completion')
+        final, completion_receipt = publish(output, args.manifest, final, output / 'completion',
+                                            association=args.completion_association,
+                                            frame_policy=args.completion_depth_frames)
         # The completed PLY carries labels and aligned RGB for the viewer.
         raw_map = final = str(final)
     atomic_json(output / 'GUI_STAGE.json', {'stage': 'export'})
     atomic_json(output / 'GUI_RESULT.json', {'status': 'completed', 'final_cloud': final, 'trajectory': geom['trajectory'],
                 'classes': str(classes), 'raw_map': raw_map, 'base_map': result['map'],
                 'map_completion': args.map_completion, 'names': result['names'], 'refinement': args.refine,
+                'refill_depth_gate': args.refill_depth_gate,
                 'artifacts': str(output / 'ARTIFACTS.json'),
                 'scope': 'run-sam3, optional unknown-point refinement, then selected map completion'})
     from .artifacts import write_artifact_manifest

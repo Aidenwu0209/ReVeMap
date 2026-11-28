@@ -316,7 +316,7 @@ def complete_labels(original_xyz, base_semantic, base_instance, obs, features, m
     return add, near[append], semantic, instance
 
 
-def publish(output, manifest, base_map, destination):
+def publish(output, manifest, base_map, destination, *, association="latest", frame_policy="offset2"):
     """Publish a separate completed PLY, keeping the fusion/refinement sources intact."""
     output, base_map = Path(output), Path(base_map)
     config = read(manifest)
@@ -326,6 +326,8 @@ def publish(output, manifest, base_map, destination):
     source = PlyData.read(base_map)
     vertices = source["vertex"].data
     original = np.column_stack([vertices[key] for key in "xyz"])
+    selection_info = {}
+    association_info = {}
     obs, features, meta, witness = observations(
         output,
         original,
@@ -333,9 +335,12 @@ def publish(output, manifest, base_map, destination):
         read(trajectory),
         checks,
         config["depth_scale"],
+        frame_policy=frame_policy,
+        selection_info=selection_info,
     )
     added, nearest, semantic, instance = complete_labels(
-        original, vertices["semantic_id"], vertices["instance_id"], obs, features, meta
+        original, vertices["semantic_id"], vertices["instance_id"], obs, features, meta,
+        association=association, association_info=association_info,
     )
     del obs
     size = len(vertices)
@@ -371,6 +376,10 @@ def publish(output, manifest, base_map, destination):
         dict(
             status="completed",
             mode="anchored",
+            association=association,
+            association_info=association_info,
+            frame_policy=frame_policy,
+            selection_info=selection_info,
             GT_used=False,
             base_map_sha256=sha(base_map),
             original_points=size,

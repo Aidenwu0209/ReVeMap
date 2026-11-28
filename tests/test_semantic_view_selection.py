@@ -118,7 +118,7 @@ def test_invalid_budgets_fail_before_inference(sequence, budget):
 @pytest.mark.parametrize('schedule', ['serial', 'parallel'])
 @pytest.mark.parametrize('input_changed', [False, True])
 @pytest.mark.parametrize('instance_policy', [None, 'verified'])
-@pytest.mark.parametrize('completion', [None, 'off'])
+@pytest.mark.parametrize('completion', [None, 'off', 'anchored'])
 def test_pipeline_selects_after_refill_with_full_mapping_input(sequence, tmp_path, monkeypatch, schedule, input_changed, instance_policy, completion):
     from pose_pipeline.semantic_runtime import pipeline, view_selection
     manifest, trajectory, frames = sequence
@@ -134,9 +134,12 @@ def test_pipeline_selects_after_refill_with_full_mapping_input(sequence, tmp_pat
             self.mapping_done = False
         def launch(self, name, command):
             args = command[command.index('pose_pipeline.semantic_runtime.worker') + 1:]
-            opts = {args[i]: args[i + 1] for i in range(1, len(args), 2)}
+            gate = '--refill-depth-gate' in args
+            args = [arg for arg in args if arg != '--refill-depth-gate']
+            opts = dict(zip(args[1::2], args[2::2]))
             events.append(name)
             if name == 'mapping':
+                assert gate == (completion == 'anchored')
                 assert opts['--manifest'] == str(manifest)
                 assert '--graph-policy' not in opts
                 target = Path(opts['--output'])
@@ -173,7 +176,9 @@ def test_pipeline_selects_after_refill_with_full_mapping_input(sequence, tmp_pat
         def close(self):
             pass
     monkeypatch.setattr(pipeline, 'Processes', FakeProcesses)
-    def publish(root, input_manifest, base_map, destination):
+    def publish(root, input_manifest, base_map, destination, *, association, frame_policy):
+        assert association == getattr(args, "completion_association", "latest")
+        assert frame_policy == getattr(args, "completion_depth_frames", "offset2")
         assert root == output and input_manifest == manifest
         assert base_map == root / 'fused/export/map_labeled.ply'
         events.append('completion')
@@ -187,6 +192,10 @@ def test_pipeline_selects_after_refill_with_full_mapping_input(sequence, tmp_pat
         schedule=schedule, vlm='none', stride=5, view_policy='quality-diverse', view_budget=3)
     if completion:
         args.map_completion = completion
+    if completion == 'anchored':
+        args.refill_depth_gate = True
+        args.completion_association = 'history-verified'
+        args.completion_depth_frames = 'complementary'
     if instance_policy is not None:
         args.instance_policy = instance_policy
     if input_changed:
@@ -198,9 +207,9 @@ def test_pipeline_selects_after_refill_with_full_mapping_input(sequence, tmp_pat
         return
     result = pipeline.run(args)
     stages = ['mapping', 'view_selection', 'sam3', 'fusion', 'backfill']
-    assert events == (stages + ['completion'] if completion is None else stages)
-    assert Path(result['artifacts']).parent == (output if completion is None else output / 'fused')
-    assert Path(result['map']).parent == (output / 'completion' if completion is None else output / 'fused/export')
+    assert events == (stages if completion == 'off' else stages + ['completion'])
+    assert Path(result['artifacts']).parent == (output / 'fused' if completion == 'off' else output)
+    assert Path(result['map']).parent == (output / 'fused/export' if completion == 'off' else output / 'completion')
     assert result['raw_frames'] == len(frames) == 12
     assert result['selected_frames'] == result['view_budget'] == 3
     assert read(output / 'CONFIG.json')['view_policy'] == 'quality-diverse'
