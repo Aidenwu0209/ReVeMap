@@ -1,0 +1,48 @@
+{
+  "rule_sha256": "b37b1f435ea08f8d348a533386b7b33637c1ae9ef26bbf9fb2676e24086cab71",
+  "splits": {
+    "train": {
+      "rooms": 9,
+      "all_points": 4528784,
+      "append_points": 911397,
+      "semantic_diff": 0,
+      "instance_diff": 0,
+      "geometry_filter_diff": 0
+    },
+    "val": {
+      "rooms": 142,
+      "all_points": 79043367,
+      "append_points": 19324053,
+      "semantic_diff": 0,
+      "instance_diff": 0,
+      "geometry_filter_diff": 0
+    }
+  },
+  "exports": {
+    "scene0011_00": {
+      "points": 951074,
+      "primary_points": 661855,
+      "masked_points": 19213,
+      "source": "ff991f3c13eaea0cc64a008f856d32d2e3edd9d0cb498c985b43b5bea135d562",
+      "output": "996702ba0160e5c4e4e0c92b5c1c4cbe83ef79910a17fd092a35c9bc45870833",
+      "npz": "7184993f8eb25a608e2d3909d46a675fed64b8d73bb929d90288c777785598e6",
+      "ply": "a8bf84a5c1da824356c9c544a331d3f17e91936003263dd93bcceb3a78aaea9e",
+      "semantic_differences": 0,
+      "instance_differences": 0,
+      "coordinate_rgb_other_field_differences": 0
+    },
+    "scene0063_00": {
+      "points": 592615,
+      "primary_points": 367461,
+      "masked_points": 23089,
+      "source": "8ef202ebd7f64e785ca95aa5a4f2b254f5b0e0efead9a2078310c36e13475ee5",
+      "output": "8ffb4c387c914e55ef35f2aa0de16424652ac0a1a4b17a65df764bc7cfbc514a",
+      "npz": "2ce2c3449faf3f5550df3aa4c8744522e310f8b7e198a2ea288c0b02c5df14e0",
+      "ply": "d52752b2dfc6e5cdf63f2ff635841327749af0f1f40999a5300554fc7edb6f46",
+      "semantic_differences": 0,
+      "instance_differences": 0,
+      "coordinate_rgb_other_field_differences": 0
+    }
+  },
+  "gt_used": false
+}

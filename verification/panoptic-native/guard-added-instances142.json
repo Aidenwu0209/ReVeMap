@@ -1,0 +1,92 @@
+{
+  "rooms": 142,
+  "families": 134,
+  "selected": "void-new",
+  "metric": "full valid GT, first pose, 5 cm geometric matching radius, IoU strictly >0.5",
+  "controls_v2_raw": {
+    "pq_pct": 50.54738624008801,
+    "miou_pct": 60.51077767319538,
+    "thing_tp": 1176,
+    "thing_fp": 1330,
+    "new_id_tp": 2,
+    "new_id_fp": 245,
+    "points": 79043367,
+    "coverage_pct": 86.82040836266877,
+    "precision_pct": 47.83719964239482,
+    "mean_symmetric_nn_m": 0.15667331689384056
+  },
+  "guarded": {
+    "pq_pct": 51.14487219129364,
+    "miou_pct": 60.32052437871141,
+    "thing_tp": 1174,
+    "thing_fp": 1085,
+    "new_id_tp": 0,
+    "new_id_fp": 0,
+    "points": 79043367,
+    "coverage_pct": 86.82040836266877,
+    "precision_pct": 47.83719964239482,
+    "mean_symmetric_nn_m": 0.15667331689384056
+  },
+  "paired": {
+    "base": {
+      "pq_delta_pp": 3.550162958189903,
+      "up": 122,
+      "tie": 4,
+      "down": 16,
+      "recovered": 88,
+      "lost": 8,
+      "fp_delta": -51
+    },
+    "raw": {
+      "pq_delta_pp": 0.5974859512056342,
+      "up": 54,
+      "tie": 87,
+      "down": 1,
+      "recovered": 0,
+      "lost": 2,
+      "fp_delta": -245
+    }
+  },
+  "paired_pq_family_95": [
+    0.35915745104162544,
+    0.8618713597055782
+  ],
+  "bootstrap": {
+    "seed": 942,
+    "replicates": 4000
+  },
+  "old_id_tp_delta": 0,
+  "old_id_fp_delta": 0,
+  "lost": [
+    {
+      "scene": "scene0412_00",
+      "new_id_true_positives": [
+        [
+          19,
+          28
+        ]
+      ],
+      "pq_delta_pp": 0.1591936868462156
+    },
+    {
+      "scene": "scene0607_00",
+      "new_id_true_positives": [
+        [
+          14,
+          19
+        ]
+      ],
+      "pq_delta_pp": -6.5673272935413785
+    }
+  ],
+  "sha256": {
+    "eval/controls_v2/val/raw/summary.json": "64df9d0cc2b1b184a623a14d2fd27a825ca57e54fa9017d4e33b5ab55b2f4e7c",
+    "objects/common_val/summary.json": "1de6d57c7a6d2863a2864888096d244e3f1719e3975c4e84b44017b5e4e99ad5",
+    "objects/selected.json": "3413e82b6a01564c3e1d5d041adfc7a9110b510883ca9cb2f7a15a20405c1ac8",
+    "objects/val_FROZEN.json": "f2a4d3143c837b0c9badc7dc0e1254684f93a93d9e8afe535688466132367445",
+    "objects/val_SEALED.json": "81c4851a883ef892ac2e6260d8d8871866a0f2479da877450bc948504f5a34b6",
+    "objects/common_val/ALL_SEALED.json": "0f9a36aba461dea577ee08b4f34e25e3ef968f7031d583783de1755ae4fcf362",
+    "objects/val_scores/summary.json": "d791b53995dedd1fa60d7442b068c0d1dd390010a1569d67990c8cc896cb03a8",
+    "objects/package_checks_v2/verification.json": "a8497dc834662d505e930203e650e030cdde7611731d0d1d440ef878d9c391db"
+  }
+}
