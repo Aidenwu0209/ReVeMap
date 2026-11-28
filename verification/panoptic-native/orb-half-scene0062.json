@@ -1,0 +1,86 @@
+{
+  "scene": "scene0062_00",
+  "raw_source_sha256": "6cfb0ffdce2b8bdb2b54a24fcf800edb04c4afdb2893c6f00d78ff30e4aab973",
+  "native_A_sha256": "9fb910bd71936f25043d8996a6ed3eeeefb416f34f7eeea024217e636613464a",
+  "native_trajectory_sha256": "0f40d80d3f245d66b5908f6cde4a308cab08fb35f47c409829d992adcb20f5f2",
+  "reference_source": "d18812ebd9eaf89e5e2d0c7684ad49b8a41cdb06e06d1c2badfaf2a4b818e77d",
+  "upstream_orb": "4452a3c4ab75b1cde34e5505a36ec3f9edcdc4c4",
+  "vocabulary": "f8dd027f7a6cb88129821341194d7f2c75b77b3394257ddd0d2229863d1a3570",
+  "released_runner_sha256": "73e0afb8bfec7589ab120fa2512a6a6c5899e3ea344e6c0bd5f956940385f532",
+  "reference_build_library_sha256": "2bf244931aec2bd6e2fdb9e824fbc3e896fdb950fe138119c3e84e438bcff10c",
+  "checkpoint_sha256": "9ba46231ff62d831c24d1e42e99e0e8c61978857d7f0475e39e002cce34cb7b6",
+  "reference_frame": 0,
+  "runs": {
+    "fresh": {
+      "sensor_frames": 730,
+      "orb_supported": 730,
+      "first_common": 0,
+      "real_A_points": 85064,
+      "old_point_correspondences": 94618,
+      "mesh_vertices": 80205,
+      "same_reference_geometry_xyz": false,
+      "same_reference_rgb": false,
+      "same_reference_poses": false,
+      "same_reference_correspondences": false,
+      "same_reference_mesh_bytes": false,
+      "same_reference_semantics": false,
+      "same_reference_instances": false,
+      "PQ": 62.6310112172576,
+      "mIoU": 74.65348470802911,
+      "coverage_pct": 91.79913060403555,
+      "single_receipt": "69d4ed0de5a538d7b5a9a60aa9186f63738deb2e393c5baf2ed88ac212699de9",
+      "result_sha256": "f79cc2b9647f71d3696d875f4e915103d032e461a415d3fdd52f6087f1f73f7e",
+      "three_inputs": {
+        "sensor": "6cfb0ffdce2b8bdb2b54a24fcf800edb04c4afdb2893c6f00d78ff30e4aab973",
+        "trajectory": "0f40d80d3f245d66b5908f6cde4a308cab08fb35f47c409829d992adcb20f5f2",
+        "native_map": "9fb910bd71936f25043d8996a6ed3eeeefb416f34f7eeea024217e636613464a",
+        "orb_exports": "57fa355d7b2eb10141a9b9b867d55313a88cb45ae806f7e1f4c499c3cccfa97c"
+      },
+      "geometry_files": {
+        "orb_supported.npy": "8cd3f4bbb2444732032fe3824b567bdf85255c63fe2c92600a314b3627f0d7cb",
+        "mesh.ply": "e562b2e3f64252a98c2f8860b0a5addc33c69b826bcedd544bf8476f4424024b",
+        "primary_in_secondary.ply": "d297e180b255631ac291847d42438f644b58bf9e57b37df87cdf9731c4dcad93",
+        "A.ply": "8dc94766d323b3b3f8fab5b7fda4c8030f93225fb86a2c690d211a0c44d4e0b2",
+        "trajectory.json": "53e3591a4706cdcf2b06bd037cee76291fb37cc85772ba81d910d309ae6f6a05",
+        "tsdf_points.ply": "023d4b87c3fc285b301c633441a709c388929b00d3939575085ce10436f23926"
+      },
+      "rotation_method": "camera-normal"
+    },
+    "replay": {
+      "sensor_frames": 730,
+      "orb_supported": 730,
+      "first_common": 0,
+      "real_A_points": 85375,
+      "old_point_correspondences": 94618,
+      "mesh_vertices": 80815,
+      "same_reference_geometry_xyz": true,
+      "same_reference_rgb": true,
+      "same_reference_poses": true,
+      "same_reference_correspondences": true,
+      "same_reference_mesh_bytes": true,
+      "same_reference_semantics": true,
+      "same_reference_instances": true,
+      "PQ": 61.96781295198504,
+      "mIoU": 72.94772853808126,
+      "coverage_pct": 92.0478384048098,
+      "single_receipt": "fc932eeff6ce21b140a3753d1041133c8615f4976ca0dfb0d04c90cf63be36cb",
+      "result_sha256": "cb338496309d7e92e6e59b0b1eedbed8cd46b202241ea95d48fbb1211a8500bf",
+      "three_inputs": {
+        "sensor": "6cfb0ffdce2b8bdb2b54a24fcf800edb04c4afdb2893c6f00d78ff30e4aab973",
+        "trajectory": "0f40d80d3f245d66b5908f6cde4a308cab08fb35f47c409829d992adcb20f5f2",
+        "native_map": "9fb910bd71936f25043d8996a6ed3eeeefb416f34f7eeea024217e636613464a",
+        "orb_exports": "d18812ebd9eaf89e5e2d0c7684ad49b8a41cdb06e06d1c2badfaf2a4b818e77d"
+      },
+      "geometry_files": {
+        "orb_supported.npy": "8cd3f4bbb2444732032fe3824b567bdf85255c63fe2c92600a314b3627f0d7cb",
+        "mesh.ply": "dfa3da6269bfe4ab08d86da139a7c51757f9626578514a01914c79b09aea7933",
+        "primary_in_secondary.ply": "770b1e0b213ee342b796137ada12a62f98b46853f17f047e7afe36eb92ee3c5b",
+        "A.ply": "49cb38d9c9a0f07f83baa4302d544b9ee237bf1b70d4ea443f6a95d4de8f6603",
+        "trajectory.json": "473a8cf662203ad90f403cc13c80a28d3289b20424363782c0e822ae17f0e2e8",
+        "tsdf_points.ply": "0350743ab873282a971511ee5856a438e4ce165efa5d9b57bfec836e5b38262a"
+      },
+      "rotation_method": "camera-normal"
+    }
+  },
+  "geometry_validation": "All reference equality fields are directly checked. Independent fresh tracking has nondeterministic backend threading. Coverage and PQ use 5 cm full GT projection after inference, with the archived first camera."
+}

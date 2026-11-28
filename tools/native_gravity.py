@@ -1,6 +1,28 @@
 """Estimate metric room axes from the reconstructed mesh and camera poses."""
 import numpy as np
 
+
+def camera_normal_frame(poses, vertices, triangles):
+    """Reproduce the single-expert rotation used on ORB-half reconstructions."""
+    points = vertices.astype(np.float32)
+    up = norm(np.median(-poses[:, :3, 1], axis=0))
+    a, b, c = points[triangles[:, 0]], points[triangles[:, 1]], points[triangles[:, 2]]
+    cross = np.cross(b - a, c - a)
+    area = np.linalg.norm(cross, axis=1)
+    normals = cross / np.maximum(area[:, None], 1e-20)
+    for degrees in (30, 18, 12):
+        agreement = normals @ up
+        selected = (np.abs(agreement) > np.cos(np.deg2rad(degrees))) & (area > 0)
+        if not selected.any():
+            break
+        up = norm(np.sum(cross[selected] * np.sign(agreement[selected, None]), axis=0))
+    right = poses[0, :3, 0] - up * np.dot(poses[0, :3, 0], up)
+    if np.linalg.norm(right) < .1:
+        axis = np.eye(3)[np.argmin(np.abs(up))]
+        right = axis - up * np.dot(axis, up)
+    right = norm(right)
+    return np.stack([right, np.cross(up, right), up]), {"method": "camera-normal"}
+
 def norm(v):
     return v / np.maximum(np.linalg.norm(v,axis=-1,keepdims=True),1e-12)
 def axis_frame(T, vertices, triangles):

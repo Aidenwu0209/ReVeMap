@@ -9,7 +9,7 @@ import numpy as np
 from plyfile import PlyData
 from scipy.spatial import cKDTree
 
-from native_gravity import axis_frame
+from native_gravity import axis_frame, camera_normal_frame
 from panoptic_observations import CLASSES, reconcile
 
 
@@ -67,8 +67,9 @@ def infer_mesh(mesh, rotation, model):
     return xyz, semantic, instance, head, confidence
 
 
-def infer(mesh, poses, model):
-    rotation, orientation = axis_frame(poses, np.asarray(mesh.vertices), np.asarray(mesh.triangles))
+def infer(mesh, poses, model, orientation_method="axis-frame"):
+    estimator = camera_normal_frame if orientation_method == "camera-normal" else axis_frame
+    rotation, orientation = estimator(poses, np.asarray(mesh.vertices), np.asarray(mesh.triangles))
     return (*infer_mesh(mesh, rotation, model), rotation, orientation)
 
 
@@ -130,7 +131,9 @@ def run(args):
     del state
     network.eval().cuda()
     mesh = o3d.io.read_triangle_mesh(str(args.mesh))
-    xyz, semantic, instance, head, confidence, rotation, orientation = infer(mesh, poses, network)
+    xyz, semantic, instance, head, confidence, rotation, orientation = infer(
+        mesh, poses, network, getattr(args, "orientation", "axis-frame")
+    )
     cloud = PlyData.read(args.map, mmap=False)
     vertex = cloud["vertex"].data
     map_xyz = np.column_stack([vertex[k] for k in "xyz"])
@@ -167,6 +170,8 @@ def run(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--orientation", choices=("axis-frame","camera-normal"), default="axis-frame",
+                        help="Use camera-normal for the ORB-half single-expert readout")
     parser.add_argument("--native-classes", type=Path, help="Use the input map's tracked objects to refine each expert mask")
     parser.add_argument("--vote-views", action="store_true", help="Vote across four mesh predictions")
     parser.add_argument("--save-view-evidence", action="store_true",
