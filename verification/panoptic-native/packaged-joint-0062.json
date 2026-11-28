@@ -1,0 +1,30 @@
+{
+  "scene": "scene0062_00",
+  "points": 94618,
+  "paired_keyframes": 5,
+  "accepted_transforms_equal_within_1e_4": true,
+  "maximum_pose_matrix_difference": 0.0,
+  "maximum_point_distance_m": 0.0,
+  "exact_xyz": true,
+  "mean_point_distance_m": 0.0,
+  "rgb_equal": true,
+  "semantics_equal": true,
+  "instances_equal": true,
+  "packed_edges": "9f7c6587b15e4999dccc255726b6b04b057254f12368abc979a2e2aa7612e341",
+  "frozen_loops": "04732980aec5bd91657248bd8f008ab5a5eab35f06d93c231b9911f9908e9c48",
+  "native_geometry": "db3a12e616e98171f6740d345570b751fb9299e9a0d86539f75868e22f0db2fa",
+  "result": {
+    "sensor_sha256": "6cfb0ffdce2b8bdb2b54a24fcf800edb04c4afdb2893c6f00d78ff30e4aab973",
+    "trajectory_sha256": "0f40d80d3f245d66b5908f6cde4a308cab08fb35f47c409829d992adcb20f5f2",
+    "GT_used": false,
+    "nodes": 125,
+    "dense_edges": 523,
+    "long_edges": 4,
+    "map_sha256": "9fb910bd71936f25043d8996a6ed3eeeefb416f34f7eeea024217e636613464a",
+    "edges_sha256": "9f7c6587b15e4999dccc255726b6b04b057254f12368abc979a2e2aa7612e341",
+    "labeled_sha256": "32fd1d32319fd7ea6a7b82cabd61bd563ecd52f7e7025f066a4204fe64655b60",
+    "fraction": 0.6,
+    "points": 94618,
+    "prediction_sha256": "07c79bc88c9000e6e5630f9c0149ce5c876a1447ed3e4382fdda391ab4875d9e"
+  }
+}
