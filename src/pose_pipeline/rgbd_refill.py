@@ -252,6 +252,7 @@ def run_visual_refill(
         restored = set()
         if refill_depth_gate:
             from .refill_depth_gate import verify_refill
+            np.save(out / "visual_before_depth_gate.npy", full, allow_pickle=False)
             graph_poses = np.load(source / "final_raw_poses.npy", allow_pickle=False)
             full, audit = verify_refill(manifest, graph_poses, full, ids)
             restored.update(audit["restored_ordinals"])
